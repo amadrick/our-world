@@ -1,78 +1,302 @@
 {
-  "hedge-coffee": "a tiny neighborhood coffee window tucked into a pastel Mission District Victorian row house, a small walk-up counter, potted plants and a wooden bench on the sidewalk",
-  "the-coffee-movement": "a tiny minimalist espresso bar in a narrow storefront at the bottom of a white apartment building on a steep Nob Hill street, one small counter and an espresso machine glowing inside",
-  "bi-rite-creamery": "a small old-fashioned ice cream parlor with a cream-colored storefront and a striped awning, tubs of ice cream in the window and a bench outside, next to the grassy corner of a park",
-  "jules": "a cozy neighborhood pizza restaurant in a Lower Haight Victorian corner building, big windows and a wood-fired oven glowing inside",
-  "toronado": "a legendary no-frills beer bar in a narrow Lower Haight Victorian storefront painted deep maroon with a dark wood front, a long wooden bar with many beer taps visible through the open doorway, a bike locked to a parking meter",
-  "flour-and-water": "an industrial-chic Italian restaurant in a low Mission District warehouse building with big steel windows, fresh pasta drying on a wooden rack and a warm glowing dining room",
-  "original-joes": "a classic Italian-American restaurant in a large cream stucco corner building with green awnings and a tall vintage blade sign shape, red leather booths visible inside, facing a small leafy square",
-  "hk-lounge-bistro": "a modern Cantonese dim sum restaurant in a SoMa building with tall windows, round tables with bamboo steamer baskets and red paper lanterns inside",
-  "taqueria-el-farolito": "a bright, bustling late-night taqueria storefront with a yellow and red facade, a glowing blank sign and foil-wrapped burritos on the counter",
-  "san-tung": "a busy neighborhood Chinese restaurant storefront in the Inner Sunset, with a plate of glossy dry-fried chicken wings on a table in the window",
-  "maison-nico": "an elegant little French patisserie in a historic brick Jackson Square building, black-framed windows, a marble counter with pastries and savory tarts, brass lamps",
-  "yank-sing": "a spacious dim sum dining room under a bright glass atrium, round tables, rolling carts stacked with bamboo steamer baskets of dumplings",
-  "hook-fish": "a small casual seafood shack a block from Ocean Beach with weathered blue-gray wood siding, a surfboard leaning outside and a sandy sidewalk",
-  "cotogna": "a warm rustic Italian trattoria in an old brick Jackson Square building with tall arched windows, a wood-fired oven and rotisserie glowing inside, copper pots",
-  "tartine-bakery": "a beloved corner bakery in San Francisco's Mission District: a two-story Edwardian corner building painted soft cream with big shop windows, a dark green awning, bistro chairs, a small tree and a bench outside, bread loaves and pastries glowing in the window",
-  "mamahuhu": "a playful modern Chinese-American restaurant storefront on a busy Inner Richmond street, a bright tiled counter, takeout boxes and dumplings in the window",
-  "nopalito": "a cheerful Mexican restaurant with a turquoise and white facade and colorful papel picado bunting, a griddle with fresh tortillas visible inside",
-  "nopa": "a lively high-ceilinged Californian restaurant in a former bank building with tall windows, a long communal table and a glowing wood-fired oven, warm evening light",
-  "saint-frank-coffee": "a bright minimalist coffee bar with white walls and light wood, one long counter and an espresso machine, in a classic Russian Hill storefront",
-  "molinari-delicatessen": "an old-fashioned Italian deli storefront with a green-and-cream facade, salamis and cheese wheels hanging in the window, crates and a small bench outside",
-  "ernest": "a sleek modern restaurant in an industrial Mission District building, dark wood, an open kitchen counter and a few plants",
-  "verjus": "a Parisian-style wine bar and shop in a brick Jackson Square building, bottles lining the walls, a zinc bar and bistro chairs",
-  "nopa-fish": "a small seafood counter inside a historic arched market hall, fish and oysters on crushed ice, a tiled counter with stools",
-  "the-laundromat-sf": "a neighborhood pizza and bagel shop in a retro former laundromat storefront in the Outer Richmond, pastel tiles and a pizza oven",
-  "pearl-6101": "a small neighborhood corner restaurant in the Outer Richmond with pale stucco walls, big windows and plates of pasta on the tables",
-  "arsicault-bakery": "a tiny bakery storefront in a pale Inner Richmond building, a small window full of golden flaky croissants and a single café table outside",
-  "flour-and-water-pizzeria": "a casual modern pizzeria on a North Beach corner with large windows and a glowing pizza oven",
-  "pabu-izakaya": "a modern Japanese izakaya on the ground floor of a Financial District tower, warm wood slats, paper lanterns and a sushi counter",
-  "capos": "a moody Chicago-style pizza speakeasy in a dark wood North Beach storefront, deep-dish pizzas in cast-iron pans and vintage booths",
-  "tartine-manufactory": "a large airy converted brick factory with huge skylights and steel windows, a bakery counter and long wooden tables",
-  "garden-creamery": "a small whimsical ice cream shop with a mint-green storefront, potted plants and colorful ice cream cones",
-  "liholiho-yacht-club": "a lively Hawaiian-inspired restaurant in a Nob Hill building with tropical plants, a long bar and bright playful accents",
-  "tonys-pizza-napoletana": "a busy North Beach pizzeria facing a small park, a big domed wood-fired pizza oven visible inside, red and white accents",
-  "lolo": "a colorful Jalisco-inspired Mexican restaurant on Valencia Street with a whimsical mural and vibrant pink and teal decor",
-  "deli-board": "a no-frills sandwich shop in a SoMa warehouse storefront, a giant stacked deli sandwich on the counter and blank menu boards",
-  "delfina": "a cozy neighborhood Italian restaurant in a Mission District storefront with a simple awning, a warm dining room with pasta and wine on the tables",
-  "thai-spice": "a small neighborhood Thai restaurant storefront on Polk Street with golden accents, potted orchids and bowls of curry",
-  "tacolicious": "a lively taco restaurant storefront with colorful tiles, tacos and margaritas on the bar",
-  "andytown-coffee-roasters": "a small corner coffee shop in the foggy Outer Sunset near the beach, a pale blue-green facade, a bench outside and a coffee roaster visible inside",
-  "outer-sunset": "a little Outer Sunset street corner by Ocean Beach: pastel boxy houses, a surf shop, a coffee window, a sand dune and a strip of beach with a surfboard",
-  "rt-rotisserie": "a bright casual rotisserie restaurant with golden chickens turning on a glowing rotisserie, white tile and a simple counter",
-  "house-of-prime-rib": "an old-school English-style steakhouse in a Tudor-style building, dark wood and red leather inside, a silver carving cart with a roast",
-  "foreign-cinema": "an open-air courtyard restaurant with a big wall showing a softly glowing movie projection of an abstract landscape, string lights, candlelit tables and a fireplace",
-  "limon-rotisserie": "a cheerful Peruvian rotisserie restaurant with chickens on a glowing rotisserie, lime-green accents and ceviche on the tables",
-  "kin-khao": "a modern Thai restaurant on the ground floor of a hotel near Union Square, warm wood, bold curries and noodle bowls",
-  "china-live": "a sleek multi-level Chinese food hall with a glass facade, open kitchens, dumpling stations and a stylish bar upstairs",
-  "r-and-g-lounge": "a classic Chinatown Cantonese restaurant in a multi-story building with red and gold accents, a platter of salt-and-pepper crab",
-  "han-il-kwan": "a traditional Korean restaurant storefront in the Richmond, a table with many small banchan dishes and a sizzling stone pot",
-  "lovelys": "a small cozy neighborhood restaurant in a Cole Valley Victorian storefront with café tables and soft light",
-  "two-pitchers-brewing": "a friendly craft brewery taproom in an Oakland brick building with a big roll-up door, shiny brew tanks and picnic tables",
-  "maillards": "a small casual counter-service grill in the Outer Sunset with a flat-top griddle and a few stools",
-  "day-moon": "a small neighborhood bakery in the Outer Sunset with a pastel facade and pastries in the window",
-  "outerlands": "a cozy wood-shingled restaurant near the beach that feels like a driftwood cabin, warm light, loaves of bread and brunch plates",
-  "tony-niks": "a tiny vintage cocktail bar in North Beach with a glowing blank neon sign shape, dark wood and an old-school booth",
-  "trick-dog": "a lively cocktail bar in a converted Mission District warehouse with colorful playful decor and a long bar lined with cocktails",
-  "true-laurel": "a sleek cocktail bar with a mid-century feel, a curved bar, plants and low warm lighting",
-  "penny-roma": "a Roman-style trattoria with a leafy garden patio, string lights and pasta on the tables",
-  "bodega-sf": "a small, colorful Vietnamese restaurant with bright walls, pho bowls and spring rolls on the tables",
-  "little-original-joes": "a cozy Italian-American restaurant on a neighborhood shopping street, red booths and a vintage blank neon sign shape",
-  "beit-rima": "a cozy Arab restaurant on a Cole Valley corner with patterned tiles, mezze plates and warm lanterns",
-  "farmhouse-kitchen-thai": "a festive, colorful Thai restaurant in a converted warehouse with bright pink and gold accents and hanging flowers",
-  "daeho": "a busy Korean restaurant in Japantown, a big platter of braised short ribs with melted cheese on the table",
-  "burma-superstar": "a popular Burmese restaurant storefront on Clement Street with a warm red facade and a colorful tea leaf salad on the table",
-  "burma-love": "a stylish Burmese restaurant with teak wood and brass accents, a tea leaf salad and curries on the table",
-  "taqueria-el-buen-sabor": "a casual taqueria storefront with a colorful facade, a salsa bar, burritos and tacos",
-  "la-taqueria": "a classic Mission District taqueria with a simple white stucco facade, a small awning and a counter with a griddle",
-  "gotts-roadside": "a retro roadside burger stand with a red-and-white canopy and outdoor picnic tables beside a historic waterfront building with a clock tower",
-  "bottega": "a warm Italian restaurant on Valencia Street with arched windows, fresh pasta and wine on the tables",
-  "good-good-culture-club": "a bright, playful Southeast Asian restaurant with tropical colors, rattan lamps and colorful plates",
-  "souvla": "a bright minimalist Greek rotisserie restaurant with white walls and blue accents, pita sandwiches and frozen yogurt",
-  "golden-boy-pizza": "a tiny classic North Beach pizza-by-the-slice counter with a green facade and slabs of square focaccia pizza in the window",
-  "comstock-saloon": "a historic Victorian saloon with a long carved mahogany bar, a pressed-tin ceiling and a brass foot rail",
-  "rampant-bottle-and-bar": "a small wine bar and bottle shop in the Outer Richmond, shelves of wine bottles and a few stools at a counter",
-  "ordinaire": "a relaxed natural wine bar and shop in an Oakland storefront, shelves of bottles and a long communal table",
-  "bodega-wine-bar": "a small intimate wine bar on a North Beach corner, candles, a short bar and wine glasses",
-  "waystone": "a cozy neighborhood wine bar in a North Beach storefront, wooden shelves of bottles and small tables"
+  "kope-house": {
+    "visual": "a chilled Short & Sweet espresso drink in a clear glass, layered red bean, black cherry and espresso with a cherry-blossom garnish, beside a passion-fruit chocolate cappuccino in a small ceramic cup",
+    "scene": "object"
+  },
+  "hedge-coffee": {
+    "visual": "the café's woodsy courtyard interior: a young redwood tree growing up through an open roof, warm wooden benches and a small coffee counter",
+    "scene": "room"
+  },
+  "the-coffee-movement": {
+    "visual": "a cocoa cappuccino in a small ceramic cup and saucer, thick foam dusted with dark chocolate",
+    "scene": "object"
+  },
+  "bi-rite-creamery": {
+    "visual": "a generous scoop of salted caramel ice cream in a paper cup with a small wooden spoon",
+    "scene": "object"
+  },
+  "jules": {
+    "visual": "a whole round Spicy Ronny pizza with crisp cupped pepperoni, flecks of Calabrian chile and a drizzle of hot honey, on a metal tray",
+    "scene": "object"
+  },
+  "toronado": {
+    "visual": "a long wall of beer tap handles above a dark wooden bar with a row of full pint glasses of amber and golden beer",
+    "scene": "room"
+  },
+  "flour-and-water": {
+    "visual": "a shallow bowl of tortellini en brodo, small hand-folded pasta in clear golden broth",
+    "scene": "object"
+  },
+  "original-joes": {
+    "visual": "Joe's Special on a white oval plate: a scramble of ground beef, spinach and egg with a slice of sourdough toast",
+    "scene": "object"
+  },
+  "hk-lounge-bistro": {
+    "visual": "three baked barbecue pork buns with crackly golden sugar crusts in a bamboo steamer",
+    "scene": "object"
+  },
+  "taqueria-el-farolito": {
+    "visual": "a huge carne asada super burrito in foil, cut open to show charred steak, rice, beans, cheese and guacamole, in a red plastic basket",
+    "scene": "object"
+  },
+  "san-tung": {
+    "visual": "a heaping plate of glossy dry-fried chicken wings with red chilies and sesame seeds",
+    "scene": "object"
+  },
+  "maison-nico": {
+    "visual": "a terrine of pâté en croûte with one slice cut, golden decorated pastry around a mosaic filling, on a small wooden board",
+    "scene": "object"
+  },
+  "yank-sing": {
+    "visual": "a steel dim sum cart stacked with bamboo steamers of dumplings, one open basket of plump chicken and mushroom dumplings on top",
+    "scene": "object"
+  },
+  "hook-fish": {
+    "visual": "a daily-catch fish burrito cut in half, grilled fish with slaw and salsa, on a paper-lined tray",
+    "scene": "object"
+  },
+  "cotogna": {
+    "visual": "a single giant raviolo filled with ricotta and a runny egg yolk, glossy with brown butter and sage, in a wide white bowl",
+    "scene": "object"
+  },
+  "tartine-bakery": {
+    "visual": "a morning bun: a tall laminated cinnamon and orange spiral pastry glistening with sugar, on a small plate",
+    "scene": "object"
+  },
+  "mamahuhu": {
+    "visual": "a plate of crispy rice-battered sweet and sour chicken with red peppers and pineapple",
+    "scene": "object"
+  },
+  "nopalito": {
+    "visual": "a bowl of totopos con chile: tortilla chips tossed in red chile de árbol salsa with crumbled cotija and crema",
+    "scene": "object"
+  },
+  "nopa": {
+    "visual": "a thick wood-grilled country pork chop on a plate with braised greens and beans",
+    "scene": "object"
+  },
+  "saint-frank-coffee": {
+    "visual": "a kaffe tonic: dark espresso floating over sparkling tonic and ice in a tall clear glass",
+    "scene": "object"
+  },
+  "molinari-delicatessen": {
+    "visual": "a big Italian combo sandwich on a crackly Dutch crunch roll, layered with salami, mortadella, provolone and peppers, half wrapped in deli paper",
+    "scene": "object"
+  },
+  "ernest": {
+    "visual": "a hand-roll kit on a dark tray: a small bowl of beef tartare topped with ikura, a mound of sushi rice and a stack of crisp nori sheets",
+    "scene": "object"
+  },
+  "verjus": {
+    "visual": "a glossy French rolled omelet filled with garlic-herb cheese on a small white plate, beside a glass of white wine",
+    "scene": "object"
+  },
+  "nopa-fish": {
+    "visual": "ras el hanout fish and chips: golden spice-battered rockfish with fries and a small cup of harissa aioli in a paper-lined basket",
+    "scene": "object"
+  },
+  "the-laundromat-sf": {
+    "visual": "a square Detroit-style pizza with crispy caramelized cheese edges in a blue steel pan, a sesame bagel beside it",
+    "scene": "object"
+  },
+  "pearl-6101": {
+    "visual": "a plate of silky handkerchief pasta folded with white Bolognese and grated cheese",
+    "scene": "object"
+  },
+  "arsicault-bakery": {
+    "visual": "an almond croissant dusted with powdered sugar and toasted sliced almonds, beside a flaky plain croissant",
+    "scene": "object"
+  },
+  "flour-and-water-pizzeria": {
+    "visual": "a white pizza topped with roasted bone marrow still in the bone, on a round wooden board",
+    "scene": "object"
+  },
+  "pabu-izakaya": {
+    "visual": "an oyster on the half shell in a ceramic spoon, topped with uni, orange ikura, tobiko and a dab of crème fraîche, on a bed of crushed ice",
+    "scene": "object"
+  },
+  "capos": {
+    "visual": "an Old Chicago deep-dish pizza in a black cast-iron pan with one thick slice lifted out, sausage under chunky tomato sauce",
+    "scene": "object"
+  },
+  "tartine-manufactory": {
+    "visual": "a sheet tray of morning buns fresh from the oven on a steel bakery rack",
+    "scene": "object"
+  },
+  "garden-creamery": {
+    "visual": "a scoop of pale green salty kaya dairy-free ice cream in a waffle cone",
+    "scene": "object"
+  },
+  "liholiho-yacht-club": {
+    "visual": "two soft white steamed buns filled with glazed beef tongue and pickles, flecked with poppyseeds",
+    "scene": "object"
+  },
+  "tonys-pizza-napoletana": {
+    "visual": "a Neapolitan Margherita pizza with a blistered puffy crust, tomato, fresh mozzarella and basil, on a wooden peel",
+    "scene": "object"
+  },
+  "lolo": {
+    "visual": "two shrimp tacos in thin translucent jicama shells with panko shrimp and tropical fruit relish, on a colorful plate",
+    "scene": "object"
+  },
+  "deli-board": {
+    "visual": "a towering sandwich stacked with corned beef, pastrami and brisket on rye, cut in half to show the layers",
+    "scene": "object"
+  },
+  "delfina": {
+    "visual": "a neat twirl of spaghetti pomodoro in bright tomato sauce with basil in a white bowl",
+    "scene": "object"
+  },
+  "thai-spice": {
+    "visual": "a bowl of beef khao soi, coconut curry noodle soup topped with crispy fried noodles, lime and pickled greens",
+    "scene": "object"
+  },
+  "tacolicious": {
+    "visual": "three carnitas tacos with onion and cilantro on a small tray",
+    "scene": "object"
+  },
+  "andytown-coffee-roasters": {
+    "visual": "a Snowy Plover: espresso over sparkling water and brown sugar, topped with whipped cream, in a clear glass",
+    "scene": "object"
+  },
+  "rt-rotisserie": {
+    "visual": "a whole golden rotisserie chicken on a wooden board with a small sprig of Douglas fir",
+    "scene": "object"
+  },
+  "house-of-prime-rib": {
+    "visual": "a gleaming silver tableside carving cart holding a roast prime rib, with Yorkshire pudding and creamed spinach beside it",
+    "scene": "object"
+  },
+  "foreign-cinema": {
+    "visual": "an open-air courtyard restaurant at night: candlelit tables, string lights and a softly glowing film projected on the back wall",
+    "scene": "room"
+  },
+  "limon-rotisserie": {
+    "visual": "a charred rotisserie chicken with fries and green aji sauce, beside a small bowl of ceviche",
+    "scene": "object"
+  },
+  "kin-khao": {
+    "visual": "a spicy mushroom curry mousse in a banana-leaf cup with crispy rice cakes",
+    "scene": "object"
+  },
+  "china-live": {
+    "visual": "a black pan of pan-fried soup dumplings with golden crispy bottoms, sesame seeds and scallions",
+    "scene": "object"
+  },
+  "r-and-g-lounge": {
+    "visual": "a platter of salt and pepper Dungeness crab with red chilies and scallions",
+    "scene": "object"
+  },
+  "han-il-kwan": {
+    "visual": "a tabletop Korean barbecue grill with sizzling marinated short ribs, surrounded by many small banchan dishes",
+    "scene": "object"
+  },
+  "lovelys": {
+    "visual": "a smashburger with crispy-edged patties, melted cheese and grilled onions, half in a paper wrapper",
+    "scene": "object"
+  },
+  "two-pitchers-brewing": {
+    "visual": "a pint of pale golden lager on a wooden picnic table beside a single wooden beer tap handle",
+    "scene": "object"
+  },
+  "maillards": {
+    "visual": "a double smashburger with caramelized shallots and melted cheese, half in a paper wrapper",
+    "scene": "object"
+  },
+  "day-moon": {
+    "visual": "two crusty sourdough baguettes with a deep golden crust on a linen cloth",
+    "scene": "object"
+  },
+  "outerlands": {
+    "visual": "a thick slice of levain toast with cultured butter and jam on a small plate",
+    "scene": "object"
+  },
+  "tony-niks": {
+    "visual": "a classic martini with an olive in a chilled glass on a dark wooden bar",
+    "scene": "object"
+  },
+  "trick-dog": {
+    "visual": "a bright cocktail in a coupe on a wooden bar beside a whimsical, illustrated fold-out menu",
+    "scene": "object"
+  },
+  "true-laurel": {
+    "visual": "a crystal-clear martini in a Nick and Nora glass garnished with a single bay laurel leaf",
+    "scene": "object"
+  },
+  "penny-roma": {
+    "visual": "a plate of agnolotti dal plin, small pinched stuffed pasta glossy with butter and parmesan",
+    "scene": "object"
+  },
+  "bodega-sf": {
+    "visual": "a glass of orange natural wine beside a housemade hot dog with mustard in a toasted bun",
+    "scene": "object"
+  },
+  "little-original-joes": {
+    "visual": "a chicken parmigiana with bubbling mozzarella and tomato sauce on an oval plate with spaghetti",
+    "scene": "object"
+  },
+  "beit-rima": {
+    "visual": "a mezze sampler on a big round platter: hummus, baba ghanoush, labneh, falafel and warm pita",
+    "scene": "object"
+  },
+  "farmhouse-kitchen-thai": {
+    "visual": "crispy fried chicken topped with fried shallots, a mound of blue butterfly-pea rice and a small bowl of curry",
+    "scene": "object"
+  },
+  "daeho": {
+    "visual": "a cast-iron pot of braised short ribs under a blanket of bubbling, blowtorched melted cheese",
+    "scene": "object"
+  },
+  "burma-superstar": {
+    "visual": "a tea leaf salad arranged in separate little mounds (fermented tea leaves, fried beans, peanuts, tomato, cabbage) on a white plate, ready to mix",
+    "scene": "object"
+  },
+  "burma-love": {
+    "visual": "a tossed tea leaf salad mixed together in a wooden bowl with peanuts and sesame",
+    "scene": "object"
+  },
+  "taqueria-el-buen-sabor": {
+    "visual": "an al pastor burrito cut in half showing marinated pork and pineapple, in foil",
+    "scene": "object"
+  },
+  "la-taqueria": {
+    "visual": "a riceless carne asada burrito with a grill-crisped golden tortilla, cut in half",
+    "scene": "object"
+  },
+  "gotts-roadside": {
+    "visual": "a classic cheeseburger with melty cheese and sauce in a paper boat with fries",
+    "scene": "object"
+  },
+  "bottega": {
+    "visual": "an oval Roman pinsa flatbread with toppings on a board, beside a small plate of pear and taleggio pasta purses",
+    "scene": "object"
+  },
+  "good-good-culture-club": {
+    "visual": "a deboned chicken wing stuffed with sticky rice, double-fried and glazed with mango adobo, on a small plate",
+    "scene": "object"
+  },
+  "souvla": {
+    "visual": "a bowl of rotisserie chicken salad with greens, feta and a drizzle of creamy yogurt dressing",
+    "scene": "object"
+  },
+  "golden-boy-pizza": {
+    "visual": "two square Sicilian-style focaccia pizza slices, one with pepperoni, on waxed paper",
+    "scene": "object"
+  },
+  "comstock-saloon": {
+    "visual": "a bourbon and cherry sour topped with sparkling wine in a coupe, garnished with a cherry",
+    "scene": "object"
+  },
+  "rampant-bottle-and-bar": {
+    "visual": "the corner of a small natural-wine bottle shop and bar: wooden shelves of wine bottles, a short counter with a stool and a poured glass",
+    "scene": "room"
+  },
+  "ordinaire": {
+    "visual": "a natural-wine shop wall with tall wooden shelves packed with bottles, and a long communal table with glasses of wine",
+    "scene": "room"
+  },
+  "waystone": {
+    "visual": "a cozy wine bar corner with a small jazz stage holding an upright bass and a piano, and a glass of red wine on a little table in front",
+    "scene": "room"
+  }
 }

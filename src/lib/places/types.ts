@@ -40,9 +40,11 @@ export interface Place {
   note?: string;
   summary: string;
   summarySource: SummarySource;
+  /** The dish, drink, or room the place is known for, e.g. "Morning bun". */
+  signatureSubject?: string;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
-  /** Clay-diorama illustration under public/, e.g. "/places/tartine-bakery.webp". */
+  /** Clay illustration of the signature subject, e.g. "/places/tartine-bakery.webp". */
   image?: string;
   createdAt: string;
   updatedAt?: string;
