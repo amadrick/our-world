@@ -92,15 +92,17 @@ line to the hints file if you like and run `npm run images`.
 
 - **Next.js 16** (App Router) with TypeScript, Tailwind CSS v4, and
   [shadcn/ui](https://ui.shadcn.com) components.
-- **Design:** flat and grayscale. One typeface, [Inter](https://rsms.me/inter/)
+- **Design:** Liquid Glass chrome over calm content, following Apple's
+  [Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass)
+  and [Materials](https://developer.apple.com/design/human-interface-guidelines/materials)
+  guidance (see "Liquid Glass" below). One typeface, [Inter](https://rsms.me/inter/)
   Variable (self-hosted in `public/fonts`), at weight 425 with Inter's square
   punctuation and quotes (`ss07`, `ss08`), and a four-step type scale (13, 16,
-  20, 28px) defined in `src/app/globals.css`. Borders are 0.5px, and icons are
+  20, 28px) defined in `src/app/globals.css`. Icons are
   [Feather](https://feathericons.com) (`react-feather`), plus a few Feather-style
   glyphs for categories Feather lacks (`src/components/icons/feather-extras.tsx`).
-  The place illustrations are the only color in the interface.
-- **Map:** [MapLibre GL](https://maplibre.org) with "Paper", a custom flat
-  grayscale style (`src/lib/map/style.ts`), on free
+- **Map:** [MapLibre GL](https://maplibre.org) with "Paper", a calm custom
+  style (`src/lib/map/style.ts`), on free
   [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed.
   Map labels use the same Inter file through MapLibre's `font-faces`. Map code
   sits behind a small `MapProvider` interface (`src/lib/map/types.ts`) so Apple
@@ -125,6 +127,46 @@ src/components/explorer/*   map, pins, filters, list, detail, bottom sheet
 src/components/admin/*      admin sign-in, form, and place list
 src/config/site.ts          title and copy shown to guests
 ```
+
+## Liquid Glass
+
+Glass is the functional layer: the side panel, bottom sheet, filter pills, map
+controls, buttons, popovers, dialogs, and admin chrome. It floats over the
+content layer (the map, place illustrations, and the admin's blurred mosaic)
+and is never applied to content itself. The primitive is a set of CSS classes in
+`src/app/globals.css`, driven by variables:
+
+| Token | Default | Role |
+| --- | --- | --- |
+| `--glass-blur` / `--glass-saturation` / `--glass-brightness` | 22px / 190% / 1.06 | Backdrop blur that lets color through and lifts luminosity |
+| `--glass-tint` | white 50% | Regular: text-heavy chrome (panel, sheet, pills, popovers) |
+| `--glass-tint-thick` | white 78% | Expanded sheet, dialogs, admin cards |
+| `--glass-tint-clear` | white 14% | Clear: controls over rich media (the back button on a place image) |
+| `--glass-tint-ink` | near-black 86% | The one prominent action or selection |
+| `--glass-rim`, `--glass-sheen`, `--glass-glow` | | Lit edge, gradient bevel, and specular highlight |
+| `--glass-edge`, `--glass-shadow` | | 0.5px outline and soft diffuse lift |
+
+Classes: `glass` (regular), plus `glass-thick`, `glass-clear`, and `glass-ink`
+modifiers; `glass-interactive` for controls that brighten and press in;
+`glass-fill` for controls resting on glass (glass isn't stacked on glass); and
+`scroll-edge` for sticky bars that blur content scrolling beneath them.
+
+What follows Apple's guidance:
+- The sheet floats inset at partial heights and goes edge to edge, and more
+  opaque, when fully expanded.
+- Corners are concentric with their containers.
+- Map controls are grouped into shared capsules.
+- Color stays out of the chrome so the content can tint it.
+
+In Chromium, small controls also get an SVG edge-refraction filter
+(`src/components/ui/glass-refraction.tsx`); other browsers keep the frosted
+look.
+
+Accessibility fallbacks:
+- `prefers-reduced-transparency` swaps every surface for a solid, blur-free
+  equivalent (so does a browser without `backdrop-filter`).
+- `prefers-contrast: more` strengthens tints and edges.
+- `prefers-reduced-motion` removes the press and sheet-morph animations.
 
 ## Scripts
 
