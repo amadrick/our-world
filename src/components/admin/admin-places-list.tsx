@@ -3,7 +3,7 @@
 import { ArrowUpRight, Edit2, Star, Trash2 } from "react-feather";
 import { useState } from "react";
 
-import { CategoryBadge } from "@/components/places/category-badge";
+import { PlaceImage } from "@/components/places/place-image";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -48,7 +48,11 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
         <ul className="mt-3 divide-y-[0.5px] divide-black/10 overflow-hidden rounded-[28px] hairline border-black/10 bg-white">
           {places.map((place) => (
             <li key={place.id} className="flex items-center gap-3.5 py-3 pr-2 pl-4">
-              <CategoryBadge category={place.category} />
+              <PlaceImage
+                place={place}
+                sizes="64px"
+                className="w-16 shrink-0 rounded-[12px]"
+              />
               <div className="min-w-0 flex-1">
                 <p className="flex items-center gap-1.5 text-base font-medium">
                   <span className="truncate">{smartQuotes(place.name)}</span>
@@ -60,6 +64,7 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
                   {getCategory(place.category).label}
                   {place.neighborhood && ` · ${place.neighborhood}`}
                   {place.summarySource === "placeholder" && " · Placeholder summary"}
+                  {!place.image && " · No image yet"}
                 </p>
               </div>
               <div className="flex shrink-0 items-center">

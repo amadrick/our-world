@@ -2,7 +2,7 @@
 
 import { MapPin, Search, Star, type Icon } from "react-feather";
 
-import { CategoryBadge } from "@/components/places/category-badge";
+import { PlaceImage } from "@/components/places/place-image";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { getCategory } from "@/lib/places/taxonomy";
@@ -60,13 +60,18 @@ export function PlaceCard({
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
-        "flex w-full cursor-pointer items-start gap-3.5 rounded-[20px] p-3 text-left transition-colors",
+        "group flex w-full cursor-pointer flex-col gap-2 rounded-[22px] p-1.5 text-left transition-colors",
         "hover:bg-secondary/70 focus-visible:bg-secondary/70 focus-visible:outline-none active:bg-secondary",
         active && "bg-secondary/70",
       )}
     >
-      <CategoryBadge category={place.category} />
-      <span className="min-w-0 flex-1">
+      <PlaceImage
+        place={place}
+        sizes="(min-width: 1024px) 180px, 46vw"
+        className="rounded-[18px]"
+        imageClassName="transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+      />
+      <span className="block min-w-0 px-1.5 pb-1">
         <span className="flex items-center gap-1.5">
           <span className="truncate text-base font-medium">{smartQuotes(place.name)}</span>
           {pick && <Star size={12} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
@@ -74,9 +79,6 @@ export function PlaceCard({
         <span className="block truncate text-sm text-muted-foreground">
           {getCategory(place.category).label}
           {place.neighborhood && ` · ${place.neighborhood}`}
-        </span>
-        <span className="mt-1 line-clamp-2 text-sm text-muted-foreground">
-          {smartQuotes(place.note || place.summary)}
         </span>
       </span>
     </button>
@@ -118,7 +120,7 @@ export function PlaceList({
   }
 
   return (
-    <ul>
+    <ul className="grid grid-cols-2 gap-1">
       {places.map((place) => (
         <li key={place.id}>
           <PlaceCard

@@ -152,9 +152,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  // On phones the detail opens tall enough to show the image, name, and map buttons together.
   const select = useCallback((id: string) => {
     setSelectedId(id);
-    setSnap("mid");
+    setSnap("full");
   }, []);
 
   const changeFilters = (next: PlaceFilters) => {
@@ -162,7 +163,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     setSelectedId(null);
   };
   const clearFilters = () => changeFilters(EMPTY_FILTERS);
-  const closeDetail = () => setSelectedId(null);
+  const closeDetail = () => {
+    setSelectedId(null);
+    setSnap("mid");
+  };
 
   const list = (
     <PlaceList

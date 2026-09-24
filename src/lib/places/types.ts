@@ -42,6 +42,8 @@ export interface Place {
   summarySource: SummarySource;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
+  /** Clay-diorama illustration under public/, e.g. "/places/tartine-bakery.webp". */
+  image?: string;
   createdAt: string;
   updatedAt?: string;
 }

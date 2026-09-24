@@ -43,6 +43,10 @@ export const placeInputSchema = z.object({
   summarySource: z.enum(["ai", "written", "placeholder"]).default("written"),
   appleMapsUrl: mapsUrl,
   googleMapsUrl: mapsUrl,
+  image: z
+    .string()
+    .regex(/^\/places\/[a-z0-9-]+\.(webp|png|jpe?g)$/, "Must be an image under /places/")
+    .optional(),
 });
 
 export type PlaceInputPayload = z.input<typeof placeInputSchema>;

@@ -11,7 +11,8 @@
       "tags": [],
       "summary": "A small coffee spot on Shotwell Street in the Mission.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/hedge-coffee.webp"
     },
     {
       "id": "the-coffee-movement",
@@ -24,7 +25,8 @@
       "tags": [],
       "summary": "A tiny specialty coffee bar on Washington Street, between Nob Hill and Chinatown.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/the-coffee-movement.webp"
     },
     {
       "id": "bi-rite-creamery",
@@ -37,7 +39,8 @@
       "tags": [],
       "summary": "The Mission's famous small-batch ice cream shop, a block from Dolores Park. Salted caramel is the classic.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/bi-rite-creamery.webp"
     },
     {
       "id": "jules",
@@ -50,7 +53,8 @@
       "tags": [],
       "summary": "A neighborhood pizza restaurant in the Lower Haight.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/jules.webp"
     },
     {
       "id": "toronado",
@@ -65,7 +69,8 @@
       ],
       "summary": "A no-frills Lower Haight beer bar with a long, rotating tap list.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/toronado.webp"
     },
     {
       "id": "flour-and-water",
@@ -80,7 +85,8 @@
       ],
       "summary": "Handmade pasta and Italian cooking in the Mission, and one of the city's most sought-after reservations.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/flour-and-water.webp"
     },
     {
       "id": "original-joes",
@@ -95,7 +101,8 @@
       ],
       "summary": "A classic Italian-American dining room on Washington Square, with red booths and generous plates.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/original-joes.webp"
     },
     {
       "id": "hk-lounge-bistro",
@@ -110,7 +117,8 @@
       ],
       "summary": "Hong Kong–style dim sum and Cantonese dishes in SoMa.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/hk-lounge-bistro.webp"
     },
     {
       "id": "taqueria-el-farolito",
@@ -125,7 +133,8 @@
       ],
       "summary": "A Mission taqueria known for big burritos and late hours.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/taqueria-el-farolito.webp"
     },
     {
       "id": "san-tung",
@@ -140,7 +149,8 @@
       ],
       "summary": "An Inner Sunset Chinese restaurant best known for its dry-fried chicken wings. Expect a line.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/san-tung.webp"
     },
     {
       "id": "maison-nico",
@@ -153,7 +163,8 @@
       "tags": [],
       "summary": "A French pâtisserie and épicerie in Jackson Square, with pastries and savory tarts.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/maison-nico.webp"
     },
     {
       "id": "yank-sing",
@@ -168,7 +179,8 @@
       ],
       "summary": "A long-running dim sum house in Rincon Center, a go-to for a group lunch.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/yank-sing.webp"
     },
     {
       "id": "hook-fish",
@@ -181,7 +193,8 @@
       "tags": [],
       "summary": "A casual seafood spot a block from Ocean Beach.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/hook-fish.webp"
     },
     {
       "id": "cotogna",
@@ -196,7 +209,8 @@
       ],
       "summary": "Rustic Italian cooking and handmade pasta in Jackson Square, from the team behind Quince.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/cotogna.webp"
     },
     {
       "id": "tartine-bakery",
@@ -211,7 +225,8 @@
       ],
       "summary": "The Mission bakery that helped define San Francisco's bread-and-pastry scene. Expect flaky croissants, morning buns, and seasonal tarts alongside good coffee, with a line that moves steadily. Grab something to go and walk two blocks to Dolores Park.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/tartine-bakery.webp"
     },
     {
       "id": "mamahuhu",
@@ -224,7 +239,8 @@
       "tags": [],
       "summary": "Chef Brandon Jew's casual Chinese-American restaurant, with fresh takes on takeout classics.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/mamahuhu.webp"
     },
     {
       "id": "nopalito",
@@ -237,7 +253,8 @@
       "tags": [],
       "summary": "Regional Mexican cooking from the Nopa team, with house-made tortillas.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/nopalito.webp"
     },
     {
       "id": "nopa",
@@ -254,7 +271,8 @@
       ],
       "summary": "A bustling, wood-fired Californian restaurant on Divisadero that serves late and draws a weekend brunch crowd.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/nopa.webp"
     },
     {
       "id": "saint-frank-coffee",
@@ -267,7 +285,8 @@
       "tags": [],
       "summary": "A bright, minimal coffee bar on Polk Street.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/saint-frank-coffee.webp"
     },
     {
       "id": "molinari-delicatessen",
@@ -280,7 +299,8 @@
       "tags": [],
       "summary": "A historic North Beach Italian deli known for made-to-order sandwiches.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/molinari-delicatessen.webp"
     },
     {
       "id": "ernest",
@@ -295,7 +315,8 @@
       ],
       "summary": "Inventive, Japanese-influenced cooking in the northeast Mission.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/ernest.webp"
     },
     {
       "id": "verjus",
@@ -308,7 +329,8 @@
       "tags": [],
       "summary": "A Parisian-style wine bar and shop from the team behind Quince and Cotogna.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/verjus.webp"
     },
     {
       "id": "nopa-fish",
@@ -321,7 +343,8 @@
       "tags": [],
       "summary": "A seafood counter in the Ferry Building.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/nopa-fish.webp"
     },
     {
       "id": "the-laundromat-sf",
@@ -334,7 +357,8 @@
       "tags": [],
       "summary": "A neighborhood pizza and bagel shop in the Outer Richmond.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/the-laundromat-sf.webp"
     },
     {
       "id": "pearl-6101",
@@ -347,7 +371,8 @@
       "tags": [],
       "summary": "A neighborhood Californian and Mediterranean restaurant in the Outer Richmond.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/pearl-6101.webp"
     },
     {
       "id": "arsicault-bakery",
@@ -360,7 +385,8 @@
       "tags": [],
       "summary": "A small bakery famous for its croissants. Go early, before they sell out.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/arsicault-bakery.webp"
     },
     {
       "id": "flour-and-water-pizzeria",
@@ -373,7 +399,8 @@
       "tags": [],
       "summary": "Pizza from the Flour + Water team, in North Beach.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/flour-and-water-pizzeria.webp"
     },
     {
       "id": "pabu-izakaya",
@@ -386,7 +413,8 @@
       "tags": [],
       "summary": "A modern Japanese izakaya and sushi bar in the Financial District.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/pabu-izakaya.webp"
     },
     {
       "id": "capos",
@@ -399,7 +427,8 @@
       "tags": [],
       "summary": "Chicago-style deep-dish pizza from Tony Gemignani, in a speakeasy-style North Beach room.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/capos.webp"
     },
     {
       "id": "tartine-manufactory",
@@ -414,7 +443,8 @@
       ],
       "summary": "Tartine's big, airy all-day bakery, restaurant, and coffee bar in a converted Mission factory.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/tartine-manufactory.webp"
     },
     {
       "id": "garden-creamery",
@@ -427,7 +457,8 @@
       "tags": [],
       "summary": "A small Mission ice cream shop known for creative flavors.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/garden-creamery.webp"
     },
     {
       "id": "liholiho-yacht-club",
@@ -442,7 +473,8 @@
       ],
       "summary": "Hawaiian-inspired cooking in a lively room on Sutter Street.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/liholiho-yacht-club.webp"
     },
     {
       "id": "tonys-pizza-napoletana",
@@ -455,7 +487,8 @@
       "tags": [],
       "summary": "Tony Gemignani's North Beach pizzeria, serving many regional styles of pizza.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/tonys-pizza-napoletana.webp"
     },
     {
       "id": "lolo",
@@ -468,7 +501,8 @@
       "tags": [],
       "summary": "Colorful, Jalisco-inspired Mexican small plates and cocktails on Valencia Street.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/lolo.webp"
     },
     {
       "id": "deli-board",
@@ -481,7 +515,8 @@
       "tags": [],
       "summary": "Big, stacked deli sandwiches in SoMa.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/deli-board.webp"
     },
     {
       "id": "delfina",
@@ -496,7 +531,8 @@
       ],
       "summary": "A longtime Mission favorite for rustic Italian cooking, near Dolores Park.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/delfina.webp"
     },
     {
       "id": "thai-spice",
@@ -509,7 +545,8 @@
       "tags": [],
       "summary": "A neighborhood Thai restaurant on Polk Street.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/thai-spice.webp"
     },
     {
       "id": "tacolicious",
@@ -524,7 +561,8 @@
       ],
       "summary": "Tacos and margaritas in a lively room on Valencia Street. There are other locations around the city.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/tacolicious.webp"
     },
     {
       "id": "andytown-coffee-roasters",
@@ -537,7 +575,8 @@
       "tags": [],
       "summary": "The original Outer Sunset café of this local roaster, near Ocean Beach.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/andytown-coffee-roasters.webp"
     },
     {
       "id": "outer-sunset",
@@ -552,7 +591,8 @@
       ],
       "summary": "The laid-back beach neighborhood along Ocean Beach, with surf shops, cafés, and bakeries.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/outer-sunset.webp"
     },
     {
       "id": "rt-rotisserie",
@@ -565,7 +605,8 @@
       "tags": [],
       "summary": "Rotisserie chicken, sandwiches, and salads from the Rich Table team.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/rt-rotisserie.webp"
     },
     {
       "id": "house-of-prime-rib",
@@ -581,7 +622,8 @@
       ],
       "summary": "An old-school San Francisco institution where prime rib is carved tableside from rolling carts.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/house-of-prime-rib.webp"
     },
     {
       "id": "foreign-cinema",
@@ -597,7 +639,8 @@
       ],
       "summary": "Californian-Mediterranean cooking with films projected in the courtyard, and a favorite for weekend brunch.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/foreign-cinema.webp"
     },
     {
       "id": "limon-rotisserie",
@@ -610,7 +653,8 @@
       "tags": [],
       "summary": "Peruvian rotisserie chicken, ceviche, and other classics in the Mission.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/limon-rotisserie.webp"
     },
     {
       "id": "kin-khao",
@@ -625,7 +669,8 @@
       ],
       "summary": "Bold, acclaimed Thai cooking near Union Square.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/kin-khao.webp"
     },
     {
       "id": "china-live",
@@ -640,7 +685,8 @@
       ],
       "summary": "A multi-level Chinese food hall and restaurant on the edge of Chinatown and North Beach.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/china-live.webp"
     },
     {
       "id": "r-and-g-lounge",
@@ -655,7 +701,8 @@
       ],
       "summary": "A Chinatown Cantonese institution, best known for its salt-and-pepper crab.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/r-and-g-lounge.webp"
     },
     {
       "id": "han-il-kwan",
@@ -670,7 +717,8 @@
       ],
       "summary": "Traditional Korean cooking in the Richmond, with a long menu of stews, pancakes, and barbecue.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/han-il-kwan.webp"
     },
     {
       "id": "lovelys",
@@ -683,7 +731,8 @@
       "tags": [],
       "summary": "A neighborhood restaurant in Cole Valley.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/lovelys.webp"
     },
     {
       "id": "two-pitchers-brewing",
@@ -696,7 +745,8 @@
       "tags": [],
       "summary": "A brewery and taproom across the Bay in Oakland.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/two-pitchers-brewing.webp"
     },
     {
       "id": "maillards",
@@ -709,7 +759,8 @@
       "tags": [],
       "summary": "A small restaurant in the Outer Sunset.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/maillards.webp"
     },
     {
       "id": "day-moon",
@@ -722,7 +773,8 @@
       "tags": [],
       "summary": "A neighborhood bakery in the Outer Sunset.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/day-moon.webp"
     },
     {
       "id": "outerlands",
@@ -737,7 +789,8 @@
       ],
       "summary": "A cozy, wood-paneled restaurant near Ocean Beach, loved for brunch.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/outerlands.webp"
     },
     {
       "id": "tony-niks",
@@ -752,7 +805,8 @@
       ],
       "summary": "A small, old-school cocktail bar in North Beach.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/tony-niks.webp"
     },
     {
       "id": "trick-dog",
@@ -768,7 +822,8 @@
       ],
       "summary": "One of the city's most celebrated cocktail bars, known for a menu that reinvents itself around a new theme a couple of times a year. The drinks are playful but serious, and the food is better than bar food needs to be. Busy on weekends, but worth squeezing in.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/trick-dog.webp"
     },
     {
       "id": "true-laurel",
@@ -783,7 +838,8 @@
       ],
       "summary": "A cocktail bar from the Lazy Bear team, with inventive drinks and snacks.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/true-laurel.webp"
     },
     {
       "id": "penny-roma",
@@ -798,7 +854,8 @@
       ],
       "summary": "Roman-leaning pasta from the Flour + Water team, with a garden patio.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/penny-roma.webp"
     },
     {
       "id": "bodega-sf",
@@ -811,7 +868,8 @@
       "tags": [],
       "summary": "Vietnamese home cooking in a small, colorful dining room near Union Square.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/bodega-sf.webp"
     },
     {
       "id": "little-original-joes",
@@ -824,7 +882,8 @@
       "tags": [],
       "summary": "A smaller sibling of Original Joe's on West Portal Avenue, with Italian-American classics.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/little-original-joes.webp"
     },
     {
       "id": "beit-rima",
@@ -837,7 +896,8 @@
       "tags": [],
       "summary": "Arab comfort food, from mezze to kebabs, in Cole Valley.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/beit-rima.webp"
     },
     {
       "id": "farmhouse-kitchen-thai",
@@ -852,7 +912,8 @@
       ],
       "summary": "Colorful, festive Thai cooking in a Mission warehouse space.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/farmhouse-kitchen-thai.webp"
     },
     {
       "id": "daeho",
@@ -867,7 +928,8 @@
       ],
       "summary": "Korean braised short ribs and beef soups in Japantown. Expect a wait.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/daeho.webp"
     },
     {
       "id": "burma-superstar",
@@ -882,7 +944,8 @@
       ],
       "summary": "A beloved Inner Richmond spot that introduced a generation of San Franciscans to Burmese food. The tea leaf and rainbow salads are tossed tableside, and the curries and flaky platha are made for sharing. Great for a group, with a wait at peak times.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/burma-superstar.webp"
     },
     {
       "id": "burma-love",
@@ -895,7 +958,8 @@
       "tags": [],
       "summary": "Burmese cooking from the Burma Superstar family, including the tea leaf salad.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/burma-love.webp"
     },
     {
       "id": "taqueria-el-buen-sabor",
@@ -908,7 +972,8 @@
       "tags": [],
       "summary": "A casual Valencia Street taqueria for burritos and tacos.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/taqueria-el-buen-sabor.webp"
     },
     {
       "id": "la-taqueria",
@@ -921,7 +986,8 @@
       "tags": [],
       "summary": "A no-frills Mission taqueria famous for rice-free burritos packed with grilled meat, beans, and salsa. It has topped just about every best-burrito ranking there is, and the line reflects it. Quick, casual, and the quintessential Mission burrito experience.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/la-taqueria.webp"
     },
     {
       "id": "gotts-roadside",
@@ -936,7 +1002,8 @@
       ],
       "summary": "A roadside-style burger stand at the Ferry Building, with outdoor seating by the bay.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/gotts-roadside.webp"
     },
     {
       "id": "bottega",
@@ -949,7 +1016,8 @@
       "tags": [],
       "summary": "Italian cooking and fresh pasta on Valencia Street.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/bottega.webp"
     },
     {
       "id": "good-good-culture-club",
@@ -962,7 +1030,8 @@
       "tags": [],
       "summary": "Bright, Southeast Asian–inspired plates in the Mission, from the Liholiho Yacht Club team.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/good-good-culture-club.webp"
     },
     {
       "id": "souvla",
@@ -975,7 +1044,8 @@
       "tags": [],
       "summary": "Greek rotisserie sandwiches, salads, and frozen Greek yogurt. There are other locations around the city.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/souvla.webp"
     },
     {
       "id": "golden-boy-pizza",
@@ -990,7 +1060,8 @@
       ],
       "summary": "A North Beach slice counter known for its focaccia-style square pizza.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/golden-boy-pizza.webp"
     },
     {
       "id": "comstock-saloon",
@@ -1005,7 +1076,8 @@
       ],
       "summary": "A historic saloon with classic cocktails and turn-of-the-century decor.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z",
+      "image": "/places/comstock-saloon.webp"
     },
     {
       "id": "rampant-bottle-and-bar",
@@ -1018,7 +1090,8 @@
       "tags": [],
       "summary": "A wine bar and bottle shop in the Outer Richmond.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:15:00.000Z"
+      "createdAt": "2026-09-24T20:15:00.000Z",
+      "image": "/places/rampant-bottle-and-bar.webp"
     },
     {
       "id": "ordinaire",
@@ -1031,7 +1104,8 @@
       "tags": [],
       "summary": "A natural wine bar and shop on Grand Avenue, across the Bay in Oakland.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:15:00.000Z"
+      "createdAt": "2026-09-24T20:15:00.000Z",
+      "image": "/places/ordinaire.webp"
     },
     {
       "id": "bodega-wine-bar",
@@ -1044,7 +1118,8 @@
       "tags": [],
       "summary": "A small wine bar on Columbus Avenue in North Beach.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:15:00.000Z"
+      "createdAt": "2026-09-24T20:15:00.000Z",
+      "image": "/places/bodega-wine-bar.webp"
     },
     {
       "id": "waystone",
@@ -1057,7 +1132,8 @@
       "tags": [],
       "summary": "A wine bar on Powell Street in North Beach.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T20:15:00.000Z"
+      "createdAt": "2026-09-24T20:15:00.000Z",
+      "image": "/places/waystone.webp"
     }
   ]
 }

@@ -4,6 +4,7 @@ import { Check, ChevronLeft, Copy, MapPin, Navigation, Star } from "react-feathe
 import { useState } from "react";
 
 import { CategoryIcon } from "@/components/places/category-badge";
+import { PlaceImage } from "@/components/places/place-image";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
@@ -61,6 +62,14 @@ export function PlaceDetail({ place, onBack, showBackRow = true }: PlaceDetailPr
   return (
     <article className="@container flex flex-col gap-6" aria-label={place.name}>
       {showBackRow && <PlaceDetailBackRow onBack={onBack} />}
+
+      <PlaceImage
+        place={place}
+        alt={`Clay-model illustration of ${place.name}`}
+        priority
+        sizes="(min-width: 1024px) 352px, 100vw"
+        className="aspect-[16/10] rounded-[24px]"
+      />
 
       <header className="space-y-2">
         <p className="flex items-center gap-2 text-sm text-muted-foreground">

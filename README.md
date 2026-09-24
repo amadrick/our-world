@@ -37,6 +37,7 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 | `OPENAI_MODEL` | Model for summaries. Defaults to `gpt-5-mini`. |
 | `ADMIN_PASSWORD` | Password for `/admin`. Locally it defaults to `goldengate`. A deployed site keeps `/admin` locked until this is set. |
 | `PLACES_FILE` | Where places are stored. Defaults to `data/places.json`. |
+| `OPENAI_IMAGE_MODEL` | Image model for `npm run images`. Defaults to `gpt-image-1`. |
 | `NEXT_PUBLIC_MAP_TILES` | Set to `offline` to use locally generated map tiles (see below). |
 
 ## Adding a place
@@ -59,6 +60,34 @@ OpenStreetMap and Overture Maps, each with a short neutral summary. Notes are
 left empty for them to write in their own words from `/admin`, and no place is
 marked **Top pick** yet (that filter appears once one is).
 
+## Place images
+
+Every place has a small illustration: a soft 3D clay miniature of the venue on
+a warm off-white plate, inspired by the check-in dioramas on
+[pengzhe.ng](https://www.pengzhe.ng/). They're plain files in
+`public/places/<id>.webp` (960×720), referenced by each place's `image` field, so
+the guide never calls an image API. A place without one shows a gray tile with
+its category icon.
+
+All images share one locked style prompt (`scripts/place-image-prompt.mjs`).
+What's drawn for each place comes from a short hint in
+`data/place-image-hints.json`; places without a hint get a generic description
+from their category and neighborhood. Names aren't included in prompts, because
+image models tend to letter them onto signs.
+
+```bash
+npm run images                          # every place that has no image yet
+npm run images -- tartine-bakery        # redo specific places
+npm run images -- zuni --photo zuni.jpg # turn your own photo of the place into the style
+npm run images -- zuni --import art.png # use an image made in another tool
+npm run images -- --print zuni          # show the prompt without generating
+```
+
+Generating needs `OPENAI_API_KEY` in `.env.local` (model: `OPENAI_IMAGE_MODEL`,
+default `gpt-image-1`). `--import` needs no key. Paste the `--print` prompt into
+any image tool, then import the result. After adding a place in `/admin`, add a
+line to the hints file if you like and run `npm run images`.
+
 ## How it's built
 
 - **Next.js 16** (App Router) with TypeScript, Tailwind CSS v4, and
@@ -67,8 +96,9 @@ marked **Top pick** yet (that filter appears once one is).
   Variable (self-hosted in `public/fonts`), at weight 425 with Inter's square
   punctuation and quotes (`ss07`, `ss08`), and a four-step type scale (13, 16,
   20, 28px) defined in `src/app/globals.css`. Borders are 0.5px, and icons are
-  [Feather](https://feathericons.com) (`react-feather`), plus two Feather-style
-  glyphs for restaurants and bars (`src/components/icons/feather-extras.tsx`).
+  [Feather](https://feathericons.com) (`react-feather`), plus a few Feather-style
+  glyphs for categories Feather lacks (`src/components/icons/feather-extras.tsx`).
+  The place illustrations are the only color in the interface.
 - **Map:** [MapLibre GL](https://maplibre.org) with "Paper", a custom flat
   grayscale style (`src/lib/map/style.ts`), on free
   [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed.
@@ -104,6 +134,7 @@ src/config/site.ts          title and copy shown to guests
 | `npm run build` / `npm start` | Production build and server (port 4617) |
 | `npm run lint` / `npm run typecheck` | ESLint and TypeScript |
 | `npm test` | Unit tests (Maps link parsing, filters) |
+| `npm run images` | Generate or import place illustrations (see Place images) |
 | `npm run tiles:offline` | Download an offline copy of the SF basemap (see below) |
 
 ## Offline map tiles

@@ -36,6 +36,7 @@ interface Draft {
   summarySource: SummarySource;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
+  image?: string;
 }
 
 type LookupState =
@@ -58,6 +59,7 @@ function draftFromPlace(place: Place): Draft {
     summarySource: place.summarySource,
     appleMapsUrl: place.appleMapsUrl,
     googleMapsUrl: place.googleMapsUrl,
+    image: place.image,
   };
 }
 
