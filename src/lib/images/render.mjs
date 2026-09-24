@@ -1,7 +1,8 @@
 // Rendering and saving place stills. Shared by `npm run images` and the admin.
 
+import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { mkdir, readdir } from "node:fs/promises";
+import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -59,14 +60,24 @@ export async function renderImage(prompt, { images = [], apiKey = process.env.OP
   return Buffer.from(b64, "base64");
 }
 
-/** Saves a square WebP on white as public/places/<id>.webp and returns its URL path. */
+/**
+ * Saves a square WebP on white as public/places/<id>-<hash>.webp, removes the
+ * place's previous image, and returns the new URL path. The content hash in
+ * the name keeps browsers and the image optimizer from serving a stale still.
+ */
 export async function saveImage(input, id, root = process.cwd()) {
   const dir = placesImageDir(root);
   await mkdir(dir, { recursive: true });
-  await sharp(input)
+  const webp = await sharp(input)
     .flatten({ background: "#ffffff" })
     .resize(IMAGE_SIZE, IMAGE_SIZE, { fit: "contain", background: "#ffffff" })
     .webp({ quality: 82 })
-    .toFile(path.join(dir, `${id}.webp`));
-  return `/places/${id}.webp`;
+    .toBuffer();
+  const file = `${id}-${createHash("sha1").update(webp).digest("hex").slice(0, 8)}.webp`;
+  const previous = new RegExp(`^${id}(-[0-9a-f]{8})?\\.webp$`);
+  for (const old of await readdir(dir)) {
+    if (old !== file && previous.test(old)) await rm(path.join(dir, old));
+  }
+  await writeFile(path.join(dir, file), webp);
+  return `/places/${file}`;
 }

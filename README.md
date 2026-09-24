@@ -74,7 +74,7 @@ salt-and-pepper crab, or, when the room is the draw, a small cutaway diorama
 (Toronado's tap wall, Foreign Cinema's courtyard). The style follows the stills
 on [pengzhe.ng](https://www.pengzhe.ng/): square, bright white, a front or
 gentle three-quarter product angle, diffuse light, matte clay and soft
-plastic, no people or text. The files are `public/places/<id>.webp` (960×960),
+plastic, no people or text. The files are `public/places/<id>-<hash>.webp` (960×960),
 referenced by each place's `image` field, so the guide never calls an image
 API. A place without one shows a quiet tile with its category icon.
 
