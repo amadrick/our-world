@@ -12,7 +12,9 @@
     "tiles:offline": "node scripts/build-offline-tiles.mjs",
     "postinstall": "node scripts/copy-maplibre-worker.mjs",
     "images": "node scripts/generate-place-images.mjs",
-    "signatures": "node scripts/research-signatures.mjs"
+    "signatures": "node scripts/research-signatures.mjs",
+    "signatures:apply": "node scripts/signature-sheet.mjs apply",
+    "signatures:export": "node scripts/signature-sheet.mjs export"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

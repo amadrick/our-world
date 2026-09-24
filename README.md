@@ -129,6 +129,19 @@ npm run signatures -- --dry-run zuni    # see what it finds without saving
 npm run images                          # draw any place that still has no image
 ```
 
+### Reviewing signatures
+
+`data/signatures.json` is the review sheet for the seed. Each place has its
+subject, a one-line rationale, research confidence (`high`, `med`, or
+`unreviewed`), sources, and an `approved` flag. Edit subjects or rationales
+there, set `approved`, then:
+
+```bash
+npm run signatures:apply            # copy edits into data/places.json, list what changed
+npm run signatures:apply -- --images  # ...and redraw only the changed places (needs a key)
+npm run signatures:export           # refresh the sheet after adding places in /admin
+```
+
 ## How it's built
 
 - **Next.js 16** (App Router) with TypeScript, Tailwind CSS v4, and
@@ -218,6 +231,7 @@ Accessibility fallbacks:
 | `npm run lint` / `npm run typecheck` | ESLint and TypeScript |
 | `npm test` | Unit tests (Maps link parsing, filters) |
 | `npm run signatures` | Research what places are known for (see The signature pipeline) |
+| `npm run signatures:apply` / `:export` | Sync the signature review sheet (see Reviewing signatures) |
 | `npm run images` | Generate or import place illustrations (see Place images) |
 | `npm run tiles:offline` | Download an offline copy of the SF basemap (see below) |
 
