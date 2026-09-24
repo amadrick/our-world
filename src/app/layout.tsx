@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
+import { GlassRefraction } from "@/components/ui/glass-refraction";
 import { Toaster } from "@/components/ui/sonner";
 import { site } from "@/config/site";
 import "./globals.css";
@@ -13,12 +14,12 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#f3f3f2",
+  themeColor: "#f5f4f1",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <head>
         <link
           rel="preload"
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full">
+        <GlassRefraction />
         {children}
         <Toaster position="top-center" />
       </body>
