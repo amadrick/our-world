@@ -65,7 +65,6 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
                   {place.neighborhood && ` · ${place.neighborhood}`}
                   {place.summarySource === "placeholder" && " · Placeholder summary"}
                   {!place.signatureSubject && " · No signature yet"}
-                  {!place.image && " · No image yet"}
                 </p>
               </div>
               <div className="flex shrink-0 items-center">

@@ -69,7 +69,7 @@ export function PlaceCard({
       <PlaceImage
         place={place}
         sizes="(min-width: 1024px) 180px, 46vw"
-        className="rounded-[14px]"
+        className={cn("rounded-[14px]", !place.image && "aspect-[4/3]")}
         imageClassName="transition-transform duration-300 ease-out group-hover:scale-[1.03]"
       />
       <span className="block min-w-0 px-1.5 pb-1">

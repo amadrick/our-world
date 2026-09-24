@@ -55,12 +55,9 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 5. Optionally add your note ("Order the morning bun").
 6. Tap **Write it for me** for an AI summary (or write your own), then
    **Add to the map**. If you skip the summary, one is written when you save.
-   With a key, the place's illustration is drawn right after saving (a toast
-   shows progress). Without one, run `npm run images` later.
 
 Places you add show up for guests immediately. Existing places can be edited or
-removed from the list below the form. Changing what a place is known for redraws
-its illustration.
+removed from the list below the form.
 
 `data/places.json` holds Andy and Kirissa's list: 75 places geocoded against
 OpenStreetMap and Overture Maps, each with a short neutral summary, a
@@ -71,34 +68,15 @@ them to write in their own words from `/admin`, and no place is marked
 
 ## Place images
 
-Every place has a clay still of what it's known for: the morning bun, the
-salt-and-pepper crab, or, when the room is the draw, a small cutaway diorama
-(Toronado's tap wall, Foreign Cinema's courtyard). The style follows the stills
-on [pengzhe.ng](https://www.pengzhe.ng/): square, bright white, a front or
-gentle three-quarter product angle, diffuse light, matte clay and soft
-plastic, no people or text. The files are `public/places/<id>-<hash>.webp` (960×960),
-referenced by each place's `image` field, so the guide never calls an image
-API. A place without one shows a quiet tile with its category icon.
+**Paused.** Place images are off while Andy and Kirissa choose a new visual
+direction, so no images ship with the seed. The guide shows a quiet glass tile
+with each place's monogram and category icon, and place details open without
+a hero image.
 
-All stills share one locked style prompt (`src/lib/images/prompt.mjs`), used by
-both the admin and the script. The subject comes from a hand-written hint in
-`data/place-image-hints.json` when there is one, otherwise from the place's
-`signatureSubject`.
-
-```bash
-npm run images                          # every place that has no image yet
-npm run images -- tartine-bakery        # redo specific places
-npm run images -- zuni --photo zuni.jpg # turn your own photo of the place into the style
-npm run images -- zuni --import art.png # use an image made in another tool
-npm run images -- --print zuni          # show the prompt without generating
-npm run images -- zuni --refs           # also send the style anchors in scripts/style-references
-```
-
-Generating needs `OPENAI_API_KEY` in `.env.local` (model: `OPENAI_IMAGE_MODEL`,
-default `gpt-image-1`). `--import` needs no key. Paste the `--print` prompt into
-any image tool, then import the result. The locked prompt alone keeps the series
-consistent. `--refs` can tighten it further, but models tend to copy props from
-the anchors (a spoon, a tap handle), so check what comes back.
+The pipeline code is still here (`src/lib/images/`, `npm run images`), but
+every render refuses unless `PLACE_IMAGE_GENERATION=on` is set, and the admin
+doesn't draw anything on save. `npm run images -- <id> --import art.png` still
+attaches an image made elsewhere.
 
 ### The signature pipeline
 
@@ -113,20 +91,18 @@ Adding a place in `/admin` runs the whole routine:
    returns "needs a signature".
 3. **Save:** the place is stored with `signatureSubject` and
    `signatureRationale`.
-4. **Image:** right after saving, `POST /api/admin/places/<id>/image` draws the
-   still from the signature and attaches it to the place. It runs after the
-   save rather than inside it, because a render takes up to a minute, so the
-   place appears at once and its illustration a moment later.
+4. **Image (paused):** with `PLACE_IMAGE_GENERATION=on`, the admin calls
+   `POST /api/admin/places/<id>/image` right after saving to draw an image
+   from the signature. It's off until a new visual direction is chosen.
 
 The same steps run in batch from the command line, which is how to backfill
 once a key is in `.env.local`:
 
 ```bash
-npm run signatures -- --images          # research + draw every place missing a signature
-npm run signatures -- toronado --images # redo one place end to end
+npm run signatures                      # research every place missing a signature
+npm run signatures -- toronado          # redo one place
 npm run signatures -- --all             # re-research everything (then: npm run images -- --all)
 npm run signatures -- --dry-run zuni    # see what it finds without saving
-npm run images                          # draw any place that still has no image
 ```
 
 ### Reviewing signatures
@@ -138,7 +114,6 @@ there, set `approved`, then:
 
 ```bash
 npm run signatures:apply            # copy edits into data/places.json, list what changed
-npm run signatures:apply -- --images  # ...and redraw only the changed places (needs a key)
 npm run signatures:export           # refresh the sheet after adding places in /admin
 ```
 

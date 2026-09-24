@@ -83,22 +83,25 @@ export function PlaceDetail({
 
   return (
     <article className="@container flex flex-col gap-6" aria-label={place.name}>
-      <div className="relative">
-        <PlaceImage
-          place={place}
-          alt={
-            place.signatureSubject
-              ? `Clay illustration of ${place.signatureSubject} at ${place.name}`
-              : `Clay illustration for ${place.name}`
-          }
-          priority
-          sizes="(min-width: 1024px) 376px, 100vw"
-          className="aspect-[5/4] rounded-[20px]"
-        />
-        {showBackRow && <BackOverImage onBack={onBack} />}
-      </div>
+      {place.image && (
+        <div className="relative">
+          <PlaceImage
+            place={place}
+            alt={
+              place.signatureSubject
+                ? `Clay illustration of ${place.signatureSubject} at ${place.name}`
+                : `Clay illustration for ${place.name}`
+            }
+            priority
+            sizes="(min-width: 1024px) 376px, 100vw"
+            className="aspect-[5/4] rounded-[20px]"
+          />
+          {showBackRow && <BackOverImage onBack={onBack} />}
+        </div>
+      )}
 
       <div className={cn("flex flex-col gap-6", bodyClassName)}>
+        {!place.image && showBackRow && <PlaceDetailBackRow onBack={onBack} />}
         <header className="space-y-2">
           <p className="text-muted-foreground flex items-center gap-2 text-sm">
             <CategoryIcon category={place.category} size={14} />

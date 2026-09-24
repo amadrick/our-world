@@ -3,7 +3,12 @@ import { z } from "zod";
 
 import { aiConfigured } from "@/lib/ai/summary";
 import { buildPrompt, fallbackHint } from "@/lib/images/prompt.mjs";
-import { renderImage, saveImage } from "@/lib/images/render.mjs";
+import {
+  IMAGE_GENERATION_PAUSED,
+  imageGenerationEnabled,
+  renderImage,
+  saveImage,
+} from "@/lib/images/render.mjs";
 import { firstIssue } from "@/lib/places/schema";
 import { getPlaceStore } from "@/lib/storage";
 import { badRequest, unauthorized } from "../../../guard";
@@ -18,6 +23,9 @@ export async function POST(request: NextRequest, ctx: RouteContext<"/api/admin/p
   const denied = unauthorized(request);
   if (denied) return denied;
 
+  if (!imageGenerationEnabled()) {
+    return NextResponse.json({ error: IMAGE_GENERATION_PAUSED }, { status: 503 });
+  }
   if (!aiConfigured()) {
     return NextResponse.json(
       { error: "Illustrations need an OpenAI key. Add OPENAI_API_KEY, or run npm run images later." },

@@ -195,6 +195,7 @@ interface PlaceFormProps {
   editing: Place | null;
   neighborhoods: string[];
   aiEnabled: boolean;
+  imagesEnabled: boolean;
   /** `illustrate` is set when the saved place needs a new illustration drawn. */
   onSaved: (place: Place, isNew: boolean, illustrate?: ImageHint) => void;
   onCancelEdit: () => void;
@@ -205,6 +206,7 @@ export function PlaceForm({
   editing,
   neighborhoods,
   aiEnabled,
+  imagesEnabled,
   onSaved,
   onCancelEdit,
   onAuthError,
@@ -338,7 +340,7 @@ export function PlaceForm({
       const place = await savePlace(toPayload(draft, draft.category), editing?.id);
       const needsImage =
         !place.image || (editing?.signatureSubject ?? "") !== (place.signatureSubject ?? "");
-      onSaved(place, !editing, aiEnabled && needsImage ? imageHint : undefined);
+      onSaved(place, !editing, imagesEnabled && needsImage ? imageHint : undefined);
     } catch (err) {
       setError(handleError(err, "Couldn’t save. Try again."));
       setSaving(false);
@@ -472,10 +474,7 @@ export function PlaceForm({
           )}
           <p className="flex gap-2 text-sm text-muted-foreground">
             {signatureNotice && <AlertCircle size={14} className="mt-0.5 shrink-0" />}
-            {signatureNotice ??
-              (aiEnabled
-                ? "The dish, drink, or room it’s famous for. Its illustration is drawn from this when you save."
-                : "The dish, drink, or room it’s famous for. Illustrations need an OpenAI key, so run npm run images later.")}
+            {signatureNotice ?? "The dish, drink, or room it’s famous for."}
           </p>
         </div>
 

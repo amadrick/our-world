@@ -5,6 +5,7 @@ import { AdminDashboard } from "@/components/admin/admin-dashboard";
 import { AdminLogin } from "@/components/admin/admin-login";
 import { site } from "@/config/site";
 import { aiConfigured, aiModel } from "@/lib/ai/summary";
+import { imageGenerationEnabled } from "@/lib/images/render.mjs";
 import {
   DEFAULT_ADMIN_PASSWORD,
   adminLoginEnabled,
@@ -41,6 +42,7 @@ export default async function AdminPage() {
       initialPlaces={places}
       backdrop={backdrop}
       ai={{ enabled: aiConfigured(), model: aiModel() }}
+      imagesEnabled={aiConfigured() && imageGenerationEnabled()}
       usingDefaultPassword={usingDefaultPassword()}
     />
   );

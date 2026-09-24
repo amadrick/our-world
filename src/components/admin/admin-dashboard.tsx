@@ -18,6 +18,8 @@ interface AdminDashboardProps {
   initialPlaces: Place[];
   backdrop: string[];
   ai: { enabled: boolean; model: string };
+  /** Whether saving a place also draws its illustration. */
+  imagesEnabled: boolean;
   usingDefaultPassword: boolean;
 }
 
@@ -42,6 +44,7 @@ export function AdminDashboard({
   initialPlaces,
   backdrop,
   ai,
+  imagesEnabled,
   usingDefaultPassword,
 }: AdminDashboardProps) {
   const router = useRouter();
@@ -175,6 +178,7 @@ export function AdminDashboard({
             editing={editing}
             neighborhoods={neighborhoods}
             aiEnabled={ai.enabled}
+            imagesEnabled={imagesEnabled}
             onSaved={onSaved}
             onCancelEdit={resetForm}
             onAuthError={onAuthError}

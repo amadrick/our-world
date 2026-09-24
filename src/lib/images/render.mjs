@@ -7,6 +7,17 @@ import path from "node:path";
 import sharp from "sharp";
 
 export const IMAGE_SIZE = 960;
+
+/**
+ * Place image generation is paused while Andy and Kirissa pick a new visual
+ * direction. Set PLACE_IMAGE_GENERATION=on to render again.
+ */
+export function imageGenerationEnabled() {
+  return process.env.PLACE_IMAGE_GENERATION === "on";
+}
+
+export const IMAGE_GENERATION_PAUSED =
+  "Place image generation is paused until a new visual direction is chosen.";
 export const DEFAULT_IMAGE_MODEL = "gpt-image-1";
 
 export function placesImageDir(root = process.cwd()) {
@@ -26,6 +37,7 @@ export async function styleReferences(root = process.cwd()) {
  * or a photo) it uses the edits endpoint, otherwise plain generation.
  */
 export async function renderImage(prompt, { images = [], apiKey = process.env.OPENAI_API_KEY } = {}) {
+  if (!imageGenerationEnabled()) throw new Error(IMAGE_GENERATION_PAUSED);
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set (add it to .env.local)");
   const model = process.env.OPENAI_IMAGE_MODEL || DEFAULT_IMAGE_MODEL;
 
