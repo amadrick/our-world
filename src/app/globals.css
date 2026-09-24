@@ -3,6 +3,36 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * One family (Inter Variable), two weights (425 and 550), four sizes.
+ * Resetting the default scales means any stray size or weight class simply
+ * doesn't exist, which keeps the type system tight.
+ */
+@theme {
+  --text-*: initial;
+  --text-sm: 13px;
+  --text-sm--line-height: 18px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-lg: 20px;
+  --text-lg--line-height: 26px;
+  --text-xl: 28px;
+  --text-xl--line-height: 32px;
+  --text-xl--letter-spacing: -0.02em;
+
+  --font-weight-*: initial;
+  --font-weight-normal: 425;
+  --font-weight-medium: 550;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -23,53 +53,41 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-map: var(--map);
-  --color-note: var(--note);
-  --color-note-border: var(--note-border);
-  --color-note-foreground: var(--note-foreground);
 
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-geist-sans),
-    ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-3xl: calc(var(--radius) + 16px);
 
-  --shadow-float:
-    0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px -6px rgb(0 0 0 / 0.14);
-  --shadow-panel:
-    0 1px 3px rgb(0 0 0 / 0.06), 0 24px 60px -18px rgb(0 0 0 / 0.25);
+  --shadow-float: 0 10px 36px -10px rgb(0 0 0 / 0.14);
+  --shadow-panel: 0 28px 80px -24px rgb(0 0 0 / 0.18);
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 1rem;
   --background: #ffffff;
-  --foreground: #1d1d1f;
+  --foreground: #1a1a1a;
   --card: #ffffff;
-  --card-foreground: #1d1d1f;
+  --card-foreground: #1a1a1a;
   --popover: #ffffff;
-  --popover-foreground: #1d1d1f;
-  --primary: #1d1d1f;
+  --popover-foreground: #1a1a1a;
+  --primary: #1a1a1a;
   --primary-foreground: #ffffff;
-  --secondary: #f2f2f4;
-  --secondary-foreground: #1d1d1f;
-  --muted: #f2f2f4;
-  --muted-foreground: #6e6e73;
-  --accent: #f2f2f4;
-  --accent-foreground: #1d1d1f;
-  --destructive: #d4351c;
-  --border: rgb(0 0 0 / 0.09);
-  --input: rgb(0 0 0 / 0.12);
-  --ring: #8e8e93;
-  --map: #f4f2ee;
-  --note: #fbf6ec;
-  --note-border: #efe3c8;
-  --note-foreground: #6b5424;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f2f2f2;
+  --muted-foreground: #737373;
+  --accent: #f2f2f2;
+  --accent-foreground: #1a1a1a;
+  --destructive: #1a1a1a;
+  --border: rgb(0 0 0 / 0.16);
+  --input: rgb(0 0 0 / 0.2);
+  --ring: #a3a3a3;
+  --map: #f3f3f2;
 }
 
 @layer base {
@@ -78,11 +96,20 @@
   }
   html {
     -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "ss01", "cv11";
+    @apply bg-background font-normal text-foreground;
+    font-optical-sizing: auto;
+    /* Inter's square punctuation and square quotes */
+    font-feature-settings: "ss07", "ss08";
   }
+}
+
+@utility hairline {
+  border-width: 0.5px;
+  border-style: solid;
 }
 
 @utility no-scrollbar {
@@ -102,18 +129,16 @@
   );
 }
 
-.maplibregl-ctrl-attrib {
-  font-size: 10px;
+body .maplibregl-map {
+  font: inherit;
+}
+body .maplibregl-ctrl-attrib {
+  font-size: var(--text-sm);
   background: rgb(255 255 255 / 0.7) !important;
-  border-radius: 8px 0 0 0;
+  border-radius: 12px 0 0 0;
 }
 .maplibregl-ctrl-attrib a {
-  color: #6e6e73 !important;
-}
-.maplibregl-ctrl-group {
-  border-radius: 12px !important;
-  box-shadow: var(--shadow-float) !important;
-  overflow: hidden;
+  color: #737373 !important;
 }
 .maplibregl-marker:has([data-highlighted]) {
   z-index: 2;

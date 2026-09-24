@@ -4,15 +4,14 @@ export interface CategoryInfo {
   id: CategoryId;
   label: string;
   plural: string;
-  color: string;
 }
 
 export const CATEGORIES: CategoryInfo[] = [
-  { id: "restaurant", label: "Restaurant", plural: "Restaurants", color: "#E0603F" },
-  { id: "bar", label: "Bar", plural: "Bars", color: "#8B5CC9" },
-  { id: "coffee", label: "Coffee", plural: "Coffee", color: "#B0773A" },
-  { id: "activity", label: "Activity", plural: "Activities", color: "#1E9A78" },
-  { id: "sight", label: "Sight", plural: "Sights", color: "#2F7BE0" },
+  { id: "restaurant", label: "Restaurant", plural: "Restaurants" },
+  { id: "bar", label: "Bar", plural: "Bars" },
+  { id: "coffee", label: "Coffee", plural: "Coffee" },
+  { id: "activity", label: "Activity", plural: "Activities" },
+  { id: "sight", label: "Sight", plural: "Sights" },
 ];
 
 const CATEGORY_BY_ID = Object.fromEntries(
@@ -26,12 +25,12 @@ export function getCategory(id: CategoryId): CategoryInfo {
 export interface TagInfo {
   id: TagId;
   label: string;
-  /** Shorter label used on a single place, e.g. "Andy's pick" vs "Andy's picks". */
+  /** Shorter label used on a single place, e.g. "Top pick" vs "Top picks". */
   badge: string;
 }
 
 export const TAGS: TagInfo[] = [
-  { id: "andys-pick", label: "Andy's picks", badge: "Andy's pick" },
+  { id: "top-pick", label: "Top picks", badge: "Top pick" },
   { id: "brunch", label: "Brunch", badge: "Brunch" },
   { id: "late-night", label: "Late night", badge: "Late night" },
   { id: "walkable", label: "Walkable", badge: "Walkable" },

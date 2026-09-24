@@ -3,18 +3,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Loading() {
   return (
     <main className="relative h-dvh w-full overflow-hidden bg-map" aria-busy>
-      <div className="absolute top-4 bottom-4 left-4 hidden w-[400px] flex-col gap-4 rounded-[28px] bg-white/90 p-6 shadow-panel lg:flex">
-        <Skeleton className="h-3 w-32" />
-        <Skeleton className="h-10 w-64" />
+      <div className="absolute top-4 bottom-4 left-4 hidden w-[400px] flex-col gap-4 rounded-[32px] hairline border-black/10 bg-white p-6 shadow-panel lg:flex">
+        <Skeleton className="mt-1 h-8 w-72" />
         <Skeleton className="h-4 w-full" />
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-wrap gap-2 pt-3">
           {Array.from({ length: 8 }, (_, i) => (
             <Skeleton key={i} className="h-10 w-24 rounded-full" />
           ))}
         </div>
         {Array.from({ length: 5 }, (_, i) => (
-          <div key={i} className="flex gap-3 pt-2">
-            <Skeleton className="size-10 rounded-xl" />
+          <div key={i} className="flex gap-3.5 pt-3">
+            <Skeleton className="size-11 rounded-[14px]" />
             <div className="flex-1 space-y-2">
               <Skeleton className="h-4 w-40" />
               <Skeleton className="h-3 w-full" />
@@ -22,12 +21,12 @@ export default function Loading() {
           </div>
         ))}
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-[46%] rounded-t-[28px] bg-white p-5 lg:hidden">
-        <Skeleton className="mx-auto h-1.5 w-10" />
-        <Skeleton className="mt-5 h-5 w-28" />
+      <div className="absolute inset-x-0 bottom-0 h-[48%] rounded-t-[32px] bg-white p-5 lg:hidden">
+        <Skeleton className="mx-auto h-1 w-9" />
+        <Skeleton className="mt-5 h-6 w-64" />
         {Array.from({ length: 3 }, (_, i) => (
-          <div key={i} className="mt-5 flex gap-3">
-            <Skeleton className="size-10 rounded-xl" />
+          <div key={i} className="mt-5 flex gap-3.5">
+            <Skeleton className="size-11 rounded-[14px]" />
             <div className="flex-1 space-y-2">
               <Skeleton className="h-4 w-40" />
               <Skeleton className="h-3 w-full" />

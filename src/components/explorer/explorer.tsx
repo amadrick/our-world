@@ -1,6 +1,6 @@
 "use client";
 
-import { LocateFixed, Minus, Plus } from "lucide-react";
+import { Crosshair, Minus, Plus } from "react-feather";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { site } from "@/config/site";
@@ -29,12 +29,10 @@ function MapButton({
   label,
   onClick,
   children,
-  className,
 }: {
   label: string;
   onClick: () => void;
   children: React.ReactNode;
-  className?: string;
 }) {
   return (
     <button
@@ -42,10 +40,7 @@ function MapButton({
       aria-label={label}
       title={label}
       onClick={onClick}
-      className={cn(
-        "flex size-11 cursor-pointer items-center justify-center bg-white/95 text-foreground/80 backdrop-blur transition-colors hover:bg-white hover:text-foreground active:bg-secondary [&_svg]:size-[18px]",
-        className,
-      )}
+      className="flex size-11 cursor-pointer items-center justify-center rounded-full hairline border-black/10 bg-white shadow-float transition-colors hover:bg-secondary"
     >
       {children}
     </button>
@@ -62,16 +57,15 @@ function ResultsSummary({
   onClear: () => void;
 }) {
   return (
-    <div className="flex h-11 items-center justify-between">
-      <p className="text-[15px] font-semibold" aria-live="polite">
+    <div className="flex h-10 items-center justify-between text-sm text-muted-foreground">
+      <p aria-live="polite">
         {count} {count === 1 ? "place" : "places"}
-        {filtersActive && <span className="font-normal text-muted-foreground"> match</span>}
       </p>
       {filtersActive && (
         <button
           type="button"
           onClick={onClear}
-          className="-mr-2 h-9 cursor-pointer rounded-full px-3 text-[14px] font-medium text-[#2F6FD0] hover:bg-[#2F6FD0]/8"
+          className="cursor-pointer text-foreground underline decoration-black/25 underline-offset-4 hover:decoration-black"
         >
           Clear filters
         </button>
@@ -92,7 +86,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   );
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [snap, setSnap] = useState<SheetSnap>("mid");
-  const [topBarHeight, setTopBarHeight] = useState(148);
+  const [topBarHeight, setTopBarHeight] = useState(112);
   const topBarRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapViewHandle>(null);
 
@@ -113,9 +107,9 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
   const sheetHeights = useMemo(
     () => ({
-      peek: 148,
-      mid: Math.max(320, Math.round(viewportHeight * 0.46)),
-      full: Math.max(360, viewportHeight - topBarHeight - 8),
+      peek: 136,
+      mid: Math.max(320, Math.round(viewportHeight * 0.48)),
+      full: Math.max(360, viewportHeight - topBarHeight - 4),
     }),
     [viewportHeight, topBarHeight],
   );
@@ -177,10 +171,6 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
   return (
     <main className="relative h-dvh w-full overflow-hidden bg-map">
-      <h1 className="sr-only">
-        {site.title}: {site.tagline}
-      </h1>
-
       <MapView
         ref={mapRef}
         className="absolute inset-0"
@@ -196,19 +186,14 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
       {/* Desktop: floating side panel */}
       <aside
-        className="absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-[28px] border border-black/[0.06] bg-white/[0.94] shadow-panel backdrop-blur-xl lg:flex"
+        className="absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-[32px] hairline border-black/10 bg-white shadow-panel lg:flex"
         style={{ width: PANEL_WIDTH }}
         aria-label="Places"
       >
         <div className={cn("min-h-0 flex-1 overflow-y-auto", selected && "hidden")}>
-          <header className="px-6 pt-6 pb-5">
-            <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
-              {site.name} · Wedding week
-            </p>
-            <h2 className="mt-2 font-serif text-[38px] leading-none tracking-[-0.01em]">
-              {site.title}
-            </h2>
-            <p className="mt-2.5 text-[15px] leading-relaxed text-muted-foreground">{site.tagline}</p>
+          <header className="px-6 pt-7 pb-6">
+            <h1 className="text-xl font-medium">{site.title}</h1>
+            <p className="mt-2 text-base text-muted-foreground">{site.tagline}</p>
           </header>
           <div className="px-6 pb-4">
             <FilterBar
@@ -218,15 +203,15 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               neighborhoods={neighborhoods}
             />
           </div>
-          <div className="sticky top-0 z-10 border-y border-black/[0.06] bg-white/95 px-6 backdrop-blur">
+          <div className="sticky top-0 z-10 bg-white px-6">
             <ResultsSummary count={visible.length} filtersActive={filtersActive} onClear={clearFilters} />
           </div>
-          <div className="px-3 pt-1 pb-3">{list}</div>
+          <div className="px-3 pb-3">{list}</div>
         </div>
         {selected && (
           <div
             key={selected.id}
-            className="min-h-0 flex-1 overflow-y-auto px-6 pt-4 pb-6 animate-in fade-in slide-in-from-left-2 duration-200"
+            className="min-h-0 flex-1 overflow-y-auto px-6 pt-5 pb-6 animate-in fade-in duration-200"
           >
             <PlaceDetail place={selected} onBack={closeDetail} />
           </div>
@@ -235,34 +220,22 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
       {/* Desktop: map controls */}
       <div className="absolute right-4 bottom-8 z-10 hidden flex-col gap-2 lg:flex">
-        <div className="flex flex-col divide-y divide-black/[0.06] overflow-hidden rounded-2xl shadow-float">
-          <MapButton label="Zoom in" onClick={() => mapRef.current?.zoomIn()}>
-            <Plus />
-          </MapButton>
-          <MapButton label="Zoom out" onClick={() => mapRef.current?.zoomOut()}>
-            <Minus />
-          </MapButton>
-        </div>
-        <MapButton
-          label="Show all places"
-          className="rounded-2xl shadow-float"
-          onClick={() => mapRef.current?.showAll()}
-        >
-          <LocateFixed />
+        <MapButton label="Zoom in" onClick={() => mapRef.current?.zoomIn()}>
+          <Plus size={18} />
+        </MapButton>
+        <MapButton label="Zoom out" onClick={() => mapRef.current?.zoomOut()}>
+          <Minus size={18} />
+        </MapButton>
+        <MapButton label="Show all places" onClick={() => mapRef.current?.showAll()}>
+          <Crosshair size={18} />
         </MapButton>
       </div>
 
-      {/* Phone: title and filters float over the map */}
+      {/* Phone: filters float over the map */}
       <div
         ref={topBarRef}
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 space-y-2 pt-[max(env(safe-area-inset-top),10px)] pb-2 lg:hidden"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 pt-[max(env(safe-area-inset-top),6px)] lg:hidden"
       >
-        <div className="pointer-events-auto mx-3 rounded-2xl bg-white/[0.94] px-4 py-2.5 shadow-float backdrop-blur-xl">
-          <p className="font-serif text-[22px] leading-tight">{site.title}</p>
-          <p className="text-[12px] text-muted-foreground">
-            {site.name} · Wedding-week guide
-          </p>
-        </div>
         <FilterBar
           layout="scroll"
           filters={filters}
@@ -279,12 +252,8 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           onSnapChange={setSnap}
           scrollKey={selected ? `place:${selected.id}` : "list"}
           accessory={
-            <MapButton
-              label="Show all places"
-              className="rounded-full shadow-float"
-              onClick={() => mapRef.current?.showAll()}
-            >
-              <LocateFixed />
+            <MapButton label="Show all places" onClick={() => mapRef.current?.showAll()}>
+              <Crosshair size={18} />
             </MapButton>
           }
           header={
@@ -292,11 +261,14 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               {selected ? (
                 <PlaceDetailBackRow onBack={closeDetail} />
               ) : (
-                <ResultsSummary
-                  count={visible.length}
-                  filtersActive={filtersActive}
-                  onClear={clearFilters}
-                />
+                <>
+                  <h1 className="pt-1 text-lg font-medium">{site.title}</h1>
+                  <ResultsSummary
+                    count={visible.length}
+                    filtersActive={filtersActive}
+                    onClear={clearFilters}
+                  />
+                </>
               )}
             </div>
           }
@@ -304,7 +276,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           <div className={cn("px-2 pb-6", selected && "hidden")}>{list}</div>
           {selected && (
             <div className="px-5 pt-1 pb-8">
-              <PlaceDetail key={selected.id} place={selected} onBack={closeDetail} showBackRow={false} />
+              <PlaceDetail place={selected} onBack={closeDetail} showBackRow={false} />
             </div>
           )}
         </BottomSheet>

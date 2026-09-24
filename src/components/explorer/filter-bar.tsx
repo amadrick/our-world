@@ -1,9 +1,8 @@
 "use client";
 
-import { Check, ChevronDown, MapPin, Star, X } from "lucide-react";
+import { Check, ChevronDown, Star } from "react-feather";
 import { useState } from "react";
 
-import { CategoryIcon } from "@/components/places/category-badge";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import type { PlaceFilters } from "@/lib/places/filters";
 import { CATEGORIES, TAGS } from "@/lib/places/taxonomy";
@@ -18,33 +17,27 @@ interface FilterBarProps {
   layout: "wrap" | "scroll";
 }
 
-function Pill({
+export function Pill({
   active,
-  floating,
-  activeColor,
+  floating = false,
   className,
   children,
   ...props
-}: React.ComponentProps<"button"> & {
-  active: boolean;
-  floating: boolean;
-  activeColor?: string;
-}) {
+}: React.ComponentProps<"button"> & { active: boolean; floating?: boolean }) {
   return (
     <button
       type="button"
       aria-pressed={active}
       className={cn(
-        "inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-4 text-[14px] font-medium whitespace-nowrap transition-[background-color,color,box-shadow,transform] duration-150 select-none active:scale-[0.97] [&_svg]:size-4",
-        "focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:outline-none",
+        "inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 rounded-full hairline px-4 text-base whitespace-nowrap transition-colors duration-150 select-none active:scale-[0.97]",
+        "focus-visible:ring-4 focus-visible:ring-black/10 focus-visible:outline-none",
         active
-          ? "bg-foreground text-white shadow-sm"
+          ? "border-transparent bg-foreground text-white"
           : floating
-            ? "bg-white/95 text-foreground shadow-float backdrop-blur hover:bg-white"
-            : "bg-secondary text-foreground hover:bg-black/[0.07]",
+            ? "border-black/10 bg-white shadow-float"
+            : "border-black/15 bg-white hover:bg-secondary",
         className,
       )}
-      style={active && activeColor ? { backgroundColor: activeColor } : undefined}
       {...props}
     >
       {children}
@@ -73,15 +66,14 @@ function NeighborhoodPicker({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Pill active={value !== null} floating={floating} aria-haspopup="listbox">
-          <MapPin />
           {value ?? "Neighborhood"}
-          <ChevronDown className="-mr-1 opacity-60" />
+          <ChevronDown size={16} className="-mr-1 opacity-60" />
         </Pill>
       </PopoverTrigger>
       <PopoverContent
         align="start"
         sideOffset={8}
-        className="w-64 rounded-2xl p-1.5 shadow-panel"
+        className="w-64 p-1.5"
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <div role="listbox" aria-label="Neighborhoods" className="max-h-[min(60vh,420px)] overflow-y-auto">
@@ -94,14 +86,13 @@ function NeighborhoodPicker({
                 role="option"
                 aria-selected={selected}
                 onClick={() => choose(name)}
-                className={cn(
-                  "flex h-11 w-full cursor-pointer items-center gap-2 rounded-xl px-3 text-left text-[15px] hover:bg-secondary",
-                  selected && "font-semibold",
-                )}
+                className="flex h-11 w-full cursor-pointer items-center gap-2 rounded-2xl px-3 text-left text-base hover:bg-secondary"
               >
-                <span className="flex-1 truncate">{name ?? "All neighborhoods"}</span>
-                {name && <span className="text-[13px] text-muted-foreground tabular-nums">{count}</span>}
-                <Check className={cn("size-4", selected ? "opacity-100" : "opacity-0")} />
+                <span className={cn("flex-1 truncate", selected && "font-medium")}>
+                  {name ?? "All neighborhoods"}
+                </span>
+                {name && <span className="text-sm text-muted-foreground tabular-nums">{count}</span>}
+                <Check size={16} className={selected ? "opacity-100" : "opacity-0"} />
               </button>
             );
           })}
@@ -114,7 +105,7 @@ function NeighborhoodPicker({
 export function FilterBar({ filters, onChange, neighborhoods, layout }: FilterBarProps) {
   const floating = layout === "scroll";
   const row = floating
-    ? "no-scrollbar scroll-fade-x pointer-events-auto flex gap-2 overflow-x-auto px-3 py-1"
+    ? "no-scrollbar scroll-fade-x pointer-events-auto flex gap-2 overflow-x-auto px-3 py-2"
     : "flex flex-wrap gap-2";
 
   const toggleTag = (tag: TagId) =>
@@ -126,7 +117,7 @@ export function FilterBar({ filters, onChange, neighborhoods, layout }: FilterBa
     });
 
   return (
-    <div className={cn(floating ? "space-y-1" : "space-y-2.5")}>
+    <div className={cn(!floating && "space-y-2")}>
       <div className={row} role="group" aria-label="Category">
         <Pill
           active={filters.category === null}
@@ -142,18 +133,14 @@ export function FilterBar({ filters, onChange, neighborhoods, layout }: FilterBa
               key={category.id}
               active={active}
               floating={floating}
-              activeColor={category.color}
               onClick={() => onChange({ ...filters, category: active ? null : category.id })}
             >
-              <span style={active ? undefined : { color: category.color }}>
-                <CategoryIcon category={category.id} />
-              </span>
               {category.plural}
             </Pill>
           );
         })}
       </div>
-      <div className={row} role="group" aria-label="More filters">
+      <div className={cn(row, floating && "-mt-2")} role="group" aria-label="More filters">
         {neighborhoods.length > 1 && (
           <NeighborhoodPicker
             value={filters.neighborhood}
@@ -165,17 +152,9 @@ export function FilterBar({ filters, onChange, neighborhoods, layout }: FilterBa
         {TAGS.map((tag) => {
           const active = filters.tags.includes(tag.id);
           return (
-            <Pill
-              key={tag.id}
-              active={active}
-              floating={floating}
-              onClick={() => toggleTag(tag.id)}
-            >
-              {tag.id === "andys-pick" && (
-                <Star className={cn(active ? "fill-amber-300 text-amber-300" : "fill-amber-400 text-amber-400")} />
-              )}
+            <Pill key={tag.id} active={active} floating={floating} onClick={() => toggleTag(tag.id)}>
+              {tag.id === "top-pick" && <Star size={15} fill="currentColor" />}
               {tag.label}
-              {active && <X className="-mr-1 opacity-70" aria-hidden />}
             </Pill>
           );
         })}

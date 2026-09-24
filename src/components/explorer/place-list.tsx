@@ -1,11 +1,13 @@
 "use client";
 
-import { ChevronRight, MapPinned, SearchX, Star } from "lucide-react";
+import { MapPin, Search, Star, type Icon } from "react-feather";
 
 import { CategoryBadge } from "@/components/places/category-badge";
 import { Button } from "@/components/ui/button";
+import { site } from "@/config/site";
 import { getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
+import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
 interface PlaceListProps {
@@ -19,23 +21,21 @@ interface PlaceListProps {
 }
 
 function EmptyState({
-  icon: Icon,
+  icon: EmptyIcon,
   title,
   body,
   action,
 }: {
-  icon: typeof SearchX;
+  icon: Icon;
   title: string;
   body: string;
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center px-6 py-10 text-center">
-      <span className="flex size-12 items-center justify-center rounded-2xl bg-secondary text-muted-foreground">
-        <Icon className="size-5" />
-      </span>
-      <p className="mt-4 text-[16px] font-semibold">{title}</p>
-      <p className="mt-1 max-w-[18rem] text-[14px] leading-relaxed text-muted-foreground">{body}</p>
+    <div className="flex flex-col items-center px-6 py-12 text-center">
+      <EmptyIcon size={22} className="text-muted-foreground" />
+      <p className="mt-4 text-base font-medium">{title}</p>
+      <p className="mt-1 max-w-[18rem] text-sm text-muted-foreground">{body}</p>
       {action && <div className="mt-5">{action}</div>}
     </div>
   );
@@ -52,8 +52,7 @@ export function PlaceCard({
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
 }) {
-  const category = getCategory(place.category);
-  const pick = place.tags.includes("andys-pick");
+  const pick = place.tags.includes("top-pick");
   return (
     <button
       type="button"
@@ -61,33 +60,25 @@ export function PlaceCard({
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
-        "group flex w-full cursor-pointer items-start gap-3 rounded-2xl p-3 text-left transition-colors",
-        "hover:bg-black/[0.035] focus-visible:bg-black/[0.035] focus-visible:outline-none active:bg-black/[0.06]",
-        active && "bg-black/[0.035]",
+        "flex w-full cursor-pointer items-start gap-3.5 rounded-[20px] p-3 text-left transition-colors",
+        "hover:bg-secondary/70 focus-visible:bg-secondary/70 focus-visible:outline-none active:bg-secondary",
+        active && "bg-secondary/70",
       )}
     >
       <CategoryBadge category={place.category} />
       <span className="min-w-0 flex-1">
         <span className="flex items-center gap-1.5">
-          <span className="truncate text-[16px] leading-tight font-semibold tracking-[-0.01em]">
-            {place.name}
-          </span>
-          {pick && (
-            <Star
-              className="size-3.5 shrink-0 fill-amber-400 text-amber-400"
-              aria-label="Andy's pick"
-            />
-          )}
+          <span className="truncate text-base font-medium">{smartQuotes(place.name)}</span>
+          {pick && <Star size={12} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
         </span>
-        <span className="mt-0.5 block text-[13px] text-muted-foreground">
-          {category.label}
+        <span className="block truncate text-sm text-muted-foreground">
+          {getCategory(place.category).label}
           {place.neighborhood && ` · ${place.neighborhood}`}
         </span>
-        <span className="mt-1.5 line-clamp-2 text-[14px] leading-snug text-foreground/75">
-          {place.note || place.summary}
+        <span className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+          {smartQuotes(place.note || place.summary)}
         </span>
       </span>
-      <ChevronRight className="mt-3 size-4 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5" />
     </button>
   );
 }
@@ -104,9 +95,9 @@ export function PlaceList({
   if (totalCount === 0) {
     return (
       <EmptyState
-        icon={MapPinned}
+        icon={MapPin}
         title="No places yet"
-        body="Andy is still putting together recommendations. Check back soon."
+        body={`${site.hosts} are still putting together their recommendations. Check back soon.`}
       />
     );
   }
@@ -114,11 +105,11 @@ export function PlaceList({
   if (places.length === 0) {
     return (
       <EmptyState
-        icon={SearchX}
+        icon={Search}
         title="Nothing matches those filters"
         body="Try removing a filter or two to see more places."
         action={
-          <Button variant="outline" className="h-10 rounded-full px-5" onClick={onClearFilters}>
+          <Button variant="outline" size="sm" onClick={onClearFilters}>
             Clear filters
           </Button>
         }
@@ -127,7 +118,7 @@ export function PlaceList({
   }
 
   return (
-    <ul className="space-y-0.5">
+    <ul>
       {places.map((place) => (
         <li key={place.id}>
           <PlaceCard

@@ -45,7 +45,7 @@ const PLACEHOLDER_SUBJECT: Record<CategoryId, string> = {
 /** Plain, clearly generic text used when OpenAI isn't available. */
 export function placeholderSummary(req: SummaryRequest): string {
   const where = req.neighborhood || "San Francisco";
-  const tags = req.tags.filter((t) => t !== "andys-pick").map((t) => getTag(t).badge);
+  const tags = req.tags.filter((t) => t !== "top-pick").map((t) => getTag(t).badge);
   const extra = tags.length ? ` ${tags.join(" · ")}.` : "";
   return `${PLACEHOLDER_SUBJECT[req.category]} in ${where}.${extra}`;
 }

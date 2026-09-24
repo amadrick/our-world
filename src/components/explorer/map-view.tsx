@@ -2,7 +2,7 @@
 
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import { MapPinOff } from "lucide-react";
+import { Map as MapIcon } from "react-feather";
 import { useEffect, useEffectEvent, useImperativeHandle, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -183,20 +183,17 @@ export function MapView({
 
       {status === "loading" && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="absolute inset-0 animate-pulse bg-[radial-gradient(ellipse_at_center,#ebe8e2_0%,transparent_70%)]" />
-          <span className="relative rounded-full bg-white/90 px-4 py-2 text-[13px] font-medium text-muted-foreground shadow-float">
+          <span className="animate-pulse rounded-full hairline border-black/10 bg-white px-4 py-2 text-sm text-muted-foreground shadow-float">
             Loading the map…
           </span>
         </div>
       )}
 
       {status === "error" && (
-        <div className="absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center rounded-3xl bg-white/95 p-6 text-center shadow-panel lg:left-[440px]">
-          <span className="flex size-11 items-center justify-center rounded-2xl bg-secondary text-muted-foreground">
-            <MapPinOff className="size-5" />
-          </span>
-          <p className="mt-3 text-[15px] font-semibold">The map couldn&apos;t load</p>
-          <p className="mt-1 text-[14px] leading-relaxed text-muted-foreground">
+        <div className="absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center rounded-[28px] hairline border-black/10 bg-white p-6 text-center shadow-panel lg:left-[440px]">
+          <MapIcon size={22} className="text-muted-foreground" />
+          <p className="mt-3 text-base font-medium">The map couldn’t load</p>
+          <p className="mt-1 text-sm text-muted-foreground">
             Every place is still in the list, and each one opens in Apple Maps or Google Maps.
           </p>
         </div>

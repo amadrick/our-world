@@ -1,40 +1,29 @@
-import {
-  Camera,
-  Coffee,
-  Martini,
-  Ticket,
-  UtensilsCrossed,
-  type LucideIcon,
-} from "lucide-react";
+import { Camera, Coffee, Compass } from "react-feather";
 
-import { getCategory } from "@/lib/places/taxonomy";
+import { Cocktail, Utensils } from "@/components/icons/feather-extras";
 import type { CategoryId } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 
-export const CATEGORY_ICONS: Record<CategoryId, LucideIcon> = {
-  restaurant: UtensilsCrossed,
-  bar: Martini,
+export const CATEGORY_ICONS = {
+  restaurant: Utensils,
+  bar: Cocktail,
   coffee: Coffee,
-  activity: Ticket,
+  activity: Compass,
   sight: Camera,
-};
+} satisfies Record<CategoryId, unknown>;
 
 export function CategoryIcon({
   category,
+  size = 18,
   className,
 }: {
   category: CategoryId;
+  size?: number;
   className?: string;
 }) {
   const Icon = CATEGORY_ICONS[category];
-  return <Icon className={className} aria-hidden strokeWidth={2.25} />;
+  return <Icon size={size} className={className} aria-hidden />;
 }
-
-const SIZES = {
-  sm: "size-7 rounded-lg [&_svg]:size-3.5",
-  md: "size-10 rounded-xl [&_svg]:size-[18px]",
-  lg: "size-12 rounded-2xl [&_svg]:size-[22px]",
-};
 
 export function CategoryBadge({
   category,
@@ -42,20 +31,18 @@ export function CategoryBadge({
   className,
 }: {
   category: CategoryId;
-  size?: keyof typeof SIZES;
+  size?: "sm" | "md";
   className?: string;
 }) {
-  const { color } = getCategory(category);
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center justify-center text-white shadow-[inset_0_0_0_1px_rgb(0_0_0/0.06)]",
-        SIZES[size],
+        "inline-flex shrink-0 items-center justify-center bg-secondary text-foreground",
+        size === "sm" ? "size-8 rounded-[10px]" : "size-11 rounded-[14px]",
         className,
       )}
-      style={{ backgroundColor: color }}
     >
-      <CategoryIcon category={category} />
+      <CategoryIcon category={category} size={size === "sm" ? 15 : 18} />
     </span>
   );
 }

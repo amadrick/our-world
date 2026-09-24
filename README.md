@@ -1,17 +1,17 @@
 # SF Recs
 
-A wedding-week guide to San Francisco: Andy's favorite restaurants, bars, coffee,
-activities, and sights on an elegant map that any guest can use on a phone or a
-laptop. Tap a place to read Andy's note and a short write-up, then open it in
-Apple Maps or Google Maps with one tap.
+A wedding-week guide to San Francisco: Andy and Kirissa's recommendations for
+restaurants, bars, coffee, activities, and sights, on a calm map that any guest
+can use on a phone or a laptop. Tap a place to read their note and a short
+write-up, then open it in Apple Maps or Google Maps with one tap.
 
-- **Guests** get a full-screen map with color-coded pins, filter pills
+- **Guests** get a full-screen map with a pin per place, filter pills
   (category, tags like _Brunch_ or _Late night_, and neighborhood), a draggable
   bottom sheet on phones, and a side panel on desktop. Every place has a
   shareable link (`/?place=zuni-cafe`).
-- **Andy** adds places at `/admin`: search by name or paste a Maps link, pick a
-  category, add a note, and save. An AI summary is written once, when the place
-  is added, so guests never wait on it.
+- **Andy and Kirissa** add places at `/admin`: search by name or paste a Maps
+  link, pick a category, add a note, and save. An AI summary is written once,
+  when the place is added, so guests never wait on it.
 
 ## Run it locally
 
@@ -55,18 +55,25 @@ Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
 The 18 starter places in `data/places.json` include short practical notes and a
-few **Andy's pick** tags as a starting point. Edit or remove them from `/admin`
-so the notes are in your own words.
+few **Top pick** tags as a starting point. Edit or remove them from `/admin` so
+the notes are in your own words.
 
 ## How it's built
 
 - **Next.js 16** (App Router) with TypeScript, Tailwind CSS v4, and
   [shadcn/ui](https://ui.shadcn.com) components.
-- **Map:** [MapLibre GL](https://maplibre.org) with a custom, muted,
-  Apple Maps–inspired style (`src/lib/map/style.ts`) on free
+- **Design:** flat and grayscale. One typeface, [Inter](https://rsms.me/inter/)
+  Variable (self-hosted in `public/fonts`), at weight 425 with Inter's square
+  punctuation and quotes (`ss07`, `ss08`), and a four-step type scale (13, 16,
+  20, 28px) defined in `src/app/globals.css`. Borders are 0.5px, and icons are
+  [Feather](https://feathericons.com) (`react-feather`), plus two Feather-style
+  glyphs for restaurants and bars (`src/components/icons/feather-extras.tsx`).
+- **Map:** [MapLibre GL](https://maplibre.org) with "Paper", a custom flat
+  grayscale style (`src/lib/map/style.ts`), on free
   [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed.
-  Map code sits behind a small `MapProvider` interface (`src/lib/map/types.ts`)
-  so Apple MapKit JS can be added later.
+  Map labels use the same Inter file through MapLibre's `font-faces`. Map code
+  sits behind a small `MapProvider` interface (`src/lib/map/types.ts`) so Apple
+  MapKit JS can be added later.
 - **Data:** a JSON file behind a `PlaceStore` interface (`src/lib/storage`), so
   it can be swapped for hosted storage when the site is deployed.
 - **Place search:** [Photon](https://photon.komoot.io) with a

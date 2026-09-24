@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Pencil, Star, Trash2 } from "lucide-react";
+import { ArrowUpRight, Edit2, Star, Trash2 } from "react-feather";
 import { useState } from "react";
 
 import { CategoryBadge } from "@/components/places/category-badge";
@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
+import { smartQuotes } from "@/lib/typography";
 
 interface AdminPlacesListProps {
   places: Place[];
@@ -31,61 +32,62 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
   return (
     <section aria-labelledby="places-heading">
       <div className="flex items-baseline justify-between px-1">
-        <h2 id="places-heading" className="text-[17px] font-semibold">
+        <h2 id="places-heading" className="text-lg font-medium">
           On the map
         </h2>
-        <span className="text-[14px] text-muted-foreground tabular-nums">
+        <span className="text-sm text-muted-foreground tabular-nums">
           {places.length} {places.length === 1 ? "place" : "places"}
         </span>
       </div>
 
       {places.length === 0 ? (
-        <p className="mt-3 rounded-[24px] border border-dashed border-black/15 px-6 py-10 text-center text-[15px] text-muted-foreground">
+        <p className="mt-3 rounded-[28px] hairline border-dashed border-black/20 px-6 py-10 text-center text-base text-muted-foreground">
           Nothing here yet. Places you add show up here and on the guide right away.
         </p>
       ) : (
-        <ul className="mt-3 divide-y divide-black/[0.06] overflow-hidden rounded-[24px] border border-black/[0.07] bg-white">
+        <ul className="mt-3 divide-y-[0.5px] divide-black/10 overflow-hidden rounded-[28px] hairline border-black/10 bg-white">
           {places.map((place) => (
-            <li key={place.id} className="flex items-center gap-3 px-4 py-3">
+            <li key={place.id} className="flex items-center gap-3.5 py-3 pr-2 pl-4">
               <CategoryBadge category={place.category} />
               <div className="min-w-0 flex-1">
-                <p className="flex items-center gap-1.5 truncate text-[15px] font-semibold">
-                  <span className="truncate">{place.name}</span>
-                  {place.tags.includes("andys-pick") && (
-                    <Star className="size-3.5 shrink-0 fill-amber-400 text-amber-400" aria-label="Andy's pick" />
+                <p className="flex items-center gap-1.5 text-base font-medium">
+                  <span className="truncate">{smartQuotes(place.name)}</span>
+                  {place.tags.includes("top-pick") && (
+                    <Star size={12} fill="currentColor" className="shrink-0" aria-label="Top pick" />
                   )}
                 </p>
-                <p className="truncate text-[13px] text-muted-foreground">
+                <p className="truncate text-sm text-muted-foreground">
                   {getCategory(place.category).label}
                   {place.neighborhood && ` · ${place.neighborhood}`}
-                  {place.summarySource === "placeholder" && (
-                    <span className="text-amber-700"> · Placeholder summary</span>
-                  )}
+                  {place.summarySource === "placeholder" && " · Placeholder summary"}
                 </p>
               </div>
-              <div className="flex shrink-0 items-center gap-0.5">
-                <Button variant="ghost" size="icon" className="size-9 rounded-full" asChild>
-                  <a href={`/?place=${place.id}`} target="_blank" rel="noreferrer" aria-label={`View ${place.name} in the guide`}>
-                    <ArrowUpRight />
+              <div className="flex shrink-0 items-center">
+                <Button variant="ghost" size="icon-sm" asChild>
+                  <a
+                    href={`/?place=${place.id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`View ${place.name} in the guide`}
+                  >
+                    <ArrowUpRight size={16} />
                   </a>
                 </Button>
                 <Button
                   variant="ghost"
-                  size="icon"
-                  className="size-9 rounded-full"
+                  size="icon-sm"
                   onClick={() => onEdit(place)}
                   aria-label={`Edit ${place.name}`}
                 >
-                  <Pencil />
+                  <Edit2 size={15} />
                 </Button>
                 <Button
                   variant="ghost"
-                  size="icon"
-                  className="size-9 rounded-full text-muted-foreground hover:text-destructive"
+                  size="icon-sm"
                   onClick={() => setConfirming(place)}
                   aria-label={`Remove ${place.name}`}
                 >
-                  <Trash2 />
+                  <Trash2 size={15} />
                 </Button>
               </div>
             </li>
@@ -94,17 +96,16 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
       )}
 
       <AlertDialog open={confirming !== null} onOpenChange={(open) => !open && setConfirming(null)}>
-        <AlertDialogContent className="rounded-[24px]">
+        <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Remove {confirming?.name}?</AlertDialogTitle>
+            <AlertDialogTitle>Remove {confirming ? smartQuotes(confirming.name) : ""}?</AlertDialogTitle>
             <AlertDialogDescription>
               It disappears from the guide for everyone. You can add it again later.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="rounded-xl">Keep it</AlertDialogCancel>
+            <AlertDialogCancel>Keep it</AlertDialogCancel>
             <AlertDialogAction
-              className="rounded-xl bg-destructive text-white hover:bg-destructive/90"
               disabled={deleting}
               onClick={async (event) => {
                 event.preventDefault();

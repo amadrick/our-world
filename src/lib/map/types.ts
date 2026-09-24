@@ -24,7 +24,7 @@ export interface MapCreateOptions {
  * an Apple MapKit JS provider can implement the same methods later.
  */
 export interface MapInstance {
-  /** Places a caller-owned DOM element (the pin) at a position, anchored at its bottom center. */
+  /** Places a caller-owned DOM element (the pin) centered on a position. */
   addMarker(id: string, position: LngLat, element: HTMLElement): void;
   removeMarker(id: string): void;
   /** Screen space covered by panels or sheets; camera moves keep content clear of it. */

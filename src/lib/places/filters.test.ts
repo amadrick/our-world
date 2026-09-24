@@ -19,8 +19,8 @@ const place = (id: string, overrides: Partial<Place> = {}): Place => ({
 });
 
 const places = [
-  place("zuni", { neighborhood: "Hayes Valley", tags: ["andys-pick", "book-ahead"] }),
-  place("trick-dog", { category: "bar", tags: ["andys-pick", "late-night"] }),
+  place("zuni", { neighborhood: "Hayes Valley", tags: ["top-pick", "book-ahead"] }),
+  place("trick-dog", { category: "bar", tags: ["top-pick", "late-night"] }),
   place("la-taqueria", { tags: ["walkable"] }),
 ];
 
@@ -34,14 +34,14 @@ describe("filterPlaces", () => {
       filterPlaces(places, { ...EMPTY_FILTERS, ...f }).map((p) => p.id);
     expect(ids({ category: "bar" })).toEqual(["trick-dog"]);
     expect(ids({ neighborhood: "Mission" })).toEqual(["trick-dog", "la-taqueria"]);
-    expect(ids({ tags: ["andys-pick"] })).toEqual(["zuni", "trick-dog"]);
-    expect(ids({ tags: ["andys-pick", "late-night"] })).toEqual(["trick-dog"]);
+    expect(ids({ tags: ["top-pick"] })).toEqual(["zuni", "trick-dog"]);
+    expect(ids({ tags: ["top-pick", "late-night"] })).toEqual(["trick-dog"]);
     expect(ids({ category: "restaurant", tags: ["late-night"] })).toEqual([]);
   });
 });
 
 describe("sortPlaces", () => {
-  it("puts Andy's picks first, then sorts by name", () => {
+  it("puts top picks first, then sorts by name", () => {
     expect(sortPlaces(places).map((p) => p.id)).toEqual(["trick-dog", "zuni", "la-taqueria"]);
   });
 });

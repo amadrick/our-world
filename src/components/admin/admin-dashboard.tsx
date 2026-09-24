@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, LogOut, Sparkles, TriangleAlert } from "lucide-react";
+import { AlertTriangle, ArrowUpRight, Feather, LogOut, type Icon } from "react-feather";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -19,10 +19,10 @@ interface AdminDashboardProps {
   usingDefaultPassword: boolean;
 }
 
-function Notice({ icon: Icon, children }: { icon: typeof Sparkles; children: React.ReactNode }) {
+function Notice({ icon: NoticeIcon, children }: { icon: Icon; children: React.ReactNode }) {
   return (
-    <div className="flex gap-3 rounded-2xl border border-note-border bg-note px-4 py-3 text-[14px] leading-relaxed text-note-foreground">
-      <Icon className="mt-0.5 size-4 shrink-0" />
+    <div className="flex gap-3 rounded-[20px] bg-secondary px-4 py-3 text-sm">
+      <NoticeIcon size={16} className="mt-px shrink-0 text-muted-foreground" />
       <div>{children}</div>
     </div>
   );
@@ -85,36 +85,34 @@ export function AdminDashboard({ initialPlaces, ai, usingDefaultPassword }: Admi
       toast.success(`Removed ${place.name}`);
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) return onAuthError();
-      toast.error(err instanceof ApiError ? err.message : "Couldn't remove it. Try again.");
+      toast.error(err instanceof ApiError ? err.message : "Couldn’t remove it. Try again.");
     }
   };
 
   return (
-    <div className="min-h-dvh bg-[#F7F6F3]">
-      <header className="sticky top-0 z-30 border-b border-black/[0.06] bg-white/85 backdrop-blur-xl">
+    <div className="min-h-dvh bg-map">
+      <header className="sticky top-0 z-30 border-b-[0.5px] border-black/10 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-5">
-          <div className="flex items-center gap-2.5">
-            <span className="font-serif text-[22px] leading-none">{site.name}</span>
-            <span className="rounded-full bg-secondary px-2 py-0.5 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
-              Admin
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Button variant="ghost" className="h-9 rounded-full px-3 text-[14px]" asChild>
+          <p className="text-base">
+            <span className="font-medium">{site.name}</span>
+            <span className="text-muted-foreground"> Admin</span>
+          </p>
+          <div className="flex items-center">
+            <Button variant="ghost" size="sm" asChild>
               <Link href="/" target="_blank">
                 View guide
-                <ArrowUpRight />
+                <ArrowUpRight size={15} />
               </Link>
             </Button>
             <Button
               variant="ghost"
-              className="h-9 rounded-full px-3 text-[14px]"
+              size="sm"
               onClick={async () => {
                 await signOut().catch(() => undefined);
                 router.refresh();
               }}
             >
-              <LogOut />
+              <LogOut size={15} />
               <span className="hidden sm:inline">Sign out</span>
             </Button>
           </div>
@@ -125,34 +123,30 @@ export function AdminDashboard({ initialPlaces, ai, usingDefaultPassword }: Admi
         {(usingDefaultPassword || !ai.enabled) && (
           <div className="space-y-2">
             {!ai.enabled && (
-              <Notice icon={Sparkles}>
-                AI summaries are off. Add <code className="font-mono">OPENAI_API_KEY</code> to{" "}
-                <code className="font-mono">.env.local</code> and restart the server. Until then, new
-                places get a placeholder you can edit.
+              <Notice icon={Feather}>
+                AI summaries are off. Add OPENAI_API_KEY to .env.local and restart the server.
+                Until then, new places get a placeholder you can edit.
               </Notice>
             )}
             {usingDefaultPassword && (
-              <Notice icon={TriangleAlert}>
-                You&apos;re using the built-in local password. Set{" "}
-                <code className="font-mono">ADMIN_PASSWORD</code> in{" "}
-                <code className="font-mono">.env.local</code> before sharing this site.
+              <Notice icon={AlertTriangle}>
+                You’re using the built-in local password. Set ADMIN_PASSWORD in .env.local before
+                sharing this site.
               </Notice>
             )}
           </div>
         )}
 
-        <section className="rounded-[28px] border border-black/[0.06] bg-white p-5 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_-16px_rgb(0_0_0/0.12)] sm:p-8">
-          <div className="mb-7">
-            <h1 className="font-serif text-[36px] leading-none tracking-[-0.01em]">
+        <section className="rounded-[32px] hairline border-black/10 bg-white p-5 shadow-panel sm:p-8">
+          <div className="mb-8">
+            <h1 className="text-xl font-medium">
               {editing ? `Edit ${editing.name}` : "Add a place"}
             </h1>
-            <p className="mt-2 text-[15px] text-muted-foreground">
+            <p className="mt-2 text-base text-muted-foreground">
               {editing
                 ? "Changes show up in the guide as soon as you save."
                 : "Guests see it on the map the moment you save."}
-              {ai.enabled && !editing && (
-                <span className="text-muted-foreground/80"> Summaries are written by {ai.model}.</span>
-              )}
+              {ai.enabled && !editing && ` Summaries are written by ${ai.model}.`}
             </p>
           </div>
           <PlaceForm

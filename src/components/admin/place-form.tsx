@@ -1,18 +1,10 @@
 "use client";
 
-import {
-  CircleAlert,
-  Link2,
-  LoaderCircle,
-  MapPin,
-  Search,
-  Sparkles,
-  Star,
-  X,
-} from "lucide-react";
+import { AlertCircle, Feather, Link2, Loader, MapPin, Search, Star, X } from "react-feather";
 import { useEffect, useRef, useState } from "react";
 
-import { CategoryBadge } from "@/components/places/category-badge";
+import { Pill } from "@/components/explorer/filter-bar";
+import { CategoryBadge, CategoryIcon } from "@/components/places/category-badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -27,9 +19,8 @@ import {
   type PlaceCandidate,
 } from "@/lib/admin/api";
 import type { PlaceInputPayload } from "@/lib/places/schema";
-import { CATEGORIES, TAGS, getCategory } from "@/lib/places/taxonomy";
+import { CATEGORIES, TAGS } from "@/lib/places/taxonomy";
 import type { CategoryId, Place, SummarySource, TagId } from "@/lib/places/types";
-import { cn } from "@/lib/utils";
 import { LocationPreview } from "./location-preview";
 
 interface Draft {
@@ -93,17 +84,21 @@ function toPayload(draft: Draft, category: CategoryId): PlaceInputPayload {
 
 const looksLikeLink = (value: string) => /https?:\/\//i.test(value);
 
-function Step({ n, title, hint }: { n: number; title: string; hint?: string }) {
+function Section({ title, hint }: { title: string; hint?: string }) {
   return (
-    <div className="flex items-baseline gap-3">
-      <span className="flex size-6 shrink-0 translate-y-[-1px] items-center justify-center rounded-full bg-foreground text-[12px] font-semibold text-white">
-        {n}
-      </span>
-      <div>
-        <h2 className="text-[17px] font-semibold tracking-[-0.01em]">{title}</h2>
-        {hint && <p className="mt-0.5 text-[14px] text-muted-foreground">{hint}</p>}
-      </div>
+    <div>
+      <h2 className="text-lg font-medium">{title}</h2>
+      {hint && <p className="mt-1 text-sm text-muted-foreground">{hint}</p>}
     </div>
+  );
+}
+
+function Callout({ children }: { children: React.ReactNode }) {
+  return (
+    <p role="alert" className="flex gap-2.5 rounded-[20px] bg-secondary px-4 py-3 text-sm">
+      <AlertCircle size={16} className="mt-px shrink-0 text-muted-foreground" />
+      <span>{children}</span>
+    </p>
   );
 }
 
@@ -118,14 +113,14 @@ function CandidateList({
 
   if (lookup.status === "loading") {
     return (
-      <div className="space-y-1 pt-2" aria-live="polite">
-        <p className="flex items-center gap-2 px-1 pb-1 text-[13px] text-muted-foreground">
-          <LoaderCircle className="size-3.5 animate-spin" />
+      <div className="space-y-1" aria-live="polite">
+        <p className="flex items-center gap-2 px-1 pb-1 text-sm text-muted-foreground">
+          <Loader size={14} className="animate-spin" />
           {lookup.isLink ? "Reading the link…" : "Searching…"}
         </p>
         {[0, 1, 2].map((i) => (
-          <div key={i} className="flex gap-3 rounded-2xl p-3">
-            <Skeleton className="size-10 rounded-xl" />
+          <div key={i} className="flex gap-3.5 p-3">
+            <Skeleton className="size-11 rounded-[14px]" />
             <div className="flex-1 space-y-2 pt-1">
               <Skeleton className="h-4 w-44" />
               <Skeleton className="h-3 w-64 max-w-full" />
@@ -136,52 +131,42 @@ function CandidateList({
     );
   }
 
-  if (lookup.status === "error") {
-    return (
-      <p
-        role="alert"
-        className="mt-3 flex gap-2.5 rounded-2xl bg-note px-4 py-3 text-[14px] leading-relaxed text-note-foreground"
-      >
-        <CircleAlert className="mt-0.5 size-4 shrink-0" />
-        {lookup.message}
-      </p>
-    );
-  }
+  if (lookup.status === "error") return <Callout>{lookup.message}</Callout>;
 
   if (lookup.candidates.length === 0) {
     return (
-      <p className="mt-3 rounded-2xl bg-secondary px-4 py-3 text-[14px] leading-relaxed text-muted-foreground">
+      <Callout>
         No matches. Try adding the neighborhood (“Zuni Café Hayes Valley”), or paste a link from
         the Share button in Apple Maps or Google Maps.
-      </p>
+      </Callout>
     );
   }
 
   return (
-    <ul className="space-y-0.5 pt-2" aria-label="Matching places">
+    <ul aria-label="Matching places">
       {lookup.candidates.map((candidate) => (
         <li key={candidate.key}>
           <button
             type="button"
             onClick={() => onChoose(candidate)}
-            className="flex w-full cursor-pointer items-center gap-3 rounded-2xl p-3 text-left transition-colors hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none"
+            className="flex w-full cursor-pointer items-center gap-3.5 rounded-[20px] p-3 text-left transition-colors hover:bg-secondary/70 focus-visible:bg-secondary/70 focus-visible:outline-none"
           >
             {candidate.category ? (
               <CategoryBadge category={candidate.category} />
             ) : (
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-secondary">
-                <MapPin className="size-[18px] text-muted-foreground" />
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-[14px] bg-secondary">
+                <MapPin size={18} />
               </span>
             )}
             <span className="min-w-0 flex-1">
-              <span className="block truncate text-[15px] font-semibold">{candidate.name}</span>
-              <span className="block truncate text-[13px] text-muted-foreground">
+              <span className="block truncate text-base font-medium">{candidate.name}</span>
+              <span className="block truncate text-sm text-muted-foreground">
                 {[candidate.kind, candidate.address, candidate.neighborhood]
                   .filter(Boolean)
                   .join(" · ") || `${candidate.lat.toFixed(4)}, ${candidate.lng.toFixed(4)}`}
               </span>
             </span>
-            <span className="shrink-0 rounded-full bg-foreground px-3 py-1.5 text-[13px] font-semibold text-white">
+            <span className="shrink-0 rounded-full bg-foreground px-3.5 py-1.5 text-sm font-medium text-white">
               Choose
             </span>
           </button>
@@ -191,19 +176,11 @@ function CandidateList({
   );
 }
 
-function SummaryBadge({ source }: { source: SummarySource }) {
-  const styles: Record<SummarySource, [string, string]> = {
-    ai: ["AI-written", "bg-violet-50 text-violet-700 ring-violet-200"],
-    written: ["Written by you", "bg-secondary text-muted-foreground ring-black/5"],
-    placeholder: ["Placeholder", "bg-amber-50 text-amber-800 ring-amber-200"],
-  };
-  const [label, className] = styles[source];
-  return (
-    <span className={cn("rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1", className)}>
-      {label}
-    </span>
-  );
-}
+const SOURCE_LABEL: Record<SummarySource, string> = {
+  ai: "AI-written",
+  written: "Written by you",
+  placeholder: "Placeholder",
+};
 
 interface PlaceFormProps {
   editing: Place | null;
@@ -301,7 +278,7 @@ export function PlaceForm({
       update({ summary: result.summary, summarySource: result.source });
       setSummaryNotice(result.notice ?? null);
     } catch (err) {
-      setSummaryNotice(handleError(err, "Couldn't write a summary. Try again."));
+      setSummaryNotice(handleError(err, "Couldn’t write a summary. Try again."));
     } finally {
       setSummaryPending(false);
     }
@@ -318,7 +295,7 @@ export function PlaceForm({
       const place = await savePlace(toPayload(draft, draft.category), editing?.id);
       onSaved(place, !editing);
     } catch (err) {
-      setError(handleError(err, "Couldn't save. Try again."));
+      setError(handleError(err, "Couldn’t save. Try again."));
       setSaving(false);
     }
   };
@@ -326,26 +303,23 @@ export function PlaceForm({
   if (!draft) {
     return (
       <div className="space-y-4">
-        <Step
-          n={1}
+        <Section
           title="Find the place"
           hint="Search by name, or paste a link from the Share button in Apple Maps or Google Maps."
         />
         <div className="relative">
-          {looksLikeLink(query) ? (
-            <Link2 className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" />
-          ) : (
-            <Search className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" />
-          )}
+          <span className="pointer-events-none absolute top-1/2 left-5 -translate-y-1/2 text-muted-foreground">
+            {looksLikeLink(query) ? <Link2 size={18} /> : <Search size={18} />}
+          </span>
           <Input
             value={query}
             onChange={(e) => onQueryChange(e.target.value)}
-            placeholder="e.g. Tartine Bakery, or https://maps.apple.com/…"
+            placeholder="Tartine Bakery, or a Maps link"
             autoFocus
             autoComplete="off"
             spellCheck={false}
             aria-label="Search for a place or paste a Maps link"
-            className="h-14 rounded-2xl border-black/10 bg-white pr-12 pl-12 text-[17px] shadow-[0_1px_2px_rgb(0_0_0/0.04)] md:text-[17px]"
+            className="h-14 rounded-full pr-12 pl-12"
           />
           {query && (
             <button
@@ -354,42 +328,33 @@ export function PlaceForm({
               aria-label="Clear"
               className="absolute top-1/2 right-3 flex size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:bg-secondary"
             >
-              <X className="size-4" />
+              <X size={16} />
             </button>
           )}
         </div>
-        <CandidateList lookup={lookup} onChoose={(c) => choose(c, lookup.status === "done" ? lookup : undefined)} />
+        <CandidateList
+          lookup={lookup}
+          onChoose={(c) => choose(c, lookup.status === "done" ? lookup : undefined)}
+        />
       </div>
     );
   }
 
-  const category = draft.category ? getCategory(draft.category) : null;
   const canWrite = Boolean(draft.category && draft.name.trim());
 
   return (
-    <form onSubmit={save} className="space-y-9">
+    <form onSubmit={save} className="space-y-10">
       <div className="space-y-4">
-        <Step n={1} title={editing ? "Place" : "Found it"} />
-        <div className="overflow-hidden rounded-2xl border border-black/[0.08]">
-          <LocationPreview
-            lat={draft.lat}
-            lng={draft.lng}
-            color={category?.color ?? "#1d1d1f"}
-            className="h-44 sm:h-52"
-          />
-          <div className="flex items-center gap-3 px-4 py-3">
-            <MapPin className="size-4 shrink-0 text-muted-foreground" />
-            <p className="min-w-0 flex-1 truncate text-[14px] text-muted-foreground">
+        <Section title={editing ? "Place" : "Found it"} />
+        <div className="overflow-hidden rounded-[24px] hairline border-black/10">
+          <LocationPreview lat={draft.lat} lng={draft.lng} className="h-44 sm:h-52" />
+          <div className="flex items-center gap-3 border-t-[0.5px] border-black/10 py-2 pr-2 pl-4">
+            <MapPin size={16} className="shrink-0 text-muted-foreground" />
+            <p className="min-w-0 flex-1 truncate text-sm text-muted-foreground">
               {draft.address || `${draft.lat.toFixed(5)}, ${draft.lng.toFixed(5)}`}
             </p>
             {!editing && (
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className="shrink-0 rounded-full"
-                onClick={() => setDraft(null)}
-              >
+              <Button type="button" variant="ghost" size="sm" onClick={() => setDraft(null)}>
                 Change
               </Button>
             )}
@@ -397,50 +362,41 @@ export function PlaceForm({
         </div>
       </div>
 
-      <div className="space-y-5">
-        <Step n={2} title="Details" />
+      <div className="space-y-6">
+        <Section title="Details" />
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
           <Input
             id="name"
             value={draft.name}
             onChange={(e) => update({ name: e.target.value })}
-            className="h-12 rounded-xl text-[16px]"
             required
           />
         </div>
 
         <div className="space-y-2">
           <Label id="category-label">Category</Label>
-          <div role="radiogroup" aria-labelledby="category-label" className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+          <div role="radiogroup" aria-labelledby="category-label" className="flex flex-wrap gap-2">
             {CATEGORIES.map((c) => {
               const selected = draft.category === c.id;
               return (
-                <button
+                <Pill
                   key={c.id}
-                  type="button"
                   role="radio"
                   aria-checked={selected}
+                  aria-pressed={undefined}
+                  active={selected}
                   onClick={() => update({ category: c.id })}
-                  className={cn(
-                    "flex cursor-pointer flex-col items-center gap-2 rounded-2xl px-2 py-3.5 text-[13px] font-semibold transition-all",
-                    selected ? "bg-white" : "bg-secondary/70 text-foreground/80 hover:bg-secondary",
-                  )}
-                  style={
-                    selected
-                      ? { boxShadow: `inset 0 0 0 2px ${c.color}`, backgroundColor: `${c.color}0f`, color: c.color }
-                      : undefined
-                  }
                 >
-                  <CategoryBadge category={c.id} className={cn(!selected && "opacity-90")} />
+                  <CategoryIcon category={c.id} size={16} />
                   {c.label}
-                </button>
+                </Pill>
               );
             })}
           </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="neighborhood">Neighborhood</Label>
             <Input
@@ -448,8 +404,7 @@ export function PlaceForm({
               list="neighborhood-options"
               value={draft.neighborhood}
               onChange={(e) => update({ neighborhood: e.target.value })}
-              placeholder="e.g. Mission"
-              className="h-12 rounded-xl text-[16px]"
+              placeholder="Mission"
             />
             <datalist id="neighborhood-options">
               {neighborhoods.map((n) => (
@@ -464,7 +419,6 @@ export function PlaceForm({
               value={draft.address}
               onChange={(e) => update({ address: e.target.value })}
               placeholder="Street address"
-              className="h-12 rounded-xl text-[16px]"
             />
           </div>
         </div>
@@ -472,24 +426,12 @@ export function PlaceForm({
         <div className="space-y-2">
           <Label id="tags-label">Tags</Label>
           <div role="group" aria-labelledby="tags-label" className="flex flex-wrap gap-2">
-            {TAGS.map((tag) => {
-              const active = draft.tags.includes(tag.id);
-              return (
-                <button
-                  key={tag.id}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => toggleTag(tag.id)}
-                  className={cn(
-                    "inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-full px-4 text-[14px] font-medium transition-colors",
-                    active ? "bg-foreground text-white" : "bg-secondary text-foreground hover:bg-black/[0.07]",
-                  )}
-                >
-                  {tag.id === "andys-pick" && <Star className="size-4 fill-amber-400 text-amber-400" />}
-                  {tag.badge}
-                </button>
-              );
-            })}
+            {TAGS.map((tag) => (
+              <Pill key={tag.id} active={draft.tags.includes(tag.id)} onClick={() => toggleTag(tag.id)}>
+                {tag.id === "top-pick" && <Star size={15} fill="currentColor" />}
+                {tag.badge}
+              </Pill>
+            ))}
           </div>
         </div>
 
@@ -503,14 +445,12 @@ export function PlaceForm({
             onChange={(e) => update({ note: e.target.value })}
             placeholder="What to order, when to go, or why you love it"
             rows={3}
-            className="rounded-xl text-[16px] md:text-[15px]"
           />
         </div>
       </div>
 
       <div className="space-y-4">
-        <Step
-          n={3}
+        <Section
           title="Summary"
           hint={
             aiEnabled
@@ -519,22 +459,7 @@ export function PlaceForm({
           }
         />
         <div className="space-y-2">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <Label htmlFor="summary">About this place</Label>
-              {draft.summary && <SummaryBadge source={draft.summarySource} />}
-            </div>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={generateSummary}
-              disabled={!canWrite || summaryPending}
-              className="h-9 rounded-full border-black/10 px-3.5 text-[13px] font-semibold"
-            >
-              {summaryPending ? <LoaderCircle className="animate-spin" /> : <Sparkles className="text-violet-600" />}
-              {summaryPending ? "Writing…" : draft.summary ? "Rewrite" : "Write it for me"}
-            </Button>
-          </div>
+          <Label htmlFor="summary">About this place</Label>
           <Textarea
             id="summary"
             value={draft.summary}
@@ -545,39 +470,48 @@ export function PlaceForm({
                 : "Pick a category first, then let AI write this or type your own."
             }
             rows={4}
-            className="rounded-xl text-[16px] leading-relaxed md:text-[15px]"
           />
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-sm text-muted-foreground">
+              {draft.summary && SOURCE_LABEL[draft.summarySource]}
+            </span>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={generateSummary}
+              disabled={!canWrite || summaryPending}
+            >
+              {summaryPending ? <Loader size={15} className="animate-spin" /> : <Feather size={15} />}
+              {summaryPending ? "Writing…" : draft.summary ? "Rewrite" : "Write it for me"}
+            </Button>
+          </div>
           {summaryNotice && (
-            <p className="flex gap-2 text-[13px] leading-relaxed text-note-foreground">
-              <CircleAlert className="mt-0.5 size-3.5 shrink-0" />
+            <p className="flex gap-2 text-sm text-muted-foreground">
+              <AlertCircle size={14} className="mt-0.5 shrink-0" />
               {summaryNotice}
             </p>
           )}
         </div>
       </div>
 
-      <div className="sticky bottom-0 -mx-5 space-y-3 border-t border-black/[0.06] bg-white/95 px-5 pt-4 pb-[max(env(safe-area-inset-bottom),16px)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
-        {error && (
-          <p role="alert" className="flex gap-2 text-[14px] text-destructive">
-            <CircleAlert className="mt-0.5 size-4 shrink-0" />
-            {error}
-          </p>
-        )}
+      <div className="sticky bottom-0 -mx-5 space-y-3 border-t-[0.5px] border-black/10 bg-white px-5 pt-4 pb-[max(env(safe-area-inset-bottom),16px)] sm:static sm:mx-0 sm:border-0 sm:p-0">
+        {error && <Callout>{error}</Callout>}
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button
             type="button"
             variant="ghost"
-            className="h-12 rounded-xl px-5 text-[15px]"
+            size="lg"
             onClick={editing ? onCancelEdit : () => setDraft(null)}
             disabled={saving}
           >
             Cancel
           </Button>
-          <Button type="submit" disabled={saving} className="h-12 rounded-xl px-6 text-[15px] font-semibold">
-            {saving && <LoaderCircle className="animate-spin" />}
+          <Button type="submit" size="lg" disabled={saving}>
+            {saving && <Loader size={16} className="animate-spin" />}
             {saving
               ? !draft.summary
-                ? "Writing summary & saving…"
+                ? "Writing summary and saving…"
                 : "Saving…"
               : editing
                 ? "Save changes"

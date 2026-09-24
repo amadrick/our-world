@@ -44,11 +44,11 @@ export function neighborhoodCounts(
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-/** Andy's picks first, then alphabetical, so the list feels curated rather than random. */
+/** Top picks first, then alphabetical, so the list feels curated rather than random. */
 export function sortPlaces(places: Place[]): Place[] {
   return [...places].sort((a, b) => {
-    const pickA = a.tags.includes("andys-pick") ? 0 : 1;
-    const pickB = b.tags.includes("andys-pick") ? 0 : 1;
+    const pickA = a.tags.includes("top-pick") ? 0 : 1;
+    const pickB = b.tags.includes("top-pick") ? 0 : 1;
     return pickA - pickB || a.name.localeCompare(b.name);
   });
 }

@@ -148,7 +148,7 @@ export function BottomSheet({
     <div
       ref={sheetRef}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-20 flex flex-col rounded-t-[28px] bg-white shadow-[0_-8px_30px_-12px_rgb(0_0_0/0.25),0_-1px_0_rgb(0_0_0/0.04)] will-change-transform",
+        "fixed inset-x-0 bottom-0 z-20 flex flex-col rounded-t-[32px] border-t-[0.5px] border-black/10 bg-white shadow-[0_-16px_48px_-20px_rgb(0_0_0/0.2)] will-change-transform",
         className,
       )}
       style={{ height: heights.full, transform: `translate3d(0, ${offsetFor(snap)}px, 0)` }}
@@ -156,7 +156,7 @@ export function BottomSheet({
       {accessory && (
         <div
           className={cn(
-            "absolute right-3 -top-[60px] transition-opacity duration-200",
+            "absolute right-3 -top-[56px] transition-opacity duration-200",
             snap === "full" && "pointer-events-none opacity-0",
           )}
         >
@@ -169,7 +169,7 @@ export function BottomSheet({
           onPointerDown={onPointerDown}
         >
           <div className="flex justify-center pt-2.5 pb-1.5" aria-hidden>
-            <span className="h-[5px] w-10 rounded-full bg-black/15" />
+            <span className="h-1 w-9 rounded-full bg-black/15" />
           </div>
           {header}
         </div>

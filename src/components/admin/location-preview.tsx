@@ -10,12 +10,11 @@ import { cn } from "@/lib/utils";
 interface LocationPreviewProps {
   lat: number;
   lng: number;
-  color: string;
   className?: string;
 }
 
 /** A small map so the admin can confirm the pin landed in the right spot. */
-export function LocationPreview({ lat, lng, color, className }: LocationPreviewProps) {
+export function LocationPreview({ lat, lng, className }: LocationPreviewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
 
@@ -36,8 +35,7 @@ export function LocationPreview({ lat, lng, color, className }: LocationPreviewP
         });
         const dot = document.createElement("div");
         dot.className =
-          "size-5 translate-y-2.5 rounded-full border-[3px] border-white shadow-[0_1px_5px_rgb(0_0_0/0.35)]";
-        dot.style.backgroundColor = color;
+          "size-4 rounded-full bg-[#1a1a1a] ring-[3px] ring-white shadow-[0_6px_16px_-4px_rgb(0_0_0/0.4)]";
         instance.addMarker("preview", { lat, lng }, dot);
       })
       .catch(() => !cancelled && setStatus("error"));
@@ -46,14 +44,14 @@ export function LocationPreview({ lat, lng, color, className }: LocationPreviewP
       cancelled = true;
       instance?.destroy();
     };
-  }, [lat, lng, color]);
+  }, [lat, lng]);
 
   return (
     <div className={cn("relative overflow-hidden bg-map", className)}>
       <div ref={containerRef} className="h-full w-full" />
       {status === "loading" && <div className="absolute inset-0 animate-pulse bg-black/[0.03]" />}
       {status === "error" && (
-        <div className="absolute inset-0 flex items-center justify-center text-[13px] text-muted-foreground">
+        <div className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground">
           Map preview unavailable
         </div>
       )}

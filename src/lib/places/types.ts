@@ -8,7 +8,7 @@ export const CATEGORY_IDS = [
 export type CategoryId = (typeof CATEGORY_IDS)[number];
 
 export const TAG_IDS = [
-  "andys-pick",
+  "top-pick",
   "brunch",
   "late-night",
   "walkable",

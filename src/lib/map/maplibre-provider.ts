@@ -77,7 +77,7 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
       markers.get(id)?.remove();
       markers.set(
         id,
-        new lib.Marker({ element, anchor: "bottom" }).setLngLat(toArray(position)).addTo(map),
+        new lib.Marker({ element, anchor: "center" }).setLngLat(toArray(position)).addTo(map),
       );
     },
     removeMarker(id) {

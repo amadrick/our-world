@@ -1,6 +1,6 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
+import { RotateCcw } from "react-feather";
 import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -18,13 +18,13 @@ export default function Error({
 
   return (
     <main className="flex min-h-dvh items-center justify-center bg-map p-6">
-      <div className="max-w-sm rounded-3xl bg-white p-8 text-center shadow-panel">
-        <p className="font-serif text-[30px] leading-tight">Something went sideways</p>
-        <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-          The guide couldn&apos;t load just now. Give it another try in a moment.
+      <div className="max-w-sm rounded-[32px] hairline border-black/10 bg-white p-8 text-center shadow-panel">
+        <p className="text-lg font-medium">Something went sideways</p>
+        <p className="mt-2 text-base text-muted-foreground">
+          The guide couldn’t load just now. Give it another try in a moment.
         </p>
-        <Button onClick={reset} className="mt-6 h-11 rounded-full px-6">
-          <RotateCcw />
+        <Button onClick={reset} className="mt-6">
+          <RotateCcw size={16} />
           Try again
         </Button>
       </div>
