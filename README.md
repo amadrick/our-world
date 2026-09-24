@@ -48,32 +48,40 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
    details. Pasted links are also what the guest buttons open, so guests land on
    the exact same place card.
 3. Check the pin on the little map, pick a category, and tap any tags that fit.
-4. Optionally add your note ("Order the morning bun").
-5. Tap **Write it for me** for an AI summary (or write your own), then
+4. **Known for** fills itself in: with an OpenAI key, the admin searches the web
+   for the place's signature dish, drink, or room. Edit it, tap **Look it up**
+   again, or type your own.
+5. Optionally add your note ("Order the morning bun").
+6. Tap **Write it for me** for an AI summary (or write your own), then
    **Add to the map**. If you skip the summary, one is written when you save.
+   With a key, the place's illustration is drawn right after saving (a toast
+   shows progress). Without one, run `npm run images` later.
 
 Places you add show up for guests immediately. Existing places can be edited or
-removed from the list below the form.
+removed from the list below the form. Changing what a place is known for redraws
+its illustration.
 
-`data/places.json` holds Andy and Kirissa's list: 76 places geocoded against
-OpenStreetMap and Overture Maps, each with a short neutral summary. Notes are
-left empty for them to write in their own words from `/admin`, and no place is
-marked **Top pick** yet (that filter appears once one is).
+`data/places.json` holds Andy and Kirissa's list: 75 places geocoded against
+OpenStreetMap and Overture Maps, each with a short neutral summary and a
+researched `signatureSubject` (what it's known for). Notes are left empty for
+them to write in their own words from `/admin`, and no place is marked
+**Top pick** yet (that filter appears once one is).
 
 ## Place images
 
-Every place has a small illustration: a soft 3D clay miniature of the venue on
-a warm off-white plate, inspired by the check-in dioramas on
-[pengzhe.ng](https://www.pengzhe.ng/). They're plain files in
-`public/places/<id>.webp` (960×720), referenced by each place's `image` field, so
-the guide never calls an image API. A place without one shows a gray tile with
-its category icon.
+Every place has a clay still of what it's known for: the morning bun, the
+salt-and-pepper crab, or, when the room is the draw, a small cutaway diorama
+(Toronado's tap wall, Foreign Cinema's courtyard). The style follows the stills
+on [pengzhe.ng](https://www.pengzhe.ng/): square, bright white, a front or
+gentle three-quarter product angle, diffuse light, matte clay and soft
+plastic, no people or text. The files are `public/places/<id>.webp` (960×960),
+referenced by each place's `image` field, so the guide never calls an image
+API. A place without one shows a quiet tile with its category icon.
 
-All images share one locked style prompt (`scripts/place-image-prompt.mjs`).
-What's drawn for each place comes from a short hint in
-`data/place-image-hints.json`; places without a hint get a generic description
-from their category and neighborhood. Names aren't included in prompts, because
-image models tend to letter them onto signs.
+All stills share one locked style prompt (`src/lib/images/prompt.mjs`), used by
+both the admin and the script. The subject comes from a hand-written hint in
+`data/place-image-hints.json` when there is one, otherwise from the place's
+`signatureSubject`.
 
 ```bash
 npm run images                          # every place that has no image yet
@@ -81,12 +89,14 @@ npm run images -- tartine-bakery        # redo specific places
 npm run images -- zuni --photo zuni.jpg # turn your own photo of the place into the style
 npm run images -- zuni --import art.png # use an image made in another tool
 npm run images -- --print zuni          # show the prompt without generating
+npm run images -- zuni --refs           # also send the style anchors in scripts/style-references
 ```
 
 Generating needs `OPENAI_API_KEY` in `.env.local` (model: `OPENAI_IMAGE_MODEL`,
 default `gpt-image-1`). `--import` needs no key. Paste the `--print` prompt into
-any image tool, then import the result. After adding a place in `/admin`, add a
-line to the hints file if you like and run `npm run images`.
+any image tool, then import the result. The locked prompt alone keeps the series
+consistent. `--refs` can tighten it further, but models tend to copy props from
+the anchors (a spoon, a tap handle), so check what comes back.
 
 ## How it's built
 

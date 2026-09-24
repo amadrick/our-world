@@ -5,6 +5,7 @@ import { MapPin, Search, Star, type Icon } from "react-feather";
 import { PlaceImage } from "@/components/places/place-image";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
+import { signatureShort } from "@/lib/places/signature";
 import { getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
@@ -60,7 +61,7 @@ export function PlaceCard({
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
-        "group flex w-full cursor-pointer flex-col gap-2 rounded-[22px] p-1.5 text-left transition-colors",
+        "group flex w-full cursor-pointer flex-col gap-2 rounded-[22px] p-1.5 text-center transition-colors",
         "hover:bg-white/40 focus-visible:bg-white/40 focus-visible:outline-none active:bg-white/55",
         active && "bg-white/45",
       )}
@@ -72,13 +73,14 @@ export function PlaceCard({
         imageClassName="transition-transform duration-300 ease-out group-hover:scale-[1.03]"
       />
       <span className="block min-w-0 px-1.5 pb-1">
-        <span className="flex items-center gap-1.5">
+        <span className="flex items-center justify-center gap-1.5">
           <span className="truncate text-base font-medium">{smartQuotes(place.name)}</span>
           {pick && <Star size={12} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
         </span>
         <span className="block truncate text-sm text-muted-foreground">
-          {getCategory(place.category).label}
-          {place.neighborhood && ` · ${place.neighborhood}`}
+          {place.signatureSubject
+            ? smartQuotes(signatureShort(place.signatureSubject))
+            : [getCategory(place.category).label, place.neighborhood].filter(Boolean).join(" · ")}
         </span>
       </span>
     </button>

@@ -14,7 +14,7 @@ interface PlaceImageProps {
   imageClassName?: string;
 }
 
-/** The place's clay-diorama illustration, or a quiet grayscale tile until one exists. */
+/** The clay still of the place's signature, square on white, or a quiet tile until one exists. */
 export function PlaceImage({
   place,
   sizes,
@@ -24,7 +24,7 @@ export function PlaceImage({
   imageClassName,
 }: PlaceImageProps) {
   return (
-    <div className={cn("relative aspect-[4/3] overflow-hidden bg-[#F2EFEA]", className)}>
+    <div className={cn("relative aspect-square overflow-hidden bg-white", className)}>
       {place.image ? (
         <Image
           src={place.image}
@@ -35,7 +35,7 @@ export function PlaceImage({
           className={cn("object-cover", imageClassName)}
         />
       ) : (
-        <div className="absolute inset-0 flex items-center justify-center bg-secondary text-black/25">
+        <div className="absolute inset-0 flex items-center justify-center text-black/20">
           <CategoryIcon category={place.category} size={28} />
         </div>
       )}

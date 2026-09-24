@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
-import { ApiError, deletePlace, signOut } from "@/lib/admin/api";
+import { ApiError, deletePlace, generatePlaceImage, signOut, type ImageHint } from "@/lib/admin/api";
 import type { Place } from "@/lib/places/types";
 import { AdminPlacesList } from "./admin-places-list";
 import { ImageBackdrop } from "./image-backdrop";
@@ -65,7 +65,7 @@ export function AdminDashboard({
     router.refresh();
   };
 
-  const onSaved = (place: Place, isNew: boolean) => {
+  const onSaved = (place: Place, isNew: boolean, illustrate?: ImageHint) => {
     setPlaces((prev) =>
       isNew ? [...prev, place] : prev.map((p) => (p.id === place.id ? place : p)),
     );
@@ -76,6 +76,19 @@ export function AdminDashboard({
         onClick: () => window.open(`/?place=${place.id}`, "_blank"),
       },
     });
+    if (!illustrate) return;
+    toast.promise(
+      generatePlaceImage(place.id, illustrate).then((drawn) => {
+        setPlaces((prev) => prev.map((p) => (p.id === drawn.id ? drawn : p)));
+        return drawn;
+      }),
+      {
+        loading: `Drawing ${place.name}’s illustration…`,
+        success: `Illustration added for ${place.name}`,
+        error: (err) =>
+          err instanceof ApiError ? err.message : "Couldn’t draw the illustration. Try again later.",
+      },
+    );
   };
 
   const onEdit = (place: Place) => {

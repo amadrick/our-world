@@ -64,6 +64,7 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
                   {getCategory(place.category).label}
                   {place.neighborhood && ` · ${place.neighborhood}`}
                   {place.summarySource === "placeholder" && " · Placeholder summary"}
+                  {!place.signatureSubject && " · No signature yet"}
                   {!place.image && " · No image yet"}
                 </p>
               </div>

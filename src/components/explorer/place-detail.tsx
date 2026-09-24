@@ -86,10 +86,14 @@ export function PlaceDetail({
       <div className="relative">
         <PlaceImage
           place={place}
-          alt={`Clay-model illustration of ${place.name}`}
+          alt={
+            place.signatureSubject
+              ? `Clay illustration of ${place.signatureSubject} at ${place.name}`
+              : `Clay illustration for ${place.name}`
+          }
           priority
           sizes="(min-width: 1024px) 376px, 100vw"
-          className="aspect-[16/10] rounded-[20px]"
+          className="aspect-[5/4] rounded-[20px]"
         />
         {showBackRow && <BackOverImage onBack={onBack} />}
       </div>
@@ -102,6 +106,12 @@ export function PlaceDetail({
             {place.neighborhood && ` · ${place.neighborhood}`}
           </p>
           <h2 className="text-xl font-medium text-balance">{smartQuotes(place.name)}</h2>
+          {place.signatureSubject && (
+            <p className="text-base text-pretty">
+              <span className="text-muted-foreground">Known for </span>
+              {smartQuotes(place.signatureSubject)}
+            </p>
+          )}
           {pick && (
             <p className="flex items-center gap-1.5 text-sm">
               <Star size={13} fill="currentColor" />

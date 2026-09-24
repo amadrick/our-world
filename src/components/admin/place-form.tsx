@@ -14,7 +14,9 @@ import {
   ApiError,
   lookupPlace,
   requestSummary,
+  researchSignature,
   savePlace,
+  type ImageHint,
   type LookupResult,
   type PlaceCandidate,
 } from "@/lib/admin/api";
@@ -34,6 +36,7 @@ interface Draft {
   note: string;
   summary: string;
   summarySource: SummarySource;
+  signatureSubject: string;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
   image?: string;
@@ -57,6 +60,7 @@ function draftFromPlace(place: Place): Draft {
     note: place.note ?? "",
     summary: place.summary,
     summarySource: place.summarySource,
+    signatureSubject: place.signatureSubject ?? "",
     appleMapsUrl: place.appleMapsUrl,
     googleMapsUrl: place.googleMapsUrl,
     image: place.image,
@@ -75,6 +79,7 @@ function draftFromCandidate(candidate: PlaceCandidate, lookup?: LookupResult): D
     note: "",
     summary: "",
     summarySource: "written",
+    signatureSubject: "",
     appleMapsUrl: lookup?.provider === "apple" ? lookup.url : undefined,
     googleMapsUrl: lookup?.provider === "google" ? lookup.url : undefined,
   };
@@ -188,7 +193,8 @@ interface PlaceFormProps {
   editing: Place | null;
   neighborhoods: string[];
   aiEnabled: boolean;
-  onSaved: (place: Place, isNew: boolean) => void;
+  /** `illustrate` is set when the saved place needs a new illustration drawn. */
+  onSaved: (place: Place, isNew: boolean, illustrate?: ImageHint) => void;
   onCancelEdit: () => void;
   onAuthError: () => void;
 }
@@ -206,6 +212,9 @@ export function PlaceForm({
   const [draft, setDraft] = useState<Draft | null>(editing ? draftFromPlace(editing) : null);
   const [summaryPending, setSummaryPending] = useState(false);
   const [summaryNotice, setSummaryNotice] = useState<string | null>(null);
+  const [researching, setResearching] = useState(false);
+  const [signatureNotice, setSignatureNotice] = useState<string | null>(null);
+  const [imageHint, setImageHint] = useState<ImageHint>({});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -224,10 +233,38 @@ export function PlaceForm({
     return err instanceof ApiError ? err.message : fallback;
   };
 
+  const research = async (target: Draft) => {
+    if (!target.name.trim()) return;
+    setResearching(true);
+    setSignatureNotice(null);
+    try {
+      const result = await researchSignature({
+        name: target.name,
+        category: target.category ?? undefined,
+        neighborhood: target.neighborhood,
+        address: target.address,
+      });
+      if (result.signatureSubject) {
+        const signatureSubject = result.signatureSubject;
+        setDraft((d) => (d ? { ...d, signatureSubject } : d));
+        setImageHint({ visual: result.visual, scene: result.scene });
+      }
+      setSignatureNotice(result.notice ?? null);
+    } catch (err) {
+      setSignatureNotice(handleError(err, "Couldn’t look it up. Try again."));
+    } finally {
+      setResearching(false);
+    }
+  };
+
   const choose = (candidate: PlaceCandidate, result?: LookupResult) => {
-    setDraft(draftFromCandidate(candidate, result));
+    const next = draftFromCandidate(candidate, result);
+    setDraft(next);
     setError(null);
     setSummaryNotice(null);
+    setSignatureNotice(null);
+    setImageHint({});
+    if (aiEnabled) void research(next);
   };
 
   const runLookup = (input: string) => {
@@ -295,7 +332,9 @@ export function PlaceForm({
     setError(null);
     try {
       const place = await savePlace(toPayload(draft, draft.category), editing?.id);
-      onSaved(place, !editing);
+      const needsImage =
+        !place.image || (editing?.signatureSubject ?? "") !== (place.signatureSubject ?? "");
+      onSaved(place, !editing, aiEnabled && needsImage ? imageHint : undefined);
     } catch (err) {
       setError(handleError(err, "Couldn’t save. Try again."));
       setSaving(false);
@@ -396,6 +435,41 @@ export function PlaceForm({
               );
             })}
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="signature">Known for</Label>
+          <div className="flex gap-2">
+            <Input
+              id="signature"
+              value={draft.signatureSubject}
+              onChange={(e) => {
+                update({ signatureSubject: e.target.value });
+                setImageHint({});
+              }}
+              placeholder={researching ? "Looking it up…" : "Morning bun, a martini, the courtyard"}
+              className="min-w-0 flex-1"
+            />
+            {aiEnabled && (
+              <Button
+                type="button"
+                variant="outline"
+                className="h-12 shrink-0"
+                onClick={() => research(draft)}
+                disabled={researching || !draft.name.trim()}
+              >
+                {researching ? <Loader size={15} className="animate-spin" /> : <Search size={15} />}
+                Look it up
+              </Button>
+            )}
+          </div>
+          <p className="flex gap-2 text-sm text-muted-foreground">
+            {signatureNotice && <AlertCircle size={14} className="mt-0.5 shrink-0" />}
+            {signatureNotice ??
+              (aiEnabled
+                ? "The dish, drink, or room it’s famous for. Its illustration is drawn from this when you save."
+                : "The dish, drink, or room it’s famous for. Illustrations need an OpenAI key, so run npm run images later.")}
+          </p>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">

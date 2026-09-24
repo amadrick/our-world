@@ -59,6 +59,40 @@ export function requestSummary(payload: PlaceInputPayload) {
   });
 }
 
+export interface SignatureResponse {
+  signatureSubject?: string;
+  visual?: string;
+  scene?: "object" | "room";
+  source: "ai" | "none";
+  notice?: string;
+}
+
+export function researchSignature(payload: {
+  name: string;
+  category?: string;
+  neighborhood: string;
+  address: string;
+}) {
+  return request<SignatureResponse>("/api/admin/signature", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+/** What the illustration should show, from signature research. */
+export interface ImageHint {
+  visual?: string;
+  scene?: "object" | "room";
+}
+
+export async function generatePlaceImage(id: string, hint: ImageHint = {}): Promise<Place> {
+  const { place } = await request<{ place: Place }>(
+    `/api/admin/places/${encodeURIComponent(id)}/image`,
+    { method: "POST", body: JSON.stringify(hint) },
+  );
+  return place;
+}
+
 export async function savePlace(payload: PlaceInputPayload, id?: string): Promise<Place> {
   const { place } = await request<{ place: Place }>(
     id ? `/api/admin/places/${encodeURIComponent(id)}` : "/api/admin/places",
