@@ -300,7 +300,7 @@
     {
       "id": "verjus",
       "name": "Verjus",
-      "category": "bar",
+      "category": "wine",
       "neighborhood": "Jackson Square",
       "address": "550 Washington St, San Francisco, CA 94111",
       "lat": 37.795742,
@@ -1006,6 +1006,58 @@
       "summary": "A historic saloon with classic cocktails and turn-of-the-century decor.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "rampant-bottle-and-bar",
+      "name": "Rampant Bottle & Bar",
+      "category": "wine",
+      "neighborhood": "Outer Richmond",
+      "address": "3516 Balboa St, San Francisco, CA 94121",
+      "lat": 37.775856,
+      "lng": -122.496544,
+      "tags": [],
+      "summary": "A wine bar and bottle shop in the Outer Richmond.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:15:00.000Z"
+    },
+    {
+      "id": "ordinaire",
+      "name": "Ordinaire",
+      "category": "wine",
+      "neighborhood": "Oakland",
+      "address": "3354 Grand Ave, Oakland, CA 94610",
+      "lat": 37.813564,
+      "lng": -122.24646,
+      "tags": [],
+      "summary": "A natural wine bar and shop on Grand Avenue, across the Bay in Oakland.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:15:00.000Z"
+    },
+    {
+      "id": "bodega-wine-bar",
+      "name": "Bodega Wine Bar",
+      "category": "wine",
+      "neighborhood": "North Beach",
+      "address": "700 Columbus Ave, San Francisco, CA 94133",
+      "lat": 37.801277,
+      "lng": -122.4114,
+      "tags": [],
+      "summary": "A small wine bar on Columbus Avenue in North Beach.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:15:00.000Z"
+    },
+    {
+      "id": "waystone",
+      "name": "Waystone",
+      "category": "wine",
+      "neighborhood": "North Beach",
+      "address": "1609 Powell St, San Francisco, CA 94133",
+      "lat": 37.799469,
+      "lng": -122.410934,
+      "tags": [],
+      "summary": "A wine bar on Powell Street in North Beach.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:15:00.000Z"
     }
   ]
 }

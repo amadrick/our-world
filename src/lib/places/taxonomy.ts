@@ -9,6 +9,7 @@ export interface CategoryInfo {
 export const CATEGORIES: CategoryInfo[] = [
   { id: "restaurant", label: "Restaurant", plural: "Restaurants" },
   { id: "bar", label: "Bar", plural: "Bars" },
+  { id: "wine", label: "Wine", plural: "Wine" },
   { id: "coffee", label: "Coffee", plural: "Coffee" },
   { id: "bakery", label: "Bakery", plural: "Bakeries" },
   { id: "dessert", label: "Dessert", plural: "Dessert" },

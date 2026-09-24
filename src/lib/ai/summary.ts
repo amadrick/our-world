@@ -37,6 +37,7 @@ export function aiModel(): string {
 const PLACEHOLDER_SUBJECT: Record<CategoryId, string> = {
   restaurant: "A restaurant",
   bar: "A bar",
+  wine: "A wine bar",
   coffee: "A coffee spot",
   bakery: "A bakery",
   dessert: "A dessert spot",

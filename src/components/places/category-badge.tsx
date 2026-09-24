@@ -1,12 +1,13 @@
 import { Camera, Coffee, Compass } from "react-feather";
 
-import { Bread, Cocktail, IceCream, Utensils } from "@/components/icons/feather-extras";
+import { Bread, Cocktail, IceCream, Utensils, WineGlass } from "@/components/icons/feather-extras";
 import type { CategoryId } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 
 export const CATEGORY_ICONS = {
   restaurant: Utensils,
   bar: Cocktail,
+  wine: WineGlass,
   coffee: Coffee,
   bakery: Bread,
   dessert: IceCream,

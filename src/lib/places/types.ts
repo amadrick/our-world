@@ -1,6 +1,7 @@
 export const CATEGORY_IDS = [
   "restaurant",
   "bar",
+  "wine",
   "coffee",
   "bakery",
   "dessert",

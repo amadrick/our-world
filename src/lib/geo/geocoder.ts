@@ -47,7 +47,7 @@ const CATEGORY_BY_OSM: Record<string, Record<string, CategoryId>> = {
     pastry: "bakery",
     confectionery: "dessert",
     chocolate: "dessert",
-    wine: "bar",
+    wine: "wine",
   },
   tourism: {
     viewpoint: "sight",
