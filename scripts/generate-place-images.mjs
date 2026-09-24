@@ -8,13 +8,15 @@
 //   npm run images -- zuni --photo ./zuni.jpg    turn your own photo into the style
 //   npm run images -- zuni --import ./art.png    use an image made elsewhere
 //   npm run images -- --print zuni        show the prompt without calling the API
-//   npm run images -- zuni --no-refs      skip the style reference images
+//   npm run images -- zuni --refs         also send the style reference images
 //
 // Generating needs OPENAI_API_KEY (and optionally OPENAI_IMAGE_MODEL, default
-// gpt-image-1). Stills in scripts/style-references/ are sent along as style
-// anchors so new places match the series. Output: public/places/<id>.webp,
-// 960x960. Hand-written hints in data/place-image-hints.json override the
-// default subject, which comes from each place's signatureSubject.
+// gpt-image-1). The locked prompt alone keeps the series consistent; --refs
+// adds the stills in scripts/style-references/ as anchors, but models tend to
+// copy props from them (a spoon, a tap handle), so check the result. Output:
+// public/places/<id>.webp, 960x960. Hand-written hints in
+// data/place-image-hints.json override the default subject, which comes from
+// each place's signatureSubject.
 
 import { existsSync, readFileSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
@@ -42,12 +44,12 @@ function loadEnvLocal() {
 }
 
 function parseArgs(argv) {
-  const args = { ids: [], all: false, print: false, refs: true, photo: null, import: null };
+  const args = { ids: [], all: false, print: false, refs: false, photo: null, import: null };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === "--all") args.all = true;
     else if (arg === "--print") args.print = true;
-    else if (arg === "--no-refs") args.refs = false;
+    else if (arg === "--refs") args.refs = true;
     else if (arg === "--photo") args.photo = argv[++i];
     else if (arg === "--import") args.import = argv[++i];
     else if (arg.startsWith("--")) throw new Error(`Unknown option ${arg}`);
