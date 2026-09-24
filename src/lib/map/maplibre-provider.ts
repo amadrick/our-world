@@ -59,7 +59,9 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
     loaded = true;
     window.clearTimeout(timeout);
     options.onReady();
+    options.onZoomChange?.(map.getZoom());
   });
+  map.on("zoomend", () => options.onZoomChange?.(map.getZoom()));
   map.on("error", (event) => {
     // After the first render, a missing tile is not worth an error screen.
     if (!loaded) options.onError(new Error(event.error?.message ?? "Map failed to load"));

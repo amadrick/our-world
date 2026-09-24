@@ -6,13 +6,15 @@ import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import type { PlaceFilters } from "@/lib/places/filters";
 import { CATEGORIES, TAGS } from "@/lib/places/taxonomy";
-import type { TagId } from "@/lib/places/types";
+import type { CategoryId, TagId } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 
 interface FilterBarProps {
   filters: PlaceFilters;
   onChange: (filters: PlaceFilters) => void;
   neighborhoods: { name: string; count: number }[];
+  /** Only categories and tags that some place uses get a pill. */
+  available: { categories: Set<CategoryId>; tags: Set<TagId> };
   /** "wrap" for the desktop panel, "scroll" for chips floating over the map on phones. */
   layout: "wrap" | "scroll";
 }
@@ -102,7 +104,7 @@ function NeighborhoodPicker({
   );
 }
 
-export function FilterBar({ filters, onChange, neighborhoods, layout }: FilterBarProps) {
+export function FilterBar({ filters, onChange, neighborhoods, available, layout }: FilterBarProps) {
   const floating = layout === "scroll";
   const row = floating
     ? "no-scrollbar scroll-fade-x pointer-events-auto flex gap-2 overflow-x-auto px-3 py-2"
@@ -126,7 +128,9 @@ export function FilterBar({ filters, onChange, neighborhoods, layout }: FilterBa
         >
           All
         </Pill>
-        {CATEGORIES.map((category) => {
+        {CATEGORIES.filter(
+          (c) => available.categories.has(c.id) || filters.category === c.id,
+        ).map((category) => {
           const active = filters.category === category.id;
           return (
             <Pill
@@ -149,7 +153,7 @@ export function FilterBar({ filters, onChange, neighborhoods, layout }: FilterBa
             onSelect={(neighborhood) => onChange({ ...filters, neighborhood })}
           />
         )}
-        {TAGS.map((tag) => {
+        {TAGS.filter((t) => available.tags.has(t.id) || filters.tags.includes(t.id)).map((tag) => {
           const active = filters.tags.includes(tag.id);
           return (
             <Pill key={tag.id} active={active} floating={floating} onClick={() => toggleTag(tag.id)}>

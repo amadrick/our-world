@@ -1,89 +1,873 @@
 {
   "places": [
     {
-      "id": "tartine-bakery",
-      "name": "Tartine Bakery",
+      "id": "hedge-coffee",
+      "name": "Hedge Coffee",
       "category": "coffee",
       "neighborhood": "Mission",
-      "address": "600 Guerrero St, San Francisco, CA 94110",
-      "lat": 37.76146,
-      "lng": -122.42395,
-      "tags": [
-        "top-pick",
-        "brunch",
-        "walkable"
-      ],
-      "note": "Go early. The morning buns and croissants sell out, and the line builds by mid-morning.",
-      "summary": "The Mission bakery that helped define San Francisco's bread-and-pastry scene. Expect flaky croissants, morning buns, and seasonal tarts alongside good coffee, with a line that moves steadily. Grab something to go and walk two blocks to Dolores Park.",
+      "address": "434 Shotwell St, San Francisco, CA 94110",
+      "lat": 37.761299,
+      "lng": -122.416351,
+      "tags": [],
+      "summary": "A small coffee spot on Shotwell Street in the Mission.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
     },
     {
-      "id": "zuni-cafe",
-      "name": "Zuni Café",
-      "category": "restaurant",
-      "neighborhood": "Hayes Valley",
-      "address": "1658 Market St, San Francisco, CA 94102",
-      "lat": 37.77356,
-      "lng": -122.42165,
-      "tags": [
-        "top-pick",
-        "book-ahead",
-        "groups"
-      ],
-      "note": "The roast chicken with bread salad serves two and takes about an hour, so order it as soon as you sit down.",
-      "summary": "A San Francisco institution since 1979, with a sunny, many-windowed dining room and a copper bar that stays lively all night. The wood-oven roast chicken is the legend, but oysters and the Caesar salad are just as much a part of the ritual. Reserve ahead for dinner.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "swan-oyster-depot",
-      "name": "Swan Oyster Depot",
-      "category": "restaurant",
+      "id": "the-coffee-movement",
+      "name": "The Coffee Movement",
+      "category": "coffee",
       "neighborhood": "Nob Hill",
-      "address": "1517 Polk St, San Francisco, CA 94109",
-      "lat": 37.79097,
-      "lng": -122.42092,
-      "tags": [
-        "walkable"
-      ],
-      "note": "No reservations and just one long counter. Get in line before it opens.",
-      "summary": "A family-run seafood counter that has been shucking oysters on Polk Street for more than a century. Pull up a stool for oysters, cracked crab, and clam chowder, served with plenty of friendly banter. It keeps daytime hours, so plan it as a long lunch.",
+      "address": "1030 Washington St, San Francisco, CA 94108",
+      "lat": 37.79472,
+      "lng": -122.410294,
+      "tags": [],
+      "summary": "A tiny specialty coffee bar on Washington Street, between Nob Hill and Chinatown.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
     },
     {
-      "id": "la-taqueria",
-      "name": "La Taqueria",
+      "id": "bi-rite-creamery",
+      "name": "Bi-Rite Creamery",
+      "category": "dessert",
+      "neighborhood": "Mission",
+      "address": "3692 18th St, San Francisco, CA 94110",
+      "lat": 37.761539,
+      "lng": -122.425766,
+      "tags": [],
+      "summary": "The Mission's famous small-batch ice cream shop, a block from Dolores Park. Salted caramel is the classic.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "jules",
+      "name": "Jules",
+      "category": "restaurant",
+      "neighborhood": "Lower Haight",
+      "address": "237 Fillmore St, San Francisco, CA 94117",
+      "lat": 37.77177,
+      "lng": -122.430595,
+      "tags": [],
+      "summary": "A neighborhood pizza restaurant in the Lower Haight.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "toronado",
+      "name": "Toronado",
+      "category": "bar",
+      "neighborhood": "Lower Haight",
+      "address": "547 Haight St, San Francisco, CA 94117",
+      "lat": 37.771828,
+      "lng": -122.43116,
+      "tags": [
+        "late-night"
+      ],
+      "summary": "A no-frills Lower Haight beer bar with a long, rotating tap list.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "flour-and-water",
+      "name": "Flour + Water",
       "category": "restaurant",
       "neighborhood": "Mission",
-      "address": "2889 Mission St, San Francisco, CA 94110",
-      "lat": 37.75087,
-      "lng": -122.41816,
+      "address": "2401 Harrison St, San Francisco, CA 94110",
+      "lat": 37.758987,
+      "lng": -122.412369,
       "tags": [
-        "walkable"
+        "book-ahead"
       ],
-      "note": "Ask for your burrito dorado style and they'll crisp it on the grill.",
-      "summary": "A no-frills Mission taqueria famous for rice-free burritos packed with grilled meat, beans, and salsa. It has topped just about every best-burrito ranking there is, and the line reflects it. Quick, casual, and the quintessential Mission burrito experience.",
+      "summary": "Handmade pasta and Italian cooking in the Mission, and one of the city's most sought-after reservations.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
     },
     {
-      "id": "state-bird-provisions",
-      "name": "State Bird Provisions",
+      "id": "original-joes",
+      "name": "Original Joe's",
       "category": "restaurant",
-      "neighborhood": "Fillmore",
-      "address": "1529 Fillmore St, San Francisco, CA 94115",
-      "lat": 37.78371,
-      "lng": -122.43295,
+      "neighborhood": "North Beach",
+      "address": "601 Union St, San Francisco, CA 94133",
+      "lat": 37.800201,
+      "lng": -122.40937,
+      "tags": [
+        "groups"
+      ],
+      "summary": "A classic Italian-American dining room on Washington Square, with red booths and generous plates.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "hk-lounge-bistro",
+      "name": "HK Lounge Bistro",
+      "category": "restaurant",
+      "neighborhood": "SoMa",
+      "address": "1136 Folsom St, San Francisco, CA 94103",
+      "lat": 37.776161,
+      "lng": -122.408829,
+      "tags": [
+        "groups"
+      ],
+      "summary": "Hong Kong–style dim sum and Cantonese dishes in SoMa.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "taqueria-el-farolito",
+      "name": "Taqueria El Farolito",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "2779 Mission St, San Francisco, CA 94110",
+      "lat": 37.75264,
+      "lng": -122.418373,
+      "tags": [
+        "late-night"
+      ],
+      "summary": "A Mission taqueria known for big burritos and late hours.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "san-tung",
+      "name": "San Tung",
+      "category": "restaurant",
+      "neighborhood": "Inner Sunset",
+      "address": "1031 Irving St, San Francisco, CA 94122",
+      "lat": 37.763844,
+      "lng": -122.469025,
+      "tags": [
+        "groups"
+      ],
+      "summary": "An Inner Sunset Chinese restaurant best known for its dry-fried chicken wings. Expect a line.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "maison-nico",
+      "name": "Maison Nico",
+      "category": "bakery",
+      "neighborhood": "Jackson Square",
+      "address": "710 Montgomery St, San Francisco, CA 94111",
+      "lat": 37.795776,
+      "lng": -122.403244,
+      "tags": [],
+      "summary": "A French pâtisserie and épicerie in Jackson Square, with pastries and savory tarts.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "yank-sing",
+      "name": "Yank Sing",
+      "category": "restaurant",
+      "neighborhood": "Financial District",
+      "address": "101 Spear St, San Francisco, CA 94105",
+      "lat": 37.792538,
+      "lng": -122.393089,
+      "tags": [
+        "groups"
+      ],
+      "summary": "A long-running dim sum house in Rincon Center, a go-to for a group lunch.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "hook-fish",
+      "name": "Hook Fish",
+      "category": "restaurant",
+      "neighborhood": "Outer Sunset",
+      "address": "4542 Irving St, San Francisco, CA 94122",
+      "lat": 37.762341,
+      "lng": -122.506874,
+      "tags": [],
+      "summary": "A casual seafood spot a block from Ocean Beach.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "cotogna",
+      "name": "Cotogna",
+      "category": "restaurant",
+      "neighborhood": "Jackson Square",
+      "address": "490 Pacific Ave, San Francisco, CA 94133",
+      "lat": 37.797394,
+      "lng": -122.40358,
+      "tags": [
+        "book-ahead"
+      ],
+      "summary": "Rustic Italian cooking and handmade pasta in Jackson Square, from the team behind Quince.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "tartine-bakery",
+      "name": "Tartine Bakery",
+      "category": "bakery",
+      "neighborhood": "Mission",
+      "address": "600 Guerrero St, San Francisco, CA 94110",
+      "lat": 37.761455,
+      "lng": -122.423945,
+      "tags": [
+        "brunch"
+      ],
+      "summary": "The Mission bakery that helped define San Francisco's bread-and-pastry scene. Expect flaky croissants, morning buns, and seasonal tarts alongside good coffee, with a line that moves steadily. Grab something to go and walk two blocks to Dolores Park.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "mamahuhu",
+      "name": "Mamahuhu",
+      "category": "restaurant",
+      "neighborhood": "Inner Richmond",
+      "address": "517 Clement St, San Francisco, CA 94118",
+      "lat": 37.782791,
+      "lng": -122.464798,
+      "tags": [],
+      "summary": "Chef Brandon Jew's casual Chinese-American restaurant, with fresh takes on takeout classics.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "nopalito",
+      "name": "Nopalito",
+      "category": "restaurant",
+      "neighborhood": "NoPa",
+      "address": "306 Broderick St, San Francisco, CA 94117",
+      "lat": 37.773281,
+      "lng": -122.439072,
+      "tags": [],
+      "summary": "Regional Mexican cooking from the Nopa team, with house-made tortillas.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "nopa",
+      "name": "Nopa",
+      "category": "restaurant",
+      "neighborhood": "NoPa",
+      "address": "560 Divisadero St, San Francisco, CA 94117",
+      "lat": 37.774891,
+      "lng": -122.43763,
+      "tags": [
+        "book-ahead",
+        "brunch",
+        "late-night"
+      ],
+      "summary": "A bustling, wood-fired Californian restaurant on Divisadero that serves late and draws a weekend brunch crowd.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "saint-frank-coffee",
+      "name": "Saint Frank Coffee",
+      "category": "coffee",
+      "neighborhood": "Russian Hill",
+      "address": "2340 Polk St, San Francisco, CA 94109",
+      "lat": 37.79847,
+      "lng": -122.422157,
+      "tags": [],
+      "summary": "A bright, minimal coffee bar on Polk Street.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "molinari-delicatessen",
+      "name": "Molinari Delicatessen",
+      "category": "restaurant",
+      "neighborhood": "North Beach",
+      "address": "373 Columbus Ave, San Francisco, CA 94133",
+      "lat": 37.798496,
+      "lng": -122.407867,
+      "tags": [],
+      "summary": "A historic North Beach Italian deli known for made-to-order sandwiches.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "ernest",
+      "name": "Ernest",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "1890 Bryant St, San Francisco, CA 94110",
+      "lat": 37.763103,
+      "lng": -122.410904,
+      "tags": [
+        "book-ahead"
+      ],
+      "summary": "Inventive, Japanese-influenced cooking in the northeast Mission.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "verjus",
+      "name": "Verjus",
+      "category": "bar",
+      "neighborhood": "Jackson Square",
+      "address": "550 Washington St, San Francisco, CA 94111",
+      "lat": 37.795742,
+      "lng": -122.40274,
+      "tags": [],
+      "summary": "A Parisian-style wine bar and shop from the team behind Quince and Cotogna.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "nopa-fish",
+      "name": "Nopa Fish",
+      "category": "restaurant",
+      "neighborhood": "Embarcadero",
+      "address": "1 Ferry Building, San Francisco, CA 94111",
+      "lat": 37.795171,
+      "lng": -122.393052,
+      "tags": [],
+      "summary": "A seafood counter in the Ferry Building.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "the-laundromat-sf",
+      "name": "The Laundromat SF",
+      "category": "restaurant",
+      "neighborhood": "Outer Richmond",
+      "address": "3725 Balboa St, San Francisco, CA 94121",
+      "lat": 37.775551,
+      "lng": -122.498909,
+      "tags": [],
+      "summary": "A neighborhood pizza and bagel shop in the Outer Richmond.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "pearl-6101",
+      "name": "Pearl 6101",
+      "category": "restaurant",
+      "neighborhood": "Outer Richmond",
+      "address": "6101 California St, San Francisco, CA 94121",
+      "lat": 37.783897,
+      "lng": -122.483025,
+      "tags": [],
+      "summary": "A neighborhood Californian and Mediterranean restaurant in the Outer Richmond.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "arsicault-bakery",
+      "name": "Arsicault Bakery",
+      "category": "bakery",
+      "neighborhood": "Inner Richmond",
+      "address": "397 Arguello Blvd, San Francisco, CA 94118",
+      "lat": 37.783421,
+      "lng": -122.459312,
+      "tags": [],
+      "summary": "A small bakery famous for its croissants. Go early, before they sell out.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "flour-and-water-pizzeria",
+      "name": "Flour + Water Pizzeria",
+      "category": "restaurant",
+      "neighborhood": "North Beach",
+      "address": "532 Columbus Ave, San Francisco, CA 94133",
+      "lat": 37.80003,
+      "lng": -122.409584,
+      "tags": [],
+      "summary": "Pizza from the Flour + Water team, in North Beach.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "pabu-izakaya",
+      "name": "Pabu Izakaya",
+      "category": "restaurant",
+      "neighborhood": "Financial District",
+      "address": "101 California St, San Francisco, CA 94111",
+      "lat": 37.793274,
+      "lng": -122.398521,
+      "tags": [],
+      "summary": "A modern Japanese izakaya and sushi bar in the Financial District.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "capos",
+      "name": "Capo's",
+      "category": "restaurant",
+      "neighborhood": "North Beach",
+      "address": "641 Vallejo St, San Francisco, CA 94133",
+      "lat": 37.798573,
+      "lng": -122.408432,
+      "tags": [],
+      "summary": "Chicago-style deep-dish pizza from Tony Gemignani, in a speakeasy-style North Beach room.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "tartine-manufactory",
+      "name": "Tartine Manufactory",
+      "category": "bakery",
+      "neighborhood": "Mission",
+      "address": "595 Alabama St, San Francisco, CA 94110",
+      "lat": 37.761771,
+      "lng": -122.411795,
+      "tags": [
+        "brunch"
+      ],
+      "summary": "Tartine's big, airy all-day bakery, restaurant, and coffee bar in a converted Mission factory.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "garden-creamery",
+      "name": "Garden Creamery",
+      "category": "dessert",
+      "neighborhood": "Mission",
+      "address": "3566 20th St, San Francisco, CA 94110",
+      "lat": 37.758652,
+      "lng": -122.420486,
+      "tags": [],
+      "summary": "A small Mission ice cream shop known for creative flavors.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "liholiho-yacht-club",
+      "name": "Liholiho Yacht Club",
+      "category": "restaurant",
+      "neighborhood": "Nob Hill",
+      "address": "871 Sutter St, San Francisco, CA 94109",
+      "lat": 37.788342,
+      "lng": -122.414635,
+      "tags": [
+        "book-ahead"
+      ],
+      "summary": "Hawaiian-inspired cooking in a lively room on Sutter Street.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "tonys-pizza-napoletana",
+      "name": "Tony's Pizza Napoletana",
+      "category": "restaurant",
+      "neighborhood": "North Beach",
+      "address": "1570 Stockton St, San Francisco, CA 94133",
+      "lat": 37.800407,
+      "lng": -122.409088,
+      "tags": [],
+      "summary": "Tony Gemignani's North Beach pizzeria, serving many regional styles of pizza.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "lolo",
+      "name": "Loló",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "974 Valencia St, San Francisco, CA 94110",
+      "lat": 37.757366,
+      "lng": -122.421288,
+      "tags": [],
+      "summary": "Colorful, Jalisco-inspired Mexican small plates and cocktails on Valencia Street.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "deli-board",
+      "name": "Deli Board",
+      "category": "restaurant",
+      "neighborhood": "SoMa",
+      "address": "1058 Folsom St, San Francisco, CA 94103",
+      "lat": 37.777573,
+      "lng": -122.407036,
+      "tags": [],
+      "summary": "Big, stacked deli sandwiches in SoMa.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "delfina",
+      "name": "Delfina",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "3621 18th St, San Francisco, CA 94110",
+      "lat": 37.761395,
+      "lng": -122.424355,
+      "tags": [
+        "book-ahead"
+      ],
+      "summary": "A longtime Mission favorite for rustic Italian cooking, near Dolores Park.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "thai-spice",
+      "name": "Thai Spice",
+      "category": "restaurant",
+      "neighborhood": "Nob Hill",
+      "address": "1730 Polk St, San Francisco, CA 94109",
+      "lat": 37.792801,
+      "lng": -122.421036,
+      "tags": [],
+      "summary": "A neighborhood Thai restaurant on Polk Street.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "tacolicious",
+      "name": "Tacolicious",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "741 Valencia St, San Francisco, CA 94110",
+      "lat": 37.760963,
+      "lng": -122.421455,
+      "tags": [
+        "groups"
+      ],
+      "summary": "Tacos and margaritas in a lively room on Valencia Street. There are other locations around the city.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "andytown-coffee-roasters",
+      "name": "Andytown Coffee Roasters",
+      "category": "coffee",
+      "neighborhood": "Outer Sunset",
+      "address": "3655 Lawton St, San Francisco, CA 94122",
+      "lat": 37.756737,
+      "lng": -122.502319,
+      "tags": [],
+      "summary": "The original Outer Sunset café of this local roaster, near Ocean Beach.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "outer-sunset",
+      "name": "Outer Sunset",
+      "category": "activity",
+      "neighborhood": "Outer Sunset",
+      "address": "Judah St & La Playa St, San Francisco, CA 94122",
+      "lat": 37.760281,
+      "lng": -122.509284,
+      "tags": [
+        "outdoors"
+      ],
+      "summary": "The laid-back beach neighborhood along Ocean Beach, with surf shops, cafés, and bakeries.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "rt-rotisserie",
+      "name": "RT Rotisserie",
+      "category": "restaurant",
+      "neighborhood": "Hayes Valley",
+      "address": "101 Oak St, San Francisco, CA 94102",
+      "lat": 37.775146,
+      "lng": -122.42112,
+      "tags": [],
+      "summary": "Rotisserie chicken, sandwiches, and salads from the Rich Table team.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "house-of-prime-rib",
+      "name": "House of Prime Rib",
+      "category": "restaurant",
+      "neighborhood": "Nob Hill",
+      "address": "1906 Van Ness Ave, San Francisco, CA 94109",
+      "lat": 37.793391,
+      "lng": -122.422543,
       "tags": [
         "book-ahead",
         "groups"
       ],
-      "note": "Small plates come around the room on carts and trays. Share everything.",
-      "summary": "Inventive California cooking served dim sum style, with carts and trays of small plates passing your table all night. The namesake fried quail is a must. Reservations go quickly, though a few seats are usually held for walk-ins.",
+      "summary": "An old-school San Francisco institution where prime rib is carved tableside from rolling carts.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "foreign-cinema",
+      "name": "Foreign Cinema",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "2534 Mission St, San Francisco, CA 94110",
+      "lat": 37.756419,
+      "lng": -122.419136,
+      "tags": [
+        "book-ahead",
+        "brunch"
+      ],
+      "summary": "Californian-Mediterranean cooking with films projected in the courtyard, and a favorite for weekend brunch.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "limon-rotisserie",
+      "name": "Limón Rotisserie",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "1001 S Van Ness Ave, San Francisco, CA 94110",
+      "lat": 37.75705,
+      "lng": -122.41642,
+      "tags": [],
+      "summary": "Peruvian rotisserie chicken, ceviche, and other classics in the Mission.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "kin-khao",
+      "name": "Kin Khao",
+      "category": "restaurant",
+      "neighborhood": "Union Square",
+      "address": "55 Cyril Magnin St, San Francisco, CA 94102",
+      "lat": 37.785027,
+      "lng": -122.409004,
+      "tags": [
+        "book-ahead"
+      ],
+      "summary": "Bold, acclaimed Thai cooking near Union Square.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "china-live",
+      "name": "China Live",
+      "category": "restaurant",
+      "neighborhood": "Chinatown",
+      "address": "644 Broadway, San Francisco, CA 94133",
+      "lat": 37.797802,
+      "lng": -122.407845,
+      "tags": [
+        "groups"
+      ],
+      "summary": "A multi-level Chinese food hall and restaurant on the edge of Chinatown and North Beach.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "r-and-g-lounge",
+      "name": "R&G Lounge",
+      "category": "restaurant",
+      "neighborhood": "Chinatown",
+      "address": "631 Kearny St, San Francisco, CA 94108",
+      "lat": 37.794097,
+      "lng": -122.404902,
+      "tags": [
+        "groups"
+      ],
+      "summary": "A Chinatown Cantonese institution, best known for its salt-and-pepper crab.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "han-il-kwan",
+      "name": "Han Il Kwan",
+      "category": "restaurant",
+      "neighborhood": "Outer Richmond",
+      "address": "1802 Balboa St, San Francisco, CA 94121",
+      "lat": 37.776688,
+      "lng": -122.478287,
+      "tags": [
+        "groups"
+      ],
+      "summary": "Traditional Korean cooking in the Richmond, with a long menu of stews, pancakes, and barbecue.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "lovelys",
+      "name": "Lovely's",
+      "category": "restaurant",
+      "neighborhood": "Cole Valley",
+      "address": "848 Cole St, San Francisco, CA 94117",
+      "lat": 37.766102,
+      "lng": -122.449898,
+      "tags": [],
+      "summary": "A neighborhood restaurant in Cole Valley.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "two-pitchers-brewing",
+      "name": "Two Pitchers Brewing",
+      "category": "bar",
+      "neighborhood": "Oakland",
+      "address": "2344 Webster St, Oakland, CA 94612",
+      "lat": 37.812893,
+      "lng": -122.264847,
+      "tags": [],
+      "summary": "A brewery and taproom across the Bay in Oakland.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "maillards",
+      "name": "Maillards",
+      "category": "restaurant",
+      "neighborhood": "Outer Sunset",
+      "address": "37th Ave, San Francisco, CA 94116",
+      "lat": 37.74865,
+      "lng": -122.495422,
+      "tags": [],
+      "summary": "A small restaurant in the Outer Sunset.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "daymoon",
+      "name": "Daymoon",
+      "category": "bakery",
+      "neighborhood": "Outer Sunset",
+      "address": "3926 Irving St, San Francisco, CA 94122",
+      "lat": 37.762753,
+      "lng": -122.500147,
+      "tags": [],
+      "summary": "A neighborhood bakery in the Outer Sunset.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "outerlands",
+      "name": "Outerlands",
+      "category": "restaurant",
+      "neighborhood": "Outer Sunset",
+      "address": "4001 Judah St, San Francisco, CA 94122",
+      "lat": 37.760349,
+      "lng": -122.505035,
+      "tags": [
+        "brunch"
+      ],
+      "summary": "A cozy, wood-paneled restaurant near Ocean Beach, loved for brunch.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "tony-niks",
+      "name": "Tony Nik's",
+      "category": "bar",
+      "neighborhood": "North Beach",
+      "address": "1534 Stockton St, San Francisco, CA 94133",
+      "lat": 37.800011,
+      "lng": -122.409042,
+      "tags": [
+        "late-night"
+      ],
+      "summary": "A small, old-school cocktail bar in North Beach.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "trick-dog",
+      "name": "Trick Dog",
+      "category": "bar",
+      "neighborhood": "Mission",
+      "address": "3010 20th St, San Francisco, CA 94110",
+      "lat": 37.75922,
+      "lng": -122.411189,
+      "tags": [
+        "late-night",
+        "groups"
+      ],
+      "summary": "One of the city's most celebrated cocktail bars, known for a menu that reinvents itself around a new theme a couple of times a year. The drinks are playful but serious, and the food is better than bar food needs to be. Busy on weekends, but worth squeezing in.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "true-laurel",
+      "name": "True Laurel",
+      "category": "bar",
+      "neighborhood": "Mission",
+      "address": "753 Alabama St, San Francisco, CA 94110",
+      "lat": 37.759483,
+      "lng": -122.411499,
+      "tags": [
+        "late-night"
+      ],
+      "summary": "A cocktail bar from the Lazy Bear team, with inventive drinks and snacks.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "penny-roma",
+      "name": "Penny Roma",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "3000 20th St, San Francisco, CA 94110",
+      "lat": 37.759224,
+      "lng": -122.411064,
+      "tags": [
+        "book-ahead"
+      ],
+      "summary": "Roman-leaning pasta from the Flour + Water team, with a garden patio.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "bodega-sf",
+      "name": "Bodega SF",
+      "category": "restaurant",
+      "neighborhood": "Tenderloin",
+      "address": "138 Mason St, San Francisco, CA 94102",
+      "lat": 37.784813,
+      "lng": -122.40937,
+      "tags": [],
+      "summary": "Vietnamese home cooking in a small, colorful dining room near Union Square.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "little-original-joes",
+      "name": "Little Original Joe's",
+      "category": "restaurant",
+      "neighborhood": "West Portal",
+      "address": "393 West Portal Ave, San Francisco, CA 94127",
+      "lat": 37.736576,
+      "lng": -122.470299,
+      "tags": [],
+      "summary": "A smaller sibling of Original Joe's on West Portal Avenue, with Italian-American classics.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "beit-rima",
+      "name": "Beit Rima",
+      "category": "restaurant",
+      "neighborhood": "Cole Valley",
+      "address": "86 Carl St, San Francisco, CA 94117",
+      "lat": 37.765915,
+      "lng": -122.449677,
+      "tags": [],
+      "summary": "Arab comfort food, from mezze to kebabs, in Cole Valley.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "farmhouse-kitchen-thai",
+      "name": "Farmhouse Kitchen Thai",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "710 Florida St, San Francisco, CA 94110",
+      "lat": 37.76012,
+      "lng": -122.411301,
+      "tags": [
+        "groups"
+      ],
+      "summary": "Colorful, festive Thai cooking in a Mission warehouse space.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "daeho",
+      "name": "Daeho",
+      "category": "restaurant",
+      "neighborhood": "Japantown",
+      "address": "1620 Post St, San Francisco, CA 94115",
+      "lat": 37.785809,
+      "lng": -122.428566,
+      "tags": [
+        "groups"
+      ],
+      "summary": "Korean braised short ribs and beef soups in Japantown. Expect a wait.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
     },
     {
       "id": "burma-superstar",
@@ -96,216 +880,132 @@
       "tags": [
         "groups"
       ],
-      "note": "Get the tea leaf salad. They mix it at the table.",
       "summary": "A beloved Inner Richmond spot that introduced a generation of San Franciscans to Burmese food. The tea leaf and rainbow salads are tossed tableside, and the curries and flaky platha are made for sharing. Great for a group, with a wait at peak times.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
     },
     {
-      "id": "trick-dog",
-      "name": "Trick Dog",
-      "category": "bar",
+      "id": "burma-love",
+      "name": "Burma Love",
+      "category": "restaurant",
       "neighborhood": "Mission",
-      "address": "3010 20th St, San Francisco, CA 94110",
-      "lat": 37.75922,
-      "lng": -122.41119,
-      "tags": [
-        "top-pick",
-        "late-night",
-        "groups"
-      ],
-      "note": "The menu changes theme every few months, so ask what's new.",
-      "summary": "One of the city's most celebrated cocktail bars, known for a menu that reinvents itself around a new theme a couple of times a year. The drinks are playful but serious, and the food is better than bar food needs to be. Busy on weekends, but worth squeezing in.",
+      "address": "211 Valencia St, San Francisco, CA 94103",
+      "lat": 37.769619,
+      "lng": -122.422241,
+      "tags": [],
+      "summary": "Burmese cooking from the Burma Superstar family, including the tea leaf salad.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
     },
     {
-      "id": "smugglers-cove",
-      "name": "Smuggler's Cove",
-      "category": "bar",
+      "id": "taqueria-el-buen-sabor",
+      "name": "Taqueria El Buen Sabor",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "699 Valencia St, San Francisco, CA 94110",
+      "lat": 37.761784,
+      "lng": -122.421455,
+      "tags": [],
+      "summary": "A casual Valencia Street taqueria for burritos and tacos.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "la-taqueria",
+      "name": "La Taqueria",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "2889 Mission St, San Francisco, CA 94110",
+      "lat": 37.75087,
+      "lng": -122.41816,
+      "tags": [],
+      "summary": "A no-frills Mission taqueria famous for rice-free burritos packed with grilled meat, beans, and salsa. It has topped just about every best-burrito ranking there is, and the line reflects it. Quick, casual, and the quintessential Mission burrito experience.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "gotts-roadside",
+      "name": "Gott's Roadside",
+      "category": "restaurant",
+      "neighborhood": "Embarcadero",
+      "address": "1 Ferry Building, San Francisco, CA 94111",
+      "lat": 37.795826,
+      "lng": -122.39402,
+      "tags": [
+        "views"
+      ],
+      "summary": "A roadside-style burger stand at the Ferry Building, with outdoor seating by the bay.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "bottega",
+      "name": "Bottega",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "1132 Valencia St, San Francisco, CA 94110",
+      "lat": 37.754757,
+      "lng": -122.421127,
+      "tags": [],
+      "summary": "Italian cooking and fresh pasta on Valencia Street.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "good-good-culture-club",
+      "name": "Good Good Culture Club",
+      "category": "restaurant",
+      "neighborhood": "Mission",
+      "address": "3560 18th St, San Francisco, CA 94110",
+      "lat": 37.761738,
+      "lng": -122.422958,
+      "tags": [],
+      "summary": "Bright, Southeast Asian–inspired plates in the Mission, from the Liholiho Yacht Club team.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "souvla",
+      "name": "Souvla",
+      "category": "restaurant",
       "neighborhood": "Hayes Valley",
-      "address": "650 Gough St, San Francisco, CA 94102",
-      "lat": 37.7794,
-      "lng": -122.42334,
+      "address": "517 Hayes St, San Francisco, CA 94102",
+      "lat": 37.776577,
+      "lng": -122.42495,
+      "tags": [],
+      "summary": "Greek rotisserie sandwiches, salads, and frozen Greek yogurt. There are other locations around the city.",
+      "summarySource": "written",
+      "createdAt": "2026-09-24T20:00:00.000Z"
+    },
+    {
+      "id": "golden-boy-pizza",
+      "name": "Golden Boy Pizza",
+      "category": "restaurant",
+      "neighborhood": "North Beach",
+      "address": "542 Green St, San Francisco, CA 94133",
+      "lat": 37.799709,
+      "lng": -122.408081,
       "tags": [
         "late-night"
       ],
-      "note": "Three floors of tiki. Try something from the rum history pages of the menu.",
-      "summary": "A multilevel tiki bar with one of the largest rum collections in the country, all dim lights, waterfalls, and nautical kitsch. The menu walks through rum history, from classic punches to flaming bowls for the table. It's small and popular, so arrive early.",
+      "summary": "A North Beach slice counter known for its focaccia-style square pizza.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
     },
     {
-      "id": "the-buena-vista",
-      "name": "The Buena Vista",
+      "id": "comstock-saloon",
+      "name": "Comstock Saloon",
       "category": "bar",
-      "neighborhood": "Fisherman's Wharf",
-      "address": "2765 Hyde St, San Francisco, CA 94109",
-      "lat": 37.80656,
-      "lng": -122.42071,
-      "tags": [
-        "walkable"
-      ],
-      "note": "Order an Irish coffee and watch them pour a dozen at once.",
-      "summary": "The corner cafe at the end of the Hyde Street cable car line that claims to have introduced Irish coffee to America in 1952. Bartenders still pour them in long rows, and the old-school room fills with locals and visitors alike. Pair it with a cable car ride.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "sightglass-coffee",
-      "name": "Sightglass Coffee",
-      "category": "coffee",
-      "neighborhood": "SoMa",
-      "address": "270 7th St, San Francisco, CA 94103",
-      "lat": 37.77703,
-      "lng": -122.40844,
-      "tags": [
-        "walkable"
-      ],
-      "note": "A big, airy space and a good place to sit for a while.",
-      "summary": "A local roaster's flagship in a soaring, sunlit warehouse with the roasting operation on display. Expect carefully sourced coffee and espresso drinks done well. A calm place to start the day before exploring SoMa or the Mission.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "caffe-trieste",
-      "name": "Caffe Trieste",
-      "category": "coffee",
       "neighborhood": "North Beach",
-      "address": "601 Vallejo St, San Francisco, CA 94133",
-      "lat": 37.79867,
-      "lng": -122.4073,
+      "address": "155 Columbus Ave, San Francisco, CA 94133",
+      "lat": 37.796974,
+      "lng": -122.405548,
       "tags": [
-        "walkable"
+        "late-night"
       ],
-      "note": "Pair an espresso here with the walk up to Coit Tower.",
-      "summary": "Opened in 1956 and often called the first espresso house on the West Coast, this North Beach cafe was a hangout for Beat Generation writers. The walls are layered with history and the cappuccinos are strong. A perfect stop while wandering North Beach.",
+      "summary": "A historic saloon with classic cocktails and turn-of-the-century decor.",
       "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "ferry-building-marketplace",
-      "name": "Ferry Building Marketplace",
-      "category": "activity",
-      "neighborhood": "Embarcadero",
-      "address": "1 Ferry Building, San Francisco, CA 94111",
-      "lat": 37.79555,
-      "lng": -122.39348,
-      "tags": [
-        "top-pick",
-        "brunch",
-        "walkable",
-        "views"
-      ],
-      "note": "Come on a Saturday morning for the farmers market out front.",
-      "summary": "The restored 1898 ferry terminal is now a food hall packed with local favorites: oysters, cheese, bakeries, coffee, and more. Grab a snack and eat by the water with views of the Bay Bridge. The farmers market outside on Tuesdays, Thursdays, and Saturdays is one of the city's best.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "lands-end-trail",
-      "name": "Lands End Trail",
-      "category": "activity",
-      "neighborhood": "Outer Richmond",
-      "address": "680 Point Lobos Ave, San Francisco, CA 94121",
-      "lat": 37.77976,
-      "lng": -122.51161,
-      "tags": [
-        "outdoors",
-        "views"
-      ],
-      "note": "Start at the Lands End Lookout and follow the Coastal Trail east toward the bridge.",
-      "summary": "A cliffside trail on the city's rugged northwest corner, winding through cypress trees with sweeping views of the Golden Gate Bridge and the Pacific. Detour to the Sutro Baths ruins and the hidden labyrinth along the way. Wear layers, since it's often windy and foggy out here.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "alcatraz-island",
-      "name": "Alcatraz Island",
-      "category": "activity",
-      "neighborhood": "Fisherman's Wharf",
-      "address": "Pier 33, San Francisco, CA 94133",
-      "lat": 37.8065,
-      "lng": -122.40452,
-      "tags": [
-        "book-ahead",
-        "views"
-      ],
-      "note": "Ferries leave from Pier 33. Book tickets well ahead because they sell out.",
-      "summary": "The former federal penitentiary on an island in the bay, reached by ferry from Pier 33. The cellhouse audio tour, narrated by former inmates and guards, is the highlight, and the ride out has great skyline views. Tickets often sell out days or weeks ahead.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "mission-dolores-park",
-      "name": "Mission Dolores Park",
-      "category": "activity",
-      "neighborhood": "Mission",
-      "address": "Dolores St & 19th St, San Francisco, CA 94114",
-      "lat": 37.75972,
-      "lng": -122.42713,
-      "tags": [
-        "outdoors",
-        "views",
-        "groups",
-        "walkable"
-      ],
-      "note": "The upper southwest corner has the best view of the skyline.",
-      "summary": "San Francisco's favorite backyard: sloping lawns with a postcard view of downtown, full of picnickers on any sunny afternoon. Pick up food from the nearby bakeries and taquerias and claim a patch of grass. It's at its best on warm weekend afternoons.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "golden-gate-bridge",
-      "name": "Golden Gate Bridge",
-      "category": "sight",
-      "neighborhood": "Presidio",
-      "address": "Golden Gate Bridge Welcome Center, San Francisco, CA 94129",
-      "lat": 37.80778,
-      "lng": -122.47485,
-      "tags": [
-        "top-pick",
-        "views",
-        "outdoors"
-      ],
-      "note": "Walk out at least to the first tower, and bring a jacket.",
-      "summary": "The city's most famous landmark is best experienced on foot. Start at the welcome center on the south side and walk out onto the span for views of the bay, Alcatraz, and the skyline. Fog rolls in fast, so clear mornings are your best bet for photos.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "painted-ladies",
-      "name": "Painted Ladies at Alamo Square",
-      "category": "sight",
-      "neighborhood": "Alamo Square",
-      "address": "710 Steiner St, San Francisco, CA 94117",
-      "lat": 37.77622,
-      "lng": -122.43279,
-      "tags": [
-        "views",
-        "walkable"
-      ],
-      "note": "Climb to the top of the park for the classic view with downtown behind.",
-      "summary": "A row of colorful Victorian houses on Steiner Street, framed by the downtown skyline, that has starred in countless postcards and TV openings. The best vantage point is the hill in Alamo Square Park across the street. An easy stop between Hayes Valley and the Haight.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
-    },
-    {
-      "id": "twin-peaks",
-      "name": "Twin Peaks",
-      "category": "sight",
-      "neighborhood": "Twin Peaks",
-      "address": "501 Twin Peaks Blvd, San Francisco, CA 94114",
-      "lat": 37.75493,
-      "lng": -122.44664,
-      "tags": [
-        "views",
-        "outdoors"
-      ],
-      "note": "Go at sunset or on a clear night for the city lights.",
-      "summary": "Two hills near the middle of the city with a sweeping 360-degree view of San Francisco and the bay from Christmas Tree Point. It's a short drive or rideshare to the top, and a clear day or night makes it unforgettable. Bring a warm layer for the wind.",
-      "summarySource": "written",
-      "createdAt": "2026-09-24T17:00:00.000Z"
+      "createdAt": "2026-09-24T20:00:00.000Z"
     }
   ]
 }

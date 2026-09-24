@@ -40,3 +40,13 @@ export const Utensils = featherIcon("Utensils", [
 ]);
 
 export const Cocktail = featherIcon("Cocktail", ["M4 3h16l-8 9z", "M12 12v8", "M8 21h8"]);
+
+export const Bread = featherIcon("Bread", [
+  "M6 10.5A3.5 3.5 0 0 1 8 4h8a3.5 3.5 0 0 1 2 6.5V19a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z",
+]);
+
+export const IceCream = featherIcon("IceCream", [
+  "M17 9.5a5 5 0 1 0-10 0",
+  "M6 9.5h12",
+  "M7.5 9.5 12 21l4.5-11.5",
+]);

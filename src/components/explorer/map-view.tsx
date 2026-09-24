@@ -33,6 +33,21 @@ interface MapViewProps {
 
 type Status = "loading" | "ready" | "error";
 
+/** Below this zoom, pins shrink to dots so a dense city view stays readable. */
+const COMPACT_BELOW_ZOOM = 13.5;
+
+// Frames the main cluster, so one far-flung place (say, across the Bay) doesn't zoom the city out.
+function framingSet(places: Place[]): Place[] {
+  if (places.length <= 2) return places;
+  const median = (values: number[]) => values.sort((a, b) => a - b)[Math.floor(values.length / 2)];
+  const lat = median(places.map((p) => p.lat));
+  const lng = median(places.map((p) => p.lng));
+  const km = (p: Place) =>
+    Math.hypot((p.lat - lat) * 111, (p.lng - lng) * 111 * Math.cos((lat * Math.PI) / 180));
+  const core = places.filter((p) => km(p) <= 10);
+  return core.length ? core : places;
+}
+
 export function MapView({
   ref,
   places,
@@ -50,6 +65,7 @@ export function MapView({
   const addedRef = useRef(new Set<string>());
   const framedRef = useRef(false);
   const [status, setStatus] = useState<Status>("loading");
+  const [zoom, setZoom] = useState<number>(DEFAULT_VIEW.zoom);
   // Pin DOM nodes live outside React's tree (the map positions them), so React renders into them via portals.
   const [pinElements] = useState(() => new Map<string, HTMLElement>());
 
@@ -86,6 +102,7 @@ export function MapView({
             setStatus("error");
           },
           onBackgroundClick: () => handleBackgroundClick(),
+          onZoomChange: setZoom,
         });
       })
       .catch((error) => {
@@ -128,7 +145,7 @@ export function MapView({
   }, [padding, status]);
 
   const frame = useEffectEvent((animate: boolean) => {
-    instanceRef.current?.fitTo(places, { animate, maxZoom: 15 });
+    instanceRef.current?.fitTo(framingSet(places), { animate, maxZoom: 15 });
   });
 
   useEffect(() => {
@@ -173,6 +190,7 @@ export function MapView({
               place={place}
               selected={place.id === selectedId}
               highlighted={place.id === highlightedId}
+              compact={zoom < COMPACT_BELOW_ZOOM}
               onSelect={() => onSelect(place.id)}
               onHover={(hovering) => onHighlight(hovering ? place.id : null)}
             />,

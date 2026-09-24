@@ -17,6 +17,8 @@ export interface MapCreateOptions {
   onReady: () => void;
   onError: (error: Error) => void;
   onBackgroundClick?: () => void;
+  /** Fires once the map is ready and after every zoom, with the new zoom level. */
+  onZoomChange?: (zoom: number) => void;
 }
 
 /**

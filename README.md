@@ -54,9 +54,10 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
-The 18 starter places in `data/places.json` include short practical notes and a
-few **Top pick** tags as a starting point. Edit or remove them from `/admin` so
-the notes are in your own words.
+`data/places.json` holds Andy and Kirissa's list: 72 places geocoded against
+OpenStreetMap and Overture Maps, each with a short neutral summary. Notes are
+left empty for them to write in their own words from `/admin`, and no place is
+marked **Top pick** yet (that filter appears once one is).
 
 ## How it's built
 

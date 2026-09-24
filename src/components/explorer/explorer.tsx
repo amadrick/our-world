@@ -96,6 +96,13 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const sorted = useMemo(() => sortPlaces(places), [places]);
   const visible = useMemo(() => filterPlaces(sorted, filters), [sorted, filters]);
   const neighborhoods = useMemo(() => neighborhoodCounts(places), [places]);
+  const available = useMemo(
+    () => ({
+      categories: new Set(places.map((p) => p.category)),
+      tags: new Set(places.flatMap((p) => p.tags)),
+    }),
+    [places],
+  );
   const selected = places.find((p) => p.id === selectedId) ?? null;
   const filtersActive = hasActiveFilters(filters);
 
@@ -201,6 +208,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               filters={filters}
               onChange={changeFilters}
               neighborhoods={neighborhoods}
+              available={available}
             />
           </div>
           <div className="sticky top-0 z-10 bg-white px-6">
@@ -241,6 +249,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           filters={filters}
           onChange={changeFilters}
           neighborhoods={neighborhoods}
+          available={available}
         />
       </div>
 

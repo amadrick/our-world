@@ -2,6 +2,8 @@ export const CATEGORY_IDS = [
   "restaurant",
   "bar",
   "coffee",
+  "bakery",
+  "dessert",
   "activity",
   "sight",
 ] as const;
