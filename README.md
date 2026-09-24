@@ -68,15 +68,33 @@ them to write in their own words from `/admin`, and no place is marked
 
 ## Place images
 
-**Paused.** Place images are off while Andy and Kirissa choose a new visual
-direction, so no images ship with the seed. The guide shows a quiet glass tile
-with each place's monogram and category icon, and place details open without
-a hero image.
+Every place has a soft clay still of the place itself: its facade or
+storefront, or, where the room is the draw, a small cutaway of it (Hedge
+Coffee's redwood courtyard, Toronado's tap wall, Foreign Cinema's courtyard,
+Waystone's jazz corner). The style follows the stills on
+[pengzhe.ng](https://www.pengzhe.ng/): square, bright white, a front or gentle
+three-quarter product angle, diffuse light, matte clay, no people. The files are
+`public/places/<id>-<hash>.webp` (960×960). A place without one shows a glass
+tile with its monogram.
 
-The pipeline code is still here (`src/lib/images/`, `npm run images`), but
-every render refuses unless `PLACE_IMAGE_GENERATION=on` is set, and the admin
-doesn't draw anything on save. `npm run images -- <id> --import art.png` still
-attaches an image made elsewhere.
+**Never food.** Each place's `placeVisualSubject` (with `placeVisualScene`,
+`facade` or `interior`) says what its picture shows, separately from what it's
+known for. Any brief that mentions food or drink is refused before anything is
+rendered (`src/lib/images/prompt.mjs`), the admin warns while you type, and
+saving such a brief fails. Sign lettering in quotes is exempt, so "GOLDEN BOY
+PIZZA" on a sign is fine.
+
+Rendering stays gated: nothing is drawn unless `PLACE_IMAGE_GENERATION=on` and
+`OPENAI_API_KEY` are set.
+
+```bash
+npm run images                          # draw every place that has no image yet
+npm run images -- tartine-bakery        # redraw one place from its brief
+npm run images -- --all                 # redraw everything
+npm run images -- zuni --photo zuni.jpg # turn your own photo of the place into the style
+npm run images -- zuni --import art.png # attach an image made elsewhere (no key needed)
+npm run images -- --print zuni          # show the prompt without generating
+```
 
 ### The signature pipeline
 
@@ -85,15 +103,19 @@ Adding a place in `/admin` runs the whole routine:
 1. **Identity:** the search or pasted Maps link resolves the name, address,
    and coordinates.
 2. **Research:** `POST /api/admin/signature` asks OpenAI, with web search, for
-   the signature, a one-line rationale, and a drawable description
-   (`src/lib/ai/signature-research.mjs`). If web search isn't available, it
+   the signature, a one-line rationale, and an illustration brief of the
+   facade or a room (`src/lib/ai/signature-research.mjs`). A brief that
+   mentions food is dropped. If web search isn't available, it
    uses the model's own knowledge and flags the result. With no key it
    returns "needs a signature".
-3. **Save:** the place is stored with `signatureSubject` and
-   `signatureRationale`.
-4. **Image (paused):** with `PLACE_IMAGE_GENERATION=on`, the admin calls
-   `POST /api/admin/places/<id>/image` right after saving to draw an image
-   from the signature. It's off until a new visual direction is chosen.
+3. **Save:** the place is stored with `signatureSubject`,
+   `signatureRationale`, `placeVisualSubject`, and `placeVisualScene`, all
+   editable in the form.
+4. **Image:** with `PLACE_IMAGE_GENERATION=on`, the admin calls
+   `POST /api/admin/places/<id>/image` right after saving a new place or a
+   changed brief. It draws from `placeVisualSubject` only and returns 422 for
+   a food brief. The render runs after the save because it takes up to a
+   minute, so the place appears at once and its picture a moment later.
 
 The same steps run in batch from the command line, which is how to backfill
 once a key is in `.env.local`:
@@ -101,6 +123,7 @@ once a key is in `.env.local`:
 ```bash
 npm run signatures                      # research every place missing a signature
 npm run signatures -- toronado          # redo one place
+npm run signatures -- --images          # ...and draw their stills (gated as above)
 npm run signatures -- --all             # re-research everything (then: npm run images -- --all)
 npm run signatures -- --dry-run zuni    # see what it finds without saving
 ```

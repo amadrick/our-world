@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Creates the clay still of each place's signature subject and records it in
-// data/places.json.
+// Creates the clay still of each place (its facade or a room, never food) and
+// records it in data/places.json.
 //
 //   npm run images                        every place that has no image yet
 //   npm run images -- tartine-bakery      specific places (regenerates them)
@@ -11,14 +11,11 @@
 //   npm run images -- zuni --refs         also send the style reference images
 //
 // Generating needs OPENAI_API_KEY (and optionally OPENAI_IMAGE_MODEL, default
-// gpt-image-1). The locked prompt alone keeps the series consistent; --refs
-// adds the stills in scripts/style-references/ as anchors, but models tend to
-// copy props from them (a spoon, a tap handle), so check the result. Output:
-// public/places/<id>.webp, 960x960. Hand-written hints in
-// data/place-image-hints.json override the default subject, which comes from
-// each place's signatureSubject.
+// gpt-image-1) and PLACE_IMAGE_GENERATION=on. What's drawn comes from each
+// place's placeVisualSubject; briefs that mention food or drink are refused.
+// --refs adds any stills in scripts/style-references/ as style anchors.
+// Output: public/places/<id>-<hash>.webp, 960x960.
 
-import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -26,14 +23,13 @@ import {
   buildPhotoPrompt,
   buildPrompt,
   buildReferencePrompt,
-  fallbackHint,
+  placeVisual,
 } from "../src/lib/images/prompt.mjs";
 import { renderImage, saveImage, styleReferences } from "../src/lib/images/render.mjs";
 import { loadEnvLocal } from "./load-env.mjs";
 
 const ROOT = process.cwd();
 const PLACES_FILE = process.env.PLACES_FILE || path.join(ROOT, "data", "places.json");
-const HINTS_FILE = path.join(ROOT, "data", "place-image-hints.json");
 
 function parseArgs(argv) {
   const args = { ids: [], all: false, print: false, refs: false, photo: null, import: null };
@@ -56,7 +52,6 @@ function parseArgs(argv) {
 loadEnvLocal(ROOT);
 const args = parseArgs(process.argv.slice(2));
 const data = JSON.parse(await readFile(PLACES_FILE, "utf8"));
-const hints = existsSync(HINTS_FILE) ? JSON.parse(await readFile(HINTS_FILE, "utf8")) : {};
 
 const byId = new Map(data.places.map((p) => [p.id, p]));
 for (const id of args.ids) if (!byId.has(id)) throw new Error(`No place with id "${id}"`);
@@ -74,17 +69,17 @@ const refs = args.refs && !args.photo && !args.import ? await styleReferences(RO
 
 let failures = 0;
 for (const place of targets) {
-  const hint = { ...fallbackHint(place), ...hints[place.id] };
-  const prompt = args.photo
-    ? buildPhotoPrompt(hint)
-    : refs.length
-      ? buildReferencePrompt(hint)
-      : buildPrompt(hint);
-  if (args.print) {
-    console.log(`\n# ${place.id}\n${prompt}`);
-    continue;
-  }
+  const visual = placeVisual(place);
   try {
+    const prompt = args.photo
+      ? buildPhotoPrompt(visual)
+      : refs.length
+        ? buildReferencePrompt(visual)
+        : buildPrompt(visual);
+    if (args.print) {
+      console.log(`\n# ${place.id}\n${prompt}`);
+      continue;
+    }
     const input = args.import
       ? await readFile(args.import)
       : await renderImage(prompt, { images: args.photo ? [args.photo] : refs });

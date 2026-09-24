@@ -16,10 +16,10 @@ import {
   requestSummary,
   researchSignature,
   savePlace,
-  type ImageHint,
   type LookupResult,
   type PlaceCandidate,
 } from "@/lib/admin/api";
+import { foodIn } from "@/lib/images/prompt.mjs";
 import type { PlaceInputPayload } from "@/lib/places/schema";
 import { CATEGORIES, TAGS } from "@/lib/places/taxonomy";
 import type { CategoryId, Place, SummarySource, TagId } from "@/lib/places/types";
@@ -38,6 +38,8 @@ interface Draft {
   summarySource: SummarySource;
   signatureSubject: string;
   signatureRationale?: string;
+  placeVisualSubject: string;
+  placeVisualScene: "facade" | "interior";
   appleMapsUrl?: string;
   googleMapsUrl?: string;
   image?: string;
@@ -63,6 +65,8 @@ function draftFromPlace(place: Place): Draft {
     summarySource: place.summarySource,
     signatureSubject: place.signatureSubject ?? "",
     signatureRationale: place.signatureRationale,
+    placeVisualSubject: place.placeVisualSubject ?? "",
+    placeVisualScene: place.placeVisualScene ?? "facade",
     appleMapsUrl: place.appleMapsUrl,
     googleMapsUrl: place.googleMapsUrl,
     image: place.image,
@@ -82,6 +86,8 @@ function draftFromCandidate(candidate: PlaceCandidate, lookup?: LookupResult): D
     summary: "",
     summarySource: "written",
     signatureSubject: "",
+    placeVisualSubject: "",
+    placeVisualScene: "facade",
     appleMapsUrl: lookup?.provider === "apple" ? lookup.url : undefined,
     googleMapsUrl: lookup?.provider === "google" ? lookup.url : undefined,
   };
@@ -197,7 +203,7 @@ interface PlaceFormProps {
   aiEnabled: boolean;
   imagesEnabled: boolean;
   /** `illustrate` is set when the saved place needs a new illustration drawn. */
-  onSaved: (place: Place, isNew: boolean, illustrate?: ImageHint) => void;
+  onSaved: (place: Place, isNew: boolean, illustrate: boolean) => void;
   onCancelEdit: () => void;
   onAuthError: () => void;
 }
@@ -218,7 +224,6 @@ export function PlaceForm({
   const [summaryNotice, setSummaryNotice] = useState<string | null>(null);
   const [researching, setResearching] = useState(false);
   const [signatureNotice, setSignatureNotice] = useState<string | null>(null);
-  const [imageHint, setImageHint] = useState<ImageHint>({});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -250,11 +255,19 @@ export function PlaceForm({
         lat: target.lat,
         lng: target.lng,
       });
-      if (result.signatureSubject) {
-        const { signatureSubject, signatureRationale } = result;
-        setDraft((d) => (d ? { ...d, signatureSubject, signatureRationale } : d));
-        setImageHint({ visual: result.visual, scene: result.scene });
-      }
+      const { signatureSubject, signatureRationale, placeVisualSubject, placeVisualScene } = result;
+      setDraft((d) =>
+        d
+          ? {
+              ...d,
+              ...(signatureSubject && { signatureSubject, signatureRationale }),
+              ...(placeVisualSubject && {
+                placeVisualSubject,
+                placeVisualScene: placeVisualScene ?? "facade",
+              }),
+            }
+          : d,
+      );
       setSignatureNotice(result.notice ?? null);
     } catch (err) {
       setSignatureNotice(handleError(err, "Couldn’t look it up. Try again."));
@@ -269,7 +282,6 @@ export function PlaceForm({
     setError(null);
     setSummaryNotice(null);
     setSignatureNotice(null);
-    setImageHint({});
     if (aiEnabled) void research(next);
   };
 
@@ -339,8 +351,10 @@ export function PlaceForm({
     try {
       const place = await savePlace(toPayload(draft, draft.category), editing?.id);
       const needsImage =
-        !place.image || (editing?.signatureSubject ?? "") !== (place.signatureSubject ?? "");
-      onSaved(place, !editing, imagesEnabled && needsImage ? imageHint : undefined);
+        !place.image ||
+        (editing?.placeVisualSubject ?? "") !== (place.placeVisualSubject ?? "") ||
+        editing?.placeVisualScene !== place.placeVisualScene;
+      onSaved(place, !editing, imagesEnabled && needsImage);
     } catch (err) {
       setError(handleError(err, "Couldn’t save. Try again."));
       setSaving(false);
@@ -449,10 +463,9 @@ export function PlaceForm({
             <Input
               id="signature"
               value={draft.signatureSubject}
-              onChange={(e) => {
-                update({ signatureSubject: e.target.value, signatureRationale: undefined });
-                setImageHint({});
-              }}
+              onChange={(e) =>
+                update({ signatureSubject: e.target.value, signatureRationale: undefined })
+              }
               placeholder={researching ? "Looking it up…" : "Morning bun, a martini, the courtyard"}
               className="min-w-0 flex-1"
             />
@@ -475,6 +488,44 @@ export function PlaceForm({
           <p className="flex gap-2 text-sm text-muted-foreground">
             {signatureNotice && <AlertCircle size={14} className="mt-0.5 shrink-0" />}
             {signatureNotice ?? "The dish, drink, or room it’s famous for."}
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="visual">Illustration</Label>
+          <Textarea
+            id="visual"
+            value={draft.placeVisualSubject}
+            onChange={(e) => update({ placeVisualSubject: e.target.value })}
+            placeholder={
+              researching
+                ? "Looking it up…"
+                : "A cream corner building with green trim and big windows, with a simple crisp sign that reads \"TARTINE\""
+            }
+            rows={2}
+          />
+          <div role="radiogroup" aria-label="Illustration shows" className="flex gap-2">
+            {(["facade", "interior"] as const).map((scene) => (
+              <Pill
+                key={scene}
+                role="radio"
+                aria-checked={draft.placeVisualScene === scene}
+                aria-pressed={undefined}
+                active={draft.placeVisualScene === scene}
+                onClick={() => update({ placeVisualScene: scene })}
+                className="h-9 px-3.5 text-sm"
+              >
+                {scene === "facade" ? "Facade" : "Interior"}
+              </Pill>
+            ))}
+          </div>
+          <p className="flex gap-2 text-sm text-muted-foreground">
+            {foodIn(draft.placeVisualSubject) && (
+              <AlertCircle size={14} className="mt-0.5 shrink-0" />
+            )}
+            {foodIn(draft.placeVisualSubject)
+              ? `Illustrations show the place, not food. Take out “${foodIn(draft.placeVisualSubject)}”.`
+              : "What its picture shows: the building or a room, never food or drink."}
           </p>
         </div>
 

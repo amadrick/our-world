@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { foodIn } from "@/lib/images/prompt.mjs";
 import { CATEGORY_IDS, TAG_IDS } from "./types";
 
 const MAPS_HOSTS = /(^|\.)(apple\.com|maps\.apple|google\.[a-z.]+|goo\.gl)$/i;
@@ -43,6 +44,10 @@ export const placeInputSchema = z.object({
   summarySource: z.enum(["ai", "written", "placeholder"]).default("written"),
   signatureSubject: optionalText(200),
   signatureRationale: optionalText(500),
+  placeVisualSubject: optionalText(500).refine((value) => !value || !foodIn(value), {
+    message: "Describe the building or room, not food or drink",
+  }),
+  placeVisualScene: z.enum(["facade", "interior"]).optional(),
   appleMapsUrl: mapsUrl,
   googleMapsUrl: mapsUrl,
   image: z

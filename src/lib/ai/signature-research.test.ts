@@ -15,8 +15,8 @@ function reply(result: object) {
 const found = {
   signatureSubject: "Morning bun",
   signatureRationale: "The bakery's best-known pastry.",
-  visual: "a morning bun on a plate",
-  scene: "object",
+  placeVisualSubject: 'a cream corner building with green trim, with a simple crisp sign that reads "TARTINE"',
+  placeVisualScene: "facade",
 };
 
 afterEach(() => {
@@ -39,7 +39,11 @@ describe("researchSignature", () => {
     const fetchMock = vi.fn().mockResolvedValue(reply(found));
     vi.stubGlobal("fetch", fetchMock);
     const result = await researchSignature(place, { apiKey: "sk-test" });
-    expect(result).toMatchObject({ signatureSubject: "Morning bun", source: "web", scene: "object" });
+    expect(result).toMatchObject({
+      signatureSubject: "Morning bun",
+      source: "web",
+      placeVisualScene: "facade",
+    });
     expect(JSON.parse(fetchMock.mock.calls[0][1].body).tools).toEqual([{ type: "web_search" }]);
   });
 
@@ -54,6 +58,16 @@ describe("researchSignature", () => {
     expect(result).toMatchObject({ signatureSubject: "Morning bun", source: "model" });
     expect(result.notice).toMatch(/double-check/i);
     expect(JSON.parse(fetchMock.mock.calls[1][1].body).tools).toBeUndefined();
+  });
+
+  it("drops an illustration brief that describes food", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(reply({ ...found, placeVisualSubject: "a morning bun on a plate" })),
+    );
+    const result = await researchSignature(place, { apiKey: "sk-test" });
+    expect(result.signatureSubject).toBe("Morning bun");
+    expect(result.placeVisualSubject).toBeUndefined();
   });
 
   it("says a signature is needed when nothing reliable turns up", async () => {

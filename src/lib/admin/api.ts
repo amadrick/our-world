@@ -62,8 +62,8 @@ export function requestSummary(payload: PlaceInputPayload) {
 export interface SignatureResponse {
   signatureSubject?: string;
   signatureRationale?: string;
-  visual?: string;
-  scene?: "object" | "room";
+  placeVisualSubject?: string;
+  placeVisualScene?: "facade" | "interior";
   source: "web" | "model" | "none";
   notice?: string;
 }
@@ -82,16 +82,11 @@ export function researchSignature(payload: {
   });
 }
 
-/** What the illustration should show, from signature research. */
-export interface ImageHint {
-  visual?: string;
-  scene?: "object" | "room";
-}
-
-export async function generatePlaceImage(id: string, hint: ImageHint = {}): Promise<Place> {
+/** Draws the place's facade or room from its saved brief. */
+export async function generatePlaceImage(id: string): Promise<Place> {
   const { place } = await request<{ place: Place }>(
     `/api/admin/places/${encodeURIComponent(id)}/image`,
-    { method: "POST", body: JSON.stringify(hint) },
+    { method: "POST" },
   );
   return place;
 }

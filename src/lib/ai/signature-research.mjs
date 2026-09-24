@@ -1,7 +1,8 @@
-// Finds what a place is known for (its signature dish, drink, or room) so its
-// illustration can depict it. Shared by the admin add flow and
-// `npm run signatures`.
+// Finds what a place is known for (its signature dish, drink, or room) and
+// proposes a brief for its illustration: the facade or a room, never food.
+// Shared by the admin add flow and `npm run signatures`.
 
+import { foodIn } from "../images/prompt.mjs";
 import { textModel } from "./models.mjs";
 
 const INSTRUCTIONS = `You research San Francisco Bay Area restaurants, bars, and cafés for a wedding-week guide.
@@ -9,19 +10,19 @@ Find what guests and regulars treat as the place's signature: an iconic dish or 
 Prefer primary and well-known sources: the venue's own site and menu, Infatuation, Eater, SF Chronicle, Michelin, and review consensus. Never invent secret-menu lore or a dish you didn't find.
 signatureSubject: a short noun phrase in sentence case, like "Morning bun" or "Salt & pepper Dungeness crab".
 signatureRationale: one line on why, naming where that comes from, like "Eater and the menu call it the house classic."
-visual: one sentence describing the subject concretely enough to sculpt as a small clay model (what's on the plate or in the glass, or what's in the room). No people, no text or logos.
-scene: "room" only when the signature is the space itself, otherwise "object".
-If nothing is reliable, return empty strings and "object".`;
+placeVisualSubject: one sentence describing the place itself for a small clay model of it: its street facade or storefront (materials, colors, awning, windows, signage), or its signature room, patio, or courtyard. Architecture and furniture only: never food, drinks, plates, cups, glasses, or bottles, even if the signature is a dish. If the facade has a sign, end with: with a simple crisp sign that reads "NAME".
+placeVisualScene: "interior" only when the room itself is the draw, otherwise "facade".
+If nothing is reliable, return empty strings and "facade".`;
 
 const SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["signatureSubject", "signatureRationale", "visual", "scene"],
+  required: ["signatureSubject", "signatureRationale", "placeVisualSubject", "placeVisualScene"],
   properties: {
     signatureSubject: { type: "string" },
     signatureRationale: { type: "string" },
-    visual: { type: "string" },
-    scene: { type: "string", enum: ["object", "room"] },
+    placeVisualSubject: { type: "string" },
+    placeVisualScene: { type: "string", enum: ["facade", "interior"] },
   },
 };
 
@@ -69,13 +70,14 @@ async function ask(place, { apiKey, webSearch }) {
 }
 
 /**
- * Researches a place's signature. Tries OpenAI with web search, falls back to
- * the model's own knowledge (flagged for a double-check), and without a key
- * returns a clear "needs signature" notice instead of guessing.
+ * Researches a place's signature and an illustration brief. Tries OpenAI with
+ * web search, falls back to the model's own knowledge (flagged for a
+ * double-check), and without a key returns a clear "needs signature" notice
+ * instead of guessing. A brief that mentions food is dropped.
  *
  * @returns {Promise<{ signatureSubject?: string, signatureRationale?: string,
- *   visual?: string, scene?: "object" | "room", source: "web" | "model" | "none",
- *   notice?: string }>}
+ *   placeVisualSubject?: string, placeVisualScene?: "facade" | "interior",
+ *   source: "web" | "model" | "none", notice?: string }>}
  */
 export async function researchSignature(place, { apiKey = process.env.OPENAI_API_KEY } = {}) {
   if (!apiKey) return { source: "none", notice: NEEDS_SIGNATURE };
@@ -97,13 +99,19 @@ export async function researchSignature(place, { apiKey = process.env.OPENAI_API
     }
   }
 
+  let placeVisualSubject = found.placeVisualSubject?.trim() || undefined;
+  if (placeVisualSubject && foodIn(placeVisualSubject)) placeVisualSubject = undefined;
+  const placeVisual = placeVisualSubject && {
+    placeVisualSubject,
+    placeVisualScene: found.placeVisualScene === "interior" ? "interior" : "facade",
+  };
+
   const signatureSubject = found.signatureSubject?.trim();
-  if (!signatureSubject) return { source, notice: NEEDS_SIGNATURE };
+  if (!signatureSubject) return { ...placeVisual, source, notice: NEEDS_SIGNATURE };
   return {
     signatureSubject,
     signatureRationale: found.signatureRationale?.trim() || undefined,
-    visual: found.visual?.trim() || undefined,
-    scene: found.scene === "room" ? "room" : "object",
+    ...placeVisual,
     source,
     notice,
   };

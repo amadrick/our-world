@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
-import { ApiError, deletePlace, generatePlaceImage, signOut, type ImageHint } from "@/lib/admin/api";
+import { ApiError, deletePlace, generatePlaceImage, signOut } from "@/lib/admin/api";
 import type { Place } from "@/lib/places/types";
 import { AdminPlacesList } from "./admin-places-list";
 import { ImageBackdrop } from "./image-backdrop";
@@ -68,7 +68,7 @@ export function AdminDashboard({
     router.refresh();
   };
 
-  const onSaved = (place: Place, isNew: boolean, illustrate?: ImageHint) => {
+  const onSaved = (place: Place, isNew: boolean, illustrate: boolean) => {
     setPlaces((prev) =>
       isNew ? [...prev, place] : prev.map((p) => (p.id === place.id ? place : p)),
     );
@@ -81,7 +81,7 @@ export function AdminDashboard({
     });
     if (!illustrate) return;
     toast.promise(
-      generatePlaceImage(place.id, illustrate).then((drawn) => {
+      generatePlaceImage(place.id).then((drawn) => {
         setPlaces((prev) => prev.map((p) => (p.id === drawn.id ? drawn : p)));
         return drawn;
       }),
