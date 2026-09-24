@@ -29,10 +29,12 @@ function MapButton({
   label,
   onClick,
   children,
+  className,
 }: {
   label: string;
   onClick: () => void;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <button
@@ -40,7 +42,10 @@ function MapButton({
       aria-label={label}
       title={label}
       onClick={onClick}
-      className="flex size-11 cursor-pointer items-center justify-center rounded-full hairline border-black/10 bg-white shadow-float transition-colors hover:bg-secondary"
+      className={cn(
+        "flex size-11 cursor-pointer items-center justify-center rounded-full transition-colors",
+        className,
+      )}
     >
       {children}
     </button>
@@ -197,7 +202,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
       {/* Desktop: floating side panel */}
       <aside
-        className="absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-[32px] hairline border-black/10 bg-white shadow-panel lg:flex"
+        className="glass absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-[32px] lg:flex"
         style={{ width: PANEL_WIDTH }}
         aria-label="Places"
       >
@@ -215,7 +220,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               available={available}
             />
           </div>
-          <div className="sticky top-0 z-10 bg-white px-6">
+          <div className="scroll-edge px-6 pb-2">
             <ResultsSummary count={visible.length} filtersActive={filtersActive} onClear={clearFilters} />
           </div>
           <div className="px-3 pb-3">{list}</div>
@@ -223,22 +228,37 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         {selected && (
           <div
             key={selected.id}
-            className="min-h-0 flex-1 overflow-y-auto px-6 pt-5 pb-6 animate-in fade-in duration-200"
+            className="min-h-0 flex-1 overflow-y-auto px-3 pt-3 pb-6 animate-in fade-in duration-200"
           >
-            <PlaceDetail place={selected} onBack={closeDetail} />
+            <PlaceDetail place={selected} onBack={closeDetail} bodyClassName="px-3" />
           </div>
         )}
       </aside>
 
       {/* Desktop: map controls */}
-      <div className="absolute right-4 bottom-8 z-10 hidden flex-col gap-2 lg:flex">
-        <MapButton label="Zoom in" onClick={() => mapRef.current?.zoomIn()}>
-          <Plus size={18} />
-        </MapButton>
-        <MapButton label="Zoom out" onClick={() => mapRef.current?.zoomOut()}>
-          <Minus size={18} />
-        </MapButton>
-        <MapButton label="Show all places" onClick={() => mapRef.current?.showAll()}>
+      <div className="absolute right-4 bottom-8 z-10 hidden flex-col gap-3 lg:flex">
+        <div className="glass glass-refract flex flex-col overflow-hidden rounded-full">
+          <MapButton
+            label="Zoom in"
+            className="hover:bg-white/30 active:bg-white/45"
+            onClick={() => mapRef.current?.zoomIn()}
+          >
+            <Plus size={18} />
+          </MapButton>
+          <span aria-hidden className="mx-3 h-[0.5px] bg-black/15" />
+          <MapButton
+            label="Zoom out"
+            className="hover:bg-white/30 active:bg-white/45"
+            onClick={() => mapRef.current?.zoomOut()}
+          >
+            <Minus size={18} />
+          </MapButton>
+        </div>
+        <MapButton
+          label="Show all places"
+          className="glass glass-interactive glass-refract"
+          onClick={() => mapRef.current?.showAll()}
+        >
           <Crosshair size={18} />
         </MapButton>
       </div>
@@ -265,7 +285,11 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           onSnapChange={setSnap}
           scrollKey={selected ? `place:${selected.id}` : "list"}
           accessory={
-            <MapButton label="Show all places" onClick={() => mapRef.current?.showAll()}>
+            <MapButton
+              label="Show all places"
+              className="glass glass-interactive"
+              onClick={() => mapRef.current?.showAll()}
+            >
               <Crosshair size={18} />
             </MapButton>
           }

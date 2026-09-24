@@ -62,7 +62,7 @@ export function MapPin({ place, selected, highlighted, compact, onSelect, onHove
       <span
         aria-hidden
         className={cn(
-          "pointer-events-none absolute top-1/2 left-[calc(100%+8px)] -translate-y-1/2 rounded-full hairline border-black/10 bg-white px-3 py-1 text-sm font-medium whitespace-nowrap shadow-float transition-all duration-200",
+          "glass pointer-events-none absolute top-1/2 left-[calc(100%+8px)] -translate-y-1/2 rounded-full px-3 py-1 text-sm font-medium whitespace-nowrap transition-all duration-200",
           showLabel ? "opacity-100" : "-translate-x-1 opacity-0",
         )}
       >

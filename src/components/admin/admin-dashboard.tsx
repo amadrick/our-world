@@ -11,17 +11,19 @@ import { site } from "@/config/site";
 import { ApiError, deletePlace, signOut } from "@/lib/admin/api";
 import type { Place } from "@/lib/places/types";
 import { AdminPlacesList } from "./admin-places-list";
+import { ImageBackdrop } from "./image-backdrop";
 import { PlaceForm } from "./place-form";
 
 interface AdminDashboardProps {
   initialPlaces: Place[];
+  backdrop: string[];
   ai: { enabled: boolean; model: string };
   usingDefaultPassword: boolean;
 }
 
 function Notice({ icon: NoticeIcon, children }: { icon: Icon; children: React.ReactNode }) {
   return (
-    <div className="flex gap-3 rounded-[20px] bg-secondary px-4 py-3 text-sm">
+    <div className="glass-fill flex gap-3 rounded-[20px] px-4 py-3 text-sm">
       <NoticeIcon size={16} className="mt-px shrink-0 text-muted-foreground" />
       <div>{children}</div>
     </div>
@@ -36,7 +38,12 @@ function newestFirst(places: Place[]): Place[] {
   );
 }
 
-export function AdminDashboard({ initialPlaces, ai, usingDefaultPassword }: AdminDashboardProps) {
+export function AdminDashboard({
+  initialPlaces,
+  backdrop,
+  ai,
+  usingDefaultPassword,
+}: AdminDashboardProps) {
   const router = useRouter();
   const [places, setPlaces] = useState(initialPlaces);
   const [editing, setEditing] = useState<Place | null>(null);
@@ -90,8 +97,9 @@ export function AdminDashboard({ initialPlaces, ai, usingDefaultPassword }: Admi
   };
 
   return (
-    <div className="min-h-dvh bg-map">
-      <header className="sticky top-0 z-30 border-b-[0.5px] border-black/10 bg-white/90 backdrop-blur-xl">
+    <div className="relative isolate min-h-dvh">
+      <ImageBackdrop images={backdrop} />
+      <header className="glass sticky top-0 z-30 rounded-none border-x-0 border-t-0 shadow-[inset_0_-0.5px_0_rgb(0_0_0/0.08)]">
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-5">
           <p className="text-base">
             <span className="font-medium">{site.name}</span>
@@ -137,7 +145,7 @@ export function AdminDashboard({ initialPlaces, ai, usingDefaultPassword }: Admi
           </div>
         )}
 
-        <section className="rounded-[32px] hairline border-black/10 bg-white p-5 shadow-panel sm:p-8">
+        <section className="glass glass-thick rounded-[32px] p-5 sm:p-8">
           <div className="mb-8">
             <h1 className="text-xl font-medium">
               {editing ? `Edit ${editing.name}` : "Add a place"}

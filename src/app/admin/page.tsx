@@ -21,9 +21,13 @@ export const metadata: Metadata = {
 export default async function AdminPage() {
   await connection();
 
+  const places = await getPlaceStore().list();
+  const backdrop = places.flatMap((p) => (p.image ? [p.image] : []));
+
   if (!(await isAdmin())) {
     return (
       <AdminLogin
+        backdrop={backdrop}
         enabled={adminLoginEnabled()}
         defaultPasswordHint={
           usingDefaultPassword() && adminLoginEnabled() ? DEFAULT_ADMIN_PASSWORD : null
@@ -34,7 +38,8 @@ export default async function AdminPage() {
 
   return (
     <AdminDashboard
-      initialPlaces={await getPlaceStore().list()}
+      initialPlaces={places}
+      backdrop={backdrop}
       ai={{ enabled: aiConfigured(), model: aiModel() }}
       usingDefaultPassword={usingDefaultPassword()}
     />

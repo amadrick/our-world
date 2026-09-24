@@ -41,11 +41,11 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
       </div>
 
       {places.length === 0 ? (
-        <p className="mt-3 rounded-[28px] hairline border-dashed border-black/20 px-6 py-10 text-center text-base text-muted-foreground">
+        <p className="glass glass-thick mt-3 rounded-[28px] px-6 py-10 text-center text-base text-muted-foreground">
           Nothing here yet. Places you add show up here and on the guide right away.
         </p>
       ) : (
-        <ul className="mt-3 divide-y-[0.5px] divide-black/10 overflow-hidden rounded-[28px] hairline border-black/10 bg-white">
+        <ul className="glass glass-thick mt-3 divide-y-[0.5px] divide-black/10 overflow-hidden rounded-[28px]">
           {places.map((place) => (
             <li key={place.id} className="flex items-center gap-3.5 py-3 pr-2 pl-4">
               <PlaceImage

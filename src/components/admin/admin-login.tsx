@@ -10,13 +10,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { site } from "@/config/site";
 import { ApiError, signIn } from "@/lib/admin/api";
+import { ImageBackdrop } from "./image-backdrop";
 
 interface AdminLoginProps {
+  backdrop: string[];
   enabled: boolean;
   defaultPasswordHint: string | null;
 }
 
-export function AdminLogin({ enabled, defaultPasswordHint }: AdminLoginProps) {
+export function AdminLogin({ backdrop, enabled, defaultPasswordHint }: AdminLoginProps) {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [pending, setPending] = useState(false);
@@ -36,8 +38,9 @@ export function AdminLogin({ enabled, defaultPasswordHint }: AdminLoginProps) {
   };
 
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center bg-map px-5 py-10">
-      <div className="w-full max-w-sm rounded-[32px] hairline border-black/10 bg-white p-7 shadow-panel sm:p-8">
+    <main className="relative isolate flex min-h-dvh flex-col items-center justify-center px-5 py-10">
+      <ImageBackdrop images={backdrop} />
+      <div className="glass glass-thick w-full max-w-sm rounded-[32px] p-7 sm:p-8">
         <h1 className="text-xl font-medium">Add places</h1>
         <p className="mt-2 text-base text-muted-foreground">
           Sign in to add recommendations to {site.title}.
@@ -74,14 +77,14 @@ export function AdminLogin({ enabled, defaultPasswordHint }: AdminLoginProps) {
             )}
           </form>
         ) : (
-          <p className="mt-6 rounded-[20px] bg-secondary px-4 py-3 text-sm">
+          <p className="glass-fill mt-6 rounded-[20px] px-4 py-3 text-sm">
             Admin sign-in is turned off until ADMIN_PASSWORD is set for this deployment.
           </p>
         )}
       </div>
       <Link
         href="/"
-        className="mt-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+        className="glass glass-interactive mt-6 inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-sm"
       >
         <ArrowLeft size={14} />
         Back to the guide

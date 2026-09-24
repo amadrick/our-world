@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Loading() {
   return (
     <main className="relative h-dvh w-full overflow-hidden bg-map" aria-busy>
-      <div className="absolute top-4 bottom-4 left-4 hidden w-[400px] flex-col gap-4 rounded-[32px] hairline border-black/10 bg-white p-6 shadow-panel lg:flex">
+      <div className="absolute top-4 bottom-4 left-4 hidden w-[400px] flex-col gap-4 rounded-[32px] glass p-6 lg:flex">
         <Skeleton className="mt-1 h-8 w-72" />
         <Skeleton className="h-4 w-full" />
         <div className="flex flex-wrap gap-2 pt-3">
@@ -21,7 +21,7 @@ export default function Loading() {
           </div>
         ))}
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-[48%] rounded-t-[32px] bg-white p-5 lg:hidden">
+      <div className="absolute inset-x-2 bottom-2 h-[48%] rounded-[32px] glass p-5 lg:hidden">
         <Skeleton className="mx-auto h-1 w-9" />
         <Skeleton className="mt-5 h-6 w-64" />
         {Array.from({ length: 3 }, (_, i) => (

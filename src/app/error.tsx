@@ -18,7 +18,7 @@ export default function Error({
 
   return (
     <main className="flex min-h-dvh items-center justify-center bg-map p-6">
-      <div className="max-w-sm rounded-[32px] hairline border-black/10 bg-white p-8 text-center shadow-panel">
+      <div className="max-w-sm glass glass-thick rounded-[32px] p-8 text-center">
         <p className="text-lg font-medium">Something went sideways</p>
         <p className="mt-2 text-base text-muted-foreground">
           The guide couldn’t load just now. Give it another try in a moment.

@@ -97,7 +97,7 @@ function Section({ title, hint }: { title: string; hint?: string }) {
 
 function Callout({ children }: { children: React.ReactNode }) {
   return (
-    <p role="alert" className="flex gap-2.5 rounded-[20px] bg-secondary px-4 py-3 text-sm">
+    <p role="alert" className="glass-fill flex gap-2.5 rounded-[20px] px-4 py-3 text-sm">
       <AlertCircle size={16} className="mt-px shrink-0 text-muted-foreground" />
       <span>{children}</span>
     </p>
@@ -151,7 +151,7 @@ function CandidateList({
           <button
             type="button"
             onClick={() => onChoose(candidate)}
-            className="flex w-full cursor-pointer items-center gap-3.5 rounded-[20px] p-3 text-left transition-colors hover:bg-secondary/70 focus-visible:bg-secondary/70 focus-visible:outline-none"
+            className="flex w-full cursor-pointer items-center gap-3.5 rounded-[20px] p-3 text-left transition-colors hover:bg-white/50 focus-visible:bg-white/50 focus-visible:outline-none"
           >
             {candidate.category ? (
               <CategoryBadge category={candidate.category} />
@@ -348,7 +348,7 @@ export function PlaceForm({
     <form onSubmit={save} className="space-y-10">
       <div className="space-y-4">
         <Section title={editing ? "Place" : "Found it"} />
-        <div className="overflow-hidden rounded-[24px] hairline border-black/10">
+        <div className="overflow-hidden rounded-[24px] hairline border-black/10 bg-white/40">
           <LocationPreview lat={draft.lat} lng={draft.lng} className="h-44 sm:h-52" />
           <div className="flex items-center gap-3 border-t-[0.5px] border-black/10 py-2 pr-2 pl-4">
             <MapPin size={16} className="shrink-0 text-muted-foreground" />
@@ -497,7 +497,7 @@ export function PlaceForm({
         </div>
       </div>
 
-      <div className="sticky bottom-0 -mx-5 space-y-3 border-t-[0.5px] border-black/10 bg-white px-5 pt-4 pb-[max(env(safe-area-inset-bottom),16px)] sm:static sm:mx-0 sm:border-0 sm:p-0">
+      <div className="sticky bottom-0 -mx-5 space-y-3 border-t-[0.5px] border-black/10 bg-white/70 px-5 pt-4 pb-[max(env(safe-area-inset-bottom),16px)] backdrop-blur-xl sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
         {error && <Callout>{error}</Callout>}
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button

@@ -31,13 +31,14 @@ export function Pill({
       type="button"
       aria-pressed={active}
       className={cn(
-        "inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 rounded-full hairline px-4 text-base whitespace-nowrap transition-colors duration-150 select-none active:scale-[0.97]",
+        "inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-4 text-base whitespace-nowrap select-none",
         "focus-visible:ring-4 focus-visible:ring-black/10 focus-visible:outline-none",
-        active
-          ? "border-transparent bg-foreground text-white"
-          : floating
-            ? "border-black/10 bg-white shadow-float"
-            : "border-black/15 bg-white hover:bg-secondary",
+        // Over the map pills are glass; on the glass panel they're fills, never glass on glass.
+        floating
+          ? cn("glass glass-interactive", active ? "glass-ink" : "glass-refract")
+          : active
+            ? "hairline border-transparent bg-[rgb(22_22_26/0.86)] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.22)] transition-colors active:scale-[0.97]"
+            : "glass-fill active:scale-[0.97]",
         className,
       )}
       {...props}
@@ -107,7 +108,7 @@ function NeighborhoodPicker({
 export function FilterBar({ filters, onChange, neighborhoods, available, layout }: FilterBarProps) {
   const floating = layout === "scroll";
   const row = floating
-    ? "no-scrollbar scroll-fade-x pointer-events-auto flex gap-2 overflow-x-auto px-3 py-2"
+    ? "no-scrollbar pointer-events-auto flex gap-2 overflow-x-auto px-3 py-2"
     : "flex flex-wrap gap-2";
 
   const toggleTag = (tag: TagId) =>

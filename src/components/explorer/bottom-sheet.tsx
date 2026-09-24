@@ -22,7 +22,15 @@ interface BottomSheetProps {
 }
 
 const SNAPS: SheetSnap[] = ["full", "mid", "peek"];
-const EASE = "transform 420ms cubic-bezier(0.32, 0.72, 0, 1)";
+const CURVE = "420ms cubic-bezier(0.32, 0.72, 0, 1)";
+// The sheet slides and, between snap points, morphs its inset, corners, and opacity.
+const EASE = ["transform", "left", "right", "bottom", "border-radius", "background-color"]
+  .map((property) => `${property} ${CURVE}`)
+  .join(", ");
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 interface DragState {
   pointerId: number;
@@ -62,7 +70,7 @@ export function BottomSheet({
   const moveTo = (offset: number, animate: boolean) => {
     const sheet = sheetRef.current;
     if (!sheet) return;
-    sheet.style.transition = animate ? EASE : "none";
+    sheet.style.transition = animate && !prefersReducedMotion() ? EASE : "none";
     sheet.style.transform = `translate3d(0, ${offset}px, 0)`;
   };
 
@@ -148,7 +156,11 @@ export function BottomSheet({
     <div
       ref={sheetRef}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-20 flex flex-col rounded-t-[32px] border-t-[0.5px] border-black/10 bg-white shadow-[0_-16px_48px_-20px_rgb(0_0_0/0.2)] will-change-transform",
+        "glass fixed z-20 flex flex-col will-change-transform",
+        // Partial heights float inset so the map peeks around them; full height is edge to edge and more opaque.
+        snap === "full"
+          ? "glass-thick inset-x-0 bottom-0 rounded-t-[32px] rounded-b-none"
+          : "inset-x-2 bottom-2 rounded-[32px]",
         className,
       )}
       style={{ height: heights.full, transform: `translate3d(0, ${offsetFor(snap)}px, 0)` }}

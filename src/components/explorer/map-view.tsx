@@ -201,14 +201,14 @@ export function MapView({
 
       {status === "loading" && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <span className="animate-pulse rounded-full hairline border-black/10 bg-white px-4 py-2 text-sm text-muted-foreground shadow-float">
+          <span className="glass animate-pulse rounded-full px-4 py-2 text-sm text-muted-foreground">
             Loading the map…
           </span>
         </div>
       )}
 
       {status === "error" && (
-        <div className="absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center rounded-[28px] hairline border-black/10 bg-white p-6 text-center shadow-panel lg:left-[440px]">
+        <div className="absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center glass glass-thick rounded-[28px] p-6 text-center lg:left-[440px]">
           <MapIcon size={22} className="text-muted-foreground" />
           <p className="mt-3 text-base font-medium">The map couldn’t load</p>
           <p className="mt-1 text-sm text-muted-foreground">

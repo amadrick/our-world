@@ -6,19 +6,19 @@ import type {
 } from "maplibre-gl";
 
 /**
- * "Paper": a flat, grayscale basemap for OpenMapTiles-schema vector tiles
- * (what OpenFreeMap serves for free, no key needed). No casings, no landuse
- * tints, no POIs: land, water, parks and streets in soft neutrals, labeled in
- * Inter, so the pins are the only thing with contrast.
+ * "Paper": a calm, flat basemap for OpenMapTiles-schema vector tiles (what
+ * OpenFreeMap serves for free, no key needed). No casings, no landuse tints, no
+ * POIs: soft neutral land and streets with a whisper of blue water and sage
+ * parks for the glass UI to pick up, labeled in Inter.
  */
 
 export type TileSource = "openfreemap" | "offline";
 
 const C = {
-  land: "#F4F4F3",
-  water: "#D3D6D9",
-  park: "#E5E7E3",
-  wood: "#E1E3DF",
+  land: "#F5F4F1",
+  water: "#C9D7E2",
+  park: "#DDE6D6",
+  wood: "#D7E1D0",
   sand: "#EEEDEA",
   building: "#E9E9E7",
   road: "#FFFFFF",
@@ -30,8 +30,8 @@ const C = {
   label: "#8F8F8D",
   labelStrong: "#6E6E6C",
   hood: "#A3A3A1",
-  waterLabel: "#9CA0A4",
-  halo: "rgba(244,244,243,0.92)",
+  waterLabel: "#8397A8",
+  halo: "rgba(245,244,241,0.92)",
 };
 
 const FONT = ["Inter"];

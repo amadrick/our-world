@@ -61,14 +61,14 @@ export function PlaceCard({
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
         "group flex w-full cursor-pointer flex-col gap-2 rounded-[22px] p-1.5 text-left transition-colors",
-        "hover:bg-secondary/70 focus-visible:bg-secondary/70 focus-visible:outline-none active:bg-secondary",
-        active && "bg-secondary/70",
+        "hover:bg-white/40 focus-visible:bg-white/40 focus-visible:outline-none active:bg-white/55",
+        active && "bg-white/45",
       )}
     >
       <PlaceImage
         place={place}
         sizes="(min-width: 1024px) 180px, 46vw"
-        className="rounded-[18px]"
+        className="rounded-[14px]"
         imageClassName="transition-transform duration-300 ease-out group-hover:scale-[1.03]"
       />
       <span className="block min-w-0 px-1.5 pb-1">
