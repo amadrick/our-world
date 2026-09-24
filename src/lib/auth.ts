@@ -14,6 +14,11 @@ export function usingDefaultPassword(): boolean {
   return !process.env.ADMIN_PASSWORD;
 }
 
+/** The built-in password only works locally; a deployed site must set its own. */
+export function adminLoginEnabled(): boolean {
+  return !(usingDefaultPassword() && process.env.NODE_ENV === "production");
+}
+
 function safeEqual(a: string, b: string): boolean {
   const ha = createHash("sha256").update(a).digest();
   const hb = createHash("sha256").update(b).digest();
@@ -28,7 +33,7 @@ function sessionToken(): string {
 }
 
 export function checkPassword(candidate: string): boolean {
-  return safeEqual(candidate, adminPassword());
+  return adminLoginEnabled() && safeEqual(candidate, adminPassword());
 }
 
 export const sessionCookie = {

@@ -8,7 +8,11 @@
       "address": "600 Guerrero St, San Francisco, CA 94110",
       "lat": 37.76146,
       "lng": -122.42395,
-      "tags": ["andys-pick", "brunch", "walkable"],
+      "tags": [
+        "andys-pick",
+        "brunch",
+        "walkable"
+      ],
       "note": "Go early. The morning buns and croissants sell out, and the line builds by mid-morning.",
       "summary": "The Mission bakery that helped define San Francisco's bread-and-pastry scene. Expect flaky croissants, morning buns, and seasonal tarts alongside good coffee, with a line that moves steadily. Grab something to go and walk two blocks to Dolores Park.",
       "summarySource": "written",
@@ -22,7 +26,11 @@
       "address": "1658 Market St, San Francisco, CA 94102",
       "lat": 37.77356,
       "lng": -122.42165,
-      "tags": ["andys-pick", "book-ahead", "groups"],
+      "tags": [
+        "andys-pick",
+        "book-ahead",
+        "groups"
+      ],
       "note": "The roast chicken with bread salad serves two and takes about an hour, so order it as soon as you sit down.",
       "summary": "A San Francisco institution since 1979, with a sunny, many-windowed dining room and a copper bar that stays lively all night. The wood-oven roast chicken is the legend, but oysters and the Caesar salad are just as much a part of the ritual. Reserve ahead for dinner.",
       "summarySource": "written",
@@ -36,7 +44,9 @@
       "address": "1517 Polk St, San Francisco, CA 94109",
       "lat": 37.79097,
       "lng": -122.42092,
-      "tags": ["walkable"],
+      "tags": [
+        "walkable"
+      ],
       "note": "No reservations and just one long counter. Get in line before it opens.",
       "summary": "A family-run seafood counter that has been shucking oysters on Polk Street for more than a century. Pull up a stool for oysters, cracked crab, and clam chowder, served with plenty of friendly banter. It keeps daytime hours, so plan it as a long lunch.",
       "summarySource": "written",
@@ -50,7 +60,9 @@
       "address": "2889 Mission St, San Francisco, CA 94110",
       "lat": 37.75087,
       "lng": -122.41816,
-      "tags": ["walkable"],
+      "tags": [
+        "walkable"
+      ],
       "note": "Ask for your burrito dorado style and they'll crisp it on the grill.",
       "summary": "A no-frills Mission taqueria famous for rice-free burritos packed with grilled meat, beans, and salsa. It has topped just about every best-burrito ranking there is, and the line reflects it. Quick, casual, and the quintessential Mission burrito experience.",
       "summarySource": "written",
@@ -64,7 +76,10 @@
       "address": "1529 Fillmore St, San Francisco, CA 94115",
       "lat": 37.78371,
       "lng": -122.43295,
-      "tags": ["book-ahead", "groups"],
+      "tags": [
+        "book-ahead",
+        "groups"
+      ],
       "note": "Small plates come around the room on carts and trays. Share everything.",
       "summary": "Inventive California cooking served dim sum style, with carts and trays of small plates passing your table all night. The namesake fried quail is a must. Reservations go quickly, though a few seats are usually held for walk-ins.",
       "summarySource": "written",
@@ -78,7 +93,9 @@
       "address": "309 Clement St, San Francisco, CA 94118",
       "lat": 37.78291,
       "lng": -122.46257,
-      "tags": ["groups"],
+      "tags": [
+        "groups"
+      ],
       "note": "Get the tea leaf salad. They mix it at the table.",
       "summary": "A beloved Inner Richmond spot that introduced a generation of San Franciscans to Burmese food. The tea leaf and rainbow salads are tossed tableside, and the curries and flaky platha are made for sharing. Great for a group, with a wait at peak times.",
       "summarySource": "written",
@@ -92,7 +109,11 @@
       "address": "3010 20th St, San Francisco, CA 94110",
       "lat": 37.75922,
       "lng": -122.41119,
-      "tags": ["andys-pick", "late-night", "groups"],
+      "tags": [
+        "andys-pick",
+        "late-night",
+        "groups"
+      ],
       "note": "The menu changes theme every few months, so ask what's new.",
       "summary": "One of the city's most celebrated cocktail bars, known for a menu that reinvents itself around a new theme a couple of times a year. The drinks are playful but serious, and the food is better than bar food needs to be. Busy on weekends, but worth squeezing in.",
       "summarySource": "written",
@@ -106,7 +127,9 @@
       "address": "650 Gough St, San Francisco, CA 94102",
       "lat": 37.7794,
       "lng": -122.42334,
-      "tags": ["late-night"],
+      "tags": [
+        "late-night"
+      ],
       "note": "Three floors of tiki. Try something from the rum history pages of the menu.",
       "summary": "A multilevel tiki bar with one of the largest rum collections in the country, all dim lights, waterfalls, and nautical kitsch. The menu walks through rum history, from classic punches to flaming bowls for the table. It's small and popular, so arrive early.",
       "summarySource": "written",
@@ -120,7 +143,9 @@
       "address": "2765 Hyde St, San Francisco, CA 94109",
       "lat": 37.80656,
       "lng": -122.42071,
-      "tags": ["walkable"],
+      "tags": [
+        "walkable"
+      ],
       "note": "Order an Irish coffee and watch them pour a dozen at once.",
       "summary": "The corner cafe at the end of the Hyde Street cable car line that claims to have introduced Irish coffee to America in 1952. Bartenders still pour them in long rows, and the old-school room fills with locals and visitors alike. Pair it with a cable car ride.",
       "summarySource": "written",
@@ -134,7 +159,9 @@
       "address": "270 7th St, San Francisco, CA 94103",
       "lat": 37.77703,
       "lng": -122.40844,
-      "tags": ["walkable"],
+      "tags": [
+        "walkable"
+      ],
       "note": "A big, airy space and a good place to sit for a while.",
       "summary": "A local roaster's flagship in a soaring, sunlit warehouse with the roasting operation on display. Expect carefully sourced coffee and espresso drinks done well. A calm place to start the day before exploring SoMa or the Mission.",
       "summarySource": "written",
@@ -148,7 +175,9 @@
       "address": "601 Vallejo St, San Francisco, CA 94133",
       "lat": 37.79867,
       "lng": -122.4073,
-      "tags": ["walkable"],
+      "tags": [
+        "walkable"
+      ],
       "note": "Pair an espresso here with the walk up to Coit Tower.",
       "summary": "Opened in 1956 and often called the first espresso house on the West Coast, this North Beach cafe was a hangout for Beat Generation writers. The walls are layered with history and the cappuccinos are strong. A perfect stop while wandering North Beach.",
       "summarySource": "written",
@@ -162,7 +191,12 @@
       "address": "1 Ferry Building, San Francisco, CA 94111",
       "lat": 37.79555,
       "lng": -122.39348,
-      "tags": ["andys-pick", "brunch", "walkable", "views"],
+      "tags": [
+        "andys-pick",
+        "brunch",
+        "walkable",
+        "views"
+      ],
       "note": "Come on a Saturday morning for the farmers market out front.",
       "summary": "The restored 1898 ferry terminal is now a food hall packed with local favorites: oysters, cheese, bakeries, coffee, and more. Grab a snack and eat by the water with views of the Bay Bridge. The farmers market outside on Tuesdays, Thursdays, and Saturdays is one of the city's best.",
       "summarySource": "written",
@@ -176,7 +210,10 @@
       "address": "680 Point Lobos Ave, San Francisco, CA 94121",
       "lat": 37.77976,
       "lng": -122.51161,
-      "tags": ["outdoors", "views"],
+      "tags": [
+        "outdoors",
+        "views"
+      ],
       "note": "Start at the Lands End Lookout and follow the Coastal Trail east toward the bridge.",
       "summary": "A cliffside trail on the city's rugged northwest corner, winding through cypress trees with sweeping views of the Golden Gate Bridge and the Pacific. Detour to the Sutro Baths ruins and the hidden labyrinth along the way. Wear layers, since it's often windy and foggy out here.",
       "summarySource": "written",
@@ -190,7 +227,10 @@
       "address": "Pier 33, San Francisco, CA 94133",
       "lat": 37.8065,
       "lng": -122.40452,
-      "tags": ["book-ahead", "views"],
+      "tags": [
+        "book-ahead",
+        "views"
+      ],
       "note": "Ferries leave from Pier 33. Book tickets well ahead because they sell out.",
       "summary": "The former federal penitentiary on an island in the bay, reached by ferry from Pier 33. The cellhouse audio tour, narrated by former inmates and guards, is the highlight, and the ride out has great skyline views. Tickets often sell out days or weeks ahead.",
       "summarySource": "written",
@@ -204,7 +244,12 @@
       "address": "Dolores St & 19th St, San Francisco, CA 94114",
       "lat": 37.75972,
       "lng": -122.42713,
-      "tags": ["outdoors", "views", "groups", "walkable"],
+      "tags": [
+        "outdoors",
+        "views",
+        "groups",
+        "walkable"
+      ],
       "note": "The upper southwest corner has the best view of the skyline.",
       "summary": "San Francisco's favorite backyard: sloping lawns with a postcard view of downtown, full of picnickers on any sunny afternoon. Pick up food from the nearby bakeries and taquerias and claim a patch of grass. It's at its best on warm weekend afternoons.",
       "summarySource": "written",
@@ -218,7 +263,11 @@
       "address": "Golden Gate Bridge Welcome Center, San Francisco, CA 94129",
       "lat": 37.80778,
       "lng": -122.47485,
-      "tags": ["andys-pick", "views", "outdoors"],
+      "tags": [
+        "andys-pick",
+        "views",
+        "outdoors"
+      ],
       "note": "Walk out at least to the first tower, and bring a jacket.",
       "summary": "The city's most famous landmark is best experienced on foot. Start at the welcome center on the south side and walk out onto the span for views of the bay, Alcatraz, and the skyline. Fog rolls in fast, so clear mornings are your best bet for photos.",
       "summarySource": "written",
@@ -232,7 +281,10 @@
       "address": "710 Steiner St, San Francisco, CA 94117",
       "lat": 37.77622,
       "lng": -122.43279,
-      "tags": ["views", "walkable"],
+      "tags": [
+        "views",
+        "walkable"
+      ],
       "note": "Climb to the top of the park for the classic view with downtown behind.",
       "summary": "A row of colorful Victorian houses on Steiner Street, framed by the downtown skyline, that has starred in countless postcards and TV openings. The best vantage point is the hill in Alamo Square Park across the street. An easy stop between Hayes Valley and the Haight.",
       "summarySource": "written",
@@ -246,7 +298,10 @@
       "address": "501 Twin Peaks Blvd, San Francisco, CA 94114",
       "lat": 37.75493,
       "lng": -122.44664,
-      "tags": ["views", "outdoors"],
+      "tags": [
+        "views",
+        "outdoors"
+      ],
       "note": "Go at sunset or on a clear night for the city lights.",
       "summary": "Two hills near the middle of the city with a sweeping 360-degree view of San Francisco and the bay from Christmas Tree Point. It's a short drive or rideshare to the top, and a clear day or night makes it unforgettable. Bring a warm layer for the wind.",
       "summarySource": "written",

@@ -34,15 +34,20 @@ export function aiModel(): string {
   return process.env.OPENAI_MODEL || DEFAULT_MODEL;
 }
 
+const PLACEHOLDER_SUBJECT: Record<CategoryId, string> = {
+  restaurant: "A restaurant",
+  bar: "A bar",
+  coffee: "A coffee spot",
+  activity: "Something to do",
+  sight: "A sight worth seeing",
+};
+
+/** Plain, clearly generic text used when OpenAI isn't available. */
 export function placeholderSummary(req: SummaryRequest): string {
-  const category = getCategory(req.category).label.toLowerCase();
-  const article = /^[aeiou]/.test(category) ? "An" : "A";
-  const where = req.neighborhood ? `in ${req.neighborhood}` : "in San Francisco";
-  const tags = req.tags
-    .filter((t) => t !== "andys-pick")
-    .map((t) => getTag(t).badge.toLowerCase());
+  const where = req.neighborhood || "San Francisco";
+  const tags = req.tags.filter((t) => t !== "andys-pick").map((t) => getTag(t).badge);
   const extra = tags.length ? ` ${tags.join(" · ")}.` : "";
-  return `${article} ${category} ${where}.${extra}`.replace(/^./, (c) => c.toUpperCase());
+  return `${PLACEHOLDER_SUBJECT[req.category]} in ${where}.${extra}`;
 }
 
 function userPrompt(req: SummaryRequest): string {

@@ -224,8 +224,11 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3">{list}</div>
         </div>
         {selected && (
-          <div className="min-h-0 flex-1 overflow-y-auto px-6 pt-4 pb-6 animate-in fade-in slide-in-from-left-2 duration-200">
-            <PlaceDetail key={selected.id} place={selected} onBack={closeDetail} />
+          <div
+            key={selected.id}
+            className="min-h-0 flex-1 overflow-y-auto px-6 pt-4 pb-6 animate-in fade-in slide-in-from-left-2 duration-200"
+          >
+            <PlaceDetail place={selected} onBack={closeDetail} />
           </div>
         )}
       </aside>
@@ -274,6 +277,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           snap={snap}
           heights={sheetHeights}
           onSnapChange={setSnap}
+          scrollKey={selected ? `place:${selected.id}` : "list"}
           accessory={
             <MapButton
               label="Show all places"
