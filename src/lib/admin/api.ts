@@ -61,9 +61,10 @@ export function requestSummary(payload: PlaceInputPayload) {
 
 export interface SignatureResponse {
   signatureSubject?: string;
+  signatureRationale?: string;
   visual?: string;
   scene?: "object" | "room";
-  source: "ai" | "none";
+  source: "web" | "model" | "none";
   notice?: string;
 }
 
@@ -72,6 +73,8 @@ export function researchSignature(payload: {
   category?: string;
   neighborhood: string;
   address: string;
+  lat?: number;
+  lng?: number;
 }) {
   return request<SignatureResponse>("/api/admin/signature", {
     method: "POST",

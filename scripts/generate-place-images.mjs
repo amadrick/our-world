@@ -18,7 +18,7 @@
 // data/place-image-hints.json override the default subject, which comes from
 // each place's signatureSubject.
 
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -29,19 +29,11 @@ import {
   fallbackHint,
 } from "../src/lib/images/prompt.mjs";
 import { renderImage, saveImage, styleReferences } from "../src/lib/images/render.mjs";
+import { loadEnvLocal } from "./load-env.mjs";
 
 const ROOT = process.cwd();
 const PLACES_FILE = process.env.PLACES_FILE || path.join(ROOT, "data", "places.json");
 const HINTS_FILE = path.join(ROOT, "data", "place-image-hints.json");
-
-function loadEnvLocal() {
-  const file = path.join(ROOT, ".env.local");
-  if (!existsSync(file)) return;
-  for (const line of readFileSync(file, "utf8").split("\n")) {
-    const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
-    if (match && !process.env[match[1]]) process.env[match[1]] = match[2].replace(/^["']|["']$/g, "");
-  }
-}
 
 function parseArgs(argv) {
   const args = { ids: [], all: false, print: false, refs: false, photo: null, import: null };
@@ -61,7 +53,7 @@ function parseArgs(argv) {
   return args;
 }
 
-loadEnvLocal();
+loadEnvLocal(ROOT);
 const args = parseArgs(process.argv.slice(2));
 const data = JSON.parse(await readFile(PLACES_FILE, "utf8"));
 const hints = existsSync(HINTS_FILE) ? JSON.parse(await readFile(HINTS_FILE, "utf8")) : {};

@@ -37,6 +37,7 @@ interface Draft {
   summary: string;
   summarySource: SummarySource;
   signatureSubject: string;
+  signatureRationale?: string;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
   image?: string;
@@ -61,6 +62,7 @@ function draftFromPlace(place: Place): Draft {
     summary: place.summary,
     summarySource: place.summarySource,
     signatureSubject: place.signatureSubject ?? "",
+    signatureRationale: place.signatureRationale,
     appleMapsUrl: place.appleMapsUrl,
     googleMapsUrl: place.googleMapsUrl,
     image: place.image,
@@ -243,10 +245,12 @@ export function PlaceForm({
         category: target.category ?? undefined,
         neighborhood: target.neighborhood,
         address: target.address,
+        lat: target.lat,
+        lng: target.lng,
       });
       if (result.signatureSubject) {
-        const signatureSubject = result.signatureSubject;
-        setDraft((d) => (d ? { ...d, signatureSubject } : d));
+        const { signatureSubject, signatureRationale } = result;
+        setDraft((d) => (d ? { ...d, signatureSubject, signatureRationale } : d));
         setImageHint({ visual: result.visual, scene: result.scene });
       }
       setSignatureNotice(result.notice ?? null);
@@ -444,7 +448,7 @@ export function PlaceForm({
               id="signature"
               value={draft.signatureSubject}
               onChange={(e) => {
-                update({ signatureSubject: e.target.value });
+                update({ signatureSubject: e.target.value, signatureRationale: undefined });
                 setImageHint({});
               }}
               placeholder={researching ? "Looking it up…" : "Morning bun, a martini, the courtyard"}
@@ -463,6 +467,9 @@ export function PlaceForm({
               </Button>
             )}
           </div>
+          {draft.signatureRationale && (
+            <p className="text-sm text-pretty">{draft.signatureRationale}</p>
+          )}
           <p className="flex gap-2 text-sm text-muted-foreground">
             {signatureNotice && <AlertCircle size={14} className="mt-0.5 shrink-0" />}
             {signatureNotice ??

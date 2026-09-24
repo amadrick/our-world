@@ -1,5 +1,6 @@
 import { getCategory, getTag } from "@/lib/places/taxonomy";
 import type { CategoryId, TagId } from "@/lib/places/types";
+import { textModel } from "./models.mjs";
 
 export interface SummaryRequest {
   name: string;
@@ -17,7 +18,6 @@ export interface SummaryResult {
   notice?: string;
 }
 
-const DEFAULT_MODEL = "gpt-5-mini";
 
 const SYSTEM_PROMPT = `You write short blurbs for a wedding-week guide to San Francisco that the couple shares with their guests.
 Write 2-3 sentences (45-70 words) in a warm, confident, plain-spoken voice.
@@ -31,7 +31,7 @@ export function aiConfigured(): boolean {
 }
 
 export function aiModel(): string {
-  return process.env.OPENAI_MODEL || DEFAULT_MODEL;
+  return textModel();
 }
 
 const PLACEHOLDER_SUBJECT: Record<CategoryId, string> = {

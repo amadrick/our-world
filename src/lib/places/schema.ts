@@ -42,6 +42,7 @@ export const placeInputSchema = z.object({
   summary: z.string().trim().max(1500).default(""),
   summarySource: z.enum(["ai", "written", "placeholder"]).default("written"),
   signatureSubject: optionalText(200),
+  signatureRationale: optionalText(500),
   appleMapsUrl: mapsUrl,
   googleMapsUrl: mapsUrl,
   image: z

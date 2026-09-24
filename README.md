@@ -49,8 +49,9 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
    the exact same place card.
 3. Check the pin on the little map, pick a category, and tap any tags that fit.
 4. **Known for** fills itself in: with an OpenAI key, the admin searches the web
-   for the place's signature dish, drink, or room. Edit it, tap **Look it up**
-   again, or type your own.
+   for the place's signature dish, drink, or room and shows a one-line reason
+   under it. Edit it, tap **Look it up** again, or type your own. Without a
+   key, or if nothing reliable turns up, the field says it needs a signature.
 5. Optionally add your note ("Order the morning bun").
 6. Tap **Write it for me** for an AI summary (or write your own), then
    **Add to the map**. If you skip the summary, one is written when you save.
@@ -62,8 +63,9 @@ removed from the list below the form. Changing what a place is known for redraws
 its illustration.
 
 `data/places.json` holds Andy and Kirissa's list: 75 places geocoded against
-OpenStreetMap and Overture Maps, each with a short neutral summary and a
-researched `signatureSubject` (what it's known for). Notes are left empty for
+OpenStreetMap and Overture Maps, each with a short neutral summary, a
+researched `signatureSubject` (what it's known for), and a
+`signatureRationale` (why, and according to whom). Notes are left empty for
 them to write in their own words from `/admin`, and no place is marked
 **Top pick** yet (that filter appears once one is).
 
@@ -97,6 +99,35 @@ default `gpt-image-1`). `--import` needs no key. Paste the `--print` prompt into
 any image tool, then import the result. The locked prompt alone keeps the series
 consistent. `--refs` can tighten it further, but models tend to copy props from
 the anchors (a spoon, a tap handle), so check what comes back.
+
+### The signature pipeline
+
+Adding a place in `/admin` runs the whole routine:
+
+1. **Identity:** the search or pasted Maps link resolves the name, address,
+   and coordinates.
+2. **Research:** `POST /api/admin/signature` asks OpenAI, with web search, for
+   the signature, a one-line rationale, and a drawable description
+   (`src/lib/ai/signature-research.mjs`). If web search isn't available, it
+   uses the model's own knowledge and flags the result. With no key it
+   returns "needs a signature".
+3. **Save:** the place is stored with `signatureSubject` and
+   `signatureRationale`.
+4. **Image:** right after saving, `POST /api/admin/places/<id>/image` draws the
+   still from the signature and attaches it to the place. It runs after the
+   save rather than inside it, because a render takes up to a minute, so the
+   place appears at once and its illustration a moment later.
+
+The same steps run in batch from the command line, which is how to backfill
+once a key is in `.env.local`:
+
+```bash
+npm run signatures -- --images          # research + draw every place missing a signature
+npm run signatures -- toronado --images # redo one place end to end
+npm run signatures -- --all             # re-research everything (then: npm run images -- --all)
+npm run signatures -- --dry-run zuni    # see what it finds without saving
+npm run images                          # draw any place that still has no image
+```
 
 ## How it's built
 
@@ -186,6 +217,7 @@ Accessibility fallbacks:
 | `npm run build` / `npm start` | Production build and server (port 4617) |
 | `npm run lint` / `npm run typecheck` | ESLint and TypeScript |
 | `npm test` | Unit tests (Maps link parsing, filters) |
+| `npm run signatures` | Research what places are known for (see The signature pipeline) |
 | `npm run images` | Generate or import place illustrations (see Place images) |
 | `npm run tiles:offline` | Download an offline copy of the SF basemap (see below) |
 

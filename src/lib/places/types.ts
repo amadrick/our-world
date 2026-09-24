@@ -42,6 +42,8 @@ export interface Place {
   summarySource: SummarySource;
   /** The dish, drink, or room the place is known for, e.g. "Morning bun". */
   signatureSubject?: string;
+  /** One line on why, with where that came from (reviews, the menu, the venue). */
+  signatureRationale?: string;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
   /** Clay illustration of the signature subject, e.g. "/places/tartine-bakery.webp". */
