@@ -9,7 +9,7 @@ let store: PlaceStore | undefined;
 
 export function getPlaceStore(): PlaceStore {
   store ??= new JsonPlaceStore(
-    process.env.PLACES_FILE ?? path.join(process.cwd(), "data", "places.json"),
+    process.env.PLACES_FILE || path.join(process.cwd(), "data", "places.json"),
   );
   return store;
 }

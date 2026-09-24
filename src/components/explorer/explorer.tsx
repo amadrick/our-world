@@ -200,7 +200,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         style={{ width: PANEL_WIDTH }}
         aria-label="Places"
       >
-        <div className={cn("flex min-h-0 flex-1 flex-col", selected && "hidden")}>
+        <div className={cn("min-h-0 flex-1 overflow-y-auto", selected && "hidden")}>
           <header className="px-6 pt-6 pb-5">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {site.name} · Wedding week
@@ -218,10 +218,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               neighborhoods={neighborhoods}
             />
           </div>
-          <div className="border-t border-black/[0.06] px-6">
+          <div className="sticky top-0 z-10 border-y border-black/[0.06] bg-white/95 px-6 backdrop-blur">
             <ResultsSummary count={visible.length} filtersActive={filtersActive} onClear={clearFilters} />
           </div>
-          <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3">{list}</div>
+          <div className="px-3 pt-1 pb-3">{list}</div>
         </div>
         {selected && (
           <div
