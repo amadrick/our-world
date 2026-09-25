@@ -2238,7 +2238,7 @@ Bar · SoMa · 140 New Montgomery St, San Francisco, CA 94105
 
 ## Song Tea & Ceramics
 
-Shop · Lower Pacific Heights · 2120 Sutter St, San Francisco, CA 94115
+Coffee & tea · Lower Pacific Heights · 2120 Sutter St, San Francisco, CA 94115
 
 **Known for:** Rare Chinese and Taiwanese teas and artist-made ceramics (high confidence). The shop's site, Fresh Cup and Time Out all describe small-batch teas sourced directly from producers in China and Taiwan, led by its flagship oolongs, sold alongside handmade ceramics from Taiwan, China and the US.
 

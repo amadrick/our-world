@@ -23,23 +23,28 @@ describe("data/places.json", () => {
     }
   });
 
-  it("puts the non-food places in Shops, Museums, Parks, or Wellness", () => {
-    const section = (id: string) => places.find((p) => p.id === id)?.category;
-    const shops = [
-      "evan-kinori",
-      "rachel-comey",
-      "self-edge",
-      "sf76",
-      "relove",
-      "reliquary",
-      "ministry-of-scent",
-      "heath-ceramics",
-      "william-stout-architectural-books",
-    ];
-    expect(shops.map(section)).toEqual(shops.map(() => "shop"));
-    expect(["sfmoma", "de-young-museum"].map(section)).toEqual(["museum", "museum"]);
-    expect(["golden-gate-park", "ocean-beach"].map(section)).toEqual(["park", "park"]);
-    expect(section("alchemy-springs")).toBe("wellness");
+  it("fills Shops, Museums, Parks, and Wellness with exactly Andy's list", () => {
+    const inSection = (category: Place["category"]) =>
+      places
+        .filter((p) => p.category === category)
+        .map((p) => p.id)
+        .sort();
+    expect(inSection("shop")).toEqual(
+      [
+        "evan-kinori",
+        "rachel-comey",
+        "self-edge",
+        "sf76",
+        "relove",
+        "reliquary",
+        "ministry-of-scent",
+        "heath-ceramics",
+        "william-stout-architectural-books",
+      ].sort(),
+    );
+    expect(inSection("museum")).toEqual(["de-young-museum", "sfmoma"]);
+    expect(inSection("park")).toEqual(["golden-gate-park", "ocean-beach"]);
+    expect(inSection("wellness")).toEqual(["alchemy-springs"]);
   });
 
   it("never tags shops, parks, or wellness with meals or late night", () => {
