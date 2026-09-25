@@ -7,21 +7,12 @@ export const CATEGORY_IDS = [
   "dessert",
   "shop",
   "museum",
-  "activity",
-  "sight",
+  "park",
+  "wellness",
 ] as const;
 export type CategoryId = (typeof CATEGORY_IDS)[number];
 
-export const TAG_IDS = [
-  "top-pick",
-  "brunch",
-  "late-night",
-  "walkable",
-  "book-ahead",
-  "views",
-  "outdoors",
-  "groups",
-] as const;
+export const TAG_IDS = ["top-pick", "dinner", "lunch", "late-night", "brunch", "views"] as const;
 export type TagId = (typeof TAG_IDS)[number];
 
 /**

@@ -10,7 +10,7 @@ or the JSON, then regenerate; edits made here are overwritten.
 
 ## Alchemy Springs
 
-Activity · Nob Hill · 939 Post St, San Francisco, CA 94109
+Wellness · Nob Hill · 939 Post St, San Francisco, CA 94109
 
 **Known for:** 40-person circular sauna (high confidence). SFGATE, the SF Standard and Dwell all single out the circular, tiered sauna by architect Olle Lundberg, billed as the largest freestanding sauna in the country.
 
@@ -765,7 +765,7 @@ Restaurant · North Beach · 542 Green St, San Francisco, CA 94133
 
 ## Golden Gate Park
 
-Activity · Golden Gate Park · 501 Stanyan St, San Francisco, CA 94117
+Park · Golden Gate Park · 501 Stanyan St, San Francisco, CA 94117
 
 **Known for:** Conservatory of Flowers (med confidence). Gardens of Golden Gate Park calls it the oldest public wood-and-glass conservatory in North America and one of San Francisco's most photographed attractions; Wikipedia names it the park's oldest building.
 
@@ -1623,7 +1623,7 @@ Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117
 
 ## Ocean Beach
 
-Activity · Outer Sunset · Great Highway, San Francisco, CA 94122
+Park · Outer Sunset · Great Highway, San Francisco, CA 94122
 
 **Known for:** Surf, fog, and beach bonfires (high confidence). Wikipedia says Ocean Beach is known for its strong currents, surf culture, and foggy late-spring and summer weather; the NPS describes a 3.5-mile beach whose currents suit only experienced surfers.
 

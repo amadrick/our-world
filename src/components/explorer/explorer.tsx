@@ -7,14 +7,18 @@ import { site } from "@/config/site";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
 import { useViewMode } from "@/hooks/use-view-mode";
 import type { MapPadding } from "@/lib/map";
+import { Button } from "@/components/ui/button";
 import {
   EMPTY_FILTERS,
   filterPlaces,
   hasActiveFilters,
+  matchesInOtherSections,
   neighborhoodCounts,
   sortPlaces,
+  tagCounts,
   type PlaceFilters,
 } from "@/lib/places/filters";
+import { FILTER_TAGS, getCategory, getTag } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 import { BottomSheet, type SheetSnap } from "./bottom-sheet";
@@ -22,7 +26,9 @@ import { FilterBar } from "./filter-bar";
 import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
 import { PlaceActions, PlaceDetail, PlaceSheetHeader } from "./place-detail";
-import { PlaceList } from "./place-list";
+import { PlaceList, type NoMatches } from "./place-list";
+
+const FILTER_TAG_IDS = FILTER_TAGS.map((t) => t.id);
 
 const RAIL_WIDTH = 400;
 const RAIL_INSET = 16;
@@ -109,14 +115,16 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
   const sorted = useMemo(() => sortPlaces(places), [places]);
   const visible = useMemo(() => filterPlaces(sorted, filters), [sorted, filters]);
-  const neighborhoods = useMemo(() => neighborhoodCounts(places), [places]);
-  const available = useMemo(
-    () => ({
-      categories: new Set(places.map((p) => p.category)),
-      tags: new Set(places.flatMap((p) => p.tags)),
-    }),
-    [places],
+  const categories = useMemo(() => new Set(places.map((p) => p.category)), [places]);
+  const neighborhoods = useMemo(
+    () => neighborhoodCounts(filterPlaces(places, { ...filters, neighborhood: null })),
+    [places, filters],
   );
+  const pillCounts = useMemo(
+    () => tagCounts(places, filters, FILTER_TAG_IDS),
+    [places, filters],
+  );
+  const elsewhere = useMemo(() => matchesInOtherSections(places, filters), [places, filters]);
   const selected = places.find((p) => p.id === selectedId) ?? null;
   const filtersActive = hasActiveFilters(filters);
   const listMode = mode === "list";
@@ -205,6 +213,26 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const clearFilters = () => changeFilters(EMPTY_FILTERS);
   const closeDetail = () => setSelectedId(null);
 
+  // A section with nothing for the chosen pills points to the matches in other sections.
+  let noMatches: NoMatches | undefined;
+  if (visible.length === 0 && filters.category && elsewhere > 0) {
+    const tagLabels = filters.tags.map((t) => getTag(t).label);
+    noMatches = {
+      title: `Nothing in ${getCategory(filters.category).plural} matches ${tagLabels.join(" + ")}`,
+      body: `But ${elsewhere} ${elsewhere === 1 ? "place" : "places"} in other sections ${elsewhere === 1 ? "does" : "do"}.`,
+      actions: (
+        <>
+          <Button onClick={() => changeFilters({ ...filters, category: null })}>
+            Show {elsewhere === 1 ? "it" : `those ${elsewhere}`}
+          </Button>
+          <Button variant="outline" onClick={() => changeFilters({ ...filters, tags: [] })}>
+            {tagLabels.length === 1 ? `Remove ${tagLabels[0]}` : "Remove these filters"}
+          </Button>
+        </>
+      ),
+    };
+  }
+
   const listProps = {
     places: visible,
     totalCount: places.length,
@@ -213,8 +241,15 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     onSelect: select,
     onHighlight: setHighlightedId,
     onClearFilters: clearFilters,
+    noMatches,
   };
-  const filterProps = { filters, onChange: changeFilters, neighborhoods, available };
+  const filterProps = {
+    filters,
+    onChange: changeFilters,
+    neighborhoods,
+    categories,
+    tagCounts: pillCounts,
+  };
 
   return (
     <main className="relative h-dvh w-full overflow-hidden bg-canvas">

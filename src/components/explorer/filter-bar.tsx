@@ -8,7 +8,7 @@ import { CATEGORY_ICONS } from "@/components/places/category-badge";
 import { TagIcon } from "@/components/places/tag-icon";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import type { PlaceFilters } from "@/lib/places/filters";
-import { CATEGORIES, TAGS } from "@/lib/places/taxonomy";
+import { CATEGORIES, FILTER_TAGS } from "@/lib/places/taxonomy";
 import type { CategoryId, TagId } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 import { ScrollRow } from "./scroll-row";
@@ -16,9 +16,12 @@ import { ScrollRow } from "./scroll-row";
 interface FilterBarProps {
   filters: PlaceFilters;
   onChange: (filters: PlaceFilters) => void;
+  /** Neighborhoods with places in the current section and pills, with how many. */
   neighborhoods: { name: string; count: number }[];
-  /** Only categories and tags that some place uses get a pill. */
-  available: { categories: Set<CategoryId>; tags: Set<TagId> };
+  /** Sections that have at least one place; the rest get no tab. */
+  categories: Set<CategoryId>;
+  /** How many places each pill would leave; pills at zero are disabled. */
+  tagCounts: Map<TagId, number>;
   /** Horizontal padding inside both rows, so the first chip lines up with the content below. */
   inset?: string;
   className?: string;
@@ -36,7 +39,7 @@ export function Pill({
       type="button"
       aria-pressed={active}
       className={cn(
-        "pressable focus-ring inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm font-medium whitespace-nowrap select-none [&_svg]:shrink-0",
+        "pressable focus-ring inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm font-medium whitespace-nowrap select-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:shrink-0",
         active
           ? "border-ink bg-ink text-white hover:bg-ink-hover"
           : "border-border bg-surface text-ink hover:border-ink",
@@ -156,7 +159,8 @@ export function FilterBar({
   filters,
   onChange,
   neighborhoods,
-  available,
+  categories,
+  tagCounts,
   inset,
   className,
 }: FilterBarProps) {
@@ -167,7 +171,6 @@ export function FilterBar({
         ? filters.tags.filter((t) => t !== tag)
         : [...filters.tags, tag],
     });
-  const tags = TAGS.filter((t) => available.tags.has(t.id) || filters.tags.includes(t.id));
 
   return (
     <div className={className}>
@@ -179,7 +182,7 @@ export function FilterBar({
           onClick={() => onChange({ ...filters, category: null })}
         />
         {CATEGORIES.filter(
-          (c) => available.categories.has(c.id) || filters.category === c.id,
+          (c) => categories.has(c.id) || filters.category === c.id,
         ).map((category) => {
           const active = filters.category === category.id;
           return (
@@ -193,27 +196,29 @@ export function FilterBar({
           );
         })}
       </ScrollRow>
-      {(neighborhoods.length > 1 || tags.length > 0) && (
-        <ScrollRow label="More filters" innerClassName={cn("gap-2 pt-4 pb-1", inset)}>
-          {neighborhoods.length > 1 && (
-            <NeighborhoodPicker
-              value={filters.neighborhood}
-              neighborhoods={neighborhoods}
-              onSelect={(neighborhood) => onChange({ ...filters, neighborhood })}
-            />
-          )}
-          {tags.map((tag) => (
+      <ScrollRow label="More filters" innerClassName={cn("gap-2 pt-4 pb-1", inset)}>
+        {(neighborhoods.length > 1 || filters.neighborhood !== null) && (
+          <NeighborhoodPicker
+            value={filters.neighborhood}
+            neighborhoods={neighborhoods}
+            onSelect={(neighborhood) => onChange({ ...filters, neighborhood })}
+          />
+        )}
+        {FILTER_TAGS.map((tag) => {
+          const active = filters.tags.includes(tag.id);
+          return (
             <Pill
               key={tag.id}
-              active={filters.tags.includes(tag.id)}
+              active={active}
+              disabled={!active && tagCounts.get(tag.id) === 0}
               onClick={() => toggleTag(tag.id)}
             >
               <TagIcon tag={tag.id} />
               {tag.label}
             </Pill>
-          ))}
-        </ScrollRow>
-      )}
+          );
+        })}
+      </ScrollRow>
     </div>
   );
 }

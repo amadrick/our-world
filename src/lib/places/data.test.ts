@@ -23,6 +23,35 @@ describe("data/places.json", () => {
     }
   });
 
+  it("puts the non-food places in Shops, Museums, Parks, or Wellness", () => {
+    const section = (id: string) => places.find((p) => p.id === id)?.category;
+    const shops = [
+      "evan-kinori",
+      "rachel-comey",
+      "self-edge",
+      "sf76",
+      "relove",
+      "reliquary",
+      "ministry-of-scent",
+      "heath-ceramics",
+      "william-stout-architectural-books",
+    ];
+    expect(shops.map(section)).toEqual(shops.map(() => "shop"));
+    expect(["sfmoma", "de-young-museum"].map(section)).toEqual(["museum", "museum"]);
+    expect(["golden-gate-park", "ocean-beach"].map(section)).toEqual(["park", "park"]);
+    expect(section("alchemy-springs")).toBe("wellness");
+  });
+
+  it("never tags shops, parks, or wellness with meals or late night", () => {
+    for (const place of places) {
+      if (!["shop", "park", "wellness"].includes(place.category)) continue;
+      expect(
+        place.tags.filter((t) => t !== "views" && t !== "top-pick"),
+        place.id,
+      ).toEqual([]);
+    }
+  });
+
   it("has unique ids", () => {
     expect(new Set(places.map((p) => p.id)).size).toBe(places.length);
   });

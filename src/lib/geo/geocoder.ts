@@ -36,9 +36,8 @@ const CATEGORY_BY_OSM: Record<string, Record<string, CategoryId>> = {
     nightclub: "bar",
     cafe: "coffee",
     ice_cream: "dessert",
-    theatre: "activity",
-    cinema: "activity",
-    arts_centre: "activity",
+    arts_centre: "museum",
+    public_bath: "wellness",
   },
   shop: {
     bakery: "bakery",
@@ -62,30 +61,21 @@ const CATEGORY_BY_OSM: Record<string, Record<string, CategoryId>> = {
     second_hand: "shop",
   },
   tourism: {
-    viewpoint: "sight",
-    attraction: "sight",
-    artwork: "sight",
     museum: "museum",
     gallery: "museum",
-    zoo: "activity",
-    aquarium: "activity",
-    theme_park: "activity",
   },
   leisure: {
-    park: "activity",
-    garden: "activity",
-    nature_reserve: "activity",
-    marina: "activity",
-    sauna: "activity",
+    park: "park",
+    garden: "park",
+    nature_reserve: "park",
+    sauna: "wellness",
   },
-  historic: { monument: "sight", memorial: "sight", building: "sight" },
-  man_made: { bridge: "sight", tower: "sight", lighthouse: "sight", pier: "activity" },
-  natural: { peak: "sight", beach: "activity" },
+  natural: { beach: "park" },
 };
 
 function suggestCategory(key?: string, value?: string): CategoryId | undefined {
   if (!key || !value) return undefined;
-  return CATEGORY_BY_OSM[key]?.[value] ?? (key === "historic" ? "sight" : undefined);
+  return CATEGORY_BY_OSM[key]?.[value];
 }
 
 function humanize(value?: string): string | undefined {

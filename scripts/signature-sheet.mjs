@@ -37,8 +37,8 @@ const CATEGORY_LABEL = {
   dessert: "Dessert",
   shop: "Shop",
   museum: "Museum",
-  activity: "Activity",
-  sight: "Sight",
+  park: "Park",
+  wellness: "Wellness",
 };
 
 function placeMarkdown(place, entry) {

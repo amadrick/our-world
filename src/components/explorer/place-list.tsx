@@ -11,6 +11,13 @@ import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
+/** A more specific message than "nothing matches", with ways out. */
+export interface NoMatches {
+  title: string;
+  body: string;
+  actions: React.ReactNode;
+}
+
 interface PlaceListProps {
   places: Place[];
   /** Big listing cards for list mode, or compact rows beside the map. */
@@ -23,6 +30,7 @@ interface PlaceListProps {
   onSelect: (id: string) => void;
   onHighlight: (id: string | null) => void;
   onClearFilters: () => void;
+  noMatches?: NoMatches;
 }
 
 function EmptyState({
@@ -43,7 +51,7 @@ function EmptyState({
       </span>
       <p className="mt-5 text-lg font-semibold">{title}</p>
       <p className="mt-1 max-w-[20rem] text-base text-balance text-muted-foreground">{body}</p>
-      {action && <div className="mt-6">{action}</div>}
+      {action && <div className="mt-6 flex flex-wrap justify-center gap-3">{action}</div>}
     </div>
   );
 }
@@ -154,6 +162,7 @@ export function PlaceList({
   onSelect,
   onHighlight,
   onClearFilters,
+  noMatches,
 }: PlaceListProps) {
   if (totalCount === 0) {
     return (
@@ -161,6 +170,17 @@ export function PlaceList({
         icon={MapPin}
         title="No places yet"
         body={`${site.hosts} are still putting together their recommendations. Check back soon.`}
+      />
+    );
+  }
+
+  if (places.length === 0 && noMatches) {
+    return (
+      <EmptyState
+        icon={Search}
+        title={noMatches.title}
+        body={noMatches.body}
+        action={noMatches.actions}
       />
     );
   }

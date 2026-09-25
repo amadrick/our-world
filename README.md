@@ -9,9 +9,10 @@ write-up, then open it in Apple Maps or Google Maps with one tap.
   floating at the bottom of the screen, and the guide remembers their choice.
   List is a grid of place pictures; Map is a full-screen map with a pin
   per place, a slim list rail beside it on desktop, and a draggable sheet for
-  the open place on phones. Filter pills (category, tags like _Brunch_ or
-  _Late night_, and neighborhood) work in both. Every place has a shareable
-  link (`/?place=zuni-cafe`).
+  the open place on phones. A category row (the food and drink sections, then
+  _Shops_, _Museums_, _Parks_, and _Wellness_), a neighborhood picker, and five
+  pills (_Dinner_, _Lunch_, _Late night_, _Brunch_, _Views_) work in both.
+  Every place has a shareable link (`/?place=zuni-cafe`).
 - **Andy and Kirissa** add places at `/admin`: search by name or paste a Maps
   link, pick a category, add a note, and save. An AI summary is written once,
   when the place is added, so guests never wait on it.
@@ -66,14 +67,17 @@ Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
 `data/places.json` holds Andy and Kirissa's list: 94 places (restaurants, bars,
-cafés, shops, two museums, and a few outdoor places) geocoded against OpenStreetMap and
+cafés, shops, two museums, two parks, and a bathhouse) geocoded against OpenStreetMap and
 Overture Maps, each with a short neutral summary, a
 researched `signatureSubject` (what it's known for), a `signatureRationale`
 (why, and according to whom), and `placeResearch` (what it looks like, with
 sources). `data/places.md` is the readable version of all of it, one section
-per place. Notes are left empty for them to write in their own words from
-`/admin`, and no place is marked **Top pick** yet (that filter appears once
-one is).
+per place. Pill tags come from each place's current hours, menus, and sources:
+_Late night_ means posted hours that run past 11pm (to 11:30pm or later) on at
+least two nights a week, and _Views_ means a view the sources call out. Notes
+are left empty for them to write in their own words from `/admin`, and no place
+is marked **Top pick** yet (a top pick sorts first and gets a star on its card
+and pin).
 
 ## Place images
 
@@ -238,6 +242,10 @@ Controls:
 - **Category row:** a glyph over each label, underlined in ink when selected,
   like Airbnb's category bar. **Chips** below it (neighborhood and tags, each
   with an icon) are 44px pills with a 1px outline that invert to ink when on.
+  A pill with nothing to show in the current section is dimmed and can't be
+  tapped, and the neighborhood counts follow the section and pills. If a
+  section comes up empty for pills already on, the empty state offers the
+  matches in other sections instead of a dead end.
   Both rows scroll sideways on narrow screens, fading only on the side with more
   to see, with chevron buttons for mouse users (`scroll-row.tsx`).
 - **Listing cards:** the square picture on top (20px radius, a hairline inner

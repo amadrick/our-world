@@ -171,7 +171,9 @@
       "address": "237 Fillmore St, San Francisco, CA 94117",
       "lat": 37.77177,
       "lng": -122.430595,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "A neighborhood pizza restaurant in the Lower Haight.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -256,7 +258,7 @@
       "lat": 37.758987,
       "lng": -122.412369,
       "tags": [
-        "book-ahead"
+        "dinner"
       ],
       "summary": "Handmade pasta and Italian cooking in the Mission, and one of the city's most sought-after reservations.",
       "summarySource": "written",
@@ -300,7 +302,8 @@
       "lat": 37.800201,
       "lng": -122.40937,
       "tags": [
-        "groups"
+        "dinner",
+        "brunch"
       ],
       "summary": "A classic Italian-American dining room on Washington Square, with red booths and generous plates.",
       "summarySource": "written",
@@ -342,7 +345,9 @@
       "lat": 37.776161,
       "lng": -122.408829,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch",
+        "brunch"
       ],
       "summary": "Hong Kong–style dim sum and Cantonese dishes in SoMa.",
       "summarySource": "written",
@@ -384,6 +389,8 @@
       "lat": 37.75264,
       "lng": -122.418373,
       "tags": [
+        "dinner",
+        "lunch",
         "late-night"
       ],
       "summary": "A Mission taqueria known for big burritos and late hours.",
@@ -424,7 +431,8 @@
       "lat": 37.763844,
       "lng": -122.469025,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch"
       ],
       "summary": "An Inner Sunset Chinese restaurant best known for its dry-fried chicken wings. Expect a line.",
       "summarySource": "written",
@@ -464,7 +472,9 @@
       "address": "710 Montgomery St, San Francisco, CA 94111",
       "lat": 37.795776,
       "lng": -122.403244,
-      "tags": [],
+      "tags": [
+        "lunch"
+      ],
       "summary": "A French pâtisserie and épicerie in Jackson Square, with pastries and savory tarts.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -510,7 +520,8 @@
       "lat": 37.789882,
       "lng": -122.399332,
       "tags": [
-        "groups"
+        "lunch",
+        "brunch"
       ],
       "summary": "A long-running dim sum house on Stevenson Street off Market, a go-to for a group lunch.",
       "summarySource": "written",
@@ -555,7 +566,10 @@
       "address": "4542 Irving St, San Francisco, CA 94122",
       "lat": 37.762341,
       "lng": -122.506874,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "A casual seafood spot a block from Ocean Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -596,7 +610,8 @@
       "lat": 37.797394,
       "lng": -122.40358,
       "tags": [
-        "book-ahead"
+        "dinner",
+        "lunch"
       ],
       "summary": "Rustic Italian cooking and handmade pasta in Jackson Square, from the team behind Quince.",
       "summarySource": "written",
@@ -641,7 +656,7 @@
       "lat": 37.761455,
       "lng": -122.423945,
       "tags": [
-        "brunch"
+        "lunch"
       ],
       "summary": "The Mission bakery that helped define San Francisco's bread-and-pastry scene. Expect flaky croissants, morning buns, and seasonal tarts alongside good coffee, with a line that moves steadily. Grab something to go and walk two blocks to Dolores Park.",
       "summarySource": "written",
@@ -682,7 +697,10 @@
       "address": "517 Clement St, San Francisco, CA 94118",
       "lat": 37.782791,
       "lng": -122.464798,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "Chef Brandon Jew's casual Chinese-American restaurant, with fresh takes on takeout classics.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -722,7 +740,10 @@
       "address": "306 Broderick St, San Francisco, CA 94117",
       "lat": 37.773281,
       "lng": -122.439072,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "Regional Mexican cooking from the Nopa team, with house-made tortillas.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -766,11 +787,9 @@
       "lat": 37.774891,
       "lng": -122.43763,
       "tags": [
-        "book-ahead",
-        "brunch",
-        "late-night"
+        "dinner"
       ],
-      "summary": "A bustling, wood-fired Californian restaurant on Divisadero that serves late and draws a weekend brunch crowd.",
+      "summary": "A bustling, wood-fired Californian restaurant on Divisadero, open for dinner every night.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Wood-grilled country pork chop",
@@ -845,7 +864,9 @@
       "address": "373 Columbus Ave, San Francisco, CA 94133",
       "lat": 37.798496,
       "lng": -122.407867,
-      "tags": [],
+      "tags": [
+        "lunch"
+      ],
       "summary": "A historic North Beach Italian deli known for made-to-order sandwiches.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -884,7 +905,7 @@
       "lat": 37.763103,
       "lng": -122.410904,
       "tags": [
-        "book-ahead"
+        "dinner"
       ],
       "summary": "Inventive, Japanese-influenced cooking in the northeast Mission.",
       "summarySource": "written",
@@ -926,7 +947,9 @@
       "address": "550 Washington St, San Francisco, CA 94111",
       "lat": 37.795742,
       "lng": -122.40274,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "A Parisian-style wine bar and shop from the team behind Quince and Cotogna.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -967,7 +990,10 @@
       "address": "1 Ferry Building, San Francisco, CA 94111",
       "lat": 37.795171,
       "lng": -122.393052,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "A seafood counter in the Ferry Building.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1009,7 +1035,9 @@
       "address": "3725 Balboa St, San Francisco, CA 94121",
       "lat": 37.775551,
       "lng": -122.498909,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "A neighborhood pizza and bagel shop in the Outer Richmond.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1050,7 +1078,9 @@
       "address": "6101 California St, San Francisco, CA 94121",
       "lat": 37.783897,
       "lng": -122.483025,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "A neighborhood Californian and Mediterranean restaurant in the Outer Richmond.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1126,7 +1156,10 @@
       "address": "532 Columbus Ave, San Francisco, CA 94133",
       "lat": 37.80003,
       "lng": -122.409584,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "Pizza from the Flour + Water team, in North Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1167,7 +1200,10 @@
       "address": "101 California St, San Francisco, CA 94111",
       "lat": 37.793274,
       "lng": -122.398521,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "A modern Japanese izakaya and sushi bar in the Financial District.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1210,7 +1246,9 @@
       "address": "641 Vallejo St, San Francisco, CA 94133",
       "lat": 37.798573,
       "lng": -122.408432,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "Chicago-style deep-dish pizza from Tony Gemignani, in a speakeasy-style North Beach room.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1253,6 +1291,8 @@
       "lat": 37.761771,
       "lng": -122.411795,
       "tags": [
+        "dinner",
+        "lunch",
         "brunch"
       ],
       "summary": "Tartine's big, airy all-day bakery, restaurant, and coffee bar in a converted Mission factory.",
@@ -1334,7 +1374,7 @@
       "lat": 37.788342,
       "lng": -122.414635,
       "tags": [
-        "book-ahead"
+        "dinner"
       ],
       "summary": "Hawaiian-inspired cooking in a lively room on Sutter Street.",
       "summarySource": "written",
@@ -1377,7 +1417,10 @@
       "address": "1570 Stockton St, San Francisco, CA 94133",
       "lat": 37.800407,
       "lng": -122.409088,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "Tony Gemignani's North Beach pizzeria, serving many regional styles of pizza.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1423,7 +1466,9 @@
       "address": "974 Valencia St, San Francisco, CA 94110",
       "lat": 37.757366,
       "lng": -122.421288,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "Colorful, Jalisco-inspired Mexican small plates and cocktails on Valencia Street.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1463,7 +1508,9 @@
       "address": "1058 Folsom St, San Francisco, CA 94103",
       "lat": 37.777573,
       "lng": -122.407036,
-      "tags": [],
+      "tags": [
+        "lunch"
+      ],
       "summary": "Big, stacked deli sandwiches in SoMa.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1501,7 +1548,9 @@
       "address": "3655 Lawton St, San Francisco, CA 94122",
       "lat": 37.756737,
       "lng": -122.502319,
-      "tags": [],
+      "tags": [
+        "lunch"
+      ],
       "summary": "The original Outer Sunset café of this local roaster, near Ocean Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1543,7 +1592,10 @@
       "address": "101 Oak St, San Francisco, CA 94102",
       "lat": 37.775146,
       "lng": -122.42112,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "Rotisserie chicken, sandwiches, and salads from the Rich Table team.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1587,8 +1639,7 @@
       "lat": 37.793391,
       "lng": -122.422543,
       "tags": [
-        "book-ahead",
-        "groups"
+        "dinner"
       ],
       "summary": "An old-school San Francisco institution where prime rib is carved tableside from rolling carts.",
       "summarySource": "written",
@@ -1631,7 +1682,7 @@
       "lat": 37.756419,
       "lng": -122.419136,
       "tags": [
-        "book-ahead",
+        "dinner",
         "brunch"
       ],
       "summary": "Californian-Mediterranean cooking with films projected in the courtyard, and a favorite for weekend brunch.",
@@ -1713,7 +1764,8 @@
       "lat": 37.785027,
       "lng": -122.409004,
       "tags": [
-        "book-ahead"
+        "dinner",
+        "lunch"
       ],
       "summary": "Bold, acclaimed Thai cooking near Union Square.",
       "summarySource": "written",
@@ -1756,7 +1808,8 @@
       "lat": 37.797802,
       "lng": -122.407845,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch"
       ],
       "summary": "A multi-level Chinese food hall and restaurant on the edge of Chinatown and North Beach.",
       "summarySource": "written",
@@ -1803,7 +1856,8 @@
       "lat": 37.794097,
       "lng": -122.404902,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch"
       ],
       "summary": "A Chinatown Cantonese institution, best known for its salt-and-pepper crab.",
       "summarySource": "written",
@@ -1846,7 +1900,8 @@
       "lat": 37.776688,
       "lng": -122.478287,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch"
       ],
       "summary": "Traditional Korean cooking in the Richmond, with a long menu of stews, pancakes, and barbecue.",
       "summarySource": "written",
@@ -1886,7 +1941,9 @@
       "address": "848 Cole St, San Francisco, CA 94117",
       "lat": 37.766102,
       "lng": -122.449898,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "A Cole Valley smashburger counter.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1929,7 +1986,9 @@
       "address": "3821 Noriega St, San Francisco, CA 94122",
       "lat": 37.752731,
       "lng": -122.504868,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "A relaxed brewery taproom in a former Outer Sunset grocery, a few blocks from Ocean Beach, with Maillards cooking on site.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1972,7 +2031,9 @@
       "address": "3821 Noriega St, San Francisco, CA 94122",
       "lat": 37.752712,
       "lng": -122.504752,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "Smashburgers from a counter inside the Two Pitchers taproom in the Outer Sunset.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2012,7 +2073,9 @@
       "address": "3928 Irving St, San Francisco, CA 94122",
       "lat": 37.762753,
       "lng": -122.500147,
-      "tags": [],
+      "tags": [
+        "lunch"
+      ],
       "summary": "A neighborhood bakery in the Outer Sunset.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2055,6 +2118,7 @@
       "lat": 37.760349,
       "lng": -122.505035,
       "tags": [
+        "dinner",
         "brunch"
       ],
       "summary": "A cozy, wood-paneled restaurant near Ocean Beach, loved for brunch.",
@@ -2141,8 +2205,8 @@
       "lat": 37.75922,
       "lng": -122.411189,
       "tags": [
-        "late-night",
-        "groups"
+        "dinner",
+        "late-night"
       ],
       "summary": "One of the city's most celebrated cocktail bars, known for a menu that reinvents itself around a new theme a couple of times a year. The drinks are playful but serious, and the food is better than bar food needs to be. Busy on weekends, but worth squeezing in.",
       "summarySource": "written",
@@ -2186,7 +2250,9 @@
       "lat": 37.759483,
       "lng": -122.411499,
       "tags": [
-        "late-night"
+        "dinner",
+        "late-night",
+        "brunch"
       ],
       "summary": "A cocktail bar from the Lazy Bear team, with inventive drinks and snacks.",
       "summarySource": "written",
@@ -2228,7 +2294,7 @@
       "lat": 37.759224,
       "lng": -122.411064,
       "tags": [
-        "book-ahead"
+        "dinner"
       ],
       "summary": "Roman-leaning pasta from the Flour + Water team, with a garden patio.",
       "summarySource": "written",
@@ -2269,7 +2335,10 @@
       "address": "700 Columbus Ave, San Francisco, CA 94133",
       "lat": 37.801277,
       "lng": -122.4114,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "late-night"
+      ],
       "summary": "A small North Beach wine bar with an adventurous by-the-glass list and a house hot dog.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:15:00.000Z",
@@ -2309,8 +2378,8 @@
       "lat": 37.7999433,
       "lng": -122.4413449,
       "tags": [
-        "book-ahead",
-        "brunch"
+        "dinner",
+        "lunch"
       ],
       "summary": "A bright Art Deco corner dining room on Chestnut Street from the family behind Original Joe's, with checkered terrazzo floors, black banquettes, and an open kitchen. The menu centers on pizza, pasta, and parmigiana.",
       "summarySource": "written",
@@ -2356,7 +2425,10 @@
       "address": "86 Carl St, San Francisco, CA 94117",
       "lat": 37.765915,
       "lng": -122.449677,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "Arab comfort food, from mezze to kebabs, in Cole Valley.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2398,7 +2470,8 @@
       "lat": 37.76012,
       "lng": -122.411301,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch"
       ],
       "summary": "Colorful, festive Thai cooking in a Mission warehouse space.",
       "summarySource": "written",
@@ -2439,7 +2512,8 @@
       "lat": 37.785809,
       "lng": -122.428566,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch"
       ],
       "summary": "Korean braised short ribs and beef soups in Japantown. Expect a wait.",
       "summarySource": "written",
@@ -2482,7 +2556,8 @@
       "lat": 37.78291,
       "lng": -122.46257,
       "tags": [
-        "groups"
+        "dinner",
+        "lunch"
       ],
       "summary": "A beloved Inner Richmond spot that introduced a generation of San Franciscans to Burmese food. The tea leaf and rainbow salads are tossed tableside, and the curries and flaky platha are made for sharing. Great for a group, with a wait at peak times.",
       "summarySource": "written",
@@ -2522,7 +2597,10 @@
       "address": "699 Valencia St, San Francisco, CA 94110",
       "lat": 37.761784,
       "lng": -122.421455,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "A casual Valencia Street taqueria for burritos and tacos.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2561,7 +2639,10 @@
       "address": "2889 Mission St, San Francisco, CA 94110",
       "lat": 37.75087,
       "lng": -122.41816,
-      "tags": [],
+      "tags": [
+        "dinner",
+        "lunch"
+      ],
       "summary": "A no-frills Mission taqueria famous for rice-free burritos packed with grilled meat, beans, and salsa. It has topped just about every best-burrito ranking there is, and the line reflects it. Quick, casual, and the quintessential Mission burrito experience.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2603,7 +2684,9 @@
       "address": "3560 18th St, San Francisco, CA 94110",
       "lat": 37.761738,
       "lng": -122.422958,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "Bright, Southeast Asian–inspired plates in the Mission, from the Liholiho Yacht Club team.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2647,7 +2730,8 @@
       "lat": 37.799709,
       "lng": -122.408081,
       "tags": [
-        "late-night"
+        "dinner",
+        "lunch"
       ],
       "summary": "A North Beach slice counter known for its focaccia-style square pizza.",
       "summarySource": "written",
@@ -2690,6 +2774,7 @@
       "lat": 37.796974,
       "lng": -122.405548,
       "tags": [
+        "dinner",
         "late-night"
       ],
       "summary": "A historic saloon with classic cocktails and turn-of-the-century decor.",
@@ -2812,7 +2897,9 @@
       "address": "1609 Powell St, San Francisco, CA 94133",
       "lat": 37.799469,
       "lng": -122.410934,
-      "tags": [],
+      "tags": [
+        "dinner"
+      ],
       "summary": "A wine bar on Powell Street in North Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:15:00.000Z",
@@ -2897,9 +2984,10 @@
       "lat": 37.806495,
       "lng": -122.432097,
       "tags": [
-        "views",
+        "dinner",
+        "lunch",
         "brunch",
-        "groups"
+        "views"
       ],
       "summary": "A Bavarian-style beer hall and restaurant in a restored 1930s Army machine shop at Fort Mason, with tall windows facing the bay and the Golden Gate Bridge. From the team behind Suppenküche and Biergarten, it pours a rotating German tap list alongside a modern Bavarian menu and weekend brunch.",
       "summarySource": "written",
@@ -2944,7 +3032,9 @@
       "address": "2 Marina Blvd, Building A, San Francisco, CA 94123",
       "lat": 37.806771,
       "lng": -122.432126,
-      "tags": [],
+      "tags": [
+        "views"
+      ],
       "summary": "The Long Now Foundation's bar, cafe, and library at Fort Mason Center, serving coffee by day and cocktails into the evening. The small room pairs a floor-to-ceiling library with prototypes from the 10,000 Year Clock and hosts Long Now's talks.",
       "summarySource": "written",
       "createdAt": "2026-09-25T03:45:00.000Z",
@@ -3080,6 +3170,7 @@
       "lat": 37.761033,
       "lng": -122.421376,
       "tags": [
+        "dinner",
         "late-night"
       ],
       "summary": "A narrow, dimly lit tequila and mezcal bar from the Tacolicious team, right next door to its sister restaurant on Valencia Street. Expect a deep agave list, al pastor tacos carved off the trompo, and a ceiling hung with thousands of glowing glass jars.",
@@ -3210,7 +3301,9 @@
       "address": "561 Valencia St, San Francisco, CA 94110",
       "lat": 37.76397,
       "lng": -122.42164,
-      "tags": [],
+      "tags": [
+        "lunch"
+      ],
       "summary": "A calm, minimalist Japanese matcha cafe on Valencia Street, known for stone-ground matcha served hand-whisked or in lattes, matcha pastries, and Japanese comfort food like katsu sandos. Lines are common on weekends, and it does not take reservations.",
       "summarySource": "written",
       "createdAt": "2026-09-25T03:45:00.000Z",
@@ -3639,7 +3732,7 @@
       "lat": 37.786644,
       "lng": -122.399746,
       "tags": [
-        "book-ahead"
+        "dinner"
       ],
       "summary": "A Japanese-inspired cafe by day and low-lit bar by night on the ground floor of the Art Deco Pacific Telephone Building, from Ingi Son of the omakase counter the Shota. Evenings bring Japanese-leaning cocktails and izakaya-style small plates beneath a gold mural modeled on Kyoto's Nijo Castle.",
       "summarySource": "written",
@@ -3679,14 +3772,12 @@
     {
       "id": "alchemy-springs",
       "name": "Alchemy Springs",
-      "category": "activity",
+      "category": "wellness",
       "neighborhood": "Nob Hill",
       "address": "939 Post St, San Francisco, CA 94109",
       "lat": 37.786994,
       "lng": -122.417393,
-      "tags": [
-        "book-ahead"
-      ],
+      "tags": [],
       "summary": "A social sauna garden in Lower Nob Hill built around a circular 40-person sauna, with cold plunges, open-air showers, thermal benches, and a fire pit. It operates as a preview of a larger thermal bathhouse still being built on the site; visits are booked as timed sessions, and swimsuits are required.",
       "summarySource": "written",
       "createdAt": "2026-09-25T03:45:00.000Z",
@@ -3725,13 +3816,13 @@
     {
       "id": "golden-gate-park",
       "name": "Golden Gate Park",
-      "category": "activity",
+      "category": "park",
       "neighborhood": "Golden Gate Park",
       "address": "501 Stanyan St, San Francisco, CA 94117",
       "lat": 37.76986,
       "lng": -122.46861,
       "tags": [
-        "outdoors"
+        "views"
       ],
       "summary": "San Francisco's largest park: 1,017 acres of meadows, lakes, and forest running three miles from the Haight to Ocean Beach. It holds the de Young museum, the California Academy of Sciences, the Japanese Tea Garden, the Conservatory of Flowers, and two Dutch windmills, and the eastern stretch of JFK Drive is a permanent car-free promenade.",
       "summarySource": "written",
@@ -3771,13 +3862,12 @@
     {
       "id": "ocean-beach",
       "name": "Ocean Beach",
-      "category": "activity",
+      "category": "park",
       "neighborhood": "Outer Sunset",
       "address": "Great Highway, San Francisco, CA 94122",
       "lat": 37.756152,
       "lng": -122.510186,
       "tags": [
-        "outdoors",
         "views"
       ],
       "summary": "San Francisco's 3.5-mile Pacific beach, running along the Great Highway from the Cliff House to Fort Funston. Expect wide sand, surfers, cold water with strong currents, summer fog, and fire rings for evening bonfires from March through October; the car-free Sunset Dunes park runs beside it from Lincoln Way to Sloat Boulevard.",
@@ -3870,8 +3960,7 @@
       "lat": 37.782623,
       "lng": -122.474408,
       "tags": [
-        "brunch",
-        "outdoors"
+        "lunch"
       ],
       "summary": "An Asian American bakery cafe in a tiny teal storefront on Clement Street, known for kaya toast: thick milk bread piped with green coconut-pandan jam. Rotating pastries, breakfast sandwiches, and egg coffee round it out, and most seating is on the sunny parklet out front.",
       "summarySource": "written",
@@ -3916,7 +4005,9 @@
       "address": "151 Third St, San Francisco, CA 94103",
       "lat": 37.785915,
       "lng": -122.400736,
-      "tags": [],
+      "tags": [
+        "lunch"
+      ],
       "summary": "One of the largest modern and contemporary art museums in the country, in Mario Botta's 1995 red-brick building and Snøhetta's 2016 white expansion, across Third Street from Yerba Buena Gardens. The Doris and Donald Fisher Collection fills several floors, the art on the first two floors is free to see without a ticket, and the museum is closed Wednesdays.",
       "summarySource": "written",
       "createdAt": "2026-09-25T05:05:00.000Z",
@@ -3961,6 +4052,7 @@
       "lat": 37.771497,
       "lng": -122.469092,
       "tags": [
+        "lunch",
         "views"
       ],
       "summary": "Golden Gate Park's fine arts museum, in a perforated-copper Herzog & de Meuron building facing the California Academy of Sciences across the Music Concourse. The collections span American art, costume and textiles, and arts of Africa, Oceania, and the Americas, and the ninth-floor Hamon Observation Tower is free to visit without a ticket.",

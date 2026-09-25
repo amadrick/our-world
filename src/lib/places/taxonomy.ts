@@ -15,8 +15,8 @@ export const CATEGORIES: CategoryInfo[] = [
   { id: "dessert", label: "Dessert", plural: "Dessert" },
   { id: "shop", label: "Shop", plural: "Shops" },
   { id: "museum", label: "Museum", plural: "Museums" },
-  { id: "activity", label: "Activity", plural: "Activities" },
-  { id: "sight", label: "Sight", plural: "Sights" },
+  { id: "park", label: "Park", plural: "Parks" },
+  { id: "wellness", label: "Wellness", plural: "Wellness" },
 ];
 
 const CATEGORY_BY_ID = Object.fromEntries(
@@ -36,13 +36,11 @@ export interface TagInfo {
 
 export const TAGS: TagInfo[] = [
   { id: "top-pick", label: "Top picks", badge: "Top pick" },
-  { id: "brunch", label: "Brunch", badge: "Brunch" },
+  { id: "dinner", label: "Dinner", badge: "Dinner" },
+  { id: "lunch", label: "Lunch", badge: "Lunch" },
   { id: "late-night", label: "Late night", badge: "Late night" },
-  { id: "walkable", label: "Walkable", badge: "Walkable" },
-  { id: "book-ahead", label: "Book ahead", badge: "Book ahead" },
+  { id: "brunch", label: "Brunch", badge: "Brunch" },
   { id: "views", label: "Views", badge: "Views" },
-  { id: "outdoors", label: "Outdoors", badge: "Outdoors" },
-  { id: "groups", label: "Good for groups", badge: "Good for groups" },
 ];
 
 const TAG_BY_ID = Object.fromEntries(TAGS.map((t) => [t.id, t])) as Record<
@@ -53,3 +51,8 @@ const TAG_BY_ID = Object.fromEntries(TAGS.map((t) => [t.id, t])) as Record<
 export function getTag(id: TagId): TagInfo {
   return TAG_BY_ID[id];
 }
+
+/** The filter pills guests see, always all five and in this order. "Top pick" is a star, not a pill. */
+export const FILTER_TAGS: TagInfo[] = (
+  ["dinner", "lunch", "late-night", "brunch", "views"] as const
+).map(getTag);

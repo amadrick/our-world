@@ -22,7 +22,7 @@ import { TagIcon } from "@/components/places/tag-icon";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
-import { getCategory, getTag } from "@/lib/places/taxonomy";
+import { FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -222,7 +222,7 @@ interface PlaceDetailProps {
 
 export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetailProps) {
   const pick = place.tags.includes("top-pick");
-  const tags = place.tags.filter((t) => t !== "top-pick");
+  const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
   const page = variant === "page";
 
   const header = variant !== "sheet" && (
@@ -260,11 +260,11 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
           <ul className="flex flex-wrap gap-2" aria-label="Good to know">
             {tags.map((tag) => (
               <li
-                key={tag}
+                key={tag.id}
                 className="flex h-10 items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm font-medium"
               >
-                <TagIcon tag={tag} />
-                {getTag(tag).badge}
+                <TagIcon tag={tag.id} />
+                {tag.badge}
               </li>
             ))}
           </ul>

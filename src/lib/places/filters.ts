@@ -31,6 +31,36 @@ export function filterPlaces(places: Place[], filters: PlaceFilters): Place[] {
   );
 }
 
+/**
+ * How many places each pill would leave if it were on, given everything else
+ * that's chosen. A pill at zero has nothing to show in this section, so the bar
+ * disables it rather than let it lead to an empty list.
+ */
+export function tagCounts(
+  places: Place[],
+  filters: PlaceFilters,
+  tags: readonly TagId[],
+): Map<TagId, number> {
+  return new Map(
+    tags.map((tag) => [
+      tag,
+      filterPlaces(
+        places,
+        filters.tags.includes(tag) ? filters : { ...filters, tags: [...filters.tags, tag] },
+      ).length,
+    ]),
+  );
+}
+
+/**
+ * Pills stay on when the section changes, so a section can come up empty for
+ * them. This counts the matches elsewhere, so the empty state can offer them.
+ */
+export function matchesInOtherSections(places: Place[], filters: PlaceFilters): number {
+  if (filters.category === null || filters.tags.length === 0) return 0;
+  return filterPlaces(places, { ...filters, category: null }).length;
+}
+
 export function neighborhoodCounts(
   places: Place[],
 ): { name: string; count: number }[] {

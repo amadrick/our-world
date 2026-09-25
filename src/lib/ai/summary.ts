@@ -43,8 +43,8 @@ const PLACEHOLDER_SUBJECT: Record<CategoryId, string> = {
   dessert: "A dessert spot",
   shop: "A shop",
   museum: "A museum",
-  activity: "Something to do",
-  sight: "A sight worth seeing",
+  park: "A park",
+  wellness: "A wellness spot",
 };
 
 /** Plain, clearly generic text used when OpenAI isn't available. */
