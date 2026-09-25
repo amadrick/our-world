@@ -203,7 +203,7 @@ Both also rewrite `data/places.md`.
   including the Golden Gate on the "All" tab.
 - **Map:** [MapLibre GL](https://maplibre.org) on free
   [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed,
-  styled by one of four designed basemaps (`src/lib/map/themes/`, see Map
+  styled by one of five designed basemaps (`src/lib/map/themes/`, see Map
   below). Map labels use Inter and Newsreader files from `public/fonts`
   through MapLibre's `font-faces`. Map code sits behind a small `MapProvider`
   interface (`src/lib/map/types.ts`).
@@ -275,7 +275,7 @@ system (`prefers-color-scheme`), map included.
   muted lines, with a smoked-glass "Andy's pick" badge.
 - **List | Map switch:** a glass capsule floating bottom center with an ink
   thumb that slides to the selected mode (arrow keys work).
-- **Map:** four basemap directions, each in light and dark, switchable with a
+- **Map:** five basemap directions, each in light and dark, switchable with a
   hidden `?map=` parameter (remembered for the session) for comparing them:
   - `d` **Apple Maps** (the default): a flat, top-down lookalike of Apple Maps.
     One sky-blue water, pale grey land, fresh green parks, pale beige
@@ -298,6 +298,17 @@ system (`prefers-color-scheme`), map included.
     warm western light, buildings extruded in sandstone tones with rounded
     corners, a slight tilt when the map frames a neighborhood or a place, and
     the landmarks and hills marked by name.
+  - `e` **Film**: a clean map that looks gently photographed on Kodak 35mm
+    (Andy's reference, `briefs/film-map-ref-andy.png`). Warm pale stone land,
+    fine streets a shade lighter than it, mineral grey-blue water, muted sage
+    parks with a soft mottle, and few labels: districts, the Presidio, and the
+    bay in widely spaced small grey capitals, street names only from zoom 15.
+    One static layer over the canvas and under the pins (`.map-film` in
+    `globals.css`) adds a still grain tile (`public/textures/film-grain.png`),
+    faint tonal unevenness, and edges a little hazier than the center (with a
+    touch of blur where there's a mouse); it's left out for reduced motion or
+    reduced transparency. Dark is our own reading of the same film: warm
+    charcoal land, deep grey-slate water, dark sage parks, lighter grain.
 
   Pins speak Apple Maps' language (`src/lib/map/pin-style.ts`,
   `src/components/explorer/map-pin.tsx`). The big stuff (sights, parks,
@@ -326,6 +337,25 @@ system (`prefers-color-scheme`), map included.
   | Sight | `#5B6BD8` | `#4150BF` | `#A1AAFF` |
   | Museum | `#D9479C` | `#B42C7C` | `#F98DD6` |
   | Park | `#3DAA4E` | `#2A8739` | `#7DE08B` |
+
+  On the film basemap (`e`) the same pins take film-toned colors (`FILM_PINS`):
+  the same hues with less chroma, a little warmer and dustier. Names hold
+  4.5:1 on the film land, photo pins get a warm off-white ring (`#F8F4EC`,
+  `#E4DDD1` dark), captions a warm grey (`#625F59`, `#D2CBBF` dark), and names
+  and captions a halo the color of the land (`#E2D9CD`, `#33302C` dark).
+
+  | Category | Pin | Name (light) | Name (dark) |
+  | --- | --- | --- | --- |
+  | Restaurant | `#D48D61` | `#8C4E25` | `#DCA584` |
+  | Coffee | `#9B785B` | `#77583D` | `#C7AB94` |
+  | Bakery | `#D3A766` | `#805419` | `#CCAB7C` |
+  | Dessert | `#CE8379` | `#8E4C44` | `#DDA29A` |
+  | Bar | `#BB6B85` | `#8F475F` | `#E5A4B2` |
+  | Wine | `#8E5470` | `#683B5E` | `#CEABD0` |
+  | Shop | `#CCBD74` | `#615608` | `#BBB07C` |
+  | Sight | `#6A6EAB` | `#555891` | `#A8ADDE` |
+  | Museum | `#A86893` | `#854B73` | `#D4A0C2` |
+  | Park | `#709663` | `#456739` | `#9BB891` |
 
   Basemap labels never sit under a pin or its name: each pin has an invisible
   collision footprint the map places before its own labels, and district
