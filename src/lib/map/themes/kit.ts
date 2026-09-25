@@ -22,7 +22,7 @@ export type Palette = Record<string, string>;
 /** How far each surface leans toward an open place's color, and how colorful it gets. */
 export type TintTable<P extends Palette> = Partial<Record<keyof P, [mix: number, chroma: number]>>;
 
-export type MapThemeId = "golden" | "editorial" | "dimensional" | "apple";
+export type MapThemeId = "golden" | "editorial" | "dimensional" | "apple" | "film";
 
 export interface MapTheme<P extends Palette = Palette> {
   id: MapThemeId;
@@ -35,6 +35,8 @@ export interface MapTheme<P extends Palette = Palette> {
   pitch: number;
   /** Shades the hills from the offline elevation tiles, when they're there. */
   hills?: boolean;
+  /** An effect layer drawn over the canvas and under the pins (see `.map-film` in globals.css). */
+  overlay?: "film";
 }
 
 export interface StyleContext {
@@ -248,8 +250,8 @@ export function pinFootprintLayer(): LayerSpecification {
 
 /*
  * Small images the themes draw with, generated on demand (see
- * `missingImage`): blank collision boxes, a film-grain stipple for parks, and
- * landmark and hill markers.
+ * `missingImage`): blank collision boxes, a film-grain stipple and a softer
+ * mottle for parks, and landmark and hill markers.
  */
 export interface GeneratedImage {
   width: number;
@@ -267,7 +269,8 @@ const parseColor = (hex: string, alpha = 1): [number, number, number, number] =>
 
 /**
  * Draws a generated image by id: `blank-<px>`, `stipple-<hex>-<alpha%>`,
- * `landmark-<hex>`, `peak-<hex>`, `dot-<hex>`. Unknown ids return null.
+ * `mottle-<hex>-<alpha%>`, `landmark-<hex>`, `peak-<hex>`, `dot-<hex>`.
+ * Unknown ids return null.
  */
 export function missingImage(id: string): GeneratedImage | null {
   const dot = /^dot-([0-9a-f]{6})$/.exec(id);
@@ -317,6 +320,37 @@ export function missingImage(id: string): GeneratedImage | null {
       for (const [dx, dy, a] of [[0, 0, 1], [1, 0, 0.5], [0, 1, 0.5], [1, 1, 0.3]] as const) {
         const i = (((y + dy) % size) * size + ((x + dx) % size)) * 4;
         data.set([rgba[0], rgba[1], rgba[2], Math.round(rgba[3] * a)], i);
+      }
+    }
+    return { width: size, height: size, data, pixelRatio: 2 };
+  }
+
+  const mottle = /^mottle-([0-9a-f]{6})-(\d+)$/.exec(id);
+  if (mottle) {
+    // Soft, uneven blotches like foliage seen from far above, on a seamless 64px tile at 2x.
+    const size = 128;
+    const data = new Uint8Array(size * size * 4);
+    const [r, g, b, max] = parseColor(`#${mottle[1]}`, Number(mottle[2]) / 100);
+    let seed = 7;
+    const noise = (cells: number) => {
+      const lattice = Array.from({ length: cells * cells }, () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32);
+      const at = (i: number, j: number) => lattice[(j % cells) * cells + (i % cells)];
+      return (x: number, y: number) => {
+        const [gx, gy] = [(x / size) * cells, (y / size) * cells];
+        const [i, j] = [Math.floor(gx), Math.floor(gy)];
+        const ease = (t: number) => t * t * (3 - 2 * t);
+        const [sx, sy] = [ease(gx - i), ease(gy - j)];
+        const top = at(i, j) + (at(i + 1, j) - at(i, j)) * sx;
+        const bottom = at(i, j + 1) + (at(i + 1, j + 1) - at(i, j + 1)) * sx;
+        return top + (bottom - top) * sy;
+      };
+    };
+    const octaves = [noise(3), noise(7), noise(16)];
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const v = octaves[0](x, y) * 0.5 + octaves[1](x, y) * 0.3 + octaves[2](x, y) * 0.2;
+        const a = Math.min(1, Math.max(0, (v - 0.4) / 0.25));
+        data.set([r, g, b, Math.round(max * a)], (y * size + x) * 4);
       }
     }
     return { width: size, height: size, data, pixelRatio: 2 };

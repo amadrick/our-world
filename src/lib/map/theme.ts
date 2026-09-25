@@ -1,18 +1,19 @@
 import { apple } from "./themes/apple";
 import { dimensional } from "./themes/dimensional";
 import { editorial } from "./themes/editorial";
+import { film } from "./themes/film";
 import { golden } from "./themes/golden";
 import type { MapTheme, MapThemeId } from "./themes/kit";
 
 export type { MapThemeId } from "./themes/kit";
 
-export const MAP_THEMES: Record<MapThemeId, MapTheme> = { golden, editorial, dimensional, apple };
+export const MAP_THEMES: Record<MapThemeId, MapTheme> = { golden, editorial, dimensional, apple, film };
 
 /** The basemap everyone sees. */
 export const DEFAULT_MAP_THEME: MapThemeId = "apple";
 
-/** `?map=a|b|c|d`: a hidden switch for comparing the basemap directions. */
-const KEYS: Record<string, MapThemeId> = { a: "golden", b: "editorial", c: "dimensional", d: "apple" };
+/** `?map=a|b|c|d|e`: a hidden switch for comparing the basemap directions. */
+const KEYS: Record<string, MapThemeId> = { a: "golden", b: "editorial", c: "dimensional", d: "apple", e: "film" };
 
 export function parseMapTheme(value: string | null | undefined): MapThemeId | null {
   if (!value) return null;

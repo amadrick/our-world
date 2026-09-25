@@ -95,6 +95,7 @@ describe("parseMapTheme", () => {
     expect(parseMapTheme("B")).toBe("editorial");
     expect(parseMapTheme("dimensional")).toBe("dimensional");
     expect(parseMapTheme("d")).toBe("apple");
+    expect(parseMapTheme("e")).toBe("film");
   });
 
   it("ignores anything else", () => {

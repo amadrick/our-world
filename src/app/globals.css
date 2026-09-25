@@ -576,6 +576,63 @@ body .maplibregl-ctrl-attrib {
 }
 
 /*
+ * Basemap (e) Film: what makes the map look photographed rather than drawn,
+ * in one layer over the canvas and under the pins. The element carries the
+ * faint tonal unevenness, ::before a still grain tile, ::after the haze that
+ * softens the edges while the center stays calm for the glass UI. All of it
+ * is static: panning moves the map under it, nothing is redrawn.
+ */
+.map-film {
+  --film-haze: 238 233 225;
+  --film-light: 255 252 246;
+  --film-shade: 116 104 88;
+  --film-grain: 0.55;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 20% 24%, rgb(var(--film-light) / 0.13), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 30% 86%, rgb(var(--film-light) / 0.1), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 80% 68%, rgb(var(--film-shade) / 0.07), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 62% 14%, rgb(var(--film-shade) / 0.05), transparent 70%),
+    rgb(var(--film-haze) / 0.07);
+}
+.map-film::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/textures/film-grain.png") 0 0 / 128px 128px;
+  mix-blend-mode: overlay;
+  opacity: var(--film-grain);
+}
+.map-film::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 72% 68% at 50% 50%, transparent 58%, rgb(var(--film-haze) / 0.3) 100%);
+}
+/* A touch of optical blur at the very edges, where there's a pointer and a GPU to spare. */
+@media (hover: hover) and (pointer: fine) {
+  .map-film::after {
+    backdrop-filter: blur(1.1px);
+    mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, transparent 62%, #000 100%);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .map-film {
+    --film-haze: 60 56 51;
+    --film-light: 92 86 78;
+    --film-shade: 12 11 10;
+    --film-grain: 0.5;
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-reduced-motion: reduce) {
+  .map-film {
+    display: none;
+  }
+}
+
+/*
  * Map pins in Apple Maps' language (sizes from src/lib/map/pin-style.ts). The
  * button is the pin's resting head, centered on the spot. Selected, the head
  * turns into a teardrop (one corner sharpens, the shape turns 45°) and lifts
@@ -585,9 +642,10 @@ body .maplibregl-ctrl-attrib {
   --size: 22px;
   --grow: calc(40 / 22);
   --lift: 28.28px;
-  --halo: #ffffff;
+  --rim: var(--pin-ring, #ffffff);
+  --halo: var(--pin-halo, #ffffff);
   --name: var(--cat-label);
-  --caption: #6e6e73;
+  --caption: var(--pin-caption, #6e6e73);
   position: relative;
   display: block;
   width: var(--size);
@@ -603,9 +661,10 @@ body .maplibregl-ctrl-attrib {
 }
 @media (prefers-color-scheme: dark) {
   .map-pin {
-    --halo: #1a2433;
+    --rim: var(--pin-ring-dark, #ffffff);
+    --halo: var(--pin-halo-dark, #1a2433);
     --name: var(--cat-label-dark);
-    --caption: #dde6f4;
+    --caption: var(--pin-caption-dark, #dde6f4);
   }
 }
 /* The hit area reaches past the drawn pin so small pins stay easy to tap. */
@@ -627,7 +686,7 @@ body .maplibregl-ctrl-attrib {
   background: var(--cat);
   color: #ffffff;
   box-shadow:
-    0 0 0 1.5px #ffffff,
+    0 0 0 1.5px var(--rim),
     0 1px 3px rgb(0 0 0 / 0.28);
   transition:
     transform 260ms var(--ease-snappy),
@@ -636,7 +695,7 @@ body .maplibregl-ctrl-attrib {
 }
 .map-pin[data-kind="photo"] .map-pin-head {
   padding: 2.5px;
-  background: #ffffff;
+  background: var(--rim);
   box-shadow:
     0 0 0 0.5px rgb(0 0 0 / 0.1),
     0 2px 6px rgb(0 0 0 / 0.3);

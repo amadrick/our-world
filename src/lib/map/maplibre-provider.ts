@@ -84,6 +84,13 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   });
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
+  if (theme.overlay) {
+    // Right after the canvas: markers are appended to the same container later, so pins stay on top.
+    const overlay = document.createElement("div");
+    overlay.className = `map-${theme.overlay}`;
+    overlay.setAttribute("aria-hidden", "true");
+    map.getCanvas().after(overlay);
+  }
   // Textures, markers, and the pins' collision boxes are drawn on demand.
   // A resolver, not the styleimagemissing event: only a resolver can answer the tile that's asking.
   map.setMissingStyleImageResolver((id) => {
