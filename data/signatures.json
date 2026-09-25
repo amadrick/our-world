@@ -1123,6 +1123,32 @@
         "https://sf.eater.com/2019/2/15/18217667/breadbelly-san-francisco-bakery-cafe-asian-american-pastry-kaya-toast"
       ],
       "approved": false
+    },
+    {
+      "id": "sfmoma",
+      "name": "SFMOMA",
+      "signatureSubject": "Doris and Donald Fisher Collection",
+      "signatureRationale": "SFMOMA calls the Fisher Collection one of the world's greatest private collections of contemporary art, shown under a 100-year partnership; it was fully reinstalled across Floors 3–6 in April 2026.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfmoma.org/artists-artworks/fisher-collection/",
+        "https://www.sfmoma.org/press-release/sfmoma-to-unveil-major-transformation-of-the-renowned-doris-and-donald-fisher-collection-the-first-full-reinstallation-of-the-collection-at-sfmoma-since-2016/",
+        "https://en.wikipedia.org/wiki/San_Francisco_Museum_of_Modern_Art"
+      ],
+      "approved": false
+    },
+    {
+      "id": "de-young-museum",
+      "name": "de Young Museum",
+      "signatureSubject": "Free Hamon Observation Tower",
+      "signatureRationale": "FAMSF lists the ninth-floor Hamon Observation Tower as open to everyone without a ticket; SFGATE and the SF Chronicle describe its 360-degree view as a well-loved free draw and the highest viewpoint in Golden Gate Park.",
+      "confidence": "high",
+      "sources": [
+        "https://www.famsf.org/visit/de-young-tickets-hours",
+        "https://www.sfgate.com/local/article/hamon-observation-tower-golden-gate-park-18156404.php",
+        "https://en.wikipedia.org/wiki/De_Young_Museum"
+      ],
+      "approved": false
     }
   ]
 }

@@ -3907,6 +3907,94 @@
         "unverified": "Page fetches were blocked, so sources were read through search-result excerpts. Not verified: whether the teal paint covers only the ground-floor shopfront or the whole building, and what the upper floors look like (bays, siding, trim color); the sign's form (hanging blade sign, fascia board, or gold leaf on window glass) and its lettering style; the parklet's materials, color and layout; whether the interior walls are still cream after the 2025 reopening, and how many indoor seats there are now; street trees, exact street grade, and fog at this block."
       },
       "image": "/places/breadbelly-6ff23041.webp"
+    },
+    {
+      "id": "sfmoma",
+      "name": "SFMOMA",
+      "category": "museum",
+      "neighborhood": "SoMa",
+      "address": "151 Third St, San Francisco, CA 94103",
+      "lat": 37.785915,
+      "lng": -122.400736,
+      "tags": [],
+      "summary": "One of the largest modern and contemporary art museums in the country, in Mario Botta's 1995 red-brick building and Snøhetta's 2016 white expansion, across Third Street from Yerba Buena Gardens. The Doris and Donald Fisher Collection fills several floors, the art on the first two floors is free to see without a ticket, and the museum is closed Wednesdays.",
+      "summarySource": "written",
+      "createdAt": "2026-09-25T05:05:00.000Z",
+      "signatureSubject": "Doris and Donald Fisher Collection",
+      "signatureRationale": "SFMOMA calls the Fisher Collection one of the world's greatest private collections of contemporary art, shown under a 100-year partnership; it was fully reinstalled across Floors 3–6 in April 2026.",
+      "placeResearch": {
+        "street": "The museum fills the middle of the SoMa block bounded by Third, Mission, New Montgomery and Howard streets. Its stepped red-brick Botta front faces Third Street toward Yerba Buena Gardens and the Moscone Center, between the tall St. Regis tower at the Mission Street corner and the W Hotel tower on the Howard Street side. Snøhetta's taller white addition rises directly behind it and runs from Minna Street through to Howard Street, where a glass-walled ground-floor gallery meets the sidewalk; its rippled east face looks onto the narrow Natoma Street alley toward New Montgomery. The most recognizable view is from Yerba Buena Gardens across Third Street: the terraced brick front with a black-and-white striped cylinder rising from its center, cut off at a steep angle into a glass skylight, and the pale, horizontally rippled addition standing behind it as a backdrop.",
+        "terrain": "The site is flat downtown ground among high-rises. The five-story brick building sits low between hotel towers, with Timothy Pflueger's Art Deco tower at New Montgomery just beyond the addition to the east, so the clearest sight lines are from the open space of Yerba Buena Gardens to the southwest; from there the addition's roofline dips over the oculus. The 10-story white addition, about 195 feet tall at its east wall, forms a pale backdrop above the red brick, and its crystal-flecked panels change appearance as the daylight shifts.",
+        "architecture": "The front is Mario Botta's 1995 five-story building (designed with HOK): stepped, nearly windowless boxes clad in patterned red brick, with horizontal black-and-white granite bands framing the low Third Street entrance. At its center stands a cylindrical turret wrapped in alternating black and white stone stripes, its top cut off at a steep diagonal into a giant glass oculus that lights the atrium below. Behind it rises Snøhetta's 10-story 2016 addition, clad in more than 700 uniquely shaped white fiberglass-reinforced polymer panels forming rippling horizontal bands, their sandblasted surface embedded with Monterey Bay silicate crystals that catch the changing light; at its Howard Street end a two-story glass-walled free gallery sits at street level beside an outdoor stair up to the entry hall. The only large exterior lettering is the museum logo \"SFMOMA\", added in 2016 and split into three letter groups (\"SF\", \"MO\", \"MA\"): white letters on the red brick at the Third Street entrance, where the spread-out logo frames the doorway, and an identical-size warm red version on the white Howard Street facade.",
+        "unique": "Botta's black-and-white striped cylinder, cut on a steep diagonal into an elliptical glass skylight, has been the museum's trademark since 1995. Snøhetta's addition carries what was, when completed, the largest use of fiberglass-reinforced polymer cladding on a US building: more than 700 individually molded white panels whose ripples were inspired by the waters of San Francisco Bay.",
+        "iconic": [
+          "Botta's stepped red-brick front seen from Yerba Buena Gardens, with the white rippled addition rising behind",
+          "black-and-white striped cylinder cut at a steep angle into a glass oculus",
+          "billowing white rippled east facade seen from Natoma Street",
+          "white \"SFMOMA\" letters on the red brick at the Third Street entrance"
+        ],
+        "view": "facade",
+        "sources": [
+          "https://www.sfmoma.org/press-release/sfmoma-architecture-and-building-information/",
+          "https://www.sfmoma.org/visit/getting-here/",
+          "https://www.snohetta.com/projects/san-francisco-museum-of-modern-art",
+          "https://en.wikipedia.org/wiki/San_Francisco_Museum_of_Modern_Art",
+          "https://www.dezeen.com/2015/08/10/postmodernism-architecture-sfmoma-san-francisco-museum-of-modern-art-mario-botta-snohetta-craig-dykers-extension/",
+          "https://www.csmonitor.com/1995/0120/20101.html",
+          "https://www.latimes.com/archives/la-xpm-1995-01-15-ca-20282-story.html",
+          "https://www.architecturalrecord.com/articles/11644-san-francisco-museum-of-modern-art",
+          "https://architecturetoday.co.uk/ripple-effect-2/",
+          "https://aigasf.org/sfmoma-signage/",
+          "https://www.sfchronicle.com/bayarea/article/How-SFMOMA-reshapes-our-view-of-what-s-around-it-7958002.php",
+          "https://www.sfchronicle.com/bayarea/article/sfmoma-museum-building-wall-18117561.php"
+        ],
+        "unverified": "Exact size, material and placement of the exterior \"SFMOMA\" letters (sources confirm color, same size and same hang height only); whether any other permanent exterior lettering exists (exhibition banners with changing text also hang on the Third Street front and are left out of the image notes); the current design of the Third Street doors and canopy after the 2016 renovation; whether the grime on the white east facade reported in May 2023 has since been cleaned."
+      }
+    },
+    {
+      "id": "de-young-museum",
+      "name": "de Young Museum",
+      "category": "museum",
+      "neighborhood": "Golden Gate Park",
+      "address": "50 Hagiwara Tea Garden Dr, San Francisco, CA 94118",
+      "lat": 37.771497,
+      "lng": -122.469092,
+      "tags": [
+        "views"
+      ],
+      "summary": "Golden Gate Park's fine arts museum, in a perforated-copper Herzog & de Meuron building facing the California Academy of Sciences across the Music Concourse. The collections span American art, costume and textiles, and arts of Africa, Oceania, and the Americas, and the ninth-floor Hamon Observation Tower is free to visit without a ticket.",
+      "summarySource": "written",
+      "createdAt": "2026-09-25T05:05:00.000Z",
+      "signatureSubject": "Free Hamon Observation Tower",
+      "signatureRationale": "FAMSF lists the ninth-floor Hamon Observation Tower as open to everyone without a ticket; SFGATE and the SF Chronicle describe its 360-degree view as a well-loved free draw and the highest viewpoint in Golden Gate Park.",
+      "placeResearch": {
+        "street": "The museum sits on the north edge of the Music Concourse, the sunken oval plaza near the east end of Golden Gate Park. It faces south across the concourse's formal grid of heavily pollarded trees and fountains toward the California Academy of Sciences, with the Spreckels Temple of Music band shell toward the concourse's west end, the Japanese garden right beside it to the west, and JFK Drive, now a car-free promenade, behind it to the north. The most recognizable view is from the Music Concourse looking north: a long, low, dark copper facade behind a lawn of tall old palms, with the twisting copper tower rising at its right-hand (east) end above the flat-clipped tree tops.",
+        "terrain": "The site is flat parkland. The concourse in front is a sunken oval plaza with a regular grid of heavily pollarded London plane and elm trees, and the museum grounds hold tall century-old palms, eucalyptus, tree ferns and a grass-covered mound in the sculpture garden. Light is often soft and grey when fog rolls in from the ocean; on clear days the glass-walled top of the tower looks 360 degrees over the park canopy to the Pacific, the Golden Gate Bridge and Marin Headlands, Sutro Tower and downtown.",
+        "architecture": "Designed by Herzog & de Meuron with Fong & Chan Architects and opened in October 2005, the low two-story museum is made of three long parallel bars of the building with landscaped courtyards cut between them. It is wrapped entirely in thousands of copper panels, each pressed with raised and recessed dimples and punched with round holes of varying size that abstract sunlight filtering through a tree canopy; the copper, once bright reddish-gold, is now mostly dark russet-brown with traces of green. At the northeast corner a 144-foot, nine-story tower rises as a rectangular slab that twists clockwise into a parallelogram at the top, where a glass-walled observation floor sits; on the west side a 220-foot-wide roof cantilevers about 50 feet over a stone terrace and the sculpture garden, its perforated copper underside casting dappled shadows. The walls are mostly blank copper broken by a few big picture windows and glass-walled courtyards, and the main entrance on the concourse side is a passage into an entry court paved in rust-colored stone with a long crack running through it. The only built-in name is \"de Young\" in roughly 8-foot-high letters made by leaving the dimple pattern out of the copper panels beside the main entry on the south facade; it is subtle and easy to miss, and no other large exterior name sign was found in any source.",
+        "unique": "Built as the world's largest copper-clad building, its skin is made of thousands of panels that are each different, with dimple and perforation patterns generated by computer from photographs of light coming through trees. Its 144-foot tower, the tallest point in Golden Gate Park, twists from the park's grid at its base to the city's street grid at its top.",
+        "iconic": [
+          "the twisting perforated-copper Hamon Observation Tower rising above the pollarded trees, seen from the Music Concourse",
+          "the long, low dimpled copper facade, weathered dark brown with green streaks, behind a lawn of tall palms",
+          "the huge cantilevered copper roof hovering over the sculpture garden on the west side",
+          "Andy Goldsworthy's \"Drawn Stone\" crack running through the paving and split boulders to the front door"
+        ],
+        "view": "facade",
+        "sources": [
+          "https://www.famsf.org/visit/de-young",
+          "https://www.famsf.org/visit/de-young-tickets-hours",
+          "https://en.wikipedia.org/wiki/De_Young_Museum",
+          "https://www.herzogdemeuron.com/projects/173-de-young-museum/",
+          "https://www.sfgate.com/local/article/hamon-observation-tower-golden-gate-park-18156404.php",
+          "https://www.sfgate.com/magazine/article/Painting-a-New-Landscape-An-exhibitionist-2576334.php",
+          "https://www.sfchronicle.com/bayarea/place/article/the-de-young-not-your-average-art-filled-box-2565915.php",
+          "https://segd.org/projects/content-de-young-museum/",
+          "https://azahner.com/projects/de-young/",
+          "https://www.famsf.org/learn-engage/read-watch-listen/andy-goldsworthy-s-drawn-stone",
+          "https://en.wikipedia.org/wiki/Music_Concourse",
+          "https://richmondsunsetnews.com/2020/04/02/music-concourse-at-the-heart-of-gg-park-draws-millions-of-visitors-each-year/"
+        ],
+        "unverified": "The exact typeface and letter case of the \"de Young\" facade lettering, and whether the letters are flat, recessed or cut; where exhibition banners currently hang (they are left out of the image notes); how green the copper is today, since 2023 sources disagree; the tower's rotation angle (30 or 37 degrees) and exact height (144 ft in most sources, 160 ft in one engineering listing); whether the tower has window bands behind its perforated screen."
+      }
     }
   ]
 }

@@ -1,7 +1,7 @@
 # SF Recs
 
 A wedding-week guide to San Francisco: Andy and Kirissa's recommendations for
-restaurants, bars, coffee and tea, shops, and things to do, on a calm map that any guest
+restaurants, bars, coffee and tea, shops, museums, and things to do, on a calm map that any guest
 can use on a phone or a laptop. Tap a place to read their note and a short
 write-up, then open it in Apple Maps or Google Maps with one tap.
 
@@ -65,8 +65,8 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
-`data/places.json` holds Andy and Kirissa's list: 92 places (restaurants, bars,
-cafés, shops, and a few outdoor places) geocoded against OpenStreetMap and
+`data/places.json` holds Andy and Kirissa's list: 94 places (restaurants, bars,
+cafés, shops, two museums, and a few outdoor places) geocoded against OpenStreetMap and
 Overture Maps, each with a short neutral summary, a
 researched `signatureSubject` (what it's known for), a `signatureRationale`
 (why, and according to whom), and `placeResearch` (what it looks like, with
