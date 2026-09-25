@@ -8,9 +8,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-ink text-white hover:bg-ink-hover",
-        destructive: "bg-ink text-white hover:bg-ink-hover",
-        outline: "border border-ink bg-surface text-ink hover:bg-secondary",
+        default: "bg-ink text-on-ink hover:bg-ink-hover",
+        destructive: "bg-ink text-on-ink hover:bg-ink-hover",
+        outline: "border border-ink bg-surface text-ink hover:bg-hover",
         secondary: "border border-border bg-surface text-ink hover:border-ink",
         ghost: "text-ink hover:bg-black/[0.05] active:bg-black/[0.08]",
         link: "text-ink underline underline-offset-4",

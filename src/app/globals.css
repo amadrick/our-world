@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (@media (prefers-color-scheme: dark));
 
 @font-face {
   font-family: "Inter";
@@ -64,10 +64,6 @@
   --shadow-pin: 0 0 0 1px rgb(0 0 0 / 0.08), 0 2px 6px rgb(0 0 0 / 0.16);
   --shadow-bar: 0 -1px 0 #ebebeb, 0 -8px 24px -12px rgb(0 0 0 / 0.12);
 
-  /* The tile a place shows until it has a picture. */
-  --color-sand: #ece8e1;
-  /* Behind a picture while it loads: a neutral mid-grey, so dark film photos don't flash in from white. */
-  --color-photo: #d4d4d4;
 
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
 }
@@ -97,6 +93,10 @@
   --color-hairline: var(--hairline);
   --color-ink: var(--ink);
   --color-ink-hover: var(--ink-hover);
+  --color-on-ink: var(--on-ink);
+  --color-hover: var(--hover);
+  --color-sand: var(--sand);
+  --color-photo: var(--photo);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
@@ -106,6 +106,14 @@
   /* Ink for text, the primary action, and selection; one warm canvas under everything. */
   --ink: #222222;
   --ink-hover: #000000;
+  /* Text and icons on an ink fill (selected pills, pins, the switch thumb). */
+  --on-ink: #ffffff;
+  /* Rows and plain buttons on hover, over any surface or glass. */
+  --hover: rgb(0 0 0 / 0.05);
+  /* The tile a place shows until it has a picture. */
+  --sand: #ece8e1;
+  /* Behind a picture while it loads: a neutral mid-grey, so dark film photos don't flash in from white. */
+  --photo: #d4d4d4;
   --surface: #ffffff;
   --hairline: #ebebeb;
   --background: #ffffff;
@@ -160,7 +168,68 @@
   --glass-shadow:
     0 18px 50px -18px rgb(0 0 0 / 0.28), 0 2px 8px -2px rgb(0 0 0 / 0.08);
   --glass-fill: rgb(255 255 255 / 0.46);
+  --glass-fill-hover: rgb(255 255 255 / 0.66);
+  --glass-inner: rgb(255 255 255 / 0.25);
   --glass-ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Dark: the same roles on near-black, with glass that smokes rather than frosts. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --ink: #f2f2f3;
+    --ink-hover: #ffffff;
+    --on-ink: #161618;
+    --hover: rgb(255 255 255 / 0.08);
+    --sand: #2a2926;
+    --photo: #3a3a3d;
+    --surface: #1c1c1e;
+    --hairline: rgb(255 255 255 / 0.1);
+    --background: #111113;
+    --foreground: #f2f2f3;
+    --card: #1c1c1e;
+    --card-foreground: #f2f2f3;
+    --popover: #1c1c1e;
+    --popover-foreground: #f2f2f3;
+    --primary: #f2f2f3;
+    --primary-foreground: #161618;
+    --secondary: #2a2a2d;
+    --secondary-foreground: #f2f2f3;
+    --muted: #2a2a2d;
+    --muted-foreground: #a1a1a8;
+    --accent: #2a2a2d;
+    --accent-foreground: #f2f2f3;
+    --destructive: #f2f2f3;
+    --border: #3a3a3e;
+    --input: #5a5a60;
+    --ring: #f2f2f3;
+    --map: #131315;
+
+    --glass-brightness: 1;
+    --glass-tint: rgb(30 30 33 / 0.55);
+    --glass-tint-thick: rgb(26 26 29 / 0.8);
+    --glass-tint-clear: rgb(255 255 255 / 0.08);
+    --glass-tint-ink: rgb(242 242 243 / 0.92);
+    --glass-edge: rgb(255 255 255 / 0.12);
+    --glass-rim: rgb(255 255 255 / 0.14);
+    --glass-inner: rgb(255 255 255 / 0.06);
+    --glass-sheen: linear-gradient(
+      150deg,
+      rgb(255 255 255 / 0.22) 0%,
+      rgb(255 255 255 / 0.03) 32%,
+      rgb(255 255 255 / 0) 62%,
+      rgb(255 255 255 / 0.1) 100%
+    );
+    --glass-glow: radial-gradient(
+      120% 70% at 22% -12%,
+      rgb(255 255 255 / 0.1),
+      rgb(255 255 255 / 0) 62%
+    );
+    --glass-shadow:
+      0 18px 50px -18px rgb(0 0 0 / 0.7), 0 2px 8px -2px rgb(0 0 0 / 0.35);
+    --glass-fill: rgb(255 255 255 / 0.08);
+    --glass-fill-hover: rgb(255 255 255 / 0.14);
+  }
 }
 
 @layer base {
@@ -254,9 +323,8 @@
 }
 
 /*
- * The glass primitive, kept for the admin's chrome over its image mosaic. The
- * guest guide uses solid surfaces (bg-surface, border-hairline, shadow-*).
- * Variants: .glass (regular), .glass-thick, .glass-clear, .glass-ink, plus
+ * The glass primitive: the switch, the map rail and controls, the sheet, the
+ * pills, and the admin's chrome over its image mosaic. Variants: .glass (regular), .glass-thick, .glass-clear, .glass-ink, plus
  * .glass-interactive for controls that react to touch, and .glass-fill for
  * controls that sit on glass (glass is never stacked on glass).
  */
@@ -274,7 +342,7 @@
     box-shadow:
       var(--glass-shadow),
       inset 0 1px 0 0 var(--glass-rim),
-      inset 0 0 0 0.5px rgb(255 255 255 / 0.25);
+      inset 0 0 0 0.5px var(--glass-inner);
     transition:
       background-color 320ms var(--glass-ease),
       box-shadow 320ms var(--glass-ease),
@@ -318,7 +386,7 @@
     --_tint: var(--glass-tint-ink);
     --glass-rim: rgb(255 255 255 / 0.28);
     --glass-edge: rgb(0 0 0 / 0.2);
-    color: #fff;
+    color: var(--on-ink);
   }
   .glass-ink::after {
     opacity: 0.35;
@@ -336,17 +404,49 @@
   /* Controls resting on a glass surface: a vibrant translucent fill with a lit rim. */
   .glass-fill {
     background-color: var(--glass-fill);
-    border: 0.5px solid rgb(0 0 0 / 0.08);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 0.5px solid var(--glass-edge);
     box-shadow:
-      inset 0 1px 0 0 rgb(255 255 255 / 0.85),
+      inset 0 1px 0 0 var(--glass-rim),
       0 1px 2px rgb(0 0 0 / 0.04);
     transition:
       background-color 220ms var(--glass-ease),
       transform 220ms var(--glass-ease);
   }
   .glass-fill:hover {
-    background-color: rgb(255 255 255 / 0.66);
+    background-color: var(--glass-fill-hover);
   }
+}
+
+/* Glass over a photo: a smoked tint, so white icons and text read on any picture. */
+@utility glass-media {
+  background-color: rgb(0 0 0 / 0.3);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 0.5px solid rgb(255 255 255 / 0.24);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    0 6px 20px -6px rgb(0 0 0 / 0.35);
+  color: #fff;
+}
+
+/* Glass on a place's color: a light veil lifting off the page, for white text and icons. */
+@utility glass-tinted {
+  background-color: rgb(255 255 255 / 0.14);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 0.5px solid rgb(255 255 255 / 0.2);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2);
+  color: #fff;
+}
+
+/* A full-width translucent bar that content scrolls under (list header, phone map filters). */
+@utility glass-bar {
+  background-color: var(--glass-tint);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  border-bottom: 0.5px solid var(--glass-edge);
 }
 
 /* Reduce Transparency, or no backdrop-filter support: solid, legible surfaces. */
@@ -367,6 +467,27 @@
   .glass::after {
     display: none;
   }
+  .glass-media {
+    background-color: rgb(0 0 0 / 0.62);
+  }
+  .glass-tinted {
+    background-color: rgb(255 255 255 / 0.22);
+  }
+  .glass-bar {
+    background-color: var(--surface);
+  }
+  .tinted-sheet {
+    background-color: var(--tint);
+  }
+}
+@media (prefers-reduced-transparency: reduce) and (prefers-color-scheme: dark) {
+  :root {
+    --glass-tint: #1f1f22;
+    --glass-tint-thick: #1c1c1e;
+    --glass-tint-clear: #1f1f22;
+    --glass-tint-ink: #f2f2f3;
+    --glass-fill: #2a2a2d;
+  }
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   :root {
@@ -384,6 +505,16 @@
     --muted-foreground: #3f3f3f;
     --hairline: #b0b0b0;
     --border: #717171;
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --glass-tint: rgb(20 20 22 / 0.94);
+    --glass-tint-clear: rgb(20 20 22 / 0.9);
+    --glass-edge: rgb(255 255 255 / 0.5);
+    --muted-foreground: #d0d0d5;
+    --hairline: #5a5a60;
+    --border: #8a8a90;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -404,13 +535,14 @@ body .maplibregl-ctrl-bottom-right {
 }
 body .maplibregl-ctrl-attrib {
   font-size: 12px;
-  background: #fff !important;
+  color: var(--muted-foreground);
+  background: var(--surface) !important;
   border-radius: 9999px;
   box-shadow: var(--shadow-float);
   margin: 0 !important;
 }
 .maplibregl-ctrl-attrib a {
-  color: #6a6a6a !important;
+  color: var(--muted-foreground) !important;
 }
 /* Phones: keep the attribution clear of the floating List | Map switch. */
 @media (max-width: 1023px) {
@@ -424,4 +556,15 @@ body .maplibregl-ctrl-attrib {
 .maplibregl-marker:has([data-selected]),
 .maplibregl-marker:has(:focus-visible) {
   z-index: 3;
+}
+
+/* The phone map sheet for an open place: glass tinted with the place's color. */
+@utility tinted-sheet {
+  background-color: color-mix(in srgb, var(--tint) 86%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  backdrop-filter: blur(28px) saturate(170%);
+  border: 0.5px solid rgb(255 255 255 / 0.16);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    0 -12px 40px -12px rgb(0 0 0 / 0.35);
 }

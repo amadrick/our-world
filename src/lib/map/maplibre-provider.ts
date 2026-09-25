@@ -1,6 +1,6 @@
 import type { Map as MapLibreMap, Marker } from "maplibre-gl";
 
-import { buildMapStyle, type TileSource } from "./style";
+import { buildMapStyle, type ColorScheme, type TileSource } from "./style";
 import type {
   LngLat,
   MapCreateOptions,
@@ -31,10 +31,13 @@ function safePadding(map: MapLibreMap, padding: MapPadding, margin: number): Map
   return { top, right, bottom, left };
 }
 
+const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
+const scheme = (): ColorScheme => (darkQuery().matches ? "dark" : "light");
+
 function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
   const map = new lib.Map({
     container: options.container,
-    style: buildMapStyle(tileSource(), window.location.origin),
+    style: buildMapStyle(tileSource(), window.location.origin, scheme()),
     center: [options.center.lng, options.center.lat],
     zoom: options.zoom,
     minZoom: 8,
@@ -46,6 +49,9 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
   });
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
+
+  const followScheme = () => map.setStyle(buildMapStyle(tileSource(), window.location.origin, scheme()));
+  darkQuery().addEventListener("change", followScheme);
 
   const markers = new Map<string, Marker>();
   let padding: MapPadding = { top: 0, right: 0, bottom: 0, left: 0 };
@@ -118,6 +124,7 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
     },
     destroy() {
       window.clearTimeout(timeout);
+      darkQuery().removeEventListener("change", followScheme);
       for (const marker of markers.values()) marker.remove();
       markers.clear();
       map.remove();

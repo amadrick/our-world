@@ -22,7 +22,7 @@ export function ImageBackdrop({ images }: { images: string[] }) {
           </div>
         ))}
       </div>
-      <div className="absolute inset-0 bg-white/30" />
+      <div className="absolute inset-0 bg-white/30 dark:bg-black/45" />
     </div>
   );
 }

@@ -13,8 +13,9 @@ import type {
  */
 
 export type TileSource = "openfreemap" | "offline";
+export type ColorScheme = "light" | "dark";
 
-const C = {
+const LIGHT = {
   land: "#F5F4F1",
   water: "#C9D7E2",
   park: "#DDE6D6",
@@ -32,6 +33,28 @@ const C = {
   hood: "#A3A3A1",
   waterLabel: "#8397A8",
   halo: "rgba(245,244,241,0.92)",
+};
+
+type Palette = typeof LIGHT;
+
+const DARK: Palette = {
+  land: "#1A1A1C",
+  water: "#1C2831",
+  park: "#1D271F",
+  wood: "#1B251D",
+  sand: "#222221",
+  building: "#252527",
+  road: "#323235",
+  roadFar: "#232326",
+  roadMid: "#2A2A2D",
+  tunnel: "#202023",
+  rail: "#2B2B2E",
+  path: "#2A2A2D",
+  label: "#86868B",
+  labelStrong: "#A6A6AB",
+  hood: "#737378",
+  waterLabel: "#6C8394",
+  halo: "rgba(26,26,28,0.92)",
 };
 
 const FONT = ["Inter"];
@@ -77,7 +100,7 @@ const isLine: Expr = ["==", ["geometry-type"], "LineString"];
 const notTunnel: Expr = ["!=", ["coalesce", ["get", "brunnel"], ""], "tunnel"];
 
 // Far out, white streets vanish into the land; tint them until they have room to read.
-const roadColor: Expr = [
+const roadColor = (C: Palette): Expr => [
   "interpolate",
   ["linear"],
   ["zoom"],
@@ -89,7 +112,7 @@ const roadColor: Expr = [
   C.road,
 ] as Expr;
 
-function roadLayers(): LayerSpecification[] {
+function roadLayers(C: Palette): LayerSpecification[] {
   const groups = Object.keys(ROAD_GROUPS) as RoadGroup[];
   const tunnels: LayerSpecification[] = groups.map((g) => ({
     id: `tunnel-${g}`,
@@ -109,7 +132,7 @@ function roadLayers(): LayerSpecification[] {
     minzoom: MIN_ZOOM[g],
     filter: ["all", isLine, notTunnel, classIn(ROAD_GROUPS[g])],
     layout: { "line-cap": "round", "line-join": "round" },
-    paint: { "line-color": roadColor, "line-width": widths(W[g]) },
+    paint: { "line-color": roadColor(C), "line-width": widths(W[g]) },
   }));
   return [...tunnels, ...roads];
 }
@@ -128,13 +151,18 @@ function source(tiles: TileSource, origin: string): SourceSpecification {
   return { type: "vector", url: "https://tiles.openfreemap.org/planet" };
 }
 
-const labelPaint = (color: string) => ({
+const labelPaint = (C: Palette, color: string) => ({
   "text-color": color,
   "text-halo-color": C.halo,
   "text-halo-width": 1.2,
 });
 
-export function buildMapStyle(tiles: TileSource, origin: string): StyleSpecification {
+export function buildMapStyle(
+  tiles: TileSource,
+  origin: string,
+  scheme: ColorScheme = "light",
+): StyleSpecification {
+  const C = scheme === "dark" ? DARK : LIGHT;
   const glyphs =
     tiles === "offline"
       ? `${origin}/offline-tiles/fonts/{fontstack}/{range}.pbf`
@@ -222,7 +250,7 @@ export function buildMapStyle(tiles: TileSource, origin: string): StyleSpecifica
       filter: ["all", isLine, classIn(["rail", "transit"]), notTunnel],
       paint: { "line-color": C.rail, "line-width": widths([[13, 0.6], [16, 1.2], [19, 2]]) },
     },
-    ...roadLayers(),
+    ...roadLayers(C),
     {
       id: "water-label",
       type: "symbol",
@@ -235,7 +263,7 @@ export function buildMapStyle(tiles: TileSource, origin: string): StyleSpecifica
         "text-size": ["interpolate", ["linear"], ["zoom"], 8, 11, 14, 14],
         "text-max-width": 6,
       },
-      paint: labelPaint(C.waterLabel),
+      paint: labelPaint(C, C.waterLabel),
     },
     {
       id: "road-label",
@@ -255,7 +283,7 @@ export function buildMapStyle(tiles: TileSource, origin: string): StyleSpecifica
         "symbol-placement": "line",
         "text-padding": 12,
       },
-      paint: labelPaint(C.label),
+      paint: labelPaint(C, C.label),
     },
     {
       id: "park-label",
@@ -271,7 +299,7 @@ export function buildMapStyle(tiles: TileSource, origin: string): StyleSpecifica
         "text-max-width": 8,
         "text-padding": 8,
       },
-      paint: labelPaint(C.hood),
+      paint: labelPaint(C, C.hood),
     },
     {
       id: "neighborhood-label",
@@ -288,7 +316,7 @@ export function buildMapStyle(tiles: TileSource, origin: string): StyleSpecifica
         "text-max-width": 7,
         "text-padding": 8,
       },
-      paint: labelPaint(C.hood),
+      paint: labelPaint(C, C.hood),
     },
     {
       id: "city-label",
@@ -303,13 +331,13 @@ export function buildMapStyle(tiles: TileSource, origin: string): StyleSpecifica
         "text-size": ["interpolate", ["linear"], ["zoom"], 6, 11, 11, 15],
         "text-max-width": 8,
       },
-      paint: labelPaint(C.labelStrong),
+      paint: labelPaint(C, C.labelStrong),
     },
   ];
 
   return {
     version: 8,
-    name: "SF Recs Paper",
+    name: scheme === "dark" ? "SF Recs Paper (dark)" : "SF Recs Paper",
     glyphs,
     // Labels are drawn from the same Inter Variable file as the UI.
     "font-faces": { Inter: `${origin}/fonts/InterVariable.woff2` },

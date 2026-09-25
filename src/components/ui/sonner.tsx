@@ -6,7 +6,7 @@ import { Toaster as Sonner, type ToasterProps } from "sonner"
 const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
-      theme="light"
+      theme="system"
       className="toaster group"
       icons={{
         success: <CheckCircle size={16} />,
@@ -21,7 +21,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "!rounded-2xl !border !border-hairline !bg-surface !shadow-raised !text-base !font-normal !text-ink",
           title: "!font-semibold",
           description: "!text-sm !text-muted-foreground",
-          actionButton: "!h-9 !rounded-full !bg-ink !px-4 !text-sm !font-semibold",
+          actionButton: "!h-9 !rounded-full !bg-ink !px-4 !text-sm !font-semibold !text-on-ink",
         },
       }}
       style={

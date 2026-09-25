@@ -218,7 +218,7 @@ function CandidateList({
           <button
             type="button"
             onClick={() => onChoose(candidate)}
-            className="flex w-full cursor-pointer items-center gap-3.5 rounded-[20px] p-3 text-left transition-colors hover:bg-white/50 focus-visible:bg-white/50 focus-visible:outline-none"
+            className="flex w-full cursor-pointer items-center gap-3.5 rounded-[20px] p-3 text-left transition-colors hover:bg-hover focus-visible:bg-hover focus-visible:outline-none"
           >
             {candidate.category ? (
               <CategoryBadge category={candidate.category} />
@@ -235,7 +235,7 @@ function CandidateList({
                   .join(" · ") || `${candidate.lat.toFixed(4)}, ${candidate.lng.toFixed(4)}`}
               </span>
             </span>
-            <span className="shrink-0 rounded-full bg-foreground px-3.5 py-1.5 text-sm font-medium text-white">
+            <span className="shrink-0 rounded-full bg-foreground px-3.5 py-1.5 text-sm font-medium text-background">
               Choose
             </span>
           </button>
@@ -568,9 +568,9 @@ export function PlaceForm({
     <form onSubmit={save} className="space-y-10">
       <div className="space-y-4">
         <Section title={editing ? "Place" : "Found it"} />
-        <div className="overflow-hidden rounded-[24px] hairline border-black/10 bg-white/40">
+        <div className="overflow-hidden rounded-[24px] hairline border-black/10 bg-white/40 dark:border-white/12 dark:bg-white/6">
           <LocationPreview lat={draft.lat} lng={draft.lng} className="h-44 sm:h-52" />
-          <div className="flex items-center gap-3 border-t-[0.5px] border-black/10 py-2 pr-2 pl-4">
+          <div className="flex items-center gap-3 border-t-[0.5px] border-black/10 py-2 pr-2 pl-4 dark:border-white/12">
             <MapPin size={16} className="shrink-0 text-muted-foreground" />
             <p className="min-w-0 flex-1 truncate text-sm text-muted-foreground">
               {draft.address || `${draft.lat.toFixed(5)}, ${draft.lng.toFixed(5)}`}
@@ -763,7 +763,7 @@ export function PlaceForm({
         onChange={updateResearch}
       />
 
-      <div className="sticky bottom-0 -mx-5 space-y-3 border-t-[0.5px] border-black/10 bg-white/70 px-5 pt-4 pb-[max(env(safe-area-inset-bottom),16px)] backdrop-blur-xl sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
+      <div className="sticky bottom-0 -mx-5 space-y-3 border-t-[0.5px] border-black/10 bg-white/70 px-5 dark:border-white/12 dark:bg-black/50 pt-4 pb-[max(env(safe-area-inset-bottom),16px)] backdrop-blur-xl sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
         {error && <Callout>{error}</Callout>}
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button
