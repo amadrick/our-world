@@ -255,7 +255,8 @@ system (`prefers-color-scheme`), map included.
     unit. The List | Map switch floats at the bottom over a plain fade of the
     page color, and the page ends with room to clear it.
   - The phone map sheet and the desktop map rail: the photo on top, edge to
-    edge, fading cleanly into the place's color; then the name with Andy's
+    edge, its last 30% softening through the same light progressive blur as
+    it fades into the place's color; then the name with Andy's
     pick, the Apple Maps and Google Maps pills right under it, and the rest.
     Opening staggers them in (see Motion).
   - Stepping between places: on phones, swipe the map sheet or the place page
