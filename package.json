@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start --port 4617",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "tiles:offline": "node scripts/build-offline-tiles.mjs",
     "terrain:offline": "node scripts/build-offline-terrain.mjs",
