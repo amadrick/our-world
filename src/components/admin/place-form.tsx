@@ -21,7 +21,7 @@ import {
 } from "@/lib/admin/api";
 import { foodIn, researchText } from "@/lib/images/food-guard.mjs";
 import type { PlaceInputPayload } from "@/lib/places/schema";
-import { CATEGORIES, TAGS } from "@/lib/places/taxonomy";
+import { ANDY_PICK, CATEGORIES, TAGS } from "@/lib/places/taxonomy";
 import type { CategoryId, Place, PlaceResearch, SummarySource, TagId } from "@/lib/places/types";
 import { LocationPreview } from "./location-preview";
 
@@ -33,6 +33,7 @@ interface Draft {
   lat: number;
   lng: number;
   tags: TagId[];
+  andyFavorite: boolean;
   note: string;
   summary: string;
   summarySource: SummarySource;
@@ -111,6 +112,7 @@ function draftFromPlace(place: Place): Draft {
     lat: place.lat,
     lng: place.lng,
     tags: place.tags,
+    andyFavorite: place.andyFavorite === true,
     note: place.note ?? "",
     summary: place.summary,
     summarySource: place.summarySource,
@@ -132,6 +134,7 @@ function draftFromCandidate(candidate: PlaceCandidate, lookup?: LookupResult): D
     lat: candidate.lat,
     lng: candidate.lng,
     tags: [],
+    andyFavorite: false,
     note: "",
     summary: "",
     summarySource: "written",
@@ -677,9 +680,15 @@ export function PlaceForm({
         <div className="space-y-2">
           <Label id="tags-label">Tags</Label>
           <div role="group" aria-labelledby="tags-label" className="flex flex-wrap gap-2">
+            <Pill
+              active={draft.andyFavorite}
+              onClick={() => update({ andyFavorite: !draft.andyFavorite })}
+            >
+              <Star size={15} fill="currentColor" />
+              {ANDY_PICK}
+            </Pill>
             {TAGS.map((tag) => (
               <Pill key={tag.id} active={draft.tags.includes(tag.id)} onClick={() => toggleTag(tag.id)}>
-                {tag.id === "top-pick" && <Star size={15} fill="currentColor" />}
                 {tag.badge}
               </Pill>
             ))}

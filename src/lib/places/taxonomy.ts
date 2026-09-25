@@ -1,4 +1,4 @@
-import type { CategoryId, TagId } from "./types";
+import type { CategoryId, PillId, TagId } from "./types";
 
 export interface CategoryInfo {
   id: CategoryId;
@@ -30,12 +30,11 @@ export function getCategory(id: CategoryId): CategoryInfo {
 export interface TagInfo {
   id: TagId;
   label: string;
-  /** Shorter label used on a single place, e.g. "Top pick" vs "Top picks". */
+  /** Label used on a single place. */
   badge: string;
 }
 
 export const TAGS: TagInfo[] = [
-  { id: "top-pick", label: "Top picks", badge: "Top pick" },
   { id: "dinner", label: "Dinner", badge: "Dinner" },
   { id: "lunch", label: "Lunch", badge: "Lunch" },
   { id: "late-night", label: "Late night", badge: "Late night" },
@@ -52,7 +51,29 @@ export function getTag(id: TagId): TagInfo {
   return TAG_BY_ID[id];
 }
 
-/** The filter pills guests see, always all five and in this order. "Top pick" is a star, not a pill. */
+/** The tags shown on a place, in pill order. */
 export const FILTER_TAGS: TagInfo[] = (
   ["dinner", "lunch", "late-night", "brunch", "views"] as const
 ).map(getTag);
+
+export const ANDY_PICK = "Andy’s pick";
+
+export interface PillInfo {
+  id: PillId;
+  label: string;
+}
+
+/** The filter pills guests see, always all six and in this order. */
+export const FILTER_PILLS: PillInfo[] = [
+  { id: "favorites", label: "Andy’s favorites" },
+  ...FILTER_TAGS.map(({ id, label }) => ({ id, label })),
+];
+
+const PILL_BY_ID = Object.fromEntries(FILTER_PILLS.map((p) => [p.id, p])) as Record<
+  PillId,
+  PillInfo
+>;
+
+export function getPill(id: PillId): PillInfo {
+  return PILL_BY_ID[id];
+}

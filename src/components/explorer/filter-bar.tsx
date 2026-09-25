@@ -8,8 +8,8 @@ import { CATEGORY_ICONS } from "@/components/places/category-badge";
 import { TagIcon } from "@/components/places/tag-icon";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import type { PlaceFilters } from "@/lib/places/filters";
-import { CATEGORIES, FILTER_TAGS } from "@/lib/places/taxonomy";
-import type { CategoryId, TagId } from "@/lib/places/types";
+import { CATEGORIES, FILTER_PILLS } from "@/lib/places/taxonomy";
+import type { CategoryId, PillId } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 import { ScrollRow } from "./scroll-row";
 
@@ -21,7 +21,7 @@ interface FilterBarProps {
   /** Sections that have at least one place; the rest get no tab. */
   categories: Set<CategoryId>;
   /** How many places each pill would leave; pills at zero are disabled. */
-  tagCounts: Map<TagId, number>;
+  pillCounts: Map<PillId, number>;
   /** Horizontal padding inside both rows, so the first chip lines up with the content below. */
   inset?: string;
   className?: string;
@@ -160,17 +160,32 @@ export function FilterBar({
   onChange,
   neighborhoods,
   categories,
-  tagCounts,
+  pillCounts,
   inset,
   className,
 }: FilterBarProps) {
-  const toggleTag = (tag: TagId) =>
+  const togglePill = (pill: PillId) =>
     onChange({
       ...filters,
-      tags: filters.tags.includes(tag)
-        ? filters.tags.filter((t) => t !== tag)
-        : [...filters.tags, tag],
+      pills: filters.pills.includes(pill)
+        ? filters.pills.filter((p) => p !== pill)
+        : [...filters.pills, pill],
     });
+  const [favorites, ...tags] = FILTER_PILLS;
+  const pill = ({ id, label }: (typeof FILTER_PILLS)[number]) => {
+    const active = filters.pills.includes(id);
+    return (
+      <Pill
+        key={id}
+        active={active}
+        disabled={!active && pillCounts.get(id) === 0}
+        onClick={() => togglePill(id)}
+      >
+        <TagIcon tag={id} />
+        {label}
+      </Pill>
+    );
+  };
 
   return (
     <div className={className}>
@@ -197,6 +212,7 @@ export function FilterBar({
         })}
       </ScrollRow>
       <ScrollRow label="More filters" innerClassName={cn("gap-2 pt-4 pb-1", inset)}>
+        {pill(favorites)}
         {(neighborhoods.length > 1 || filters.neighborhood !== null) && (
           <NeighborhoodPicker
             value={filters.neighborhood}
@@ -204,20 +220,7 @@ export function FilterBar({
             onSelect={(neighborhood) => onChange({ ...filters, neighborhood })}
           />
         )}
-        {FILTER_TAGS.map((tag) => {
-          const active = filters.tags.includes(tag.id);
-          return (
-            <Pill
-              key={tag.id}
-              active={active}
-              disabled={!active && tagCounts.get(tag.id) === 0}
-              onClick={() => toggleTag(tag.id)}
-            >
-              <TagIcon tag={tag.id} />
-              {tag.label}
-            </Pill>
-          );
-        })}
+        {tags.map(pill)}
       </ScrollRow>
     </div>
   );

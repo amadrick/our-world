@@ -14,12 +14,12 @@ import {
   hasActiveFilters,
   matchesInOtherSections,
   neighborhoodCounts,
+  pillCounts,
   sortPlaces,
-  tagCounts,
   type PlaceFilters,
 } from "@/lib/places/filters";
-import { FILTER_TAGS, getCategory, getTag } from "@/lib/places/taxonomy";
-import type { Place } from "@/lib/places/types";
+import { getCategory, getPill } from "@/lib/places/taxonomy";
+import { PILL_IDS, type Place } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 import { BottomSheet, type SheetSnap } from "./bottom-sheet";
 import { FilterBar } from "./filter-bar";
@@ -27,8 +27,6 @@ import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
 import { PlaceActions, PlaceDetail, PlaceSheetHeader } from "./place-detail";
 import { PlaceList, type NoMatches } from "./place-list";
-
-const FILTER_TAG_IDS = FILTER_TAGS.map((t) => t.id);
 
 const RAIL_WIDTH = 400;
 const RAIL_INSET = 16;
@@ -120,10 +118,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     () => neighborhoodCounts(filterPlaces(places, { ...filters, neighborhood: null })),
     [places, filters],
   );
-  const pillCounts = useMemo(
-    () => tagCounts(places, filters, FILTER_TAG_IDS),
-    [places, filters],
-  );
+  const counts = useMemo(() => pillCounts(places, filters, PILL_IDS), [places, filters]);
   const elsewhere = useMemo(() => matchesInOtherSections(places, filters), [places, filters]);
   const selected = places.find((p) => p.id === selectedId) ?? null;
   const filtersActive = hasActiveFilters(filters);
@@ -216,17 +211,17 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   // A section with nothing for the chosen pills points to the matches in other sections.
   let noMatches: NoMatches | undefined;
   if (visible.length === 0 && filters.category && elsewhere > 0) {
-    const tagLabels = filters.tags.map((t) => getTag(t).label);
+    const pillLabels = filters.pills.map((p) => getPill(p).label);
     noMatches = {
-      title: `Nothing in ${getCategory(filters.category).plural} matches ${tagLabels.join(" + ")}`,
+      title: `Nothing in ${getCategory(filters.category).plural} matches ${pillLabels.join(" + ")}`,
       body: `But ${elsewhere} ${elsewhere === 1 ? "place" : "places"} in other sections ${elsewhere === 1 ? "does" : "do"}.`,
       actions: (
         <>
           <Button onClick={() => changeFilters({ ...filters, category: null })}>
             Show {elsewhere === 1 ? "it" : `those ${elsewhere}`}
           </Button>
-          <Button variant="outline" onClick={() => changeFilters({ ...filters, tags: [] })}>
-            {tagLabels.length === 1 ? `Remove ${tagLabels[0]}` : "Remove these filters"}
+          <Button variant="outline" onClick={() => changeFilters({ ...filters, pills: [] })}>
+            {pillLabels.length === 1 ? `Remove ${pillLabels[0]}` : "Remove these filters"}
           </Button>
         </>
       ),
@@ -248,7 +243,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     onChange: changeFilters,
     neighborhoods,
     categories,
-    tagCounts: pillCounts,
+    pillCounts: counts,
   };
 
   return (

@@ -22,7 +22,7 @@ import { TagIcon } from "@/components/places/tag-icon";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
-import { FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
+import { ANDY_PICK, FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -136,6 +136,15 @@ function Highlight({ icon: HighlightIcon, label, children }: { icon: Icon; label
   );
 }
 
+function AndyPickBadge() {
+  return (
+    <p className="inline-flex h-8 items-center gap-1.5 rounded-full bg-secondary pr-3 pl-2.5 text-sm font-semibold">
+      <Star size={13} fill="currentColor" aria-hidden />
+      {ANDY_PICK}
+    </p>
+  );
+}
+
 function OverlayBack({ onBack }: { onBack: () => void }) {
   return (
     <button
@@ -187,7 +196,14 @@ export function PlaceSheetHeader({
         <PlaceImage place={place} sizes="56px" className="image-frame w-14 shrink-0 rounded-md" />
       )}
       <div className="min-w-0 flex-1">
-        <h2 className="truncate text-lg font-semibold">{smartQuotes(place.name)}</h2>
+        <h2 className="flex items-center gap-1.5 text-lg font-semibold">
+          <span className="truncate">{smartQuotes(place.name)}</span>
+          {place.andyFavorite && (
+            <Star size={15} fill="currentColor" className="shrink-0" aria-label={ANDY_PICK}>
+              <title>{ANDY_PICK}</title>
+            </Star>
+          )}
+        </h2>
         <p className="flex items-center gap-1.5 truncate text-sm text-muted-foreground">
           <CategoryIcon category={place.category} size={14} className="shrink-0" />
           {placeWhere(place)}
@@ -221,12 +237,12 @@ interface PlaceDetailProps {
 }
 
 export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetailProps) {
-  const pick = place.tags.includes("top-pick");
   const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
   const page = variant === "page";
 
   const header = variant !== "sheet" && (
     <header className="space-y-2">
+      {place.andyFavorite && <AndyPickBadge />}
       <p className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
         <CategoryIcon category={place.category} size={16} />
         {placeWhere(place)}
@@ -244,18 +260,14 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
   );
 
   const sections = [
-    (place.signatureSubject || pick || tags.length > 0) && (
+    (place.signatureSubject || tags.length > 0 || (variant === "sheet" && place.andyFavorite)) && (
       <div className="space-y-5">
         {place.signatureSubject && (
           <Highlight icon={Award} label="Known for">
             {smartQuotes(place.signatureSubject)}
           </Highlight>
         )}
-        {pick && (
-          <Highlight icon={Star} label="Top pick">
-            One of {site.hosts}’ favorites
-          </Highlight>
-        )}
+        {variant === "sheet" && place.andyFavorite && <AndyPickBadge />}
         {tags.length > 0 && (
           <ul className="flex flex-wrap gap-2" aria-label="Good to know">
             {tags.map((tag) => (
@@ -307,8 +319,25 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
     </div>
   );
 
+  const controls = variant !== "sheet" && (
+    <div className="absolute inset-x-3 top-3 z-10 flex items-start justify-between gap-2">
+      <OverlayBack onBack={onBack} />
+      <div className="flex gap-2">
+        <OverlayButton label="Share" onClick={() => void sharePlace(place)}>
+          <Share size={18} aria-hidden />
+        </OverlayButton>
+        {onShowOnMap && (
+          <OverlayButton label="Show on map" onClick={onShowOnMap}>
+            <MapIcon size={18} aria-hidden />
+          </OverlayButton>
+        )}
+      </div>
+    </div>
+  );
+
   const picture = (
     <div className={cn("relative", page && "md:sticky md:top-10")}>
+      {controls}
       <PlaceImage
         place={place}
         alt={`${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`}
@@ -320,21 +349,6 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
           page && "md:aspect-square md:rounded-2xl",
         )}
       />
-      {variant !== "sheet" && (
-        <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
-          <OverlayBack onBack={onBack} />
-          <div className="flex gap-2">
-            <OverlayButton label="Share" onClick={() => void sharePlace(place)}>
-              <Share size={18} aria-hidden />
-            </OverlayButton>
-            {onShowOnMap && (
-              <OverlayButton label="Show on map" onClick={onShowOnMap}>
-                <MapIcon size={18} aria-hidden />
-              </OverlayButton>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 

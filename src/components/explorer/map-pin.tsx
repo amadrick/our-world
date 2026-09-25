@@ -1,7 +1,7 @@
 import { Star } from "react-feather";
 
 import { CategoryIcon } from "@/components/places/category-badge";
-import { getCategory } from "@/lib/places/taxonomy";
+import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -24,14 +24,14 @@ interface MapPinProps {
  * always show their name.
  */
 export function MapPin({ place, selected, highlighted, density, onSelect, onHover }: MapPinProps) {
-  const pick = place.tags.includes("top-pick");
+  const pick = place.andyFavorite === true;
   const showName = selected || highlighted || density === "label";
   const dot = density === "dot" && !showName;
 
   return (
     <button
       type="button"
-      aria-label={`${place.name}, ${getCategory(place.category).label}`}
+      aria-label={`${place.name}, ${getCategory(place.category).label}${pick ? `, ${ANDY_PICK}` : ""}`}
       aria-pressed={selected}
       data-selected={selected || undefined}
       data-highlighted={highlighted || undefined}
@@ -46,7 +46,11 @@ export function MapPin({ place, selected, highlighted, density, onSelect, onHove
       // The hit area reaches past the drawn pill so small pins stay easy to tap.
       className="group relative flex cursor-pointer items-center justify-center outline-none before:absolute before:-inset-2 before:content-['']"
     >
-      {dot ? (
+      {dot && pick ? (
+        <span className="flex size-[18px] items-center justify-center rounded-full bg-ink text-white shadow-pin ring-2 ring-white transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30">
+          <Star size={10} fill="currentColor" />
+        </span>
+      ) : dot ? (
         <span className="block size-3 rounded-full bg-ink shadow-pin ring-2 ring-white transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30" />
       ) : (
         <span

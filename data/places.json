@@ -50,11 +50,12 @@
       "lat": 37.761299,
       "lng": -122.416351,
       "tags": [],
+      "andyFavorite": true,
       "summary": "A small coffee spot on Shotwell Street in the Mission.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Redwood courtyard interior (tree Francesca through open roof)",
-      "signatureRationale": "Eater, SF Standard, and Daily Coffee News all spotlight the Boor Projects woodsy interior and courtyard redwood as the permanent Mission café’s defining feature—matches Andy’s interior example.",
+      "signatureSubject": "Cappuccino",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/hedge-coffee-3e2d6deb.webp",
       "placeResearch": {
         "street": "Mid-block on an industrial stretch of Shotwell Street between 18th and 19th Streets in the Mission District.",
@@ -91,6 +92,7 @@
       "lat": 37.79472,
       "lng": -122.410294,
       "tags": [],
+      "andyFavorite": true,
       "summary": "A tiny specialty coffee bar on Washington Street, between Nob Hill and Chinatown.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -132,11 +134,12 @@
       "lat": 37.761539,
       "lng": -122.425766,
       "tags": [],
+      "andyFavorite": true,
       "summary": "The Mission's famous small-batch ice cream shop, a block from Dolores Park. Salted caramel is the classic.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Salted caramel ice cream",
-      "signatureRationale": "Official Bi-Rite copy calls it “hands down our most popular”; Serious Eats and press treat it as the creamery’s calling card.",
+      "signatureSubject": "Black sesame ice cream",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/bi-rite-creamery-d4a21301.webp",
       "placeResearch": {
         "street": "At the southeast corner of 18th and Dolores Streets, across Dolores from the northeast corner of Mission Dolores Park with its palms and lawns. The Art Moderne Bi-Rite Market, with its glazed tile facade and neon, stands nearby across 18th Street.",
@@ -174,11 +177,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "A neighborhood pizza restaurant in the Lower Haight.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Spicy Ronny (pepperoni + Calabrian heat / hot honey)",
-      "signatureRationale": "Owner told Resy it’s the best seller; Infatuation and Bon Appétit On The Line highlight it as the house pepperoni pie.",
+      "signatureSubject": "Drunken Sailor",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/jules-56b91fe1.webp",
       "placeResearch": {
         "street": "On Fillmore Street between Laussat and Haight, steps from the Fillmore and Haight intersection at the center of the Lower Haight's strip of bars, cafes and small shops, with Toronado a few doors around the corner on Haight.",
@@ -260,11 +264,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "Handmade pasta and Italian cooking in the Mission, and one of the city's most sought-after reservations.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Tortellini en brodo",
-      "signatureRationale": "Eater’s Anatomy of a Dish and Chronicle pasta coverage treat tortellini en brodo as the year-round pasta centerpiece.",
+      "signatureSubject": "Taleggio scarpinocce",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/flour-and-water-9633d3c2.webp",
       "placeResearch": {
         "street": "At the corner of 20th and Harrison Streets in the northeast Mission, a former warehouse and light-industrial district now anchored by a cluster of restaurants and bars along 20th Street.",
@@ -305,11 +310,12 @@
         "dinner",
         "brunch"
       ],
+      "andyFavorite": true,
       "summary": "A classic Italian-American dining room on Washington Square, with red booths and generous plates.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Joe’s Special (beef–spinach–egg scramble)",
-      "signatureRationale": "Wikipedia and house lore identify Joe’s Special as the namesake scramble; still a menu staple alongside Italian-American classics.",
+      "signatureSubject": "Spicy rigatoni",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/original-joes-b8ab7e55.webp",
       "placeResearch": {
         "street": "At the corner of Union and Stockton Streets on the south side of Union in North Beach, facing Washington Square Park, with Saints Peter and Paul Church across the park on Filbert.",
@@ -349,11 +355,12 @@
         "lunch",
         "brunch"
       ],
+      "andyFavorite": true,
       "summary": "Hong Kong–style dim sum and Cantonese dishes in SoMa.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Baked BBQ pork buns (sugary crisp crust)",
-      "signatureRationale": "Successor to Hong Kong Lounge; Infatuation and Michelin coverage spotlight the bakery-style char siu bao (XLB also excellent).",
+      "signatureSubject": "Peking duck",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/hk-lounge-bistro-084a0268.webp",
       "placeResearch": {
         "street": "On Folsom Street between Rausch and Langton in SoMa, in the ground floor of a 2018 condominium building at the corner of Rausch, a small residential side street.",
@@ -434,11 +441,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "An Inner Sunset Chinese restaurant best known for its dry-fried chicken wings. Expect a line.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Dry-fried chicken wings",
-      "signatureRationale": "Infatuation/Food GPS: SF’s most famous dry-fried wings; house Original Dry Fried Chicken.",
+      "signatureSubject": "Orange chicken",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/san-tung-ef57b2dc.webp",
       "placeResearch": {
         "street": "On Irving Street between 11th and 12th Avenues in the Inner Sunset commercial strip, one block south of Lincoln Way and Golden Gate Park; the N Judah line runs one block farther south on Judah Street.",
@@ -475,11 +483,12 @@
       "tags": [
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A French pâtisserie and épicerie in Jackson Square, with pastries and savory tarts.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Pâté en croûte",
-      "signatureRationale": "Official shop and Chronicle/7x7 coverage: French pâté en croûte is the specialty (seasonal fillings).",
+      "signatureSubject": "Seasonal croissant",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/maison-nico-e0b7ed85.webp",
       "placeResearch": {
         "street": "At Montgomery and Washington in Jackson Square, in a row of five 1850s buildings on the 700 block of Montgomery Street, directly in the shadow of the Transamerica Pyramid.",
@@ -523,11 +532,12 @@
         "lunch",
         "brunch"
       ],
+      "andyFavorite": true,
       "summary": "A long-running dim sum house on Stevenson Street off Market, a go-to for a group lunch.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Grandma Alice’s dumpling / cart dim sum ritual",
-      "signatureRationale": "Official About and Time Out: multi-generation dim sum icon; Grandma Alice chicken-mushroom dumpling and Peking duck often cited as signatures.",
+      "signatureSubject": "Pot stickers",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/yank-sing-50428bae.webp",
       "placeResearch": {
         "street": "On Stevenson Street, a narrow side street between Market and Mission, between First and Second Streets near Ecker Alley, at the base of downtown office towers.",
@@ -570,11 +580,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A casual seafood spot a block from Ocean Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Daily-catch burrito (parklet / beach crowd)",
-      "signatureRationale": "Infatuation: order a burrito stuffed with the daily catch; Eater/Thrillist frame the Outer Sunset sustainable seafood counter.",
+      "signatureSubject": "Baja fish burrito",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/hook-fish-a6f7b7d1.webp",
       "placeResearch": {
         "street": "Small storefront on the block of Irving Street between 46th and 47th Avenues in the Outer Sunset (the official site gives it as Irving at 47th), on a quiet, mostly residential stretch about two blocks from Ocean Beach, in the former Cajun Pacific restaurant space. Built-in wooden benches and a raised wooden sidewalk deck sit out front, and the next-door neighbor is longtime business The Last Straw.",
@@ -613,11 +624,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "Rustic Italian cooking and handmade pasta in Jackson Square, from the team behind Quince.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Raviolo di ricotta (egg-yolk raviolo in brown butter)",
-      "signatureRationale": "No SF “Catonia” found; Cotogna is the closest match. Chronicle calls Cotogna’s single giant ricotta–egg raviolo SF’s most famous pasta dish.",
+      "signatureSubject": "Raviolo",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/cotogna-25c418af.webp",
       "placeResearch": {
         "street": "Corner storefront at Pacific Avenue and Montgomery Street in the Jackson Square historic district, sharing its early-1900s building with sister restaurant Quince next door at 470 Pacific. The Financial District and the Transamerica Pyramid rise a couple of blocks south along Montgomery.",
@@ -658,11 +670,12 @@
       "tags": [
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "The Mission bakery that helped define San Francisco's bread-and-pastry scene. Expect flaky croissants, morning buns, and seasonal tarts alongside good coffee, with a line that moves steadily. Grab something to go and walk two blocks to Dolores Park.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Morning bun",
-      "signatureRationale": "SFGATE/Goldbelly/Serious Eats: laminated cinnamon–orange morning bun is Tartine’s pastry signature (country loaf also iconic).",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/tartine-bakery-021dfa4e.webp",
       "placeResearch": {
         "street": "Corner storefront at Guerrero and 18th Streets in the Mission, at the end of the 18th Street block that runs west to Dolores Park one block away. Small tables line the 18th Street wall, and a Muni bus stop is right at the door.",
@@ -701,6 +714,7 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "Chef Brandon Jew's casual Chinese-American restaurant, with fresh takes on takeout classics.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -744,11 +758,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "Regional Mexican cooking from the Nopa team, with house-made tortillas.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Totopos con chile",
-      "signatureRationale": "Nopalito lore and PureWow recipe coverage: house chips tossed with chile de árbol, cotija, and crema—the shareable signature.",
+      "signatureSubject": "Carnitas",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/nopalito-b1ac581d.webp",
       "placeResearch": {
         "street": "Ground floor of Broderick Place, a 2000s shingle-sided condominium building with a central plaza, on Broderick Street between Oak and Fell, one block west of Divisadero. The \"Falletti Foods\" grocery is its neighbor in the same development.",
@@ -789,11 +804,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "A bustling, wood-fired Californian restaurant on Divisadero, open for dinner every night.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Wood-grilled country pork chop",
-      "signatureRationale": "Eater’s iconic-meat map and long-running reviews: thick brined wood-oven pork chop is Nopa’s meat signature.",
+      "signatureSubject": "Pork chop",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/nopa-7f6de6a0.webp",
       "placeResearch": {
         "street": "Corner of Divisadero and Hayes Streets, a block west of Alamo Square, with a heated, covered parklet along the Hayes Street side.",
@@ -828,11 +844,12 @@
       "lat": 37.79847,
       "lng": -122.422157,
       "tags": [],
+      "andyFavorite": true,
       "summary": "A bright, minimal coffee bar on Polk Street.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Kaffe tonic (espresso + tonic)",
-      "signatureRationale": "Condé Nast Traveler and Bon Appétit city guides call the espresso-over-tonic the house signature.",
+      "signatureSubject": "Competition-style cappuccino",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/saint-frank-coffee-9b06ac6b.webp",
       "placeResearch": {
         "street": "Mid-block storefront on Polk Street between Union and Green in Russian Hill, on Polk's neighborhood shopping strip, with a few tables on the sidewalk.",
@@ -867,11 +884,12 @@
       "tags": [
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A historic North Beach Italian deli known for made-to-order sandwiches.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Italian combo on Dutch crunch",
-      "signatureRationale": "SFGATE “only one way to order” piece and SF guides: classic Italian cold-cut sandwich, often on Dutch crunch.",
+      "signatureSubject": "Grilled focaccia",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/molinari-delicatessen-cc6147ff.webp",
       "placeResearch": {
         "street": "Storefront on Columbus Avenue at Vallejo Street in North Beach, in business here since the early 1900s, a short walk from Caffe Trieste on Vallejo and two blocks from Washington Square. A few small tables sit on the sidewalk out front.",
@@ -950,11 +968,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "A Parisian-style wine bar and shop from the team behind Quince and Cotogna.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Boursin omelet",
-      "signatureRationale": "Eater dining report and Infatuation: glossy garlic-herb Boursin omelet is the wine bar’s food signature.",
+      "signatureSubject": "Omelet",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/verjus-639f8f14.webp",
       "placeResearch": {
         "street": "Corner of Washington Street and Hotaling Place, a one-block lane called San Francisco's oldest alley, in the Jackson Square historic district, directly across Washington from the Transamerica Pyramid. It fills two joined storefronts.",
@@ -994,11 +1013,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A seafood counter in the Ferry Building.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Ras el hanout fish & chips",
-      "signatureRationale": "Chronicle and 7x7 on the Ferry Building opening: rockfish in Moroccan spice batter with harissa aioli is the headliner.",
+      "signatureSubject": "Fancy fish over rice",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/nopa-fish-5d07f175.webp",
       "placeResearch": {
         "street": "Stall inside the Ferry Building Marketplace on the Embarcadero, in the long central nave between Lunette and Village Market, on the south hall's Bay side, in the space formerly held by SF Fish Company. Two long wooden communal tables on wheels sit at the edge of the hall.",
@@ -1038,11 +1058,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "A neighborhood pizza and bagel shop in the Outer Richmond.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Detroit-style pizza (Holey Roller bagels by day)",
-      "signatureRationale": "Eater and Bold Italic: former Outer Richmond laundromat known for Detroit pies and Holey Roller bagels.",
+      "signatureSubject": "Sausage and peppers",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/the-laundromat-sf-612a8e78.webp",
       "placeResearch": {
         "street": "Storefront on Balboa Street between 38th and 39th Avenues in the Outer Richmond, just up the block from the historic Balboa Theater, in a former coin laundrette whose decades-old sign has been removed. A heated parklet over three former parking spaces, with table and bar seating, was being built out front in April 2026.",
@@ -1081,11 +1102,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "A neighborhood Californian and Mediterranean restaurant in the Outer Richmond.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Handkerchief pasta with white Bolognese",
-      "signatureRationale": "Infatuation and Eater: silky fazzoletti with white Bolognese is the recurring must-order.",
+      "signatureSubject": "Pork chop",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/pearl-6101-8ee1394e.webp",
       "placeResearch": {
         "street": "Southwest corner of California Street and 23rd Avenue in the Outer Richmond, next door to sister restaurant \"Pizzetta 211\", with a parklet and outdoor seating.",
@@ -1119,11 +1141,12 @@
       "lat": 37.783421,
       "lng": -122.459312,
       "tags": [],
+      "andyFavorite": true,
       "summary": "A small bakery famous for its croissants. Go early, before they sell out.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Almond croissant",
-      "signatureRationale": "Infatuation, Bon Appétit, and Yelp-top-croissant press: almond croissant (and plain croissant) define Arsicault.",
+      "signatureSubject": "Chocolate almond croissant",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/arsicault-bakery-635945eb.webp",
       "placeResearch": {
         "street": "On Arguello Boulevard just off the corner of Clement Street in the Inner Richmond, where Clement's commercial strip begins. The corner storefront itself (2 Clement St) is Breck's, a café and wine shop directly next door with a few sidewalk tables; the Presidio lies to the north and Golden Gate Park to the south.",
@@ -1160,11 +1183,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "Pizza from the Flour + Water team, in North Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "OG Osso (bone-marrow white pie) / cacio e pepe pizza",
-      "signatureRationale": "Bold Italic/7x7/Chronicle: bone-marrow OG Osso is the dramatic dine-in signature; cacio e pepe often cited as bestseller.",
+      "signatureSubject": "Cacio e pepe pizza",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/flour-and-water-pizzeria-0a6fb22b.webp",
       "placeResearch": {
         "street": "Mid-block on Columbus Avenue a short walk south of Washington Square in North Beach, in a deep building that runs clear through the block to Stockton Street. The sit-down restaurant opens onto Columbus, while a separate walk-up shop has its own entrance on Stockton St.",
@@ -1204,11 +1228,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A modern Japanese izakaya and sushi bar in the Financial District.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Happy Spoon oyster (uni + ikura)",
-      "signatureRationale": "Forbes and Bold Italic: oyster topped with uni, ikura, tobiko, and ponzu crème fraîche is the signature bite.",
+      "signatureSubject": "Scallop roll with salmon roe",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/pabu-izakaya-ce29f0b8.webp",
       "placeResearch": {
         "street": "At plaza level in the eight-story podium annex of 101 California, Philip Johnson's 1982 48-story cylindrical glass-and-granite tower in the Financial District, opening onto the building's granite-paved triangular public plaza off California Street. A newer freestanding glass pavilion across the plaza, the Pabu-Chan tasting room, belongs to the restaurant.",
@@ -1249,6 +1274,7 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "Chicago-style deep-dish pizza from Tony Gemignani, in a speakeasy-style North Beach room.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -1337,11 +1363,12 @@
       "lat": 37.758652,
       "lng": -122.420486,
       "tags": [],
+      "andyFavorite": true,
       "summary": "A small Mission ice cream shop known for creative flavors.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Salty kaya (dairy-free) scoop",
-      "signatureRationale": "Timeout and shop reviews: Mission dairy-free creamery known for Asian-inspired flavors; salty kaya repeatedly called signature.",
+      "signatureSubject": "Black sesame ice cream",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/garden-creamery-cd607913.webp",
       "placeResearch": {
         "street": "A corner shop at 20th and Lexington streets in the Mission, just off the busy Valencia Street shopping corridor, with Dog Eared Books and other Valencia storefronts as near neighbors. Lexington is the side street on the shop's corner.",
@@ -1551,11 +1578,12 @@
       "tags": [
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "The original Outer Sunset café of this local roaster, near Ocean Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Snowy Plover (espresso cream soda)",
-      "signatureRationale": "Official Andytown identity and Yelp: espresso, sparkling water, brown sugar, whipped cream—the Outer Sunset signature bird drink.",
+      "signatureSubject": "Cappuccino with whipped cream",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/andytown-coffee-roasters-ac9f9a83.webp",
       "placeResearch": {
         "street": "Corner storefront at Lawton Street and 43rd Avenue on a quiet, mostly residential stretch of Lawton in the Outer Sunset, a few blocks inland from Ocean Beach. Since a 2022-23 remodel the cafe spans its original narrow unit plus the former shop next door.",
@@ -1641,11 +1669,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "An old-school San Francisco institution where prime rib is carved tableside from rolling carts.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Tableside prime-rib cart",
-      "signatureRationale": "Official HOPR and Infatuation: aged prime rib carved tableside with spinning salad, Yorkshire pudding, creamed spinach.",
+      "signatureSubject": "King's cut",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/house-of-prime-rib-14d24721.webp",
       "placeResearch": {
         "street": "On Van Ness Avenue between Washington and Jackson streets, the wide north-south boulevard between Pacific Heights and Polk Gulch/Nob Hill. The avenue here is lined with a mix of 20th-century commercial, institutional and apartment buildings of varied styles.",
@@ -1685,11 +1714,12 @@
         "dinner",
         "brunch"
       ],
+      "andyFavorite": true,
       "summary": "Californian-Mediterranean cooking with films projected in the courtyard, and a favorite for weekend brunch.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Courtyard dinner under projected films",
-      "signatureRationale": "Official site and OpenTable/press: Mission courtyard with films on the back wall is the defining experience (sesame fried chicken also iconic).",
+      "signatureSubject": "Fried chicken",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/foreign-cinema-1ebf69c7.webp",
       "placeResearch": {
         "street": "Mid-block on the west side of busy Mission Street between 21st and 22nd streets in the Mission's commercial core. It shares its brick commercial building with sister bar Laszlo (2526 Mission), and the Alamo Drafthouse New Mission theater is next door at 2550 Mission.",
@@ -1811,11 +1841,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A multi-level Chinese food hall and restaurant on the edge of Chinatown and North Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Sheng jian bao (pan-fried soup dumplings)",
-      "signatureRationale": "OpenTable/Eater: SJB called the #1 seller / headliner of the Chinatown food hall.",
+      "signatureSubject": "Duck buns and dumplings",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/china-live-57619d46.webp",
       "placeResearch": {
         "street": "North side of Broadway between Grant Avenue and Stockton Street, where Chinatown meets North Beach, on the Broadway stretch running from the Broadway Tunnel's east portal to Columbus Avenue. The block mixes one- to four-story buildings with grocers and residential hotels above; a motel sits directly across the street and narrow Kenneth Rexroth Place runs behind.",
@@ -1859,11 +1890,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A Chinatown Cantonese institution, best known for its salt-and-pepper crab.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Salt & pepper Dungeness crab",
-      "signatureRationale": "AP News, Condé Nast Traveler, and house menus: live crab with salt and pepper is the Chinatown signature plate.",
+      "signatureSubject": "Mongolian beef",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/r-and-g-lounge-3da063fb.webp",
       "placeResearch": {
         "street": "West side of Kearny Street at Commercial Street in Chinatown, one block south of Portsmouth Square; Kearny is a one-way northbound street along the Chinatown/Financial District edge, with the Hilton Financial District tower facing the square.",
@@ -1903,11 +1935,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "Traditional Korean cooking in the Richmond, with a long menu of stews, pancakes, and barbecue.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Tabletop BBQ + banchan spread",
-      "signatureRationale": "Infatuation: classic Richmond Korean BBQ known for generous banchan and spicy pork/galbi.",
+      "signatureSubject": "Kalbi",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/han-il-kwan-567700ad.webp",
       "placeResearch": {
         "street": "Corner of Balboa Street and 19th Avenue in the Richmond, on Balboa's neighborhood commercial strip amid residential blocks, two blocks north of Golden Gate Park; tour buses occasionally park out front.",
@@ -1944,6 +1977,7 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "A Cole Valley smashburger counter.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2034,6 +2068,7 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "Smashburgers from a counter inside the Two Pitchers taproom in the Outer Sunset.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2076,11 +2111,12 @@
       "tags": [
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A neighborhood bakery in the Outer Sunset.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Crusty sourdough baguette",
-      "signatureRationale": "Infatuation: a trip “isn’t complete” without the tangy sourdough baguettes at this Outer Sunset bakery.",
+      "signatureSubject": "Cappuccino and a chocolate chip cookie",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/day-moon-a6b3d30a.webp",
       "placeResearch": {
         "street": "Small storefront on Irving Street at 40th Avenue, in a largely residential stretch of the Outer Sunset near Clancey's Market and Swell Bicycles, several blocks inland from Ocean Beach; a curbside parklet sits out front.",
@@ -2254,11 +2290,12 @@
         "late-night",
         "brunch"
       ],
+      "andyFavorite": true,
       "summary": "A cocktail bar from the Lazy Bear team, with inventive drinks and snacks.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Laurel Martini",
-      "signatureRationale": "Imbibe recipe and Mission Local: gin/vermouth with house bay-laurel tincture is the namesake signature.",
+      "signatureSubject": "My Oh My",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/true-laurel-4feca8a3.webp",
       "placeResearch": {
         "street": "On Alabama Street near the 20th Street corner in the northeast Mission, around the corner from Trick Dog and Penny Roma. A large sidewalk and parklet patio stretches along the frontage.",
@@ -2296,11 +2333,12 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "Roman-leaning pasta from the Flour + Water team, with a garden patio.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Agnolotti dal plin / rustic pasta program",
-      "signatureRationale": "Chronicle opening coverage and Infatuation: Flour + Water sister’s rustic stuffed pastas; agnolotti often highlighted.",
+      "signatureSubject": "Seasonal pasta",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/penny-roma-c21dd3c8.webp",
       "placeResearch": {
         "street": "In the former Central Kitchen space at 3000 20th Street near Florida in the northeast Mission, set back from residential 20th Street down a narrow entry passage. A sister retail shop adjoins it and Trick Dog is next door.",
@@ -2339,11 +2377,12 @@
         "dinner",
         "late-night"
       ],
+      "andyFavorite": true,
       "summary": "A small North Beach wine bar with an adventurous by-the-glass list and a house hot dog.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:15:00.000Z",
-      "signatureSubject": "Adventurous by-the-glass list + Bodega Dawg",
-      "signatureRationale": "Infatuation: North Beach wine bar known for wild BTG pours and housemade Bodega Dawg; treat as Bodega Wine (not a separate restaurant).",
+      "signatureSubject": "Pho and the chilled red wine",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/bodega-sf-d951b485.webp",
       "placeResearch": {
         "street": "On Columbus Avenue at Filbert Street in North Beach, a short walk from Washington Square and Saints Peter and Paul Church. Heated sidewalk seating sits out front.",
@@ -2430,11 +2469,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "Arab comfort food, from mezze to kebabs, in Cole Valley.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Mezze sampler",
-      "signatureRationale": "Infatuation: mezze platter is “practically synonymous” with Beit Rima.",
+      "signatureSubject": "Chicken plate",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/beit-rima-9ba5db54.webp",
       "placeResearch": {
         "street": "On Carl Street just east of Cole Street in Cole Valley's small commercial core, on the block between Cole and Clayton where N Judah streetcars stop at Carl and Cole. Overhead Muni wires and tracks run down Carl, and there is sidewalk seating out front.",
@@ -2516,6 +2556,7 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "Korean braised short ribs and beef soups in Japantown. Expect a wait.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
@@ -2734,11 +2775,12 @@
         "dinner",
         "lunch"
       ],
+      "andyFavorite": true,
       "summary": "A North Beach slice counter known for its focaccia-style square pizza.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Square focaccia “Sanfrancilian” slice",
-      "signatureRationale": "Infatuation and KQED: fluffy square Sicilian-style slices (esp. pepperoni) are the North Beach late-night signature.",
+      "signatureSubject": "Sausage pizza",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/golden-boy-pizza-de70817f.webp",
       "placeResearch": {
         "street": "On Green Street's 500 block between Grant Avenue and Columbus, in the heart of North Beach's old bar-and-cafe blocks, right next door to Gino & Carlo, a bar open since 1942 at 548 Green.",
@@ -2778,11 +2820,12 @@
         "dinner",
         "late-night"
       ],
+      "andyFavorite": true,
       "summary": "A historic saloon with classic cocktails and turn-of-the-century decor.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:00:00.000Z",
-      "signatureSubject": "Cherry Bounce",
-      "signatureRationale": "Punch: house bourbon–cherry sour topped with sparkling wine has been a top seller for a decade+.",
+      "signatureSubject": "Martini or dirty martini",
+      "signatureRationale": "Andy’s own pick.",
       "image": "/places/comstock-saloon-9e1dbf61.webp",
       "placeResearch": {
         "street": "On the corner of Columbus Avenue and Pacific Avenue at the base of North Beach, where Columbus's diagonal crosses the old Barbary Coast's main street at the meeting point of North Beach, Chinatown, the Financial District and Jackson Square; City Lights and Vesuvio are one block up Columbus, and the Transamerica Pyramid is visible in the distance.",
@@ -2821,6 +2864,7 @@
       "lat": 37.775856,
       "lng": -122.496544,
       "tags": [],
+      "andyFavorite": true,
       "summary": "A wine bar and bottle shop in the Outer Richmond.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:15:00.000Z",
@@ -2901,6 +2945,7 @@
       "tags": [
         "dinner"
       ],
+      "andyFavorite": true,
       "summary": "A wine bar on Powell Street in North Beach.",
       "summarySource": "written",
       "createdAt": "2026-09-24T20:15:00.000Z",

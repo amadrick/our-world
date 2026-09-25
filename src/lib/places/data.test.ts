@@ -51,10 +51,27 @@ describe("data/places.json", () => {
     for (const place of places) {
       if (!["shop", "park", "wellness"].includes(place.category)) continue;
       expect(
-        place.tags.filter((t) => t !== "views" && t !== "top-pick"),
+        place.tags.filter((t) => t !== "views"),
         place.id,
       ).toEqual([]);
     }
+  });
+
+  it("marks Andy's favorites and shows his own pick as what each is known for", () => {
+    const byId = (id: string) => places.find((p) => p.id === id);
+    expect(places.filter((p) => p.andyFavorite)).toHaveLength(45);
+    expect(byId("arsicault-bakery")?.signatureSubject).toBe("Chocolate almond croissant");
+    expect(byId("yank-sing")?.signatureSubject).toBe("Pot stickers");
+    expect(byId("house-of-prime-rib")?.signatureSubject).toBe("King's cut");
+    // "Good" or "fine" marks the place without replacing what it's known for.
+    expect(byId("daeho")).toMatchObject({ andyFavorite: true, signatureSubject: "Cheese kalbijjim (blowtorched)" });
+  });
+
+  it("leaves Limón, Ordinaire, and Song Tea as they are until Andy decides", () => {
+    const byId = (id: string) => places.find((p) => p.id === id);
+    expect(byId("limon-rotisserie")?.andyFavorite).toBeUndefined();
+    expect(byId("ordinaire")?.andyFavorite).toBeUndefined();
+    expect(byId("song-tea-and-ceramics")?.category).toBe("coffee");
   });
 
   it("has unique ids", () => {

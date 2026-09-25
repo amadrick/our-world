@@ -28,6 +28,8 @@ const writeJson = (file, value) => writeFile(file, `${JSON.stringify(value, null
 const data = await readJson(PLACES_FILE, { places: [] });
 const sheet = await readJson(SHEET_FILE, { places: [] });
 
+const ANDYS_OWN_PICK = "Andy’s own pick.";
+
 const CATEGORY_LABEL = {
   restaurant: "Restaurant",
   bar: "Bar",
@@ -44,11 +46,21 @@ const CATEGORY_LABEL = {
 function placeMarkdown(place, entry) {
   const r = place.placeResearch;
   const out = [`## ${place.name}`, ""];
-  out.push([CATEGORY_LABEL[place.category] ?? place.category, place.neighborhood, place.address].filter(Boolean).join(" · "));
+  out.push(
+    [CATEGORY_LABEL[place.category] ?? place.category, place.neighborhood, place.address, place.andyFavorite && "Andy’s pick"]
+      .filter(Boolean)
+      .join(" · "),
+  );
   out.push("");
   if (place.signatureSubject) {
-    const confidence = entry?.confidence && entry.confidence !== "unreviewed" ? ` (${entry.confidence} confidence)` : "";
-    out.push(`**Known for:** ${place.signatureSubject}${confidence}. ${place.signatureRationale ?? ""}`.trim(), "");
+    const confidence =
+      entry?.confidence === "andy"
+        ? " (Andy’s own pick)"
+        : entry?.confidence && entry.confidence !== "unreviewed"
+          ? ` (${entry.confidence} confidence)`
+          : "";
+    const rationale = entry?.confidence === "andy" ? "" : (place.signatureRationale ?? "");
+    out.push(`**Known for:** ${place.signatureSubject}${confidence}. ${rationale}`.trim(), "");
   }
   out.push("### Place research", "");
   if (!r) {
@@ -96,14 +108,17 @@ if (command === "export") {
   const previous = new Map(sheet.places.map((e) => [e.id, e]));
   sheet.places = data.places.map((p) => {
     const old = previous.get(p.id);
+    const same = old?.signatureSubject === p.signatureSubject;
+    // Andy's own pick needs no sources or review.
+    const andys = p.andyFavorite && p.signatureRationale === ANDYS_OWN_PICK;
     return {
       id: p.id,
       name: p.name,
       signatureSubject: p.signatureSubject ?? "",
       signatureRationale: p.signatureRationale ?? "",
-      confidence: old?.signatureSubject === p.signatureSubject ? old.confidence : "unreviewed",
-      sources: old?.sources ?? [],
-      approved: old?.signatureSubject === p.signatureSubject ? Boolean(old.approved) : false,
+      confidence: andys ? "andy" : same ? old.confidence : "unreviewed",
+      sources: andys ? [] : (old?.sources ?? []),
+      approved: andys || (same && Boolean(old.approved)),
     };
   });
   await writeJson(SHEET_FILE, sheet);

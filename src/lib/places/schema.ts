@@ -60,6 +60,10 @@ export const placeInputSchema = z.object({
     .array(z.enum(TAG_IDS))
     .default([])
     .transform((tags) => [...new Set(tags)]),
+  andyFavorite: z
+    .boolean()
+    .optional()
+    .transform((value) => value || undefined),
   note: optionalText(1000),
   summary: z.string().trim().max(1500).default(""),
   summarySource: z.enum(["ai", "written", "placeholder"]).default("written"),

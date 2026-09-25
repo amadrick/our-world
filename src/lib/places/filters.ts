@@ -1,33 +1,38 @@
-import type { CategoryId, Place, TagId } from "./types";
+import type { CategoryId, PillId, Place } from "./types";
 
 export interface PlaceFilters {
   category: CategoryId | null;
-  tags: TagId[];
+  /** Andy's favorites and the tags; a place must match all of them. */
+  pills: PillId[];
   neighborhood: string | null;
 }
 
 export const EMPTY_FILTERS: PlaceFilters = {
   category: null,
-  tags: [],
+  pills: [],
   neighborhood: null,
 };
 
 export function hasActiveFilters(filters: PlaceFilters): boolean {
   return (
     filters.category !== null ||
-    filters.tags.length > 0 ||
+    filters.pills.length > 0 ||
     filters.neighborhood !== null
   );
 }
 
-/** Category is a single choice; tags narrow the list (a place must have all of them). */
+function matchesPill(place: Place, pill: PillId): boolean {
+  return pill === "favorites" ? place.andyFavorite === true : place.tags.includes(pill);
+}
+
+/** Category is a single choice; pills narrow the list (a place must match all of them). */
 export function filterPlaces(places: Place[], filters: PlaceFilters): Place[] {
   return places.filter(
     (place) =>
       (filters.category === null || place.category === filters.category) &&
       (filters.neighborhood === null ||
         place.neighborhood === filters.neighborhood) &&
-      filters.tags.every((tag) => place.tags.includes(tag)),
+      filters.pills.every((pill) => matchesPill(place, pill)),
   );
 }
 
@@ -36,17 +41,17 @@ export function filterPlaces(places: Place[], filters: PlaceFilters): Place[] {
  * that's chosen. A pill at zero has nothing to show in this section, so the bar
  * disables it rather than let it lead to an empty list.
  */
-export function tagCounts(
+export function pillCounts(
   places: Place[],
   filters: PlaceFilters,
-  tags: readonly TagId[],
-): Map<TagId, number> {
+  pills: readonly PillId[],
+): Map<PillId, number> {
   return new Map(
-    tags.map((tag) => [
-      tag,
+    pills.map((pill) => [
+      pill,
       filterPlaces(
         places,
-        filters.tags.includes(tag) ? filters : { ...filters, tags: [...filters.tags, tag] },
+        filters.pills.includes(pill) ? filters : { ...filters, pills: [...filters.pills, pill] },
       ).length,
     ]),
   );
@@ -57,7 +62,7 @@ export function tagCounts(
  * them. This counts the matches elsewhere, so the empty state can offer them.
  */
 export function matchesInOtherSections(places: Place[], filters: PlaceFilters): number {
-  if (filters.category === null || filters.tags.length === 0) return 0;
+  if (filters.category === null || filters.pills.length === 0) return 0;
   return filterPlaces(places, { ...filters, category: null }).length;
 }
 
@@ -74,11 +79,6 @@ export function neighborhoodCounts(
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-/** Top picks first, then alphabetical, so the list feels curated rather than random. */
 export function sortPlaces(places: Place[]): Place[] {
-  return [...places].sort((a, b) => {
-    const pickA = a.tags.includes("top-pick") ? 0 : 1;
-    const pickB = b.tags.includes("top-pick") ? 0 : 1;
-    return pickA - pickB || a.name.localeCompare(b.name);
-  });
+  return [...places].sort((a, b) => a.name.localeCompare(b.name));
 }

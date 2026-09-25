@@ -15,15 +15,11 @@
     {
       "id": "hedge-coffee",
       "name": "Hedge Coffee",
-      "signatureSubject": "Redwood courtyard interior (tree Francesca through open roof)",
-      "signatureRationale": "Eater, SF Standard, and Daily Coffee News all spotlight the Boor Projects woodsy interior and courtyard redwood as the permanent Mission café’s defining feature—matches Andy’s interior example.",
-      "confidence": "high",
-      "sources": [
-        "https://sf.eater.com/restaurant-news/208652/hedge-coffee-opening-san-francisco-mission-district-cafe",
-        "https://dailycoffeenews.com/2025/11/05/hedge-coffee-plants-a-permanent-shop-in-san-francisco/",
-        "https://sfstandard.com/2025/10/23/hedge-coffee-mission-open/"
-      ],
-      "approved": false
+      "signatureSubject": "Cappuccino",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "the-coffee-movement",
@@ -40,26 +36,20 @@
     {
       "id": "bi-rite-creamery",
       "name": "Bi-Rite Creamery",
-      "signatureSubject": "Salted caramel ice cream",
-      "signatureRationale": "Official Bi-Rite copy calls it “hands down our most popular”; Serious Eats and press treat it as the creamery’s calling card.",
-      "confidence": "high",
-      "sources": [
-        "https://biritemarket.com/product/salted-caramel/",
-        "https://www.seriouseats.com/bi-rite-creamery-san-francisco-salted-caramel-ice-cream-recipe"
-      ],
-      "approved": false
+      "signatureSubject": "Black sesame ice cream",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "jules",
       "name": "Jules",
-      "signatureSubject": "Spicy Ronny (pepperoni + Calabrian heat / hot honey)",
-      "signatureRationale": "Owner told Resy it’s the best seller; Infatuation and Bon Appétit On The Line highlight it as the house pepperoni pie.",
-      "confidence": "high",
-      "sources": [
-        "https://blog.resy.com/2025/07/how-to-get-into-jules/",
-        "https://www.theinfatuation.com/san-francisco/reviews/jules-fillmore-st"
-      ],
-      "approved": false
+      "signatureSubject": "Drunken Sailor",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "toronado",
@@ -76,38 +66,29 @@
     {
       "id": "flour-and-water",
       "name": "Flour + Water",
-      "signatureSubject": "Tortellini en brodo",
-      "signatureRationale": "Eater’s Anatomy of a Dish and Chronicle pasta coverage treat tortellini en brodo as the year-round pasta centerpiece.",
-      "confidence": "high",
-      "sources": [
-        "https://sf.eater.com/2023/1/31/23575135/tortellini-en-brodo-flour-water-san-francisco",
-        "https://www.sfchronicle.com/projects/2023/flour-water-pasta/"
-      ],
-      "approved": false
+      "signatureSubject": "Taleggio scarpinocce",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "original-joes",
       "name": "Original Joe's",
-      "signatureSubject": "Joe’s Special (beef–spinach–egg scramble)",
-      "signatureRationale": "Wikipedia and house lore identify Joe’s Special as the namesake scramble; still a menu staple alongside Italian-American classics.",
-      "confidence": "high",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Joe%27s_Special",
-        "https://www.originaljoes.com/northbeach/menu"
-      ],
-      "approved": false
+      "signatureSubject": "Spicy rigatoni",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "hk-lounge-bistro",
       "name": "HK Lounge Bistro",
-      "signatureSubject": "Baked BBQ pork buns (sugary crisp crust)",
-      "signatureRationale": "Successor to Hong Kong Lounge; Infatuation and Michelin coverage spotlight the bakery-style char siu bao (XLB also excellent).",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/hk-lounge-bistro",
-        "https://guide.michelin.com/us/en/california/san-francisco/restaurant/hk-lounge-bistro"
-      ],
-      "approved": false
+      "signatureSubject": "Peking duck",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "taqueria-el-farolito",
@@ -124,74 +105,56 @@
     {
       "id": "san-tung",
       "name": "San Tung",
-      "signatureSubject": "Dry-fried chicken wings",
-      "signatureRationale": "Infatuation/Food GPS: SF’s most famous dry-fried wings; house Original Dry Fried Chicken.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/san-tung-chinese-restaurant",
-        "https://www.santungsf.com/"
-      ],
-      "approved": false
+      "signatureSubject": "Orange chicken",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "maison-nico",
       "name": "Maison Nico",
-      "signatureSubject": "Pâté en croûte",
-      "signatureRationale": "Official shop and Chronicle/7x7 coverage: French pâté en croûte is the specialty (seasonal fillings).",
-      "confidence": "high",
-      "sources": [
-        "https://maisonnico.com/",
-        "https://www.sfchronicle.com/food/restaurants/article/maison-nico-17667196.php"
-      ],
-      "approved": false
+      "signatureSubject": "Seasonal croissant",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "yank-sing",
       "name": "Yank Sing",
-      "signatureSubject": "Grandma Alice’s dumpling / cart dim sum ritual",
-      "signatureRationale": "Official About and Time Out: multi-generation dim sum icon; Grandma Alice chicken-mushroom dumpling and Peking duck often cited as signatures.",
-      "confidence": "high",
-      "sources": [
-        "https://yanksing.com/about/",
-        "https://www.timeout.com/san-francisco/restaurants/yank-sing"
-      ],
-      "approved": false
+      "signatureSubject": "Pot stickers",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "hook-fish",
       "name": "Hook Fish Co.",
-      "signatureSubject": "Daily-catch burrito (parklet / beach crowd)",
-      "signatureRationale": "Infatuation: order a burrito stuffed with the daily catch; Eater/Thrillist frame the Outer Sunset sustainable seafood counter.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/hook-fish-co",
-        "https://www.hookfishco.com/"
-      ],
-      "approved": false
+      "signatureSubject": "Baja fish burrito",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "cotogna",
       "name": "Cotogna",
-      "signatureSubject": "Raviolo di ricotta (egg-yolk raviolo in brown butter)",
-      "signatureRationale": "No SF “Catonia” found; Cotogna is the closest match. Chronicle calls Cotogna’s single giant ricotta–egg raviolo SF’s most famous pasta dish.",
-      "confidence": "med",
-      "sources": [
-        "https://www.sfchronicle.com/food/restaurants/article/san-francisco-pasta-17769512.php",
-        "https://www.theinfatuation.com/san-francisco/reviews/cotogna"
-      ],
-      "approved": false
+      "signatureSubject": "Raviolo",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "tartine-bakery",
       "name": "Tartine Bakery",
       "signatureSubject": "Morning bun",
-      "signatureRationale": "SFGATE/Goldbelly/Serious Eats: laminated cinnamon–orange morning bun is Tartine’s pastry signature (country loaf also iconic).",
-      "confidence": "high",
-      "sources": [
-        "https://www.sfgate.com/food/article/Tartine-Manufactory-bakery-morning-bun-San-12448081.php",
-        "https://www.seriouseats.com/tartine-bakery-what-to-order-best-pastry-san-francisco"
-      ],
-      "approved": false
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "mamahuhu",
@@ -208,50 +171,38 @@
     {
       "id": "nopalito",
       "name": "Nopalito",
-      "signatureSubject": "Totopos con chile",
-      "signatureRationale": "Nopalito lore and PureWow recipe coverage: house chips tossed with chile de árbol, cotija, and crema—the shareable signature.",
-      "confidence": "high",
-      "sources": [
-        "https://www.purewow.com/food/totopos-recipe",
-        "https://www.nopalitosf.com/"
-      ],
-      "approved": false
+      "signatureSubject": "Carnitas",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "nopa",
       "name": "Nopa",
-      "signatureSubject": "Wood-grilled country pork chop",
-      "signatureRationale": "Eater’s iconic-meat map and long-running reviews: thick brined wood-oven pork chop is Nopa’s meat signature.",
-      "confidence": "high",
-      "sources": [
-        "https://sf.eater.com/maps/best-meat-iconic-dishes-san-francisco",
-        "https://www.theinfatuation.com/san-francisco/reviews/nopa"
-      ],
-      "approved": false
+      "signatureSubject": "Pork chop",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "saint-frank-coffee",
       "name": "Saint Frank Coffee",
-      "signatureSubject": "Kaffe tonic (espresso + tonic)",
-      "signatureRationale": "Condé Nast Traveler and Bon Appétit city guides call the espresso-over-tonic the house signature.",
-      "confidence": "high",
-      "sources": [
-        "https://www.cntraveler.com/restaurants/san-francisco/saint-frank",
-        "https://www.bonappetit.com/city-guides/san-francisco/venue/saint-frank-coffee"
-      ],
-      "approved": false
+      "signatureSubject": "Competition-style cappuccino",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "molinari-delicatessen",
       "name": "Molinari Delicatessen",
-      "signatureSubject": "Italian combo on Dutch crunch",
-      "signatureRationale": "SFGATE “only one way to order” piece and SF guides: classic Italian cold-cut sandwich, often on Dutch crunch.",
-      "confidence": "high",
-      "sources": [
-        "https://www.sfgate.com/food/article/drew-magary-dutch-crunch-sf-19495580.php",
-        "https://sfguide.co/eat-drink/molinari-delicatessen/"
-      ],
-      "approved": false
+      "signatureSubject": "Grilled focaccia",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "ernest",
@@ -268,86 +219,65 @@
     {
       "id": "verjus",
       "name": "Verjus",
-      "signatureSubject": "Boursin omelet",
-      "signatureRationale": "Eater dining report and Infatuation: glossy garlic-herb Boursin omelet is the wine bar’s food signature.",
-      "confidence": "high",
-      "sources": [
-        "https://sf.eater.com/dining-report/209599/verjus-review",
-        "https://www.theinfatuation.com/san-francisco/reviews/verjus"
-      ],
-      "approved": false
+      "signatureSubject": "Omelet",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "nopa-fish",
       "name": "Nopa Fish Market",
-      "signatureSubject": "Ras el hanout fish & chips",
-      "signatureRationale": "Chronicle and 7x7 on the Ferry Building opening: rockfish in Moroccan spice batter with harissa aioli is the headliner.",
-      "confidence": "high",
-      "sources": [
-        "https://www.sfchronicle.com/food/restaurants/article/nopa-fish-ferry-building-sf-20801322.php",
-        "https://www.nopafish.com/"
-      ],
-      "approved": false
+      "signatureSubject": "Fancy fish over rice",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "the-laundromat-sf",
       "name": "The Laundromat SF",
-      "signatureSubject": "Detroit-style pizza (Holey Roller bagels by day)",
-      "signatureRationale": "Eater and Bold Italic: former Outer Richmond laundromat known for Detroit pies and Holey Roller bagels.",
-      "confidence": "high",
-      "sources": [
-        "https://sf.eater.com/2022/11/11/23451917/laundromat-bagels-san-francisco-new-restaurant-bakery",
-        "https://www.thebolditalic.com/former-laundromat-turned-idyllic-neighborhood-hang-for-detroit-pizza-sips-bagels/"
-      ],
-      "approved": false
+      "signatureSubject": "Sausage and peppers",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "pearl-6101",
       "name": "Pearl 6101",
-      "signatureSubject": "Handkerchief pasta with white Bolognese",
-      "signatureRationale": "Infatuation and Eater: silky fazzoletti with white Bolognese is the recurring must-order.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/pearl",
-        "https://sf.eater.com/2018/8/1/17639636/pearl-6101-review-outer-richmond-san-francisco"
-      ],
-      "approved": false
+      "signatureSubject": "Pork chop",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "arsicault-bakery",
       "name": "Arsicault Bakery",
-      "signatureSubject": "Almond croissant",
-      "signatureRationale": "Infatuation, Bon Appétit, and Yelp-top-croissant press: almond croissant (and plain croissant) define Arsicault.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/arsicault-bakery",
-        "https://www.bonappetit.com/city-guides/san-francisco/venue/arsicault-bakery"
-      ],
-      "approved": false
+      "signatureSubject": "Chocolate almond croissant",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "flour-and-water-pizzeria",
       "name": "Flour + Water Pizzeria",
-      "signatureSubject": "OG Osso (bone-marrow white pie) / cacio e pepe pizza",
-      "signatureRationale": "Bold Italic/7x7/Chronicle: bone-marrow OG Osso is the dramatic dine-in signature; cacio e pepe often cited as bestseller.",
-      "confidence": "high",
-      "sources": [
-        "https://www.thebolditalic.com/packed-from-day-one-the-new-flour-water-pizzeria-hits-north-beach/",
-        "https://www.sfchronicle.com/food/restaurants/article/flour-water-pizzeria-18195747.php"
-      ],
-      "approved": false
+      "signatureSubject": "Cacio e pepe pizza",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "pabu-izakaya",
       "name": "Pabu Izakaya",
-      "signatureSubject": "Happy Spoon oyster (uni + ikura)",
-      "signatureRationale": "Forbes and Bold Italic: oyster topped with uni, ikura, tobiko, and ponzu crème fraîche is the signature bite.",
-      "confidence": "high",
-      "sources": [
-        "https://www.forbes.com/sites/chelseadavis/2023/02/10/izakaya-style-dining-and-sake-pairings-at-san-franciscos-upscale-japanese-restaurant-pabu/",
-        "https://www.thebolditalic.com/this-japanese-restaurant-educates-patrons-on-both-sake-and-sushi/"
-      ],
-      "approved": false
+      "signatureSubject": "Scallop roll with salmon roe",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "capos",
@@ -376,14 +306,11 @@
     {
       "id": "garden-creamery",
       "name": "Garden Creamery",
-      "signatureSubject": "Salty kaya (dairy-free) scoop",
-      "signatureRationale": "Timeout and shop reviews: Mission dairy-free creamery known for Asian-inspired flavors; salty kaya repeatedly called signature.",
-      "confidence": "med",
-      "sources": [
-        "https://www.timeout.com/san-francisco/restaurants/garden-creamery",
-        "https://gardencreamery.com/products/"
-      ],
-      "approved": false
+      "signatureSubject": "Black sesame ice cream",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "liholiho-yacht-club",
@@ -436,14 +363,11 @@
     {
       "id": "andytown-coffee-roasters",
       "name": "Andytown Coffee Roasters",
-      "signatureSubject": "Snowy Plover (espresso cream soda)",
-      "signatureRationale": "Official Andytown identity and Yelp: espresso, sparkling water, brown sugar, whipped cream—the Outer Sunset signature bird drink.",
-      "confidence": "high",
-      "sources": [
-        "https://andytownsf.com/blogs/news/2025-in-review",
-        "https://www.yelp.com/menu/andytown-coffee-roasters-san-francisco/item/snowy-plover"
-      ],
-      "approved": false
+      "signatureSubject": "Cappuccino with whipped cream",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "rt-rotisserie",
@@ -460,26 +384,20 @@
     {
       "id": "house-of-prime-rib",
       "name": "House of Prime Rib",
-      "signatureSubject": "Tableside prime-rib cart",
-      "signatureRationale": "Official HOPR and Infatuation: aged prime rib carved tableside with spinning salad, Yorkshire pudding, creamed spinach.",
-      "confidence": "high",
-      "sources": [
-        "https://www.houseofprimerib.net/index.php",
-        "https://www.theinfatuation.com/san-francisco/reviews/house-of-prime-rib"
-      ],
-      "approved": false
+      "signatureSubject": "King's cut",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "foreign-cinema",
       "name": "Foreign Cinema",
-      "signatureSubject": "Courtyard dinner under projected films",
-      "signatureRationale": "Official site and OpenTable/press: Mission courtyard with films on the back wall is the defining experience (sesame fried chicken also iconic).",
-      "confidence": "high",
-      "sources": [
-        "https://foreigncinema.com/",
-        "https://www.opentable.com/r/foreign-cinema-san-francisco"
-      ],
-      "approved": false
+      "signatureSubject": "Fried chicken",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "limon-rotisserie",
@@ -508,38 +426,29 @@
     {
       "id": "china-live",
       "name": "China Live",
-      "signatureSubject": "Sheng jian bao (pan-fried soup dumplings)",
-      "signatureRationale": "OpenTable/Eater: SJB called the #1 seller / headliner of the Chinatown food hall.",
-      "confidence": "high",
-      "sources": [
-        "https://sf.eater.com/2020/7/13/21322982/china-live-virtual-ghost-kitchen-delivery-sf-chinatown-berkeley-san-jose",
-        "https://chinalivesf.com/china-live-spaces/china-live-dine/"
-      ],
-      "approved": false
+      "signatureSubject": "Duck buns and dumplings",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "r-and-g-lounge",
       "name": "R&G Lounge",
-      "signatureSubject": "Salt & pepper Dungeness crab",
-      "signatureRationale": "AP News, Condé Nast Traveler, and house menus: live crab with salt and pepper is the Chinatown signature plate.",
-      "confidence": "high",
-      "sources": [
-        "https://apnews.com/travel-3d2c26c09a584ccda07438ad7b69e25b",
-        "https://www.rnglounge.com/menus"
-      ],
-      "approved": false
+      "signatureSubject": "Mongolian beef",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "han-il-kwan",
       "name": "Han Il Kwan",
-      "signatureSubject": "Tabletop BBQ + banchan spread",
-      "signatureRationale": "Infatuation: classic Richmond Korean BBQ known for generous banchan and spicy pork/galbi.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/han-il-kwan",
-        "https://hanilkwan.net/"
-      ],
-      "approved": false
+      "signatureSubject": "Kalbi",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "lovelys",
@@ -580,13 +489,11 @@
     {
       "id": "day-moon",
       "name": "Day Moon",
-      "signatureSubject": "Crusty sourdough baguette",
-      "signatureRationale": "Infatuation: a trip “isn’t complete” without the tangy sourdough baguettes at this Outer Sunset bakery.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/day-moon"
-      ],
-      "approved": false
+      "signatureSubject": "Cappuccino and a chocolate chip cookie",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "outerlands",
@@ -627,38 +534,29 @@
     {
       "id": "true-laurel",
       "name": "True Laurel",
-      "signatureSubject": "Laurel Martini",
-      "signatureRationale": "Imbibe recipe and Mission Local: gin/vermouth with house bay-laurel tincture is the namesake signature.",
-      "confidence": "high",
-      "sources": [
-        "https://imbibemagazine.com/recipe/laurel-martini-from-true-laurel/",
-        "https://www.truelaurelsf.com/menus/cocktails.pdf"
-      ],
-      "approved": false
+      "signatureSubject": "My Oh My",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "penny-roma",
       "name": "Penny Roma",
-      "signatureSubject": "Agnolotti dal plin / rustic pasta program",
-      "signatureRationale": "Chronicle opening coverage and Infatuation: Flour + Water sister’s rustic stuffed pastas; agnolotti often highlighted.",
-      "confidence": "high",
-      "sources": [
-        "https://www.sfchronicle.com/food/article/flour-water-team-s-ode-to-rustic-italian-16525331.php",
-        "https://www.theinfatuation.com/san-francisco/reviews/penny-roma"
-      ],
-      "approved": false
+      "signatureSubject": "Seasonal pasta",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "bodega-sf",
       "name": "Bodega SF",
-      "signatureSubject": "Adventurous by-the-glass list + Bodega Dawg",
-      "signatureRationale": "Infatuation: North Beach wine bar known for wild BTG pours and housemade Bodega Dawg; treat as Bodega Wine (not a separate restaurant).",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/bodega",
-        "https://www.bodegasf.com/"
-      ],
-      "approved": false
+      "signatureSubject": "Pho and the chilled red wine",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "little-original-joes",
@@ -676,14 +574,11 @@
     {
       "id": "beit-rima",
       "name": "Beit Rima",
-      "signatureSubject": "Mezze sampler",
-      "signatureRationale": "Infatuation: mezze platter is “practically synonymous” with Beit Rima.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/beit-rima-cole-valley",
-        "https://beitrimasf.com/"
-      ],
-      "approved": false
+      "signatureSubject": "Chicken plate",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "farmhouse-kitchen-thai",
@@ -760,26 +655,20 @@
     {
       "id": "golden-boy-pizza",
       "name": "Golden Boy Pizza",
-      "signatureSubject": "Square focaccia “Sanfrancilian” slice",
-      "signatureRationale": "Infatuation and KQED: fluffy square Sicilian-style slices (esp. pepperoni) are the North Beach late-night signature.",
-      "confidence": "high",
-      "sources": [
-        "https://www.theinfatuation.com/san-francisco/reviews/golden-boy-pizza",
-        "https://www.goldenboypizza.com/menu"
-      ],
-      "approved": false
+      "signatureSubject": "Sausage pizza",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "comstock-saloon",
       "name": "Comstock Saloon",
-      "signatureSubject": "Cherry Bounce",
-      "signatureRationale": "Punch: house bourbon–cherry sour topped with sparkling wine has been a top seller for a decade+.",
-      "confidence": "high",
-      "sources": [
-        "https://punchdrink.com/articles/cherry-bounce-cocktail-recipe/",
-        "https://www.comstocksaloon.com/drink"
-      ],
-      "approved": false
+      "signatureSubject": "Martini or dirty martini",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
     },
     {
       "id": "rampant-bottle-and-bar",

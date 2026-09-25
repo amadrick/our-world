@@ -6,7 +6,7 @@ import { PlaceImage } from "@/components/places/place-image";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { signatureShort } from "@/lib/places/signature";
-import { getCategory } from "@/lib/places/taxonomy";
+import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -74,7 +74,7 @@ export function PlaceCard({
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
 }) {
-  const pick = place.tags.includes("top-pick");
+  const pick = place.andyFavorite === true;
   const { where, knownFor } = placeMeta(place);
   return (
     <button
@@ -95,9 +95,9 @@ export function PlaceCard({
           imageClassName="transition-transform duration-500 ease-snappy group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
         {pick && (
-          <span className="absolute top-3 left-3 flex h-8 items-center gap-1.5 rounded-full bg-surface px-3 text-sm font-semibold shadow-card">
-            <Star size={14} fill="currentColor" aria-hidden />
-            Top pick
+          <span className="absolute top-2.5 left-2.5 flex h-8 items-center gap-1.5 rounded-full bg-surface pr-3 pl-2.5 text-sm font-semibold text-ink shadow-card">
+            <Star size={13} fill="currentColor" aria-hidden />
+            {ANDY_PICK}
           </span>
         )}
       </span>
@@ -124,7 +124,7 @@ export function PlaceRow({
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
 }) {
-  const pick = place.tags.includes("top-pick");
+  const pick = place.andyFavorite === true;
   const { where, knownFor } = placeMeta(place);
   return (
     <button
@@ -141,7 +141,11 @@ export function PlaceRow({
       <span className="block min-w-0 flex-1">
         <span className="flex items-center gap-1.5">
           <span className="truncate text-base font-semibold">{smartQuotes(place.name)}</span>
-          {pick && <Star size={14} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
+          {pick && (
+            <Star size={14} fill="currentColor" className="shrink-0" aria-label={ANDY_PICK}>
+              <title>{ANDY_PICK}</title>
+            </Star>
+          )}
         </span>
         {knownFor && (
           <span className="block truncate text-sm text-muted-foreground">{knownFor}</span>

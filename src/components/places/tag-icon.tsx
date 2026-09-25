@@ -1,22 +1,22 @@
 import { Eye, Moon, Star, Sun, Sunrise, Sunset } from "react-feather";
 
-import type { TagId } from "@/lib/places/types";
+import type { PillId } from "@/lib/places/types";
 
 export const TAG_ICONS = {
-  "top-pick": Star,
+  favorites: Star,
   dinner: Sunset,
   lunch: Sun,
   "late-night": Moon,
   brunch: Sunrise,
   views: Eye,
-} satisfies Record<TagId, unknown>;
+} satisfies Record<PillId, unknown>;
 
 export function TagIcon({
   tag,
   size = 16,
   className,
 }: {
-  tag: TagId;
+  tag: PillId;
   size?: number;
   className?: string;
 }) {
@@ -25,7 +25,7 @@ export function TagIcon({
     <Icon
       size={size}
       className={className}
-      fill={tag === "top-pick" ? "currentColor" : "none"}
+      fill={tag === "favorites" ? "currentColor" : "none"}
       aria-hidden
     />
   );

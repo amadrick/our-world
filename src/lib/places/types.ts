@@ -12,8 +12,12 @@ export const CATEGORY_IDS = [
 ] as const;
 export type CategoryId = (typeof CATEGORY_IDS)[number];
 
-export const TAG_IDS = ["top-pick", "dinner", "lunch", "late-night", "brunch", "views"] as const;
+export const TAG_IDS = ["dinner", "lunch", "late-night", "brunch", "views"] as const;
 export type TagId = (typeof TAG_IDS)[number];
+
+/** The filter pills: Andy's favorites first, then the tags. */
+export const PILL_IDS = ["favorites", ...TAG_IDS] as const;
+export type PillId = (typeof PILL_IDS)[number];
 
 /**
  * How a place's summary was produced. "placeholder" means no OpenAI key was
@@ -58,10 +62,15 @@ export interface Place {
   lat: number;
   lng: number;
   tags: TagId[];
+  /** One of Andy's own favorites. */
+  andyFavorite?: boolean;
   note?: string;
   summary: string;
   summarySource: SummarySource;
-  /** The dish, drink, or room the place is known for, e.g. "Morning bun". */
+  /**
+   * The dish, drink, or room the place is known for, e.g. "Morning bun". For
+   * Andy's favorites this is his own pick where he named one.
+   */
   signatureSubject?: string;
   /** One line on why, with where that came from (reviews, the menu, the venue). */
   signatureRationale?: string;
