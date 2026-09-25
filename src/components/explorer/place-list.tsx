@@ -95,8 +95,8 @@ export function PlaceCard({
           imageClassName="transition-transform duration-500 ease-snappy group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
         {pick && (
-          <span className="absolute top-2.5 left-2.5 flex h-8 items-center gap-1.5 rounded-full bg-surface pr-3 pl-2.5 text-sm font-semibold text-ink shadow-card">
-            <Star size={13} fill="currentColor" aria-hidden />
+          <span className="absolute top-2 left-2 flex h-7 items-center gap-1 rounded-full bg-surface pr-2.5 pl-2 text-sm font-semibold text-ink shadow-card sm:top-2.5 sm:left-2.5 sm:h-8 sm:gap-1.5 sm:pr-3 sm:pl-2.5">
+            <Star size={12} fill="currentColor" aria-hidden />
             {ANDY_PICK}
           </span>
         )}
