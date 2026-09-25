@@ -77,14 +77,12 @@ one is).
 
 ## Place images
 
-Each of the original 72 places has a square picture of the place itself, drawn
-from Andy's prompt: a grainy, hazy, slightly dreamlike take on a Kodak 35mm
-photo of the real facade or room, "a visually heightened memory of the actual
-restaurant." The files are `public/places/<id>-<hash>.webp` (960×960). The 22
-places added on September 25 have no picture yet, while Andy chooses between
-this style and a one-color risograph style; until then, a place without one
-shows a sand tile with its category glyph (and "Picture coming soon" at full
-size).
+Every place has a square picture of the place itself, drawn from Andy's prompt:
+a grainy, hazy, slightly dreamlike take on a Kodak 35mm photo of the real facade
+or room, "a visually heightened memory of the actual restaurant." The files are
+`public/places/<id>-<hash>.webp` (960×960). A place without one (say, one just
+added in `/admin` while rendering is off) shows a sand tile with its category
+glyph (and "Picture coming soon" at full size).
 
 **The prompt is Andy's, verbatim.** It lives in
 `src/lib/images/kodak-place-prompt.md`. The only edits are filling in
@@ -92,8 +90,10 @@ size).
 (`src/lib/images/prompt.mjs`); change the picture's style by editing that file,
 not the code. After it, separated by a `---` line, comes a block of reference
 notes from the place's research, so the picture is of this place and not a
-generic storefront. The street address is left out, because image models paint
-it onto walls:
+generic storefront. The street address and house numbers are left out, because
+image models paint them onto walls. Models also like to letter "SAN FRANCISCO"
+under the name on a sign, so look over each new picture and redraw it if one
+does:
 
 ```text
 Reference notes for this place:
