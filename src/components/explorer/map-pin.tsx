@@ -1,32 +1,37 @@
+import { getImageProps } from "next/image";
 import { Star } from "react-feather";
 
-import { CategoryIcon } from "@/components/places/category-badge";
+import { shade } from "@/lib/images/palette.mjs";
+import type { PinDisplay } from "@/lib/map/pin-layout";
 import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
+import { placeColor } from "./place-detail";
 
-/** How much each pin says at the current zoom: a dot, the category glyph, or glyph and name. */
-export type PinDensity = "dot" | "glyph" | "label";
+/** The photo inside the ring, px. The thumbnail is a small derived image, a few KB. */
+const THUMB = 34;
 
 interface MapPinProps {
   place: Place;
   selected: boolean;
   highlighted: boolean;
-  density: PinDensity;
+  display: PinDisplay;
   onSelect: () => void;
   onHover: (hovering: boolean) => void;
 }
 
 /**
- * A price-pill-style marker: a white capsule with the category glyph (and the
- * name up close), inverted to ink when selected. Hovered and selected pins
- * always show their name.
+ * The place's own photo in a ring of its page color, so the map, the list, and
+ * the page share color; the name sits beside it in a pill of the same color.
+ * Zoomed out, or crowded out by a neighbor, it's a dot of that color. On the
+ * dark map the color is lifted and outlined so it doesn't sink into the land.
  */
-export function MapPin({ place, selected, highlighted, density, onSelect, onHover }: MapPinProps) {
+export function MapPin({ place, selected, highlighted, display, onSelect, onHover }: MapPinProps) {
   const pick = place.andyFavorite === true;
-  const showName = selected || highlighted || density === "label";
-  const dot = density === "dot" && !showName;
+  const color = placeColor(place);
+  const colors = { "--pin": color, "--pin-dark": shade(color, 0.54, 1.1) } as React.CSSProperties;
+  const fill = "bg-[var(--pin)] dark:bg-[var(--pin-dark)]";
 
   return (
     <button
@@ -35,6 +40,7 @@ export function MapPin({ place, selected, highlighted, density, onSelect, onHove
       aria-pressed={selected}
       data-selected={selected || undefined}
       data-highlighted={highlighted || undefined}
+      data-display={display}
       onClick={(event) => {
         event.stopPropagation();
         onSelect();
@@ -43,45 +49,76 @@ export function MapPin({ place, selected, highlighted, density, onSelect, onHove
       onPointerLeave={(event) => event.pointerType === "mouse" && onHover(false)}
       onFocus={() => onHover(true)}
       onBlur={() => onHover(false)}
-      // The hit area reaches past the drawn pill so small pins stay easy to tap.
+      style={colors}
+      // The hit area reaches past the drawn pin so small pins stay easy to tap.
       className="group relative flex cursor-pointer items-center justify-center outline-none before:absolute before:-inset-2 before:content-['']"
     >
-      {dot && pick ? (
-        <span className="flex size-[18px] items-center justify-center rounded-full bg-ink text-on-ink shadow-pin ring-2 ring-surface transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30">
-          <Star size={10} fill="currentColor" />
+      {display === "dot" ? (
+        <span
+          className={cn(
+            "flex items-center justify-center rounded-full text-white shadow-pin ring-[1.5px] ring-white dark:ring-white/60",
+            "transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-white",
+            fill,
+            pick ? "size-4" : "size-3",
+          )}
+        >
+          {pick && <Star size={8} fill="currentColor" aria-hidden />}
         </span>
-      ) : dot ? (
-        <span className="block size-3 rounded-full bg-ink shadow-pin ring-2 ring-surface transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30" />
       ) : (
         <span
           className={cn(
-            "relative flex h-8 items-center gap-1.5 rounded-full text-sm font-semibold whitespace-nowrap shadow-pin",
-            "transition-[scale,background-color,color] duration-200 ease-snappy motion-reduce:transition-none",
-            "group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-ink",
-            showName ? "pr-3 pl-2.5" : "w-8 justify-center",
-            selected
-              ? "scale-110 bg-ink text-on-ink"
-              : cn(
-                  "bg-surface text-ink dark:bg-[#3a3a3e] dark:ring-1 dark:ring-white/15",
-                  highlighted ? "scale-110" : "group-hover:scale-110",
-                ),
+            "relative flex size-10 items-center justify-center",
+            "transition-[scale] duration-200 ease-snappy motion-reduce:transition-none",
+            selected ? "scale-[1.18]" : highlighted ? "scale-110" : "group-hover:scale-110",
           )}
         >
-          <CategoryIcon category={place.category} size={15} className="shrink-0" />
-          {showName && <span className="max-w-40 truncate">{smartQuotes(place.name)}</span>}
-          {pick && (
+          {display === "label" && (
             <span
-              aria-hidden
               className={cn(
-                "absolute -top-1.5 -right-1.5 flex size-[18px] items-center justify-center rounded-full shadow-pin",
-                selected ? "bg-surface text-ink" : "bg-ink text-on-ink",
+                "absolute top-1/2 left-0 flex h-10 -translate-y-1/2 items-center rounded-full pr-3.5 pl-11 text-sm font-semibold whitespace-nowrap text-white shadow-pin dark:ring-1 dark:ring-white/50",
+                fill,
+                selected && "ring-2 ring-white dark:ring-2 dark:ring-white",
               )}
             >
-              <Star size={10} fill="currentColor" />
+              <span className="max-w-44 truncate">{smartQuotes(place.name)}</span>
             </span>
           )}
+          <span
+            className={cn(
+              "relative flex size-10 items-center justify-center rounded-full shadow-pin dark:ring-1 dark:ring-white/50",
+              "group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-white",
+              fill,
+              selected && "ring-2 ring-white dark:ring-2 dark:ring-white",
+            )}
+          >
+            <Thumbnail place={place} />
+            {pick && (
+              <span
+                aria-hidden
+                className="absolute -top-1 -right-1 flex size-[18px] items-center justify-center rounded-full bg-white text-[#141414] shadow-pin"
+              >
+                <Star size={10} fill="currentColor" />
+              </span>
+            )}
+          </span>
         </span>
       )}
     </button>
+  );
+}
+
+function Thumbnail({ place }: { place: Place }) {
+  if (!place.image) return null;
+  const { props } = getImageProps({ src: place.image, alt: "", width: THUMB, height: THUMB });
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- a portal into a map marker; getImageProps gives next/image's srcset
+    <img
+      {...props}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      draggable={false}
+      className="size-[34px] rounded-full object-cover"
+    />
   );
 }

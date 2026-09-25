@@ -127,3 +127,19 @@ export function shade(hex, lightness, chromaScale = 1) {
   const { a, b: bb } = rgbToOklab(r, g, b);
   return oklchToHex(lightness, Math.hypot(a, bb) * chromaScale, hueOf(a, bb));
 }
+
+/**
+ * Leans a color toward another's hue at its own lightness, so what's drawn on
+ * it keeps its contrast: `mix` of the way toward `tint`'s hue at `chroma`.
+ * @param {string} hex "#rrggbb"
+ * @param {string} tint "#rrggbb"
+ */
+export function tintToward(hex, tint, mix, chroma) {
+  const channels = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const base = rgbToOklab(...channels(hex));
+  const target = rgbToOklab(...channels(tint));
+  const len = Math.hypot(target.a, target.b) || 1;
+  const a = base.a + ((target.a / len) * chroma - base.a) * mix;
+  const b = base.b + ((target.b / len) * chroma - base.b) * mix;
+  return oklchToHex(base.L, Math.hypot(a, b), hueOf(a, b));
+}

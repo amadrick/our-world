@@ -295,16 +295,19 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
 
   if (variant === "sheet") {
     return (
-      <article aria-label={place.name} className="flex flex-col gap-6 text-white">
-        <PlaceImage
-          place={place}
-          alt={alt}
-          priority
-          sizes="100vw"
-          placeholder={color}
-          className="aspect-[5/4] rounded-xl"
-        />
-        <div className="px-1">{details}</div>
+      <article aria-label={place.name} className="text-white">
+        <div className="relative">
+          <PlaceImage
+            place={place}
+            alt={alt}
+            priority
+            sizes="100vw"
+            placeholder={color}
+            className="aspect-[4/3] [mask-image:linear-gradient(to_bottom,black_50%,transparent)]"
+          />
+          <PhotoDissolve className="h-3/5" />
+        </div>
+        <div className="relative -mt-12 px-5 pb-4">{details}</div>
       </article>
     );
   }

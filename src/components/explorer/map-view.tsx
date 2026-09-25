@@ -7,9 +7,16 @@ import { useEffect, useEffectEvent, useImperativeHandle, useRef, useState } from
 import { createPortal } from "react-dom";
 
 import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from "@/lib/map";
+import {
+  densityForZoom,
+  estimateLabelWidth,
+  layoutPins,
+  type PinDisplay,
+} from "@/lib/map/pin-layout";
 import type { Place } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
-import { MapPin, type PinDensity } from "./map-pin";
+import { MapPin } from "./map-pin";
+import { placeColor } from "./place-detail";
 
 export interface MapViewHandle {
   zoomIn: () => void;
@@ -35,14 +42,10 @@ interface MapViewProps {
 
 type Status = "loading" | "ready" | "error";
 
-/** Pins say more as you zoom in: dots across the city, glyphs by neighborhood, names by the block. */
-const GLYPH_FROM_ZOOM = 12;
-const LABEL_FROM_ZOOM = 15.5;
+type Layout = Map<string, PinDisplay>;
 
-function pinDensity(zoom: number): PinDensity {
-  if (zoom >= LABEL_FROM_ZOOM) return "label";
-  return zoom >= GLYPH_FROM_ZOOM ? "glyph" : "dot";
-}
+const sameLayout = (a: Layout, b: Layout) =>
+  a.size === b.size && [...a].every(([id, display]) => b.get(id) === display);
 
 // Frames the main cluster, so one far-flung place (say, across the Bay) doesn't zoom the city out.
 function framingSet(places: Place[]): Place[] {
@@ -73,7 +76,8 @@ export function MapView({
   const addedRef = useRef(new Set<string>());
   const framedRef = useRef(false);
   const [status, setStatus] = useState<Status>("loading");
-  const [zoom, setZoom] = useState<number>(DEFAULT_VIEW.zoom);
+  const [layout, setLayout] = useState<Layout>(() => new Map());
+  const frameRef = useRef(0);
   // Pin DOM nodes live outside React's tree (the map positions them), so React renders into them via portals.
   const [pinElements] = useState(() => new Map<string, HTMLElement>());
 
@@ -87,6 +91,31 @@ export function MapView({
   };
 
   const handleBackgroundClick = useEffectEvent(() => onBackgroundClick());
+
+  // Pins say more as you zoom in (dots, photos, names), stepping down wherever they'd pile up.
+  const relayout = useEffectEvent(() => {
+    const instance = instanceRef.current;
+    if (!instance) return;
+    const next = layoutPins(
+      places.map((place) => ({
+        id: place.id,
+        ...instance.project(place),
+        labelWidth: estimateLabelWidth(place.name),
+        forced: place.id === selectedId || place.id === highlightedId,
+        preferred: place.andyFavorite === true,
+      })),
+      instance.size(),
+      densityForZoom(instance.zoom()),
+    );
+    setLayout((current) => (sameLayout(current, next) ? current : next));
+  });
+  const scheduleLayout = useEffectEvent(() => {
+    if (frameRef.current) return;
+    frameRef.current = requestAnimationFrame(() => {
+      frameRef.current = 0;
+      relayout();
+    });
+  });
 
   useEffect(() => {
     let cancelled = false;
@@ -104,13 +133,14 @@ export function MapView({
           onReady: () => {
             instanceRef.current = instance;
             setStatus("ready");
+            scheduleLayout();
           },
           onError: (error) => {
             console.error("Map failed to load:", error);
             setStatus("error");
           },
           onBackgroundClick: () => handleBackgroundClick(),
-          onZoomChange: setZoom,
+          onMove: () => scheduleLayout(),
         });
       })
       .catch((error) => {
@@ -120,6 +150,8 @@ export function MapView({
 
     return () => {
       cancelled = true;
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = 0;
       instance?.destroy();
       instanceRef.current = null;
       added.clear();
@@ -147,6 +179,17 @@ export function MapView({
     // pinElement is a stable accessor over a stable Map.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [places, status]);
+
+  useEffect(() => {
+    if (status === "ready") relayout();
+  }, [places, selectedId, highlightedId, status]);
+
+  // An open place washes the whole map faintly in its color; closing it fades back.
+  const selected = places.find((p) => p.id === selectedId);
+  const tint = selected ? placeColor(selected) : null;
+  useEffect(() => {
+    if (status === "ready") instanceRef.current?.setTint(tint);
+  }, [tint, status]);
 
   useEffect(() => {
     instanceRef.current?.setPadding(padding);
@@ -202,7 +245,7 @@ export function MapView({
               place={place}
               selected={place.id === selectedId}
               highlighted={place.id === highlightedId}
-              density={pinDensity(zoom)}
+              display={layout.get(place.id) ?? "dot"}
               onSelect={() => onSelect(place.id)}
               onHover={(hovering) => onHighlight(hovering ? place.id : null)}
             />,

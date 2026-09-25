@@ -197,7 +197,7 @@ Both also rewrite `data/places.md`.
   [Feather](https://feathericons.com) (`react-feather`), plus a few
   Feather-style glyphs Feather lacks (`src/components/icons/feather-extras.tsx`),
   including the Golden Gate on the "All" tab.
-- **Map:** [MapLibre GL](https://maplibre.org) with "Paper", a calm custom
+- **Map:** [MapLibre GL](https://maplibre.org) with "Film paper", a calm custom
   style (`src/lib/map/style.ts`), on free
   [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed.
   Map labels use the same Inter file through MapLibre's `font-faces`. Map code
@@ -227,7 +227,7 @@ src/config/site.ts          title and copy shown to guests
 ## Design system
 
 Photos and color first, with as few containers as possible. Content sits on a
-warm canvas (the same `#F5F4F1` as the map's land, near-black in dark mode)
+warm canvas (`#F5F4F1`, near-black in dark mode; the map's land is a slightly warmer cream)
 or directly on a place's color; the controls that float over it are glass.
 One ink color (`#222`, `#F2F2F3` in dark) carries text, the primary action,
 and selection. Tokens live in `src/app/globals.css`; dark mode follows the
@@ -250,7 +250,8 @@ system (`prefers-color-scheme`), map included.
   pick, category and neighborhood, a bright Apple Maps pill beside a glass
   Google Maps pill, what it's known for, the tags, the note, the write-up, and
   the address all sit right on the color, with no card. The desktop map rail
-  is the same page at rail width; the phone map sheet takes the same color.
+  is the same page at rail width; in the phone map sheet the photo runs edge
+  to edge and dissolves the same way into the sheet's tinted glass.
 - **List:** a faint glow behind the title in the colors of Andy's picks'
   photos (pale on the light page, deep on the dark one), easing out well
   before the first row of cards. The category row and glass pills sit on it;
@@ -258,9 +259,18 @@ system (`prefers-color-scheme`), map included.
   muted lines, with a smoked-glass "Andy's pick" badge.
 - **List | Map switch:** a glass capsule floating bottom center with an ink
   thumb that slides to the selected mode (arrow keys work).
-- **Map:** a glass rail on desktop, glass zoom buttons, a glass filter bar on
-  phones. Pins are price-pill-style: ink dots zoomed out, a capsule with the
-  category glyph at city zoom, the name up close; Andy's picks carry a star.
+- **Map:** warm cream land, sea-glass water, and olive parks in the film
+  photos' tones (a warm charcoal version in dark mode), with a glass rail on
+  desktop, glass zoom buttons, and a glass filter bar on phones. Each pin is
+  the place's own photo (a ~2 KB thumbnail, fetched only once it's shown) in
+  a ring of its page color, so the map, the list, and the page share color;
+  up close the name sits beside it in a pill of the same color, and Andy's
+  picks carry a star. Across the city, pins are dots of that color. Where
+  photos would pile up (Valencia, Mission Street) the rest step down to dots
+  (`src/lib/map/pin-layout.ts`). The open place's pin grows with a white ring,
+  and the whole basemap crossfades to a faint wash of its color (a deep one in
+  dark mode) at the same lightness, so labels read the same. In dark mode pin
+  colors are lifted and outlined so they don't sink into the land.
 - Pills with nothing to show in the current section are dimmed, and if a
   section comes up empty for pills already on, the empty state offers the
   matches in other sections instead of a dead end.

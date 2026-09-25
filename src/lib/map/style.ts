@@ -5,57 +5,89 @@ import type {
   StyleSpecification,
 } from "maplibre-gl";
 
+import { tintToward } from "@/lib/images/palette.mjs";
+
 /**
- * "Paper": a calm, flat basemap for OpenMapTiles-schema vector tiles (what
+ * "Film paper": a calm, flat basemap for OpenMapTiles-schema vector tiles (what
  * OpenFreeMap serves for free, no key needed). No casings, no landuse tints, no
- * POIs: soft neutral land and streets with a whisper of blue water and sage
- * parks for the glass UI to pick up, labeled in Inter.
+ * POIs: warm cream land and streets with sea-glass water and olive parks, in
+ * the tones of the film photos, labeled in Inter. With a place open, the whole
+ * map takes a faint wash of that place's color.
  */
 
 export type TileSource = "openfreemap" | "offline";
 export type ColorScheme = "light" | "dark";
 
 const LIGHT = {
-  land: "#F5F4F1",
-  water: "#C9D7E2",
-  park: "#DDE6D6",
-  wood: "#D7E1D0",
-  sand: "#EEEDEA",
-  building: "#E9E9E7",
-  road: "#FFFFFF",
-  roadFar: "#DDDDDB",
-  roadMid: "#E9E9E7",
-  tunnel: "#F7F7F6",
-  rail: "#E0E0DE",
-  path: "#E6E6E4",
-  label: "#8F8F8D",
-  labelStrong: "#6E6E6C",
-  hood: "#A3A3A1",
-  waterLabel: "#8397A8",
-  halo: "rgba(245,244,241,0.92)",
+  land: "#F2EEE6",
+  water: "#C3D1CE",
+  park: "#DCDFC9",
+  wood: "#D5DAC2",
+  sand: "#ECE6D9",
+  building: "#E8E2D6",
+  road: "#FBF9F4",
+  roadFar: "#E2DCD0",
+  roadMid: "#EAE5DA",
+  tunnel: "#F4F0E8",
+  rail: "#DDD6C9",
+  path: "#E3DDD1",
+  label: "#8E8679",
+  labelStrong: "#6F685C",
+  hood: "#A39B8D",
+  waterLabel: "#7E9591",
 };
 
 type Palette = typeof LIGHT;
 
 const DARK: Palette = {
-  land: "#1A1A1C",
-  water: "#1C2831",
-  park: "#1D271F",
-  wood: "#1B251D",
-  sand: "#222221",
-  building: "#252527",
-  road: "#323235",
-  roadFar: "#232326",
-  roadMid: "#2A2A2D",
-  tunnel: "#202023",
-  rail: "#2B2B2E",
-  path: "#2A2A2D",
-  label: "#86868B",
-  labelStrong: "#A6A6AB",
-  hood: "#737378",
-  waterLabel: "#6C8394",
-  halo: "rgba(26,26,28,0.92)",
+  land: "#1C1B19",
+  water: "#1A2426",
+  park: "#20241C",
+  wood: "#1E231A",
+  sand: "#23211E",
+  building: "#272521",
+  road: "#35332F",
+  roadFar: "#252320",
+  roadMid: "#2D2B27",
+  tunnel: "#22201D",
+  rail: "#2E2C28",
+  path: "#2C2A26",
+  label: "#8C877E",
+  labelStrong: "#ADA89F",
+  hood: "#78736A",
+  waterLabel: "#6E8584",
 };
+
+/** How far each surface leans toward an open place's color, and how colorful it gets. Labels keep theirs. */
+const TINT: Partial<Record<keyof Palette, [mix: number, chroma: number]>> = {
+  land: [0.55, 0.02],
+  sand: [0.55, 0.02],
+  building: [0.55, 0.02],
+  park: [0.35, 0.03],
+  wood: [0.35, 0.03],
+  water: [0.3, 0.03],
+  road: [0.5, 0.008],
+  roadFar: [0.5, 0.018],
+  roadMid: [0.5, 0.014],
+  tunnel: [0.5, 0.01],
+  rail: [0.5, 0.018],
+  path: [0.5, 0.018],
+};
+
+/** The palette with a faint wash of `tint`: each surface keeps its lightness, so labels read the same. */
+export function tintPalette(palette: Palette, tint: string, scheme: ColorScheme): Palette {
+  const strength = scheme === "dark" ? 1.2 : 1;
+  const tinted = { ...palette };
+  for (const [key, [mix, chroma]] of Object.entries(TINT) as [keyof Palette, [number, number]][]) {
+    tinted[key] = tintToward(palette[key], tint, mix, chroma * strength);
+  }
+  return tinted;
+}
+
+const halo = (land: string) => `${land}eb`;
+
+/** Paint changes (the tint coming and going) crossfade instead of snapping. */
+export const TINT_FADE_MS = 450;
 
 const FONT = ["Inter"];
 
@@ -153,7 +185,7 @@ function source(tiles: TileSource, origin: string): SourceSpecification {
 
 const labelPaint = (C: Palette, color: string) => ({
   "text-color": color,
-  "text-halo-color": C.halo,
+  "text-halo-color": halo(C.land),
   "text-halo-width": 1.2,
 });
 
@@ -161,8 +193,10 @@ export function buildMapStyle(
   tiles: TileSource,
   origin: string,
   scheme: ColorScheme = "light",
+  tint: string | null = null,
 ): StyleSpecification {
-  const C = scheme === "dark" ? DARK : LIGHT;
+  const base = scheme === "dark" ? DARK : LIGHT;
+  const C = tint ? tintPalette(base, tint, scheme) : base;
   const glyphs =
     tiles === "offline"
       ? `${origin}/offline-tiles/fonts/{fontstack}/{range}.pbf`
@@ -337,7 +371,8 @@ export function buildMapStyle(
 
   return {
     version: 8,
-    name: scheme === "dark" ? "SF Recs Paper (dark)" : "SF Recs Paper",
+    name: scheme === "dark" ? "SF Recs Film Paper (dark)" : "SF Recs Film Paper",
+    transition: { duration: TINT_FADE_MS, delay: 0 },
     glyphs,
     // Labels are drawn from the same Inter Variable file as the UI.
     "font-faces": { Inter: `${origin}/fonts/InterVariable.woff2` },

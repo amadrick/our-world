@@ -353,9 +353,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             }
             footer={<PlaceActions place={selected} />}
           >
-            <div className="px-4 pt-4 pb-2">
-              <PlaceDetail place={selected} onBack={closeDetail} variant="sheet" />
-            </div>
+            <PlaceDetail place={selected} onBack={closeDetail} variant="sheet" />
           </BottomSheet>
         </div>
       )}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { contrastRatio, pageColor, shade } from "./palette.mjs";
+import { contrastRatio, pageColor, shade, tintToward } from "./palette.mjs";
 
 /** A flat run of pixels, [r, g, b] repeated n times. */
 const fill = (rgb: [number, number, number], n: number) => Array.from({ length: n }, () => rgb).flat();
@@ -42,5 +42,19 @@ describe("shade", () => {
     const [r, g, b] = channels(pale);
     expect(Math.min(r, g, b)).toBeGreaterThan(200);
     expect(g).toBeGreaterThan(r);
+  });
+});
+
+describe("tintToward", () => {
+  it("leans toward the tint's hue without changing how light the color is", () => {
+    const cream = "#f2eee6";
+    const green = tintToward(cream, "#23453b", 0.6, 0.03);
+    const [r, g] = channels(green);
+    expect(g).toBeGreaterThan(r);
+    expect(Math.abs(contrastRatio(green, "#8e8679") - contrastRatio(cream, "#8e8679"))).toBeLessThan(0.15);
+  });
+
+  it("leaves the color alone at zero mix", () => {
+    expect(tintToward("#f2eee6", "#23453b", 0, 0.03)).toBe("#f2eee6");
   });
 });

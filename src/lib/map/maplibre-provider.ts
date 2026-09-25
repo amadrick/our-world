@@ -50,8 +50,10 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
 
-  const followScheme = () => map.setStyle(buildMapStyle(tileSource(), window.location.origin, scheme()));
-  darkQuery().addEventListener("change", followScheme);
+  let tint: string | null = null;
+  // setStyle diffs against the current style, so a new tint only updates paint colors, which crossfade.
+  const restyle = () => map.setStyle(buildMapStyle(tileSource(), window.location.origin, scheme(), tint));
+  darkQuery().addEventListener("change", restyle);
 
   const markers = new Map<string, Marker>();
   let padding: MapPadding = { top: 0, right: 0, bottom: 0, left: 0 };
@@ -66,8 +68,11 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
     window.clearTimeout(timeout);
     options.onReady();
     options.onZoomChange?.(map.getZoom());
+    options.onMove?.();
   });
   map.on("zoomend", () => options.onZoomChange?.(map.getZoom()));
+  map.on("move", () => options.onMove?.());
+  map.on("resize", () => options.onMove?.());
   map.on("error", (event) => {
     // After the first render, a missing tile is not worth an error screen.
     if (!loaded) options.onError(new Error(event.error?.message ?? "Map failed to load"));
@@ -119,12 +124,28 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
     zoomBy(delta) {
       map.easeTo({ zoom: map.getZoom() + delta, duration: 250 });
     },
+    project(position) {
+      const { x, y } = map.project(toArray(position));
+      return { x, y };
+    },
+    size() {
+      const { clientWidth: width, clientHeight: height } = map.getContainer();
+      return { width, height };
+    },
+    zoom() {
+      return map.getZoom();
+    },
+    setTint(color) {
+      if (color === tint) return;
+      tint = color;
+      restyle();
+    },
     resize() {
       map.resize();
     },
     destroy() {
       window.clearTimeout(timeout);
-      darkQuery().removeEventListener("change", followScheme);
+      darkQuery().removeEventListener("change", restyle);
       for (const marker of markers.values()) marker.remove();
       markers.clear();
       map.remove();

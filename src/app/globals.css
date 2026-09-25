@@ -556,6 +556,10 @@ body .maplibregl-ctrl-attrib {
     bottom: calc(max(env(safe-area-inset-bottom), 16px) + 64px);
   }
 }
+/* Photos and names above dots; the hovered and open place above everything. */
+.maplibregl-marker:has([data-display="photo"], [data-display="label"]) {
+  z-index: 1;
+}
 .maplibregl-marker:has([data-highlighted]) {
   z-index: 2;
 }
