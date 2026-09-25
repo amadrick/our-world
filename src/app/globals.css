@@ -478,8 +478,10 @@
   .glass-bar {
     background-color: var(--surface);
   }
-  .tinted-sheet {
+  .tinted-sheet::before {
     background-color: var(--tint);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
   .progressive-blur {
     display: none;
@@ -571,14 +573,26 @@ body .maplibregl-ctrl-attrib {
 }
 
 /* The phone map sheet for an open place: glass tinted with the place's color. */
+/*
+ * The glass is its own layer rather than the sheet itself: a sheet with a
+ * backdrop-filter would hide the map from the photo's progressive blur inside
+ * it, which would then stack a second tint where it runs and show its edge.
+ */
 @utility tinted-sheet {
-  background-color: color-mix(in srgb, var(--tint) 86%, transparent);
-  -webkit-backdrop-filter: blur(28px) saturate(170%);
-  backdrop-filter: blur(28px) saturate(170%);
   border: 0.5px solid rgb(255 255 255 / 0.16);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.18),
-    0 -12px 40px -12px rgb(0 0 0 / 0.35);
+  box-shadow: 0 -12px 40px -12px rgb(0 0 0 / 0.35);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: color-mix(in srgb, var(--tint) 86%, transparent);
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+    backdrop-filter: blur(28px) saturate(170%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18);
+  }
 }
 
 /*

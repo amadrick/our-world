@@ -246,7 +246,8 @@ const PHOTO_SWAP_MS = 480;
 /** The longest a photo waits for its picture before fading in over its placeholder color. */
 const PHOTO_WAIT_MS = 600;
 
-const PHOTO_FADE = fadeOutMask(52);
+/** The photo holds to here, then fades into the color behind it; the blur covers the last 30%. */
+const PHOTO_FADE = fadeOutMask(58);
 
 interface PhotoLayer {
   place: Place;
@@ -468,6 +469,8 @@ export function PlaceDetail({
             replace={swiped}
             className={cn("swipe-parallax", rail ? "aspect-square" : "aspect-[4/3]")}
           />
+          {/* Outside the stage, so it stays put while photos slide, crossfade, and parallax beneath it. */}
+          <PhotoDissolve className="h-[30%]" />
           {rail && <div className="absolute inset-x-3 top-3 z-10">{controls}</div>}
         </div>
         <div
