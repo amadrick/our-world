@@ -27,8 +27,8 @@ export function fillTemplate(template, name) {
 export function referenceNotes(place, { photo = false } = {}) {
   const r = place.placeResearch;
   const neighborhood = [place.neighborhood, r?.street].filter(Boolean).join(". ");
+  // No street address: image models paint it onto walls as invented signage.
   const lines = [
-    place.address && `Address: ${place.address}`,
     neighborhood && `Neighborhood and street: ${neighborhood}`,
     r?.terrain && `Terrain and setting: ${r.terrain}`,
     r?.architecture && `Architecture: ${r.architecture}`,

@@ -88,11 +88,11 @@ shows a glass tile with its monogram.
 (`src/lib/images/prompt.mjs`); change the picture's style by editing that file,
 not the code. After it, separated by a `---` line, comes a block of reference
 notes from the place's research, so the picture is of this place and not a
-generic storefront:
+generic storefront. The street address is left out, because image models paint
+it onto walls:
 
 ```text
 Reference notes for this place:
-- Address: …
 - Neighborhood and street: …
 - Terrain and setting: …
 - Architecture: …

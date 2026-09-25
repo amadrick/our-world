@@ -48,11 +48,9 @@ describe("buildPrompt", () => {
     expect(tail).not.toContain("tartinebakery.com");
   });
 
-  it("still gives the address and neighborhood when there's no research yet", () => {
+  it("still gives the neighborhood, but never the street address, when there's no research yet", () => {
     const notes = referenceNotes({ name: "Zuni Café", neighborhood: "Hayes Valley", address: "1658 Market St" });
-    expect(notes).toBe(
-      "Reference notes for this place:\n- Address: 1658 Market St\n- Neighborhood and street: Hayes Valley",
-    );
+    expect(notes).toBe("Reference notes for this place:\n- Neighborhood and street: Hayes Valley");
   });
 
   it("refuses reference notes that describe food", () => {
