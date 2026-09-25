@@ -1,3 +1,11 @@
+export interface PinFootprint {
+  id: string;
+  lng: number;
+  lat: number;
+  display: "dot" | "photo" | "label";
+  name: string;
+}
+
 export interface LngLat {
   lng: number;
   lat: number;
@@ -38,7 +46,8 @@ export interface MapInstance {
   removeMarker(id: string): void;
   /** Screen space covered by panels or sheets; camera moves keep content clear of it. */
   setPadding(padding: MapPadding): void;
-  focus(position: LngLat, options?: { minZoom?: number }): void;
+  /** Centers a position; `glide` eases there at the same zoom, for stepping from one place to the next. */
+  focus(position: LngLat, options?: { minZoom?: number; glide?: boolean }): void;
   fitTo(positions: LngLat[], options?: { animate?: boolean; maxZoom?: number }): void;
   zoomBy(delta: number): void;
   /** Where a position is on screen right now, in px from the map's top left. */
@@ -48,6 +57,8 @@ export interface MapInstance {
   zoom(): number;
   /** Washes the whole basemap faintly in a color (an open place's), or back to neutral with null. */
   setTint(color: string | null): void;
+  /** Where the pins are and what they show, so basemap labels keep out from under them. */
+  setPins(pins: PinFootprint[]): void;
   resize(): void;
   destroy(): void;
 }

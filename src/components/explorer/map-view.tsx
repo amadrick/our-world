@@ -14,6 +14,7 @@ import {
   type PinDisplay,
 } from "@/lib/map/pin-layout";
 import type { Place } from "@/lib/places/types";
+import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 import { MapPin } from "./map-pin";
 import { placeColor } from "./place-detail";
@@ -37,6 +38,8 @@ interface MapViewProps {
   onSelect: (id: string) => void;
   onHighlight: (id: string | null) => void;
   onBackgroundClick: () => void;
+  /** The selection is a step to the next or previous place: the camera glides instead of flying. */
+  glide?: boolean;
   className?: string;
 }
 
@@ -69,6 +72,7 @@ export function MapView({
   onSelect,
   onHighlight,
   onBackgroundClick,
+  glide = false,
   className,
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -184,6 +188,19 @@ export function MapView({
     if (status === "ready") relayout();
   }, [places, selectedId, highlightedId, status]);
 
+  useEffect(() => {
+    if (status !== "ready") return;
+    instanceRef.current?.setPins(
+      places.map((place) => ({
+        id: place.id,
+        lng: place.lng,
+        lat: place.lat,
+        display: layout.get(place.id) ?? "dot",
+        name: smartQuotes(place.name),
+      })),
+    );
+  }, [places, layout, status]);
+
   // An open place washes the whole map faintly in its color; closing it fades back.
   const selected = places.find((p) => p.id === selectedId);
   const tint = selected ? placeColor(selected) : null;
@@ -213,7 +230,7 @@ export function MapView({
 
   const focusSelected = useEffectEvent(() => {
     const place = places.find((p) => p.id === selectedId);
-    if (place) instanceRef.current?.focus(place, { minZoom: 14.5 });
+    if (place) instanceRef.current?.focus(place, { minZoom: 14.5, glide });
   });
 
   useEffect(() => {

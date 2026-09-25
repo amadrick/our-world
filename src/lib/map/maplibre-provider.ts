@@ -1,6 +1,8 @@
-import type { Map as MapLibreMap, Marker } from "maplibre-gl";
+import type { GeoJSONSource, Map as MapLibreMap, Marker } from "maplibre-gl";
 
-import { buildMapStyle, type ColorScheme, type TileSource } from "./style";
+import { buildMapStyle, type ColorScheme, type PinFootprint, type TileSource } from "./style";
+import { MAP_THEMES, currentMapTheme, type MapThemeId } from "./theme";
+import { PIN_SOURCE, missingImage, pinCollection } from "./themes/kit";
 import type {
   LngLat,
   MapCreateOptions,
@@ -34,25 +36,62 @@ function safePadding(map: MapLibreMap, padding: MapPadding, margin: number): Map
 const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 const scheme = (): ColorScheme => (darkQuery().matches ? "dark" : "light");
 
-function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
+/** Framed this close, a theme that tilts (the dimensional city) leans the camera in. */
+const TILT_FROM_ZOOM = 13.5;
+/** A glide to a place farther than this many screen diagonals flies instead. */
+const GLIDE_REACH = 1.5;
+
+interface MapEnvironment {
+  theme: MapThemeId;
+  terrain: boolean;
+}
+
+async function hasTerrain(): Promise<boolean> {
+  try {
+    return (await fetch("/offline-terrain/tiles.json", { method: "HEAD" })).ok;
+  } catch {
+    return false;
+  }
+}
+
+function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment): MapInstance {
+  const theme = MAP_THEMES[env.theme];
+  let tint: string | null = null;
+  let pins: PinFootprint[] = [];
+  const style = () =>
+    buildMapStyle({
+      theme: env.theme,
+      tiles: tileSource(),
+      origin: window.location.origin,
+      scheme: scheme(),
+      tint,
+      terrain: env.terrain,
+      pins,
+    });
+
   const map = new lib.Map({
     container: options.container,
-    style: buildMapStyle(tileSource(), window.location.origin, scheme()),
+    style: style(),
     center: [options.center.lng, options.center.lat],
     zoom: options.zoom,
     minZoom: 8,
     maxZoom: 18.5,
+    maxPitch: theme.pitch ? 60 : 0,
     attributionControl: { compact: true },
     dragRotate: false,
     pitchWithRotate: false,
-    touchPitch: false,
+    touchPitch: theme.pitch > 0,
   });
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
+  // Textures, markers, and the pins' collision boxes are drawn on demand.
+  map.on("styleimagemissing", ({ id }) => {
+    const image = missingImage(id);
+    if (image && !map.hasImage(id)) map.addImage(id, image, { pixelRatio: image.pixelRatio });
+  });
 
-  let tint: string | null = null;
   // setStyle diffs against the current style, so a new tint only updates paint colors, which crossfade.
-  const restyle = () => map.setStyle(buildMapStyle(tileSource(), window.location.origin, scheme(), tint));
+  const restyle = () => map.setStyle(style());
   darkQuery().addEventListener("change", restyle);
 
   const markers = new Map<string, Marker>();
@@ -100,23 +139,37 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
     setPadding(next) {
       padding = next;
     },
-    focus(position, { minZoom = 15 } = {}) {
-      map.flyTo({
+    focus(position, { minZoom = 15, glide = false } = {}) {
+      const camera = {
         center: toArray(position),
         zoom: Math.max(map.getZoom(), minZoom),
-        offset: [(padding.left - padding.right) / 2, (padding.top - padding.bottom) / 2],
-        speed: 1.6,
-        curve: 1.25,
+        offset: [(padding.left - padding.right) / 2, (padding.top - padding.bottom) / 2] as [number, number],
+        ...(theme.pitch && { pitch: theme.pitch }),
         essential: true,
-      });
+      };
+      if (glide) {
+        // Stepping to the next place: a short ease at the same zoom, no swoop out and back in.
+        const { x, y } = map.project(camera.center);
+        const { clientWidth: w, clientHeight: h } = map.getContainer();
+        const reach = Math.hypot(x - w / 2, y - h / 2) / Math.hypot(w, h);
+        if (reach < GLIDE_REACH) {
+          map.easeTo({ ...camera, duration: 650, easing: (t) => 1 - (1 - t) ** 3 });
+          return;
+        }
+        map.flyTo({ ...camera, curve: 1.1, speed: 1.8, maxDuration: 1100 });
+        return;
+      }
+      map.flyTo({ ...camera, speed: 1.6, curve: 1.25 });
     },
     fitTo(positions, { animate = true, maxZoom = 15 } = {}) {
       if (positions.length === 0) return;
       const bounds = new lib.LngLatBounds();
       for (const p of positions) bounds.extend(toArray(p));
+      const fit = { padding: safePadding(map, padding, 56), maxZoom };
+      const zoom = theme.pitch ? (map.cameraForBounds(bounds, fit)?.zoom ?? 0) : 0;
       map.fitBounds(bounds, {
-        padding: safePadding(map, padding, 56),
-        maxZoom,
+        ...fit,
+        ...(theme.pitch && { pitch: zoom >= TILT_FROM_ZOOM ? theme.pitch * 0.85 : 0 }),
         duration: animate ? 800 : 0,
         essential: true,
       });
@@ -140,6 +193,10 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
       tint = color;
       restyle();
     },
+    setPins(next) {
+      pins = next;
+      (map.getSource(PIN_SOURCE) as GeoJSONSource | undefined)?.setData(pinCollection(pins));
+    },
     resize() {
       map.resize();
     },
@@ -156,9 +213,13 @@ function createMap(lib: MapLibre, options: MapCreateOptions): MapInstance {
 export const maplibreProvider: MapProvider = {
   id: "maplibre",
   async load() {
-    const lib = await import("maplibre-gl");
+    const theme = currentMapTheme();
+    const [lib, terrain] = await Promise.all([
+      import("maplibre-gl"),
+      theme === "dimensional" ? hasTerrain() : Promise.resolve(false),
+    ]);
     // Served from public/ by scripts/copy-maplibre-worker.mjs (runs on npm install).
     lib.setWorkerUrl(`/maplibre/${lib.getVersion()}/maplibre-gl-worker.mjs`);
-    return (options) => createMap(lib, options);
+    return (options) => createMap(lib, options, { theme, terrain });
   },
 };
