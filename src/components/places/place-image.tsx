@@ -14,11 +14,10 @@ interface PlaceImageProps {
   imageClassName?: string;
 }
 
-function monogram(name: string): string {
-  return name.replace(/^the\s+/i, "").match(/[\p{L}\p{N}]/u)?.[0]?.toUpperCase() ?? "·";
-}
-
-/** The place's picture, or a quiet glass tile with its monogram until there is one. */
+/**
+ * The place's picture, or until there is one a sand tile with its category
+ * glyph: bare in thumbnails, in a white disc on cards, and captioned at hero size.
+ */
 export function PlaceImage({
   place,
   sizes,
@@ -32,13 +31,20 @@ export function PlaceImage({
       <div
         aria-hidden
         className={cn(
-          "@container relative flex aspect-square flex-col items-center justify-center gap-1.5 overflow-hidden",
-          "hairline border-black/[0.06] bg-white/45 text-black/45 shadow-[inset_0_1px_0_rgb(255_255_255/0.8)]",
+          "dot-grid @container relative flex aspect-square flex-col items-center justify-center gap-3 overflow-hidden bg-sand text-ink",
           className,
         )}
       >
-        <span className="text-lg font-medium @[8rem]:text-xl">{monogram(place.name)}</span>
-        <CategoryIcon category={place.category} size={14} className="hidden @[8rem]:block" />
+        <span className="flex items-center justify-center rounded-full @[8rem]:size-14 @[8rem]:bg-surface @[8rem]:shadow-card @[20rem]:size-18">
+          <CategoryIcon
+            category={place.category}
+            size={20}
+            className="opacity-70 @[8rem]:size-6 @[8rem]:opacity-100 @[20rem]:size-7"
+          />
+        </span>
+        <span className="hidden text-sm font-medium text-muted-foreground @[20rem]:block">
+          Picture coming soon
+        </span>
       </div>
     );
   }

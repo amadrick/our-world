@@ -32,9 +32,10 @@ const CATEGORY_LABEL = {
   restaurant: "Restaurant",
   bar: "Bar",
   wine: "Wine",
-  coffee: "Coffee",
+  coffee: "Coffee & tea",
   bakery: "Bakery",
   dessert: "Dessert",
+  shop: "Shop",
   activity: "Activity",
   sight: "Sight",
 };
