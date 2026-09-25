@@ -52,6 +52,7 @@ interface ResearchDraft {
   unique: string;
   iconic: string;
   view: "facade" | "interior";
+  viewNote: string;
   sources: string[];
   unverified: string;
 }
@@ -64,6 +65,7 @@ function researchDraft(research?: PlaceResearch): ResearchDraft {
     unique: research?.unique ?? "",
     iconic: research?.iconic.join("\n") ?? "",
     view: research?.view ?? "facade",
+    viewNote: research?.viewNote ?? "",
     sources: research?.sources ?? [],
     unverified: research?.unverified ?? "",
   };
@@ -80,6 +82,7 @@ function researchFromDraft(draft: ResearchDraft): PlaceResearch | undefined {
       .map((line) => line.replace(/^[-•*]\s*/, "").trim())
       .filter(Boolean),
     view: draft.view,
+    viewNote: draft.viewNote.trim() || undefined,
     sources: draft.sources,
     unverified: draft.unverified.trim() || undefined,
   };

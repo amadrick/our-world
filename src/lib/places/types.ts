@@ -38,6 +38,12 @@ export interface PlaceResearch {
   iconic: string[];
   /** Which view is more recognizable. */
   view: "facade" | "interior";
+  /**
+   * A specific vantage for the image, used in place of the plain view. Set for
+   * places whose facade kept drawing invented sign text, to frame the picture
+   * where no sign is legible.
+   */
+  viewNote?: string;
   sources: string[];
   /** What couldn't be verified. */
   unverified?: string;

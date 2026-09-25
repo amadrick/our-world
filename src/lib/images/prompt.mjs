@@ -34,7 +34,7 @@ export function referenceNotes(place, { photo = false } = {}) {
     r?.architecture && `Architecture: ${r.architecture}`,
     r?.unique && `Unique architectural notes: ${r.unique}`,
     r?.iconic?.length && `Most iconic physical characteristics: ${r.iconic.join("; ")}`,
-    r?.view && `Most recognizable view: the ${r.view}`,
+    r?.view && `Most recognizable view: ${r.viewNote || `the ${r.view}`}`,
     photo && "Reference photo: the attached photo shows the real place. Use it for its architecture and layout only.",
   ].filter(Boolean);
   return lines.length ? ["Reference notes for this place:", ...lines.map((line) => `- ${line}`)].join("\n") : "";

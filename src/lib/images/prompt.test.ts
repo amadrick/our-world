@@ -48,6 +48,16 @@ describe("buildPrompt", () => {
     expect(tail).not.toContain("tartinebakery.com");
   });
 
+  it("uses a specific vantage in place of the plain view when one is set", () => {
+    const framed = {
+      ...place,
+      placeResearch: { ...place.placeResearch, viewNote: "the corner doorway, seen close up from the sidewalk" },
+    };
+    const tail = buildPrompt(framed, { template }).slice(template.length);
+    expect(tail).toContain("- Most recognizable view: the corner doorway, seen close up from the sidewalk\n");
+    expect(tail).not.toContain("- Most recognizable view: the facade");
+  });
+
   it("still gives the neighborhood, but never the street address, when there's no research yet", () => {
     const notes = referenceNotes({ name: "Zuni Café", neighborhood: "Hayes Valley", address: "1658 Market St" });
     expect(notes).toBe("Reference notes for this place:\n- Neighborhood and street: Hayes Valley");

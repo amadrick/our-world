@@ -62,6 +62,7 @@ function placeMarkdown(place, entry) {
   out.push("- **Most iconic physical characteristics:**");
   for (const item of r.iconic) out.push(`  - ${item}`);
   out.push(`- **More recognizable view:** ${r.view === "interior" ? "the interior" : "the facade"}`);
+  if (r.viewNote) out.push(`- **View used for the image:** ${r.viewNote}`);
   if (r.unverified) out.push(`- **Not verified:** ${r.unverified}`);
   out.push("- **Sources:**");
   for (const url of r.sources) out.push(`  - <${url}>`);

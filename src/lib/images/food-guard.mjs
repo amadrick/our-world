@@ -25,7 +25,14 @@ export function assertNoFood(text) {
 /** Every research field that reaches the image prompt, joined for the guard. */
 export function researchText(research) {
   if (!research) return "";
-  return [research.street, research.terrain, research.architecture, research.unique, ...(research.iconic ?? [])]
+  return [
+    research.street,
+    research.terrain,
+    research.architecture,
+    research.unique,
+    ...(research.iconic ?? []),
+    research.viewNote,
+  ]
     .filter(Boolean)
     .join("\n");
 }

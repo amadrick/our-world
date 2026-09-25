@@ -41,6 +41,7 @@ export const placeResearchSchema = z
       .max(4, "Keep it to the 2–4 most iconic details")
       .default([]),
     view: z.enum(["facade", "interior"]).default("facade"),
+    viewNote: optionalText(300),
     sources: z.array(z.url().max(600)).max(12).default([]),
     unverified: optionalText(800),
   })
