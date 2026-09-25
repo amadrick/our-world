@@ -49,13 +49,13 @@ export function PlaceDetailBackRow({ onBack }: { onBack: () => void }) {
   );
 }
 
-/** Floats over the hero image: clear glass, since the picture behind is the content. */
+/** Floats over the hero image. Regular glass, not clear: the photos are often dark. */
 function BackOverImage({ onBack }: { onBack: () => void }) {
   return (
     <button
       type="button"
       onClick={onBack}
-      className="glass glass-clear glass-interactive absolute top-3 left-3 flex h-9 items-center gap-1 rounded-full pr-3.5 pl-2 text-sm font-medium"
+      className="glass glass-interactive absolute top-3 left-3 flex h-9 items-center gap-1 rounded-full pr-3.5 pl-2 text-sm font-medium"
     >
       <ChevronLeft size={18} />
       All places

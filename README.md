@@ -222,7 +222,7 @@ and is never applied to content itself. The primitive is a set of CSS classes in
 | `--glass-blur` / `--glass-saturation` / `--glass-brightness` | 22px / 190% / 1.06 | Backdrop blur that lets color through and lifts luminosity |
 | `--glass-tint` | white 50% | Regular: text-heavy chrome (panel, sheet, pills, popovers) |
 | `--glass-tint-thick` | white 78% | Expanded sheet, dialogs, admin cards |
-| `--glass-tint-clear` | white 14% | Clear: controls over rich media (the back button on a place image) |
+| `--glass-tint-clear` | white 14% | Clear: controls over bright rich media, only where dark text stays readable (unused while the place photos are dark) |
 | `--glass-tint-ink` | near-black 86% | The one prominent action or selection |
 | `--glass-rim`, `--glass-sheen`, `--glass-glow` | | Lit edge, gradient bevel, and specular highlight |
 | `--glass-edge`, `--glass-shadow` | | 0.5px outline and soft diffuse lift |
