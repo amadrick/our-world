@@ -4,9 +4,20 @@ import { Toaster } from "@/components/ui/sonner";
 import { site } from "@/config/site";
 import "./globals.css";
 
+// The share image is app/opengraph-image.jpg; on Vercel its URL resolves against the deployment's domain.
 export const metadata: Metadata = {
   title: site.title,
   description: site.tagline,
+  applicationName: site.title,
+  openGraph: {
+    type: "website",
+    title: site.title,
+    description: site.tagline,
+    siteName: site.title,
+    locale: "en_US",
+  },
+  twitter: { card: "summary_large_image", title: site.title, description: site.tagline },
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
 };
 
 export const viewport: Viewport = {
