@@ -3,6 +3,7 @@
 import {
   Check,
   ChevronLeft,
+  ChevronRight,
   Copy,
   Map as MapIcon,
   MapPin,
@@ -22,6 +23,7 @@ import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
 import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
+import type { StepDirection } from "@/lib/places/swipe";
 import { ANDY_PICK, FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
@@ -81,6 +83,45 @@ function FloatingButton({
     </button>
   );
 }
+
+export interface Stepper {
+  prev: Place | null;
+  next: Place | null;
+  onStep: (direction: StepDirection) => void;
+}
+
+/** Small glass chevrons to the previous and next place (the arrow keys do the same). */
+function StepButtons({ stepper, className }: { stepper: Stepper; className?: string }) {
+  const button = (direction: StepDirection, target: Place | null) => {
+    const label = target
+      ? `${direction === 1 ? "Next" : "Previous"}: ${smartQuotes(target.name)}`
+      : direction === 1
+        ? "No next place"
+        : "No previous place";
+    return (
+      <button
+        type="button"
+        aria-label={label}
+        title={label}
+        aria-keyshortcuts={direction === 1 ? "ArrowRight" : "ArrowLeft"}
+        disabled={!target}
+        onClick={() => stepper.onStep(direction)}
+        className="pressable flex size-9 items-center justify-center rounded-full outline-white enabled:cursor-pointer enabled:hover:bg-white/15 focus-visible:outline-2 disabled:opacity-35"
+      >
+        {direction === 1 ? <ChevronRight size={20} aria-hidden /> : <ChevronLeft size={20} aria-hidden />}
+      </button>
+    );
+  };
+  return (
+    <div className={cn("glass-media pointer-events-auto flex items-center gap-0.5 rounded-full p-1", className)}>
+      {button(-1, stepper.prev)}
+      {button(1, stepper.next)}
+    </div>
+  );
+}
+
+const enterSide = (direction: StepDirection | null | undefined) =>
+  direction === 1 ? "next" : direction === -1 ? "prev" : undefined;
 
 function AndyPickChip() {
   return (
@@ -152,7 +193,7 @@ export function PlaceActions({ place }: { place: Place }) {
 /** The phone map sheet at its smallest: thumbnail, name, and quiet meta. */
 export function PlaceSheetHeader({ place, onClose }: { place: Place; onClose: () => void }) {
   return (
-    <div className="flex items-center gap-3 px-5 pt-1 pb-4 text-white">
+    <div className="swipe-follow flex items-center gap-3 px-5 pt-1 pb-4 text-white">
       <PlaceImage
         place={place}
         sizes="56px"
@@ -196,6 +237,10 @@ export function SheetCloseButton({ onClose }: { onClose: () => void }) {
   );
 }
 
+/** What each surface asks next/image for, so a neighbor's photo can be fetched ahead in exactly that size. */
+export const PHOTO_SIZES = { sheet: "100vw", rail: "400px", page: "(min-width: 768px) 440px, 100vw" } as const;
+const PAGE_PHOTO_SIZES = PHOTO_SIZES.page;
+
 /** How long the outgoing photo stays under the incoming one while it crossfades in. */
 const PHOTO_SWAP_MS = 480;
 /** The longest a photo waits for its picture before fading in over its placeholder color. */
@@ -220,11 +265,14 @@ function PhotoStage({
   place,
   alt,
   sizes,
+  replace = false,
   className,
 }: {
   place: Place;
   alt: string;
   sizes: string;
+  /** The old photo already left with the swipe: the new one fades in on its own instead of over it. */
+  replace?: boolean;
   className?: string;
 }) {
   const [layers, setLayers] = useState<PhotoLayer[]>([
@@ -232,7 +280,8 @@ function PhotoStage({
   ]);
   const top = layers[layers.length - 1];
   if (top.place.id !== place.id) {
-    setLayers([top, { place, motion: "swap", ready: !place.image, serial: top.serial + 1 }]);
+    const incoming: PhotoLayer = { place, motion: "swap", ready: !place.image, serial: top.serial + 1 };
+    setLayers(replace ? [incoming] : [top, incoming]);
   }
 
   const markReady = (serial: number) =>
@@ -296,9 +345,23 @@ interface PlaceDetailProps {
    * All three sit on the place's color; the caller paints it behind them.
    */
   variant: "page" | "rail" | "sheet";
+  /** Previous and next place, for the chevrons (wide screens). */
+  stepper?: Stepper;
+  /** This place was stepped to: it comes in from that side. */
+  enterFrom?: StepDirection | null;
+  /** Stepped to by a swipe, which already carried the old photo away. */
+  swiped?: boolean;
 }
 
-export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetailProps) {
+export function PlaceDetail({
+  place,
+  onBack,
+  onShowOnMap,
+  variant,
+  stepper,
+  enterFrom = null,
+  swiped = false,
+}: PlaceDetailProps) {
   const color = placeColor(place);
   const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
   const page = variant === "page";
@@ -314,6 +377,7 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
         <ChevronLeft size={22} aria-hidden />
       </FloatingButton>
       <div className="flex gap-2">
+        {stepper && <StepButtons stepper={stepper} className={cn(page && "hidden md:flex")} />}
         <FloatingButton label="Share" onClick={() => void sharePlace(place)}>
           <Share size={18} aria-hidden />
         </FloatingButton>
@@ -380,23 +444,30 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
     place.address && <CopyAddress key="address" address={place.address} />,
   ].filter(Boolean);
 
-  const details = <div className="space-y-8">{rows}</div>;
-
   if (variant === "sheet" || variant === "rail") {
     const rail = variant === "rail";
     const item = (i: number) => ({ className: "motion-item", style: { "--i": i } as React.CSSProperties });
     return (
-      <article aria-label={place.name} className="relative text-white" data-motion={switched ? "switch" : "open"}>
+      <article
+        aria-label={place.name}
+        className="relative text-white"
+        data-motion={switched ? "switch" : "open"}
+        data-enter={enterSide(enterFrom)}
+      >
         <div className="relative">
           <PhotoStage
             place={place}
             alt={alt}
-            sizes={rail ? "400px" : "100vw"}
-            className={rail ? "aspect-square" : "aspect-[4/3]"}
+            sizes={rail ? PHOTO_SIZES.rail : PHOTO_SIZES.sheet}
+            replace={swiped}
+            className={cn("swipe-parallax", rail ? "aspect-square" : "aspect-[4/3]")}
           />
           {rail && <div className="absolute inset-x-3 top-3 z-10">{controls}</div>}
         </div>
-        <div key={place.id} className={cn("relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}>
+        <div
+          key={place.id}
+          className={cn("swipe-follow relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}
+        >
           <div {...item(0)}>{header}</div>
           <div {...item(1)}>
             <PlaceActions place={place} />
@@ -422,14 +493,20 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-[1144px] md:grid md:grid-cols-2 md:items-start md:gap-10 md:px-10 md:pt-8 md:pb-24 lg:grid-cols-[440px_minmax(0,1fr)] lg:gap-16 lg:pb-8">
-        <div className="relative">
+      {/* Stepping to another place re-keys this, so it comes in with the switch stagger; the first place opens as before. */}
+      <div
+        key={place.id}
+        data-motion={switched ? "switch" : undefined}
+        data-enter={enterSide(enterFrom)}
+        className="relative mx-auto max-w-[1144px] md:grid md:grid-cols-2 md:items-start md:gap-10 md:px-10 md:pt-8 md:pb-24 lg:grid-cols-[440px_minmax(0,1fr)] lg:gap-16 lg:pb-8"
+      >
+        <div className={cn("swipe-parallax relative", switched && "motion-photo-swap")}>
           <PhotoHalo place={place} className="hidden md:block" />
           <PlaceImage
             place={place}
             alt={alt}
             priority
-            sizes="(min-width: 768px) 440px, 100vw"
+            sizes={PAGE_PHOTO_SIZES}
             placeholder={color}
             className="md:rounded-2xl md:shadow-[0_32px_80px_-28px_rgb(0_0_0/0.6)]"
           />
@@ -441,12 +518,20 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
           <PhotoDissolve color={color} className="h-2/5 md:hidden" />
         </div>
 
-        <div className="relative -mt-20 space-y-6 px-5 pb-36 md:mt-0 md:max-w-xl md:space-y-7 md:px-0 md:pb-0">
-          {header}
-          <div className="md:max-w-md">
+        <div className="swipe-follow relative -mt-20 space-y-6 px-5 pb-36 md:mt-0 md:max-w-xl md:space-y-7 md:px-0 md:pb-0">
+          <div className={cn(switched && "motion-item")} style={{ "--i": 0 } as React.CSSProperties}>
+            {header}
+          </div>
+          <div className={cn("md:max-w-md", switched && "motion-item")} style={{ "--i": 1 } as React.CSSProperties}>
             <PlaceActions place={place} />
           </div>
-          <div className="pt-4">{details}</div>
+          <div className="space-y-8 pt-4">
+            {rows.map((row, i) => (
+              <div key={i} className={cn(switched && "motion-item")} style={{ "--i": i + 2 } as React.CSSProperties}>
+                {row}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

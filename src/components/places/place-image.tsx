@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
+import { preload } from "react-dom";
 
 import { CategoryIcon } from "@/components/places/category-badge";
 import type { Place } from "@/lib/places/types";
@@ -15,6 +16,17 @@ interface PlaceImageProps {
   className?: string;
   imageClassName?: string;
   onLoad?: () => void;
+}
+
+/**
+ * Starts fetching a place's photo in the size a surface will ask for (the
+ * same `sizes`, so the browser picks the same file), so it's ready the moment
+ * the place is shown.
+ */
+export function preloadPlacePhoto(place: Pick<Place, "image">, sizes: string) {
+  if (!place.image) return;
+  const { props } = getImageProps({ src: place.image, alt: "", fill: true, sizes });
+  preload(props.src, { as: "image", imageSrcSet: props.srcSet, imageSizes: props.sizes, fetchPriority: "low" });
 }
 
 /**

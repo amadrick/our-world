@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef } from "react";
 
+import { lockAxis } from "@/lib/places/swipe";
 import { cn } from "@/lib/utils";
 
 export type SheetSnap = "peek" | "mid" | "full";
@@ -47,6 +48,7 @@ function prefersReducedMotion() {
 
 interface DragState {
   pointerId: number;
+  startX: number;
   startY: number;
   startOffset: number;
   offset: number;
@@ -118,6 +120,7 @@ export function BottomSheet({
     const startOffset = offsetFor(snap);
     const d: DragState = {
       pointerId: event.pointerId,
+      startX: event.clientX,
       startY: event.clientY,
       startOffset,
       offset: startOffset,
@@ -128,11 +131,24 @@ export function BottomSheet({
     };
     drag.current = d;
 
+    const stop = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", end);
+      window.removeEventListener("pointercancel", end);
+    };
+
     const move = (e: PointerEvent) => {
       if (e.pointerId !== d.pointerId) return;
       const dy = e.clientY - d.startY;
       if (!d.moved) {
-        if (Math.abs(dy) < 6) return;
+        const axis = lockAxis(e.clientX - d.startX, dy, 6);
+        if (!axis) return;
+        // Sideways is a swipe between places, not a sheet drag.
+        if (axis === "x") {
+          stop();
+          drag.current = null;
+          return;
+        }
         d.moved = true;
       }
       const max = offsetFor("peek");
@@ -149,9 +165,7 @@ export function BottomSheet({
 
     const end = (e: PointerEvent) => {
       if (e.pointerId !== d.pointerId) return;
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", end);
-      window.removeEventListener("pointercancel", end);
+      stop();
       drag.current = null;
 
       if (!d.moved) {
@@ -241,7 +255,7 @@ export function BottomSheet({
             scrollPositions.current.set(scrollKeyRef.current, event.currentTarget.scrollTop)
           }
           className={cn(
-            "min-h-0 flex-1 overflow-y-auto overscroll-contain",
+            "min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain",
             snap === "peek" && "invisible",
             snap !== "peek" && !overlay && (tint ? "border-t border-white/12" : "border-t border-hairline"),
             !footer && "pb-[env(safe-area-inset-bottom)]",

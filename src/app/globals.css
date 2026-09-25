@@ -625,24 +625,62 @@ body .maplibregl-ctrl-attrib {
 @keyframes photo-swap {
   from {
     opacity: 0;
-    transform: scale(1.03);
+    transform: translate3d(calc(var(--item-shift, 0px) * 0.6), 0, 0) scale(1.03);
   }
 }
 @keyframes item-in {
   from {
     opacity: 0;
-    transform: translate3d(0, var(--item-rise, 14px), 0);
+    transform: translate3d(var(--item-shift, 0px), var(--item-rise, 14px), 0);
   }
+}
+/* Stepping to the next or previous place: it comes in from the side you swiped toward (a direction-aware transition). */
+[data-enter="next"] {
+  --item-shift: 32px;
+  --item-rise: 0px;
+}
+[data-enter="prev"] {
+  --item-shift: -32px;
+  --item-rise: 0px;
 }
 @keyframes fade-only {
   from {
     opacity: 0;
   }
 }
+
+/*
+ * Swiping between places: the content follows the finger (--swipe-x, set by
+ * useSwipeBetween), the photo at a little over half the speed for parallax.
+ * Let go and it springs back, or flings out the way it was going before the
+ * next place comes in.
+ */
+.swipe-follow {
+  translate: var(--swipe-x, 0px) 0;
+  opacity: var(--swipe-fade, 1);
+}
+.swipe-parallax {
+  translate: calc(var(--swipe-x, 0px) * 0.55) 0;
+  opacity: var(--swipe-fade, 1);
+}
+[data-swipe="back"] :is(.swipe-follow, .swipe-parallax) {
+  transition:
+    translate 340ms var(--ease-out-soft),
+    opacity 340ms var(--ease-out-soft);
+}
+[data-swipe="out"] :is(.swipe-follow, .swipe-parallax) {
+  transition:
+    translate 170ms var(--ease-out-soft),
+    opacity 170ms ease-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .motion-photo-in,
   .motion-photo-swap,
   .motion-item {
     animation: fade-only 180ms ease-out both;
+  }
+  .swipe-parallax {
+    translate: var(--swipe-x, 0px) 0;
   }
 }

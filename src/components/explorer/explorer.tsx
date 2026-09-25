@@ -1,7 +1,7 @@
 "use client";
 
 import { Crosshair, Minus, Plus } from "react-feather";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
 
 import { site } from "@/config/site";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
@@ -18,8 +18,10 @@ import {
   sortPlaces,
   type PlaceFilters,
 } from "@/lib/places/filters";
+import { placeNeighbors, type StepDirection } from "@/lib/places/swipe";
 import { getCategory, getPill } from "@/lib/places/taxonomy";
 import { PILL_IDS, type Place } from "@/lib/places/types";
+import { preloadPlacePhoto } from "@/components/places/place-image";
 import { cn } from "@/lib/utils";
 import { BottomSheet, SHEET_EXIT_MS, type SheetSnap } from "./bottom-sheet";
 import { FilterBar } from "./filter-bar";
@@ -27,13 +29,16 @@ import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
 import { ListBackdrop } from "./list-backdrop";
 import {
+  PHOTO_SIZES,
   PlaceActions,
   PlaceDetail,
   PlaceSheetHeader,
   SheetCloseButton,
   placeColor,
+  type Stepper,
 } from "./place-detail";
 import { PlaceList, type NoMatches } from "./place-list";
+import { useSwipeBetween } from "./use-swipe-between";
 
 const RAIL_WIDTH = 400;
 const RAIL_INSET = 16;
@@ -144,6 +149,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     [visible, selected],
   );
 
+  // Swipes, arrow keys, and the chevrons step through the same order as the list.
+  const { prev, next } = placeNeighbors(mapPlaces, selectedId);
+  const [stepping, setStepping] = useState<{ direction: StepDirection; swiped: boolean } | null>(null);
+
   const sheetHeights = useMemo(
     () => ({
       // The action bar pads itself above the home indicator; the peek grows to match.
@@ -205,15 +214,60 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     window.history.replaceState(null, "", url);
   }, [selectedId]);
 
+  const step = (direction: StepDirection, swiped = false) => {
+    const target = direction === 1 ? next : prev;
+    if (!target) return;
+    setStepping({ direction, swiped });
+    setSelectedId(target.id);
+  };
+  const stepper: Stepper = { prev, next, onStep: (direction) => step(direction) };
+
+  const onKeyDown = useEffectEvent((event: KeyboardEvent) => {
+    if (event.key === "Escape") setSelectedId(null);
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    if (!selectedId || event.defaultPrevented || event.altKey || event.metaKey || event.ctrlKey || event.shiftKey) return;
+    // Arrows keep their meaning in fields, pickers, and on the map itself (where they pan).
+    const target = event.target as HTMLElement | null;
+    if (target?.closest("input, textarea, select, [contenteditable], [role='listbox'], [role='slider'], .maplibregl-map")) {
+      return;
+    }
+    event.preventDefault();
+    step(event.key === "ArrowRight" ? 1 : -1);
+  });
   useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setSelectedId(null);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    const listener = (event: KeyboardEvent) => onKeyDown(event);
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
   }, []);
 
+  const sheetSwipeRef = useRef<HTMLDivElement>(null);
+  useSwipeBetween(sheetSwipeRef, {
+    enabled: !listMode && !isDesktop && selected !== null,
+    hasPrev: prev !== null,
+    hasNext: next !== null,
+    onStep: (direction) => step(direction, true),
+  });
+  const pageRef = useRef<HTMLDivElement>(null);
+  useSwipeBetween(pageRef, {
+    enabled: listMode && !isDesktop && selected !== null,
+    hasPrev: prev !== null,
+    hasNext: next !== null,
+    onStep: (direction) => step(direction, true),
+  });
+  useEffect(() => {
+    pageRef.current?.scrollTo({ top: 0 });
+  }, [selectedId]);
+
+  // The neighbors' photos load ahead, in the size this surface shows them, so a step never waits on one.
+  const photoSizes = listMode ? PHOTO_SIZES.page : isDesktop ? PHOTO_SIZES.rail : PHOTO_SIZES.sheet;
+  useEffect(() => {
+    if (!selectedId) return;
+    if (prev) preloadPlacePhoto(prev, photoSizes);
+    if (next) preloadPlacePhoto(next, photoSizes);
+  }, [selectedId, prev, next, photoSizes]);
+
   const select = useCallback((id: string) => {
+    setStepping(null);
     setSelectedId(id);
     setSnap("mid");
   }, []);
@@ -291,6 +345,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           onSelect={select}
           onHighlight={setHighlightedId}
           onBackgroundClick={closeDetail}
+          glide={stepping !== null}
         />
       </div>
 
@@ -325,7 +380,13 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         </div>
         {selected && (
           <div ref={railScrollRef} className="min-h-0 flex-1 overflow-y-auto">
-            <PlaceDetail place={selected} onBack={closeDetail} variant="rail" />
+            <PlaceDetail
+              place={selected}
+              onBack={closeDetail}
+              variant="rail"
+              stepper={stepper}
+              enterFrom={stepping?.direction}
+            />
           </div>
         )}
       </aside>
@@ -361,7 +422,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
       {/* Map mode, phone: the open place rises in a sheet, photo on top; peeking, just its name and actions */}
       {!listMode && sheetPlace && (
-        <div className="lg:hidden">
+        <div ref={sheetSwipeRef} className="lg:hidden">
           <BottomSheet
             tint={placeColor(sheetPlace)}
             snap={snap}
@@ -379,7 +440,13 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             }
             footer={snap === "peek" ? <PlaceActions place={sheetPlace} /> : undefined}
           >
-            <PlaceDetail place={sheetPlace} onBack={closeDetail} variant="sheet" />
+            <PlaceDetail
+              place={sheetPlace}
+              onBack={closeDetail}
+              variant="sheet"
+              enterFrom={stepping?.direction}
+              swiped={stepping?.swiped}
+            />
           </BottomSheet>
         </div>
       )}
@@ -444,8 +511,8 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         </div>
         {listMode && selected && (
           <div
-            key={selected.id}
-            className="absolute inset-0 overflow-y-auto overscroll-contain animate-in fade-in duration-200"
+            ref={pageRef}
+            className="absolute inset-0 touch-pan-y overflow-y-auto overscroll-contain [transition:background-color_420ms_var(--ease-out-soft)] animate-in duration-200 fade-in"
             style={{ backgroundColor: placeColor(selected) }}
           >
             <PlaceDetail
@@ -453,6 +520,9 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               onBack={closeDetail}
               onShowOnMap={() => changeMode("map")}
               variant="page"
+              stepper={stepper}
+              enterFrom={stepping?.direction}
+              swiped={stepping?.swiped}
             />
           </div>
         )}
