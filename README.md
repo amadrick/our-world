@@ -241,17 +241,20 @@ system (`prefers-color-scheme`), map included.
 | Glass | `glass` (+ `-thick`, `-fill`), `glass-bar`, `glass-media`, `glass-tinted`, `tinted-sheet` | Switch, map rail and controls, menus; pills; the sticky filter bars; controls over photos; controls on a place's color; the phone map sheet |
 | Color | `ink`, `on-ink`, `muted-foreground`, `hover`, `canvas`, `surface`, `photo`, each place's `imageColor` | |
 
-- **Place details** (Apple Music style): the photo runs edge to edge at the
-  top on phones, under the status bar and round smoked-glass back, share, and
-  map buttons, and fades into the place's sampled color. On wide screens it's
-  a big square over its own blurred glow. The name, Andy's pick, category and
-  neighborhood, a bright Apple Maps pill beside a glass Google Maps pill, what
-  it's known for, the tags, the note, the write-up, and the address all sit
-  right on the color, with no card. The desktop map rail and the phone map
-  sheet take the same color for an open place.
-- **List:** a wash of the most colorful picks' photos, blurred, behind the
-  title. The category row and glass pills sit on it; the bar turns to glass
-  once cards scroll under it. Cards are the square picture, name, and two
+- **Place details** (Apple Music style): the photo runs edge to edge across
+  the top, on phones and wide screens alike, under the status bar and round
+  smoked-glass back, share, and map buttons. Its lower part dissolves into the
+  place's sampled color through a progressive blur (stacked `backdrop-filter`
+  layers, each twice as strong and masked to its own band) with the color
+  gathering over it. Below, in a centered reading column, the name, Andy's
+  pick, category and neighborhood, a bright Apple Maps pill beside a glass
+  Google Maps pill, what it's known for, the tags, the note, the write-up, and
+  the address all sit right on the color, with no card. The desktop map rail
+  is the same page at rail width; the phone map sheet takes the same color.
+- **List:** a faint glow behind the title in the colors of Andy's picks'
+  photos (pale on the light page, deep on the dark one), easing out well
+  before the first row of cards. The category row and glass pills sit on it;
+  the bar turns to glass once cards scroll under it. Cards are the square picture, name, and two
   muted lines, with a smoked-glass "Andy's pick" badge.
 - **List | Map switch:** a glass capsule floating bottom center with an ink
   thumb that slides to the selected mode (arrow keys work).
@@ -268,7 +271,8 @@ Accessibility:
 - Text on glass and on page colors is checked for contrast: every page color
   keeps white text above 10:1 and its 70% tint above 5:1.
 - `prefers-reduced-transparency` (and browsers without `backdrop-filter`) get
-  solid surfaces in place of glass.
+  solid surfaces in place of glass, and a place's photo fades into its color
+  without the blur.
 - `prefers-contrast: more` thickens glass and darkens muted text, borders,
   and hairlines, in light and dark.
 - `prefers-reduced-motion` removes the press, hover-zoom, thumb-slide, and

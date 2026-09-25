@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { contrastRatio, pageColor } from "./palette.mjs";
+import { contrastRatio, pageColor, shade } from "./palette.mjs";
 
 /** A flat run of pixels, [r, g, b] repeated n times. */
 const fill = (rgb: [number, number, number], n: number) => Array.from({ length: n }, () => rgb).flat();
@@ -33,5 +33,14 @@ describe("pageColor", () => {
   it("gives a grey photo a near-neutral dark", () => {
     const [r, g, b] = channels(pageColor(fill([128, 128, 128], 400)));
     expect(Math.max(r, g, b) - Math.min(r, g, b)).toBeLessThan(12);
+  });
+});
+
+describe("shade", () => {
+  it("keeps the hue while moving the lightness", () => {
+    const pale = shade("#23453b", 0.93, 0.6);
+    const [r, g, b] = channels(pale);
+    expect(Math.min(r, g, b)).toBeGreaterThan(200);
+    expect(g).toBeGreaterThan(r);
   });
 });

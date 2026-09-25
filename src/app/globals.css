@@ -479,6 +479,9 @@
   .tinted-sheet {
     background-color: var(--tint);
   }
+  .progressive-blur {
+    display: none;
+  }
 }
 @media (prefers-reduced-transparency: reduce) and (prefers-color-scheme: dark) {
   :root {
@@ -490,6 +493,9 @@
   }
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .progressive-blur {
+    display: none;
+  }
   :root {
     --glass-tint: #f5f5f4;
     --glass-tint-thick: #fbfbfa;

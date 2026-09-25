@@ -11,11 +11,11 @@ import {
   Star,
   X,
 } from "react-feather";
-import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { CategoryIcon } from "@/components/places/category-badge";
+import { PhotoDissolve } from "@/components/places/photo-dissolve";
 import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
@@ -32,9 +32,6 @@ const FALLBACK_COLOR = "#3a3632";
 export function placeColor(place: Place): string {
   return place.imageColor ?? FALLBACK_COLOR;
 }
-
-/** The photo dissolves into the page color over its lower third. */
-const FADE_OUT = "[mask-image:linear-gradient(to_bottom,black_58%,transparent)]";
 
 function placeWhere(place: Place) {
   return [getCategory(place.category).label, place.neighborhood].filter(Boolean).join(" · ");
@@ -203,9 +200,9 @@ interface PlaceDetailProps {
   onShowOnMap?: () => void;
   /**
    * "page": list mode, full screen, Apple Music style: the photo runs edge to
-   * edge on phones (a big square over its own blurred glow on wide screens)
-   * and fades into the page color, with everything else set right on it.
-   * "rail": inside the desktop map rail, photo edge to edge at the top.
+   * edge across the top and dissolves into the page color, with everything
+   * else set right on it in a centered reading column.
+   * "rail": inside the desktop map rail, the same at rail width.
    * "sheet": inside the phone map sheet, whose header shows the name and whose
    * footer holds the actions.
    * All three sit on the place's color; the caller paints it behind them.
@@ -238,7 +235,7 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
   );
 
   const header = variant !== "sheet" && (
-    <header className="space-y-3">
+    <header className="space-y-3 [text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
       {place.andyFavorite && <AndyPickChip />}
       <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>
         {smartQuotes(place.name)}
@@ -316,14 +313,10 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
     return (
       <article aria-label={place.name} className="relative text-white">
         <div className="absolute inset-x-3 top-3 z-10">{controls}</div>
-        <PlaceImage
-          place={place}
-          alt={alt}
-          priority
-          sizes="400px"
-          placeholder={color}
-          className={FADE_OUT}
-        />
+        <div className="relative">
+          <PlaceImage place={place} alt={alt} priority sizes="400px" placeholder={color} />
+          <PhotoDissolve color={color} className="h-[55%]" />
+        </div>
         <div className="relative -mt-20 space-y-6 px-6 pb-8">
           {header}
           <PlaceActions place={place} />
@@ -335,58 +328,37 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
 
   return (
     <article aria-label={place.name} className="relative min-h-full text-white">
-      {/* Wide screens: the photo's own glow washes the top of the page. */}
-      {place.image && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 hidden h-[720px] overflow-hidden [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:block"
-        >
-          <Image
-            src={place.image}
-            alt=""
-            fill
-            sizes="256px"
-            className="scale-125 object-cover opacity-75 blur-3xl saturate-150"
-          />
-        </div>
-      )}
-
       {/* Floats over the photo and stays in reach while scrolling. */}
       <div className="sticky top-0 z-20 h-0">
-        <div className="mx-auto max-w-6xl px-4 pt-[max(env(safe-area-inset-top),12px)] md:px-10 md:pt-6">
-          {controls}
+        <div className="px-4 pt-[max(env(safe-area-inset-top),12px)] md:px-8 md:pt-6">{controls}</div>
+      </div>
+
+      <div className="relative">
+        <PlaceImage
+          place={place}
+          alt={alt}
+          priority
+          sizes="100vw"
+          placeholder={color}
+          className="md:aspect-auto md:h-[min(72vh,760px)]"
+        />
+        {/* A soft shade under the status bar and the floating buttons. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/30 to-transparent"
+        />
+        <PhotoDissolve color={color} className="h-[58%] md:h-[42%]" />
+      </div>
+
+      <div className="relative mx-auto max-w-2xl space-y-6 px-5 -mt-24 md:-mt-36 md:space-y-7 md:px-8">
+        {header}
+        <div className="md:max-w-md">
+          <PlaceActions place={place} />
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-6xl md:grid md:grid-cols-[minmax(0,440px)_minmax(0,1fr)] md:items-end md:gap-12 md:px-10 md:pt-24">
-        <div className="relative">
-          <PlaceImage
-            place={place}
-            alt={alt}
-            priority
-            sizes="(min-width: 768px) 440px, 100vw"
-            placeholder={color}
-            className={cn(
-              "max-md:[mask-image:linear-gradient(to_bottom,black_58%,transparent)]",
-              "md:rounded-2xl md:shadow-[0_32px_80px_-24px_rgb(0_0_0/0.65)]",
-            )}
-          />
-          {/* Phones: a soft shade under the status bar and the floating buttons. */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/35 to-transparent md:hidden"
-          />
-        </div>
-        <div className="relative -mt-24 space-y-6 px-5 md:mt-0 md:space-y-7 md:px-0 md:pb-1">
-          {header}
-          <div className="md:max-w-md">
-            <PlaceActions place={place} />
-          </div>
-        </div>
-      </div>
-
-      <div className="relative mx-auto max-w-6xl px-5 pt-10 pb-36 md:grid md:grid-cols-[minmax(0,440px)_minmax(0,1fr)] md:gap-12 md:px-10 md:pt-12 md:pb-24">
-        <div className="md:col-start-2 md:max-w-xl">{details}</div>
+      <div className="relative mx-auto max-w-2xl px-5 pt-10 pb-36 md:px-8 md:pt-12 md:pb-24">
+        {details}
       </div>
     </article>
   );
