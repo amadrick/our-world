@@ -19,6 +19,8 @@ interface BottomSheetProps {
   accessory?: React.ReactNode;
   /** Identifies what the content shows; each view keeps its own scroll position. */
   scrollKey: string;
+  /** Tints the glass with this color (a place's), with white text on it. */
+  tint?: string;
   children: React.ReactNode;
   className?: string;
 }
@@ -53,6 +55,7 @@ export function BottomSheet({
   footer,
   accessory,
   scrollKey,
+  tint,
   children,
   className,
 }: BottomSheetProps) {
@@ -167,14 +170,19 @@ export function BottomSheet({
     <div
       ref={sheetRef}
       className={cn(
-        "fixed z-20 flex flex-col bg-surface shadow-raised will-change-transform",
+        "fixed z-20 flex flex-col will-change-transform",
+        tint ? "tinted-sheet text-white" : "glass glass-thick",
         // Partial heights float inset as a card so the map peeks around them; full height is edge to edge.
         snap === "full"
           ? "inset-x-0 bottom-0 rounded-t-2xl rounded-b-none"
           : "inset-x-2 bottom-2 rounded-2xl",
         className,
       )}
-      style={{ height: heights.full, transform: `translate3d(0, ${offsetFor(snap)}px, 0)` }}
+      style={{
+        height: heights.full,
+        transform: `translate3d(0, ${offsetFor(snap)}px, 0)`,
+        ...(tint && { "--tint": tint }),
+      }}
     >
       {accessory && (
         <div
@@ -192,7 +200,7 @@ export function BottomSheet({
           onPointerDown={onPointerDown}
         >
           <div className="flex justify-center pt-2 pb-2" aria-hidden>
-            <span className="h-1.5 w-10 rounded-full bg-border" />
+            <span className={cn("h-1.5 w-10 rounded-full", tint ? "bg-white/35" : "bg-border")} />
           </div>
           {header}
         </div>
@@ -203,14 +211,19 @@ export function BottomSheet({
           }
           className={cn(
             "min-h-0 flex-1 overflow-y-auto overscroll-contain",
-            snap !== "peek" && "border-t border-hairline",
+            snap !== "peek" && (tint ? "border-t border-white/12" : "border-t border-hairline"),
             !footer && "pb-[env(safe-area-inset-bottom)]",
           )}
         >
           {children}
         </div>
         {footer && (
-          <div className="shrink-0 border-t border-hairline px-4 pt-3 pb-[max(env(safe-area-inset-bottom),12px)]">
+          <div
+            className={cn(
+              "shrink-0 border-t px-4 pt-3 pb-[max(env(safe-area-inset-bottom),12px)]",
+              tint ? "border-white/12" : "border-hairline",
+            )}
+          >
             {footer}
           </div>
         )}

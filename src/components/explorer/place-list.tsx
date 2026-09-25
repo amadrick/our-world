@@ -46,7 +46,7 @@ function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center px-6 py-16 text-center">
-      <span className="flex size-14 items-center justify-center rounded-full border border-hairline bg-surface shadow-card">
+      <span className="glass flex size-14 items-center justify-center rounded-full">
         <EmptyIcon size={22} />
       </span>
       <p className="mt-5 text-lg font-semibold">{title}</p>
@@ -95,7 +95,7 @@ export function PlaceCard({
           imageClassName="transition-transform duration-500 ease-snappy group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
         {pick && (
-          <span className="absolute top-2 left-2 flex h-7 items-center gap-1 rounded-full bg-surface pr-2.5 pl-2 text-sm font-semibold text-ink shadow-card sm:top-2.5 sm:left-2.5 sm:h-8 sm:gap-1.5 sm:pr-3 sm:pl-2.5">
+          <span className="glass-media absolute top-2 left-2 flex h-7 items-center gap-1 rounded-full pr-2.5 pl-2 text-sm font-semibold sm:top-2.5 sm:left-2.5 sm:h-8 sm:gap-1.5 sm:pr-3 sm:pl-2.5">
             <Star size={12} fill="currentColor" aria-hidden />
             {ANDY_PICK}
           </span>
@@ -133,8 +133,8 @@ export function PlaceRow({
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
-        "focus-ring flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 text-left transition-colors hover:bg-secondary",
-        active && "bg-secondary",
+        "focus-ring flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 text-left transition-colors hover:bg-hover",
+        active && "bg-hover",
       )}
     >
       <PlaceImage place={place} sizes="72px" className="image-frame w-18 shrink-0 rounded-md" />

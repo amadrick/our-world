@@ -14,7 +14,7 @@ function ScrollButton({ side, onClick }: { side: "start" | "end"; onClick: () =>
       aria-hidden
       onClick={onClick}
       className={cn(
-        "pressable absolute top-1/2 z-10 hidden size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-border bg-surface text-ink shadow-card hover:shadow-float",
+        "pressable absolute top-1/2 z-10 hidden size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full glass text-ink",
         side === "start"
           ? "left-0 pointer-fine:group-data-[fade-start]/row:flex"
           : "right-0 pointer-fine:group-data-[fade-end]/row:flex",

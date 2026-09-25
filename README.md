@@ -10,8 +10,9 @@ write-up, then open it in Apple Maps or Google Maps with one tap.
   List is a grid of place pictures; Map is a full-screen map with a pin
   per place, a slim list rail beside it on desktop, and a draggable sheet for
   the open place on phones. A category row (the food and drink sections, then
-  _Shops_, _Museums_, and _Parks_), a neighborhood picker, and five
-  pills (_Dinner_, _Lunch_, _Late night_, _Brunch_, _Views_) work in both.
+  _Shops_, _Museums_, and _Parks_), a neighborhood picker, and six
+  pills (_Andy's favorites_, _Dinner_, _Lunch_, _Late night_, _Brunch_,
+  _Views_) work in both.
   Every place has a shareable link (`/?place=zuni-cafe`).
 - **Andy and Kirissa** add places at `/admin`: search by name or paste a Maps
   link, pick a category, add a note, and save. An AI summary is written once,
@@ -67,7 +68,7 @@ Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
 `data/places.json` holds Andy and Kirissa's list: 93 places (restaurants, bars,
-cafés, shops, two museums, two parks, and a bathhouse) geocoded against OpenStreetMap and
+cafés, shops, two museums, and two parks) geocoded against OpenStreetMap and
 Overture Maps, each with a short neutral summary, a
 researched `signatureSubject` (what it's known for), a `signatureRationale`
 (why, and according to whom), and `placeResearch` (what it looks like, with
@@ -75,9 +76,10 @@ sources). `data/places.md` is the readable version of all of it, one section
 per place. Pill tags come from each place's current hours, menus, and sources:
 _Late night_ means posted hours that run past 11pm (to 11:30pm or later) on at
 least two nights a week, and _Views_ means a view the sources call out. Notes
-are left empty for them to write in their own words from `/admin`, and no place
-is marked **Top pick** yet (a top pick sorts first and gets a star on its card
-and pin).
+are left empty for them to write in their own words from `/admin`. 45 places
+are **Andy's picks** (`andyFavorite`): they get an "Andy's pick" badge, a star
+on their pin, and the _Andy's favorites_ pill at the start of the pill row.
+Where Andy named a dish or drink, it is what the place shows as Known for.
 
 ## Place images
 
@@ -127,7 +129,14 @@ npm run images -- --all --out prompts/  # write every full prompt to prompts/<id
 npm run images -- zuni --photo zuni.jpg # also send your own photo of the place as a reference
 npm run images -- zuni --import art.png # attach an image made elsewhere (no key needed)
 npm run images -- --all --import-dir art/  # attach art/<id>.png for each place
+npm run images -- --colors              # resample every place's page color
 ```
+
+Saving a picture also samples its **page color** (`imageColor`), the
+background its detail page sits on: the photo's biggest color outside the
+film's amber cast (a green awning, a pink facade, blue tile), normalized to a
+dark shade that keeps white text above 10:1 (`src/lib/images/palette.mjs`).
+It's stored with the place, so pages render in it from the first paint.
 
 ### The research pipeline
 
@@ -181,8 +190,8 @@ Both also rewrite `data/places.md`.
 
 - **Next.js 16** (App Router) with TypeScript, Tailwind CSS v4, and
   [shadcn/ui](https://ui.shadcn.com) components.
-- **Design:** solid, contained surfaces with big, tactile controls, in the
-  spirit of Airbnb (see "Design system" below). One typeface,
+- **Design:** Liquid Glass and color, after Apple Music's album pages (see
+  "Design system" below), in light and dark. One typeface,
   [Inter](https://rsms.me/inter/) Variable (self-hosted in `public/fonts`),
   with Inter's square punctuation and quotes (`ss07`, `ss08`). Icons are
   [Feather](https://feathericons.com) (`react-feather`), plus a few
@@ -217,69 +226,53 @@ src/config/site.ts          title and copy shown to guests
 
 ## Design system
 
-The guest guide is built from solid white surfaces on one warm canvas (the
-same `#F5F4F1` as the map's land), with a single ink color (`#222`) for text,
-the primary action, and selection. Every piece of content sits in a bounded
-surface: the list header band, listing pictures, the map rail, the phone sheet,
-the details panel, and the sticky action bar. Tokens live in
-`src/app/globals.css`.
+Photos and color first, with as few containers as possible. Content sits on a
+warm canvas (the same `#F5F4F1` as the map's land, near-black in dark mode)
+or directly on a place's color; the controls that float over it are glass.
+One ink color (`#222`, `#F2F2F3` in dark) carries text, the primary action,
+and selection. Tokens live in `src/app/globals.css`; dark mode follows the
+system (`prefers-color-scheme`), map included.
 
 | Token | Values | Used for |
 | --- | --- | --- |
 | Type (`text-*`) | sm 14/20, base 16/24, lg 20/26, xl 28/32, 2xl 40/44 | Meta and chips; body and buttons; panel titles; place and phone page titles; the desktop page title |
 | Weight (`font-*`) | normal 425, medium 550, semibold 650 | Body; chips and labels; titles and buttons |
-| Radius (`rounded-*`) | sm 8, md 12, lg 16, xl 20, 2xl 24, full | Inner bits; thumbnails and menu rows; buttons and highlight tiles; listing pictures; panels, sheets, and the details card; chips, switch, pins, icon buttons |
-| Spacing | 4px grid (mostly 8, 12, 16, 24, 32) | Section rhythm is 24px with hairline dividers |
-| Elevation (`shadow-*`) | `card`, `float`, `raised`, `pin`, `bar` | Resting cards; floating controls; the rail, sheet, and popovers; map markers; the sticky phone action bar |
-| Color | `ink` #222, `muted-foreground` #6A6A6A, `border` #DDD, `hairline` #EBEBEB, `canvas` #F5F4F1, `surface` #FFF | |
+| Radius (`rounded-*`) | sm 8, md 12, lg 16, xl 20, 2xl 24, full | Inner bits; thumbnails and menu rows; buttons; listing pictures; panels and sheets; chips, switch, pins, round buttons |
+| Glass | `glass` (+ `-thick`, `-fill`), `glass-bar`, `glass-media`, `glass-tinted`, `tinted-sheet` | Switch, map rail and controls, menus; pills; the sticky filter bars; controls over photos; controls on a place's color; the phone map sheet |
+| Color | `ink`, `on-ink`, `muted-foreground`, `hover`, `canvas`, `surface`, `photo`, each place's `imageColor` | |
 
-Controls:
-- **Buttons** (`src/components/ui/button.tsx`): solid ink for the primary
-  action, a crisp 1px ink outline for the secondary one. 48px by default and
-  56px (`size="lg"`) for the place actions, with a 16px radius. Every control
-  sinks slightly when pressed (`pressable`) and shows a 2px ink focus ring
-  (`focus-ring`).
-- **Category row:** a glyph over each label, underlined in ink when selected,
-  like Airbnb's category bar. **Chips** below it (neighborhood and tags, each
-  with an icon) are 44px pills with a 1px outline that invert to ink when on.
-  A pill with nothing to show in the current section is dimmed and can't be
-  tapped, and the neighborhood counts follow the section and pills. If a
+- **Place details** (Apple Music style): the photo runs edge to edge at the
+  top on phones, under the status bar and round smoked-glass back, share, and
+  map buttons, and fades into the place's sampled color. On wide screens it's
+  a big square over its own blurred glow. The name, Andy's pick, category and
+  neighborhood, a bright Apple Maps pill beside a glass Google Maps pill, what
+  it's known for, the tags, the note, the write-up, and the address all sit
+  right on the color, with no card. The desktop map rail and the phone map
+  sheet take the same color for an open place.
+- **List:** a wash of the most colorful picks' photos, blurred, behind the
+  title. The category row and glass pills sit on it; the bar turns to glass
+  once cards scroll under it. Cards are the square picture, name, and two
+  muted lines, with a smoked-glass "Andy's pick" badge.
+- **List | Map switch:** a glass capsule floating bottom center with an ink
+  thumb that slides to the selected mode (arrow keys work).
+- **Map:** a glass rail on desktop, glass zoom buttons, a glass filter bar on
+  phones. Pins are price-pill-style: ink dots zoomed out, a capsule with the
+  category glyph at city zoom, the name up close; Andy's picks carry a star.
+- Pills with nothing to show in the current section are dimmed, and if a
   section comes up empty for pills already on, the empty state offers the
   matches in other sections instead of a dead end.
-  Both rows scroll sideways on narrow screens, fading only on the side with more
-  to see, with chevron buttons for mouse users (`scroll-row.tsx`).
-- **Listing cards:** the square picture on top (20px radius, a hairline inner
-  edge so white-backed pictures still read as tiles), then the name in
-  semibold and two muted lines: what it's known for, and category ·
-  neighborhood. A top pick gets a white badge on the picture.
-- **List | Map switch:** a 56px ink capsule floating bottom center, with a
-  white thumb that slides to the selected mode (arrow keys work). On desktop
-  map mode it centers over the map, beside the rail. It steps aside on phones
-  while a place is open, where the action bar takes its spot.
-- **Map pins:** price-pill-style markers. Zoomed out past the city they are
-  small ink dots; at city zoom, a white capsule with the category glyph; up
-  close, the glyph plus the name. Hovered and selected pins always show the
-  name; the selected one inverts to ink.
-- **Place details:** category and neighborhood, then the name, then "Open in
-  Apple Maps" (solid, full width) above "Open in Google Maps" (outline). Below
-  that, sections divided by hairlines: a "Known for" highlight with the tags as
-  icon pills, the hosts' note, the write-up, and the address with a copy
-  button. On phones the picture stacks above the details card and both map
-  buttons sit in a sticky bottom bar; in the map sheet the name rides in the
-  sheet's header and the buttons stay pinned at its foot, so a peeking sheet
-  reads like a listing card.
+- While a picture loads its tile is a neutral grey (on a detail page, the
+  place's color), so dark film photos don't flash in from white.
 
 Accessibility:
+- Text on glass and on page colors is checked for contrast: every page color
+  keeps white text above 10:1 and its 70% tint above 5:1.
+- `prefers-reduced-transparency` (and browsers without `backdrop-filter`) get
+  solid surfaces in place of glass.
+- `prefers-contrast: more` thickens glass and darkens muted text, borders,
+  and hairlines, in light and dark.
 - `prefers-reduced-motion` removes the press, hover-zoom, thumb-slide, and
   sheet animations.
-- `prefers-contrast: more` darkens muted text, borders, and hairlines.
-- Surfaces are opaque, so there is nothing to lose under
-  `prefers-reduced-transparency`.
-
-The admin keeps its Liquid Glass chrome over the image mosaic (`glass`,
-`glass-thick`, `glass-fill`, and friends in `globals.css`), with solid
-fallbacks under `prefers-reduced-transparency` and in browsers without
-`backdrop-filter`.
 
 ## Scripts
 
@@ -288,7 +281,7 @@ fallbacks under `prefers-reduced-transparency` and in browsers without
 | `npm run dev` | Dev server on port 4617 |
 | `npm run build` / `npm start` | Production build and server (port 4617) |
 | `npm run lint` / `npm run typecheck` | ESLint and TypeScript |
-| `npm test` | Unit tests (Maps link parsing, filters, prompt, research) |
+| `npm test` | Unit tests (Maps link parsing, filters, data, prompt, page colors, research) |
 | `npm run research` | Research what places are known for and look like (see The research pipeline) |
 | `npm run signatures:apply` / `:export` | Sync the signature review sheet (see Reviewing signatures) |
 | `npm run places:md` | Rewrite `data/places.md` from `data/places.json` |

@@ -47,11 +47,11 @@ export function MapPin({ place, selected, highlighted, density, onSelect, onHove
       className="group relative flex cursor-pointer items-center justify-center outline-none before:absolute before:-inset-2 before:content-['']"
     >
       {dot && pick ? (
-        <span className="flex size-[18px] items-center justify-center rounded-full bg-ink text-white shadow-pin ring-2 ring-white transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30">
+        <span className="flex size-[18px] items-center justify-center rounded-full bg-ink text-on-ink shadow-pin ring-2 ring-surface transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30">
           <Star size={10} fill="currentColor" />
         </span>
       ) : dot ? (
-        <span className="block size-3 rounded-full bg-ink shadow-pin ring-2 ring-white transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30" />
+        <span className="block size-3 rounded-full bg-ink shadow-pin ring-2 ring-surface transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30" />
       ) : (
         <span
           className={cn(
@@ -60,8 +60,11 @@ export function MapPin({ place, selected, highlighted, density, onSelect, onHove
             "group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-ink",
             showName ? "pr-3 pl-2.5" : "w-8 justify-center",
             selected
-              ? "scale-110 bg-ink text-white"
-              : cn("bg-surface text-ink", highlighted ? "scale-110" : "group-hover:scale-110"),
+              ? "scale-110 bg-ink text-on-ink"
+              : cn(
+                  "bg-surface text-ink dark:bg-[#3a3a3e] dark:ring-1 dark:ring-white/15",
+                  highlighted ? "scale-110" : "group-hover:scale-110",
+                ),
           )}
         >
           <CategoryIcon category={place.category} size={15} className="shrink-0" />
@@ -71,7 +74,7 @@ export function MapPin({ place, selected, highlighted, density, onSelect, onHove
               aria-hidden
               className={cn(
                 "absolute -top-1.5 -right-1.5 flex size-[18px] items-center justify-center rounded-full shadow-pin",
-                selected ? "bg-surface text-ink" : "bg-ink text-white",
+                selected ? "bg-surface text-ink" : "bg-ink text-on-ink",
               )}
             >
               <Star size={10} fill="currentColor" />

@@ -25,7 +25,8 @@ import { BottomSheet, type SheetSnap } from "./bottom-sheet";
 import { FilterBar } from "./filter-bar";
 import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
-import { PlaceActions, PlaceDetail, PlaceSheetHeader } from "./place-detail";
+import { ListBackdrop } from "./list-backdrop";
+import { PlaceActions, PlaceDetail, PlaceSheetHeader, placeColor } from "./place-detail";
 import { PlaceList, type NoMatches } from "./place-list";
 
 const RAIL_WIDTH = 400;
@@ -53,7 +54,7 @@ function MapButton({
       title={label}
       onClick={onClick}
       className={cn(
-        "pressable focus-ring flex size-12 cursor-pointer items-center justify-center rounded-full text-ink hover:bg-secondary",
+        "pressable focus-ring flex size-12 cursor-pointer items-center justify-center rounded-full text-ink hover:bg-hover",
         className,
       )}
     >
@@ -80,7 +81,7 @@ function ResultsSummary({
         <button
           type="button"
           onClick={onClear}
-          className="focus-ring -mx-2 h-11 cursor-pointer rounded-md px-2 text-sm font-semibold underline decoration-1 underline-offset-4 hover:bg-secondary"
+          className="focus-ring -mx-2 h-11 cursor-pointer rounded-md px-2 text-sm font-semibold underline decoration-1 underline-offset-4 hover:bg-hover"
         >
           Clear filters
         </button>
@@ -104,6 +105,9 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const [snap, setSnap] = useState<SheetSnap>("mid");
   const [topBarHeight, setTopBarHeight] = useState(148);
   const [safeBottom, setSafeBottom] = useState(0);
+  // The list's filter bar turns to glass once cards scroll under it.
+  const [barStuck, setBarStuck] = useState(false);
+  const listHeaderRef = useRef<HTMLElement>(null);
   const topBarRef = useRef<HTMLDivElement>(null);
   const safeBottomRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapViewHandle>(null);
@@ -270,8 +274,11 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
       {/* Map mode, desktop: a solid rail of compact rows, or the open place */}
       <aside
-        className="absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-2xl bg-surface shadow-raised lg:flex"
-        style={{ width: RAIL_WIDTH }}
+        className={cn(
+          "absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-2xl lg:flex",
+          selected ? "shadow-raised transition-colors duration-300" : "glass glass-thick",
+        )}
+        style={{ width: RAIL_WIDTH, backgroundColor: selected ? placeColor(selected) : undefined }}
         aria-label="Places"
         inert={listMode}
       >
@@ -292,7 +299,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         {selected && (
           <div
             key={selected.id}
-            className="min-h-0 flex-1 overflow-y-auto p-3 pb-6 animate-in fade-in duration-200"
+            className="min-h-0 flex-1 overflow-y-auto animate-in fade-in duration-200"
           >
             <PlaceDetail place={selected} onBack={closeDetail} variant="rail" />
           </div>
@@ -301,18 +308,18 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
       {/* Map mode, desktop: zoom and reset, top right like the map apps */}
       <div className="absolute top-4 right-4 z-10 hidden flex-col gap-3 lg:flex" inert={listMode}>
-        <div className="flex flex-col overflow-hidden rounded-full bg-surface shadow-float">
+        <div className="glass flex flex-col overflow-hidden rounded-full">
           <MapButton label="Zoom in" onClick={() => mapRef.current?.zoomIn()}>
             <Plus size={20} />
           </MapButton>
-          <span aria-hidden className="mx-3 h-px bg-hairline" />
+          <span aria-hidden className="mx-3 h-px bg-[var(--glass-edge)]" />
           <MapButton label="Zoom out" onClick={() => mapRef.current?.zoomOut()}>
             <Minus size={20} />
           </MapButton>
         </div>
         <MapButton
           label="Show all places"
-          className="bg-surface shadow-float"
+          className="glass"
           onClick={() => mapRef.current?.showAll()}
         >
           <Crosshair size={20} />
@@ -322,7 +329,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       {/* Map mode, phone: filters in a solid bar across the top */}
       <div
         ref={topBarRef}
-        className="absolute inset-x-0 top-0 z-10 border-b border-hairline bg-surface pt-[max(env(safe-area-inset-top),8px)] pb-3 shadow-[0_6px_20px_-12px_rgb(0_0_0/0.25)] lg:hidden"
+        className="glass-bar absolute inset-x-0 top-0 z-10 pt-[max(env(safe-area-inset-top),8px)] pb-3 lg:hidden"
         inert={listMode}
       >
         <FilterBar inset="px-4" {...filterProps} />
@@ -332,6 +339,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       {!listMode && selected && (
         <div className="lg:hidden">
           <BottomSheet
+            tint={placeColor(selected)}
             snap={snap}
             heights={sheetHeights}
             onSnapChange={setSnap}
@@ -343,7 +351,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
                 onClose={closeDetail}
               />
             }
-            footer={<PlaceActions place={selected} layout="bar" />}
+            footer={<PlaceActions place={selected} />}
           >
             <div className="px-4 pt-4 pb-2">
               <PlaceDetail place={selected} onBack={closeDetail} variant="sheet" />
@@ -354,7 +362,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       {!listMode && !selected && (
         <MapButton
           label="Show all places"
-          className="absolute right-4 bottom-[calc(max(env(safe-area-inset-bottom),16px)+4px)] z-20 bg-surface shadow-float lg:hidden"
+          className="glass absolute right-4 bottom-[calc(max(env(safe-area-inset-bottom),16px)+4px)] z-20 lg:hidden"
           onClick={() => mapRef.current?.showAll()}
         >
           <Crosshair size={20} />
@@ -373,16 +381,25 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             selected && "invisible",
           )}
           inert={Boolean(selected)}
+          onScroll={(event) =>
+            setBarStuck(event.currentTarget.scrollTop >= (listHeaderRef.current?.offsetHeight ?? 0))
+          }
         >
-          <header className="bg-surface">
-            <div className="mx-auto max-w-7xl px-5 pt-[max(env(safe-area-inset-top),28px)] pb-2 lg:px-10 lg:pt-14">
+          <header ref={listHeaderRef} className="relative">
+            <ListBackdrop places={places} />
+            <div className="relative mx-auto max-w-7xl px-5 pt-[max(env(safe-area-inset-top),28px)] pb-2 lg:px-10 lg:pt-14">
               <h1 className="text-xl font-semibold text-balance lg:text-2xl">{site.title}</h1>
-              <p className="mt-2 max-w-2xl text-base text-balance text-muted-foreground">
+              <p className="mt-2 max-w-2xl text-base text-balance text-ink/80">
                 {site.tagline}
               </p>
             </div>
           </header>
-          <div className="sticky top-0 z-10 border-b border-hairline bg-surface">
+          <div
+            className={cn(
+              "sticky top-0 z-10 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200",
+              barStuck && "glass-bar",
+            )}
+          >
             <div className="mx-auto max-w-7xl pt-2 pb-3 lg:px-9">
               <FilterBar inset="px-5 lg:px-1" {...filterProps} />
             </div>
@@ -405,6 +422,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           <div
             key={selected.id}
             className="absolute inset-0 overflow-y-auto overscroll-contain animate-in fade-in duration-200"
+            style={{ backgroundColor: placeColor(selected) }}
           >
             <PlaceDetail
               place={selected}

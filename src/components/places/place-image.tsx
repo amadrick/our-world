@@ -10,6 +10,8 @@ interface PlaceImageProps {
   sizes: string;
   alt?: string;
   priority?: boolean;
+  /** Shown while the picture loads; a neutral grey unless the page knows the photo's color. */
+  placeholder?: string;
   className?: string;
   imageClassName?: string;
 }
@@ -23,6 +25,7 @@ export function PlaceImage({
   sizes,
   alt = "",
   priority,
+  placeholder,
   className,
   imageClassName,
 }: PlaceImageProps) {
@@ -49,7 +52,10 @@ export function PlaceImage({
     );
   }
   return (
-    <div className={cn("relative aspect-square overflow-hidden bg-photo", className)}>
+    <div
+      className={cn("relative aspect-square overflow-hidden bg-photo", className)}
+      style={placeholder ? { backgroundColor: placeholder } : undefined}
+    >
       <Image
         src={place.image}
         alt={alt}

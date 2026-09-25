@@ -39,10 +39,8 @@ export function Pill({
       type="button"
       aria-pressed={active}
       className={cn(
-        "pressable focus-ring inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm font-medium whitespace-nowrap select-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:shrink-0",
-        active
-          ? "border-ink bg-ink text-white hover:bg-ink-hover"
-          : "border-border bg-surface text-ink hover:border-ink",
+        "pressable focus-ring inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-full px-4 text-sm font-medium whitespace-nowrap select-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:shrink-0",
+        active ? "bg-ink text-on-ink shadow-float hover:bg-ink-hover" : "glass-fill text-ink",
         className,
       )}
       {...props}
@@ -71,7 +69,7 @@ function CategoryTab({
       onClick={onClick}
       className={cn(
         "group/tab relative flex h-16 shrink-0 cursor-pointer flex-col items-center justify-center gap-1 rounded-md px-1 text-sm font-semibold whitespace-nowrap transition-colors outline-ink select-none focus-visible:outline-2 focus-visible:-outline-offset-2",
-        active ? "text-ink" : "text-muted-foreground hover:text-ink",
+        active ? "text-ink" : "text-ink/75 hover:text-ink",
       )}
     >
       <TabIcon
@@ -117,7 +115,7 @@ function NeighborhoodPicker({
       <PopoverContent
         align="start"
         sideOffset={8}
-        className="w-72 p-2"
+        className="glass glass-thick w-72 rounded-2xl border-0 bg-transparent p-2"
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <div
@@ -135,8 +133,8 @@ function NeighborhoodPicker({
                 aria-selected={selected}
                 onClick={() => choose(name)}
                 className={cn(
-                  "focus-ring flex h-12 w-full cursor-pointer items-center gap-3 rounded-md px-3 text-left text-base transition-colors hover:bg-secondary",
-                  selected && "bg-secondary",
+                  "focus-ring flex h-12 w-full cursor-pointer items-center gap-3 rounded-md px-3 text-left text-base transition-colors hover:bg-hover",
+                  selected && "bg-hover",
                 )}
               >
                 <span className={cn("flex-1 truncate", selected && "font-semibold")}>

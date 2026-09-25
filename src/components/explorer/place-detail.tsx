@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Award,
   Check,
   ChevronLeft,
   Copy,
@@ -11,21 +10,31 @@ import {
   Share,
   Star,
   X,
-  type Icon,
 } from "react-feather";
-import { Fragment, useState } from "react";
+import Image from "next/image";
+import { useState } from "react";
 import { toast } from "sonner";
 
 import { CategoryIcon } from "@/components/places/category-badge";
 import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
-import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
 import { ANDY_PICK, FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
+
+/** For a place saved before its photo's color was sampled. */
+const FALLBACK_COLOR = "#3a3632";
+
+/** The color a place's detail sits on, sampled from its photo when the photo was saved. */
+export function placeColor(place: Place): string {
+  return place.imageColor ?? FALLBACK_COLOR;
+}
+
+/** The photo dissolves into the page color over its lower third. */
+const FADE_OUT = "[mask-image:linear-gradient(to_bottom,black_58%,transparent)]";
 
 function placeWhere(place: Place) {
   return [getCategory(place.category).label, place.neighborhood].filter(Boolean).join(" · ");
@@ -51,114 +60,8 @@ async function sharePlace(place: Place) {
   }
 }
 
-function CopyAddress({ address }: { address: string }) {
-  const [copied, setCopied] = useState(false);
-  return (
-    <div className="flex items-center gap-4">
-      <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-secondary">
-        <MapPin size={22} aria-hidden />
-      </span>
-      <div className="min-w-0 flex-1 pt-0.5">
-        <p className="text-sm font-medium text-muted-foreground">Address</p>
-        <p className="text-base font-semibold text-pretty select-text">{address}</p>
-      </div>
-      <Button
-        variant="secondary"
-        size="icon"
-        title="Copy address"
-        aria-label={copied ? "Address copied" : `Copy address: ${address}`}
-        onClick={async () => {
-          try {
-            await navigator.clipboard.writeText(address);
-            setCopied(true);
-            toast.success("Address copied", { description: address });
-            window.setTimeout(() => setCopied(false), 1600);
-          } catch {
-            // Clipboard access can be blocked; the address is still selectable.
-          }
-        }}
-      >
-        {copied ? <Check size={18} /> : <Copy size={18} />}
-      </Button>
-    </div>
-  );
-}
-
-/** Open in Apple Maps / Google Maps: stacked full width in a panel, side by side in a bottom bar. */
-export function PlaceActions({ place, layout }: { place: Place; layout: "stack" | "bar" }) {
-  const apple = (
-    <a href={appleMapsUrl(place)} target="_blank" rel="noopener noreferrer">
-      <Navigation size={18} aria-hidden />
-      {layout === "bar" ? "Apple Maps" : "Open in Apple Maps"}
-    </a>
-  );
-  const google = (
-    <a href={googleMapsUrl(place)} target="_blank" rel="noopener noreferrer">
-      <MapPin size={18} aria-hidden />
-      {layout === "bar" ? "Google Maps" : "Open in Google Maps"}
-    </a>
-  );
-  if (layout === "bar") {
-    return (
-      <div className="flex gap-3">
-        <Button asChild variant="outline" className="h-13 min-w-0 flex-1 px-4">
-          {google}
-        </Button>
-        <Button asChild className="h-13 min-w-0 flex-[1.2] px-4">
-          {apple}
-        </Button>
-      </div>
-    );
-  }
-  return (
-    <div className="grid gap-3">
-      <Button asChild size="lg" className="w-full">
-        {apple}
-      </Button>
-      <Button asChild variant="outline" size="lg" className="w-full">
-        {google}
-      </Button>
-    </div>
-  );
-}
-
-function Highlight({ icon: HighlightIcon, label, children }: { icon: Icon; label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-4">
-      <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-secondary">
-        <HighlightIcon size={22} aria-hidden />
-      </span>
-      <div className="min-w-0 pt-0.5">
-        <p className="text-sm font-medium text-muted-foreground">{label}</p>
-        <p className="text-base font-semibold text-pretty">{children}</p>
-      </div>
-    </div>
-  );
-}
-
-function AndyPickBadge() {
-  return (
-    <p className="inline-flex h-8 items-center gap-1.5 rounded-full bg-secondary pr-3 pl-2.5 text-sm font-semibold">
-      <Star size={13} fill="currentColor" aria-hidden />
-      {ANDY_PICK}
-    </p>
-  );
-}
-
-function OverlayBack({ onBack }: { onBack: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onBack}
-      className="pressable focus-ring flex h-11 cursor-pointer items-center gap-1 rounded-full bg-surface pr-4 pl-3 text-sm font-semibold shadow-float hover:bg-secondary"
-    >
-      <ChevronLeft size={20} aria-hidden />
-      All places
-    </button>
-  );
-}
-
-function OverlayButton({
+/** A round smoked-glass control floating over the photo. */
+function FloatingButton({
   label,
   onClick,
   children,
@@ -173,14 +76,81 @@ function OverlayButton({
       aria-label={label}
       title={label}
       onClick={onClick}
-      className="pressable focus-ring flex size-11 cursor-pointer items-center justify-center rounded-full bg-surface shadow-float hover:bg-secondary"
+      className="pressable glass-media pointer-events-auto flex size-11 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {children}
     </button>
   );
 }
 
-/** The name and quiet meta shown at the top of the phone map sheet (with a thumbnail when peeking). */
+function AndyPickChip() {
+  return (
+    <p className="glass-tinted inline-flex h-8 items-center gap-1.5 rounded-full pr-3 pl-2.5 text-sm font-semibold">
+      <Star size={13} fill="currentColor" aria-hidden />
+      {ANDY_PICK}
+    </p>
+  );
+}
+
+function CopyAddress({ address }: { address: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <div className="flex items-center gap-4">
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-medium text-white/70">Address</p>
+        <p className="text-base font-semibold text-pretty select-text">{address}</p>
+      </div>
+      <button
+        type="button"
+        title="Copy address"
+        aria-label={copied ? "Address copied" : `Copy address: ${address}`}
+        onClick={async () => {
+          try {
+            await navigator.clipboard.writeText(address);
+            setCopied(true);
+            toast.success("Address copied", { description: address });
+            window.setTimeout(() => setCopied(false), 1600);
+          } catch {
+            // Clipboard access can be blocked; the address is still selectable.
+          }
+        }}
+        className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
+      >
+        {copied ? <Check size={18} /> : <Copy size={18} />}
+      </button>
+    </div>
+  );
+}
+
+/** Open in Apple Maps (the bright pill) or Google Maps (glass beside it). */
+export function PlaceActions({ place }: { place: Place }) {
+  const pill =
+    "pressable flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-full px-4 text-base font-semibold outline-white focus-visible:outline-2 focus-visible:outline-offset-2";
+  return (
+    <div className="flex gap-3">
+      <a
+        href={appleMapsUrl(place)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(pill, "bg-white text-[#141414] hover:bg-white/90")}
+      >
+        <Navigation size={18} aria-hidden />
+        Apple Maps
+      </a>
+      <a
+        href={googleMapsUrl(place)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(pill, "glass-tinted hover:bg-white/20")}
+      >
+        <MapPin size={18} aria-hidden />
+        Google Maps
+      </a>
+    </div>
+  );
+}
+
+/** The name and quiet meta at the top of the phone map sheet (with a thumbnail when peeking). */
 export function PlaceSheetHeader({
   place,
   showThumbnail,
@@ -191,9 +161,14 @@ export function PlaceSheetHeader({
   onClose: () => void;
 }) {
   return (
-    <div className="flex items-center gap-3 px-5 pt-1 pb-4">
+    <div className="flex items-center gap-3 px-5 pt-1 pb-4 text-white">
       {showThumbnail && (
-        <PlaceImage place={place} sizes="56px" className="image-frame w-14 shrink-0 rounded-md" />
+        <PlaceImage
+          place={place}
+          sizes="56px"
+          placeholder={placeColor(place)}
+          className="w-14 shrink-0 rounded-md"
+        />
       )}
       <div className="min-w-0 flex-1">
         <h2 className="flex items-center gap-1.5 text-lg font-semibold">
@@ -204,7 +179,7 @@ export function PlaceSheetHeader({
             </Star>
           )}
         </h2>
-        <p className="flex items-center gap-1.5 truncate text-sm text-muted-foreground">
+        <p className="flex items-center gap-1.5 truncate text-sm text-white/75">
           <CategoryIcon category={place.category} size={14} className="shrink-0" />
           {placeWhere(place)}
         </p>
@@ -213,7 +188,7 @@ export function PlaceSheetHeader({
         type="button"
         aria-label="Close"
         onClick={onClose}
-        className="pressable focus-ring flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-secondary hover:bg-hairline"
+        className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         <X size={20} aria-hidden />
       </button>
@@ -227,161 +202,192 @@ interface PlaceDetailProps {
   /** Switches to the map with this place in view. */
   onShowOnMap?: () => void;
   /**
-   * "page": list mode, full screen. The picture sits beside a details panel on
-   * wide screens; on phones it stacks, with the actions in a sticky bottom bar.
-   * "rail": inside the desktop map rail.
+   * "page": list mode, full screen, Apple Music style: the photo runs edge to
+   * edge on phones (a big square over its own blurred glow on wide screens)
+   * and fades into the page color, with everything else set right on it.
+   * "rail": inside the desktop map rail, photo edge to edge at the top.
    * "sheet": inside the phone map sheet, whose header shows the name and whose
    * footer holds the actions.
+   * All three sit on the place's color; the caller paints it behind them.
    */
   variant: "page" | "rail" | "sheet";
 }
 
 export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetailProps) {
+  const color = placeColor(place);
   const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
   const page = variant === "page";
+  const alt = `${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`;
+
+  const controls = variant !== "sheet" && (
+    <div className="pointer-events-none flex items-center justify-between gap-2">
+      <FloatingButton label="All places" onClick={onBack}>
+        <ChevronLeft size={22} aria-hidden />
+      </FloatingButton>
+      <div className="flex gap-2">
+        <FloatingButton label="Share" onClick={() => void sharePlace(place)}>
+          <Share size={18} aria-hidden />
+        </FloatingButton>
+        {onShowOnMap && (
+          <FloatingButton label="Show on map" onClick={onShowOnMap}>
+            <MapIcon size={18} aria-hidden />
+          </FloatingButton>
+        )}
+      </div>
+    </div>
+  );
 
   const header = variant !== "sheet" && (
-    <header className="space-y-2">
-      {place.andyFavorite && <AndyPickBadge />}
-      <p className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-        <CategoryIcon category={place.category} size={16} />
-        {placeWhere(place)}
-      </p>
+    <header className="space-y-3">
+      {place.andyFavorite && <AndyPickChip />}
       <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>
         {smartQuotes(place.name)}
       </h2>
+      <p className="flex items-center gap-2 text-base font-medium text-white/75">
+        <CategoryIcon category={place.category} size={16} />
+        {placeWhere(place)}
+      </p>
     </header>
   );
 
-  const actions = variant !== "sheet" && (
-    <div className={cn(page && "hidden md:block")}>
-      <PlaceActions place={place} layout="stack" />
-    </div>
-  );
-
-  const sections = [
-    (place.signatureSubject || tags.length > 0 || (variant === "sheet" && place.andyFavorite)) && (
-      <div className="space-y-5">
-        {place.signatureSubject && (
-          <Highlight icon={Award} label="Known for">
-            {smartQuotes(place.signatureSubject)}
-          </Highlight>
-        )}
-        {variant === "sheet" && place.andyFavorite && <AndyPickBadge />}
-        {tags.length > 0 && (
-          <ul className="flex flex-wrap gap-2" aria-label="Good to know">
-            {tags.map((tag) => (
-              <li
-                key={tag.id}
-                className="flex h-10 items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm font-medium"
-              >
-                <TagIcon tag={tag.id} />
-                {tag.badge}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    ),
-    place.note && (
-      <figure className="rounded-lg bg-secondary px-5 py-4">
-        <blockquote className="text-base">{smartQuotes(place.note)}</blockquote>
-        <figcaption className="mt-2 text-sm font-medium text-muted-foreground">
-          {site.hosts}
-        </figcaption>
-      </figure>
-    ),
-    place.summary && (
-      <div>
-        <p className="text-base">{smartQuotes(place.summary)}</p>
-        {place.summarySource === "placeholder" && (
-          <p className="mt-2 text-sm text-muted-foreground">A fuller description is on the way.</p>
-        )}
-      </div>
-    ),
-    place.address && <CopyAddress address={place.address} />,
-  ].filter(Boolean);
-
-  const body = (
-    <div className="flex flex-col">
-      {(header || actions) && (
-        <div className="flex flex-col gap-6 pb-6">
-          {header}
-          {actions}
+  const details = (
+    <div className="space-y-8">
+      {variant === "sheet" && place.andyFavorite && <AndyPickChip />}
+      {(place.signatureSubject || tags.length > 0) && (
+        <div className="space-y-4">
+          {place.signatureSubject && (
+            <div>
+              <p className="text-sm font-medium text-white/70">Known for</p>
+              <p className="text-lg font-semibold text-pretty">
+                {smartQuotes(place.signatureSubject)}
+              </p>
+            </div>
+          )}
+          {tags.length > 0 && (
+            <ul className="flex flex-wrap gap-2" aria-label="Good to know">
+              {tags.map((tag) => (
+                <li
+                  key={tag.id}
+                  className="glass-tinted flex h-9 items-center gap-2 rounded-full px-3.5 text-sm font-medium"
+                >
+                  <TagIcon tag={tag.id} />
+                  {tag.badge}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
-      {sections.map((section, i) => (
-        <Fragment key={i}>
-          {(i > 0 || header || actions) && <hr className="border-hairline" />}
-          <div className="py-6">{section}</div>
-        </Fragment>
-      ))}
-    </div>
-  );
-
-  const controls = variant !== "sheet" && (
-    <div
-      className={cn(
-        "flex items-start justify-between gap-2",
-        page
-          ? "mb-3 md:absolute md:inset-x-3 md:top-3 md:z-10 md:mb-0"
-          : "absolute inset-x-3 top-3 z-10",
+      {place.note && (
+        <figure className="border-l-2 border-white/30 pl-4">
+          <blockquote className="text-base">{smartQuotes(place.note)}</blockquote>
+          <figcaption className="mt-2 text-sm font-medium text-white/70">{site.hosts}</figcaption>
+        </figure>
       )}
-    >
-      <OverlayBack onBack={onBack} />
-      <div className="flex gap-2">
-        <OverlayButton label="Share" onClick={() => void sharePlace(place)}>
-          <Share size={18} aria-hidden />
-        </OverlayButton>
-        {onShowOnMap && (
-          <OverlayButton label="Show on map" onClick={onShowOnMap}>
-            <MapIcon size={18} aria-hidden />
-          </OverlayButton>
-        )}
-      </div>
+      {place.summary && (
+        <div>
+          <p className="text-base text-white/85">{smartQuotes(place.summary)}</p>
+          {place.summarySource === "placeholder" && (
+            <p className="mt-2 text-sm text-white/70">A fuller description is on the way.</p>
+          )}
+        </div>
+      )}
+      {place.address && <CopyAddress address={place.address} />}
     </div>
   );
 
-  const picture = (
-    <div className={cn("relative", page && "md:sticky md:top-10")}>
-      {controls}
-      <PlaceImage
-        place={place}
-        alt={`${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`}
-        priority
-        sizes={page ? "(min-width: 768px) 480px, 100vw" : "(min-width: 1024px) 376px, 100vw"}
-        className={cn(
-          "image-frame",
-          variant === "rail" ? "aspect-[4/3] rounded-xl" : "aspect-[5/4] rounded-xl",
-          page && "aspect-square md:rounded-2xl",
-        )}
-      />
-    </div>
-  );
-
-  if (variant === "page") {
+  if (variant === "sheet") {
     return (
-      <article
-        aria-label={place.name}
-        className="mx-auto max-w-lg px-4 pt-[max(env(safe-area-inset-top),16px)] pb-36 md:grid md:max-w-5xl md:grid-cols-2 md:items-start md:gap-8 md:px-10 md:pt-10 lg:gap-12"
-      >
-        {picture}
-        <div className="mt-4 rounded-2xl border border-hairline bg-surface px-5 pt-6 shadow-card md:mt-0 md:px-8 md:pt-8 md:pb-2">
-          {body}
-        </div>
-        <div className="fixed inset-x-0 bottom-0 z-30 bg-surface px-4 pt-3 pb-[max(env(safe-area-inset-bottom),12px)] shadow-bar md:hidden">
-          <div className="mx-auto max-w-lg">
-            <PlaceActions place={place} layout="bar" />
-          </div>
+      <article aria-label={place.name} className="flex flex-col gap-6 text-white">
+        <PlaceImage
+          place={place}
+          alt={alt}
+          priority
+          sizes="100vw"
+          placeholder={color}
+          className="aspect-[5/4] rounded-xl"
+        />
+        <div className="px-1">{details}</div>
+      </article>
+    );
+  }
+
+  if (variant === "rail") {
+    return (
+      <article aria-label={place.name} className="relative text-white">
+        <div className="absolute inset-x-3 top-3 z-10">{controls}</div>
+        <PlaceImage
+          place={place}
+          alt={alt}
+          priority
+          sizes="400px"
+          placeholder={color}
+          className={FADE_OUT}
+        />
+        <div className="relative -mt-20 space-y-6 px-6 pb-8">
+          {header}
+          <PlaceActions place={place} />
+          {details}
         </div>
       </article>
     );
   }
 
   return (
-    <article aria-label={place.name} className="flex flex-col gap-5">
-      {picture}
-      <div className={cn(variant === "rail" ? "px-3" : "px-1")}>{body}</div>
+    <article aria-label={place.name} className="relative min-h-full text-white">
+      {/* Wide screens: the photo's own glow washes the top of the page. */}
+      {place.image && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 hidden h-[720px] overflow-hidden [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:block"
+        >
+          <Image
+            src={place.image}
+            alt=""
+            fill
+            sizes="256px"
+            className="scale-125 object-cover opacity-75 blur-3xl saturate-150"
+          />
+        </div>
+      )}
+
+      {/* Floats over the photo and stays in reach while scrolling. */}
+      <div className="sticky top-0 z-20 h-0">
+        <div className="mx-auto max-w-6xl px-4 pt-[max(env(safe-area-inset-top),12px)] md:px-10 md:pt-6">
+          {controls}
+        </div>
+      </div>
+
+      <div className="relative mx-auto max-w-6xl md:grid md:grid-cols-[minmax(0,440px)_minmax(0,1fr)] md:items-end md:gap-12 md:px-10 md:pt-24">
+        <div className="relative">
+          <PlaceImage
+            place={place}
+            alt={alt}
+            priority
+            sizes="(min-width: 768px) 440px, 100vw"
+            placeholder={color}
+            className={cn(
+              "max-md:[mask-image:linear-gradient(to_bottom,black_58%,transparent)]",
+              "md:rounded-2xl md:shadow-[0_32px_80px_-24px_rgb(0_0_0/0.65)]",
+            )}
+          />
+          {/* Phones: a soft shade under the status bar and the floating buttons. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/35 to-transparent md:hidden"
+          />
+        </div>
+        <div className="relative -mt-24 space-y-6 px-5 md:mt-0 md:space-y-7 md:px-0 md:pb-1">
+          {header}
+          <div className="md:max-w-md">
+            <PlaceActions place={place} />
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-5 pt-10 pb-36 md:grid md:grid-cols-[minmax(0,440px)_minmax(0,1fr)] md:gap-12 md:px-10 md:pt-12 md:pb-24">
+        <div className="md:col-start-2 md:max-w-xl">{details}</div>
+      </div>
     </article>
   );
 }
