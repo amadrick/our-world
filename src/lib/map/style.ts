@@ -1,4 +1,10 @@
-import type { SourceSpecification, StyleSpecification } from "maplibre-gl";
+import type {
+  ExpressionSpecification,
+  FilterSpecification,
+  LayerSpecification,
+  SourceSpecification,
+  StyleSpecification,
+} from "maplibre-gl";
 
 import { landmarkCollection } from "./landmarks";
 import { MAP_THEMES, type MapThemeId } from "./theme";
@@ -34,6 +40,30 @@ export interface MapStyleOptions {
   pins?: PinFootprint[];
 }
 
+/** Basemap labels that can repeat a photo pin's caption: a park's name, or a neighborhood that's also a sight. */
+const REPEATING_LABELS = new Set(["park-label", "neighborhood-label"]);
+
+/**
+ * Leaves out basemap labels that name the same thing as a photo pin on the
+ * map ("Mission Dolores Park" beside the Dolores Park pin). A park label that
+ * is part of a pin's name ("Lands End" in "Lands End & Sutro Baths") counts too.
+ */
+function withoutRepeats(layer: LayerSpecification, names: string[]): LayerSpecification {
+  if (!names.length || layer.type !== "symbol" || !REPEATING_LABELS.has(layer.id)) return layer;
+  const label: ExpressionSpecification = ["to-string", ["get", "name"]];
+  const repeats: ExpressionSpecification = [
+    "any",
+    ...names.flatMap((name): ExpressionSpecification[] => [
+      ["in", name, label],
+      ...(layer.id === "park-label"
+        ? [["all", [">=", ["length", label], 6], ["in", label, name]] as ExpressionSpecification]
+        : []),
+    ]),
+  ];
+  const filter = (layer.filter ? ["all", layer.filter, ["!", repeats]] : ["!", repeats]) as FilterSpecification;
+  return { ...layer, filter };
+}
+
 export function buildMapStyle({
   theme: themeId,
   tiles,
@@ -47,11 +77,14 @@ export function buildMapStyle({
   const base = theme.palettes[scheme];
   const C = tint ? tintPalette(base, theme.tint, tint, scheme) : base;
   const ctx: StyleContext = { tiles, origin, scheme, terrain };
-  const layers = theme.layers(C, ctx);
+  const photoNames = [
+    ...new Set(pins.filter((pin) => pin.kind === "photo").flatMap((pin) => [pin.name, pin.name.replaceAll("’", "'")])),
+  ];
+  const layers = theme.layers(C, ctx).map((layer) => withoutRepeats(layer, photoNames));
 
   const sources: Record<string, SourceSpecification> = {
     basemap: basemapSource(ctx),
-    landmarks: { type: "geojson", data: landmarkCollection() },
+    landmarks: { type: "geojson", data: landmarkCollection(new Set(pins.map((pin) => pin.id))) },
     [PIN_SOURCE]: { type: "geojson", data: pinCollection(pins) },
   };
   if (layers.some((layer) => "source" in layer && layer.source === "terrain")) {

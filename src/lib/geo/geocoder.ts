@@ -62,6 +62,13 @@ const CATEGORY_BY_OSM: Record<string, Record<string, CategoryId>> = {
   tourism: {
     museum: "museum",
     gallery: "museum",
+    attraction: "sight",
+    viewpoint: "sight",
+  },
+  historic: {
+    monument: "sight",
+    memorial: "sight",
+    ruins: "sight",
   },
   leisure: {
     park: "park",

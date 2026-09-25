@@ -2,7 +2,9 @@ export interface PinFootprint {
   id: string;
   lng: number;
   lat: number;
-  display: "dot" | "photo" | "label";
+  kind: "photo" | "glyph";
+  display: "hidden" | "icon" | "named";
+  selected: boolean;
   name: string;
 }
 

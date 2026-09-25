@@ -14,6 +14,7 @@ export const CATEGORIES: CategoryInfo[] = [
   { id: "bakery", label: "Bakery", plural: "Bakeries" },
   { id: "dessert", label: "Dessert", plural: "Dessert" },
   { id: "shop", label: "Shop", plural: "Shops" },
+  { id: "sight", label: "Sight", plural: "Sights" },
   { id: "museum", label: "Museum", plural: "Museums" },
   { id: "park", label: "Park", plural: "Parks" },
 ];

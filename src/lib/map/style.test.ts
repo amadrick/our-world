@@ -19,7 +19,10 @@ describe("buildMapStyle", () => {
             scheme,
             tint,
             terrain: true,
-            pins: [{ id: "a", lng: -122.42, lat: 37.76, display: "label", name: "Tartine" }],
+            pins: [
+              { id: "a", lng: -122.42, lat: 37.76, kind: "glyph", display: "named", selected: false, name: "Tartine" },
+              { id: "coit-tower", lng: -122.4058, lat: 37.8024, kind: "photo", display: "icon", selected: true, name: "Coit Tower" },
+            ],
           });
           expect(validateStyleMin(style).map((error) => error.message)).toEqual([]);
         });
@@ -32,6 +35,27 @@ describe("buildMapStyle", () => {
       const { layers } = buildMapStyle({ theme, tiles: "offline", origin: "" });
       expect(layers.at(-1)?.id).toBe("pin-footprints");
     }
+  });
+
+  it("leaves out a basemap landmark while the guide's own pin for it is on the map", () => {
+    const names = (pins: Parameters<typeof buildMapStyle>[0]["pins"]) => {
+      const source = buildMapStyle({ theme: "apple", tiles: "offline", origin: "", pins }).sources.landmarks;
+      const data = (source as { data: GeoJSON.FeatureCollection }).data;
+      return data.features.map((f) => f.properties?.name);
+    };
+    expect(names([])).toContain("Coit Tower");
+    const coit = { id: "coit-tower", lng: -122.4058, lat: 37.8024, kind: "photo" as const, display: "hidden" as const, selected: false, name: "Coit Tower" };
+    expect(names([coit])).not.toContain("Coit Tower");
+    expect(names([coit])).toContain("Sutro Tower");
+  });
+
+  it("hides basemap park and neighborhood labels that repeat a photo pin's name", () => {
+    const pin = { id: "dolores-park", lng: -122.4276, lat: 37.7596, kind: "photo" as const, display: "icon" as const, selected: false, name: "Dolores Park" };
+    const { layers } = buildMapStyle({ theme: "apple", tiles: "offline", origin: "", pins: [pin] });
+    const park = layers.find((layer) => layer.id === "park-label");
+    expect(JSON.stringify(park && "filter" in park && park.filter)).toContain("Dolores Park");
+    const water = layers.find((layer) => layer.id === "water-label");
+    expect(JSON.stringify(water && "filter" in water && water.filter)).not.toContain("Dolores Park");
   });
 
   it("only shades hills when elevation tiles are there, in the themes that shade them", () => {

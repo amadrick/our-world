@@ -3,16 +3,12 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import { Map as MapIcon } from "react-feather";
-import { useEffect, useEffectEvent, useImperativeHandle, useRef, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useImperativeHandle, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from "@/lib/map";
-import {
-  densityForZoom,
-  estimateLabelWidth,
-  layoutPins,
-  type PinDisplay,
-} from "@/lib/map/pin-layout";
+import { layoutPins, type PinDisplay } from "@/lib/map/pin-layout";
+import { estimateText, pinKind } from "@/lib/map/pin-style";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -96,7 +92,27 @@ export function MapView({
 
   const handleBackgroundClick = useEffectEvent(() => onBackgroundClick());
 
-  // Pins say more as you zoom in (dots, photos, names), stepping down wherever they'd pile up.
+  // Pin callbacks stay the same function across renders, so a pin re-renders only when its own state changes.
+  const latest = useRef({ onSelect, onHighlight });
+  useEffect(() => {
+    latest.current = { onSelect, onHighlight };
+  });
+  const selectPin = useCallback((id: string) => latest.current.onSelect(id), []);
+  const highlightPin = useCallback((id: string | null) => latest.current.onHighlight(id), []);
+
+  const pinSpecs = useMemo(
+    () =>
+      new Map(
+        places.map((place) => {
+          const kind = pinKind(place.category);
+          const tier = kind === "photo" ? 1 : place.andyFavorite ? 2 : 3;
+          return [place.id, { kind, tier, text: estimateText(smartQuotes(place.name), kind) }] as const;
+        }),
+      ),
+    [places],
+  );
+
+  // Like Apple Maps: landmarks and top places first, more icons as you zoom in, then names wherever they fit.
   const relayout = useEffectEvent(() => {
     const instance = instanceRef.current;
     if (!instance) return;
@@ -104,12 +120,12 @@ export function MapView({
       places.map((place) => ({
         id: place.id,
         ...instance.project(place),
-        labelWidth: estimateLabelWidth(place.name),
+        ...pinSpecs.get(place.id)!,
         forced: place.id === selectedId || place.id === highlightedId,
-        preferred: place.andyFavorite === true,
+        selected: place.id === selectedId,
       })),
       instance.size(),
-      densityForZoom(instance.zoom()),
+      instance.zoom(),
     );
     setLayout((current) => (sameLayout(current, next) ? current : next));
   });
@@ -195,11 +211,13 @@ export function MapView({
         id: place.id,
         lng: place.lng,
         lat: place.lat,
-        display: layout.get(place.id) ?? "dot",
+        kind: pinKind(place.category),
+        display: layout.get(place.id) ?? "hidden",
+        selected: place.id === selectedId,
         name: smartQuotes(place.name),
       })),
     );
-  }, [places, layout, status]);
+  }, [places, layout, selectedId, status]);
 
   // An open place washes the whole map faintly in its color; closing it fades back.
   const selected = places.find((p) => p.id === selectedId);
@@ -262,9 +280,9 @@ export function MapView({
               place={place}
               selected={place.id === selectedId}
               highlighted={place.id === highlightedId}
-              display={layout.get(place.id) ?? "dot"}
-              onSelect={() => onSelect(place.id)}
-              onHover={(hovering) => onHighlight(hovering ? place.id : null)}
+              display={layout.get(place.id) ?? "hidden"}
+              onSelect={selectPin}
+              onHighlight={highlightPin}
             />,
             pinElement(place.id),
             place.id,

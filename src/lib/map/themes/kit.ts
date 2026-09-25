@@ -8,11 +8,12 @@ import type {
 
 import { tintToward } from "@/lib/images/palette.mjs";
 
+import { PIN, balloonLift } from "../pin-style";
 import type { PinFootprint } from "../types";
 
 export type { PinFootprint } from "../types";
 
-/** Shared pieces the three basemap themes are built from. */
+/** Shared pieces the basemap themes are built from. */
 
 export type Expr = ExpressionSpecification;
 export type Scheme = "light" | "dark";
@@ -168,41 +169,76 @@ export function tintPalette<P extends Palette>(
 export const halo = (color: string, alpha = "eb") => `${color}${alpha}`;
 
 /*
- * Pins are DOM markers over the canvas, so MapLibre can't see them. Each pin
- * also gets an invisible symbol the same size (the photo disc, plus the name
- * pill when shown), placed before every other label; basemap labels that
- * would sit under a pin or its name drop out instead of fighting it.
+ * Pins are DOM markers over the canvas, so MapLibre can't see them. Each shown
+ * pin also gets an invisible symbol the same size (its photo or glyph, plus
+ * its name or caption when shown), placed before every other label; basemap
+ * labels that would sit under a pin or its name drop out instead of fighting it.
  */
 export const PIN_SOURCE = "pins";
 
 export function pinCollection(pins: PinFootprint[]): GeoJSON.FeatureCollection {
   return {
     type: "FeatureCollection",
-    features: pins.map((pin) => ({
-      type: "Feature",
-      id: pin.id,
-      geometry: { type: "Point", coordinates: [pin.lng, pin.lat] },
-      properties: { display: pin.display, name: pin.name },
-    })),
+    features: pins
+      .filter((pin) => pin.display !== "hidden")
+      .map((pin) => ({
+        type: "Feature",
+        id: pin.id,
+        geometry: { type: "Point", coordinates: [pin.lng, pin.lat] },
+        properties: { kind: pin.kind, named: pin.display === "named", selected: pin.selected, name: pin.name },
+      })),
   };
 }
 
+const byPin = <T>(photo: T, photoSelected: T, glyph: T, glyphSelected: T) =>
+  [
+    "case",
+    ["==", ["get", "kind"], "photo"],
+    ["case", ["get", "selected"], photoSelected, photo],
+    ["case", ["get", "selected"], glyphSelected, glyph],
+  ] as unknown as ExpressionSpecification;
+const literal = (value: number[]) => ["literal", value];
+
 export function pinFootprintLayer(): LayerSpecification {
+  const { name, caption } = PIN;
+  const liftPhoto = balloonLift(PIN.photoSelected);
+  const liftGlyph = balloonLift(PIN.glyphSelected);
   return {
     id: "pin-footprints",
     type: "symbol",
     source: PIN_SOURCE,
     layout: {
-      "icon-image": ["match", ["get", "display"], "dot", "blank-14", "blank-46"],
+      "icon-image": byPin(
+        `blank-${PIN.photo + 4}`,
+        `blank-${PIN.photoSelected + 4}`,
+        `blank-${PIN.glyph + 4}`,
+        `blank-${PIN.glyphSelected + 4}`,
+      ),
+      "icon-offset": byPin(literal([0, 0]), literal([0, -liftPhoto]), literal([0, 0]), literal([0, -liftGlyph])),
       "icon-allow-overlap": true,
       "icon-ignore-placement": false,
-      "text-field": ["case", ["==", ["get", "display"], "label"], ["get", "name"], ""],
+      "text-field": ["case", ["get", "named"], ["get", "name"], ""],
       "text-font": FONT.semibold,
-      "text-size": 14,
-      "text-anchor": "left",
-      // The pill's text starts 24px right of the pin's center.
-      "text-offset": [1.7, 0],
-      "text-padding": 8,
+      "text-size": byPin(caption.size, caption.size, name.size, name.size),
+      "text-transform": byPin("uppercase", "uppercase", "none", "none"),
+      "text-letter-spacing": byPin(caption.tracking, caption.tracking, 0, 0),
+      "text-max-width": byPin(
+        caption.maxWidth / caption.size,
+        caption.maxWidth / caption.size,
+        name.maxWidth / name.size,
+        name.maxWidth / name.size,
+      ),
+      "text-line-height": 1.15,
+      "text-anchor": byPin("top", "top", "left", "left"),
+      "text-justify": byPin("center", "center", "left", "left"),
+      // Names start just right of the glyph (or the balloon's head); captions just under the photo (or the tip).
+      "text-offset": byPin(
+        literal([0, (PIN.photo / 2 + PIN.captionGap) / caption.size]),
+        literal([0, PIN.captionGap / caption.size]),
+        literal([(PIN.glyph / 2 + PIN.nameGap) / name.size, 0]),
+        literal([(PIN.glyphSelected / 2 + PIN.nameGap) / name.size, -liftGlyph / name.size]),
+      ),
+      "text-padding": 2,
       "text-allow-overlap": true,
       "text-ignore-placement": false,
     },

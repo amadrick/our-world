@@ -42,6 +42,7 @@ const PLACEHOLDER_SUBJECT: Record<CategoryId, string> = {
   bakery: "A bakery",
   dessert: "A dessert spot",
   shop: "A shop",
+  sight: "A sight",
   museum: "A museum",
   park: "A park",
 };

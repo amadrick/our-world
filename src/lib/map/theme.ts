@@ -9,7 +9,7 @@ export type { MapThemeId } from "./themes/kit";
 export const MAP_THEMES: Record<MapThemeId, MapTheme> = { golden, editorial, dimensional, apple };
 
 /** The basemap everyone sees. */
-export const DEFAULT_MAP_THEME: MapThemeId = "golden";
+export const DEFAULT_MAP_THEME: MapThemeId = "apple";
 
 /** `?map=a|b|c|d`: a hidden switch for comparing the basemap directions. */
 const KEYS: Record<string, MapThemeId> = { a: "golden", b: "editorial", c: "dimensional", d: "apple" };

@@ -1,124 +1,91 @@
+import { memo } from "react";
 import { getImageProps } from "next/image";
 import { Star } from "react-feather";
 
-import { darkPinColor } from "@/lib/images/palette.mjs";
+import { CATEGORY_ICONS } from "@/components/places/category-badge";
 import type { PinDisplay } from "@/lib/map/pin-layout";
+import { CATEGORY_COLORS, PIN, pinKind } from "@/lib/map/pin-style";
 import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
-import { cn } from "@/lib/utils";
-import { placeColor } from "./place-detail";
-
-/** The photo inside the ring, px. The thumbnail is a small derived image, a few KB. */
-const THUMB = 34;
 
 interface MapPinProps {
   place: Place;
   selected: boolean;
   highlighted: boolean;
   display: PinDisplay;
-  onSelect: () => void;
-  onHover: (hovering: boolean) => void;
+  onSelect: (id: string) => void;
+  onHighlight: (id: string | null) => void;
 }
 
 /**
- * The place's own photo in a ring of its page color, so the map, the list, and
- * the page share color; the name sits beside it in a pill of the same color.
- * Zoomed out, or crowded out by a neighbor, it's a dot of that color. On the
- * dark map the color is lifted and outlined so it doesn't sink into the land.
+ * A pin in Apple Maps' language (see pin-style.ts): the big stuff is a round
+ * photo with a grey caption below, the rest a glyph in its category color with
+ * the name beside it. Selected, it grows into a balloon whose tip marks the
+ * spot. Hidden pins stay mounted, faded out, so they pop in when there's room.
  */
-export function MapPin({ place, selected, highlighted, display, onSelect, onHover }: MapPinProps) {
+export const MapPin = memo(function MapPin({ place, selected, highlighted, display, onSelect, onHighlight }: MapPinProps) {
   const pick = place.andyFavorite === true;
-  const color = placeColor(place);
-  const colors = { "--pin": color, "--pin-dark": darkPinColor(color) } as React.CSSProperties;
-  const fill = "bg-[var(--pin)] dark:bg-[var(--pin-dark)]";
+  const kind = pinKind(place.category);
+  const color = CATEGORY_COLORS[place.category];
+  const Glyph = CATEGORY_ICONS[place.category];
+  const hidden = display === "hidden";
 
   return (
     <button
       type="button"
       aria-label={`${place.name}, ${getCategory(place.category).label}${pick ? `, ${ANDY_PICK}` : ""}`}
       aria-pressed={selected}
+      aria-hidden={hidden || undefined}
+      tabIndex={hidden ? -1 : undefined}
+      data-kind={kind}
+      data-display={display}
       data-selected={selected || undefined}
       data-highlighted={highlighted || undefined}
-      data-display={display}
       onClick={(event) => {
         event.stopPropagation();
-        onSelect();
+        onSelect(place.id);
       }}
-      onPointerEnter={(event) => event.pointerType === "mouse" && onHover(true)}
-      onPointerLeave={(event) => event.pointerType === "mouse" && onHover(false)}
-      onFocus={() => onHover(true)}
-      onBlur={() => onHover(false)}
-      style={colors}
-      // The hit area reaches past the drawn pin so small pins stay easy to tap.
-      className="group relative flex cursor-pointer items-center justify-center outline-none before:absolute before:-inset-2 before:content-['']"
+      onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(place.id)}
+      onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(null)}
+      onFocus={() => onHighlight(place.id)}
+      onBlur={() => onHighlight(null)}
+      style={
+        {
+          "--cat": color.fill,
+          "--cat-label": color.label,
+          "--cat-label-dark": color.labelDark,
+        } as React.CSSProperties
+      }
+      className="map-pin group"
     >
-      {display === "dot" ? (
-        <span
-          className={cn(
-            "flex items-center justify-center rounded-full text-white shadow-pin ring-[1.5px] ring-white dark:ring-white/60",
-            "transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-white",
-            fill,
-            pick ? "size-4" : "size-3",
-          )}
-        >
-          {pick && <Star size={8} fill="currentColor" aria-hidden />}
-        </span>
-      ) : (
-        <span
-          className={cn(
-            "relative flex size-10 items-center justify-center",
-            "transition-[scale] duration-200 ease-snappy motion-reduce:transition-none",
-            selected ? "scale-[1.18]" : highlighted ? "scale-110" : "group-hover:scale-110",
-          )}
-        >
-          {display === "label" && (
-            <span
-              className={cn(
-                "absolute top-1/2 left-0 flex h-10 -translate-y-1/2 items-center rounded-full pr-3.5 pl-11 text-sm font-semibold whitespace-nowrap text-white shadow-pin dark:ring-1 dark:ring-white/50",
-                fill,
-                selected && "ring-2 ring-white dark:ring-2 dark:ring-white",
-              )}
-            >
-              <span className="max-w-44 truncate">{smartQuotes(place.name)}</span>
-            </span>
-          )}
-          <span
-            className={cn(
-              "relative flex size-10 items-center justify-center rounded-full shadow-pin dark:ring-1 dark:ring-white/50",
-              "group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-white",
-              fill,
-              selected && "ring-2 ring-white dark:ring-2 dark:ring-white",
-            )}
-          >
+      <span className="map-pin-head">
+        <span className="map-pin-face">
+          {kind === "photo" ? (
             <Thumbnail place={place} />
-            {pick && (
-              <span
-                aria-hidden
-                className="absolute -top-1 -right-1 flex size-[18px] items-center justify-center rounded-full bg-white text-[#141414] shadow-pin"
-              >
-                <Star size={10} fill="currentColor" />
-              </span>
-            )}
-          </span>
+          ) : (
+            <Glyph size={PIN.glyphIcon} strokeWidth={2.6} aria-hidden />
+          )}
+        </span>
+      </span>
+      {pick && (
+        <span aria-hidden className="map-pin-star">
+          <Star size={7} fill="currentColor" strokeWidth={0} />
         </span>
       )}
+      <span aria-hidden className="map-pin-name">
+        {smartQuotes(place.name)}
+      </span>
     </button>
   );
-}
+});
 
 function Thumbnail({ place }: { place: Place }) {
   if (!place.image) return null;
-  const { props } = getImageProps({ src: place.image, alt: "", width: THUMB, height: THUMB });
+  // Sized for the selected balloon, so growing into it stays sharp.
+  const { props } = getImageProps({ src: place.image, alt: "", width: PIN.photoSelected, height: PIN.photoSelected });
   return (
     // eslint-disable-next-line @next/next/no-img-element -- a portal into a map marker; getImageProps gives next/image's srcset
-    <img
-      {...props}
-      alt=""
-      loading="lazy"
-      decoding="async"
-      draggable={false}
-      className="size-[34px] rounded-full object-cover"
-    />
+    <img {...props} alt="" loading="lazy" decoding="async" draggable={false} className="size-full rounded-full object-cover" />
   );
 }

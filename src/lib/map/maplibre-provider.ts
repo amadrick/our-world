@@ -85,7 +85,8 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
   // Textures, markers, and the pins' collision boxes are drawn on demand.
-  map.on("styleimagemissing", ({ id }) => {
+  // A resolver, not the styleimagemissing event: only a resolver can answer the tile that's asking.
+  map.setMissingStyleImageResolver((id) => {
     const image = missingImage(id);
     if (image && !map.hasImage(id)) map.addImage(id, image, { pixelRatio: image.pixelRatio });
   });
@@ -194,8 +195,20 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
       restyle();
     },
     setPins(next) {
+      const sameSet = next.length === pins.length && next.every((pin, i) => pin.id === pins[i].id);
       pins = next;
       (map.getSource(PIN_SOURCE) as GeoJSONSource | undefined)?.setData(pinCollection(pins));
+      if (sameSet) return;
+      // A different set of places (a filter changed) can bring back or leave out basemap landmarks and labels.
+      const built = style();
+      (map.getSource("landmarks") as GeoJSONSource | undefined)?.setData(
+        (built.sources.landmarks as { data: GeoJSON.FeatureCollection }).data,
+      );
+      for (const layer of built.layers) {
+        if (layer.type === "symbol" && layer.source === "basemap" && map.getLayer(layer.id)) {
+          map.setFilter(layer.id, layer.filter ?? null);
+        }
+      }
     },
     resize() {
       map.resize();
