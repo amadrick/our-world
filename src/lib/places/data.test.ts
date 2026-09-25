@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { contrastRatio } from "../images/palette.mjs";
+import { contrastRatio, darkPinColor, whiteTextReads } from "../images/palette.mjs";
 import { placeInputSchema } from "./schema";
 import type { Place } from "./types";
 
@@ -28,7 +28,10 @@ describe("data/places.json", () => {
     for (const place of places) {
       if (!place.image) continue;
       expect(place.imageColor, place.id).toMatch(/^#[0-9a-f]{6}$/);
-      expect(contrastRatio(place.imageColor!, "#ffffff"), place.id).toBeGreaterThan(7);
+      // White and its 70% tint at AA on the page, the sheet, and the light map's pins.
+      expect(whiteTextReads(place.imageColor!), place.id).toBe(true);
+      // And on the dark map's lifted pins and name pills.
+      expect(contrastRatio(darkPinColor(place.imageColor!), "#ffffff"), place.id).toBeGreaterThanOrEqual(4.5);
     }
   });
 

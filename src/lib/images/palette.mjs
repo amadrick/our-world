@@ -1,18 +1,34 @@
 // The background color a place's detail page sits on: the photo's main color,
-// normalized to a dark shade so white text reads on it. Pure, so it runs
-// anywhere; `sampleImageColor` in render.mjs feeds it pixels.
+// made livelier and normalized to a deep shade so white text reads on it.
+// Pure, so it runs anywhere; `sampleImageColor` in render.mjs feeds it pixels.
 //
 // Every picture is a warm film photo, so amber light tints nearly all of them.
 // Taking the most common hue would give almost every place the same brown, so
 // the amber band is set aside: the page takes the photo's biggest other color
 // (a green awning, a pink facade, blue tile) and falls back to its amber only
 // when nothing else covers enough of the picture.
+//
+// The film also mutes every color, so the pick is then made livelier in
+// OKLCH: same hue, chroma raised by VIVIDNESS (from the most vivid pixels of
+// that color, not a greyed average), never below a floor so a muddy photo
+// still gets a real color, never past a cap so nothing goes neon, and as
+// light as it can be while white text, and its 70% tint, keep AA contrast.
 
-/** Lightness of every page color (OKLCH), dark enough for white text at ~10:1 and its 70% tint above 5:1. */
-const PAGE_LIGHTNESS = 0.36;
-const MIN_CHROMA = 0.035;
-const MAX_CHROMA = 0.11;
+/** How much livelier a page color is than the photo's own: chroma x (1 + VIVIDNESS). The one knob. */
+export const VIVIDNESS = 0.2;
+/** Every picked color gets at least this chroma, and at most the cap. */
+const CHROMA_FLOOR = 0.065;
+const CHROMA_CAP = 0.15;
+/** The lightest a page color starts from; it steps darker until the text contrast holds. */
+const PAGE_LIGHTNESS = 0.42;
+const DARKEST = 0.3;
+/** WCAG AA for body text: white on the color, and white at 70% (secondary text) on it. */
+const AA = 4.5;
 const HUE_BINS = 36;
+/** A color within this share of the most common one counts as dominant too; the most vivid of them wins. */
+const NEAR_TIE = 0.8;
+/** The top share of a color's pixels by chroma: its vivid core, which the film hasn't greyed. */
+const VIVID_SHARE = 0.5;
 /** Pixels below this chroma count as grey and don't vote. */
 const COLORFUL = 0.03;
 /** A non-amber hue must cover this share of the picture to win. */
@@ -67,13 +83,36 @@ function oklchToHex(L, c, h) {
 
 const hueOf = (a, b) => ((Math.atan2(b, a) * 180) / Math.PI + 360) % 360;
 
+const channels = (value) => [1, 3, 5].map((i) => parseInt(value.slice(i, i + 2), 16));
+
+/** `top` laid over `base` at `alpha`, as the browser blends it (in sRGB). */
+function over(base, top, alpha) {
+  const b = channels(base);
+  const t = channels(top);
+  return `#${b.map((v, i) => Math.round(t[i] * alpha + v * (1 - alpha)).toString(16).padStart(2, "0")).join("")}`;
+}
+
+/** White text and its 70% tint both read at AA on this color. */
+export function whiteTextReads(color) {
+  return contrastRatio(color, "#ffffff") >= AA && contrastRatio(color, over(color, "#ffffff", 0.7)) >= AA;
+}
+
+/** The lightest shade of this hue and chroma, from `from` down, that white text reads on. */
+function readableShade(chroma, hue, from = PAGE_LIGHTNESS) {
+  for (let L = from; L > DARKEST; L -= 0.005) {
+    const color = oklchToHex(L, chroma, hue);
+    if (whiteTextReads(color)) return color;
+  }
+  return oklchToHex(DARKEST, chroma, hue);
+}
+
 /**
  * Picks the page color from raw RGB pixels (3 bytes each).
  * @param {Uint8Array | number[]} pixels
  * @returns {string} "#rrggbb"
  */
-export function pageColor(pixels) {
-  const bins = Array.from({ length: HUE_BINS }, () => ({ n: 0, a: 0, b: 0 }));
+export function pageColor(pixels, { vividness = VIVIDNESS } = {}) {
+  const bins = Array.from({ length: HUE_BINS }, () => ({ n: 0, a: 0, b: 0, samples: [] }));
   let counted = 0;
   for (let i = 0; i + 2 < pixels.length; i += 3) {
     const { L, a, b } = rgbToOklab(pixels[i], pixels[i + 1], pixels[i + 2]);
@@ -84,6 +123,7 @@ export function pageColor(pixels) {
     bin.n++;
     bin.a += a;
     bin.b += b;
+    bin.samples.push([a, b]);
   }
   // Neighbors share half their votes, so a hue split across two bins still counts as one.
   const scored = bins
@@ -92,7 +132,7 @@ export function pageColor(pixels) {
       score: bin.n + 0.5 * (bins[(i + HUE_BINS - 1) % HUE_BINS].n + bins[(i + 1) % HUE_BINS].n),
     }))
     .filter((bin) => bin.n > 0);
-  if (!scored.length) return oklchToHex(PAGE_LIGHTNESS, NEUTRAL.c, NEUTRAL.h);
+  if (!scored.length) return readableShade(NEUTRAL.c, NEUTRAL.h);
 
   const amber = (bin) => {
     const h = hueOf(bin.a, bin.b);
@@ -100,11 +140,42 @@ export function pageColor(pixels) {
   };
   const others = scored.filter((bin) => !amber(bin) && bin.score / counted >= MIN_SHARE);
   const pool = others.length ? others : scored;
-  const top = pool.reduce((best, bin) => (bin.score > best.score ? bin : best));
-  const a = top.a / top.n;
-  const b = top.b / top.n;
-  const chroma = Math.min(MAX_CHROMA, Math.max(MIN_CHROMA, Math.hypot(a, b) * 1.1));
-  return oklchToHex(PAGE_LIGHTNESS, chroma, hueOf(a, b));
+  const topScore = Math.max(...pool.map((bin) => bin.score));
+
+  // Each dominant color's vivid core: the mean of its most chromatic pixels.
+  const vivid = (bin) => {
+    const sorted = [...bin.samples].sort((p, q) => Math.hypot(q[0], q[1]) - Math.hypot(p[0], p[1]));
+    const core = sorted.slice(0, Math.max(1, Math.round(sorted.length * VIVID_SHARE)));
+    const a = core.reduce((sum, p) => sum + p[0], 0) / core.length;
+    const b = core.reduce((sum, p) => sum + p[1], 0) / core.length;
+    return { a, b, chroma: Math.hypot(a, b) };
+  };
+  const pick = pool
+    .filter((bin) => bin.score >= topScore * NEAR_TIE)
+    .map((bin) => ({ bin, core: vivid(bin) }))
+    .reduce((best, next) => (next.core.chroma > best.core.chroma ? next : best));
+
+  // The hue is the color's own average; the chroma comes from its vivid core.
+  const hue = hueOf(pick.bin.a / pick.bin.n, pick.bin.b / pick.bin.n);
+  const chroma = Math.min(CHROMA_CAP, Math.max(CHROMA_FLOOR, pick.core.chroma * (1 + vividness)));
+  return readableShade(chroma, hue);
+}
+
+/**
+ * A place color lifted for the dark map (pins and their name pills), as light
+ * as it can be while white text on it keeps AA.
+ * @param {string} hex "#rrggbb"
+ */
+export function darkPinColor(hex) {
+  const [r, g, b] = channels(hex);
+  const { a, b: bb } = rgbToOklab(r, g, b);
+  const chroma = Math.hypot(a, bb) * 1.1;
+  const hue = hueOf(a, bb);
+  for (let L = 0.56; L > 0.4; L -= 0.005) {
+    const color = oklchToHex(L, chroma, hue);
+    if (contrastRatio(color, "#ffffff") >= AA) return color;
+  }
+  return oklchToHex(0.4, chroma, hue);
 }
 
 /** WCAG contrast ratio between two "#rrggbb" colors. */

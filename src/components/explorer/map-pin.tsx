@@ -1,7 +1,7 @@
 import { getImageProps } from "next/image";
 import { Star } from "react-feather";
 
-import { shade } from "@/lib/images/palette.mjs";
+import { darkPinColor } from "@/lib/images/palette.mjs";
 import type { PinDisplay } from "@/lib/map/pin-layout";
 import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
@@ -30,7 +30,7 @@ interface MapPinProps {
 export function MapPin({ place, selected, highlighted, display, onSelect, onHover }: MapPinProps) {
   const pick = place.andyFavorite === true;
   const color = placeColor(place);
-  const colors = { "--pin": color, "--pin-dark": shade(color, 0.54, 1.1) } as React.CSSProperties;
+  const colors = { "--pin": color, "--pin-dark": darkPinColor(color) } as React.CSSProperties;
   const fill = "bg-[var(--pin)] dark:bg-[var(--pin-dark)]";
 
   return (
