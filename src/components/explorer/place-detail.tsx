@@ -198,13 +198,23 @@ export function SheetCloseButton({ onClose }: { onClose: () => void }) {
 
 /** How long the outgoing photo stays under the incoming one while it crossfades in. */
 const PHOTO_SWAP_MS = 480;
+/** The longest a photo waits for its picture before fading in over its placeholder color. */
+const PHOTO_WAIT_MS = 600;
 
 const PHOTO_FADE = fadeOutMask(52);
+
+interface PhotoLayer {
+  place: Place;
+  motion: "in" | "swap";
+  /** Loaded (or given up waiting), so its fade can start. */
+  ready: boolean;
+  serial: number;
+}
 
 /**
  * The photo at the top of the map sheet and rail, edge to edge, fading into
  * the place's color behind it. Opening plays a scale in + fade in; switching
- * places crossfades the new photo in over the old one.
+ * places crossfades the new photo in over the old one once it has loaded.
  */
 function PhotoStage({
   place,
@@ -217,15 +227,30 @@ function PhotoStage({
   sizes: string;
   className?: string;
 }) {
-  const [layers, setLayers] = useState([{ place, motion: "in" as "in" | "swap" }]);
+  const [layers, setLayers] = useState<PhotoLayer[]>([
+    { place, motion: "in", ready: !place.image, serial: 0 },
+  ]);
   const top = layers[layers.length - 1];
-  if (top.place.id !== place.id) setLayers([top, { place, motion: "swap" }]);
+  if (top.place.id !== place.id) {
+    setLayers([top, { place, motion: "swap", ready: !place.image, serial: top.serial + 1 }]);
+  }
+
+  const markReady = (serial: number) =>
+    setLayers((current) =>
+      current.map((layer) => (layer.serial === serial && !layer.ready ? { ...layer, ready: true } : layer)),
+    );
 
   useEffect(() => {
-    if (layers.length < 2) return;
+    if (top.ready) return;
+    const timer = window.setTimeout(() => markReady(top.serial), PHOTO_WAIT_MS);
+    return () => window.clearTimeout(timer);
+  }, [top.ready, top.serial]);
+
+  useEffect(() => {
+    if (layers.length < 2 || !top.ready) return;
     const timer = window.setTimeout(() => setLayers((current) => current.slice(-1)), PHOTO_SWAP_MS);
     return () => window.clearTimeout(timer);
-  }, [layers]);
+  }, [layers.length, top.ready]);
 
   return (
     <div
@@ -234,15 +259,16 @@ function PhotoStage({
     >
       {layers.map((layer) => (
         <PlaceImage
-          key={layer.place.id}
+          key={layer.serial}
           place={layer.place}
-          alt={layer.place.id === place.id ? alt : ""}
+          alt={layer === top ? alt : ""}
           priority
           sizes={sizes}
           placeholder={placeColor(layer.place)}
+          onLoad={() => markReady(layer.serial)}
           className={cn(
             "absolute inset-0 aspect-auto",
-            layer.motion === "in" ? "motion-photo-in" : "motion-photo-swap",
+            !layer.ready ? "opacity-0" : layer.motion === "in" ? "motion-photo-in" : "motion-photo-swap",
           )}
         />
       ))}

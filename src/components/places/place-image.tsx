@@ -14,6 +14,7 @@ interface PlaceImageProps {
   placeholder?: string;
   className?: string;
   imageClassName?: string;
+  onLoad?: () => void;
 }
 
 /**
@@ -28,6 +29,7 @@ export function PlaceImage({
   placeholder,
   className,
   imageClassName,
+  onLoad,
 }: PlaceImageProps) {
   if (!place.image) {
     return (
@@ -62,6 +64,7 @@ export function PlaceImage({
         fill
         sizes={sizes}
         priority={priority}
+        onLoad={onLoad}
         className={cn("object-cover", imageClassName)}
       />
     </div>

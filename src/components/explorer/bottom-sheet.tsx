@@ -242,6 +242,7 @@ export function BottomSheet({
           }
           className={cn(
             "min-h-0 flex-1 overflow-y-auto overscroll-contain",
+            snap === "peek" && "invisible",
             snap !== "peek" && !overlay && (tint ? "border-t border-white/12" : "border-t border-hairline"),
             !footer && "pb-[env(safe-area-inset-bottom)]",
           )}
