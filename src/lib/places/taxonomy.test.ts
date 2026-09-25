@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { CATEGORIES, FILTER_PILLS, FILTER_TAGS, TAGS } from "./taxonomy";
 
 describe("taxonomy", () => {
-  it("keeps the food and drink sections, then Shops, Museums, Parks, and Wellness", () => {
+  it("keeps the food and drink sections, then Shops, Museums, and Parks", () => {
     expect(CATEGORIES.map((c) => c.plural)).toEqual([
       "Restaurants",
       "Bars",
@@ -14,7 +14,6 @@ describe("taxonomy", () => {
       "Shops",
       "Museums",
       "Parks",
-      "Wellness",
     ]);
   });
 

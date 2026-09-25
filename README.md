@@ -10,7 +10,7 @@ write-up, then open it in Apple Maps or Google Maps with one tap.
   List is a grid of place pictures; Map is a full-screen map with a pin
   per place, a slim list rail beside it on desktop, and a draggable sheet for
   the open place on phones. A category row (the food and drink sections, then
-  _Shops_, _Museums_, _Parks_, and _Wellness_), a neighborhood picker, and five
+  _Shops_, _Museums_, and _Parks_), a neighborhood picker, and five
   pills (_Dinner_, _Lunch_, _Late night_, _Brunch_, _Views_) work in both.
   Every place has a shareable link (`/?place=zuni-cafe`).
 - **Andy and Kirissa** add places at `/admin`: search by name or paste a Maps
@@ -66,7 +66,7 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
-`data/places.json` holds Andy and Kirissa's list: 94 places (restaurants, bars,
+`data/places.json` holds Andy and Kirissa's list: 93 places (restaurants, bars,
 cafés, shops, two museums, two parks, and a bathhouse) geocoded against OpenStreetMap and
 Overture Maps, each with a short neutral summary, a
 researched `signatureSubject` (what it's known for), a `signatureRationale`

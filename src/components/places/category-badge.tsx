@@ -1,4 +1,4 @@
-import { Coffee, Droplet, ShoppingBag } from "react-feather";
+import { Coffee, ShoppingBag } from "react-feather";
 
 import { Bread, Cocktail, IceCream, Museum, Tree, Utensils, WineGlass } from "@/components/icons/feather-extras";
 import type { CategoryId } from "@/lib/places/types";
@@ -14,7 +14,6 @@ export const CATEGORY_ICONS = {
   shop: ShoppingBag,
   museum: Museum,
   park: Tree,
-  wellness: Droplet,
 } satisfies Record<CategoryId, unknown>;
 
 export function CategoryIcon({

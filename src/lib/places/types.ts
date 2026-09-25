@@ -8,7 +8,6 @@ export const CATEGORY_IDS = [
   "shop",
   "museum",
   "park",
-  "wellness",
 ] as const;
 export type CategoryId = (typeof CATEGORY_IDS)[number];
 

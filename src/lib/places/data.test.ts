@@ -23,7 +23,13 @@ describe("data/places.json", () => {
     }
   });
 
-  it("fills Shops, Museums, Parks, and Wellness with exactly Andy's list", () => {
+  it("holds Andy's 93 places, with no Wellness section left", () => {
+    expect(places).toHaveLength(93);
+    expect(places.some((p) => p.id === "alchemy-springs")).toBe(false);
+    expect(new Set(places.map((p) => p.category)).has("wellness" as Place["category"])).toBe(false);
+  });
+
+  it("fills Shops, Museums, and Parks with exactly Andy's list", () => {
     const inSection = (category: Place["category"]) =>
       places
         .filter((p) => p.category === category)
@@ -44,12 +50,11 @@ describe("data/places.json", () => {
     );
     expect(inSection("museum")).toEqual(["de-young-museum", "sfmoma"]);
     expect(inSection("park")).toEqual(["golden-gate-park", "ocean-beach"]);
-    expect(inSection("wellness")).toEqual(["alchemy-springs"]);
   });
 
-  it("never tags shops, parks, or wellness with meals or late night", () => {
+  it("never tags shops or parks with meals or late night", () => {
     for (const place of places) {
-      if (!["shop", "park", "wellness"].includes(place.category)) continue;
+      if (!["shop", "park"].includes(place.category)) continue;
       expect(
         place.tags.filter((t) => t !== "views"),
         place.id,

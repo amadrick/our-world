@@ -950,19 +950,6 @@
       "approved": false
     },
     {
-      "id": "alchemy-springs",
-      "name": "Alchemy Springs",
-      "signatureSubject": "40-person circular sauna",
-      "signatureRationale": "SFGATE, the SF Standard and Dwell all single out the circular, tiered sauna by architect Olle Lundberg, billed as the largest freestanding sauna in the country.",
-      "confidence": "high",
-      "sources": [
-        "https://www.sfgate.com/local/article/san-francisco-secret-retreat-largest-sauna-country-19893924.php",
-        "https://sfstandard.com/2025/06/21/san-francisco-best-saunas/",
-        "https://www.dwell.com/article/san-francisco-first-floating-sauna-fjord-good-hot-alchemy-springs-contrast-therapy-fd61b03f"
-      ],
-      "approved": false
-    },
-    {
       "id": "golden-gate-park",
       "name": "Golden Gate Park",
       "signatureSubject": "Conservatory of Flowers",

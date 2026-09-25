@@ -1,46 +1,12 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 94 places: what each is known for (reviewed in
+Per-place notes for all 93 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 94 of 94 places are researched.
+place. 93 of 93 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
-
-## Alchemy Springs
-
-Wellness · Nob Hill · 939 Post St, San Francisco, CA 94109
-
-**Known for:** 40-person circular sauna (high confidence). SFGATE, the SF Standard and Dwell all single out the circular, tiered sauna by architect Olle Lundberg, billed as the largest freestanding sauna in the country.
-
-### Place research
-
-- **Neighborhood and street:** Nob Hill. Mid-block on Post Street between Hyde and Larkin in Lower Nob Hill, on the Tenderloin edge, among close-packed early-1900s apartment hotels; the 1912 Athenian Apartments stand across the street. The sauna garden is hidden behind the storefront.
-- **Terrain and setting:** Dense urban block at the southern foot of Nob Hill, lined with three- to seven-story apartment buildings that fill their lots. The open-air garden sits behind the building and is reached by heading downstairs through it.
-- **Architecture:** The building is a one-story 1919 brick store block by architect Earle B. Bertz, with Mission/Spanish Colonial Revival ornament and an essentially intact facade, a contributor to the Lower Nob Hill Apartment Hotel Historic District; it later held auto repair shops and a party-supply megastore. Inside, a rack of waffle-knit robes greets visitors at street level, stairs lead down to a cavernous lower room, and doors open onto the roughly 2,500-square-foot outdoor Sauna Garden designed by Olle Lundberg's firm: a freestanding circular sauna with stadium-style tiered seating and immersive sound and lighting, cold-plunge tubs, an open-air shower wall, thermal benches and a fire pit. Changing rooms and lockers are temporary while the indoor bathhouse is built out.
-- **Unique architectural notes:** What its operators and SFGATE call the largest freestanding sauna in the country: a circular, theater-like sauna seating about 40 on tiered benches, standing in a hidden garden behind a 1919 storefront.
-- **Most iconic physical characteristics:**
-  - circular freestanding sauna with tiered seating
-  - cold-plunge tubs beside an open-air shower wall
-  - fire pit ringed by thermal benches
-  - one-story 1919 brick storefront on Post Street
-- **More recognizable view:** the interior
-- **View used for the image:** a close view inside the Sauna Garden: the curved wooden wall and tiered benches of the circular sauna, with a cold-plunge tub in the foreground
-- **Not verified:** The sauna's exterior material and color, the facade color, signage, windows and entrance details, and the street grade were not verified. A 2021 design announcement described cutting a central light well (a 'cenote') through the building; whether it was built is unconfirmed. Sources give the sauna's capacity as 40 to 45.
-- **Sources:**
-  - <https://www.alchemysprings.com/>
-  - <https://www.alchemysprings.com/about>
-  - <https://www.sfgate.com/local/article/san-francisco-secret-retreat-largest-sauna-country-19893924.php>
-  - <https://sfstandard.com/2025/06/21/san-francisco-best-saunas/>
-  - <https://www.dwell.com/article/san-francisco-first-floating-sauna-fjord-good-hot-alchemy-springs-contrast-therapy-fd61b03f>
-  - <https://hospitalitydesign.com/news/alchemy-springs-communal-bathhouse/124176>
-  - <https://partiful.com/u/rRg74H1lAPenjxXssVok>
-  - <https://sfguide.co/activity/alchemy-springs/>
-  - <https://www.resortpass.com/hotels/alchemy-springs-sauna-garden>
-  - <https://npgallery.nps.gov/NRHP/GetAsset/NRHP/91000957_text>
-  - <https://www.leisureopportunities.co.uk/news/San-Franciscos-modern-bathhouse-and-social-wellness-club-Alchemy-Springs-to-unveil-new-facilities/356031>
-  - <https://opengovus.com/san-francisco-business/0044885-09-001>
 
 ## Andytown Coffee Roasters
 

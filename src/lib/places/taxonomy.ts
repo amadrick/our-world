@@ -16,7 +16,6 @@ export const CATEGORIES: CategoryInfo[] = [
   { id: "shop", label: "Shop", plural: "Shops" },
   { id: "museum", label: "Museum", plural: "Museums" },
   { id: "park", label: "Park", plural: "Parks" },
-  { id: "wellness", label: "Wellness", plural: "Wellness" },
 ];
 
 const CATEGORY_BY_ID = Object.fromEntries(

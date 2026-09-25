@@ -37,7 +37,6 @@ const CATEGORY_BY_OSM: Record<string, Record<string, CategoryId>> = {
     cafe: "coffee",
     ice_cream: "dessert",
     arts_centre: "museum",
-    public_bath: "wellness",
   },
   shop: {
     bakery: "bakery",
@@ -68,7 +67,6 @@ const CATEGORY_BY_OSM: Record<string, Record<string, CategoryId>> = {
     park: "park",
     garden: "park",
     nature_reserve: "park",
-    sauna: "wellness",
   },
   natural: { beach: "park" },
 };
