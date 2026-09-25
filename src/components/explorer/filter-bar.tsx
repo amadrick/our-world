@@ -73,7 +73,7 @@ function CategoryTab({
     >
       <TabIcon
         size={24}
-        className="transition-transform duration-200 ease-snappy group-active/tab:scale-90 motion-reduce:transition-none"
+        className="transition-transform duration-200 ease-snappy group-active/tab:scale-90 motion-reduce:transition-none motion-reduce:group-active/tab:scale-100"
       />
       {label}
       <span

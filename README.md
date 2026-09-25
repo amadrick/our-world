@@ -173,15 +173,13 @@ Both also rewrite `data/places.md`.
 
 - **Next.js 16** (App Router) with TypeScript, Tailwind CSS v4, and
   [shadcn/ui](https://ui.shadcn.com) components.
-- **Design:** Liquid Glass chrome over calm content, following Apple's
-  [Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass)
-  and [Materials](https://developer.apple.com/design/human-interface-guidelines/materials)
-  guidance (see "Liquid Glass" below). One typeface, [Inter](https://rsms.me/inter/)
-  Variable (self-hosted in `public/fonts`), at weight 425 with Inter's square
-  punctuation and quotes (`ss07`, `ss08`), and a four-step type scale (13, 16,
-  20, 28px) defined in `src/app/globals.css`. Icons are
-  [Feather](https://feathericons.com) (`react-feather`), plus a few Feather-style
-  glyphs for categories Feather lacks (`src/components/icons/feather-extras.tsx`).
+- **Design:** solid, contained surfaces with big, tactile controls, in the
+  spirit of Airbnb (see "Design system" below). One typeface,
+  [Inter](https://rsms.me/inter/) Variable (self-hosted in `public/fonts`),
+  with Inter's square punctuation and quotes (`ss07`, `ss08`). Icons are
+  [Feather](https://feathericons.com) (`react-feather`), plus a few
+  Feather-style glyphs Feather lacks (`src/components/icons/feather-extras.tsx`),
+  including the Golden Gate on the "All" tab.
 - **Map:** [MapLibre GL](https://maplibre.org) with "Paper", a calm custom
   style (`src/lib/map/style.ts`), on free
   [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed.
@@ -209,48 +207,67 @@ src/components/admin/*      admin sign-in, form, and place list
 src/config/site.ts          title and copy shown to guests
 ```
 
-## Liquid Glass
+## Design system
 
-Glass is the functional layer: the List | Map switch, map rail, bottom sheet,
-filter pills, map controls, buttons, popovers, dialogs, and admin chrome. It floats over the
-content layer (the map, place pictures, and the admin's blurred mosaic)
-and is never applied to content itself. The primitive is a set of CSS classes in
-`src/app/globals.css`, driven by variables:
+The guest guide is built from solid white surfaces on one warm canvas (the
+same `#F5F4F1` as the map's land), with a single ink color (`#222`) for text,
+the primary action, and selection. Every piece of content sits in a bounded
+surface: the list header band, listing pictures, the map rail, the phone sheet,
+the details panel, and the sticky action bar. Tokens live in
+`src/app/globals.css`.
 
-| Token | Default | Role |
+| Token | Values | Used for |
 | --- | --- | --- |
-| `--glass-blur` / `--glass-saturation` / `--glass-brightness` | 22px / 190% / 1.06 | Backdrop blur that lets color through and lifts luminosity |
-| `--glass-tint` | white 50% | Regular: text-heavy chrome (panel, sheet, pills, popovers) |
-| `--glass-tint-thick` | white 78% | Expanded sheet, dialogs, admin cards |
-| `--glass-tint-clear` | white 14% | Clear: controls over rich media (the back button on a place image) |
-| `--glass-tint-ink` | near-black 86% | The one prominent action or selection |
-| `--glass-rim`, `--glass-sheen`, `--glass-glow` | | Lit edge, gradient bevel, and specular highlight |
-| `--glass-edge`, `--glass-shadow` | | 0.5px outline and soft diffuse lift |
+| Type (`text-*`) | sm 14/20, base 16/24, lg 20/26, xl 28/32, 2xl 40/44 | Meta and chips; body and buttons; panel titles; place and phone page titles; the desktop page title |
+| Weight (`font-*`) | normal 425, medium 550, semibold 650 | Body; chips and labels; titles and buttons |
+| Radius (`rounded-*`) | sm 8, md 12, lg 16, xl 20, 2xl 24, full | Inner bits; thumbnails and menu rows; buttons and highlight tiles; listing pictures; panels, sheets, and the details card; chips, switch, pins, icon buttons |
+| Spacing | 4px grid (mostly 8, 12, 16, 24, 32) | Section rhythm is 24px with hairline dividers |
+| Elevation (`shadow-*`) | `card`, `float`, `raised`, `pin`, `bar` | Resting cards; floating controls; the rail, sheet, and popovers; map markers; the sticky phone action bar |
+| Color | `ink` #222, `muted-foreground` #6A6A6A, `border` #DDD, `hairline` #EBEBEB, `canvas` #F5F4F1, `surface` #FFF | |
 
-Classes: `glass` (regular), plus `glass-thick`, `glass-clear`, and `glass-ink`
-modifiers; `glass-interactive` for controls that brighten and press in;
-`glass-fill` for controls resting on glass (glass isn't stacked on glass); and
-`scroll-edge` for sticky bars that blur content scrolling beneath them.
+Controls:
+- **Buttons** (`src/components/ui/button.tsx`): solid ink for the primary
+  action, a crisp 1px ink outline for the secondary one. 48px by default and
+  56px (`size="lg"`) for the place actions, with a 16px radius. Every control
+  sinks slightly when pressed (`pressable`) and shows a 2px ink focus ring
+  (`focus-ring`).
+- **Category row:** a glyph over each label, underlined in ink when selected,
+  like Airbnb's category bar. **Chips** below it (neighborhood and tags, each
+  with an icon) are 44px pills with a 1px outline that invert to ink when on.
+  Both rows scroll sideways on narrow screens, fading only on the side with more
+  to see, with chevron buttons for mouse users (`scroll-row.tsx`).
+- **Listing cards:** the square picture on top (20px radius, a hairline inner
+  edge so white-backed pictures still read as tiles), then the name in
+  semibold and two muted lines: what it's known for, and category ·
+  neighborhood. A top pick gets a white badge on the picture.
+- **List | Map switch:** a 56px ink capsule floating bottom center, with a
+  white thumb that slides to the selected mode (arrow keys work). On desktop
+  map mode it centers over the map, beside the rail. It steps aside on phones
+  while a place is open, where the action bar takes its spot.
+- **Map pins:** price-pill-style markers. Zoomed out past the city they are
+  small ink dots; at city zoom, a white capsule with the category glyph; up
+  close, the glyph plus the name. Hovered and selected pins always show the
+  name; the selected one inverts to ink.
+- **Place details:** category and neighborhood, then the name, then "Open in
+  Apple Maps" (solid, full width) above "Open in Google Maps" (outline). Below
+  that, sections divided by hairlines: a "Known for" highlight with the tags as
+  icon pills, the hosts' note, the write-up, and the address with a copy
+  button. On phones the picture stacks above the details card and both map
+  buttons sit in a sticky bottom bar; in the map sheet the name rides in the
+  sheet's header and the buttons stay pinned at its foot, so a peeking sheet
+  reads like a listing card.
 
-What follows Apple's guidance:
-- The sheet floats inset at partial heights and goes edge to edge, and more
-  opaque, when fully expanded.
-- Corners are concentric with their containers.
-- Map controls are grouped into shared capsules.
-- The List | Map switch is a segmented control: one capsule, an ink thumb that
-  slides to the selected mode, arrow keys to change it. It sits bottom center
-  in both modes, in thumb reach on phones.
-- Color stays out of the chrome so the content can tint it.
+Accessibility:
+- `prefers-reduced-motion` removes the press, hover-zoom, thumb-slide, and
+  sheet animations.
+- `prefers-contrast: more` darkens muted text, borders, and hairlines.
+- Surfaces are opaque, so there is nothing to lose under
+  `prefers-reduced-transparency`.
 
-In Chromium, small controls also get an SVG edge-refraction filter
-(`src/components/ui/glass-refraction.tsx`); other browsers keep the frosted
-look.
-
-Accessibility fallbacks:
-- `prefers-reduced-transparency` swaps every surface for a solid, blur-free
-  equivalent (so does a browser without `backdrop-filter`).
-- `prefers-contrast: more` strengthens tints and edges.
-- `prefers-reduced-motion` removes the press and sheet-morph animations.
+The admin keeps its Liquid Glass chrome over the image mosaic (`glass`,
+`glass-thick`, `glass-fill`, and friends in `globals.css`), with solid
+fallbacks under `prefers-reduced-transparency` and in browsers without
+`backdrop-filter`.
 
 ## Scripts
 

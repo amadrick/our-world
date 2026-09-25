@@ -345,7 +345,9 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           <header className="bg-surface">
             <div className="mx-auto max-w-7xl px-5 pt-[max(env(safe-area-inset-top),28px)] pb-2 lg:px-10 lg:pt-14">
               <h1 className="text-xl font-semibold text-balance lg:text-2xl">{site.title}</h1>
-              <p className="mt-2 max-w-xl text-base text-muted-foreground">{site.tagline}</p>
+              <p className="mt-2 max-w-2xl text-base text-balance text-muted-foreground">
+                {site.tagline}
+              </p>
             </div>
           </header>
           <div className="sticky top-0 z-10 border-b border-hairline bg-surface">
