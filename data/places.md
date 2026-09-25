@@ -26,6 +26,7 @@ Wellness · Nob Hill · 939 Post St, San Francisco, CA 94109
   - fire pit ringed by thermal benches
   - one-story 1919 brick storefront on Post Street
 - **More recognizable view:** the interior
+- **View used for the image:** a close view inside the Sauna Garden: the curved wooden wall and tiered benches of the circular sauna, with a cold-plunge tub in the foreground
 - **Not verified:** The sauna's exterior material and color, the facade color, signage, windows and entrance details, and the street grade were not verified. A 2021 design announcement described cutting a central light well (a 'cenote') through the building; whether it was built is unconfirmed. Sources give the sauna's capacity as 40 to 45.
 - **Sources:**
   - <https://www.alchemysprings.com/>
@@ -814,6 +815,7 @@ Wine · North Beach · 362 Columbus Ave, San Francisco, CA 94133
   - large front window beside the recessed entry
   - small sidewalk parklet
 - **More recognizable view:** the interior
+- **View used for the image:** a close detail inside: the walls of poetry books and black-and-white photographs beside the stairs up to the loft
 - **Not verified:** Facade color, signage lettering, and any awning could not be verified; building era not confirmed; street grade and street trees not sourced. The grouping of 362 Columbus with Caffe Trieste's parcel (Block 0146 Lot 001) comes from a third-party parcel page, not the Assessor directly. The recessed-entry detail comes from a 2021 permit record for 362 Columbus (BuildZoom).
 - **Sources:**
   - <https://www.goldensardinesf.com/info>
@@ -1238,6 +1240,7 @@ Restaurant · Marina · 2301 Chestnut St, San Francisco, CA 94123
   - black-and-white checkered terrazzo floor
   - six-foot portrait of Tony Rodin
 - **More recognizable view:** the facade
+- **View used for the image:** the dining room: the black-and-white checkered terrazzo floor, black tufted banquettes, burgundy chairs and brass chandeliers, looking toward the marble bar and the brass-trimmed open kitchen under its red hood
 - **Not verified:** Sign lettering, style, color and exact placement are not described beyond custom-designed signs on either side of the building. The dark blue and gold exterior comes from a single architect materials list; the architects say only that the exterior was repainted in a new color scheme. The southwest-corner placement is inferred from address numbering, parcel coordinates, and a 2011 blog noting this side of Chestnut is in shadow. Current sidewalk seating is unconfirmed. Awning presence, street trees and fog come from general Marina geography, not from sources. Press calls the building 1920s, while property records and a Deco guide date it to 1931. Most pages were blocked, so details come from search-result excerpts.
 - **Sources:**
   - <https://www.littleoriginaljoes.com/marina-contact-hours>
@@ -1332,6 +1335,7 @@ Dessert · North Beach · 520 Columbus Ave, San Francisco, CA 94133
   - black-and-white stripes
   - muraled Red Window corner next door
 - **More recognizable view:** the facade
+- **View used for the image:** the interior, looking out through the glass walls onto Columbus Avenue and Stockton Street, with the counter to one side and the small benches along the glass
 - **Not verified:** Facade color, sign lettering and placement, and whether there is an awning could not be confirmed (no photos could be viewed). The black-and-white stripes come from a single tour blog, and it is unclear whether they are on an awning, the exterior, or interior walls. Interior layout (where the display case and production kitchen sit, finishes, lighting) is not confirmed. A designer's published interior (marble counter, pendant lights, wood and tile) appears to be the closed Polk Street shop and was not used. The glass-walls-on-both-streets and 876-square-foot details date from Gelateria Naia's 2006 fit-out of the same space; whether the Stockton side is still fully glazed today is not confirmed. The building's story count, street grade, and street trees on this block are not confirmed.
 - **Sources:**
   - <https://www.lushgelato.com/find-us>
@@ -1912,6 +1916,7 @@ Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123
   - white steel trusses under a 28-foot ceiling
   - wall of steel-sash windows facing the Golden Gate Bridge
 - **More recognizable view:** the interior
+- **View used for the image:** the interior, looking down the long raw Ponderosa pine counter and log benches toward the wall of steel-sash windows onto the bay and the Golden Gate Bridge
 - **Not verified:** Exact compass orientation of the window wall and which marina it faces were not confirmed; a Dezeen excerpt mentions red-colored frames on a pair of elements (likely the pivot doors) but the text was truncated; sources differ on the timber (Fort Mason says a single 200-foot pine, while Envelope A+D and Architectural Record say two salvaged pines); fog and street trees not sourced.
 - **Sources:**
   - <https://radhaussf.com/>
@@ -2116,6 +2121,7 @@ Shop · Mission · 569 Valencia St, San Francisco, CA 94110
   - racks of raw indigo denim
   - next door to Stonemill Matcha's dark blue front
 - **More recognizable view:** the facade
+- **View used for the image:** a close detail inside: stacked shelves of raw indigo denim and a vintage chainstitch machine on a worktable
 - **Not verified:** Thin research: few physical descriptions of the current store. Facade color, sign lettering, window displays and interior fixtures at 569 Valencia not verified; the office and three dressing rooms come from the 2019 plan. Often-cited details (antique furniture, Persian rugs, framed worn jeans, a vintage motorcycle in the window, a loft) describe the original 714 Valencia shop and may not carry over. The 2011 district record calls 567-575 Valencia Mission Revival, while a 2012 SFSU slide caption calls the block's buildings Classical Revival. Whether the repair machines are on view in this store, and whether Locanda and De Angelis are still neighbors, not checked.
 - **Sources:**
   - <https://www.selfedge.com/index.php?route=selfedge%2Flocations>
@@ -2248,6 +2254,7 @@ Shop · Lower Pacific Heights · 2120 Sutter St, San Francisco, CA 94115
   - long blond-wood tasting table by the front windows
   - vintage Marantz amplifier on the divider shelving
 - **More recognizable view:** the interior
+- **View used for the image:** a close detail inside, away from the windows: the long blond-wood tasting table against the wall of white porcelain canisters
 - **Not verified:** Building era, facade material and facade color are not documented beyond an unassuming storefront among Victorians. Most interior detail dates from 2013-2020 coverage and the layout may have changed; at opening the room also had armchairs on rugs near bookcases. The tasting table's position differs by source (by the front windows in most accounts and the shop's own event listings, 'in the back' in one 2020 guide; one source calls it a low table). Which side of Sutter and the street grade were not verified.
 - **Sources:**
   - <https://songtea.com/pages/local-pick-up>
