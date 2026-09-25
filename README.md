@@ -44,7 +44,7 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 | `PLACES_FILE` | Where places are stored. Defaults to `data/places.json`. |
 | `OPENAI_IMAGE_MODEL` | Image model for `npm run images`. Defaults to `gpt-image-1`. |
 | `PLACE_IMAGE_GENERATION` | Set to `on` to draw place pictures (from the admin and `npm run images`). Off by default so nothing spends image budget by accident. |
-| `NEXT_PUBLIC_MAP_TILES` | Set to `offline` to use locally generated map tiles (see below). |
+| `NEXT_PUBLIC_MAP_TILES` | The map draws the San Francisco tiles the app serves itself (see Map tiles). Set to `openfreemap` to use OpenFreeMap's hosted planet tiles instead. |
 
 ## Adding a place
 
@@ -201,8 +201,9 @@ Both also rewrite `data/places.md`.
   [Feather](https://feathericons.com) (`react-feather`), plus a few
   Feather-style glyphs Feather lacks (`src/components/icons/feather-extras.tsx`),
   including the Golden Gate on the "All" tab.
-- **Map:** [MapLibre GL](https://maplibre.org) on free
-  [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed,
+- **Map:** [MapLibre GL](https://maplibre.org) on OpenStreetMap tiles the app
+  serves itself (a San Francisco cut of the [Protomaps](https://protomaps.com)
+  build, see Map tiles), so no account or key is needed,
   styled by one of five designed basemaps (`src/lib/map/themes/`, see Map
   below). Map labels use Inter and Newsreader files from `public/fonts`
   through MapLibre's `font-faces`. Map code sits behind a small `MapProvider`
@@ -420,26 +421,45 @@ Accessibility:
 | `npm run signatures:apply` / `:export` | Sync the signature review sheet (see Reviewing signatures) |
 | `npm run places:md` | Rewrite `data/places.md` from `data/places.json` |
 | `npm run images` | Generate or import place pictures (see Place images) |
-| `npm run tiles:offline` | Download an offline copy of the SF basemap (see below) |
+| `npm run tiles:offline` | Rebuild the checked-in San Francisco map tiles (see Map tiles) |
 | `npm run terrain:offline` | Rebuild the hillshade elevation tiles (see below) |
 
-## Offline map tiles
+## Map tiles
 
-If your network blocks `tiles.openfreemap.org` (some offices and cloud sandboxes
-do), run `npm run tiles:offline`. It builds a ~22 MB copy of the San Francisco
-basemap in `public/offline-tiles/` from the public
-[Protomaps](https://protomaps.com) OpenStreetMap build, converted to the same
-schema so the map looks the same. Then set `NEXT_PUBLIC_MAP_TILES=offline` in
-`.env.local`.
+The basemap is checked in: `public/offline-tiles/` (26 MB, 716 files) holds
+vector tiles cut from the public [Protomaps](https://protomaps.com)
+OpenStreetMap build and converted to the OpenMapTiles schema the styles use,
+plus the label glyphs. They cover the Bay Area to zoom 10, and San Francisco
+(and Ordinaire's blocks in Oakland) to zoom 15; MapLibre overzooms past that.
+The app serves them itself as plain static files, so there's no tile server,
+key, or range request involved.
+
+`npm run tiles:offline` rebuilds them all from the current Protomaps build;
+add a new area to the script and run `npm run tiles:offline -- --missing` to
+fetch only the tiles that aren't there yet.
 
 The dimensional basemap's hills come from `public/offline-terrain/` (1.5 MB,
 checked in), which `npm run terrain:offline` builds from the
 [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) 1 arc-second elevation
 model. Without it, that basemap simply skips the hillshade.
 
-## Deploying (later)
+## Deploying
 
-The app runs on Vercel as-is for guests. Adding places needs writable storage,
-which Vercel's filesystem isn't, so the deploy step swaps `JsonPlaceStore` for a
-hosted store (for example Vercel KV or Postgres) behind the same `PlaceStore`
-interface. Set `ADMIN_PASSWORD` and `OPENAI_API_KEY` in the Vercel project.
+Connect the repository to [Vercel](https://vercel.com) with the defaults: the
+Next.js framework preset, `npm run build`, no output or root directory
+changes, and no environment variables. Everything the guide shows (tiles,
+glyphs, fonts, the MapLibre worker, place pictures) is served by the app from
+same-origin URLs. `npm run build` first copies the MapLibre worker into
+`public/maplibre/`, which is also done on install.
+
+- The guide is shared by link: every page and file is sent with `noindex`
+  (the metadata and an `X-Robots-Tag` header), and there's no `robots.txt`
+  block, so link previews still work. The share preview is
+  `src/app/opengraph-image.jpg`.
+- Place pictures are cached for a year (their names carry a content hash);
+  tiles, glyphs, fonts, and textures for a day, revalidating for a week.
+- `/admin` stays locked on a deployment until `ADMIN_PASSWORD` is set. Adding
+  places there needs writable storage, which Vercel's filesystem isn't, so a
+  deployed admin needs a hosted store (for example Vercel KV or Postgres)
+  behind the same `PlaceStore` interface, plus `OPENAI_API_KEY`. Until then,
+  add places locally, commit, and push.
