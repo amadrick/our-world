@@ -250,7 +250,7 @@ const PHOTO_FADE = fadeOutMask(52);
 
 interface PhotoLayer {
   place: Place;
-  motion: "in" | "swap";
+  motion: "in" | "swap" | "slide";
   /** Loaded (or given up waiting), so its fade can start. */
   ready: boolean;
   serial: number;
@@ -280,7 +280,13 @@ function PhotoStage({
   ]);
   const top = layers[layers.length - 1];
   if (top.place.id !== place.id) {
-    const incoming: PhotoLayer = { place, motion: "swap", ready: !place.image, serial: top.serial + 1 };
+    // A swipe's photo was fetched ahead, so it slides in at once; a crossfade waits for its picture.
+    const incoming: PhotoLayer = {
+      place,
+      motion: replace ? "slide" : "swap",
+      ready: replace || !place.image,
+      serial: top.serial + 1,
+    };
     setLayers(replace ? [incoming] : [top, incoming]);
   }
 
@@ -317,7 +323,7 @@ function PhotoStage({
           onLoad={() => markReady(layer.serial)}
           className={cn(
             "absolute inset-0 aspect-auto",
-            !layer.ready ? "opacity-0" : layer.motion === "in" ? "motion-photo-in" : "motion-photo-swap",
+            !layer.ready ? "opacity-0" : `motion-photo-${layer.motion}`,
           )}
         />
       ))}
@@ -500,7 +506,9 @@ export function PlaceDetail({
         data-enter={enterSide(enterFrom)}
         className="relative mx-auto max-w-[1144px] md:grid md:grid-cols-2 md:items-start md:gap-10 md:px-10 md:pt-8 md:pb-24 lg:grid-cols-[440px_minmax(0,1fr)] lg:gap-16 lg:pb-8"
       >
-        <div className={cn("swipe-parallax relative", switched && "motion-photo-swap")}>
+        <div
+          className={cn("swipe-parallax relative", switched && (swiped ? "motion-photo-slide" : "motion-photo-swap"))}
+        >
           <PhotoHalo place={place} className="hidden md:block" />
           <PlaceImage
             place={place}

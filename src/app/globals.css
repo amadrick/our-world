@@ -612,6 +612,10 @@ body .maplibregl-ctrl-attrib {
 .motion-photo-swap {
   animation: photo-swap 420ms var(--ease-out-soft) both;
 }
+/* After a swipe the old photo has already slid away: the new one slides in from that side, visible from the first frame. */
+.motion-photo-slide {
+  animation: photo-slide 380ms var(--ease-out-soft) both;
+}
 .motion-item {
   animation: item-in var(--item-duration, 520ms) var(--ease-out-soft) both;
   animation-delay: calc(var(--item-start, 110ms) + var(--i, 0) * var(--item-step, 55ms));
@@ -626,6 +630,12 @@ body .maplibregl-ctrl-attrib {
   from {
     opacity: 0;
     transform: translate3d(calc(var(--item-shift, 0px) * 0.6), 0, 0) scale(1.03);
+  }
+}
+@keyframes photo-slide {
+  from {
+    opacity: 0.3;
+    transform: translate3d(calc(var(--item-shift, 0px) * 2.5), 0, 0) scale(1.02);
   }
 }
 @keyframes item-in {
@@ -661,7 +671,8 @@ body .maplibregl-ctrl-attrib {
 }
 .swipe-parallax {
   translate: calc(var(--swipe-x, 0px) * 0.55) 0;
-  opacity: var(--swipe-fade, 1);
+  /* The photo dims but never empties, so the next one arrives over something. */
+  opacity: calc(0.35 + var(--swipe-fade, 1) * 0.65);
 }
 [data-swipe="back"] :is(.swipe-follow, .swipe-parallax) {
   transition:
@@ -677,6 +688,7 @@ body .maplibregl-ctrl-attrib {
 @media (prefers-reduced-motion: reduce) {
   .motion-photo-in,
   .motion-photo-swap,
+  .motion-photo-slide,
   .motion-item {
     animation: fade-only 180ms ease-out both;
   }
