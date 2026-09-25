@@ -1,16 +1,15 @@
 #!/usr/bin/env node
-// Builds a small offline copy of the San Francisco basemap for networks that
-// can't reach tiles.openfreemap.org (for example locked-down CI or cloud VMs).
+// Builds the San Francisco basemap the app serves itself (public/offline-tiles/).
 //
 // It reads the public Protomaps planet build over HTTP range requests,
-// converts each tile from the Protomaps schema to the OpenMapTiles schema that
-// OpenFreeMap serves (so the app's map style renders unchanged), and writes the
-// result plus the label fonts to public/offline-tiles/. Enable it with
-// NEXT_PUBLIC_MAP_TILES=offline.
+// converts each tile from the Protomaps schema to the OpenMapTiles schema the
+// map styles are written for, and writes the result plus the label fonts to
+// public/offline-tiles/.
 //
-// Usage: node scripts/build-offline-tiles.mjs
+// Usage: node scripts/build-offline-tiles.mjs [--missing]
+//   --missing  only fetch tiles that aren't on disk yet, leaving existing ones as they are
 
-import { mkdir, writeFile } from "node:fs/promises";
+import { access, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { PMTiles } from "pmtiles";
 import { VectorTile } from "@mapbox/vector-tile";
@@ -28,7 +27,10 @@ const FONT_RANGES = ["0-255", "256-511", "8192-8447"];
 const OUT_DIR = path.resolve("public/offline-tiles");
 const BAY_AREA = [-123.1, 37.2, -121.6, 38.3];
 const SAN_FRANCISCO = [-122.56, 37.69, -122.34, 37.86];
+// Places across the Bay get street-level tiles for their own few blocks (Ordinaire, Grand Ave, Oakland).
+const ACROSS_THE_BAY = [[-122.262, 37.803, -122.232, 37.824]];
 const MAX_ZOOM = 15;
+const ONLY_MISSING = process.argv.includes("--missing");
 
 function lngLatToTile(lng, lat, z) {
   const n = 2 ** z;
@@ -41,15 +43,19 @@ function lngLatToTile(lng, lat, z) {
 }
 
 function tilesFor(z) {
-  const [w, s, e, n] = z <= 10 ? BAY_AREA : SAN_FRANCISCO;
-  const [x0, y0] = lngLatToTile(w, n, z);
-  const [x1, y1] = lngLatToTile(e, s, z);
-  const tiles = [];
-  for (let x = x0; x <= x1; x++) {
-    for (let y = y0; y <= y1; y++) tiles.push([z, x, y]);
+  const areas = z <= 10 ? [BAY_AREA] : [SAN_FRANCISCO, ...ACROSS_THE_BAY];
+  const tiles = new Map();
+  for (const [w, s, e, n] of areas) {
+    const [x0, y0] = lngLatToTile(w, n, z);
+    const [x1, y1] = lngLatToTile(e, s, z);
+    for (let x = x0; x <= x1; x++) {
+      for (let y = y0; y <= y1; y++) tiles.set(`${x}/${y}`, [z, x, y]);
+    }
   }
-  return tiles;
+  return [...tiles.values()];
 }
+
+const exists = (file) => access(file).then(() => true, () => false);
 
 const GRASS = new Set([
   "grass", "grassland", "meadow", "garden", "golf_course", "dog_park",
@@ -215,12 +221,14 @@ async function buildTiles() {
   async function worker() {
     while (queue.length) {
       const [z, x, y] = queue.shift();
+      const dir = path.join(OUT_DIR, String(z), String(x));
+      const file = path.join(dir, `${y}.pbf`);
+      if (ONLY_MISSING && (await exists(file))) continue;
       const tile = await archive.getZxy(z, x, y);
       if (!tile?.data) continue;
       const encoded = convertTile(tile.data);
-      const dir = path.join(OUT_DIR, String(z), String(x));
       await mkdir(dir, { recursive: true });
-      await writeFile(path.join(dir, `${y}.pbf`), encoded);
+      await writeFile(file, encoded);
       bytes += encoded.byteLength;
       done++;
       if (done % 50 === 0) console.log(`  ${done}/${jobs.length}`);
@@ -244,5 +252,5 @@ async function buildFonts() {
   console.log(`Wrote ${FONTS.length} fonts`);
 }
 
-await buildFonts();
+if (!ONLY_MISSING || !(await exists(path.join(OUT_DIR, "fonts")))) await buildFonts();
 await buildTiles();

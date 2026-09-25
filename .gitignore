@@ -41,8 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# generated offline map tiles (npm run tiles:offline)
-/public/offline-tiles/
 
 # MapLibre worker, copied from node_modules on install
 /public/maplibre/

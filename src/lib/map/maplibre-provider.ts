@@ -15,8 +15,9 @@ type MapLibre = typeof import("maplibre-gl");
 
 const LOAD_TIMEOUT_MS = 20000;
 
+/** The San Francisco tiles in public/offline-tiles, served by the app itself; OpenFreeMap only when asked for. */
 function tileSource(): TileSource {
-  return process.env.NEXT_PUBLIC_MAP_TILES === "offline" ? "offline" : "openfreemap";
+  return process.env.NEXT_PUBLIC_MAP_TILES === "openfreemap" ? "openfreemap" : "offline";
 }
 
 /** Shrinks padding if panels would leave too little room to fit anything. */
