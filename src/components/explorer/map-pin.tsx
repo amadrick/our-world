@@ -4,13 +4,15 @@ import { Star } from "react-feather";
 
 import { CATEGORY_ICONS } from "@/components/places/category-badge";
 import type { PinDisplay } from "@/lib/map/pin-layout";
-import { CATEGORY_COLORS, PIN, pinKind } from "@/lib/map/pin-style";
+import { PIN, pinKind, type CategoryColor } from "@/lib/map/pin-style";
 import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 
 interface MapPinProps {
   place: Place;
+  /** Its category's colors in the current basemap's pin palette. */
+  color: CategoryColor;
   selected: boolean;
   highlighted: boolean;
   display: PinDisplay;
@@ -24,10 +26,9 @@ interface MapPinProps {
  * the name beside it. Selected, it grows into a balloon whose tip marks the
  * spot. Hidden pins stay mounted, faded out, so they pop in when there's room.
  */
-export const MapPin = memo(function MapPin({ place, selected, highlighted, display, onSelect, onHighlight }: MapPinProps) {
+export const MapPin = memo(function MapPin({ place, color, selected, highlighted, display, onSelect, onHighlight }: MapPinProps) {
   const pick = place.andyFavorite === true;
   const kind = pinKind(place.category);
-  const color = CATEGORY_COLORS[place.category];
   const Glyph = CATEGORY_ICONS[place.category];
   const hidden = display === "hidden";
 

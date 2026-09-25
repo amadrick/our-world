@@ -8,7 +8,8 @@ import { createPortal } from "react-dom";
 
 import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from "@/lib/map";
 import { layoutPins, type PinDisplay } from "@/lib/map/pin-layout";
-import { estimateText, pinKind } from "@/lib/map/pin-style";
+import { APPLE_PINS, estimateText, pinKind, pinPalette, type PinPalette } from "@/lib/map/pin-style";
+import { currentMapTheme } from "@/lib/map/theme";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -77,6 +78,7 @@ export function MapView({
   const framedRef = useRef(false);
   const [status, setStatus] = useState<Status>("loading");
   const [layout, setLayout] = useState<Layout>(() => new Map());
+  const [palette, setPalette] = useState<PinPalette>(APPLE_PINS);
   const frameRef = useRef(0);
   // Pin DOM nodes live outside React's tree (the map positions them), so React renders into them via portals.
   const [pinElements] = useState(() => new Map<string, HTMLElement>());
@@ -152,6 +154,7 @@ export function MapView({
           zoom: DEFAULT_VIEW.zoom,
           onReady: () => {
             instanceRef.current = instance;
+            setPalette(pinPalette(currentMapTheme()));
             setStatus("ready");
             scheduleLayout();
           },
@@ -270,7 +273,19 @@ export function MapView({
   );
 
   return (
-    <div className={cn("bg-map", className)}>
+    <div
+      className={cn("bg-map", className)}
+      style={
+        {
+          "--pin-ring": palette.ring.light,
+          "--pin-ring-dark": palette.ring.dark,
+          "--pin-caption": palette.caption.light,
+          "--pin-caption-dark": palette.caption.dark,
+          "--pin-halo": palette.halo.light,
+          "--pin-halo-dark": palette.halo.dark,
+        } as React.CSSProperties
+      }
+    >
       <div ref={containerRef} className="h-full w-full" />
 
       {status === "ready" &&
@@ -278,6 +293,7 @@ export function MapView({
           createPortal(
             <MapPin
               place={place}
+              color={palette.categories[place.category]}
               selected={place.id === selectedId}
               highlighted={place.id === highlightedId}
               display={layout.get(place.id) ?? "hidden"}
