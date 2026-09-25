@@ -488,6 +488,7 @@ Museum · Golden Gate Park · 50 Hagiwara Tea Garden Dr, San Francisco, CA 94118
   - the huge cantilevered copper roof hovering over the sculpture garden on the west side
   - Andy Goldsworthy's "Drawn Stone" crack running through the paving and split boulders to the front door
 - **More recognizable view:** the facade
+- **View used for the image:** the twisting Hamon Observation Tower up close from the Music Concourse: a tall slab of dark, weathered copper panels punched with round holes and pressed dimples, turning as it rises above the flat-clipped plane trees, with the long, low copper facade along its base
 - **Not verified:** The exact typeface and letter case of the "de Young" facade lettering, and whether the letters are flat, recessed or cut; where exhibition banners currently hang (they are left out of the image notes); how green the copper is today, since 2023 sources disagree; the tower's rotation angle (30 or 37 degrees) and exact height (144 ft in most sources, 160 ft in one engineering listing); whether the tower has window bands behind its perforated screen.
 - **Sources:**
   - <https://www.famsf.org/visit/de-young>
