@@ -310,8 +310,9 @@ system (`prefers-color-scheme`), map included.
   names, and where things crowd, names drop before icons
   (`src/lib/map/pin-layout.ts`). The open place's pin lifts into Apple's
   teardrop balloon with its tip on the exact spot, and the whole basemap
-  crossfades to a faint wash of its color. In dark mode names turn to light
-  tints on dark halos and pin rings go dark.
+  crossfades to a faint wash of its color. In dark mode names turn to bright
+  tints on navy halos, photo pins keep their white ring with a near-white
+  caption, and glyph pins get a dark edge.
 
   | Category | Pin | Name (light) | Name (dark) |
   | --- | --- | --- | --- |
