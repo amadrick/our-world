@@ -1,16 +1,49 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 75 places: what each is known for (reviewed in
+Per-place notes for all 94 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 75 of 75 places are researched.
+place. 94 of 94 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
 
+## Alchemy Springs
+
+Activity · Nob Hill · 939 Post St, San Francisco, CA 94109
+
+**Known for:** 40-person circular sauna (high confidence). SFGATE, the SF Standard and Dwell all single out the circular, tiered sauna by architect Olle Lundberg, billed as the largest freestanding sauna in the country.
+
+### Place research
+
+- **Neighborhood and street:** Nob Hill. Mid-block on the 900 block of Post Street between Hyde and Larkin in Lower Nob Hill, on the Tenderloin edge, among close-packed early-1900s apartment hotels; the 1912 Athenian Apartments stand across the street at 940 Post. The sauna garden is hidden behind the storefront.
+- **Terrain and setting:** Dense urban block at the southern foot of Nob Hill, lined with three- to seven-story apartment buildings that fill their lots. The open-air garden sits behind the building and is reached by heading downstairs through it.
+- **Architecture:** The building is a one-story 1919 brick store block (939-945 Post) by architect Earle B. Bertz, with Mission/Spanish Colonial Revival ornament and an essentially intact facade, a contributor to the Lower Nob Hill Apartment Hotel Historic District; it later held auto repair shops and a party-supply megastore. Inside, a rack of waffle-knit robes greets visitors at street level, stairs lead down to a cavernous lower room, and doors open onto the roughly 2,500-square-foot outdoor Sauna Garden designed by Olle Lundberg's firm: a freestanding circular sauna with stadium-style tiered seating and immersive sound and lighting, cold-plunge tubs, an open-air shower wall, thermal benches and a fire pit. Changing rooms and lockers are temporary while the indoor bathhouse is built out.
+- **Unique architectural notes:** What its operators and SFGATE call the largest freestanding sauna in the country: a circular, theater-like sauna seating about 40 on tiered benches, standing in a hidden garden behind a 1919 storefront.
+- **Most iconic physical characteristics:**
+  - circular freestanding sauna with tiered seating
+  - cold-plunge tubs beside an open-air shower wall
+  - fire pit ringed by thermal benches
+  - one-story 1919 brick storefront on Post Street
+- **More recognizable view:** the interior
+- **Not verified:** The sauna's exterior material and color, the facade color, signage, windows and entrance details, and the street grade were not verified. A 2021 design announcement described cutting a central light well (a 'cenote') through the building; whether it was built is unconfirmed. Sources give the sauna's capacity as 40 to 45.
+- **Sources:**
+  - <https://www.alchemysprings.com/>
+  - <https://www.alchemysprings.com/about>
+  - <https://www.sfgate.com/local/article/san-francisco-secret-retreat-largest-sauna-country-19893924.php>
+  - <https://sfstandard.com/2025/06/21/san-francisco-best-saunas/>
+  - <https://www.dwell.com/article/san-francisco-first-floating-sauna-fjord-good-hot-alchemy-springs-contrast-therapy-fd61b03f>
+  - <https://hospitalitydesign.com/news/alchemy-springs-communal-bathhouse/124176>
+  - <https://partiful.com/u/rRg74H1lAPenjxXssVok>
+  - <https://sfguide.co/activity/alchemy-springs/>
+  - <https://www.resortpass.com/hotels/alchemy-springs-sauna-garden>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NRHP/91000957_text>
+  - <https://www.leisureopportunities.co.uk/news/San-Franciscos-modern-bathhouse-and-social-wellness-club-Alchemy-Springs-to-unveil-new-facilities/356031>
+  - <https://opengovus.com/san-francisco-business/0044885-09-001>
+
 ## Andytown Coffee Roasters
 
-Coffee · Outer Sunset · 3655 Lawton St, San Francisco, CA 94122
+Coffee & tea · Outer Sunset · 3655 Lawton St, San Francisco, CA 94122
 
 **Known for:** Snowy Plover (espresso cream soda) (high confidence). Official Andytown identity and Yelp: espresso, sparkling water, brown sugar, whipped cream—the Outer Sunset signature bird drink.
 
@@ -396,6 +429,39 @@ Restaurant · Japantown · 1620 Post St, San Francisco, CA 94115
   - <https://sfrestaurantinspections.com/facility/daeho-korean-bbq-and-beef-soup>
   - <https://hotelguides.com/hotels/california/san-francisco/128725.html>
 
+## Dandelion Chocolate
+
+Dessert · Embarcadero · 1 Ferry Building, Shop 14, San Francisco, CA 94111
+
+**Known for:** Single-origin chocolate bars and toasted-to-order s'mores (high confidence). Dandelion's Ferry Building page and its 2026 post single out its bean-to-bar chocolate bars, hot chocolate, and freshly toasted s'mores as the draws at this shop.
+
+### Place research
+
+- **Neighborhood and street:** Embarcadero. Inside the Ferry Building at the foot of Market Street on the Embarcadero, in a storefront along the long indoor marketplace hall, right next door to Heath Ceramics' Ferry Building shop. Outside, the open-air Ferry Plaza Farmers Market sets up on Tuesdays, Thursdays and Saturdays.
+- **Terrain and setting:** Flat waterfront at the foot of Market Street, with the bay and ferry piers directly behind the building and the clock tower rising above. Inside, frosted glass in the full-length nave skylight gives soft, diffused daylight even on cloudy days.
+- **Architecture:** The Ferry Building is A. Page Brown's 1898 Beaux-Arts ferry terminal, with arched arcades along both long frontages and a 245-foot clock tower modeled on Seville's Giralda; its 2003 restoration reopened the 660-foot nave, with buff brick and terra-cotta arches, arched steel trusses and a skylight running end to end. Dandelion's shop, opened just before Christmas 2017 in the former Scharffen Berger space, was designed with Tokyo architect Masaki Kato of Puddle (who also designed its Japanese stores) as a compact, open-fronted counter shop with counter seats and standing room. Wooden shelving holds rows of wrapped chocolate bars, gift boxes and dried cacao pods.
+- **Unique architectural notes:** The shop itself is small and simple; what is one of a kind is the setting, a storefront inside the 1898 Ferry Building beneath its skylit nave and clock tower.
+- **Most iconic physical characteristics:**
+  - Ferry Building clock tower and arched arcade
+  - open storefront on the marketplace hall beside Heath Ceramics
+  - wooden shelving with rows of wrapped bars and cacao pods
+  - compact counter with standing room
+- **More recognizable view:** the facade
+- **Not verified:** The shop's current finishes, colors, signage and fixtures were not verified; the wooden shelving with cacao pods (and chalk-lettered shelf labels) comes from a 2018 description and may have changed. No design photos or project page for Masaki Kato's Ferry Building shop were found. Its exact spot along the hall is inferred from marketplace map numbering (Heath is #12, Dandelion #14) and coordinates.
+- **Sources:**
+  - <https://www.dandelionchocolate.com/pages/ferry-building>
+  - <https://blog.dandelionchocolate.com/visit/>
+  - <https://hoodline.com/2017/07/dandelion-chocolate-to-put-down-roots-at-ferry-building/>
+  - <https://hoodline.com/2015/08/merchants-for-new-kiosks-at-ferry-building-are-announced/>
+  - <https://blog.dandelionchocolate.com/2016/10/13/a-dispatch-from-the-ferry-building-hot-chocolate-stand/>
+  - <https://blog.dandelionchocolate.com/2018/12/03/my-unexpected-path-to-dandelion-los-angeles/>
+  - <https://dandelionchocolate.jp/blogs/ourdays/488>
+  - <https://dandelionchocolate.jp/pages/ferry-building>
+  - <https://chocolateclass.wordpress.com/2018/05/04/dandelion-chocolate-the-future-of-american-craft-chocolate/>
+  - <https://sfstandard.com/2022/09/29/best-food-ferry-building-san-francisco-guide/>
+  - <https://en.wikipedia.org/wiki/San_Francisco_Ferry_Building>
+  - <http://www.sfheritage.org/bw_old/newsletters/VOL31NO1.pdf>
+
 ## Day Moon
 
 Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122
@@ -513,6 +579,37 @@ Restaurant · Mission · 1890 Bryant St, San Francisco, CA 94110
   - <https://www.ernestsf.com/faqs>
   - <https://www.sfchronicle.com/food/restaurants/article/ernest-san-francisco-mission-20320054.php>
   - <https://guide.michelin.com/gb/en/california/san-francisco/restaurant/ernest>
+
+## Evan Kinori
+
+Shop · Mission · 1367 Valencia St, San Francisco, CA 94110
+
+**Known for:** Relaxed, natural-fiber menswear (high confidence). The FT and SF Standard describe the store as the flagship for Kinori's soft, wide-cut, earth-toned clothing made from carefully sourced natural fabrics, shown alongside ceramics and furniture.
+
+### Place research
+
+- **Neighborhood and street:** Mission. On the east side of Valencia Street between 24th and 25th streets, toward the southern end of the Valencia shopping corridor, among small independent shops. The storefront takes the south half of the building's ground floor, with the arched residential entrance to the apartments upstairs beside it on the north.
+- **Terrain and setting:** Flat ground on the southern stretch of Valencia near 24th Street. The facade faces west across Valencia, so the front windows take the afternoon light.
+- **Architecture:** A three-story, wood-frame 1908 Edwardian building with Classical Revival touches (1365-1367 Valencia), clad in flush wood siding, with angled bay windows upstairs and a box cornice with dentils, modillions and brackets. The storefront appears original: a partially glazed wood door in a shallow angled vestibule with a tile floor, large glass display windows over paneled wood kick panels, and a divided glazed clerestory above, while the residential door to the north sits under a segmental arch with a scrolled keystone. Inside, the airy white room is split in two, with a 40-foot low concrete bench running the full length of one wall and a single patinated steel garment rail cantilevered off the opposite wall end to end, over refinished century-old Douglas fir floors. The design studio fills the back half of the building.
+- **Unique architectural notes:** The 40-foot concrete bench facing a single wall-length patinated steel rail is a one-off built-in that Kinori developed with local trades during the 2021 renovation.
+- **Most iconic physical characteristics:**
+  - 40-foot concrete bench along one wall
+  - single patinated steel rail running the length of the room
+  - original Edwardian wood storefront with angled entry vestibule
+  - century-old Douglas fir floors
+- **More recognizable view:** the interior
+- **Not verified:** Facade paint color and exterior signage not verified; the exterior description comes from a January 2008 city survey, before the 2021 renovation. The FT mentions washi paper screens and jute rugs, but that passage was only partly readable. Whether the fitting room and studio layout are unchanged since 2022 is unconfirmed.
+- **Sources:**
+  - <https://evankinori.com/pages/visit>
+  - <https://evankinori.com/blogs/notes/furniture>
+  - <https://www.ft.com/content/2876394f-3174-4585-99d8-3ffb4af04b58>
+  - <https://sfstandard.com/2025/03/02/evan-kinori-menswear-fashion-designer-san-francisco/>
+  - <https://www.heddels.com/2022/01/evan-kinori-opens-san-fransisco-retail-store/>
+  - <https://framacph.com/blogs/stories/frama-x-evan-kinori-carefully-constructed-items>
+  - <https://www.sf.gov/sites/default/files/2024-10/item_4c._lbr-2018-19-044_natural_resources.pdf>
+  - <https://opengovus.com/san-francisco-business/1306607-05-221>
+  - <https://worldshoppingatlas.com/city/san-francisco/buyers-guide>
+  - <https://evankinori.com/blogs/notes/north-americans>
 
 ## Farmhouse Kitchen Thai
 
@@ -687,6 +784,72 @@ Restaurant · North Beach · 542 Green St, San Francisco, CA 94133
   - <https://wcapt.org/event-1983310>
   - <https://www.goldenboypizza.com/>
 
+## Golden Gate Park
+
+Activity · Golden Gate Park · 501 Stanyan St, San Francisco, CA 94117
+
+**Known for:** Conservatory of Flowers (med confidence). Gardens of Golden Gate Park calls it the oldest public wood-and-glass conservatory in North America and one of San Francisco's most photographed attractions; Wikipedia names it the park's oldest building.
+
+### Place research
+
+- **Neighborhood and street:** Golden Gate Park. A long rectangle about three miles by half a mile, bounded by Fulton Street and the Richmond District on the north, Lincoln Way and the Sunset District on the south, Stanyan Street at the Haight-Ashbury edge on the east, and the Great Highway and Ocean Beach on the west; the narrow, tree-lined Panhandle continues east between Fell and Oak streets. Main ways in include the car-free JFK Promenade at Stanyan by McLaren Lodge, Haight and Stanyan by Alvord Lake, the N Judah stop at 9th Avenue and Irving south of the museums, and the Beach Chalet at the ocean end.
+- **Terrain and setting:** Mostly flat to gently rolling ground built over former sand dunes, with open meadows, a chain of man-made lakes, and dense stands of blue gum eucalyptus, Monterey pine, Monterey cypress, and redwood; Strawberry Hill rises as an island inside Blue Heron Lake, with a pumped waterfall and views over the west side of the city. Drives and paths were laid out with deliberate curves to shelter visitors from the wind, which once blew sand inland at the ocean end.
+- **Architecture:** A 19th-century designed landscape by William Hammond Hall and John McLaren, dotted with landmark structures. In the eastern half, the white wood-and-glass Conservatory of Flowers (1879) rises to a nearly 60-foot central dome, and the sunken oval Music Concourse, gridded with pollarded trees, faces the sandstone Spreckels Temple of Music bandshell (1900) between the perforated-copper de Young museum with its twisting 144-foot tower and the California Academy of Sciences under its 2.5-acre living roof, beside the Japanese garden with its arched drum bridge and stone lanterns. Blue Heron Lake (formerly Stow Lake) circles Strawberry Hill with Huntington Falls and stone bridges, and at the ocean end stand the 75-foot Dutch windmill beside the Queen Wilhelmina Tulip Garden, the Murphy windmill, and the white stucco, terra-cotta-roofed Beach Chalet (Willis Polk, 1925).
+- **Unique architectural notes:** A bison paddock where the city has kept a herd since 1891, two restored Dutch-style windmills built to pump water for the park, and the Conservatory of Flowers, the oldest public wood-and-glass conservatory in North America.
+- **Most iconic physical characteristics:**
+  - white domed Conservatory of Flowers
+  - sandstone bandshell on the sunken Music Concourse
+  - de Young's twisting copper tower
+  - Dutch windmill at the ocean end
+- **More recognizable view:** the facade
+- **Not verified:** The Conservatory's whiteness is sourced to its white glass panes and dome (Wikipedia) and summer whitewashing (Conservatory Heritage Society); the paint color of the wood frame was not separately confirmed. Species of the pollarded Music Concourse trees not checked. Whether specific JFK Promenade installations listed by the Golden Mile site (Naga sea serpent, Street Whale) are still in place in late September 2026 not confirmed. Several SF Rec and Park and NPS pages were read only through search excerpts because direct fetches were blocked.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Golden_Gate_Park>
+  - <https://sfrecpark.org/facilities/facility/details/McLaren-Lodge-459>
+  - <https://www.sfrecpark.org/1538/JFK-Promenade>
+  - <https://en.wikipedia.org/wiki/Conservatory_of_Flowers>
+  - <https://www.conservatoryheritage.org/historic-conservatories-library/19-century/the-conservatory-of-flowers>
+  - <https://en.wikipedia.org/wiki/Spreckels_Temple_of_Music>
+  - <https://www.sfgate.com/magazine/article/Painting-a-New-Landscape-An-exhibitionist-2576334.php>
+  - <https://www.herzogdemeuron.com/projects/173-de-young-museum/>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NRHP/81000172_text>
+  - <https://ohp.parks.ca.gov/ListedResources/Detail/N2271>
+  - <http://www.sfmuseum.org/hist2/ggpark.html>
+  - <https://goldenmilesf.org/>
+
+## Golden Sardine
+
+Wine · North Beach · 362 Columbus Ave, San Francisco, CA 94133
+
+**Known for:** Riesling and tinned fish among poetry shelves (high confidence). Eater SF reported the owner's plan for 'an unreasonable amount of riesling' plus a tinned-fish shop, the Chronicle noted 10 Rieslings by the glass at opening, and The Infatuation describes drinking Riesling surrounded by poetry books.
+
+### Place research
+
+- **Neighborhood and street:** North Beach. On the Columbus Avenue frontage of a multi-storey corner building bounded by Columbus, Vallejo, and Grant, whose Vallejo side holds Caffe Trieste (city parcel records group the addresses); City Lights Booksellers is a short walk down Columbus. A small sidewalk parklet sits at the curb out front.
+- **Terrain and setting:** Columbus Avenue, North Beach's main drag, cuts diagonally across the street grid in the low ground between Telegraph Hill and Russian Hill; the upstairs windows look straight out over the sidewalk and passing foot traffic.
+- **Architecture:** A narrow ground-floor storefront (formerly Family Cafe) with a large front window beside a recessed entry that was resloped and fitted with a power door operator in 2021. Inside is a compact two-level room: a slim counter downstairs and an upstairs loft with a communal table and window seats overlooking Columbus. Walls are lined with poetry books, retail shelving, and black-and-white photographs under dim lighting, with simple, somewhat rickety chairs.
+- **Unique architectural notes:** A poetry bookstore and upstairs reading loft folded into a wine bar, named for Beat poet Bob Kaufman's 1967 collection "Golden Sardine".
+- **Most iconic physical characteristics:**
+  - upstairs loft window seats over Columbus Avenue
+  - walls of poetry books and black-and-white photos
+  - large front window beside the recessed entry
+  - small sidewalk parklet
+- **More recognizable view:** the interior
+- **Not verified:** Facade color, signage lettering, and any awning could not be verified; building era not confirmed; street grade and street trees not sourced. The grouping of 362 Columbus with Caffe Trieste's parcel (Block 0146 Lot 001) comes from a third-party parcel page, not the Assessor directly. The recessed-entry detail comes from a 2021 permit record for 362 Columbus (BuildZoom).
+- **Sources:**
+  - <https://www.goldensardinesf.com/info>
+  - <https://golden-sardine.thethirdplace.is/>
+  - <https://sf.eater.com/2023/10/4/23903341/golden-sardine-opening-north-beach-wine>
+  - <https://www.sfchronicle.com/food/restaurants/article/san-francisco-new-open-18600609.php>
+  - <https://www.theinfatuation.com/san-francisco/reviews/golden-sardine>
+  - <https://www.sfgate.com/food/article/bay-area-bookstore-bar-20018909.php>
+  - <https://www.postcard.inc/places/golden-sardine-san-francisco-nZPbGTSejZh?userId=6283ae545c9ff1cb2c897fee>
+  - <https://www.corner.inc/place/125910>
+  - <https://starwinelist.com/wine-place/golden-sardine>
+  - <https://www.mukethekawinzi.com/events/3mi5pisvr5i6b3rsximq0carmkspnl-hr64t>
+  - <https://www.buildzoom.com/contractor/block-12-construction>
+  - <https://knowthis.place/san-francisco/north-beach/vallejo-street/601/>
+
 ## Good Good Culture Club
 
 Restaurant · Mission · 3560 18th St, San Francisco, CA 94110
@@ -719,35 +882,6 @@ Restaurant · Mission · 3560 18th St, San Francisco, CA 94110
   - <https://www.womensbuilding.org/our-building/the-mural>
   - <https://goodgoodcultureclub.com/pages/good-info>
 
-## Gott's Roadside
-
-Restaurant · Embarcadero · 1 Ferry Building, San Francisco, CA 94111
-
-**Known for:** Classic cheeseburger (high confidence). Official Gott’s menu: Niman Ranch cheeseburger with secret sauce is the roadside classic (Ferry Building etc.).
-
-### Place research
-
-- **Neighborhood and street:** Embarcadero. At the north end of the Ferry Building on the Embarcadero, facing the waterfront boulevard across from Embarcadero Center and the Financial District; Embarcadero Plaza and the foot of Market Street lie in front of the building, and the Ferry Plaza farmers market sets up on the surrounding plaza.
-- **Terrain and setting:** Flat bayfront at the water's edge with the Bay Bridge and Treasure Island in view; bright, breezy waterfront light, with the Ferry Building's 245-foot clock tower rising just to the south.
-- **Architecture:** The setting is A. Page Brown's 1898 Beaux-Arts Ferry Building, whose frontage is a long arched arcade under a clock tower. Gott's (opened in 2004 as Taylor's Automatic Refresher) is a sleek, urban take on a 1950s roadside stand: shiny steel, blond wood, chrome tables, handsome retro-font signage, long communal high tables with metal stools, an order counter and a separate pickup window, and a giant red neon "EAT" sign over the kitchen. Outside, a large open-air City View Patio with communal seating faces the Embarcadero, plus a smaller Bay View Patio.
-- **Unique architectural notes:** A retro roadside-style counter restaurant grafted onto an 1898 landmark ferry terminal, with its sprawling patio on the Embarcadero side and the clock tower overhead.
-- **Most iconic physical characteristics:**
-  - giant red neon "EAT" sign over the kitchen
-  - big open-air patio of communal tables facing the Embarcadero
-  - Ferry Building clock tower and arched arcade as the backdrop
-  - steel-and-blond-wood diner interior with retro lettering
-- **More recognizable view:** the facade
-- **Not verified:** No source describes the restaurant's own exterior (materials, canopy, outside signage); the input's red-and-white canopy and picnic tables are unverified. Interior details (steel, blond wood, chrome, neon EAT) come mostly from 2004-2010s reviews; current decor and patio umbrellas not confirmed. Position relative to the Terminal Building inferred from Gott's own note that its soft-serve counter is 'right behind' the main restaurant.
-- **Sources:**
-  - <https://www.gotts.com/location/sfferrybuilding/>
-  - <https://www.gotts.com/private-events-sf-ferry-building/>
-  - <https://www.gayot.com/restaurants/gotts-roadside-san-francisco-ca-94111_3sf100506.html>
-  - <https://www.sfstation.com/gotts-roadside-ferry-building-b1161>
-  - <https://gabrielroth.com/edible-complex/automatic-refresher/>
-  - <https://www.tripadvisor.com.sg/Restaurant_Review-g60713-d2163955-Reviews-Gott_s-San_Francisco_California.html>
-  - <https://www.corner.inc/place/pCPsMLYxnwMd>
-  - <https://en.wikipedia.org/wiki/San_Francisco_Ferry_Building>
-
 ## Han Il Kwan
 
 Restaurant · Outer Richmond · 1802 Balboa St, San Francisco, CA 94121
@@ -776,9 +910,42 @@ Restaurant · Outer Richmond · 1802 Balboa St, San Francisco, CA 94121
   - <https://www.7x7.com/outer-richmond-neighborhood-guide-2550974262.html>
   - <https://www.cozymeal.com/magazine/korean-restaurants-san-francisco>
 
+## Heath Ceramics
+
+Shop · Mission · 2900 18th St, San Francisco, CA 94110
+
+**Known for:** Heath tile and tableware (tile made on site) (high confidence). Heath's own San Francisco and factory-tour pages present the building as its tile factory and showroom, and 7x7 and The Bold Italic highlight watching tile production through glass from the showroom.
+
+### Place research
+
+- **Neighborhood and street:** Mission. A city-block-scale former laundry on 18th Street between Florida and Alabama streets, in the northeast Mission's old industrial district. The showroom entrance is on 18th Street; Tartine Manufactory holds the Alabama Street corner of the same building, and the Heath Clay Studio is entered through the old boiler room just around the corner at 555 Alabama Street.
+- **Terrain and setting:** Flat ground on the northeast edge of the Mission among low warehouse and industrial buildings. Inside, restored steel-framed factory windows and a clerestory flood the rooms with daylight.
+- **Architecture:** A 1924 industrial laundry building by architect John J. Foley (later Mission Linens), converted in 2012 with Commune Design and architect Charles Hemminger, keeping its painstakingly restored multi-pane steel windows, a steel-windowed clerestory over the tile factory and the original boiler-room smokestacks. The showroom is lined with plywood shelving modeled on the original Sausalito factory, with more than 85 rotating tile-sample panels, over a dozen permanent tile installations, glazed and repurposed kiln shelves used as a wall surface, oak casework, and tall glass walls looking into the glass-enclosed kilns at the building's center. A neon sign was mounted on the building in 2012, and a Brendan Monroe mural runs inside and outside the store.
+- **Unique architectural notes:** A working tile factory sits at the center of the store: from the showroom, visitors look through tall glass walls into the kiln room where Heath tile is fired, under a steel-windowed clerestory.
+- **Most iconic physical characteristics:**
+  - plywood shelving stacked with Heath tableware
+  - tall glass walls onto the kiln room
+  - wall of rotating tile-sample panels
+  - restored multi-pane steel factory windows
+- **More recognizable view:** the interior
+- **Not verified:** Exterior wall color and material, the neon sign's wording and position, and street trees not verified. Interior details come mostly from 2012 opening coverage, a designer's portfolio and a later tour account, and may have changed; the Blue Bottle counter mentioned in 2012-2025 coverage was not confirmed as current.
+- **Sources:**
+  - <https://www.heathceramics.com/pages/san-francisco>
+  - <https://www.heathceramics.com/pages/locations>
+  - <https://www.heathceramics.com/pages/factory-tours>
+  - <https://www.7x7.com/first-look-heath-ceramics-new-mission-store-opening-exhibit-1781612255.html>
+  - <https://www.7x7.com/theres-more-to-the-new-heath-ceramics-than-great-cult-coffee-1781850078.html>
+  - <https://www.thebolditalic.com/behind-the-scenes-at-heath-ceramics-the-bold-italic-san-francisco/>
+  - <https://archive.nytimes.com/tmagazine.blogs.nytimes.com/2012/06/28/heath-crosses-the-bridge/>
+  - <https://salaarc.com/blog/architectural-inspiration-from-heath-tile/>
+  - <http://www.christinazamora.com/spaces>
+  - <http://lesliewilliamsonphoto.blogspot.com/2012/06/heath-tile-factory.html>
+  - <https://streetartcities.com/cities/sanfrancisco/markers/6612>
+  - <https://knowthis.place/san-francisco/mission/18th-street/2900/>
+
 ## Hedge Coffee
 
-Coffee · Mission · 434 Shotwell St, San Francisco, CA 94110
+Coffee & tea · Mission · 434 Shotwell St, San Francisco, CA 94110
 
 **Known for:** Redwood courtyard interior (tree Francesca through open roof) (high confidence). Eater, SF Standard, and Daily Coffee News all spotlight the Boor Projects woodsy interior and courtyard redwood as the permanent Mission café’s defining feature—matches Andy’s interior example.
 
@@ -955,7 +1122,7 @@ Restaurant · Union Square · 55 Cyril Magnin St, San Francisco, CA 94102
 
 ## Kopê House
 
-Coffee · Hayes Valley · 546 Laguna St, San Francisco, CA 94102
+Coffee & tea · Hayes Valley · 546 Laguna St, San Francisco, CA 94102
 
 **Known for:** Short & Sweet (red bean–cherry espresso) / passion-fruit chocolate cappuccino (high confidence). Infatuation says offbeat signatures are the main draw (Short & Sweet; passion-fruit chocolate cappuccino); Eater highlights cocktail-style drinks from the founders’ pop-up era.
 
@@ -1258,6 +1425,37 @@ Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118
   - <https://eatmamahuhu.com/pages/restaurants>
   - <https://greenapplebooks.com/about-us>
 
+## Ministry of Scent
+
+Shop · Mission · 962 Valencia St, San Francisco, CA 94110
+
+**Known for:** Niche and indie perfumes (high confidence). The shop's About page says it presents artistic scents from independent perfumers and niche houses, and The New Fillmore calls it an S.F. original known for its wide selection of niche and indie scent houses.
+
+### Place research
+
+- **Neighborhood and street:** Mission. On the west side of Valencia Street just south of Liberty Street, between 20th and 21st streets, in a row of mixed-use buildings (956-988 Valencia) with shops below apartments. The fire-damaged building at 969-975 Valencia, the shop's home until November 2023, is across the street.
+- **Terrain and setting:** Flat ground on the Valencia corridor at the eastern edge of the Liberty-Hill Landmark District, whose tree-crowded Victorian blocks of Liberty Street rise gently westward toward Dolores Street.
+- **Architecture:** A roughly 1,700-square-foot ground-floor shop in the 956-988 Valencia row, whose storefronts-with-apartments-above were built between 1875 and 1912 in Italianate, Edwardian and Tudor styles within the Liberty-Hill Landmark District. The space was brought up to code and renovated in 2014 for Chrome Industries, whose designers kept much of its historic detail; it later housed a tattoo studio before Ministry of Scent moved in in December 2023. Inside, the larger of the brand's two shops is described as gallery-like, with perfumes displayed on stacked shelves.
+- **Unique architectural notes:** Nothing architectural stands out in published sources; what sets the room apart is the density of its niche perfume shelving, part of more than 90 brands carried across the two shops.
+- **Most iconic physical characteristics:**
+  - gallery-like room of stacked perfume shelves
+  - ground-floor shop just south of Liberty Street on Valencia
+- **More recognizable view:** the interior
+- **Not verified:** Thin research: few physical descriptions of the 962 Valencia shop. Facade color, sign, window layout and whether this building is Italianate, Edwardian or Tudor not verified. Interior detail is limited to listing descriptions (stacked shelves, gallery-like); a remodel of 962 Valencia was announced for 2025 and whether it happened is unconfirmed, and the Chrome-era historic detail dates from 2014. Descriptions from before December 2023 (including a 2023 Mission Local profile of shelves arranged by region) refer to the old 973 Valencia shop.
+- **Sources:**
+  - <https://ministryofscent.com/pages/contact-us>
+  - <https://ministryofscent.com/pages/about>
+  - <https://opengovus.com/san-francisco-business/1409424-01-261>
+  - <https://missionlocal.org/2023/11/harrowing-two-alarm-fire-on-valencia-injures-3-displaces-as-many-as-14/>
+  - <https://sfist.com/2023/11/14/two-alarm-fire-on-valencia-street-leaves-three-injured/>
+  - <https://hoodline.com/2022/03/new-mission-district-tattoo-studio-offers-made-to-fade-tattoos-that-disappear-in-a-year/>
+  - <https://downing-co.com/our-properties/leased-962-valencia-street/>
+  - <https://default.sfplanning.org/Preservation/walking_tours/Walking_Tour_LIBERTY_HILL.pdf>
+  - <https://default.sfplanning.org/Preservation/South_Mission/LibertyHill.pdf>
+  - <https://www.corner.inc/place/p3wiC5TnzWSc>
+  - <https://drydowndiaries.substack.com/p/where-to-shop-for-perfume-in-san>
+  - <https://drydowndiaries.substack.com/p/meet-the-bay-areas-perfume-fairy>
+
 ## Molinari Delicatessen
 
 Restaurant · North Beach · 373 Columbus Ave, San Francisco, CA 94133
@@ -1284,6 +1482,39 @@ Restaurant · North Beach · 373 Columbus Ave, San Francisco, CA 94133
   - <https://sfguide.co/eat-drink/molinari-delicatessen/>
   - <https://familydestinationsguide.com/california-vintage-italian-deli/>
   - <https://www.7x7.com/north-beach-sf-classic-italian-restaurants-2645763493.html>
+
+## Mosto
+
+Bar · Mission · 741 Valencia St, San Francisco, CA 94110
+
+**Known for:** Deep tequila and mezcal lineup (high confidence). Mosto's own site calls its agave-spirits selection one of SF's best, and 2011 opening coverage (tablehopper, Thrillist) counted more than 300 tequilas and mezcals.
+
+### Place research
+
+- **Neighborhood and street:** Mission. On the east side of Valencia Street between 18th and 19th streets in the Mission, sharing a two-story building with its sister restaurant Tacolicious right next door. The building was once part of New College of California's Valencia Street campus, and Tacolicious runs covered sidewalk and parklet seating out front.
+- **Terrain and setting:** Level ground on the flat Valencia corridor of the Mission. Street trees, absent from this block in a 1988 photo, lined it by 2012; the bar opens at 5pm, so it is mostly seen at dusk and after dark.
+- **Architecture:** A two-story 1916 mixed-use building with apartments over a ground-floor store, gutted and remade in 2011 as Tacolicious and Mosto; the conversion kept a side entrance flanked by mid-century brick screens and floor-to-ceiling windows on the Tacolicious side. Mosto is the narrow, moody sliver beside it, with a dropped ceiling tiled in more than 3,000 canning jars that glow at night, a candle-lined wall, a long bar-height banquette with high tables and backless stools, and a golden-lit top shelf of agave spirits running above the bar. A sign outside reads "little agave spirits bar" and "big mezcal energy!"
+- **Unique architectural notes:** The ceiling is tiled with more than 3,000 canning jars, lit from within and filled over the years with keepsakes from staff, investors and regulars; one jar by the Valencia window reportedly holds the building's original floor plans.
+- **Most iconic physical characteristics:**
+  - ceiling of 3,000-plus glowing canning jars
+  - candle-lined wall in a narrow, dim room
+  - golden-lit top shelf of agave spirits above the bar
+  - sign reading "little agave spirits bar"
+- **More recognizable view:** the interior
+- **Not verified:** Facade color, materials and exact storefront layout not verified, including whether Mosto has its own street door (most sources say it is next door to Tacolicious; Kaper Design places it at the back of the Tacolicious space). The candle wall, the top-shelf display and the lit jars come from 2011-2013 coverage; a 2022 Mission Local visit confirms a small, dark, cramped room but not each detail. The sign wording is from 2022. Whether the old neighbor Cherin's appliance store is still next door is unconfirmed.
+- **Sources:**
+  - <https://www.mostobar.com/about-us>
+  - <https://www.mostobar.com/happenings>
+  - <https://www.tablehopper.com/hardhat/tacolicious-and-mosto/>
+  - <https://www.tablehopper.com/chatterbox/tacolicious-ii-and-mosto-now-open-in-the-mission/>
+  - <https://www.grubstreet.com/2011/11/take_a_look_at_mostos_canning-.html>
+  - <https://www.thrillist.com/bars/san-francisco/the-mission/mosto_tequila_mexican>
+  - <https://www.kaperdesign.com/designblog/2013/03/mosto-tequila-botanas-bar.html>
+  - <https://missionlocal.org/2022/07/distillations-mosto-tequila-tacos-agave/>
+  - <https://knowthis.place/san-francisco/mission/valencia-street/739/>
+  - <https://diva.sfsu.edu/collections/kirkeberg/bundles/231633>
+  - <https://www.tacolicious.com/location/tacolicious-mission/>
+  - <https://www.sfstation.com/banhez-mezcal-tasting-and-happy-hour-e15770221>
 
 ## Nopa
 
@@ -1375,6 +1606,39 @@ Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117
   - <https://knowthis.place/san-francisco/haight-ashbury/broderick-street/300/>
   - <https://www.signaturedevelopment.com/development/broderick-place/>
   - <https://www.sfexaminer.com/uncategorised/local-grocer-returns-home/article_4a87ce71-b82f-5c23-9fb9-214fe01ba099.html>
+
+## Ocean Beach
+
+Activity · Outer Sunset · Great Highway, San Francisco, CA 94122
+
+**Known for:** Surf, fog, and beach bonfires (high confidence). Wikipedia says Ocean Beach is known for its strong currents, surf culture, and foggy late-spring and summer weather; the NPS describes a 3.5-mile beach whose currents suit only experienced surfers.
+
+### Place research
+
+- **Neighborhood and street:** Outer Sunset. A 3.5-mile strip of open sand on the city's western edge, running from the Cliff House and Sutro Heights at Point Lobos Avenue south past the Outer Richmond, Golden Gate Park, and the Outer Sunset to Sloat Boulevard and the Fort Funston bluffs. North of Lincoln Way the Great Highway is still a four-lane road, with a paved esplanade along the seawall and the Beach Chalet and Dutch windmill across it; from Lincoln Way to Sloat the upper roadway is now Sunset Dunes, a car-free park backed by the colorful houses of La Playa Street, and the N Judah streetcar ends at Judah and La Playa, just inland from the dunes.
+- **Terrain and setting:** Flat, wide sand backed by steep grassy dunes in the Outer Sunset and by the concrete O'Shaughnessy Seawall at the north end, facing heavy surf and strong rip currents. Fog covers the beach through much of late spring and summer, with September and October the sunniest months; on clear days the view runs north to the Marin Headlands and Point Reyes, south to Montara Mountain, and west to the Farallon Islands 28 miles offshore.
+- **Architecture:** An open beach with no high-rises behind it. At the north end the concrete O'Shaughnessy Seawall and esplanade (built 1915 to 1929) are broken by numbered stairwells down to the sand, and 16 park-service fire rings sit on the beach between Stairwells 15 and 20. Above the north end the Cliff House, closed since 2020 and under restoration, sits on the bluff below Sutro Heights with the Sutro Baths ruins beside it and Seal Rocks offshore, while the white stucco Beach Chalet (1925) and the 75-foot Dutch windmill stand across the Great Highway. South of Lincoln Way the former highway is the two-mile Sunset Dunes promenade, with painted murals, rotating sculpture, hammocks and raised lounge seating at Taraval, and a skate area at Sloat beside a 30-foot mosaic-tiled octopus sculpture.
+- **Unique architectural notes:** Three and a half miles of surf beach with no high-rises behind it, where the park service keeps 16 fire rings on the sand for evening bonfires from March through October.
+- **Most iconic physical characteristics:**
+  - numbered stairwells in the seawall
+  - fire rings on the sand off Golden Gate Park
+  - Cliff House and Seal Rocks at the north end
+  - steep dunes and surfers off the Outer Sunset
+- **More recognizable view:** the facade
+- **Not verified:** Which Sunset Dunes artworks are in place in September 2026 is not confirmed: the art rotates, and the octopus sculpture at Sloat and the hammocks at Taraval come from 2025 SF Chronicle and July 2026 Mission Local reporting. The Cliff House's current state (construction fencing, rooftop sign still absent) rests on 2025 news plus a fall 2026 real-estate blog citing May 2026 photos. The total stairwell count (a photography guide says 28) and the seawall's profile were not confirmed from NPS. Direct fetches of the NPS, Wikipedia, and SF Chronicle pages were blocked or timed out; their details come from search excerpts.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Ocean_Beach,_San_Francisco>
+  - <https://www.nps.gov/goga/planyourvisit/oceanbeach.htm>
+  - <https://www.nps.gov/goga/learn/historyculture/vestiges-ocean-beach.htm>
+  - <https://nps.gov/articles/ocean-beach-fire-program.htm>
+  - <https://accessca.org/access-california/explore/explore-detail-view/?site_id=533>
+  - <https://sfrecpark.org/1555/Sunset-Dunes>
+  - <https://www.sfchronicle.com/projects/2025/great-highway-park-sunset-dunes-guide/>
+  - <https://sfguide.co/great-highway-reopening-cost-estimate-2026/>
+  - <https://sfist.com/2025/11/07/the-cliff-house-will-still-be-called-cliff-house-when-it-reopens-but-probably-wont-reopen-until-late-2026/>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NRHP/81000172_text>
+  - <https://californiacoastaltrail.org/trail-section/san-francisco-section-2/>
+  - <https://theenloecreative.com/location-guide-ocean-beach-sf/>
 
 ## Ordinaire
 
@@ -1585,6 +1849,68 @@ Restaurant · Chinatown · 631 Kearny St, San Francisco, CA 94108
   - <https://www.ajc.com/travel/crispy-crab-specialty-san-francisco-chinatown/16bZhMlDYdoX72urG78CrM/>
   - <https://en.wikipedia.org/wiki/Hilton_San_Francisco_Financial_District>
 
+## Rachel Comey
+
+Shop · Pacific Heights · 2223 Fillmore St, San Francisco, CA 94115
+
+**Known for:** Stacked-heel clogs and Legion jeans (high confidence). The brand's own bio credits it with pioneering stacked-heel clogs and booties and cropped high-waist denim, and GQ and Vogue single out the wide-leg cropped Legion jean as its signature.
+
+### Place research
+
+- **Neighborhood and street:** Pacific Heights. On Upper Fillmore Street just north of Sacramento Street, mid-block on the boutique strip between Sacramento and Clay streets in Pacific Heights, set among other independent boutiques, cafes and restaurants.
+- **Terrain and setting:** Fillmore starts to rise here; north of Clay it climbs steeply toward the Pacific Heights crest at Broadway, where the intersections open onto bay views.
+- **Architecture:** A quaint one-story shopfront of roughly 1,600 to 1,800 square feet in a building originally built as a bank, later home to Brooks Brothers' Black Fleece (from 2009) and Intermix (2016 to 2021). San Francisco interior designer Charles de Lisle, who also designed Comey's New York and Los Angeles stores, did the interior, including a silver foil wall; his Comey stores deliberately pair rough, hard surfaces with soft materials. Facade material and color, window treatment, awning and sign lettering are not documented.
+- **Unique architectural notes:** The silver foil wall by Charles de Lisle is the one interior feature press singles out; nothing about the exterior is documented as distinctive.
+- **Most iconic physical characteristics:**
+  - one-story former bank storefront on Upper Fillmore
+  - silver foil wall inside
+- **More recognizable view:** the interior
+- **Not verified:** Thin research: no source describes the facade material or color, windows, awning or sign lettering, or the San Francisco interior beyond the silver foil wall (the opening Instagram post of Nov 3, 2023 could not be read). The rough-versus-soft design approach is de Lisle's stated approach for Comey's stores generally, not confirmed for this one. Square footage differs (1,800 in Vogue; 1,600 planned per WWD). Which side of Fillmore and the immediate neighbors were not confirmed; the grade of this particular block is not verified.
+- **Sources:**
+  - <https://rachelcomey.com/pages/stores-privateappointments-stockists>
+  - <https://www.vogue.com/article/is-san-franciscos-retail-scene-dead-not-so-fast>
+  - <https://wwd.com/business-news/retail/rachel-comey-nyfw-san-francisco-store-new-president-1235779326/>
+  - <https://www.sfchronicle.com/style/windowshopping/article/Intermix-boutique-lands-on-Fillmore-Street-9887259.php>
+  - <https://opengovus.com/san-francisco-business/1361170-05-241>
+  - <https://fillmorestreetsf.com/shopping/clothing-shoes/intermix/>
+  - <https://spacesmag.com/stories/people/in-their-own-words/>
+  - <https://newfillmore.com/2024/05/09/fillmore-boutiques-carry-on-but-slim-down/>
+  - <http://www.allisonwalkssf.com/2018/04/5-miles-in-lower-pacific-heights.html>
+  - <https://en.wikipedia.org/wiki/Fillmore_Street>
+
+## Radhaus
+
+Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123
+
+**Known for:** Bay-view hall with a Ponderosa pine bar (high confidence). Eater SF's review headline says the big, beautiful space is the draw, and Architectural Record calls the Ponderosa pine bar and communal bench the restaurant's signature elements.
+
+### Place research
+
+- **Neighborhood and street:** Marina. Inside Fort Mason Center's Building A at the Marina Boulevard entrance to the campus, sharing the building with The Interval and Greens Restaurant. Two large steel-and-glass pivot doors open onto the campus's internal street so tables can spill outside, and remnants of the old Army port rail tracks run through the pavement out front.
+- **Terrain and setting:** Flat bayfront fill of the former Army Port of Embarkation at the water's edge, with the upper Fort Mason bluff rising behind the campus. A wall of restored steel-sash windows looks out over a marina and the bay to the Golden Gate Bridge, filling the hall with daylight.
+- **Architecture:** A 1934-35 Army marine repair shop: steel frame and concrete walls finished outside in buff stucco under a clay-tile roof, matching the port's Mission Revival buildings. Envelope A+D re-exposed the open bay and white-painted steel roof trusses to make a single three-story-high hall (about 28 feet) with polished concrete floors and roughly 1,350 square feet of restored steel-sash windows, some previously bricked over. The long counter and communal banquettes are hewn from two salvaged, wind-felled Ponderosa pines, and the back bar is a white-tiled 'organ' of refrigerated keg storage and taps.
+- **Unique architectural notes:** The 30-foot counter and massive communal bench milled from 300-year-old Sierra Ponderosa pines, and tap handles made from found objects such as a screwdriver, drawer knobs, an antique doorknob, the owners' late father's pipe, and a lightning-struck Mount Tamalpais branch.
+- **Most iconic physical characteristics:**
+  - raw Ponderosa pine counter and log benches
+  - white-tiled back wall of found-object tap handles
+  - white steel trusses under a 28-foot ceiling
+  - wall of steel-sash windows facing the Golden Gate Bridge
+- **More recognizable view:** the interior
+- **Not verified:** Exact compass orientation of the window wall and which marina it faces were not confirmed; a Dezeen excerpt mentions red-colored frames on a pair of elements (likely the pivot doors) but the text was truncated; sources differ on the timber (Fort Mason says a single 200-foot pine, while Envelope A+D and Architectural Record say two salvaged pines); fog and street trees not sourced.
+- **Sources:**
+  - <https://radhaussf.com/>
+  - <https://radhaussf.com/rad/>
+  - <https://fortmason.org/resident/radhaus-2/>
+  - <https://envelopead.com/work/radhaus/>
+  - <https://www.dezeen.com/2019/08/22/radhaus-restaurant-envelope-ad-san-francisco/>
+  - <https://www.architecturalrecord.com/articles/14046-radhaus-by-envelope-ad>
+  - <https://sf.eater.com/2018/10/4/17933678/radhaus-beer-review-marina-san-francisco>
+  - <https://www.timeout.com/san-francisco/restaurants/radhaus>
+  - <https://dimhour.com/san-francisco/v/radhaus/>
+  - <https://www.nps.gov/goga/planyourvisit/upload/mag-sfpe-web-2021.pdf>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NHLS/85002433_text>
+  - <https://fortmason.org/series/fort-mason-night-market-2026/>
+
 ## Rampant Bottle & Bar
 
 Wine · Outer Richmond · 3516 Balboa St, San Francisco, CA 94121
@@ -1610,6 +1936,66 @@ Wine · Outer Richmond · 3516 Balboa St, San Francisco, CA 94121
   - <https://www.theinfatuation.com/san-francisco/reviews/rampant-bottle-bar>
   - <https://rampantwine.com/pages/about>
   - <https://whatnow.com/san-francisco/restaurants/local-winemaker-rampant-wine-co-is-debuting-an-eatery-in-outer-richmond/>
+
+## Reliquary
+
+Shop · Hayes Valley · 544 Hayes St, San Francisco, CA 94102
+
+**Known for:** Antique jewelry and a 22K gold house line (high confidence). Time Out highlights the owner's trove of antique and vintage jewelry, and the shop's site leads with its 22K gold house-line strands and rings.
+
+### Place research
+
+- **Neighborhood and street:** Hayes Valley. Mid-block on Hayes Street's 500 block between Octavia and Laguna streets, a short walk west of the Hayes and Octavia intersection, where Patricia's Green and the car-free block of Octavia form Hayes Valley's central open space amid independent boutiques and restaurants.
+- **Terrain and setting:** A mostly level Hayes Valley street; half a block east, tree-lined Octavia Boulevard and the narrow lawns of Patricia's Green occupy land freed by removal of the old Central Freeway, opening up the sky around the Hayes and Octavia intersection.
+- **Architecture:** A single ground-floor shop on Hayes Street, larger than its original 2011 storefront around the corner on Octavia, which it left in May 2014. Coverage described the Hayes Street space as light and airy at opening, while a later guide calls it dimly lit, like a museum, with Southwestern-tinged rings, folk wall hangings and embroidered Mexican dresses displayed as if they were art. Facade material and color, windows, awning and sign lettering are not documented.
+- **Unique architectural notes:** No single architectural feature of the Hayes Street store is documented; its character comes from the museum-like presentation of antique jewelry, folk art and textiles alongside clothing.
+- **Most iconic physical characteristics:**
+  - museum-like displays of antique and turquoise jewelry
+  - folk-art wall hangings and textiles among the racks
+- **More recognizable view:** the interior
+- **Not verified:** Thin research: no source describes the Hayes Street facade, building era, color, awning or sign lettering. The penny-paved entryway, handmade birch racks, Edison bulbs, sliding ladder and back wall of apothecary jars and stacked blankets were documented at the original 537 Octavia St shop (2011) and may not have carried over to Hayes Street. Lighting descriptions conflict (light and airy in 2014 per Racked; dim and museum-like in goop's undated guide). The level street grade is general neighborhood knowledge, not sourced.
+- **Sources:**
+  - <https://reliquarysf.com/pages/about-us>
+  - <https://reliquarysf.com/pages/contact-us>
+  - <https://sf.racked.com/2014/5/28/7596323/reliquarys-new-digs-are-bigger-and-better>
+  - <https://goop.com/place/california/hayes-valley/reliquary>
+  - <https://www.sfgate.com/style/article/Hayes-Valley-s-haute-hub-of-boutiques-5661478.php>
+  - <https://www.sfgate.com/style/windowshopping/article/new-s-f-boutiques-reliquary-two-birds-2373804.php>
+  - <https://theschereport.wordpress.com/2011/04/04/retail-review-reliquary-boutique-san-francisco/>
+  - <https://www.timeout.com/san-francisco/shopping/reliquary>
+  - <https://sf.curbed.com/2014/2/5/10147008/patricias-green-the-park-that-revitalized-a-neighborhood>
+  - <https://www.sfmta.com/blog/octavia-%E2%80%98open-street-project-hayes-valley>
+  - <http://patriciawalkup.org/sitebuildercontent/sitebuilderfiles/rec_park_minutes_8_17_06.pdf>
+
+## ReLove
+
+Shop · Nob Hill · 1815 Polk St, San Francisco, CA 94109
+
+**Known for:** Curated designer, vintage and contemporary resale (high confidence). Time Out, InsideHook and the shop's own site describe a hand-picked mix of true vintage, designer and contemporary pieces for women and men.
+
+### Place research
+
+- **Neighborhood and street:** Nob Hill. On upper Polk Street at Washington Street, on the commercial strip where Nob Hill meets Russian Hill; a ground-floor boutique among the street's small shops, cafes and bars.
+- **Terrain and setting:** Polk Street runs along the floor of Polk Gulch, a gently sloped valley between Nob Hill and Russian Hill, so the shop sits on a mostly level stretch while cross streets rise toward the ridges on either side.
+- **Architecture:** A single ground-floor boutique. Customer accounts describe an open, uncluttered floor with room to move between racks of clothing, shoes and accessories, a rack of high-end designer pieces toward the back, and fitting rooms at the rear with several full-length mirrors. Building type and era, facade color, awning and sign lettering are not documented in the sources found.
+- **Unique architectural notes:** Nothing architectural stands out in available sources; its distinction is the edited, closet-like merchandising rather than the building.
+- **Most iconic physical characteristics:**
+  - uncluttered racks mixing vintage and designer pieces
+  - designer rack at the back
+  - fitting rooms at the rear with full-length mirrors
+- **More recognizable view:** the interior
+- **Not verified:** Thin research: no press or listing describes the facade, building era, signage or awning, and interior details come from customer reviews rather than press. The shop's exact position relative to the Washington Street corner, and which side of Polk, were not verified.
+- **Sources:**
+  - <https://shoprelove.myshopify.com/pages/about-us>
+  - <https://shoprelove.myshopify.com/pages/visit-relove>
+  - <https://www.timeout.com/san-francisco/shopping/relove>
+  - <https://discoverpolk.org/go/relove>
+  - <https://abc7news.com/post/relove-boutique-san-francisco-oakland-black-owned-business/13982476/>
+  - <https://www.insidehook.com/style-san-francisco/best-thrift-stores-san-francisco>
+  - <https://unilocal.net/united-states/san-francisco/relove-vintage-and-modern-resale>
+  - <https://www.mapquest.com/us/california/relove-346467677>
+  - <https://en.wikipedia.org/wiki/Polk_Street>
+  - <https://maps.apple.com/place?place-id=I68B9B188B31FE736>
 
 ## RT Rotisserie
 
@@ -1645,7 +2031,7 @@ Restaurant · Hayes Valley · 101 Oak St, San Francisco, CA 94102
 
 ## Saint Frank Coffee
 
-Coffee · Russian Hill · 2340 Polk St, San Francisco, CA 94109
+Coffee & tea · Russian Hill · 2340 Polk St, San Francisco, CA 94109
 
 **Known for:** Kaffe tonic (espresso + tonic) (high confidence). Condé Nast Traveler and Bon Appétit city guides call the espresso-over-tonic the house signature.
 
@@ -1697,34 +2083,169 @@ Restaurant · Inner Sunset · 1031 Irving St, San Francisco, CA 94122
   - <https://hoodline.com/2020/01/sunset-eats-san-tung-2-closes-as-indian-eatery-takes-over-malatang-noodle-spot-moves-in-more/>
   - <https://en.wikipedia.org/wiki/N_Judah>
 
-## Souvla
+## Self Edge
 
-Restaurant · Hayes Valley · 517 Hayes St, San Francisco, CA 94102
+Shop · Mission · 569 Valencia St, San Francisco, CA 94110
 
-**Known for:** Chicken salad with Granch dressing (high confidence). Nob Hill Gazette One Dish: feta-brined rotisserie chicken salad with Greek-yogurt Granch is the signature bowl (pitas also core).
+**Known for:** Japanese selvedge denim (high confidence). Self Edge's own listing says it specializes in Japanese selvedge denim, most of it exclusive to the store in North America, and the SF Chronicle calls it San Francisco's Japanese denim mecca.
 
 ### Place research
 
-- **Neighborhood and street:** Hayes Valley. On the busy retail block of Hayes Street at Octavia, half a block from Patricia's Green (Octavia Green), the small park at the heart of Hayes Valley; a public parklet built in 2019 extends seating into the street in front of Souvla and its neighbor.
-- **Terrain and setting:** Flat Hayes Valley street grid along the Octavia Boulevard corridor; a walkable shopping block, with daylight pouring into the room through the front windows and a large skylight.
-- **Architecture:** A narrow storefront whose huge front windows open fully to the sidewalk, with a wraparound counter and a few outdoor stools that lean into the bar. The 2014 room by Brian Ford of Metropolis Design (architect Chris Sullivan) has whitewashed walls, wooden ceiling beams, a large skylight, white-oak counters with aged copper trim, Carrara marble penny tile, copper-topped high tables and a communal table, gray-and-white T-back stools, and vintage copper pots on pale wood shelves; the rotisserie sits near the back.
-- **Unique architectural notes:** A whitewashed, skylit room hung with vintage copper pots from the founder's grandfather's 1950s Boston restaurant, with a counter that opens straight onto the sidewalk.
+- **Neighborhood and street:** Mission. Mid-block on the east side of Valencia Street between 16th and 17th streets, in the row of post-1906 buildings just south of 16th Street. Stonemill Matcha is the next-door neighbor to the north, and the same landlords leased the row to furniture store De Angelis and the restaurant Locanda (as of 2019).
+- **Terrain and setting:** Level ground on the flat Valencia corridor near 16th Street, on a block that gained sidewalk landscaping between 2008 and 2012. The four-story clock tower of the old Mission Savings Bank rises over the 16th and Valencia intersection a short walk north.
+- **Architecture:** A 1907 three-story, wood-frame Mission Revival building with apartments over ground-floor shops (567-575 Valencia), a contributor to the 16th and Valencia Streets Post-Fire Historic District; the store space was seismically retrofitted before Self Edge moved in. The roughly 3,000-square-foot former Weston Wear shop was planned with an office, three dressing rooms and far more display room than the original 600-square-foot store. Storefronts on this block generally keep the early-1900s pattern of large glass display windows over low bulkheads, slightly recessed entries and wide transom bands.
+- **Unique architectural notes:** Physically nothing stands out beyond its 1907 Mission Revival building; the business is known for doing hemming and repairs on its own vintage Union Special chainstitch and Singer darning machines.
 - **Most iconic physical characteristics:**
-  - front windows folded open to the sidewalk with stools at an outdoor counter
-  - whitewashed walls under a big skylight and wood beams
-  - copper-topped tables and white-oak counters with marble penny tile
-  - vintage copper pots on pale wood shelving
-- **More recognizable view:** the interior
-- **Not verified:** Exterior facade material and color, door, and outside sign lettering not found (input's white walls outside, muted blue door and black trim unverified). Interior details come mostly from 2014 opening coverage and may have changed; current state of the 2019 parklet and neighboring tenant not confirmed.
+  - 1907 Mission Revival building with apartments above
+  - racks of raw indigo denim
+  - next door to Stonemill Matcha's dark blue front
+- **More recognizable view:** the facade
+- **Not verified:** Thin research: few physical descriptions of the current store. Facade color, sign lettering, window displays and interior fixtures at 569 Valencia not verified; the office and three dressing rooms come from the 2019 plan. Often-cited details (antique furniture, Persian rugs, framed worn jeans, a vintage motorcycle in the window, a loft) describe the original 714 Valencia shop and may not carry over. The 2011 district record calls 567-575 Valencia Mission Revival, while a 2012 SFSU slide caption calls the block's buildings Classical Revival. Whether the repair machines are on view in this store, and whether Locanda and De Angelis are still neighbors, not checked.
 - **Sources:**
-  - <https://www.souvla.com/location/souvla-hayes-valley/>
-  - <https://sf.eater.com/2014/4/7/6247309/souvlas-greek-fare-arrives-in-hayes-valley-tomorrow>
-  - <https://www.tablehopper.com/newsletter/140408/>
-  - <https://www.tablehopper.com/regular/souvla/>
-  - <https://eatdrinkfilms.com/2014/12/11/greek-inspiration-democracy-and-deliciousness-in-action-at-souvla/>
-  - <https://www.dwell.com/article/a-san-francisco-greek-restaurant-thats-become-a-neighborhood-staple-220acfec>
-  - <https://hoodline.com/2014/04/souvla-opens-today/>
-  - <https://hoodline.com/2019/01/new-parklet-being-installed-at-hayes-octavia/>
+  - <https://www.selfedge.com/index.php?route=selfedge%2Flocations>
+  - <https://www.selfedge.com/?route=information%2Fabout_us>
+  - <https://www.selfedge.com/index.php?editorial_id=1109&route=selfedge%2Feditorial%2FreadEditorial>
+  - <https://www.sfchronicle.com/style/article/Remembering-Karl-Lagerfeld-in-San-Francisco-and-13632249.php>
+  - <https://www.rockyt.style/the-latest/self-edge-denim-store-sf>
+  - <https://knowthis.place/san-francisco/mission/valencia-street/567/>
+  - <https://default.sfplanning.org/Preservation/imn_survey/16th_and_Valencia_Streets_Post-Fire_Historic_District_Record.pdf>
+  - <https://diva.sfsu.edu/collections/kirkeberg/bundles/231419>
+  - <https://diva.sfsu.edu/collections/kirkeberg/bundles/231420>
+  - <https://www.7x7.com/best-mens-clothing-stores-san-francisco-2482054826/self-edge-for-the-die-hard-selvedge-denim-fan>
+  - <https://www.sfstation.com/self-edge-b24196961>
+  - <https://missionlocal.org/2023/08/stonemill-matcha-closing-sunday-long-lines/>
+
+## SF76
+
+Shop · Japantown · 1758 Buchanan St, San Francisco, CA 94115
+
+**Known for:** Japanese tableware (Hasami Porcelain) (high confidence). The shop's own site names Hasami Porcelain, ARAS tableware, donabe, kitchen tools and incense as its core lines, and its FAQ steers visitors to compare Hasami Porcelain in store.
+
+### Place research
+
+- **Neighborhood and street:** Japantown. Toward the Sutter Street end of the Buchanan Mall (Osaka Way), the one-block, car-free stretch of Buchanan Street between Post and Sutter that forms the heart of Japantown. Two- and three-story shops, restaurants and community organizations line both sides, a timber-trellis gate modeled on a Japanese mountain temple gate marks the Sutter Street entrance, and the Peace Plaza and Japan Center malls lie across Post Street to the south.
+- **Terrain and setting:** The mall slopes slightly downhill from Sutter south toward Post. Small flowering Japanese Prunus trees, maples and pines grow in round concrete planters and in-ground beds along the walkways.
+- **Architecture:** SF76 occupies a ground-floor storefront in one of the low commercial buildings, mostly built between 1971 and 1982 in a Japanese-influenced modern style, that flank the mall; the style uses wood-and-concrete combinations meant to recall timber construction, modular proportions and strong roof forms. The shop's look was refreshed when Sanko became SF76 in 2021, and it is organized as two spaces: a main room of curated goods and a separate pop-up room for trunk shows and visiting makers. The shop's own facade color, signage and interior finishes are not documented.
+- **Unique architectural notes:** The setting is the draw: Ruth Asawa's two bronze origami-flower fountains set in a winding cobblestone river, her benches with relief side panels, and lantern-style light poles carrying Japanese characters. The store itself has no documented one-of-a-kind feature.
+- **Most iconic physical characteristics:**
+  - storefront on the car-free Buchanan Mall
+  - Ruth Asawa's bronze origami fountains in a cobblestone river
+  - timber-trellis gate at the Sutter Street end
+  - lantern-style light poles with Japanese characters
+- **More recognizable view:** the facade
+- **Not verified:** Thin research: no source describes SF76's own facade, sign lettering, window displays or interior finishes; the two-room layout comes from a Japanese partner company's page, and the specific building's age and style are inferred from the mall-wide survey. The position toward the Sutter end is inferred from the address and OSM point; which side of the mall was not confirmed. Buchanan Mall renovation construction began August 10, 2026 and is scheduled to run to December 2027, so the cobblestone river and fountains may be fenced off or under construction during the wedding week; the redesign replaces the cobblestones with accessible pavers in the same style.
+- **Sources:**
+  - <https://www.sf-76.com/pages/visit-our-store>
+  - <https://www.sf-76.com/pages/about>
+  - <https://www.sf-76.com/pages/faq>
+  - <https://www.sfjapantown.org/directory-jpndirectory/listing/sf76/>
+  - <https://opengovus.com/san-francisco-business/0137521-01-001>
+  - <https://bayspo.com/news/sf76_122421>
+  - <https://transcent.jp/home/related-companies/>
+  - <https://www.studiochadwick.com/stories/japan-town>
+  - <https://sfplanning.org/sites/default/files/documents/citywide/japantown-buchanan-mall/japantownbuchananmall-hrr.pdf>
+  - <https://sfpublicworks.org/Japantown-Buchanan-Mall>
+  - <http://sfpublicworks.org/sites/default/files/Commissions/June%2018%2C%202026/Item%208e_PWC%20Japantown%20Buch%20Mall%20award%202026-6-18%20v617_0.pdf>
+  - <https://www.sfstation.com/poj-studio-san-francisco-pop-up-e15770077>
+
+## Shoji
+
+Bar · SoMa · 140 New Montgomery St, San Francisco, CA 94105
+
+**Known for:** Matcha einspänner (high confidence). The SF Chronicle and Hoodline call the whipped-cream-topped matcha einspänner Shoji's viral signature; the Chronicle reports it sells more than 200 a day.
+
+### Place research
+
+- **Neighborhood and street:** SoMa. On the ground floor of the 26-story tower at 140 New Montgomery, mid-block on New Montgomery Street between Mission and Howard in SoMa, a short walk from SFMOMA. Daytime lines spill onto the New Montgomery sidewalk, and a covered, heated patio sits at the back of the space.
+- **Terrain and setting:** Flat downtown SoMa grid, shaded by the tower and neighboring high-rises; the tower's glazed white terra-cotta and setback parapets are floodlit at night.
+- **Architecture:** The building is the 1925 Pacific Telephone & Telegraph Building by Miller and Pflueger (Timothy Pflueger) with A. A. Cantin, San Francisco's first setback skyscraper: 26 stories clad almost entirely in glazed white Gladding, McBean terra-cotta with vertical fluting, a giant terra-cotta Bell logo over the main entrance and eight 13-foot eagles on the crown. Inside Shoji, dark burgundy velvet drapes and hanging curtains shut out the daylight from a dim, high-ceilinged room of red leather banquettes and curved booths, stone tables with small tabletop lamps, half-circle tables and an eight-seat bar. Over the bar rises a towering gold-and-blue mural of cranes, tigers and trees modeled on the painted sliding doors of Kyoto's Nijo Castle, and chandeliers shaped like fiery crowns hang overhead.
+- **Unique architectural notes:** A towering gold-and-blue mural of prowling tigers, cranes and trees over the bar, redrawn through months of revisions from the painted sliding doors (shoji) of Kyoto's Nijo Castle.
+- **Most iconic physical characteristics:**
+  - gold mural of tigers and cranes over the bar
+  - red leather booths with tiny tabletop lamps
+  - burgundy velvet drapes
+  - white terra-cotta Art Deco tower crowned with eagles
+- **More recognizable view:** the interior
+- **Not verified:** Shoji's own exterior signage and door were not verified (the tower's ground-floor restaurant entrances were given single-pane glass canopies in the 2010s restoration, but it is unconfirmed that Shoji's door has one). That Shoji occupies Mourad's former space is unconfirmed (Eater only compares the two). How the back patio relates to the building's rear courtyard is unverified; the patio's roughly 35 seats come from 2025 coverage.
+- **Sources:**
+  - <https://www.theshojisf.com/>
+  - <https://www.theshojisf.com/faq>
+  - <https://sf.eater.com/2025/5/13/24426994/shoji-restaurant-opening-san-francisco-fidi-japanese-restaurant>
+  - <https://www.sfchronicle.com/food/restaurants/article/shoji-bar-cafe-sf-20267863.php>
+  - <https://www.sfchronicle.com/food/wine/article/shoji-bar-drink-san-francisco-21197526.php>
+  - <https://sfstandard.com/2025/05/28/bar-shoji-sf-new-cocktail-japanese/>
+  - <https://www.theinfatuation.com/san-francisco/reviews/shoji>
+  - <https://hoodline.com/2026/06/downtown-sf-loses-it-over-shota-s-matcha-by-day-izakaya-by-night-hot-spot/>
+  - <https://www.wane.com/news/cafe-by-day-and-bar-by-night-shoji-is-ingi-shota-sons-new-sf-spot/>
+  - <https://en.wikipedia.org/wiki/140_New_Montgomery>
+  - <https://sah-archipedia.org/buildings/CA-01-075-0003>
+  - <https://www.sfgate.com/bayarea/place/article/how-a-classic-s-f-building-was-resurrected-5332778.php>
+
+## Song Tea & Ceramics
+
+Shop · Lower Pacific Heights · 2120 Sutter St, San Francisco, CA 94115
+
+**Known for:** Rare Chinese and Taiwanese teas and artist-made ceramics (high confidence). The shop's site, Fresh Cup and Time Out all describe small-batch teas sourced directly from producers in China and Taiwan, led by its flagship oolongs, sold alongside handmade ceramics from Taiwan, China and the US.
+
+### Place research
+
+- **Neighborhood and street:** Lower Pacific Heights. On the quiet 2100 block of Sutter Street near the Steiner Street corner in Lower Pacific Heights, a block of Victorians just over a block west of the shops on Fillmore Street, with Japantown a few blocks east.
+- **Terrain and setting:** A residential Lower Pacific Heights block among Victorians; the exact street grade is not verified. Large sidewalk windows take in soft, often fog-filtered light that reflects off the white interior walls.
+- **Architecture:** An unassuming ground-floor storefront among Victorians, marked only by delicate white lettering on its large sidewalk windows. Inside, the roughly 1,500-square-foot room is minimal and gallery-like, in white, concrete and blond wood: custom shelves of heavy white porcelain canisters with pastel labels run along one wall, with handmade and wood-fired ceramics displayed opposite. A long blond-wood tasting table and a credenza that serves as the checkout counter were custom built by local woodworker Blair Haffly, and a shelving unit topped with a vintage Marantz amplifier screens the office and packing area at the back.
+- **Unique architectural notes:** Its distinction is restraint rather than any single architectural feature: the Blair Haffly tasting table and credenza, the white window lettering and signage by graphic designer Kristen Penn, and the vintage Marantz amplifier are the recurring details.
+- **Most iconic physical characteristics:**
+  - delicate white lettering on the front windows
+  - wall of white porcelain canisters with pastel labels
+  - long blond-wood tasting table by the front windows
+  - vintage Marantz amplifier on the divider shelving
+- **More recognizable view:** the interior
+- **Not verified:** Building era, facade material and facade color are not documented beyond an unassuming storefront among Victorians. Most interior detail dates from 2013-2020 coverage and the layout may have changed; at opening the room also had armchairs on rugs near bookcases. The tasting table's position differs by source (by the front windows in most accounts and the shop's own event listings, 'in the back' in one 2020 guide; one source calls it a low table). Which side of Sutter and the street grade were not verified.
+- **Sources:**
+  - <https://songtea.com/pages/local-pick-up>
+  - <https://newfillmore.com/2013/10/03/a-serene-oasis-for-tea/>
+  - <https://newfillmore.com/2014/05/01/businesses-blooming-on-sutter-street/>
+  - <https://www.remodelista.com/posts/song-tea-ceramics-in-san-francisco/>
+  - <https://freshcup.com/song-tea-ceramics/>
+  - <https://www.timeout.com/san-francisco/restaurants/song-tea-ceramics>
+  - <https://sprudge.com/94227-94227.html>
+  - <https://wander-logue.com/2020/06/sf-guide-song-tea-ceramics/>
+  - <https://steepster.com/places/4257-song-tea-and-ceramics-san-francisco-california?visit=4863>
+  - <https://www.timidmag.com/features/song-tea>
+  - <https://www.waitlistwizard.com/restaurants/song-tea-ceramics-san-francisco>
+  - <https://fillmorestreetsf.com/dining/markets-specialty-foods/song-tea/>
+
+## Stonemill Matcha
+
+Coffee & tea · Mission · 561 Valencia St, San Francisco, CA 94110
+
+**Known for:** Stone-ground Kyoto matcha (high confidence). Eater SF's opening coverage and the cafe's own site center it on stone-ground matcha from shade-grown Kyoto farms, served hand-whisked at a ceremonial counter or as lattes.
+
+### Place research
+
+- **Neighborhood and street:** Mission. Mid-block on the east side of Valencia Street between 16th and 17th streets, about half a block south of 16th, in the former Bar Tartine space. Self Edge is its next-door neighbor to the south, and the Roxie Theater is a short walk away on 16th Street.
+- **Terrain and setting:** Level ground on the flat Valencia corridor near 16th Street, on a block that gained sidewalk landscaping between 2008 and 2012. Weekend lines regularly stretch along the sidewalk toward the 16th Street corner.
+- **Architecture:** The ground floor of a three-story, circa-1907 Mission Revival mixed-use building (553-563 Valencia) with a residential hotel upstairs, a contributor to the 16th and Valencia Streets Post-Fire Historic District. Studio BBA's 2018 remodel of the 2,580-square-foot space gave it an understated dark blue exterior with a hanging blue sign in gold lettering, a few sidewalk tables and potted plants. Inside, a matchstick concept of square timber shapes the raw-edged wood columns and warm wood millwork, with wooden booths and banquettes, soft blue and natural wood tones, floating shelves of matcha tins by the door, custom matte tile at the prep station, and a ceremonial counter at the back with a cast-iron kettle, bamboo ladle and whisks beside a working stone mill. A separate private room has custom plaster walls, a live-edge walnut table with low wooden chairs, and a translucent washi art installation by Eriko Horiki on the back wall.
+- **Unique architectural notes:** A working matcha stone mill sits beside the ceremonial counter, and the private room is built around a glowing, translucent washi installation by Japanese artist Eriko Horiki.
+- **Most iconic physical characteristics:**
+  - dark blue storefront with a gold-lettered hanging sign
+  - raw-edged timber columns and wooden booths
+  - ceremonial counter with cast-iron kettle and stone mill
+  - weekend line down the Valencia sidewalk
+- **More recognizable view:** the interior
+- **Not verified:** Studio BBA's design details (matchstick timber columns, matte tile, the private room with Horiki washi wall and walnut table) date from the 2018 build; the December 2023 reopening left the space mostly untouched, but whether the private room is still in use is unconfirmed. Sidewalk tables are reported in 2025 (Bay Area Telegraph), but one undated review says there are no outside tables. Facade material and upper-story details not verified; the 2011 district record calls 553-563 Valencia Mission Revival, while a 2012 SFSU slide caption calls the block Classical Revival.
+- **Sources:**
+  - <https://www.stonemillmatcha-us.com/contact>
+  - <https://www.studio-bba.com/portfolio/stonemill-matcha>
+  - <https://www.pendulummag.com/design-architecture/2026/5/26/stonemill-matcha-how-a-matchstick-became-the-blueprint-for-this-japanese-inspired-san-francisco-caf>
+  - <https://sf.eater.com/2018/5/9/17336632/stonemill-matcha-cafe-opens-valencia-inside>
+  - <https://teasquirrel.com/home/2018/5/14/san-francisco-stonemill-matcha-cafe-first-impressions>
+  - <https://bayareatelegraph.com/2025/09/15/i-tried-the-mission-districts-best-matcha-latte/>
+  - <https://www.kqed.org/bayareabites/128019/table-talk-visit-the-new-stonemill-matcha-and-cento-osteria-enjoy-unique-food-wine-events-and-a-midweek-meal>
+  - <https://www.theinfatuation.com/san-francisco/reviews/stonemill-matcha>
+  - <https://sf.eater.com/2023/12/19/24008129/stonemill-matcha-reopens-mission-district-san-francisco>
+  - <https://missionlocal.org/2023/08/stonemill-matcha-closing-sunday-long-lines/>
+  - <https://default.sfplanning.org/Preservation/imn_survey/16th_and_Valencia_Streets_Post-Fire_Historic_District_Record.pdf>
+  - <https://abcdocz.com/doc/1050052/2014.1520c---san-francisco-planning-department>
 
 ## Tacolicious
 
@@ -1871,35 +2392,9 @@ Bakery · Mission · 595 Alabama St, San Francisco, CA 94110
   - <https://knowthis.place/san-francisco/mission/18th-street/2900/>
   - <https://tartinebakery.com/sanfrancisco/manufactory>
 
-## Thai Spice
-
-Restaurant · Nob Hill · 1730 Polk St, San Francisco, CA 94109
-
-**Known for:** Khao soi (esp. beef) (med confidence). Strong Google/Yelp diner consensus for coconut curry noodle soup as the standout; less press-famous than peers.
-
-### Place research
-
-- **Neighborhood and street:** Nob Hill. On Polk Street between Clay and Washington streets in Polk Gulch, the Polk commercial corridor between Nob Hill and Russian Hill. Exact position on the block and neighboring businesses not verified.
-- **Terrain and setting:** Polk Gulch runs along the low ground between Nob Hill to the east and the hills to the west, so Polk itself is fairly level while cross streets climb. Street trees and light not verified.
-- **Architecture:** A long-running neighborhood Thai restaurant (on Polk since 1989) whose dining room was renovated in January 2022 into a contemporary, dimly lit room. Reviewers describe wicker pendant shades, comfortable seating and a "West Elm-meets-Bangkok" look that replaced earlier traditional Thai decor and antiques. Facade, windows, awning and signage are not documented in available sources.
-- **Unique architectural notes:** Nothing physically one-of-a-kind is documented; the space reads as a modern, softly lit neighborhood dining room.
-- **Most iconic physical characteristics:**
-  - wicker pendant light shades over a dim, contemporary dining room
-  - renovated modern room with warm, low lighting
-- **More recognizable view:** the interior
-- **Not verified:** Thin research: few physical descriptions or photos found. No exterior description found: facade color, awning, sign style and windows all unverified. Interior details come only from scattered reviews (2022-2023). Terrain is general knowledge of Polk Gulch.
-- **Sources:**
-  - <https://www.thaispicesanfrancisco.com/>
-  - <https://www.gayot.com/restaurants/menu/thai-spice-san-francisco-ca-94109_3sf080290098.html>
-  - <https://www.sluurpy.us/san-francisco/restaurant/3758157/thai-spice>
-  - <https://www.polkst.com/profile/thai-spice-san-francisco>
-  - <https://www.eastphoenixau.com/t-pages/thai-spice-restaurant-san-francisco-polk.html>
-  - <https://www.restaurantji.com/ca/san-francisco/thai-spice-restaurant-2/>
-  - <https://www.novacircle.com/spots/north-america/united-states/california/san-francisco-county/san-francisco/thai-spice-restaurant-54e557/about>
-
 ## The Coffee Movement
 
-Coffee · Nob Hill · 1030 Washington St, San Francisco, CA 94108
+Coffee & tea · Nob Hill · 1030 Washington St, San Francisco, CA 94108
 
 **Known for:** Cocoa cappuccino (high confidence). Listed under Signature Drinks on the official menu as a dark-chocolate-dusted Australian-style cappuccino; dominates Yelp photo tags.
 
@@ -1926,6 +2421,39 @@ Coffee · Nob Hill · 1030 Washington St, San Francisco, CA 94108
   - <https://www.sfmta.com/routes/powell-mason-cable-car>
   - <https://sfstandard.com/2026/06/04/coffee-movement-chinatown-slow-bar/>
   - <https://hoodline.com/2026/06/chinatown-coffee-heavyweight-plots-slow-bar-forever-home-by-cable-cars/>
+
+## The Interval
+
+Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123
+
+**Known for:** Floor-to-ceiling library and 10,000 Year Clock prototypes (high confidence). Long Now's own page and Fast Company single out the floor-to-ceiling Manual for Civilization library, the Orrery, and the Chime Generator table as the room's defining features.
+
+### Place research
+
+- **Neighborhood and street:** Marina. Inside Fort Mason Center's Building A at 2 Marina Boulevard, directly next door to Greens Restaurant and in the same former Army marine repair shop as Radhaus, entered from the Fort Mason Center campus.
+- **Terrain and setting:** Flat bayfront fill of the old Army port at the water's edge. A small semi-private back room has a view toward the Golden Gate Bridge, while the front room is an enclosed, book-lined space lit through the exterior windows.
+- **Architecture:** A 1930s forge and machine shop in buff-stucco Building A, redesigned by BWC (Because We Can) with the original concrete slab floor stripped of carpet and polished. Floor-to-ceiling bookshelves two stories tall screen the Long Now mezzanine offices above and are visible through the exterior windows; one shelf is a hidden door to the offices. The palette is leather, walnut, and metal, with vintage stools, built-in booths, local walnut-slab tables, a resin-encased limestone counter top quarried from the Clock site in West Texas, and a spiral curiosity cabinet built into the staircase.
+- **Unique architectural notes:** An eight-foot Orrery prototype from the 10,000 Year Clock stands at the entry, the Clock's Chime Generator prototype serves as a glass-topped table, a Brian Eno "ambient painting" glows behind the counter, and custom scientific-glass vessels hang from a lit ceiling rack for the members' keep.
+- **Most iconic physical characteristics:**
+  - tall Orrery at the entrance
+  - two-story floor-to-ceiling bookshelves
+  - glowing ceiling rack of hanging glass vessels over the stone counter
+  - big chalkboard wall drawn on by a robot
+- **More recognizable view:** the interior
+- **Not verified:** Exterior signage, door, and window details were not found. The Golden Gate Bridge view from the back room and the West Texas origin of the limestone counter come from 2014 pre-opening descriptions (tablehopper); Long Now itself says only 'specially quarried stone'. Whether the Brian Eno piece is still installed in 2026 is supported only by Long Now's current page quoting a NYT description.
+- **Sources:**
+  - <https://longnow.org/interval/>
+  - <https://longnow.org/ideas/the-interval-home-of-long-now/>
+  - <https://fortmason.org/resident/the-interval/>
+  - <https://bwcarchitects.com/content/interval-long-now>
+  - <https://bwcarchitects.com/the-interval-at-the-long-now>
+  - <https://bwcarchitects.com/long-now-2>
+  - <https://bwcarchitects.com/blog/2014/05/25/the-interval-at-long-now>
+  - <https://www.fastcompany.com/3034480/inside-the-worlds-most-intriguing-and-probably-only-futurist-bar/>
+  - <https://www.tablehopper.com/lush/an-update-on-long-now-foundations-upcoming-project-the-interval/>
+  - <https://www.enprimeurclub.com/bars/the-interval-at-long-now-san-francisco-bar>
+  - <https://fortmason.org/series/fort-mason-night-market-2026/>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NHLS/85002433_text>
 
 ## The Laundromat SF
 
@@ -1956,6 +2484,39 @@ Restaurant · Outer Richmond · 3725 Balboa St, San Francisco, CA 94121
   - <https://missionlocal.org/2026/04/richmond-buzz-composting/>
   - <https://www.reddit.com/r/sanfrancisco/comments/zsqmgj/a_series_of_moody_night_photos_i_took_in_san/>
   - <https://www.thelaundromatsf.com/hours>
+
+## The Page
+
+Bar · Lower Haight · 298 Divisadero St, San Francisco, CA 94117
+
+**Known for:** Parklet built as a replica of the bar inside (high confidence). SFGATE calls it probably the coolest parklet in San Francisco, a reconstruction of the interior with a faux-brick wall and fireplace, and SFist calls it the most charming and clever pandemic-era parklet in the city.
+
+### Place research
+
+- **Neighborhood and street:** Lower Haight. On the corner of Divisadero and Page Street at the south end of the Divisadero corridor, where Page is a designated Slow Street with a traffic diverter at the intersection. A curbside parklet, dressed with a faux-brick wall and fireplace to mimic the interior, extends the bar outdoors.
+- **Terrain and setting:** Inland and well away from the water: Divisadero here is a broad, busy commercial avenue, crossed by Page Street, a calm, traffic-diverted residential route with sidewalk extensions and rain gardens along the corridor.
+- **Architecture:** An unassuming "Anywhere, U.S.A." corner storefront behind a classic wood-paneled facade, marked by a blue neon stemmed-glass sign; the building housed carpet cleaners from 1919 to 1936 before becoming a bar. Inside, a long wooden counter runs almost the full length of the right side under low red light, opposite clusters of tables and plush club and leather chairs, with wood paneling, stained glass, decades-old carpet, and walls hung with deer heads, woodsy tapestries, thrift-store art, and a giant painting of Henry VIII. A few steps down at the back is a sunken den with faux-brick walls, a dusty chandelier, pool and foosball tables, and a small lending library.
+- **Unique architectural notes:** The parklet is a deliberate outdoor replica of the bar's own interior, and the carpeted, taxidermy-lined room with its Henry VIII portrait reads like a small-town tavern transplanted to Divisadero.
+- **Most iconic physical characteristics:**
+  - blue neon stemmed-glass sign
+  - deer heads under low red light
+  - giant Henry VIII painting
+  - faux-brick parklet with a fireplace
+- **More recognizable view:** the interior
+- **Not verified:** Facade color, awning, and which curb (Divisadero or Page) the parklet occupies were not confirmed; the parklet's footprint has shrunk since 2020. Pool table count conflicts: older listings say two, PoolTrips says one, a March 2026 Restaurantji review claims the pool table was removed during the pandemic, while an August 2025 Reddit thread and The Bold Italic's April 2026 list say pool is still there. Stained glass comes from an older DoTheBay listing. Street grade not sourced.
+- **Sources:**
+  - <https://www.thepagebar.com/>
+  - <https://www.sfgate.com/food/article/the-page-san-francisco-dive-bar-18362731.php>
+  - <https://www.sfgate.com/living/article/The-coziest-bars-In-San-Francisco-by-neighborhood-10428121.php>
+  - <https://www.sfgate.com/sf-culture/article/the-page-live-music-permit-19476691.php>
+  - <https://www.theinfatuation.com/san-francisco/reviews/the-page>
+  - <https://www.cntraveler.com/bars/san-francisco/the-page>
+  - <https://punchdrink.com/venues/the-page/>
+  - <https://sfist.com/2024/06/05/lower-haight-bar-the-page-gets-their-live-music-permit-despite-neighbors-noise-objections/>
+  - <https://fascinatingstranger.com/2015/12/01/going-native-at-the-page/>
+  - <https://dothebay.com/venues/the-page>
+  - <https://www.thebolditalic.com/san-francisco-keeps-losing-pool-tables-these-32-bars-still-rack-em-up/>
+  - <https://www.sfmta.com/projects/page-slow-street>
 
 ## Tony Nik's
 
@@ -2202,6 +2763,39 @@ Wine · North Beach · 1609 Powell St, San Francisco, CA 94133
   - <https://nextdoor.com/pages/lily-laundromat-1/>
   - <https://www.hyperflyer.com/explore/barrio-north-beach-success-hits-the-covid-wall-and-bounces-back/>
 
+## William Stout Architectural Books
+
+Shop · Jackson Square · 804 Montgomery St, San Francisco, CA 94133
+
+**Known for:** Architecture and design books (high confidence). The shop's About page and SF Heritage describe it as one of only three US bookstores dedicated to architecture and design, stocking everything from rare books to contemporary monographs.
+
+### Place research
+
+- **Neighborhood and street:** Jackson Square. On the east side of Montgomery Street between Jackson and Pacific, in the landmark corner building at Montgomery and Jackson, in the heart of the Jackson Square Historic District's low 1850s brick and granite buildings, long home to art dealers and antique shops. The design studio LoveFrom is across the street, and the Transamerica Pyramid rises a short walk south.
+- **Terrain and setting:** Flat ground on old Yerba Buena Cove landfill, where the low-rise historic blocks meet the Financial District; the Transamerica Pyramid's spire towers over the block from the south.
+- **Architecture:** The shop occupies the 804 storefront and lower level of the Bank of Lucas, Turner & Co. building (800-804 Montgomery), an Italianate bank built in 1853-54 to designs by Reuben Clark under the supervision of William Tecumseh Sherman; its ground-floor facade of cut and fitted granite blocks survived 1906, when the building was rebuilt at two stories instead of three. Out front is a square enamel sign with polished stainless-steel dividers in black, white and red, designed by LoveFrom in 2025 after the original enamel Stout Books sign. Inside, towering bookcases form a wall of books reached by a hinged rolling steel ladder Bill Stout designed, with more stock downstairs, where the old vault once served as a conference room; some central tall white shelving was removed under the Eames Institute for a more open layout.
+- **Unique architectural notes:** A California Historical Landmark bank built under William Tecumseh Sherman in 1854, whose granite ground floor survived the 1906 earthquake, now holds one of only three US bookstores devoted to architecture and design, complete with a custom hinged steel library ladder.
+- **Most iconic physical characteristics:**
+  - granite-block ground-floor facade on Montgomery Street
+  - square enamel sign with polished steel dividers
+  - hinged rolling steel library ladder
+  - floor-to-ceiling wall of bookcases
+- **More recognizable view:** the interior
+- **Not verified:** Upper-story facade color and material, window and door details, and exactly where the new sign hangs were not verified. Whether the corner storefront at 800 Montgomery is part of the shop was not confirmed. The interior layout after the Eames Institute's reorganization is described only in general terms.
+- **Sources:**
+  - <https://stoutbooks.com/>
+  - <https://stoutbooks.com/pages/about>
+  - <https://stoutbooks.com/pages/contact-faqs>
+  - <https://www.sfheritage.org/heritage-in-the-neighborhoods/jackson-square-business-spotlights-william-stout-tricolore-caffe-pizzeria/>
+  - <https://www.eamesinstitute.org/stories/william-stout-architectural-books/>
+  - <https://www.drakes.com/blogs/news/an-afternoon-at-stout-books>
+  - <https://www.archpaper.com/2025/05/william-stout-architectural-books-identity-lovefrom/>
+  - <https://www.wallpaper.com/design-interiors/corporate-design-branding/lovefrom-william-stout-architectural-books-identity>
+  - <https://noehill.com/SF/LANDMARKS/sf026.asp>
+  - <https://en.wikipedia.org/wiki/Bank_of_Lucas,_Turner_%26_Co.>
+  - <https://default.sfplanning.org/Preservation/walking_tours/Walking_Tour_JACKSON_SQUARE.pdf>
+  - <https://knowthis.place/san-francisco/chinatown/montgomery-street/800/>
+
 ## Yank Sing
 
 Restaurant · Financial District · 49 Stevenson St, San Francisco, CA 94105
@@ -2233,3 +2827,35 @@ Restaurant · Financial District · 49 Stevenson St, San Francisco, CA 94105
   - <https://property.compstak.com/49-Stevenson-Street-San-Francisco/p/2767>
   - <https://www.skydb.net/building/850665126/49-stevenson-street/>
   - <https://www.postcard.inc/@eater/p/O5vJoVo4vNh/yank-sing-stevenson-st>
+
+## Zam Zam
+
+Bar · Haight-Ashbury · 1633 Haight St, San Francisco, CA 94117
+
+**Known for:** Gin martini (and the half-size “Bruno”) (high confidence). The city's Legacy Business Registry report, Time Out, and the SF Examiner all name the gin martini as the house signature, and the Examiner explains the smaller 'Bruno' pour named for the late owner.
+
+### Place research
+
+- **Neighborhood and street:** Haight-Ashbury. Mid-block on the Haight Street shopping strip between Belvedere and Clayton streets in Haight-Ashbury, one storefront in a 1910 Victorian-era building that also holds other small shops, amid vintage clothing stores and boutiques.
+- **Terrain and setting:** A few blocks east of Golden Gate Park on the busy Upper Haight commercial strip; past the recessed front doors the room is so dim that eyes need a moment to adjust.
+- **Architecture:** A 1941 interior by Assyrian architect and designer Jon Oshanna inside a 1910 Victorian-era building. Outside, two Persian minarets painted red and green rise above the awning, with a projecting sign, Moorish arches over recessed double doors, and mosaic tiles set into the facade. Inside, wood-and-plaster Persian Art Deco archways lead into a small, dim, red-toned lounge with a rounded crescent-shaped bar and a back seating room, and the ledge above the entry, once hung with a wartime blackout curtain, now holds imported Persian vases.
+- **Unique architectural notes:** Behind the semicircular bar hangs Oshanna's large framed oil mural of the Persian romance of Khosrow and Shirin, restored in 2000, in an interior essentially unchanged since opening day in December 1941.
+- **Most iconic physical characteristics:**
+  - twin red-and-green minarets over the awning
+  - Moorish arches over the double doors
+  - crescent bar under the Khosrow and Shirin mural
+  - Persian Art Deco archways in a dim red room
+- **More recognizable view:** the interior
+- **Not verified:** Current wording and style of the projecting sign and the awning color were not confirmed (the original neon read "Persian Aub Zam Zam"). The neighboring shops come from a 2016 report and may have changed. Which side of Haight the bar sits on and the street grade were not sourced.
+- **Sources:**
+  - <https://www.sf.gov/sites/default/files/2024-11/item_3o._lbr-2016-17-006_zam_zam.pdf>
+  - <https://www.sfheritage.org/heritage-in-the-neighborhoods/zam-zam/>
+  - <https://www.sfexaminer.com/lifestyles/behold-the-glory-of-aub-zam-zam-while-sipping-martinis-with-bartender-tei-gundolfi/article_c203a45f-745e-52c4-851c-1f8f6af0332a.html>
+  - <https://www.sfexaminer.com/culture/food-and-drink/zam-zam-keeps-its-martinis-cold-and-its-history-on-display/article_4d1342bf-43e2-4d02-b87b-3342a059f982.html>
+  - <https://sf.gazetteer.co/drinking-companion-zam-zams-oasis>
+  - <https://www.timeout.com/san-francisco/bars/aub-zam-zam>
+  - <https://sfguide.co/bar/zam-zam/>
+  - <https://hoodline.com/2015/10/tapping-in-with-kundan-baidwan-of-zam-zam/>
+  - <https://www.theskylineview.com/the-focal-point/features/arts/2012/05/03/retro-charm-at-aub-zam-zambr/>
+  - <https://www.corner.inc/place/48824>
+  - <https://restaurantguru.com/Zam-Zam-San-Francisco>

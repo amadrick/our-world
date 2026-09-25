@@ -446,17 +446,6 @@
       "approved": false
     },
     {
-      "id": "thai-spice",
-      "name": "Thai Spice",
-      "signatureSubject": "Khao soi (esp. beef)",
-      "signatureRationale": "Strong Google/Yelp diner consensus for coconut curry noodle soup as the standout; less press-famous than peers.",
-      "confidence": "med",
-      "sources": [
-        "https://www.restaurantji.com/ca/san-francisco/thai-spice-restaurant-2/"
-      ],
-      "approved": false
-    },
-    {
       "id": "tacolicious",
       "name": "Tacolicious",
       "signatureSubject": "Coca-Cola carnitas taco",
@@ -792,17 +781,6 @@
       "approved": false
     },
     {
-      "id": "gotts-roadside",
-      "name": "Gott's Roadside",
-      "signatureSubject": "Classic cheeseburger",
-      "signatureRationale": "Official Gott’s menu: Niman Ranch cheeseburger with secret sauce is the roadside classic (Ferry Building etc.).",
-      "confidence": "high",
-      "sources": [
-        "https://www.gotts.com/menu/food/"
-      ],
-      "approved": false
-    },
-    {
       "id": "bottega",
       "name": "Bottega",
       "signatureSubject": "Roman pinsa / pear–taleggio sachetti",
@@ -823,18 +801,6 @@
       "sources": [
         "https://blog.resy.com/2022/04/good-good-culture-club/",
         "https://sf.eater.com/2022/6/9/23157301/stuffed-chicken-wings-san-francisco-restaurants"
-      ],
-      "approved": false
-    },
-    {
-      "id": "souvla",
-      "name": "Souvla",
-      "signatureSubject": "Chicken salad with Granch dressing",
-      "signatureRationale": "Nob Hill Gazette One Dish: feta-brined rotisserie chicken salad with Greek-yogurt Granch is the signature bowl (pitas also core).",
-      "confidence": "high",
-      "sources": [
-        "https://www.nobhillgazette.com/food_and_wine/one_dish/the-chicken-salad-at-souvla/article_90df3e56-dc15-11ee-b2cf-834049f699bf.html",
-        "https://www.souvla.com/menu/"
       ],
       "approved": false
     },
@@ -895,6 +861,287 @@
       "sources": [
         "https://www.waystonesf.com/about",
         "https://www.waystonesf.com/calendar"
+      ],
+      "approved": false
+    },
+    {
+      "id": "golden-sardine",
+      "name": "Golden Sardine",
+      "signatureSubject": "Riesling and tinned fish among poetry shelves",
+      "signatureRationale": "Eater SF reported the owner's plan for 'an unreasonable amount of riesling' plus a tinned-fish shop, the Chronicle noted 10 Rieslings by the glass at opening, and The Infatuation describes drinking Riesling surrounded by poetry books.",
+      "confidence": "high",
+      "sources": [
+        "https://sf.eater.com/2023/10/4/23903341/golden-sardine-opening-north-beach-wine",
+        "https://www.sfchronicle.com/food/restaurants/article/san-francisco-new-open-18600609.php",
+        "https://www.theinfatuation.com/san-francisco/reviews/golden-sardine"
+      ],
+      "approved": false
+    },
+    {
+      "id": "radhaus",
+      "name": "Radhaus",
+      "signatureSubject": "Bay-view hall with a Ponderosa pine bar",
+      "signatureRationale": "Eater SF's review headline says the big, beautiful space is the draw, and Architectural Record calls the Ponderosa pine bar and communal bench the restaurant's signature elements.",
+      "confidence": "high",
+      "sources": [
+        "https://sf.eater.com/2018/10/4/17933678/radhaus-beer-review-marina-san-francisco",
+        "https://www.architecturalrecord.com/articles/14046-radhaus-by-envelope-ad",
+        "https://fortmason.org/resident/radhaus-2/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "the-interval",
+      "name": "The Interval",
+      "signatureSubject": "Floor-to-ceiling library and 10,000 Year Clock prototypes",
+      "signatureRationale": "Long Now's own page and Fast Company single out the floor-to-ceiling Manual for Civilization library, the Orrery, and the Chime Generator table as the room's defining features.",
+      "confidence": "high",
+      "sources": [
+        "https://longnow.org/interval/",
+        "https://www.fastcompany.com/3034480/inside-the-worlds-most-intriguing-and-probably-only-futurist-bar/",
+        "https://longnow.org/ideas/the-interval-home-of-long-now/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "the-page",
+      "name": "The Page",
+      "signatureSubject": "Parklet built as a replica of the bar inside",
+      "signatureRationale": "SFGATE calls it probably the coolest parklet in San Francisco, a reconstruction of the interior with a faux-brick wall and fireplace, and SFist calls it the most charming and clever pandemic-era parklet in the city.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfgate.com/food/article/the-page-san-francisco-dive-bar-18362731.php",
+        "https://sfist.com/2024/06/05/lower-haight-bar-the-page-gets-their-live-music-permit-despite-neighbors-noise-objections/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "zam-zam",
+      "name": "Zam Zam",
+      "signatureSubject": "Gin martini (and the half-size “Bruno”)",
+      "signatureRationale": "The city's Legacy Business Registry report, Time Out, and the SF Examiner all name the gin martini as the house signature, and the Examiner explains the smaller 'Bruno' pour named for the late owner.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfexaminer.com/culture/food-and-drink/zam-zam-keeps-its-martinis-cold-and-its-history-on-display/article_4d1342bf-43e2-4d02-b87b-3342a059f982.html",
+        "https://www.timeout.com/san-francisco/bars/aub-zam-zam",
+        "https://www.sf.gov/sites/default/files/2024-11/item_3o._lbr-2016-17-006_zam_zam.pdf"
+      ],
+      "approved": false
+    },
+    {
+      "id": "mosto",
+      "name": "Mosto",
+      "signatureSubject": "Deep tequila and mezcal lineup",
+      "signatureRationale": "Mosto's own site calls its agave-spirits selection one of SF's best, and 2011 opening coverage (tablehopper, Thrillist) counted more than 300 tequilas and mezcals.",
+      "confidence": "high",
+      "sources": [
+        "https://www.mostobar.com/about-us",
+        "https://www.tablehopper.com/chatterbox/tacolicious-ii-and-mosto-now-open-in-the-mission/",
+        "https://www.thrillist.com/bars/san-francisco/the-mission/mosto_tequila_mexican"
+      ],
+      "approved": false
+    },
+    {
+      "id": "self-edge",
+      "name": "Self Edge",
+      "signatureSubject": "Japanese selvedge denim",
+      "signatureRationale": "Self Edge's own listing says it specializes in Japanese selvedge denim, most of it exclusive to the store in North America, and the SF Chronicle calls it San Francisco's Japanese denim mecca.",
+      "confidence": "high",
+      "sources": [
+        "https://www.selfedge.com/?route=information%2Fabout_us",
+        "https://www.sfchronicle.com/style/article/Remembering-Karl-Lagerfeld-in-San-Francisco-and-13632249.php",
+        "https://www.7x7.com/best-mens-clothing-stores-san-francisco-2482054826/self-edge-for-the-die-hard-selvedge-denim-fan"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ministry-of-scent",
+      "name": "Ministry of Scent",
+      "signatureSubject": "Niche and indie perfumes",
+      "signatureRationale": "The shop's About page says it presents artistic scents from independent perfumers and niche houses, and The New Fillmore calls it an S.F. original known for its wide selection of niche and indie scent houses.",
+      "confidence": "high",
+      "sources": [
+        "https://ministryofscent.com/pages/about",
+        "https://newfillmore.com/2024/07/09/new-on-perfume-row-ministry-of-scent/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "stonemill-matcha",
+      "name": "Stonemill Matcha",
+      "signatureSubject": "Stone-ground Kyoto matcha",
+      "signatureRationale": "Eater SF's opening coverage and the cafe's own site center it on stone-ground matcha from shade-grown Kyoto farms, served hand-whisked at a ceremonial counter or as lattes.",
+      "confidence": "high",
+      "sources": [
+        "https://sf.eater.com/2018/5/9/17336632/stonemill-matcha-cafe-opens-valencia-inside",
+        "https://www.stonemillmatcha-us.com/",
+        "https://teasquirrel.com/home/2018/5/14/san-francisco-stonemill-matcha-cafe-first-impressions"
+      ],
+      "approved": false
+    },
+    {
+      "id": "evan-kinori",
+      "name": "Evan Kinori",
+      "signatureSubject": "Relaxed, natural-fiber menswear",
+      "signatureRationale": "The FT and SF Standard describe the store as the flagship for Kinori's soft, wide-cut, earth-toned clothing made from carefully sourced natural fabrics, shown alongside ceramics and furniture.",
+      "confidence": "high",
+      "sources": [
+        "https://www.ft.com/content/2876394f-3174-4585-99d8-3ffb4af04b58",
+        "https://sfstandard.com/2025/03/02/evan-kinori-menswear-fashion-designer-san-francisco/",
+        "https://evankinori.com/pages/visit"
+      ],
+      "approved": false
+    },
+    {
+      "id": "rachel-comey",
+      "name": "Rachel Comey",
+      "signatureSubject": "Stacked-heel clogs and Legion jeans",
+      "signatureRationale": "The brand's own bio credits it with pioneering stacked-heel clogs and booties and cropped high-waist denim, and GQ and Vogue single out the wide-leg cropped Legion jean as its signature.",
+      "confidence": "high",
+      "sources": [
+        "https://rachelcomey.com/pages/about-rachel",
+        "https://www.gq.com/story/rachel-comey-interview",
+        "https://www.vogue.com/article/rachel-comey-legion-jeans"
+      ],
+      "approved": false
+    },
+    {
+      "id": "sf76",
+      "name": "SF76",
+      "signatureSubject": "Japanese tableware (Hasami Porcelain)",
+      "signatureRationale": "The shop's own site names Hasami Porcelain, ARAS tableware, donabe, kitchen tools and incense as its core lines, and its FAQ steers visitors to compare Hasami Porcelain in store.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sf-76.com/pages/about",
+        "https://www.sf-76.com/pages/faq"
+      ],
+      "approved": false
+    },
+    {
+      "id": "song-tea-and-ceramics",
+      "name": "Song Tea & Ceramics",
+      "signatureSubject": "Rare Chinese and Taiwanese teas and artist-made ceramics",
+      "signatureRationale": "The shop's site, Fresh Cup and Time Out all describe small-batch teas sourced directly from producers in China and Taiwan, led by its flagship oolongs, sold alongside handmade ceramics from Taiwan, China and the US.",
+      "confidence": "high",
+      "sources": [
+        "https://songtea.com/",
+        "https://freshcup.com/song-tea-ceramics/",
+        "https://www.timeout.com/san-francisco/restaurants/song-tea-ceramics"
+      ],
+      "approved": false
+    },
+    {
+      "id": "relove",
+      "name": "ReLove",
+      "signatureSubject": "Curated designer, vintage and contemporary resale",
+      "signatureRationale": "Time Out, InsideHook and the shop's own site describe a hand-picked mix of true vintage, designer and contemporary pieces for women and men.",
+      "confidence": "high",
+      "sources": [
+        "https://www.timeout.com/san-francisco/shopping/relove",
+        "https://www.insidehook.com/style-san-francisco/best-thrift-stores-san-francisco",
+        "https://shoprelove.myshopify.com/pages/about-us"
+      ],
+      "approved": false
+    },
+    {
+      "id": "reliquary",
+      "name": "Reliquary",
+      "signatureSubject": "Antique jewelry and a 22K gold house line",
+      "signatureRationale": "Time Out highlights the owner's trove of antique and vintage jewelry, and the shop's site leads with its 22K gold house-line strands and rings.",
+      "confidence": "high",
+      "sources": [
+        "https://www.timeout.com/san-francisco/shopping/reliquary",
+        "https://reliquarysf.com/collections/reliquary-house-line-jewelry"
+      ],
+      "approved": false
+    },
+    {
+      "id": "heath-ceramics",
+      "name": "Heath Ceramics",
+      "signatureSubject": "Heath tile and tableware (tile made on site)",
+      "signatureRationale": "Heath's own San Francisco and factory-tour pages present the building as its tile factory and showroom, and 7x7 and The Bold Italic highlight watching tile production through glass from the showroom.",
+      "confidence": "high",
+      "sources": [
+        "https://www.heathceramics.com/pages/factory-tours",
+        "https://www.7x7.com/first-look-heath-ceramics-new-mission-store-opening-exhibit-1781612255.html",
+        "https://www.thebolditalic.com/behind-the-scenes-at-heath-ceramics-the-bold-italic-san-francisco/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "dandelion-chocolate",
+      "name": "Dandelion Chocolate",
+      "signatureSubject": "Single-origin chocolate bars and toasted-to-order s'mores",
+      "signatureRationale": "Dandelion's Ferry Building page and its 2026 post single out its bean-to-bar chocolate bars, hot chocolate, and freshly toasted s'mores as the draws at this shop.",
+      "confidence": "high",
+      "sources": [
+        "https://www.dandelionchocolate.com/pages/ferry-building",
+        "https://www.facebook.com/DandelionChocolate/videos/who-doesnt-love-the-ferry-building-were-honored-to-have-been-calling-this-bay-ar/4191167301095852/",
+        "https://sfstandard.com/2022/09/29/best-food-ferry-building-san-francisco-guide/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "william-stout-architectural-books",
+      "name": "William Stout Architectural Books",
+      "signatureSubject": "Architecture and design books",
+      "signatureRationale": "The shop's About page and SF Heritage describe it as one of only three US bookstores dedicated to architecture and design, stocking everything from rare books to contemporary monographs.",
+      "confidence": "high",
+      "sources": [
+        "https://stoutbooks.com/pages/about",
+        "https://www.sfheritage.org/heritage-in-the-neighborhoods/jackson-square-business-spotlights-william-stout-tricolore-caffe-pizzeria/",
+        "https://www.eamesinstitute.org/stories/william-stout-architectural-books/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "shoji",
+      "name": "Shoji",
+      "signatureSubject": "Matcha einspänner",
+      "signatureRationale": "The SF Chronicle and Hoodline call the whipped-cream-topped matcha einspänner Shoji's viral signature; the Chronicle reports it sells more than 200 a day.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfchronicle.com/food/wine/article/shoji-bar-drink-san-francisco-21197526.php",
+        "https://hoodline.com/2026/06/downtown-sf-loses-it-over-shota-s-matcha-by-day-izakaya-by-night-hot-spot/",
+        "https://www.wane.com/news/cafe-by-day-and-bar-by-night-shoji-is-ingi-shota-sons-new-sf-spot/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "alchemy-springs",
+      "name": "Alchemy Springs",
+      "signatureSubject": "40-person circular sauna",
+      "signatureRationale": "SFGATE, the SF Standard and Dwell all single out the circular, tiered sauna by architect Olle Lundberg, billed as the largest freestanding sauna in the country.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfgate.com/local/article/san-francisco-secret-retreat-largest-sauna-country-19893924.php",
+        "https://sfstandard.com/2025/06/21/san-francisco-best-saunas/",
+        "https://www.dwell.com/article/san-francisco-first-floating-sauna-fjord-good-hot-alchemy-springs-contrast-therapy-fd61b03f"
+      ],
+      "approved": false
+    },
+    {
+      "id": "golden-gate-park",
+      "name": "Golden Gate Park",
+      "signatureSubject": "Conservatory of Flowers",
+      "signatureRationale": "Gardens of Golden Gate Park calls it the oldest public wood-and-glass conservatory in North America and one of San Francisco's most photographed attractions; Wikipedia names it the park's oldest building.",
+      "confidence": "med",
+      "sources": [
+        "https://gggp.org/conservatory-of-flowers-celebrates-20th-anniversary-of-re-opening/",
+        "https://en.wikipedia.org/wiki/Conservatory_of_Flowers",
+        "https://en.wikipedia.org/wiki/Golden_Gate_Park"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ocean-beach",
+      "name": "Ocean Beach",
+      "signatureSubject": "Surf, fog, and beach bonfires",
+      "signatureRationale": "Wikipedia says Ocean Beach is known for its strong currents, surf culture, and foggy late-spring and summer weather; the NPS describes a 3.5-mile beach whose currents suit only experienced surfers.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ocean_Beach,_San_Francisco",
+        "https://www.nps.gov/goga/planyourvisit/oceanbeach.htm"
       ],
       "approved": false
     }

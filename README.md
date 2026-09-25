@@ -1,7 +1,7 @@
 # SF Recs
 
 A wedding-week guide to San Francisco: Andy and Kirissa's recommendations for
-restaurants, bars, coffee, activities, and sights, on a calm map that any guest
+restaurants, bars, coffee and tea, shops, and things to do, on a calm map that any guest
 can use on a phone or a laptop. Tap a place to read their note and a short
 write-up, then open it in Apple Maps or Google Maps with one tap.
 
@@ -65,8 +65,9 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
-`data/places.json` holds Andy and Kirissa's list: 75 places geocoded against
-OpenStreetMap and Overture Maps, each with a short neutral summary, a
+`data/places.json` holds Andy and Kirissa's list: 94 places (restaurants, bars,
+cafés, shops, and a few outdoor places) geocoded against OpenStreetMap and
+Overture Maps, each with a short neutral summary, a
 researched `signatureSubject` (what it's known for), a `signatureRationale`
 (why, and according to whom), and `placeResearch` (what it looks like, with
 sources). `data/places.md` is the readable version of all of it, one section
@@ -76,11 +77,14 @@ one is).
 
 ## Place images
 
-Every place has a square picture of the place itself, drawn from Andy's
-prompt: a grainy, hazy, slightly dreamlike take on a Kodak 35mm photo of the
-real facade or room, "a visually heightened memory of the actual restaurant."
-The files are `public/places/<id>-<hash>.webp` (960×960). A place without one
-shows a glass tile with its monogram.
+Each of the original 72 places has a square picture of the place itself, drawn
+from Andy's prompt: a grainy, hazy, slightly dreamlike take on a Kodak 35mm
+photo of the real facade or room, "a visually heightened memory of the actual
+restaurant." The files are `public/places/<id>-<hash>.webp` (960×960). The 22
+places added on September 25 have no picture yet, while Andy chooses between
+this style and a one-color risograph style; until then, a place without one
+shows a sand tile with its category glyph (and "Picture coming soon" at full
+size).
 
 **The prompt is Andy's, verbatim.** It lives in
 `src/lib/images/kodak-place-prompt.md`. The only edits are filling in
