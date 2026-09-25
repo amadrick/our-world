@@ -5,7 +5,7 @@ interface IconProps extends SVGAttributes<SVGElement> {
   size?: string | number;
 }
 
-// Feather has no dining or drinks glyphs; these follow its grid (24px, 2px round strokes).
+// Feather has no dining, drinks, or museum glyphs; these follow its grid (24px, 2px round strokes).
 function featherIcon(name: string, paths: string[]) {
   const Icon = forwardRef<SVGSVGElement, IconProps>(
     ({ color = "currentColor", size = 24, ...rest }, ref) => (
@@ -54,6 +54,15 @@ export const Bridge = featherIcon("Bridge", [
   "M7 5q5 9 10 0",
   "M2 12q3.5-2 5-7",
   "M17 5q1.5 5 5 7",
+]);
+
+export const Museum = featherIcon("Museum", [
+  "M12 2 3 7h18z",
+  "M6 11v7",
+  "M10 11v7",
+  "M14 11v7",
+  "M18 11v7",
+  "M3 22h18",
 ]);
 
 export const IceCream = featherIcon("IceCream", [

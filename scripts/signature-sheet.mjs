@@ -36,6 +36,7 @@ const CATEGORY_LABEL = {
   bakery: "Bakery",
   dessert: "Dessert",
   shop: "Shop",
+  museum: "Museum",
   activity: "Activity",
   sight: "Sight",
 };

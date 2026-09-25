@@ -1,6 +1,6 @@
 import { Camera, Coffee, Compass, ShoppingBag } from "react-feather";
 
-import { Bread, Cocktail, IceCream, Utensils, WineGlass } from "@/components/icons/feather-extras";
+import { Bread, Cocktail, IceCream, Museum, Utensils, WineGlass } from "@/components/icons/feather-extras";
 import type { CategoryId } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,7 @@ export const CATEGORY_ICONS = {
   bakery: Bread,
   dessert: IceCream,
   shop: ShoppingBag,
+  museum: Museum,
   activity: Compass,
   sight: Camera,
 } satisfies Record<CategoryId, unknown>;
