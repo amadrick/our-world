@@ -30,6 +30,7 @@ const LIGHT = {
   sand: "#F4ECD4",
   park: "#C4E79A",
   wood: "#BBE292",
+  pitch: "#C4E79A",
   water: "#8FCFF3",
   ferry: "#6CBCEB",
   pier: "#ECECEB",
@@ -38,13 +39,16 @@ const LIGHT = {
   streetFar: "#E4E3DF",
   streetCase: "#DDDCD8",
   arterial: "#F0F0EE",
+  arterialMajor: "#F0F0EE",
   arterialCase: "#D4D3CF",
   freeway: "#FBE2A2",
   freewayCase: "#EAC97C",
   rail: "#DCDBD7",
   streetLabel: "#737780",
+  streetHalo: "#FFFFFF",
   hood: "#4B5566",
   city: "#3A3A3C",
+  labelHalo: "#F3F2EE",
   waterLabel: "#4A88BD",
   parkLabel: "#3E8E46",
   landmark: "#8B95A3",
@@ -53,31 +57,40 @@ const LIGHT = {
 
 type ApplePalette = typeof LIGHT;
 
+/**
+ * Apple's dark map is lighter and bluer than black: slate blue-grey land
+ * mottled by building footprints, a royal navy bay, deep teal parks, and a
+ * faint purple on commercial blocks, with light labels on navy halos.
+ */
 const DARK: ApplePalette = {
-  land: "#262A31",
-  beige: "#2F2E2C",
-  sand: "#322F29",
-  park: "#27402C",
-  wood: "#243C29",
-  water: "#15263C",
-  ferry: "#2D4E72",
-  pier: "#31353C",
-  building: "#2C3037",
-  street: "#3D424A",
-  streetFar: "#33373E",
-  streetCase: "#2E3239",
-  arterial: "#4A4F58",
-  arterialCase: "#363A42",
-  freeway: "#6A5B3C",
-  freewayCase: "#4F4530",
-  rail: "#383C43",
-  streetLabel: "#9DA3AD",
-  hood: "#AEB6C3",
-  city: "#E5E5EA",
-  waterLabel: "#6E9CCF",
-  parkLabel: "#7DB986",
-  landmark: "#8A919C",
-  landmarkLabel: "#A9AEB6",
+  land: "#36495E",
+  beige: "#46476E",
+  sand: "#4B4E5C",
+  park: "#0F5659",
+  wood: "#0E5054",
+  pitch: "#08785A",
+  water: "#162A63",
+  ferry: "#3558A8",
+  pier: "#33455A",
+  building: "#465B78",
+  street: "#62768E",
+  streetFar: "#4C5E75",
+  streetCase: "#2F3F53",
+  arterial: "#7A8BA3",
+  arterialMajor: "#8396B4",
+  arterialCase: "#33445A",
+  freeway: "#957C52",
+  freewayCase: "#5E5240",
+  rail: "#4F6278",
+  streetLabel: "#B3C3DB",
+  streetHalo: "#1C2939",
+  hood: "#D5E0F0",
+  city: "#E5E9F0",
+  labelHalo: "#1E2A3D",
+  waterLabel: "#3A7BC4",
+  parkLabel: "#79D38A",
+  landmark: "#9FAABB",
+  landmarkLabel: "#C6D0DE",
 };
 
 interface Road {
@@ -149,10 +162,12 @@ export const apple: MapTheme<ApplePalette> = {
     arterialCase: [0.45, 0.018],
     park: [0.2, 0.05],
     wood: [0.2, 0.05],
+    pitch: [0.2, 0.05],
     water: [0.18, 0.05],
+    labelHalo: [0.5, 0.02],
   },
   pitch: 0,
-  layers(C) {
+  layers(C, { scheme }) {
     return [
       { id: "background", type: "background", paint: { "background-color": C.land } },
       {
@@ -188,7 +203,7 @@ export const apple: MapTheme<ApplePalette> = {
         "source-layer": "landuse",
         minzoom: 13,
         filter: classIn(["pitch", "playground", "stadium", "cemetery"]),
-        paint: { "fill-color": C.park },
+        paint: { "fill-color": C.pitch },
       },
       {
         id: "water",
@@ -228,8 +243,12 @@ export const apple: MapTheme<ApplePalette> = {
         type: "fill",
         source: "basemap",
         "source-layer": "building",
-        minzoom: 15,
-        paint: { "fill-color": C.building, "fill-opacity": byZoom(15, 0, 15.8, 1) },
+        // Apple's dark map shows footprints from further out, half see-through so the land's tint carries.
+        minzoom: scheme === "dark" ? 13 : 15,
+        paint: {
+          "fill-color": C.building,
+          "fill-opacity": scheme === "dark" ? byZoom(13, 0, 13.8, 0.5) : byZoom(15, 0, 15.8, 1),
+        },
       },
       {
         id: "rail",
@@ -264,7 +283,12 @@ export const apple: MapTheme<ApplePalette> = {
         layout: { "line-cap": "round", "line-join": "round" },
         paint: {
           // Far out, white streets would vanish into the pale land; they start grey and whiten closer in.
-          "line-color": r.fill === "street" ? byZoom(11, C.streetFar, 13.5, C.street) : C[r.fill],
+          "line-color":
+            r.fill === "street"
+              ? byZoom(11, C.streetFar, 13.5, C.street)
+              : r.id === "arterial"
+                ? ["match", ["get", "class"], ["primary", "trunk"], C.arterialMajor, C.arterial]
+                : C[r.fill],
           "line-width": ramp(r.width),
         },
       })),
@@ -316,7 +340,7 @@ export const apple: MapTheme<ApplePalette> = {
           "symbol-placement": "line",
           "text-padding": 14,
         },
-        paint: { "text-color": C.streetLabel, "text-halo-color": halo(C.street, "e6"), "text-halo-width": 1.4 },
+        paint: { "text-color": C.streetLabel, "text-halo-color": halo(C.streetHalo, "e6"), "text-halo-width": 1.4 },
       },
       {
         id: "park-label",
@@ -332,7 +356,7 @@ export const apple: MapTheme<ApplePalette> = {
           "text-max-width": 8,
           "text-padding": 14,
         },
-        paint: { "text-color": C.parkLabel, "text-halo-color": halo(C.land, "cc"), "text-halo-width": 1.2 },
+        paint: { "text-color": C.parkLabel, "text-halo-color": halo(C.labelHalo, "cc"), "text-halo-width": 1.2 },
       },
       {
         id: "neighborhood-label",
@@ -357,7 +381,7 @@ export const apple: MapTheme<ApplePalette> = {
         },
         paint: {
           "text-color": C.hood,
-          "text-halo-color": halo(C.land, "d9"),
+          "text-halo-color": halo(C.labelHalo, "d9"),
           "text-halo-width": 1.4,
           "text-opacity": byZoom(11.5, 0.7, 13, 1, 16, 1, 16.5, 0),
         },
@@ -383,7 +407,7 @@ export const apple: MapTheme<ApplePalette> = {
           "text-padding": 6,
           "symbol-sort-key": ["get", "rank"],
         },
-        paint: { "text-color": C.landmarkLabel, "text-halo-color": halo(C.land, "e6"), "text-halo-width": 1.4 },
+        paint: { "text-color": C.landmarkLabel, "text-halo-color": halo(C.labelHalo, "e6"), "text-halo-width": 1.4 },
       },
       {
         id: "city-label",
@@ -398,7 +422,7 @@ export const apple: MapTheme<ApplePalette> = {
           "text-size": byZoom(6, 11.5, 11, 16),
           "text-max-width": 8,
         },
-        paint: { "text-color": C.city, "text-halo-color": halo(C.land), "text-halo-width": 1.5 },
+        paint: { "text-color": C.city, "text-halo-color": halo(C.labelHalo), "text-halo-width": 1.5 },
       },
       pinFootprintLayer(),
     ];

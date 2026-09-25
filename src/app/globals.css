@@ -603,9 +603,9 @@ body .maplibregl-ctrl-attrib {
 }
 @media (prefers-color-scheme: dark) {
   .map-pin {
-    --halo: #1c1e23;
+    --halo: #1a2433;
     --name: var(--cat-label-dark);
-    --caption: #aeaeb2;
+    --caption: #dde6f4;
   }
 }
 /* The hit area reaches past the drawn pin so small pins stay easy to tap. */

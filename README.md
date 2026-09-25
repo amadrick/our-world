@@ -281,7 +281,11 @@ system (`prefers-color-scheme`), map included.
     One sky-blue water, pale grey land, fresh green parks, pale beige
     commercial blocks, wide white streets with a thin grey casing, districts
     in bold slate-blue spaced capitals, and street names in small grey
-    capitals with Apple's abbreviations (N POINT ST, VAN NESS AVE).
+    capitals with Apple's abbreviations (N POINT ST, VAN NESS AVE). Dark
+    follows Apple's dark map, lighter and bluer than black: slate blue-grey
+    land mottled by building footprints, a royal navy bay crossed by faint
+    ferry routes, deep teal parks, a faint purple on commercial blocks,
+    lighter streets and arterials, and light labels on navy halos.
   - `a` **Golden hour film**: warm cream land, a deep teal bay
     that pales in the shallows over a sandy shore, sage and olive parks with a
     fine film grain, terracotta and ochre arterials, soft building footprints,
@@ -311,16 +315,16 @@ system (`prefers-color-scheme`), map included.
 
   | Category | Pin | Name (light) | Name (dark) |
   | --- | --- | --- | --- |
-  | Restaurant | `#F28A2E` | `#C25E0B` | `#FFB36E` |
+  | Restaurant | `#F28A2E` | `#C25E0B` | `#FAAD6D` |
   | Coffee | `#B97A45` | `#8F5627` | `#E3AE80` |
   | Bakery | `#E3A21A` | `#966500` | `#F5C95E` |
   | Dessert | `#F07B63` | `#C24B35` | `#FFA493` |
   | Bar | `#E04C8A` | `#BD2B6B` | `#FF8FBC` |
   | Wine | `#B9457F` | `#982D64` | `#F095C5` |
-  | Shop | `#F2B705` | `#8F6A00` | `#FFD44F` |
+  | Shop | `#F2B705` | `#8F6A00` | `#F6DF72` |
   | Sight | `#5B6BD8` | `#4150BF` | `#A1AAFF` |
-  | Museum | `#D9479C` | `#B42C7C` | `#F59BCD` |
-  | Park | `#3DAA4E` | `#2A8739` | `#80D98B` |
+  | Museum | `#D9479C` | `#B42C7C` | `#F98DD6` |
+  | Park | `#3DAA4E` | `#2A8739` | `#7DE08B` |
 
   Basemap labels never sit under a pin or its name: each pin has an invisible
   collision footprint the map places before its own labels, and district

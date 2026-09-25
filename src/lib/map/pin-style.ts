@@ -24,20 +24,20 @@ export interface CategoryColor {
 
 /** Apple Maps' category colors: food orange, café and bakery warm tones, nightlife pink, shops yellow, parks green. */
 export const CATEGORY_COLORS: Record<CategoryId, CategoryColor> = {
-  restaurant: { fill: "#F28A2E", label: "#C25E0B", labelDark: "#FFB36E" },
+  restaurant: { fill: "#F28A2E", label: "#C25E0B", labelDark: "#FAAD6D" },
   coffee: { fill: "#B97A45", label: "#8F5627", labelDark: "#E3AE80" },
   bakery: { fill: "#E3A21A", label: "#966500", labelDark: "#F5C95E" },
   dessert: { fill: "#F07B63", label: "#C24B35", labelDark: "#FFA493" },
   bar: { fill: "#E04C8A", label: "#BD2B6B", labelDark: "#FF8FBC" },
   wine: { fill: "#B9457F", label: "#982D64", labelDark: "#F095C5" },
-  shop: { fill: "#F2B705", label: "#8F6A00", labelDark: "#FFD44F" },
+  shop: { fill: "#F2B705", label: "#8F6A00", labelDark: "#F6DF72" },
   sight: { fill: "#5B6BD8", label: "#4150BF", labelDark: "#A1AAFF" },
-  museum: { fill: "#D9479C", label: "#B42C7C", labelDark: "#F59BCD" },
-  park: { fill: "#3DAA4E", label: "#2A8739", labelDark: "#80D98B" },
+  museum: { fill: "#D9479C", label: "#B42C7C", labelDark: "#F98DD6" },
+  park: { fill: "#3DAA4E", label: "#2A8739", labelDark: "#7DE08B" },
 };
 
-/** Captions under photo pins: Apple's small grey capitals. */
-export const CAPTION_COLOR = { light: "#6E6E73", dark: "#AEAEB2" };
+/** Captions under photo pins: Apple's small grey capitals, near-white on the dark map. */
+export const CAPTION_COLOR = { light: "#6E6E73", dark: "#DDE6F4" };
 
 /** Geometry, px. The layout, the DOM pins, and the map's collision footprints all read these. */
 export const PIN = {
