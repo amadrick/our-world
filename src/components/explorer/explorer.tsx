@@ -21,12 +21,18 @@ import {
 import { getCategory, getPill } from "@/lib/places/taxonomy";
 import { PILL_IDS, type Place } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
-import { BottomSheet, type SheetSnap } from "./bottom-sheet";
+import { BottomSheet, SHEET_EXIT_MS, type SheetSnap } from "./bottom-sheet";
 import { FilterBar } from "./filter-bar";
 import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
 import { ListBackdrop } from "./list-backdrop";
-import { PlaceActions, PlaceDetail, PlaceSheetHeader, placeColor } from "./place-detail";
+import {
+  PlaceActions,
+  PlaceDetail,
+  PlaceSheetHeader,
+  SheetCloseButton,
+  placeColor,
+} from "./place-detail";
 import { PlaceList, type NoMatches } from "./place-list";
 
 const RAIL_WIDTH = 400;
@@ -125,6 +131,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const counts = useMemo(() => pillCounts(places, filters, PILL_IDS), [places, filters]);
   const elsewhere = useMemo(() => matchesInOtherSections(places, filters), [places, filters]);
   const selected = places.find((p) => p.id === selectedId) ?? null;
+  // The phone sheet outlives the selection just long enough to play its exit.
+  const [sheetPlace, setSheetPlace] = useState<Place | null>(selected);
+  if (selected && selected !== sheetPlace) setSheetPlace(selected);
+  const sheetClosing = !selected && sheetPlace !== null;
   const filtersActive = hasActiveFilters(filters);
   const listMode = mode === "list";
 
@@ -175,6 +185,18 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     observer.observe(safeArea);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!sheetClosing) return;
+    const timer = window.setTimeout(() => setSheetPlace(null), SHEET_EXIT_MS);
+    return () => window.clearTimeout(timer);
+  }, [sheetClosing]);
+
+  // The rail keeps one detail view across places (so the photo can crossfade); each place starts at the top.
+  const railScrollRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    railScrollRef.current?.scrollTo({ top: 0 });
+  }, [selectedId]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -282,7 +304,12 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         aria-label="Places"
         inert={listMode}
       >
-        <div className={cn("flex min-h-0 flex-1 flex-col", selected && "hidden")}>
+        <div
+          className={cn(
+            "flex min-h-0 flex-1 flex-col animate-in fade-in duration-150",
+            selected && "hidden",
+          )}
+        >
           <header className="shrink-0 border-b border-hairline px-6 pt-6">
             <h1 className="text-lg font-semibold">{site.title}</h1>
             <FilterBar className="-mx-6 mt-2" inset="px-6" {...filterProps} />
@@ -297,10 +324,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           </div>
         </div>
         {selected && (
-          <div
-            key={selected.id}
-            className="min-h-0 flex-1 overflow-y-auto animate-in fade-in duration-200"
-          >
+          <div ref={railScrollRef} className="min-h-0 flex-1 overflow-y-auto">
             <PlaceDetail place={selected} onBack={closeDetail} variant="rail" />
           </div>
         )}
@@ -335,25 +359,27 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         <FilterBar inset="px-4" {...filterProps} />
       </div>
 
-      {/* Map mode, phone: the open place rises in a sheet, name on top and actions pinned below */}
-      {!listMode && selected && (
+      {/* Map mode, phone: the open place rises in a sheet, photo on top; peeking, just its name and actions */}
+      {!listMode && sheetPlace && (
         <div className="lg:hidden">
           <BottomSheet
-            tint={placeColor(selected)}
+            tint={placeColor(sheetPlace)}
             snap={snap}
             heights={sheetHeights}
             onSnapChange={setSnap}
-            scrollKey={`place:${selected.id}`}
+            scrollKey={`place:${sheetPlace.id}`}
+            overlay={snap !== "peek"}
+            closing={sheetClosing}
             header={
-              <PlaceSheetHeader
-                place={selected}
-                showThumbnail={snap === "peek"}
-                onClose={closeDetail}
-              />
+              snap === "peek" ? (
+                <PlaceSheetHeader place={sheetPlace} onClose={closeDetail} />
+              ) : (
+                <SheetCloseButton onClose={closeDetail} />
+              )
             }
-            footer={<PlaceActions place={selected} />}
+            footer={snap === "peek" ? <PlaceActions place={sheetPlace} /> : undefined}
           >
-            <PlaceDetail place={selected} onBack={closeDetail} variant="sheet" />
+            <PlaceDetail place={sheetPlace} onBack={closeDetail} variant="sheet" />
           </BottomSheet>
         </div>
       )}

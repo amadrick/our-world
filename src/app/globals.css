@@ -66,6 +66,8 @@
 
 
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  /* A soft ease-out: quick to start, long gentle landing. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -577,4 +579,70 @@ body .maplibregl-ctrl-attrib {
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.18),
     0 -12px 40px -12px rgb(0 0 0 / 0.35);
+}
+
+/*
+ * Opening a place in the map sheet or rail (terms from animation-vocabulary):
+ * orchestration of a scale in + fade in for the photo, then a stagger of
+ * enters (rise and fade in) for the title, the actions, and each detail row.
+ * Switching places crossfades the photo and re-staggers quicker and shorter.
+ * Only transform and opacity animate, so it stays on the compositor.
+ */
+@property --tint {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+[data-motion="open"] {
+  --item-duration: 520ms;
+  --item-start: 110ms;
+  --item-step: 55ms;
+  --item-rise: 14px;
+}
+[data-motion="switch"] {
+  --item-duration: 360ms;
+  --item-start: 60ms;
+  --item-step: 35ms;
+  --item-rise: 8px;
+}
+.motion-photo-in {
+  animation: photo-in 640ms var(--ease-out-soft) both;
+}
+.motion-photo-swap {
+  animation: photo-swap 420ms var(--ease-out-soft) both;
+}
+.motion-item {
+  animation: item-in var(--item-duration, 520ms) var(--ease-out-soft) both;
+  animation-delay: calc(var(--item-start, 110ms) + var(--i, 0) * var(--item-step, 55ms));
+}
+@keyframes photo-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+@keyframes photo-swap {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+}
+@keyframes item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--item-rise, 14px), 0);
+  }
+}
+@keyframes fade-only {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-photo-in,
+  .motion-photo-swap,
+  .motion-item {
+    animation: fade-only 180ms ease-out both;
+  }
 }

@@ -47,3 +47,19 @@ export function dissolveGradient(color: string, solidFrom = 100): string {
   });
   return `linear-gradient(to bottom, ${stops.join(", ")})`;
 }
+
+/** smootherstep: flat at both ends, so neither where the fade starts nor where it ends shows as a line. */
+const smooth = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
+
+/**
+ * A mask for a photo that holds it solid down to `from` percent, then fades it
+ * out to clear at the bottom edge, revealing whatever color is behind it.
+ */
+export function fadeOutMask(from = 50): string {
+  const stops = [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1].map((t) => {
+    const at = Math.round((from + t * (100 - from)) * 100) / 100;
+    const alpha = Math.round((1 - smooth(t)) * 1000) / 1000;
+    return `rgb(0 0 0 / ${alpha}) ${at}%`;
+  });
+  return `linear-gradient(to bottom, ${stops.join(", ")})`;
+}

@@ -11,7 +11,7 @@ import {
   Star,
   X,
 } from "react-feather";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { CategoryIcon } from "@/components/places/category-badge";
@@ -21,7 +21,7 @@ import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
-import { dissolveGradient } from "@/lib/progressive-blur";
+import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
 import { ANDY_PICK, FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
@@ -124,7 +124,7 @@ function CopyAddress({ address }: { address: string }) {
 /** Open in Apple Maps (the bright pill) or Google Maps (glass beside it). */
 export function PlaceActions({ place }: { place: Place }) {
   const pill =
-    "pressable flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-full px-4 text-base font-semibold outline-white focus-visible:outline-2 focus-visible:outline-offset-2";
+    "pressable flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-full px-3 text-base font-semibold whitespace-nowrap outline-white focus-visible:outline-2 focus-visible:outline-offset-2";
   return (
     <div className="flex gap-3">
       <a
@@ -149,26 +149,16 @@ export function PlaceActions({ place }: { place: Place }) {
   );
 }
 
-/** The name and quiet meta at the top of the phone map sheet (with a thumbnail when peeking). */
-export function PlaceSheetHeader({
-  place,
-  showThumbnail,
-  onClose,
-}: {
-  place: Place;
-  showThumbnail: boolean;
-  onClose: () => void;
-}) {
+/** The phone map sheet at its smallest: thumbnail, name, and quiet meta. */
+export function PlaceSheetHeader({ place, onClose }: { place: Place; onClose: () => void }) {
   return (
     <div className="flex items-center gap-3 px-5 pt-1 pb-4 text-white">
-      {showThumbnail && (
-        <PlaceImage
-          place={place}
-          sizes="56px"
-          placeholder={placeColor(place)}
-          className="w-14 shrink-0 rounded-md"
-        />
-      )}
+      <PlaceImage
+        place={place}
+        sizes="56px"
+        placeholder={placeColor(place)}
+        className="w-14 shrink-0 rounded-md"
+      />
       <div className="min-w-0 flex-1">
         <h2 className="flex items-center gap-1.5 text-lg font-semibold">
           <span className="truncate">{smartQuotes(place.name)}</span>
@@ -195,6 +185,75 @@ export function PlaceSheetHeader({
   );
 }
 
+/** Top right of the phone map sheet, over the photo. */
+export function SheetCloseButton({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="absolute top-2.5 right-3">
+      <FloatingButton label="Close" onClick={onClose}>
+        <X size={20} aria-hidden />
+      </FloatingButton>
+    </div>
+  );
+}
+
+/** How long the outgoing photo stays under the incoming one while it crossfades in. */
+const PHOTO_SWAP_MS = 480;
+
+const PHOTO_FADE = fadeOutMask(52);
+
+/**
+ * The photo at the top of the map sheet and rail, edge to edge, fading into
+ * the place's color behind it. Opening plays a scale in + fade in; switching
+ * places crossfades the new photo in over the old one.
+ */
+function PhotoStage({
+  place,
+  alt,
+  sizes,
+  className,
+}: {
+  place: Place;
+  alt: string;
+  sizes: string;
+  className?: string;
+}) {
+  const [layers, setLayers] = useState([{ place, motion: "in" as "in" | "swap" }]);
+  const top = layers[layers.length - 1];
+  if (top.place.id !== place.id) setLayers([top, { place, motion: "swap" }]);
+
+  useEffect(() => {
+    if (layers.length < 2) return;
+    const timer = window.setTimeout(() => setLayers((current) => current.slice(-1)), PHOTO_SWAP_MS);
+    return () => window.clearTimeout(timer);
+  }, [layers]);
+
+  return (
+    <div
+      className={cn("relative overflow-hidden", className)}
+      style={{ maskImage: PHOTO_FADE, WebkitMaskImage: PHOTO_FADE }}
+    >
+      {layers.map((layer) => (
+        <PlaceImage
+          key={layer.place.id}
+          place={layer.place}
+          alt={layer.place.id === place.id ? alt : ""}
+          priority
+          sizes={sizes}
+          placeholder={placeColor(layer.place)}
+          className={cn(
+            "absolute inset-0 aspect-auto",
+            layer.motion === "in" ? "motion-photo-in" : "motion-photo-swap",
+          )}
+        />
+      ))}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/30 to-transparent"
+      />
+    </div>
+  );
+}
+
 interface PlaceDetailProps {
   place: Place;
   onBack: () => void;
@@ -205,9 +264,9 @@ interface PlaceDetailProps {
    * runs edge to edge and melts into the page color, with everything else set
    * right on it. On wider screens, a rounded square photo with a soft halo of
    * its colors, and everything else beside it, both starting at the top.
-   * "rail": inside the desktop map rail, the rounded photo above the details.
-   * "sheet": inside the phone map sheet, whose header shows the name and whose
-   * footer holds the actions.
+   * "sheet" and "rail": the phone map sheet and the desktop map rail. The photo
+   * runs edge to edge on top and fades into the color, then the title with the
+   * actions right under it, then the rest; opening staggers them in.
    * All three sit on the place's color; the caller paints it behind them.
    */
   variant: "page" | "rail" | "sheet";
@@ -217,6 +276,10 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
   const color = placeColor(place);
   const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
   const page = variant === "page";
+  // The first place opened plays the full entrance; later ones re-stagger quicker.
+  const [firstId] = useState(place.id);
+  const [switched, setSwitched] = useState(false);
+  if (!switched && place.id !== firstId) setSwitched(true);
   const alt = `${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`;
 
   const controls = variant !== "sheet" && (
@@ -237,7 +300,7 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
     </div>
   );
 
-  const header = variant !== "sheet" && (
+  const header = (
     <header className="space-y-3 [text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
       {place.andyFavorite && <AndyPickChip />}
       <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>
@@ -250,90 +313,75 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
     </header>
   );
 
-  const details = (
-    <div className="space-y-8">
-      {variant === "sheet" && place.andyFavorite && <AndyPickChip />}
-      {(place.signatureSubject || tags.length > 0) && (
-        <div className="space-y-4">
-          {place.signatureSubject && (
-            <div>
-              <p className="text-sm font-medium text-white/70">Known for</p>
-              <p className="text-lg font-semibold text-pretty">
-                {smartQuotes(place.signatureSubject)}
-              </p>
-            </div>
-          )}
-          {tags.length > 0 && (
-            <ul className="flex flex-wrap gap-2" aria-label="Good to know">
-              {tags.map((tag) => (
-                <li
-                  key={tag.id}
-                  className="glass-tinted flex h-9 items-center gap-2 rounded-full px-3.5 text-sm font-medium"
-                >
-                  <TagIcon tag={tag.id} />
-                  {tag.badge}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
-      {place.note && (
-        <figure className="border-l-2 border-white/30 pl-4">
-          <blockquote className="text-base">{smartQuotes(place.note)}</blockquote>
-          <figcaption className="mt-2 text-sm font-medium text-white/70">{site.hosts}</figcaption>
-        </figure>
-      )}
-      {place.summary && (
-        <div>
-          <p className="text-base text-white/85">{smartQuotes(place.summary)}</p>
-          {place.summarySource === "placeholder" && (
-            <p className="mt-2 text-sm text-white/70">A fuller description is on the way.</p>
-          )}
-        </div>
-      )}
-      {place.address && <CopyAddress address={place.address} />}
-    </div>
-  );
+  const rows = [
+    (place.signatureSubject || tags.length > 0) && (
+      <div key="known" className="space-y-4">
+        {place.signatureSubject && (
+          <div>
+            <p className="text-sm font-medium text-white/70">Known for</p>
+            <p className="text-lg font-semibold text-pretty">{smartQuotes(place.signatureSubject)}</p>
+          </div>
+        )}
+        {tags.length > 0 && (
+          <ul className="flex flex-wrap gap-2" aria-label="Good to know">
+            {tags.map((tag) => (
+              <li
+                key={tag.id}
+                className="glass-tinted flex h-9 items-center gap-2 rounded-full px-3.5 text-sm font-medium"
+              >
+                <TagIcon tag={tag.id} />
+                {tag.badge}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    ),
+    place.note && (
+      <figure key="note" className="border-l-2 border-white/30 pl-4">
+        <blockquote className="text-base">{smartQuotes(place.note)}</blockquote>
+        <figcaption className="mt-2 text-sm font-medium text-white/70">{site.hosts}</figcaption>
+      </figure>
+    ),
+    place.summary && (
+      <div key="summary">
+        <p className="text-base text-white/85">{smartQuotes(place.summary)}</p>
+        {place.summarySource === "placeholder" && (
+          <p className="mt-2 text-sm text-white/70">A fuller description is on the way.</p>
+        )}
+      </div>
+    ),
+    place.address && <CopyAddress key="address" address={place.address} />,
+  ].filter(Boolean);
 
-  if (variant === "sheet") {
+  const details = <div className="space-y-8">{rows}</div>;
+
+  if (variant === "sheet" || variant === "rail") {
+    const rail = variant === "rail";
+    const item = (i: number) => ({ className: "motion-item", style: { "--i": i } as React.CSSProperties });
     return (
-      <article aria-label={place.name} className="text-white">
+      <article aria-label={place.name} className="relative text-white" data-motion={switched ? "switch" : "open"}>
         <div className="relative">
-          <PlaceImage
+          <PhotoStage
             place={place}
             alt={alt}
-            priority
-            sizes="100vw"
-            placeholder={color}
-            className="aspect-[4/3] [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
+            sizes={rail ? "400px" : "100vw"}
+            className={rail ? "aspect-square" : "aspect-[4/3]"}
           />
-          <PhotoDissolve className="h-[35%]" />
+          {rail && <div className="absolute inset-x-3 top-3 z-10">{controls}</div>}
         </div>
-        <div className="relative -mt-6 px-5 pb-4">{details}</div>
-      </article>
-    );
-  }
-
-  if (variant === "rail") {
-    return (
-      <article aria-label={place.name} className="relative text-white">
-        <div className="px-3 pt-3">{controls}</div>
-        <div className="relative mx-6 mt-4">
-          <PhotoHalo place={place} />
-          <PlaceImage
-            place={place}
-            alt={alt}
-            priority
-            sizes="352px"
-            placeholder={color}
-            className="rounded-xl shadow-[0_24px_60px_-24px_rgb(0_0_0/0.6)]"
-          />
-        </div>
-        <div className="relative space-y-6 px-6 pt-7 pb-8">
-          {header}
-          <PlaceActions place={place} />
-          {details}
+        <div key={place.id} className={cn("relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}>
+          <div {...item(0)}>{header}</div>
+          <div {...item(1)}>
+            <PlaceActions place={place} />
+          </div>
+          <div className="space-y-8 pt-2">
+            {rows.map((row, i) => (
+              <div key={i} {...item(i + 2)}>
+                {row}
+              </div>
+            ))}
+          </div>
         </div>
       </article>
     );

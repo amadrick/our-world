@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { blurLayers, dissolveGradient } from "./progressive-blur";
+import { blurLayers, dissolveGradient, fadeOutMask } from "./progressive-blur";
 
 describe("blurLayers", () => {
   it("doubles the blur with each layer, up to the strongest at the bottom", () => {
@@ -30,5 +30,13 @@ describe("dissolveGradient", () => {
 
   it("can turn solid partway down", () => {
     expect(dissolveGradient("#23453b", 60)).toMatch(/#23453bff 60%\)$/);
+  });
+});
+
+describe("fadeOutMask", () => {
+  it("holds the photo solid to the start of the fade and clears it at the bottom", () => {
+    const mask = fadeOutMask(40);
+    expect(mask).toMatch(/^linear-gradient\(to bottom, rgb\(0 0 0 \/ 1\) 40%/);
+    expect(mask).toMatch(/rgb\(0 0 0 \/ 0\) 100%\)$/);
   });
 });
