@@ -66,7 +66,7 @@
     {
       "id": "flour-and-water",
       "name": "Flour + Water",
-      "signatureSubject": "Taleggio scarpinocce",
+      "signatureSubject": "Taleggio scarpinocc",
       "signatureRationale": "Andy’s own pick.",
       "confidence": "andy",
       "sources": [],
@@ -534,7 +534,7 @@
     {
       "id": "true-laurel",
       "name": "True Laurel",
-      "signatureSubject": "My Oh My",
+      "signatureSubject": "Mai O Mai",
       "signatureRationale": "Andy’s own pick.",
       "confidence": "andy",
       "sources": [],

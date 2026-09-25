@@ -624,7 +624,7 @@ Restaurant · Mission · 710 Florida St, San Francisco, CA 94110
 
 Restaurant · Mission · 2401 Harrison St, San Francisco, CA 94110 · Andy’s pick
 
-**Known for:** Taleggio scarpinocce (Andy’s own pick).
+**Known for:** Taleggio scarpinocc (Andy’s own pick).
 
 ### Place research
 
@@ -2674,7 +2674,7 @@ Bar · Mission · 3010 20th St, San Francisco, CA 94110
 
 Bar · Mission · 753 Alabama St, San Francisco, CA 94110 · Andy’s pick
 
-**Known for:** My Oh My (Andy’s own pick).
+**Known for:** Mai O Mai (Andy’s own pick).
 
 ### Place research
 
