@@ -49,7 +49,7 @@ export function PlaceImage({
     );
   }
   return (
-    <div className={cn("relative aspect-square overflow-hidden bg-white", className)}>
+    <div className={cn("relative aspect-square overflow-hidden bg-photo", className)}>
       <Image
         src={place.image}
         alt={alt}

@@ -320,7 +320,14 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
   );
 
   const controls = variant !== "sheet" && (
-    <div className="absolute inset-x-3 top-3 z-10 flex items-start justify-between gap-2">
+    <div
+      className={cn(
+        "flex items-start justify-between gap-2",
+        page
+          ? "mb-3 md:absolute md:inset-x-3 md:top-3 md:z-10 md:mb-0"
+          : "absolute inset-x-3 top-3 z-10",
+      )}
+    >
       <OverlayBack onBack={onBack} />
       <div className="flex gap-2">
         <OverlayButton label="Share" onClick={() => void sharePlace(place)}>
@@ -346,7 +353,7 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
         className={cn(
           "image-frame",
           variant === "rail" ? "aspect-[4/3] rounded-xl" : "aspect-[5/4] rounded-xl",
-          page && "md:aspect-square md:rounded-2xl",
+          page && "aspect-square md:rounded-2xl",
         )}
       />
     </div>

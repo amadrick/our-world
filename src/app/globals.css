@@ -66,6 +66,8 @@
 
   /* The tile a place shows until it has a picture. */
   --color-sand: #ece8e1;
+  /* Behind a picture while it loads: a neutral mid-grey, so dark film photos don't flash in from white. */
+  --color-photo: #d4d4d4;
 
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
 }
