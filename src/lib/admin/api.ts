@@ -1,7 +1,7 @@
 import type { PlaceCandidate } from "@/lib/geo/geocoder";
 import type { MapsProvider } from "@/lib/geo/maps-links";
 import type { PlaceInputPayload } from "@/lib/places/schema";
-import type { Place, SummarySource } from "@/lib/places/types";
+import type { Place, PlaceResearch, SummarySource } from "@/lib/places/types";
 
 export type { PlaceCandidate };
 
@@ -59,16 +59,15 @@ export function requestSummary(payload: PlaceInputPayload) {
   });
 }
 
-export interface SignatureResponse {
+export interface ResearchResponse {
   signatureSubject?: string;
   signatureRationale?: string;
-  placeVisualSubject?: string;
-  placeVisualScene?: "facade" | "interior";
+  placeResearch?: PlaceResearch;
   source: "web" | "model" | "none";
   notice?: string;
 }
 
-export function researchSignature(payload: {
+export function researchPlace(payload: {
   name: string;
   category?: string;
   neighborhood: string;
@@ -76,13 +75,13 @@ export function researchSignature(payload: {
   lat?: number;
   lng?: number;
 }) {
-  return request<SignatureResponse>("/api/admin/signature", {
+  return request<ResearchResponse>("/api/admin/research", {
     method: "POST",
     body: JSON.stringify(payload),
   });
 }
 
-/** Draws the place's facade or room from its saved brief. */
+/** Draws the place's image from Andy's prompt and its saved research. */
 export async function generatePlaceImage(id: string): Promise<Place> {
   const { place } = await request<{ place: Place }>(
     `/api/admin/places/${encodeURIComponent(id)}/image`,

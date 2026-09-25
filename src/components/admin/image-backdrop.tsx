@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 /**
- * The admin's content layer: a softly blurred mosaic of place illustrations,
+ * The admin's content layer: a softly blurred mosaic of place pictures,
  * so the glass chrome above has color to pick up. Without any, a quiet wash.
  */
 export function ImageBackdrop({ images }: { images: string[] }) {

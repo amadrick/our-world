@@ -18,7 +18,7 @@ interface AdminDashboardProps {
   initialPlaces: Place[];
   backdrop: string[];
   ai: { enabled: boolean; model: string };
-  /** Whether saving a place also draws its illustration. */
+  /** Whether saving a place also draws its image. */
   imagesEnabled: boolean;
   usingDefaultPassword: boolean;
 }
@@ -68,7 +68,7 @@ export function AdminDashboard({
     router.refresh();
   };
 
-  const onSaved = (place: Place, isNew: boolean, illustrate: boolean) => {
+  const onSaved = (place: Place, isNew: boolean, drawImage: boolean) => {
     setPlaces((prev) =>
       isNew ? [...prev, place] : prev.map((p) => (p.id === place.id ? place : p)),
     );
@@ -79,17 +79,17 @@ export function AdminDashboard({
         onClick: () => window.open(`/?place=${place.id}`, "_blank"),
       },
     });
-    if (!illustrate) return;
+    if (!drawImage) return;
     toast.promise(
       generatePlaceImage(place.id).then((drawn) => {
         setPlaces((prev) => prev.map((p) => (p.id === drawn.id ? drawn : p)));
         return drawn;
       }),
       {
-        loading: `Drawing ${place.name}’s illustration…`,
-        success: `Illustration added for ${place.name}`,
+        loading: `Drawing ${place.name}’s picture…`,
+        success: `Picture added for ${place.name}`,
         error: (err) =>
-          err instanceof ApiError ? err.message : "Couldn’t draw the illustration. Try again later.",
+          err instanceof ApiError ? err.message : "Couldn’t draw the picture. Try again later.",
       },
     );
   };

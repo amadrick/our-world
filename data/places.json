@@ -14,8 +14,6 @@
       "createdAt": "2026-09-24T21:00:00.000Z",
       "signatureSubject": "Short & Sweet (red bean–cherry espresso) / passion-fruit chocolate cappuccino",
       "signatureRationale": "Infatuation says offbeat signatures are the main draw (Short & Sweet; passion-fruit chocolate cappuccino); Eater highlights cocktail-style drinks from the founders’ pop-up era.",
-      "placeVisualSubject": "a tiny Hayes Valley café in the ground floor of a pale gray Victorian flat, a narrow glass door, a small front window and two little sidewalk tables, with a simple crisp sign that reads \"KOPÊ HOUSE\"",
-      "placeVisualScene": "facade",
       "image": "/places/kope-house-dc197c0a.webp"
     },
     {
@@ -32,8 +30,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Redwood courtyard interior (tree Francesca through open roof)",
       "signatureRationale": "Eater, SF Standard, and Daily Coffee News all spotlight the Boor Projects woodsy interior and courtyard redwood as the permanent Mission café’s defining feature—matches Andy’s interior example.",
-      "placeVisualSubject": "a woodsy café courtyard room: a young redwood tree growing up through an open roof, warm wooden benches and a small wooden counter",
-      "placeVisualScene": "interior",
       "image": "/places/hedge-coffee-237d0342.webp"
     },
     {
@@ -50,8 +46,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Cocoa cappuccino",
       "signatureRationale": "Listed under Signature Drinks on the official menu as a dark-chocolate-dusted Australian-style cappuccino; dominates Yelp photo tags.",
-      "placeVisualSubject": "a narrow café storefront at the base of a white four-story Nob Hill apartment building with fire escapes, one black-framed door and a small window, with a simple crisp sign that reads \"THE COFFEE MOVEMENT\"",
-      "placeVisualScene": "facade",
       "image": "/places/the-coffee-movement-be7d78d5.webp"
     },
     {
@@ -68,8 +62,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Salted caramel ice cream",
       "signatureRationale": "Official Bi-Rite copy calls it “hands down our most popular”; Serious Eats and press treat it as the creamery’s calling card.",
-      "placeVisualSubject": "a small one-story shop with a cream stucco front, a soft pink-and-cream striped awning, a big shop window and a wooden bench out front, with a simple crisp sign that reads \"BI-RITE CREAMERY\"",
-      "placeVisualScene": "facade",
       "image": "/places/bi-rite-creamery-6d26b8dd.webp"
     },
     {
@@ -86,8 +78,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Spicy Ronny (pepperoni + Calabrian heat / hot honey)",
       "signatureRationale": "Owner told Resy it’s the best seller; Infatuation and Bon Appétit On The Line highlight it as the house pepperoni pie.",
-      "placeVisualSubject": "a two-story Lower Haight Victorian corner building in warm gray with white trim and large ground-floor windows glowing warmly, with a simple crisp sign that reads \"JULES\"",
-      "placeVisualScene": "facade",
       "image": "/places/jules-cd00228b.webp"
     },
     {
@@ -106,8 +96,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Legendary draft-beer wall (~50 taps; Belgian + West Coast craft / Pliny culture)",
       "signatureRationale": "Craft Beer & Brewing and SFGATE frame Toronado as a monument to characterful draft beer; long associated with rare taps and Russian River/Pliny culture.",
-      "placeVisualSubject": "a narrow dive bar room: a long dark wooden bar with stools and a wall of many colorful tap handles behind it",
-      "placeVisualScene": "interior",
       "image": "/places/toronado-2290e8c1.webp"
     },
     {
@@ -126,8 +114,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Tortellini en brodo",
       "signatureRationale": "Eater’s Anatomy of a Dish and Chronicle pasta coverage treat tortellini en brodo as the year-round pasta centerpiece.",
-      "placeVisualSubject": "a low, wide Mission District warehouse building in pale gray stucco with big black steel-framed windows and a simple black awning, with a simple crisp sign that reads \"FLOUR + WATER\"",
-      "placeVisualScene": "facade",
       "image": "/places/flour-and-water-c9bf8e32.webp"
     },
     {
@@ -146,8 +132,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Joe’s Special (beef–spinach–egg scramble)",
       "signatureRationale": "Wikipedia and house lore identify Joe’s Special as the namesake scramble; still a menu staple alongside Italian-American classics.",
-      "placeVisualSubject": "a large cream stucco corner building with dark green awnings over the windows and a tall vertical red neon blade sign on the corner, with a simple crisp sign that reads \"ORIGINAL JOE'S\"",
-      "placeVisualScene": "facade",
       "image": "/places/original-joes-8be393fc.webp"
     },
     {
@@ -166,8 +150,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Baked BBQ pork buns (sugary crisp crust)",
       "signatureRationale": "Successor to Hong Kong Lounge; Infatuation and Michelin coverage spotlight the bakery-style char siu bao (XLB also excellent).",
-      "placeVisualSubject": "a modern two-story restaurant building with a gray stone facade, tall dark glass windows and two small red lanterns by the door, with a simple crisp sign that reads \"HK LOUNGE\"",
-      "placeVisualScene": "facade",
       "image": "/places/hk-lounge-bistro-b4373913.webp"
     },
     {
@@ -186,8 +168,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Carne asada super burrito",
       "signatureRationale": "Infatuation and Mission consensus: charred-steak Mission burrito is the order; El Farolito’s own framing is Mission-style burrito identity.",
-      "placeVisualSubject": "a simple one-story Mission District storefront with a mustard-yellow front, a red trim band and a wide glass window, with a simple crisp sign that reads \"EL FAROLITO\"",
-      "placeVisualScene": "facade",
       "image": "/places/taqueria-el-farolito-28199469.webp"
     },
     {
@@ -206,8 +186,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Dry-fried chicken wings",
       "signatureRationale": "Infatuation/Food GPS: SF’s most famous dry-fried wings; house Original Dry Fried Chicken.",
-      "placeVisualSubject": "a modest Inner Sunset storefront in beige stucco with a red-trimmed sign band and a wide front window, with a simple crisp sign that reads \"SAN TUNG\"",
-      "placeVisualScene": "facade",
       "image": "/places/san-tung-1c8327ad.webp"
     },
     {
@@ -224,8 +202,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Pâté en croûte",
       "signatureRationale": "Official shop and Chronicle/7x7 coverage: French pâté en croûte is the specialty (seasonal fillings).",
-      "placeVisualSubject": "an elegant little shop in a historic red-brown brick building with black-framed arched windows and a black door, with a simple crisp sign that reads \"MAISON NICO\"",
-      "placeVisualScene": "facade",
       "image": "/places/maison-nico-ecd40cb2.webp"
     },
     {
@@ -244,8 +220,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Grandma Alice’s dumpling / cart dim sum ritual",
       "signatureRationale": "Official About and Time Out: multi-generation dim sum icon; Grandma Alice chicken-mushroom dumpling and Peking duck often cited as signatures.",
-      "placeVisualSubject": "a restaurant entrance in the base of a modern Financial District building, warm gray stone, a glass entry and a dark awning, with a simple crisp sign that reads \"YANK SING\"",
-      "placeVisualScene": "facade",
       "image": "/places/yank-sing-273c243c.webp"
     },
     {
@@ -262,8 +236,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Daily-catch burrito (parklet / beach crowd)",
       "signatureRationale": "Infatuation: order a burrito stuffed with the daily catch; Eater/Thrillist frame the Outer Sunset sustainable seafood counter.",
-      "placeVisualSubject": "a small casual beach shack with weathered blue-gray wood siding, a white-framed window, a surfboard leaning by the door and a little sand on the sidewalk, with a simple crisp sign that reads \"HOOK FISH CO.\"",
-      "placeVisualScene": "facade",
       "image": "/places/hook-fish-de2a62bf.webp"
     },
     {
@@ -282,8 +254,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Raviolo di ricotta (egg-yolk raviolo in brown butter)",
       "signatureRationale": "No SF “Catonia” found; Cotogna is the closest match. Chronicle calls Cotogna’s single giant ricotta–egg raviolo SF’s most famous pasta dish.",
-      "placeVisualSubject": "a warm rustic trattoria in an old red-brown brick Jackson Square building with tall arched windows and a copper-colored door, with a simple crisp sign that reads \"COTOGNA\"",
-      "placeVisualScene": "facade",
       "image": "/places/cotogna-10e30b6b.webp"
     },
     {
@@ -302,8 +272,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Morning bun",
       "signatureRationale": "SFGATE/Goldbelly/Serious Eats: laminated cinnamon–orange morning bun is Tartine’s pastry signature (country loaf also iconic).",
-      "placeVisualSubject": "a two-story Edwardian corner building painted soft cream with big ground-floor windows, dark green trim and a few empty café tables out front, with a simple crisp sign that reads \"TARTINE\"",
-      "placeVisualScene": "facade",
       "image": "/places/tartine-bakery-c97bc6f0.webp"
     },
     {
@@ -320,8 +288,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Sweet & sour chicken (crispy rice batter)",
       "signatureRationale": "Official Mamahuhu menu + Chronicle/Eater: Brandon Jew’s reinvented Chinese-American sweet-and-sour chicken is the headliner.",
-      "placeVisualSubject": "a modern Inner Richmond storefront with a light wood front, a large window and a small hanging sign with a sage-green accent, with a simple crisp sign that reads \"MAMAHUHU\"",
-      "placeVisualScene": "facade",
       "image": "/places/mamahuhu-d2f36d08.webp"
     },
     {
@@ -338,8 +304,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Totopos con chile",
       "signatureRationale": "Nopalito lore and PureWow recipe coverage: house chips tossed with chile de árbol, cotija, and crema—the shareable signature.",
-      "placeVisualSubject": "a cheerful storefront with a white front and muted turquoise trim, faded papel picado bunting across the window, with a simple crisp sign that reads \"NOPALITO\"",
-      "placeVisualScene": "facade",
       "image": "/places/nopalito-426bee09.webp"
     },
     {
@@ -360,8 +324,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Wood-grilled country pork chop",
       "signatureRationale": "Eater’s iconic-meat map and long-running reviews: thick brined wood-oven pork chop is Nopa’s meat signature.",
-      "placeVisualSubject": "a former bank building on a corner, pale stone with tall arched windows and a heavy wooden door, with a simple crisp sign that reads \"NOPA\"",
-      "placeVisualScene": "facade",
       "image": "/places/nopa-2952aa67.webp"
     },
     {
@@ -378,8 +340,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Kaffe tonic (espresso + tonic)",
       "signatureRationale": "Condé Nast Traveler and Bon Appétit city guides call the espresso-over-tonic the house signature.",
-      "placeVisualSubject": "a bright minimalist storefront in a classic Russian Hill building, white walls with light oak door and window frames, with a simple crisp sign that reads \"SAINT FRANK\"",
-      "placeVisualScene": "facade",
       "image": "/places/saint-frank-coffee-cda6f360.webp"
     },
     {
@@ -396,8 +356,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Italian combo on Dutch crunch",
       "signatureRationale": "SFGATE “only one way to order” piece and SF guides: classic Italian cold-cut sandwich, often on Dutch crunch.",
-      "placeVisualSubject": "an old-fashioned Italian deli storefront with a green and cream facade, a striped awning and wooden crates stacked by the door, with a simple crisp sign that reads \"MOLINARI\"",
-      "placeVisualScene": "facade",
       "image": "/places/molinari-delicatessen-71b203e6.webp"
     },
     {
@@ -416,8 +374,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Beef tartare + sushi-rice hand-roll kit",
       "signatureRationale": "Resy, Infatuation, and Chronicle cite DIY tartare–ikura–nori handrolls as Ernest’s most-referenced signature.",
-      "placeVisualSubject": "a sleek restaurant in a low industrial Mission District building, charcoal-gray siding, black steel windows and a few potted plants, with a simple crisp sign that reads \"ERNEST\"",
-      "placeVisualScene": "facade",
       "image": "/places/ernest-dd9a5d09.webp"
     },
     {
@@ -434,8 +390,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Boursin omelet",
       "signatureRationale": "Eater dining report and Infatuation: glossy garlic-herb Boursin omelet is the wine bar’s food signature.",
-      "placeVisualSubject": "a Parisian-style wine bar in a red-brown brick Jackson Square building with black-framed windows and a small awning, with a simple crisp sign that reads \"VERJUS\"",
-      "placeVisualScene": "facade",
       "image": "/places/verjus-6dd6de33.webp"
     },
     {
@@ -452,8 +406,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Ras el hanout fish & chips",
       "signatureRationale": "Chronicle and 7x7 on the Ferry Building opening: rockfish in Moroccan spice batter with harissa aioli is the headliner.",
-      "placeVisualSubject": "a small storefront set into a section of the Ferry Building's pale stone arcade, with a tall arched window and a green-framed door, with a simple crisp sign that reads \"NOPA FISH\"",
-      "placeVisualScene": "facade",
       "image": "/places/nopa-fish-9efe88de.webp"
     },
     {
@@ -470,8 +422,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Detroit-style pizza (Holey Roller bagels by day)",
       "signatureRationale": "Eater and Bold Italic: former Outer Richmond laundromat known for Detroit pies and Holey Roller bagels.",
-      "placeVisualSubject": "a retro former laundromat storefront in the Outer Richmond, pale mint and cream tile, a wide window and a small awning, with a simple crisp sign that reads \"THE LAUNDROMAT\"",
-      "placeVisualScene": "facade",
       "image": "/places/the-laundromat-sf-16030308.webp"
     },
     {
@@ -488,8 +438,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Handkerchief pasta with white Bolognese",
       "signatureRationale": "Infatuation and Eater: silky fazzoletti with white Bolognese is the recurring must-order.",
-      "placeVisualSubject": "a small corner restaurant in the Outer Richmond with pale stucco walls, big windows and a simple dark awning, with a simple crisp sign that reads \"PEARL\"",
-      "placeVisualScene": "facade",
       "image": "/places/pearl-6101-1fca3462.webp"
     },
     {
@@ -506,8 +454,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Almond croissant",
       "signatureRationale": "Infatuation, Bon Appétit, and Yelp-top-croissant press: almond croissant (and plain croissant) define Arsicault.",
-      "placeVisualSubject": "a tiny storefront in a pale gray Inner Richmond building with a small shop window, a single café table and a line of potted plants, with a simple crisp sign that reads \"ARSICAULT\"",
-      "placeVisualScene": "facade",
       "image": "/places/arsicault-bakery-09d044dc.webp"
     },
     {
@@ -524,8 +470,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "OG Osso (bone-marrow white pie) / cacio e pepe pizza",
       "signatureRationale": "Bold Italic/7x7/Chronicle: bone-marrow OG Osso is the dramatic dine-in signature; cacio e pepe often cited as bestseller.",
-      "placeVisualSubject": "a casual modern corner restaurant in North Beach in pale stucco with large black-framed windows and a warm glow inside, with a simple crisp sign that reads \"FLOUR + WATER\"",
-      "placeVisualScene": "facade",
       "image": "/places/flour-and-water-pizzeria-c0ea1a08.webp"
     },
     {
@@ -542,8 +486,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Happy Spoon oyster (uni + ikura)",
       "signatureRationale": "Forbes and Bold Italic: oyster topped with uni, ikura, tobiko, and ponzu crème fraîche is the signature bite.",
-      "placeVisualSubject": "a modern Japanese restaurant entrance on the ground floor of a Financial District tower, warm wood slat screens, dark glass and two paper lanterns, with a simple crisp sign that reads \"PABU\"",
-      "placeVisualScene": "facade",
       "image": "/places/pabu-izakaya-c1ba1615.webp"
     },
     {
@@ -560,8 +502,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Old Chicago deep-dish (sausage/meatball)",
       "signatureRationale": "Capo’s/Tony Gemignani site and USA Today: Chicago deep-dish is the raison d’être; Old Chicago is the flagship build.",
-      "placeVisualSubject": "a moody North Beach storefront with a dark wood front, small windows with a warm glow and a vintage vertical neon sign, with a simple crisp sign that reads \"CAPO'S\"",
-      "placeVisualScene": "facade",
       "image": "/places/capos-c0d35f68.webp"
     },
     {
@@ -580,8 +520,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Morning bun (Mission production hall)",
       "signatureRationale": "Same Tartine morning-bun signature, famously baked at the Manufactory; SFGATE covered the Mission production of the city’s morning buns.",
-      "placeVisualSubject": "a large converted factory building in muted red-brown brick with huge black steel windows and a sawtooth roofline, with a simple crisp sign that reads \"TARTINE MANUFACTORY\"",
-      "placeVisualScene": "facade",
       "image": "/places/tartine-manufactory-dfcedd90.webp"
     },
     {
@@ -598,8 +536,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Salty kaya (dairy-free) scoop",
       "signatureRationale": "Timeout and shop reviews: Mission dairy-free creamery known for Asian-inspired flavors; salty kaya repeatedly called signature.",
-      "placeVisualSubject": "a small shop with a soft sage-green storefront, potted plants by the door and a big front window, with a simple crisp sign that reads \"GARDEN CREAMERY\"",
-      "placeVisualScene": "facade",
       "image": "/places/garden-creamery-0cc923c3.webp"
     },
     {
@@ -618,8 +554,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Beef tongue steam buns",
       "signatureRationale": "Chronicle/SFist classic signature (misoyaki tongue in poppyseed bun); menu rotates—confirm current availability.",
-      "placeVisualSubject": "a Nob Hill restaurant storefront in pale gray with tall windows, tropical plants in planters and a small coral accent on the door, with a simple crisp sign that reads \"LIHOLIHO YACHT CLUB\"",
-      "placeVisualScene": "facade",
       "image": "/places/liholiho-yacht-club-9556d0b2.webp"
     },
     {
@@ -636,8 +570,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "World Pizza Cup Margherita (limited daily)",
       "signatureRationale": "Official Tony’s: limited Neapolitan Margherita that won in Naples; only ~73 made per day.",
-      "placeVisualSubject": "a busy North Beach corner storefront in cream stucco with a red-and-white striped awning and a domed brick oven glowing through the window, with a simple crisp sign that reads \"TONY'S\"",
-      "placeVisualScene": "facade",
       "image": "/places/tonys-pizza-napoletana-6e123aef.webp"
     },
     {
@@ -654,8 +586,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Taco Tropical (shrimp in jicama)",
       "signatureRationale": "Perfect Spot / early press: panko shrimp in thin jicama “tortillas” with tropical relish is Loló’s signature.",
-      "placeVisualSubject": "a small Valencia Street storefront with a muted painted mural in dusty pink and teal across the front and a wide window, with a simple crisp sign that reads \"LOLO\"",
-      "placeVisualScene": "facade",
       "image": "/places/lolo-443f061e.webp"
     },
     {
@@ -672,8 +602,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "The 49er (corned beef + pastrami + brisket)",
       "signatureRationale": "Official menu and sandwich lore: the 49er is the stacked house monster; Allison also a top seller.",
-      "placeVisualSubject": "a no-frills SoMa warehouse storefront in gray-painted brick with a roll-up metal door above a simple window, with a simple crisp sign that reads \"DELI BOARD\"",
-      "placeVisualScene": "facade",
       "image": "/places/deli-board-33122d47.webp"
     },
     {
@@ -692,8 +620,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Spaghetti pomodoro",
       "signatureRationale": "Chronicle recipe features and Eater reopen coverage: Mission spaghetti finished in reduced tomato sauce is Delfina’s iconic dish.",
-      "placeVisualSubject": "a cozy neighborhood restaurant in a Mission District storefront with a simple dark awning and warm light in the windows, with a simple crisp sign that reads \"DELFINA\"",
-      "placeVisualScene": "facade",
       "image": "/places/delfina-2e0ca25c.webp"
     },
     {
@@ -710,8 +636,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Khao soi (esp. beef)",
       "signatureRationale": "Strong Google/Yelp diner consensus for coconut curry noodle soup as the standout; less press-famous than peers.",
-      "placeVisualSubject": "a small Polk Street storefront in beige with muted gold trim and potted orchids in the window, with a simple crisp sign that reads \"THAI SPICE\"",
-      "placeVisualScene": "facade",
       "image": "/places/thai-spice-7f094330.webp"
     },
     {
@@ -730,8 +654,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Coca-Cola carnitas taco",
       "signatureRationale": "Tacolicious menu and reviews: traditional Coca-Cola-braised carnitas is the house classic taco.",
-      "placeVisualSubject": "a restaurant storefront with a band of muted terracotta and cream patterned tiles below a wide window, with a simple crisp sign that reads \"TACOLICIOUS\"",
-      "placeVisualScene": "facade",
       "image": "/places/tacolicious-b22ab014.webp"
     },
     {
@@ -748,8 +670,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Snowy Plover (espresso cream soda)",
       "signatureRationale": "Official Andytown identity and Yelp: espresso, sparkling water, brown sugar, whipped cream—the Outer Sunset signature bird drink.",
-      "placeVisualSubject": "a small corner café in the Outer Sunset with a pale blue-green painted front, a wooden bench outside and a big window, with a simple crisp sign that reads \"ANDYTOWN\"",
-      "placeVisualScene": "facade",
       "image": "/places/andytown-coffee-roasters-b5d64d27.webp"
     },
     {
@@ -766,8 +686,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Rotisserie chicken (porcini / Douglas-fir brine)",
       "signatureRationale": "7x7 and Eater: buttermilk–porcini–Douglas-fir rotisserie bird is the whole concept.",
-      "placeVisualSubject": "a bright casual restaurant storefront with white tile, a wide window and a simple black awning, with a simple crisp sign that reads \"RT ROTISSERIE\"",
-      "placeVisualScene": "facade",
       "image": "/places/rt-rotisserie-6d5c02ba.webp"
     },
     {
@@ -787,8 +705,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Tableside prime-rib cart",
       "signatureRationale": "Official HOPR and Infatuation: aged prime rib carved tableside with spinning salad, Yorkshire pudding, creamed spinach.",
-      "placeVisualSubject": "an old-school steakhouse in a Tudor-style building, cream plaster with dark timber framing and a heavy arched wooden door, with a simple crisp sign that reads \"HOUSE OF PRIME RIB\"",
-      "placeVisualScene": "facade",
       "image": "/places/house-of-prime-rib-588990b2.webp"
     },
     {
@@ -808,8 +724,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Courtyard dinner under projected films",
       "signatureRationale": "Official site and OpenTable/press: Mission courtyard with films on the back wall is the defining experience (sesame fried chicken also iconic).",
-      "placeVisualSubject": "an open-air courtyard restaurant at dusk: empty tables with candles, string lights overhead and a softly glowing film projected on the tall back wall",
-      "placeVisualScene": "interior",
       "image": "/places/foreign-cinema-0cb64e56.webp"
     },
     {
@@ -826,8 +740,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Pollo a la brasa / Ceviche Limón",
       "signatureRationale": "Official Limón menus: open-flame rotisserie chicken and house ceviche are the Peruvian signatures.",
-      "placeVisualSubject": "a cheerful restaurant storefront in beige stucco with a muted lime-green trim band and a wide window, with a simple crisp sign that reads \"LIMÓN\"",
-      "placeVisualScene": "facade",
       "image": "/places/limon-rotisserie-e80ddd65.webp"
     },
     {
@@ -846,8 +758,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Mushroom hor mok",
       "signatureRationale": "Michelin, Eater, and Condé Nast Traveler: spicy mushroom curry mousse with rice cakes is Kin Khao’s signature.",
-      "placeVisualSubject": "a modern restaurant on the ground floor of a pale stone hotel near Union Square, with warm wood door and window frames, with a simple crisp sign that reads \"KIN KHAO\"",
-      "placeVisualScene": "facade",
       "image": "/places/kin-khao-7d02dcfa.webp"
     },
     {
@@ -866,8 +776,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Sheng jian bao (pan-fried soup dumplings)",
       "signatureRationale": "OpenTable/Eater: SJB called the #1 seller / headliner of the Chinatown food hall.",
-      "placeVisualSubject": "a sleek multi-level Chinatown building with a tall dark glass facade, black metal frames and a small red accent at the entrance, with a simple crisp sign that reads \"CHINA LIVE\"",
-      "placeVisualScene": "facade",
       "image": "/places/china-live-616c2be9.webp"
     },
     {
@@ -886,8 +794,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Salt & pepper Dungeness crab",
       "signatureRationale": "AP News, Condé Nast Traveler, and house menus: live crab with salt and pepper is the Chinatown signature plate.",
-      "placeVisualSubject": "a classic three-story Chinatown building in cream stucco with muted red and gold trim and a vertical sign, with a simple crisp sign that reads \"R&G LOUNGE\"",
-      "placeVisualScene": "facade",
       "image": "/places/r-and-g-lounge-27ad8a40.webp"
     },
     {
@@ -906,8 +812,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Tabletop BBQ + banchan spread",
       "signatureRationale": "Infatuation: classic Richmond Korean BBQ known for generous banchan and spicy pork/galbi.",
-      "placeVisualSubject": "a traditional Korean restaurant storefront in the Richmond with a dark wood front, a small tiled roof ledge over the door and a wide window, with a simple crisp sign that reads \"HAN IL KWAN\"",
-      "placeVisualScene": "facade",
       "image": "/places/han-il-kwan-6ab95b5f.webp"
     },
     {
@@ -924,8 +828,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Drive-Thru smashburger",
       "signatureRationale": "Infatuation: schmaltz-onion Drive-Thru smash is the Cole Valley order.",
-      "placeVisualSubject": "a small Cole Valley storefront in a pale gray Victorian with white trim and a retro striped awning, with a simple crisp sign that reads \"LOVELY'S\"",
-      "placeVisualScene": "facade",
       "image": "/places/lovelys-9cd8ac9b.webp"
     },
     {
@@ -942,8 +844,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "$3 Baseline Lager (Ocean Beach taproom)",
       "signatureRationale": "SFGATE, Infatuation, and official site: Outer Sunset taproom known for cheap Baseline Lager; food from Maillards on-site.",
-      "placeVisualSubject": "a converted neighborhood grocery store in the Outer Sunset with a wide storefront, big windows and a wooden parklet out front, with a simple crisp sign that reads \"TWO PITCHERS\"",
-      "placeVisualScene": "facade",
       "image": "/places/two-pitchers-brewing-d54b8f80.webp"
     },
     {
@@ -960,8 +860,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Classic double smashburger",
       "signatureRationale": "Chronicle, Infatuation, and Eater: caramelized-shallot double with Maillards sauce is the signature smash.",
-      "placeVisualSubject": "a small walk-up order window on the side of a converted Outer Sunset grocery building, with a string of bulbs overhead and a bench, with a simple crisp sign that reads \"MAILLARDS\"",
-      "placeVisualScene": "facade",
       "image": "/places/maillards-1d871085.webp"
     },
     {
@@ -978,8 +876,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Crusty sourdough baguette",
       "signatureRationale": "Infatuation: a trip “isn’t complete” without the tangy sourdough baguettes at this Outer Sunset bakery.",
-      "placeVisualSubject": "a small neighborhood bakery storefront in the Outer Sunset with a pale butter-yellow front, a big window and a bench, with a simple crisp sign that reads \"DAY MOON\"",
-      "placeVisualScene": "facade",
       "image": "/places/day-moon-1cf398d7.webp"
     },
     {
@@ -998,8 +894,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Levain toast with cultured butter & jam",
       "signatureRationale": "Michelin, Thrillist, and Infatuation: thick house levain toast is the Outer Sunset brunch signature.",
-      "placeVisualSubject": "a cozy restaurant near Ocean Beach with weathered wood shingle siding like a driftwood cabin and warm light in the windows, with a simple crisp sign that reads \"OUTERLANDS\"",
-      "placeVisualScene": "facade",
       "image": "/places/outerlands-190c2fd0.webp"
     },
     {
@@ -1018,8 +912,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Classic martini in historic North Beach bar",
       "signatureRationale": "Tony Nik’s cafe history and SF Examiner: 1930s North Beach bar known for expert martinis and old-school vibe.",
-      "placeVisualSubject": "a tiny vintage North Beach bar storefront with a dark wood front, a small window and a glowing neon sign, with a simple crisp sign that reads \"TONY NIK'S\"",
-      "placeVisualScene": "facade",
       "image": "/places/tony-niks-8fc0066d.webp"
     },
     {
@@ -1039,8 +931,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Rotating thematic cocktail menus",
       "signatureRationale": "Imbibe and official site: twice-yearly conceptual menus are the bar’s signature—not one permanent drink.",
-      "placeVisualSubject": "a converted two-story Mission District warehouse painted muted charcoal with big multi-pane windows and a mustard-yellow door, with a simple crisp sign that reads \"TRICK DOG\"",
-      "placeVisualScene": "facade",
       "image": "/places/trick-dog-3d53fd4c.webp"
     },
     {
@@ -1059,8 +949,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Laurel Martini",
       "signatureRationale": "Imbibe recipe and Mission Local: gin/vermouth with house bay-laurel tincture is the namesake signature.",
-      "placeVisualSubject": "a sleek mid-century bar storefront with a dark facade, a curved glass window and a warm glow inside, with a simple crisp sign that reads \"TRUE LAUREL\"",
-      "placeVisualScene": "facade",
       "image": "/places/true-laurel-16e5373b.webp"
     },
     {
@@ -1079,8 +967,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Agnolotti dal plin / rustic pasta program",
       "signatureRationale": "Chronicle opening coverage and Infatuation: Flour + Water sister’s rustic stuffed pastas; agnolotti often highlighted.",
-      "placeVisualSubject": "a Roman-style trattoria in a low Mission District building in warm plaster with a leafy side patio behind a wooden fence, with a simple crisp sign that reads \"PENNY ROMA\"",
-      "placeVisualScene": "facade",
       "image": "/places/penny-roma-48475099.webp"
     },
     {
@@ -1097,8 +983,6 @@
       "createdAt": "2026-09-24T20:15:00.000Z",
       "signatureSubject": "Adventurous by-the-glass list + Bodega Dawg",
       "signatureRationale": "Infatuation: North Beach wine bar known for wild BTG pours and housemade Bodega Dawg; treat as Bodega Wine (not a separate restaurant).",
-      "placeVisualSubject": "a small intimate North Beach corner storefront in cream stucco with black window frames and candlelight in the windows, with a simple crisp sign that reads \"BODEGA\"",
-      "placeVisualScene": "facade",
       "image": "/places/bodega-sf-477df0f6.webp"
     },
     {
@@ -1115,8 +999,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Chicken parmigiana",
       "signatureRationale": "House dinner menu and Forbes: Joe’s Classic Chicken Parm is the West Portal Italian-American signature.",
-      "placeVisualSubject": "a cozy West Portal storefront in cream stucco with a dark awning and a vintage vertical neon sign, with a simple crisp sign that reads \"LITTLE ORIGINAL JOE'S\"",
-      "placeVisualScene": "facade",
       "image": "/places/little-original-joes-01430fd0.webp"
     },
     {
@@ -1133,8 +1015,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Mezze sampler",
       "signatureRationale": "Infatuation: mezze platter is “practically synonymous” with Beit Rima.",
-      "placeVisualSubject": "a cozy Cole Valley corner storefront with muted blue and cream patterned tiles below the windows and warm lanterns inside, with a simple crisp sign that reads \"BEIT RIMA\"",
-      "placeVisualScene": "facade",
       "image": "/places/beit-rima-65df0824.webp"
     },
     {
@@ -1153,8 +1033,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Hat Yai fried chicken",
       "signatureRationale": "Timeout and Chronicle: Hat Yai fried chicken with blue rice and curry is Farmhouse Kitchen’s signature.",
-      "placeVisualSubject": "a converted Mission District warehouse with a pale facade, hanging flowers over the door and a muted pink accent, with a simple crisp sign that reads \"FARMHOUSE\"",
-      "placeVisualScene": "facade",
       "image": "/places/farmhouse-kitchen-thai-fb5abc45.webp"
     },
     {
@@ -1173,8 +1051,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Cheese kalbijjim (blowtorched)",
       "signatureRationale": "Infatuation, Goldbelly, and viral press: braised short-rib stew capped with torched cheese.",
-      "placeVisualSubject": "a Japantown storefront with a light wood and gray stone front and a wide window, with a simple crisp sign that reads \"DAEHO\"",
-      "placeVisualScene": "facade",
       "image": "/places/daeho-ba52e6a0.webp"
     },
     {
@@ -1193,8 +1069,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Tea leaf salad (laphet thoke), tableside",
       "signatureRationale": "Official menu and SFGATE: fermented tea-leaf salad mixed tableside made the Clement St. icon.",
-      "placeVisualSubject": "a popular Clement Street storefront with a muted brick-red facade and a wide window, with a simple crisp sign that reads \"BURMA SUPERSTAR\"",
-      "placeVisualScene": "facade",
       "image": "/places/burma-superstar-14ec9a0f.webp"
     },
     {
@@ -1211,8 +1085,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Tea leaf salad (laphet thoke)",
       "signatureRationale": "Taste Edit / OpenTable: same family signature laphet thoke; garlic noodles also house-noted.",
-      "placeVisualSubject": "a stylish storefront with teak wood panels, brass trim and a big window, with a simple crisp sign that reads \"BURMA LOVE\"",
-      "placeVisualScene": "facade",
       "image": "/places/burma-love-07b8bd54.webp"
     },
     {
@@ -1229,8 +1101,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Al pastor burrito",
       "signatureRationale": "Official El Buen Sabor site and local writeups highlight the al pastor burrito; Infatuation covers the Mission taqueria.",
-      "placeVisualSubject": "a casual Mission District storefront in beige stucco with a muted orange trim band and a wide window, with a simple crisp sign that reads \"EL BUEN SABOR\"",
-      "placeVisualScene": "facade",
       "image": "/places/taqueria-el-buen-sabor-da127c77.webp"
     },
     {
@@ -1247,8 +1117,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Carne asada burrito, no rice (El Dorado crisp optional)",
       "signatureRationale": "Infatuation, Bon Appétit, and Eater: riceless Mission burrito—often carne asada, optionally grill-crisped El Dorado-style.",
-      "placeVisualSubject": "a classic Mission District building with a simple white stucco facade, a small red-tile awning and arched windows, with a simple crisp sign that reads \"LA TAQUERIA\"",
-      "placeVisualScene": "facade",
       "image": "/places/la-taqueria-d2700cb2.webp"
     },
     {
@@ -1267,8 +1135,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Classic cheeseburger",
       "signatureRationale": "Official Gott’s menu: Niman Ranch cheeseburger with secret sauce is the roadside classic (Ferry Building etc.).",
-      "placeVisualSubject": "a retro roadside stand with a red-and-white canopy and two empty picnic tables out front, with a simple crisp sign that reads \"GOTT'S\"",
-      "placeVisualScene": "facade",
       "image": "/places/gotts-roadside-6b1940d1.webp"
     },
     {
@@ -1285,8 +1151,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Roman pinsa / pear–taleggio sachetti",
       "signatureRationale": "Bottega Valencia: Roman-style pinsa is the concept; 48 Hills Best of Bay highlights pear–taleggio sachetti pasta.",
-      "placeVisualSubject": "a warm Valencia Street restaurant in a cream plaster building with arched windows and a dark green door, with a simple crisp sign that reads \"BOTTEGA\"",
-      "placeVisualScene": "facade",
       "image": "/places/bottega-bc8b946e.webp"
     },
     {
@@ -1303,8 +1167,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Stuffed Good Good chicken wing",
       "signatureRationale": "Resy, Eater, and Infatuation: deboned wing stuffed with sticky rice, double-fried, mango-adobo glaze—the bestseller.",
-      "placeVisualSubject": "a playful Mission District corner building in pale plaster with muted tropical-green trim and rattan lamps visible inside, with a simple crisp sign that reads \"GOOD GOOD CULTURE CLUB\"",
-      "placeVisualScene": "facade",
       "image": "/places/good-good-culture-club-260440ea.webp"
     },
     {
@@ -1321,8 +1183,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Chicken salad with Granch dressing",
       "signatureRationale": "Nob Hill Gazette One Dish: feta-brined rotisserie chicken salad with Greek-yogurt Granch is the signature bowl (pitas also core).",
-      "placeVisualSubject": "a bright minimalist storefront with white walls, a muted blue door and simple black trim, with a simple crisp sign that reads \"SOUVLA\"",
-      "placeVisualScene": "facade",
       "image": "/places/souvla-a4dd082d.webp"
     },
     {
@@ -1341,8 +1201,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Square focaccia “Sanfrancilian” slice",
       "signatureRationale": "Infatuation and KQED: fluffy square Sicilian-style slices (esp. pepperoni) are the North Beach late-night signature.",
-      "placeVisualSubject": "a tiny classic North Beach storefront with a muted green facade, a narrow counter window and a vintage sign bracket, with a simple crisp sign that reads \"GOLDEN BOY\"",
-      "placeVisualScene": "facade",
       "image": "/places/golden-boy-pizza-134a9dae.webp"
     },
     {
@@ -1361,8 +1219,6 @@
       "createdAt": "2026-09-24T20:00:00.000Z",
       "signatureSubject": "Cherry Bounce",
       "signatureRationale": "Punch: house bourbon–cherry sour topped with sparkling wine has been a top seller for a decade+.",
-      "placeVisualSubject": "a historic two-story Victorian saloon building with a dark wood front, tall windows with gold trim and an ornate cornice, with a simple crisp sign that reads \"COMSTOCK SALOON\"",
-      "placeVisualScene": "facade",
       "image": "/places/comstock-saloon-095b8cd1.webp"
     },
     {
@@ -1379,8 +1235,6 @@
       "createdAt": "2026-09-24T20:15:00.000Z",
       "signatureSubject": "Natural wine by-the-glass + bottle shop",
       "signatureRationale": "Official About and Chronicle: Outer Richmond natural-wine bottle shop/bar; rotating small-production pours are the draw.",
-      "placeVisualSubject": "a small Outer Richmond storefront in pale stucco with a dark door and a big window with wooden shelves inside, with a simple crisp sign that reads \"RAMPANT\"",
-      "placeVisualScene": "facade",
       "image": "/places/rampant-bottle-and-bar-8a6748a1.webp"
     },
     {
@@ -1397,8 +1251,6 @@
       "createdAt": "2026-09-24T20:15:00.000Z",
       "signatureSubject": "Natural wine shrine (BTG + retail)",
       "signatureRationale": "SFGATE “shrine to natural wine” plus Infatuation/Wikipedia: Grand Ave. Oakland natural-wine bar/shop (Bay Area list fixture).",
-      "placeVisualSubject": "a relaxed Oakland storefront painted muted terracotta with a big window and wooden shelves visible inside, with a simple crisp sign that reads \"ORDINAIRE\"",
-      "placeVisualScene": "facade",
       "image": "/places/ordinaire-92020423.webp"
     },
     {
@@ -1415,8 +1267,6 @@
       "createdAt": "2026-09-24T20:15:00.000Z",
       "signatureSubject": "Curated wine list + live jazz nights",
       "signatureRationale": "Official About/calendar: Causwells wine director’s list plus live jazz in North Beach.",
-      "placeVisualSubject": "a cozy North Beach bar room corner with a small stage holding an upright bass and a piano, a velvet curtain and a couple of empty café chairs",
-      "placeVisualScene": "interior",
       "image": "/places/waystone-5307e6ad.webp"
     }
   ]

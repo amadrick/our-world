@@ -49,7 +49,7 @@ export function PlaceDetailBackRow({ onBack }: { onBack: () => void }) {
   );
 }
 
-/** Floats over the hero image: clear glass, since the illustration behind is the content. */
+/** Floats over the hero image: clear glass, since the picture behind is the content. */
 function BackOverImage({ onBack }: { onBack: () => void }) {
   return (
     <button
@@ -97,11 +97,7 @@ export function PlaceDetail({
         <div className={cn("relative", split && "md:sticky md:top-0")}>
           <PlaceImage
             place={place}
-            alt={
-              place.signatureSubject
-                ? `Clay illustration of ${place.signatureSubject} at ${place.name}`
-                : `Clay illustration for ${place.name}`
-            }
+            alt={`${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`}
             priority
             sizes={split ? "(min-width: 768px) 460px, 100vw" : "(min-width: 1024px) 376px, 100vw"}
             className={cn("aspect-[5/4] rounded-[20px]", split && "md:aspect-square md:rounded-[28px]")}

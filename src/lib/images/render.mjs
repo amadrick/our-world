@@ -1,43 +1,31 @@
-// Rendering and saving place stills. Shared by `npm run images` and the admin.
+// Rendering and saving place images. Shared by `npm run images` and the admin.
 
 import { createHash } from "node:crypto";
-import { existsSync } from "node:fs";
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
 export const IMAGE_SIZE = 960;
 
-/**
- * Place image generation is paused while Andy and Kirissa pick a new visual
- * direction. Set PLACE_IMAGE_GENERATION=on to render again.
- */
+/** Rendering spends image API budget, so it stays off unless PLACE_IMAGE_GENERATION=on. */
 export function imageGenerationEnabled() {
   return process.env.PLACE_IMAGE_GENERATION === "on";
 }
 
-export const IMAGE_GENERATION_PAUSED =
-  "Place image generation is paused until a new visual direction is chosen.";
+export const IMAGE_GENERATION_OFF =
+  "Place images are off. Set PLACE_IMAGE_GENERATION=on to draw them.";
 export const DEFAULT_IMAGE_MODEL = "gpt-image-1";
 
 export function placesImageDir(root = process.cwd()) {
   return path.join(root, "public", "places");
 }
 
-/** Approved stills that anchor the series; sent along so new images match. */
-export async function styleReferences(root = process.cwd()) {
-  const dir = path.join(root, "scripts", "style-references");
-  if (!existsSync(dir)) return [];
-  const files = (await readdir(dir)).filter((f) => /\.(png|jpe?g|webp)$/i.test(f)).sort();
-  return files.map((f) => path.join(dir, f));
-}
-
 /**
- * Renders one image with OpenAI Images. With reference images (style anchors
- * or a photo) it uses the edits endpoint, otherwise plain generation.
+ * Renders one image with OpenAI Images. With a reference photo it uses the
+ * edits endpoint, otherwise plain generation.
  */
 export async function renderImage(prompt, { images = [], apiKey = process.env.OPENAI_API_KEY } = {}) {
-  if (!imageGenerationEnabled()) throw new Error(IMAGE_GENERATION_PAUSED);
+  if (!imageGenerationEnabled()) throw new Error(IMAGE_GENERATION_OFF);
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set (add it to .env.local)");
   const model = process.env.OPENAI_IMAGE_MODEL || DEFAULT_IMAGE_MODEL;
 
@@ -73,17 +61,17 @@ export async function renderImage(prompt, { images = [], apiKey = process.env.OP
 }
 
 /**
- * Saves a square WebP on white as public/places/<id>-<hash>.webp, removes the
- * place's previous image, and returns the new URL path. The content hash in
- * the name keeps browsers and the image optimizer from serving a stale still.
+ * Saves a square WebP as public/places/<id>-<hash>.webp, removes the place's
+ * previous image, and returns the new URL path. The content hash in the name
+ * keeps browsers and the image optimizer from serving a stale image.
  */
 export async function saveImage(input, id, root = process.cwd()) {
   const dir = placesImageDir(root);
   await mkdir(dir, { recursive: true });
   const webp = await sharp(input)
     .flatten({ background: "#ffffff" })
-    .resize(IMAGE_SIZE, IMAGE_SIZE, { fit: "contain", background: "#ffffff" })
-    .webp({ quality: 82 })
+    .resize(IMAGE_SIZE, IMAGE_SIZE, { fit: "cover" })
+    .webp({ quality: 80 })
     .toBuffer();
   const file = `${id}-${createHash("sha1").update(webp).digest("hex").slice(0, 8)}.webp`;
   const previous = new RegExp(`^${id}(-[0-9a-f]{8})?\\.webp$`);

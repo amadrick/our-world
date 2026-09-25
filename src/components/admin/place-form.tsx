@@ -14,15 +14,15 @@ import {
   ApiError,
   lookupPlace,
   requestSummary,
-  researchSignature,
+  researchPlace,
   savePlace,
   type LookupResult,
   type PlaceCandidate,
 } from "@/lib/admin/api";
-import { foodIn } from "@/lib/images/prompt.mjs";
+import { foodIn, researchText } from "@/lib/images/food-guard.mjs";
 import type { PlaceInputPayload } from "@/lib/places/schema";
 import { CATEGORIES, TAGS } from "@/lib/places/taxonomy";
-import type { CategoryId, Place, SummarySource, TagId } from "@/lib/places/types";
+import type { CategoryId, Place, PlaceResearch, SummarySource, TagId } from "@/lib/places/types";
 import { LocationPreview } from "./location-preview";
 
 interface Draft {
@@ -38,11 +38,59 @@ interface Draft {
   summarySource: SummarySource;
   signatureSubject: string;
   signatureRationale?: string;
-  placeVisualSubject: string;
-  placeVisualScene: "facade" | "interior";
+  research: ResearchDraft;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
   image?: string;
+}
+
+/** Place research as edited in the form; iconic details are one per line. */
+interface ResearchDraft {
+  street: string;
+  terrain: string;
+  architecture: string;
+  unique: string;
+  iconic: string;
+  view: "facade" | "interior";
+  sources: string[];
+  unverified: string;
+}
+
+function researchDraft(research?: PlaceResearch): ResearchDraft {
+  return {
+    street: research?.street ?? "",
+    terrain: research?.terrain ?? "",
+    architecture: research?.architecture ?? "",
+    unique: research?.unique ?? "",
+    iconic: research?.iconic.join("\n") ?? "",
+    view: research?.view ?? "facade",
+    sources: research?.sources ?? [],
+    unverified: research?.unverified ?? "",
+  };
+}
+
+function researchFromDraft(draft: ResearchDraft): PlaceResearch | undefined {
+  const research: PlaceResearch = {
+    street: draft.street.trim(),
+    terrain: draft.terrain.trim(),
+    architecture: draft.architecture.trim(),
+    unique: draft.unique.trim(),
+    iconic: draft.iconic
+      .split("\n")
+      .map((line) => line.replace(/^[-•*]\s*/, "").trim())
+      .filter(Boolean),
+    view: draft.view,
+    sources: draft.sources,
+    unverified: draft.unverified.trim() || undefined,
+  };
+  const empty = !research.street && !research.terrain && !research.architecture && !research.unique;
+  return empty && research.iconic.length === 0 ? undefined : research;
+}
+
+/** Everything that goes into the image prompt, to tell when a saved place needs a new image. */
+function imageInputs(place: Pick<Place, "name" | "neighborhood" | "address" | "placeResearch">) {
+  const { sources: _sources, unverified: _unverified, ...research } = place.placeResearch ?? {};
+  return JSON.stringify([place.name, place.neighborhood, place.address, research]);
 }
 
 type LookupState =
@@ -65,8 +113,7 @@ function draftFromPlace(place: Place): Draft {
     summarySource: place.summarySource,
     signatureSubject: place.signatureSubject ?? "",
     signatureRationale: place.signatureRationale,
-    placeVisualSubject: place.placeVisualSubject ?? "",
-    placeVisualScene: place.placeVisualScene ?? "facade",
+    research: researchDraft(place.placeResearch),
     appleMapsUrl: place.appleMapsUrl,
     googleMapsUrl: place.googleMapsUrl,
     image: place.image,
@@ -86,15 +133,14 @@ function draftFromCandidate(candidate: PlaceCandidate, lookup?: LookupResult): D
     summary: "",
     summarySource: "written",
     signatureSubject: "",
-    placeVisualSubject: "",
-    placeVisualScene: "facade",
+    research: researchDraft(),
     appleMapsUrl: lookup?.provider === "apple" ? lookup.url : undefined,
     googleMapsUrl: lookup?.provider === "google" ? lookup.url : undefined,
   };
 }
 
-function toPayload(draft: Draft, category: CategoryId): PlaceInputPayload {
-  return { ...draft, category };
+function toPayload({ research, ...draft }: Draft, category: CategoryId): PlaceInputPayload {
+  return { ...draft, category, placeResearch: researchFromDraft(research) };
 }
 
 const looksLikeLink = (value: string) => /https?:\/\//i.test(value);
@@ -191,6 +237,117 @@ function CandidateList({
   );
 }
 
+function hostname(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
+/** The research that makes a place's image specific to it, added to the image prompt. */
+function ImageNotes({
+  research,
+  researching,
+  onChange,
+}: {
+  research: ResearchDraft;
+  researching: boolean;
+  onChange: (patch: Partial<ResearchDraft>) => void;
+}) {
+  const food = foodIn(researchText(researchFromDraft(research)));
+  const placeholder = (text: string) => (researching ? "Looking it up…" : text);
+  return (
+    <div className="space-y-4">
+      <Section
+        title="Image notes"
+        hint="What makes it recognizable. Research fills these in; they’re added to the image prompt so the picture is of this place."
+      />
+      <div className="space-y-2">
+        <Label htmlFor="iconic">Most iconic details</Label>
+        <Textarea
+          id="iconic"
+          value={research.iconic}
+          onChange={(e) => onChange({ iconic: e.target.value })}
+          placeholder={placeholder("One per line, 2–4: the green corner awning, the neon blade sign…")}
+          rows={3}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label id="view-label">Best view</Label>
+        <div role="radiogroup" aria-labelledby="view-label" className="flex gap-2">
+          {(["facade", "interior"] as const).map((view) => (
+            <Pill
+              key={view}
+              role="radio"
+              aria-checked={research.view === view}
+              aria-pressed={undefined}
+              active={research.view === view}
+              onClick={() => onChange({ view })}
+              className="h-9 px-3.5 text-sm"
+            >
+              {view === "facade" ? "Facade" : "Interior"}
+            </Pill>
+          ))}
+        </div>
+      </div>
+      <details className="group space-y-4 rounded-[20px] glass-fill px-4 py-3 open:pb-4">
+        <summary className="cursor-pointer text-sm font-medium select-none">
+          Street, terrain, and architecture
+        </summary>
+        <div className="mt-4 space-y-4">
+          {(
+            [
+              ["street", "Street", "Corner or mid-block, what’s next door, the cross street"],
+              ["terrain", "Terrain and setting", "Hill or flat, fog, views, trees, light"],
+              ["architecture", "Architecture", "Era, materials, color, windows, awning, signage"],
+              ["unique", "One of a kind", "Anything physically unlike anywhere else"],
+            ] as const
+          ).map(([key, label, hint]) => (
+            <div key={key} className="space-y-2">
+              <Label htmlFor={`research-${key}`}>{label}</Label>
+              <Textarea
+                id={`research-${key}`}
+                value={research[key]}
+                onChange={(e) => onChange({ [key]: e.target.value })}
+                placeholder={placeholder(hint)}
+                rows={key === "architecture" ? 3 : 2}
+              />
+            </div>
+          ))}
+          {research.sources.length > 0 && (
+            <p className="text-sm text-muted-foreground">
+              Sources:{" "}
+              {research.sources.map((url, i) => (
+                <span key={url}>
+                  {i > 0 && ", "}
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-black/25 underline-offset-4 hover:text-foreground"
+                  >
+                    {hostname(url)}
+                  </a>
+                </span>
+              ))}
+            </p>
+          )}
+          {research.unverified && (
+            <p className="text-sm text-muted-foreground">Not verified: {research.unverified}</p>
+          )}
+        </div>
+      </details>
+      {food && (
+        <p className="flex gap-2 text-sm text-muted-foreground">
+          <AlertCircle size={14} className="mt-0.5 shrink-0" />
+          Pictures show the place, not food. Take out “{food}”.
+        </p>
+      )}
+    </div>
+  );
+}
+
 const SOURCE_LABEL: Record<SummarySource, string> = {
   ai: "AI-written",
   written: "Written by you",
@@ -202,8 +359,8 @@ interface PlaceFormProps {
   neighborhoods: string[];
   aiEnabled: boolean;
   imagesEnabled: boolean;
-  /** `illustrate` is set when the saved place needs a new illustration drawn. */
-  onSaved: (place: Place, isNew: boolean, illustrate: boolean) => void;
+  /** `drawImage` is set when the saved place needs a new image drawn. */
+  onSaved: (place: Place, isNew: boolean, drawImage: boolean) => void;
   onCancelEdit: () => void;
   onAuthError: () => void;
 }
@@ -247,7 +404,7 @@ export function PlaceForm({
     setResearching(true);
     setSignatureNotice(null);
     try {
-      const result = await researchSignature({
+      const result = await researchPlace({
         name: target.name,
         category: target.category ?? undefined,
         neighborhood: target.neighborhood,
@@ -255,16 +412,13 @@ export function PlaceForm({
         lat: target.lat,
         lng: target.lng,
       });
-      const { signatureSubject, signatureRationale, placeVisualSubject, placeVisualScene } = result;
+      const { signatureSubject, signatureRationale, placeResearch } = result;
       setDraft((d) =>
         d
           ? {
               ...d,
               ...(signatureSubject && { signatureSubject, signatureRationale }),
-              ...(placeVisualSubject && {
-                placeVisualSubject,
-                placeVisualScene: placeVisualScene ?? "facade",
-              }),
+              ...(placeResearch && { research: researchDraft(placeResearch) }),
             }
           : d,
       );
@@ -318,6 +472,8 @@ export function PlaceForm({
   };
 
   const update = (patch: Partial<Draft>) => setDraft((d) => (d ? { ...d, ...patch } : d));
+  const updateResearch = (patch: Partial<ResearchDraft>) =>
+    setDraft((d) => (d ? { ...d, research: { ...d.research, ...patch } } : d));
 
   const toggleTag = (tag: TagId) =>
     setDraft((d) =>
@@ -350,10 +506,7 @@ export function PlaceForm({
     setError(null);
     try {
       const place = await savePlace(toPayload(draft, draft.category), editing?.id);
-      const needsImage =
-        !place.image ||
-        (editing?.placeVisualSubject ?? "") !== (place.placeVisualSubject ?? "") ||
-        editing?.placeVisualScene !== place.placeVisualScene;
+      const needsImage = !place.image || !editing || imageInputs(editing) !== imageInputs(place);
       onSaved(place, !editing, imagesEnabled && needsImage);
     } catch (err) {
       setError(handleError(err, "Couldn’t save. Try again."));
@@ -491,44 +644,6 @@ export function PlaceForm({
           </p>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="visual">Illustration</Label>
-          <Textarea
-            id="visual"
-            value={draft.placeVisualSubject}
-            onChange={(e) => update({ placeVisualSubject: e.target.value })}
-            placeholder={
-              researching
-                ? "Looking it up…"
-                : "A cream corner building with green trim and big windows, with a simple crisp sign that reads \"TARTINE\""
-            }
-            rows={2}
-          />
-          <div role="radiogroup" aria-label="Illustration shows" className="flex gap-2">
-            {(["facade", "interior"] as const).map((scene) => (
-              <Pill
-                key={scene}
-                role="radio"
-                aria-checked={draft.placeVisualScene === scene}
-                aria-pressed={undefined}
-                active={draft.placeVisualScene === scene}
-                onClick={() => update({ placeVisualScene: scene })}
-                className="h-9 px-3.5 text-sm"
-              >
-                {scene === "facade" ? "Facade" : "Interior"}
-              </Pill>
-            ))}
-          </div>
-          <p className="flex gap-2 text-sm text-muted-foreground">
-            {foodIn(draft.placeVisualSubject) && (
-              <AlertCircle size={14} className="mt-0.5 shrink-0" />
-            )}
-            {foodIn(draft.placeVisualSubject)
-              ? `Illustrations show the place, not food. Take out “${foodIn(draft.placeVisualSubject)}”.`
-              : "What its picture shows: the building or a room, never food or drink."}
-          </p>
-        </div>
-
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="neighborhood">Neighborhood</Label>
@@ -627,6 +742,12 @@ export function PlaceForm({
           )}
         </div>
       </div>
+
+      <ImageNotes
+        research={draft.research}
+        researching={researching}
+        onChange={updateResearch}
+      />
 
       <div className="sticky bottom-0 -mx-5 space-y-3 border-t-[0.5px] border-black/10 bg-white/70 px-5 pt-4 pb-[max(env(safe-area-inset-bottom),16px)] backdrop-blur-xl sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
         {error && <Callout>{error}</Callout>}

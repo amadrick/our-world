@@ -1,78 +1,50 @@
-// The locked style for every place image: a soft clay still of the place as a
-// space (its facade, storefront, patio, courtyard, or a signature room), cut
-// out on bright white like the stills on pengzhe.ng. Never food or drink.
-// Shared by `npm run images` and the admin.
+// Builds the image prompt for a place: Andy's prompt from kodak-place-prompt.md,
+// verbatim except for the place name and city, followed by a separate block of
+// reference notes from the place's research. Shared by `npm run images` and the
+// admin. Server only (reads the template from disk).
 
-export const STYLE = [
-  "Pure bright white background with nothing else in the frame: no sky, no street, no neighboring buildings.",
-  "Square composition: the subject is centered and fills about 80% of the width, with even white margin and a thin strip of pale sidewalk or floor beneath it with a soft, diffuse contact shadow.",
-  "Camera: straight-on front elevation or a gentle three-quarter view at eye level, orthographic-like with almost no perspective distortion, like a product illustration rather than a dramatic photo.",
-  "Lighting: diffuse, even studio light with soft shadows.",
-  "Materials: matte clay and soft plastic, like a Blender toy model, with moderate realism in windows, plants, and textures such as brick, stucco, wood, and tile.",
-  "Simplified, blocky architecture with crisp facade and signage details.",
-  "Palette: muted beige, gray, warm brown, and off-white, with one restrained accent color from the venue.",
-  "No people, faces, cars, or animals. No food, drinks, plates, cups, or glasses anywhere; tables and counters are bare.",
-].join(" ");
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
-const SCENE = {
-  facade: "A stylized 3D clay still of a single building",
-  interior:
-    "A stylized 3D clay still of a single room, built as a small cutaway diorama with a floor and two walls and no signs or lettering",
-};
+import { assertNoFood } from "./food-guard.mjs";
 
-// Food and drink words. Quoted text (sign lettering like "GOLDEN BOY PIZZA") is
-// ignored, so a place's name never trips this.
-const FOOD =
-  /\b(food|meals?|dish(es)?|plates?|platters?|bowls?|cups?|mugs?|glass(es)? of|wine ?glass(es)?|pints?|drinks?|cocktails?|martinis?|lattes?|cappuccinos?|espressos?|burritos?|tacos?|sandwich(es)?|burgers?|smashburgers?|hot ?dogs?|croissants?|pastr(y|ies)|buns?|bread|loaf|loaves|baguettes?|cakes?|pies?|slices?|pizzas?|pasta|ravioli|raviolo|tortellini|spaghetti|noodles?|soups?|salads?|dumplings?|crabs?|oysters?|sushi|chickens?|wings|steaks?|ribs|fries|ice ?cream|scoops?|cones?|desserts?|salami|cheese|chips|totopos|roasts?|prime rib|pudding|spinach|sours?|coupes?|sparkling|bottles?|beers?|lagers?|ales?|teas?|juices?|sodas?|wines?(?!\s+(bars?|shops?))|cherr(y|ies)|fruits?|olives?|garnish(es)?|snacks?)\b/i;
+export const PROMPT_TEMPLATE_FILE = path.join("src", "lib", "images", "kodak-place-prompt.md");
+export const CITY = "San Francisco";
 
-/** The food or drink word a visual brief mentions, if any. */
-export function foodIn(subject) {
-  return subject.replace(/"[^"]*"/g, "").match(FOOD)?.[0];
+export function readPromptTemplate(root = process.cwd()) {
+  return readFileSync(path.join(root, PROMPT_TEMPLATE_FILE), "utf8");
 }
 
-/** Refuses any image brief that describes food or drink instead of the place itself. */
-export function assertArchitecture(subject) {
-  const word = foodIn(subject);
-  if (word) {
-    throw new Error(
-      `Refusing to draw "${word}": place images show the facade or a room, never food or drink.`,
-    );
-  }
+/** The template with its two placeholders filled in. Nothing else changes. */
+export function fillTemplate(template, name) {
+  return template.replaceAll("[RESTAURANT NAME]", name).replaceAll("[CITY]", CITY);
 }
 
-const CATEGORY_FACADE = {
-  restaurant: "a neighborhood restaurant storefront",
-  bar: "a neighborhood bar storefront with warm light in the windows",
-  wine: "a small wine bar storefront with wooden shelves visible inside",
-  coffee: "a small neighborhood café storefront",
-  bakery: "a small neighborhood bakery storefront",
-  dessert: "a small neighborhood shop storefront",
-  activity: "a small San Francisco building",
-  sight: "a San Francisco landmark building",
-};
-
-/** The place's visual brief, or a plain storefront with its name when there isn't one. */
-export function placeVisual(place) {
-  if (place.placeVisualSubject) {
-    return { subject: place.placeVisualSubject, scene: place.placeVisualScene === "interior" ? "interior" : "facade" };
-  }
-  const facade = CATEGORY_FACADE[place.category] ?? "a San Francisco storefront";
-  const where = place.neighborhood ? ` in San Francisco's ${place.neighborhood}` : "";
-  const sign = place.name.toUpperCase().replace(/"/g, "");
-  return { subject: `${facade}${where}, with a simple crisp sign that reads "${sign}"`, scene: "facade" };
+/**
+ * The place-specific block appended after the prompt: where it is, and what the
+ * research found about its street, terrain, and architecture.
+ */
+export function referenceNotes(place, { photo = false } = {}) {
+  const r = place.placeResearch;
+  const neighborhood = [place.neighborhood, r?.street].filter(Boolean).join(". ");
+  const lines = [
+    place.address && `Address: ${place.address}`,
+    neighborhood && `Neighborhood and street: ${neighborhood}`,
+    r?.terrain && `Terrain and setting: ${r.terrain}`,
+    r?.architecture && `Architecture: ${r.architecture}`,
+    r?.unique && `Unique architectural notes: ${r.unique}`,
+    r?.iconic?.length && `Most iconic physical characteristics: ${r.iconic.join("; ")}`,
+    r?.view && `Most recognizable view: the ${r.view}`,
+    photo && "Reference photo: the attached photo shows the real place. Use it for its architecture and layout only.",
+  ].filter(Boolean);
+  return lines.length ? ["Reference notes for this place:", ...lines.map((line) => `- ${line}`)].join("\n") : "";
 }
 
-export function buildPrompt({ subject, scene }) {
-  assertArchitecture(subject);
-  return `${SCENE[scene] ?? SCENE.facade}: ${subject}. ${STYLE}`;
-}
-
-export function buildPhotoPrompt({ subject, scene }) {
-  assertArchitecture(subject);
-  return `Turn this photo into ${(SCENE[scene] ?? SCENE.facade).replace(/^A /, "a ")}: ${subject}. Keep its recognizable shape, colors, and signage, square it up to the camera, and leave out people, cars, and any food or drink. ${STYLE}`;
-}
-
-export function buildReferencePrompt({ subject, scene }) {
-  assertArchitecture(subject);
-  return `Match the rendering style, camera, lighting, materials, and white background of the reference images exactly, but depict a different place. ${buildPrompt({ subject, scene })}`;
+/** The full prompt as sent. Throws if the reference notes describe food or drink. */
+export function buildPrompt(place, { template = readPromptTemplate(), photo = false } = {}) {
+  const notes = referenceNotes(place, { photo });
+  assertNoFood(notes);
+  const prompt = fillTemplate(template, place.name);
+  if (!notes) return prompt;
+  return `${prompt}${prompt.endsWith("\n") ? "" : "\n"}\n---\n\n${notes}\n`;
 }

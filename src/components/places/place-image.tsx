@@ -18,7 +18,7 @@ function monogram(name: string): string {
   return name.replace(/^the\s+/i, "").match(/[\p{L}\p{N}]/u)?.[0]?.toUpperCase() ?? "·";
 }
 
-/** The place's illustration, or a quiet glass tile with its monogram until there is one. */
+/** The place's picture, or a quiet glass tile with its monogram until there is one. */
 export function PlaceImage({
   place,
   sizes,

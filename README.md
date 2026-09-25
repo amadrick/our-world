@@ -7,7 +7,7 @@ write-up, then open it in Apple Maps or Google Maps with one tap.
 
 - **Guests** flip between **List** and **Map** with one tap on the switch
   floating at the bottom of the screen, and the guide remembers their choice.
-  List is a grid of place illustrations; Map is a full-screen map with a pin
+  List is a grid of place pictures; Map is a full-screen map with a pin
   per place, a slim list rail beside it on desktop, and a draggable sheet for
   the open place on phones. Filter pills (category, tags like _Brunch_ or
   _Late night_, and neighborhood) work in both. Every place has a shareable
@@ -36,11 +36,12 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 
 | Variable | What it does |
 | --- | --- |
-| `OPENAI_API_KEY` | Writes place summaries when you add a place. Without it, new places get a clearly marked placeholder you can edit. |
-| `OPENAI_MODEL` | Model for summaries. Defaults to `gpt-5-mini`. |
+| `OPENAI_API_KEY` | Writes place summaries and researches new places when you add them. Without it, new places get a clearly marked placeholder you can edit. |
+| `OPENAI_MODEL` | Model for summaries and research. Defaults to `gpt-5-mini`. |
 | `ADMIN_PASSWORD` | Password for `/admin`. Locally it defaults to `goldengate`. A deployed site keeps `/admin` locked until this is set. |
 | `PLACES_FILE` | Where places are stored. Defaults to `data/places.json`. |
 | `OPENAI_IMAGE_MODEL` | Image model for `npm run images`. Defaults to `gpt-image-1`. |
+| `PLACE_IMAGE_GENERATION` | Set to `on` to draw place pictures (from the admin and `npm run images`). Off by default so nothing spends image budget by accident. |
 | `NEXT_PUBLIC_MAP_TILES` | Set to `offline` to use locally generated map tiles (see below). |
 
 ## Adding a place
@@ -51,10 +52,12 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
    details. Pasted links are also what the guest buttons open, so guests land on
    the exact same place card.
 3. Check the pin on the little map, pick a category, and tap any tags that fit.
-4. **Known for** fills itself in: with an OpenAI key, the admin searches the web
-   for the place's signature dish, drink, or room and shows a one-line reason
-   under it. Edit it, tap **Look it up** again, or type your own. Without a
-   key, or if nothing reliable turns up, the field says it needs a signature.
+4. **Known for** and **Image notes** fill themselves in: with an OpenAI key,
+   the admin searches the web for the place's signature dish, drink, or room,
+   and for what the place physically looks like (its street, terrain,
+   architecture, and 2–4 most iconic details, with sources). Edit either, tap
+   **Look it up** again, or type your own. Without a key, or if nothing
+   reliable turns up, the field says it needs a signature.
 5. Optionally add your note ("Order the morning bun").
 6. Tap **Write it for me** for an AI summary (or write your own), then
    **Add to the map**. If you skip the summary, one is written when you save.
@@ -64,27 +67,44 @@ removed from the list below the form.
 
 `data/places.json` holds Andy and Kirissa's list: 75 places geocoded against
 OpenStreetMap and Overture Maps, each with a short neutral summary, a
-researched `signatureSubject` (what it's known for), and a
-`signatureRationale` (why, and according to whom). Notes are left empty for
-them to write in their own words from `/admin`, and no place is marked
-**Top pick** yet (that filter appears once one is).
+researched `signatureSubject` (what it's known for), a `signatureRationale`
+(why, and according to whom), and `placeResearch` (what it looks like, with
+sources). `data/places.md` is the readable version of all of it, one section
+per place. Notes are left empty for them to write in their own words from
+`/admin`, and no place is marked **Top pick** yet (that filter appears once
+one is).
 
 ## Place images
 
-Every place has a soft clay still of the place itself: its facade or
-storefront, or, where the room is the draw, a small cutaway of it (Hedge
-Coffee's redwood courtyard, Toronado's tap wall, Foreign Cinema's courtyard,
-Waystone's jazz corner). The style follows the stills on
-[pengzhe.ng](https://www.pengzhe.ng/): square, bright white, a front or gentle
-three-quarter product angle, diffuse light, matte clay, no people. The files are
-`public/places/<id>-<hash>.webp` (960×960). A place without one shows a glass
-tile with its monogram.
+Every place has a square picture of the place itself, drawn from Andy's
+prompt: a grainy, hazy, slightly dreamlike take on a Kodak 35mm photo of the
+real facade or room, "a visually heightened memory of the actual restaurant."
+The files are `public/places/<id>-<hash>.webp` (960×960). A place without one
+shows a glass tile with its monogram.
 
-**Never food.** Each place's `placeVisualSubject` (with `placeVisualScene`,
-`facade` or `interior`) says what its picture shows, separately from what it's
-known for. Any brief that mentions food or drink is refused before anything is
-rendered (`src/lib/images/prompt.mjs`), the admin warns while you type, and
-saving such a brief fails. Sign lettering in quotes is exempt, so "GOLDEN BOY
+**The prompt is Andy's, verbatim.** It lives in
+`src/lib/images/kodak-place-prompt.md`. The only edits are filling in
+`[RESTAURANT NAME]` with the place's name and `[CITY]` with San Francisco
+(`src/lib/images/prompt.mjs`); change the picture's style by editing that file,
+not the code. After it, separated by a `---` line, comes a block of reference
+notes from the place's research, so the picture is of this place and not a
+generic storefront:
+
+```text
+Reference notes for this place:
+- Address: …
+- Neighborhood and street: …
+- Terrain and setting: …
+- Architecture: …
+- Unique architectural notes: …
+- Most iconic physical characteristics: …; …; …
+- Most recognizable view: the facade
+```
+
+**Never food.** The reference notes are checked before anything is rendered:
+notes that mention food or drink are refused (`src/lib/images/food-guard.mjs`),
+research drops any sentence that does, the admin warns while you type, and
+saving such notes fails. Sign lettering in quotes is exempt, so "GOLDEN BOY
 PIZZA" on a sign is fine.
 
 Rendering stays gated: nothing is drawn unless `PLACE_IMAGE_GENERATION=on` and
@@ -92,43 +112,47 @@ Rendering stays gated: nothing is drawn unless `PLACE_IMAGE_GENERATION=on` and
 
 ```bash
 npm run images                          # draw every place that has no image yet
-npm run images -- tartine-bakery        # redraw one place from its brief
+npm run images -- tartine-bakery        # redraw one place
 npm run images -- --all                 # redraw everything
-npm run images -- zuni --photo zuni.jpg # turn your own photo of the place into the style
+npm run images -- --print zuni          # show the full prompt as it would be sent
+npm run images -- --all --out prompts/  # write every full prompt to prompts/<id>.txt
+npm run images -- zuni --photo zuni.jpg # also send your own photo of the place as a reference
 npm run images -- zuni --import art.png # attach an image made elsewhere (no key needed)
-npm run images -- --print zuni          # show the prompt without generating
+npm run images -- --all --import-dir art/  # attach art/<id>.png for each place
 ```
 
-### The signature pipeline
+### The research pipeline
 
 Adding a place in `/admin` runs the whole routine:
 
 1. **Identity:** the search or pasted Maps link resolves the name, address,
    and coordinates.
-2. **Research:** `POST /api/admin/signature` asks OpenAI, with web search, for
-   the signature, a one-line rationale, and an illustration brief of the
-   facade or a room (`src/lib/ai/signature-research.mjs`). A brief that
-   mentions food is dropped. If web search isn't available, it
-   uses the model's own knowledge and flags the result. With no key it
-   returns "needs a signature".
+2. **Research:** `POST /api/admin/research` asks OpenAI, with web search, for
+   the signature, a one-line rationale, and the place research: street
+   context, terrain, architecture, anything one of a kind, the 2–4 most iconic
+   physical details, whether the facade or the interior is more recognizable,
+   sources, and what couldn't be verified (`src/lib/ai/place-research.mjs`).
+   If web search isn't available, it uses the model's own knowledge and flags
+   the result. With no key it returns "needs a signature".
 3. **Save:** the place is stored with `signatureSubject`,
-   `signatureRationale`, `placeVisualSubject`, and `placeVisualScene`, all
-   editable in the form.
+   `signatureRationale`, and `placeResearch`, all editable in the form.
 4. **Image:** with `PLACE_IMAGE_GENERATION=on`, the admin calls
-   `POST /api/admin/places/<id>/image` right after saving a new place or a
-   changed brief. It draws from `placeVisualSubject` only and returns 422 for
-   a food brief. The render runs after the save because it takes up to a
-   minute, so the place appears at once and its picture a moment later.
+   `POST /api/admin/places/<id>/image` right after saving a new place, or one
+   whose name, address, or image notes changed. It sends Andy's prompt plus
+   the reference notes and returns 422 if the notes describe food. The render
+   runs after the save because it takes up to a minute, so the place appears
+   at once and its picture a moment later.
 
 The same steps run in batch from the command line, which is how to backfill
 once a key is in `.env.local`:
 
 ```bash
-npm run signatures                      # research every place missing a signature
-npm run signatures -- toronado          # redo one place
-npm run signatures -- --images          # ...and draw their stills (gated as above)
-npm run signatures -- --all             # re-research everything (then: npm run images -- --all)
-npm run signatures -- --dry-run zuni    # see what it finds without saving
+npm run research                        # research every place missing a signature or research
+npm run research -- toronado            # redo one place
+npm run research -- --images            # ...and draw their pictures (gated as above)
+npm run research -- --all               # re-research everything (then: npm run images -- --all)
+npm run research -- --dry-run zuni      # see what it finds without saving
+npm run places:md                       # then refresh data/places.md
 ```
 
 ### Reviewing signatures
@@ -142,6 +166,8 @@ there, set `approved`, then:
 npm run signatures:apply            # copy edits into data/places.json, list what changed
 npm run signatures:export           # refresh the sheet after adding places in /admin
 ```
+
+Both also rewrite `data/places.md`.
 
 ## How it's built
 
@@ -187,7 +213,7 @@ src/config/site.ts          title and copy shown to guests
 
 Glass is the functional layer: the List | Map switch, map rail, bottom sheet,
 filter pills, map controls, buttons, popovers, dialogs, and admin chrome. It floats over the
-content layer (the map, place illustrations, and the admin's blurred mosaic)
+content layer (the map, place pictures, and the admin's blurred mosaic)
 and is never applied to content itself. The primitive is a set of CSS classes in
 `src/app/globals.css`, driven by variables:
 
@@ -233,10 +259,11 @@ Accessibility fallbacks:
 | `npm run dev` | Dev server on port 4617 |
 | `npm run build` / `npm start` | Production build and server (port 4617) |
 | `npm run lint` / `npm run typecheck` | ESLint and TypeScript |
-| `npm test` | Unit tests (Maps link parsing, filters) |
-| `npm run signatures` | Research what places are known for (see The signature pipeline) |
+| `npm test` | Unit tests (Maps link parsing, filters, prompt, research) |
+| `npm run research` | Research what places are known for and look like (see The research pipeline) |
 | `npm run signatures:apply` / `:export` | Sync the signature review sheet (see Reviewing signatures) |
-| `npm run images` | Generate or import place illustrations (see Place images) |
+| `npm run places:md` | Rewrite `data/places.md` from `data/places.json` |
+| `npm run images` | Generate or import place pictures (see Place images) |
 | `npm run tiles:offline` | Download an offline copy of the SF basemap (see below) |
 
 ## Offline map tiles

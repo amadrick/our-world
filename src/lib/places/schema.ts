@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { foodIn } from "@/lib/images/prompt.mjs";
+import { foodIn, researchText } from "@/lib/images/food-guard.mjs";
 import { CATEGORY_IDS, TAG_IDS } from "./types";
 
 const MAPS_HOSTS = /(^|\.)(apple\.com|maps\.apple|google\.[a-z.]+|goo\.gl)$/i;
@@ -28,6 +28,26 @@ const optionalText = (max: number) =>
     .optional()
     .transform((value) => value || undefined);
 
+const researchField = (max: number) => z.string().trim().max(max).default("");
+
+export const placeResearchSchema = z
+  .object({
+    street: researchField(800),
+    terrain: researchField(600),
+    architecture: researchField(1200),
+    unique: researchField(800),
+    iconic: z
+      .array(z.string().trim().min(1).max(240))
+      .max(4, "Keep it to the 2–4 most iconic details")
+      .default([]),
+    view: z.enum(["facade", "interior"]).default("facade"),
+    sources: z.array(z.url().max(600)).max(12).default([]),
+    unverified: optionalText(800),
+  })
+  .refine((research) => !foodIn(researchText(research)), {
+    message: "Describe the building or room, not food or drink",
+  });
+
 export const placeInputSchema = z.object({
   name: z.string().trim().min(1, "Add a name").max(120),
   category: z.enum(CATEGORY_IDS, "Pick a category"),
@@ -44,10 +64,7 @@ export const placeInputSchema = z.object({
   summarySource: z.enum(["ai", "written", "placeholder"]).default("written"),
   signatureSubject: optionalText(200),
   signatureRationale: optionalText(500),
-  placeVisualSubject: optionalText(500).refine((value) => !value || !foodIn(value), {
-    message: "Describe the building or room, not food or drink",
-  }),
-  placeVisualScene: z.enum(["facade", "interior"]).optional(),
+  placeResearch: placeResearchSchema.optional(),
   appleMapsUrl: mapsUrl,
   googleMapsUrl: mapsUrl,
   image: z

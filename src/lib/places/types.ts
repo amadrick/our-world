@@ -28,6 +28,28 @@ export type TagId = (typeof TAG_IDS)[number];
  */
 export type SummarySource = "ai" | "written" | "placeholder";
 
+/**
+ * What the place physically looks like, from research with sources. Appended
+ * to the image prompt as reference notes so each image is of this place.
+ */
+export interface PlaceResearch {
+  /** Immediate street context: block, corner or mid-block, neighbors, alley, pier. */
+  street: string;
+  /** Hill or flat, grade, waterfront, fog, view lines, trees, light. */
+  terrain: string;
+  /** Building type and era, materials, color, windows, awning, signage, entrance. */
+  architecture: string;
+  /** Anything genuinely one of a kind about the place. */
+  unique: string;
+  /** The 2–4 physical details a regular would recognize it by. */
+  iconic: string[];
+  /** Which view is more recognizable. */
+  view: "facade" | "interior";
+  sources: string[];
+  /** What couldn't be verified. */
+  unverified?: string;
+}
+
 export interface Place {
   id: string;
   name: string;
@@ -44,12 +66,10 @@ export interface Place {
   signatureSubject?: string;
   /** One line on why, with where that came from (reviews, the menu, the venue). */
   signatureRationale?: string;
-  /** What the illustration shows: the facade, storefront, patio, or a room. Never food. */
-  placeVisualSubject?: string;
-  placeVisualScene?: "facade" | "interior";
+  placeResearch?: PlaceResearch;
   appleMapsUrl?: string;
   googleMapsUrl?: string;
-  /** Clay illustration of the signature subject, e.g. "/places/tartine-bakery.webp". */
+  /** Square image of the place itself, e.g. "/places/tartine-bakery-1a2b3c4d.webp". */
   image?: string;
   createdAt: string;
   updatedAt?: string;
