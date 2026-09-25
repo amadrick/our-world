@@ -74,7 +74,7 @@ export function PlaceCard({
       onClick={onSelect}
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
-      className="group focus-ring flex w-full cursor-pointer flex-col gap-3 rounded-xl text-left"
+      className="group flex w-full cursor-pointer flex-col gap-3 rounded-xl text-left outline-ink focus-visible:outline-2 focus-visible:outline-offset-4"
     >
       <span className="relative block">
         <PlaceImage

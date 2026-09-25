@@ -223,18 +223,20 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         aria-hidden
         className="pointer-events-none invisible absolute bottom-0 left-0 h-[env(safe-area-inset-bottom)] w-px"
       />
-      <MapView
-        ref={mapRef}
-        className="absolute inset-0"
-        places={mapPlaces}
-        selectedId={selectedId}
-        highlightedId={highlightedId}
-        padding={padding}
-        fitKey={JSON.stringify(filters)}
-        onSelect={select}
-        onHighlight={setHighlightedId}
-        onBackgroundClick={closeDetail}
-      />
+      <div className="absolute inset-0" inert={listMode}>
+        <MapView
+          ref={mapRef}
+          className="absolute inset-0"
+          places={mapPlaces}
+          selectedId={selectedId}
+          highlightedId={highlightedId}
+          padding={padding}
+          fitKey={JSON.stringify(filters)}
+          onSelect={select}
+          onHighlight={setHighlightedId}
+          onBackgroundClick={closeDetail}
+        />
+      </div>
 
       {/* Map mode, desktop: a solid rail of compact rows, or the open place */}
       <aside
