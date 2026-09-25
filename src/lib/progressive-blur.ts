@@ -36,11 +36,14 @@ const EASE_IN: [at: number, alpha: number][] = [
   [100, 1],
 ];
 
-/** A top-to-bottom gradient from clear to `color` ("#rrggbb"), eased so it has no visible edge. */
-export function dissolveGradient(color: string): string {
+/**
+ * A top-to-bottom gradient from clear to `color` ("#rrggbb"), eased so it has
+ * no visible edge. It turns solid at `solidFrom` percent and stays solid below.
+ */
+export function dissolveGradient(color: string, solidFrom = 100): string {
   const stops = EASE_IN.map(([at, alpha]) => {
     const hex = Math.round(alpha * 255).toString(16).padStart(2, "0");
-    return `${color}${hex} ${at}%`;
+    return `${color}${hex} ${Math.round(at * solidFrom) / 100}%`;
   });
   return `linear-gradient(to bottom, ${stops.join(", ")})`;
 }

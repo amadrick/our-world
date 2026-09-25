@@ -16,10 +16,12 @@ import { toast } from "sonner";
 
 import { CategoryIcon } from "@/components/places/category-badge";
 import { PhotoDissolve } from "@/components/places/photo-dissolve";
+import { PhotoHalo } from "@/components/places/photo-halo";
 import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
+import { dissolveGradient } from "@/lib/progressive-blur";
 import { ANDY_PICK, FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
@@ -199,10 +201,11 @@ interface PlaceDetailProps {
   /** Switches to the map with this place in view. */
   onShowOnMap?: () => void;
   /**
-   * "page": list mode, full screen, Apple Music style: the photo runs edge to
-   * edge across the top and dissolves into the page color, with everything
-   * else set right on it in a centered reading column.
-   * "rail": inside the desktop map rail, the same at rail width.
+   * "page": list mode, full screen. On phones, Apple Music style: the photo
+   * runs edge to edge and melts into the page color, with everything else set
+   * right on it. On wider screens, a rounded square photo with a soft halo of
+   * its colors, and everything else beside it, both starting at the top.
+   * "rail": inside the desktop map rail, the rounded photo above the details.
    * "sheet": inside the phone map sheet, whose header shows the name and whose
    * footer holds the actions.
    * All three sit on the place's color; the caller paints it behind them.
@@ -315,12 +318,19 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
   if (variant === "rail") {
     return (
       <article aria-label={place.name} className="relative text-white">
-        <div className="absolute inset-x-3 top-3 z-10">{controls}</div>
-        <div className="relative">
-          <PlaceImage place={place} alt={alt} priority sizes="400px" placeholder={color} />
-          <PhotoDissolve color={color} className="h-[55%]" />
+        <div className="px-3 pt-3">{controls}</div>
+        <div className="relative mx-6 mt-4">
+          <PhotoHalo place={place} />
+          <PlaceImage
+            place={place}
+            alt={alt}
+            priority
+            sizes="352px"
+            placeholder={color}
+            className="rounded-xl shadow-[0_24px_60px_-24px_rgb(0_0_0/0.6)]"
+          />
         </div>
-        <div className="relative -mt-20 space-y-6 px-6 pb-8">
+        <div className="relative space-y-6 px-6 pt-7 pb-8">
           {header}
           <PlaceActions place={place} />
           {details}
@@ -331,43 +341,47 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
 
   return (
     <article aria-label={place.name} className="relative min-h-full text-white">
-      {/* Floats over the photo and stays in reach while scrolling. */}
-      <div className="sticky top-0 z-20 h-0">
-        <div className="px-4 pt-[max(env(safe-area-inset-top),12px)] md:px-8 md:pt-6">{controls}</div>
-      </div>
-
-      <div className="relative">
-        <PlaceImage
-          place={place}
-          alt={alt}
-          priority
-          sizes="100vw"
-          placeholder={color}
-          className="md:aspect-auto md:h-[min(72vh,760px)]"
-        />
-        {/* A soft shade under the status bar and the floating buttons. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/30 to-transparent"
-        />
-        <PhotoDissolve color={color} className="h-[58%] md:h-[42%]" />
-      </div>
-
-      <div className="relative mx-auto max-w-2xl space-y-6 px-5 -mt-24 md:-mt-36 md:space-y-7 md:px-8">
-        {header}
-        <div className="md:max-w-md">
-          <PlaceActions place={place} />
+      {/* Phones: floats over the photo and stays in reach while scrolling. Wider screens: a row above the photo. */}
+      <div className="sticky top-0 z-20 h-0 md:static md:h-auto">
+        <div className="mx-auto max-w-[1144px] px-4 pt-[max(env(safe-area-inset-top),12px)] md:px-10 md:pt-6">
+          {controls}
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-2xl px-5 pt-10 pb-36 md:px-8 md:pt-12 md:pb-24 lg:pb-4">
-        {details}
+      <div className="relative mx-auto max-w-[1144px] md:grid md:grid-cols-2 md:items-start md:gap-10 md:px-10 md:pt-8 md:pb-24 lg:grid-cols-[440px_minmax(0,1fr)] lg:gap-16 lg:pb-8">
+        <div className="relative">
+          <PhotoHalo place={place} className="hidden md:block" />
+          <PlaceImage
+            place={place}
+            alt={alt}
+            priority
+            sizes="(min-width: 768px) 440px, 100vw"
+            placeholder={color}
+            className="md:rounded-2xl md:shadow-[0_32px_80px_-28px_rgb(0_0_0/0.6)]"
+          />
+          {/* Phones: a soft shade under the status bar and the floating buttons. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/30 to-transparent md:hidden"
+          />
+          <PhotoDissolve color={color} className="h-2/5 md:hidden" />
+        </div>
+
+        <div className="relative -mt-20 space-y-6 px-5 pb-36 md:mt-0 md:max-w-xl md:space-y-7 md:px-0 md:pb-0">
+          {header}
+          <div className="md:max-w-md">
+            <PlaceActions place={place} />
+          </div>
+          <div className="pt-4">{details}</div>
+        </div>
       </div>
 
-      {/* Wide screens keep the List | Map switch floating at the bottom: text dissolves before it rather than running under it. */}
-      <div aria-hidden className="pointer-events-none sticky bottom-0 hidden h-28 lg:block">
-        <PhotoDissolve color={color} className="h-full" />
-      </div>
+      {/* Wide screens keep the List | Map switch floating at the bottom: the page color fades up behind it, so no text sits under it. */}
+      <div
+        aria-hidden
+        className="pointer-events-none sticky bottom-0 hidden h-36 lg:block"
+        style={{ backgroundImage: dissolveGradient(color, 55) }}
+      />
     </article>
   );
 }

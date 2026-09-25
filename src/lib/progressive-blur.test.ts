@@ -27,4 +27,8 @@ describe("dissolveGradient", () => {
     expect(gradient).toMatch(/^linear-gradient\(to bottom, #23453b00 0%/);
     expect(gradient).toMatch(/#23453bff 100%\)$/);
   });
+
+  it("can turn solid partway down", () => {
+    expect(dissolveGradient("#23453b", 60)).toMatch(/#23453bff 60%\)$/);
+  });
 });

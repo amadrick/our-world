@@ -241,20 +241,21 @@ system (`prefers-color-scheme`), map included.
 | Glass | `glass` (+ `-thick`, `-fill`), `glass-bar`, `glass-media`, `glass-tinted`, `tinted-sheet` | Switch, map rail and controls, menus; pills; the sticky filter bars; controls over photos; controls on a place's color; the phone map sheet |
 | Color | `ink`, `on-ink`, `muted-foreground`, `hover`, `canvas`, `surface`, `photo`, each place's `imageColor` | |
 
-- **Place details** (Apple Music style): the photo runs edge to edge across
-  the top, on phones and wide screens alike, under the status bar and round
-  smoked-glass back, share, and map buttons. Its lower part dissolves into the
-  place's sampled color through a progressive blur (stacked `backdrop-filter`
-  layers, each twice as strong and masked to its own band) with the color
-  gathering over it. Below, in a centered reading column, the name, Andy's
-  pick, category and neighborhood, a bright Apple Maps pill beside a glass
-  Google Maps pill, what it's known for, the tags, the note, the write-up, and
-  the address all sit right on the color, with no card. The desktop map rail
-  is the same page at rail width; in the phone map sheet the photo runs edge
-  to edge and dissolves the same way into the sheet's tinted glass. On wide
-  screens the List | Map switch stays at the bottom of a place page over a
-  strip of the same dissolve, so text fades out before it instead of running
-  under it.
+- **Place details:** everything sits right on the place's sampled color,
+  with no card: Andy's pick, the name, category and neighborhood, a bright
+  Apple Maps pill beside a glass Google Maps pill, what it's known for, the
+  tags, the note, the write-up, and the address.
+  - Phones (Apple Music style): the photo runs edge to edge under the status
+    bar and the round smoked-glass back, share, and map buttons, and only its
+    last stretch melts into the color, through a short, light progressive blur
+    (a few stacked `backdrop-filter` layers) with the color gathering over it.
+    The phone map sheet's photo does the same into the sheet's tinted glass.
+  - Wider screens: a rounded square photo on the left with a soft, low halo of
+    its own colors (drawn from a tiny thumbnail), and everything else beside
+    it on the right; both start at the top under the buttons, centered as one
+    unit. The List | Map switch floats at the bottom over a plain fade of the
+    page color, and the page ends with room to clear it. The desktop map rail
+    is the same: rounded photo with its halo, details below.
 - **List:** a faint glow behind the title in the colors of Andy's picks'
   photos (pale on the light page, deep on the dark one), easing out well
   before the first row of cards. The category row and glass pills sit on it;
