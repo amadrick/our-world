@@ -10,7 +10,7 @@ write-up, then open it in Apple Maps or Google Maps with one tap.
   List is a grid of place pictures; Map is a full-screen map with a pin
   per place, a slim list rail beside it on desktop, and a draggable sheet for
   the open place on phones. A category row (the food and drink sections, then
-  _Shops_, _Museums_, and _Parks_), a neighborhood picker, and six
+  _Shops_, _Sights_, _Museums_, and _Parks_), a neighborhood picker, and six
   pills (_Andy's favorites_, _Dinner_, _Lunch_, _Late night_, _Brunch_,
   _Views_) work in both.
   Every place has a shareable link (`/?place=zuni-cafe`).
@@ -67,9 +67,9 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
-`data/places.json` holds Andy and Kirissa's list: 93 places (restaurants, bars,
-cafés, shops, two museums, and two parks) geocoded against OpenStreetMap and
-Overture Maps, each with a short neutral summary, a
+`data/places.json` holds Andy and Kirissa's list: 116 places (restaurants, bars,
+cafés, shops, 23 sights, two museums, and two parks) geocoded against
+OpenStreetMap and Overture Maps, each with a short neutral summary, a
 researched `signatureSubject` (what it's known for), a `signatureRationale`
 (why, and according to whom), and `placeResearch` (what it looks like, with
 sources). `data/places.md` is the readable version of all of it, one section
@@ -80,6 +80,10 @@ are left empty for them to write in their own words from `/admin`. 45 places
 are **Andy's picks** (`andyFavorite`): they get an "Andy's pick" badge, a star
 on their pin, and the _Andy's favorites_ pill at the start of the pill row.
 Where Andy named a dish or drink, it is what the place shows as Known for.
+The _Sights_ are the touristy classics (the Golden Gate Bridge, Alcatraz,
+Fisherman's Wharf, Pier 39, Coit Tower, the Painted Ladies, Twin Peaks, and
+so on): same research and pictures, no Andy's pick, and the summary names the
+practical thing to know (Alcatraz ferries leave from Pier 33).
 
 ## Place images
 
@@ -199,10 +203,10 @@ Both also rewrite `data/places.md`.
   including the Golden Gate on the "All" tab.
 - **Map:** [MapLibre GL](https://maplibre.org) on free
   [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed,
-  styled by one of three designed basemaps (`src/lib/map/themes/`, see Map
+  styled by one of four designed basemaps (`src/lib/map/themes/`, see Map
   below). Map labels use Inter and Newsreader files from `public/fonts`
   through MapLibre's `font-faces`. Map code sits behind a small `MapProvider`
-  interface (`src/lib/map/types.ts`) so Apple MapKit JS can be added later.
+  interface (`src/lib/map/types.ts`).
 - **Data:** a JSON file behind a `PlaceStore` interface (`src/lib/storage`), so
   it can be swapped for hosted storage when the site is deployed.
 - **Place search:** [Photon](https://photon.komoot.io) with a
@@ -271,9 +275,14 @@ system (`prefers-color-scheme`), map included.
   muted lines, with a smoked-glass "Andy's pick" badge.
 - **List | Map switch:** a glass capsule floating bottom center with an ink
   thumb that slides to the selected mode (arrow keys work).
-- **Map:** three basemap directions, each in light and dark, switchable with a
+- **Map:** four basemap directions, each in light and dark, switchable with a
   hidden `?map=` parameter (remembered for the session) for comparing them:
-  - `a` **Golden hour film** (the default): warm cream land, a deep teal bay
+  - `d` **Apple Maps** (the default): a flat, top-down lookalike of Apple Maps.
+    One sky-blue water, pale grey land, fresh green parks, pale beige
+    commercial blocks, wide white streets with a thin grey casing, districts
+    in bold slate-blue spaced capitals, and street names in small grey
+    capitals with Apple's abbreviations (N POINT ST, VAN NESS AVE).
+  - `a` **Golden hour film**: warm cream land, a deep teal bay
     that pales in the shallows over a sandy shore, sage and olive parks with a
     fine film grain, terracotta and ochre arterials, soft building footprints,
     and the Golden Gate Bridge in International Orange.
@@ -286,18 +295,40 @@ system (`prefers-color-scheme`), map included.
     corners, a slight tilt when the map frames a neighborhood or a place, and
     the landmarks and hills marked by name.
 
+  Pins speak Apple Maps' language (`src/lib/map/pin-style.ts`,
+  `src/components/explorer/map-pin.tsx`). The big stuff (sights, parks,
+  museums) are round photo pins (the place's own ~2 KB thumbnail in a white
+  ring) with the name underneath in small grey spaced capitals. Everything
+  else is a small circle in Apple's color for its category with a white
+  glyph, and the name to its right in a deeper tint of that color. Andy's
+  picks carry a small star badge. Like Apple Maps, zoomed out you see only the
+  photo landmarks and Andy's picks; zooming in adds the other icons, then the
+  names, and where things crowd, names drop before icons
+  (`src/lib/map/pin-layout.ts`). The open place's pin lifts into Apple's
+  teardrop balloon with its tip on the exact spot, and the whole basemap
+  crossfades to a faint wash of its color. In dark mode names turn to light
+  tints on dark halos and pin rings go dark.
+
+  | Category | Pin | Name (light) | Name (dark) |
+  | --- | --- | --- | --- |
+  | Restaurant | `#F28A2E` | `#C25E0B` | `#FFB36E` |
+  | Coffee | `#B97A45` | `#8F5627` | `#E3AE80` |
+  | Bakery | `#E3A21A` | `#966500` | `#F5C95E` |
+  | Dessert | `#F07B63` | `#C24B35` | `#FFA493` |
+  | Bar | `#E04C8A` | `#BD2B6B` | `#FF8FBC` |
+  | Wine | `#B9457F` | `#982D64` | `#F095C5` |
+  | Shop | `#F2B705` | `#8F6A00` | `#FFD44F` |
+  | Sight | `#5B6BD8` | `#4150BF` | `#A1AAFF` |
+  | Museum | `#D9479C` | `#B42C7C` | `#F59BCD` |
+  | Park | `#3DAA4E` | `#2A8739` | `#80D98B` |
+
   Basemap labels never sit under a pin or its name: each pin has an invisible
-  collision footprint the map places before its own labels. There's a glass
-  rail on desktop, glass zoom buttons, and a glass filter bar on phones. Each pin is
-  the place's own photo (a ~2 KB thumbnail, fetched only once it's shown) in
-  a ring of its page color, so the map, the list, and the page share color;
-  up close the name sits beside it in a pill of the same color, and Andy's
-  picks carry a star. Across the city, pins are dots of that color. Where
-  photos would pile up (Valencia, Mission Street) the rest step down to dots
-  (`src/lib/map/pin-layout.ts`). The open place's pin grows with a white ring,
-  and the whole basemap crossfades to a faint wash of its color (a deep one in
-  dark mode) at the same lightness, so labels read the same. In dark mode pin
-  colors are lifted and outlined so they don't sink into the land.
+  collision footprint the map places before its own labels, and district
+  names slide above, below, or beside their point to make room. Where a pin
+  already names a place, the basemap's own marker and label for it (Coit
+  Tower, Mission Dolores Park, the Fisherman's Wharf district) are hidden.
+  There's a glass rail on desktop, glass zoom buttons, and a glass filter bar
+  on phones.
 - Pills with nothing to show in the current section are dimmed, and if a
   section comes up empty for pills already on, the empty state offers the
   matches in other sections instead of a dead end.

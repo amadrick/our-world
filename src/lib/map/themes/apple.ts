@@ -349,7 +349,10 @@ export const apple: MapTheme<ApplePalette> = {
           "text-size": byZoom(11.5, 9.5, 15, 13.5),
           "text-letter-spacing": 0.1,
           "text-max-width": 8,
-          "text-padding": 10,
+          "text-padding": 6,
+          "text-variable-anchor": ["center", "top", "bottom", "left", "right", "top-left", "top-right", "bottom-left", "bottom-right"],
+          "text-radial-offset": 1.3,
+          "text-justify": "auto",
           "symbol-sort-key": ["match", ["get", "class"], ["suburb", "quarter"], 0, 1],
         },
         paint: {
