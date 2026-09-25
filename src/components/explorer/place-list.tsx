@@ -13,6 +13,10 @@ import { cn } from "@/lib/utils";
 
 interface PlaceListProps {
   places: Place[];
+  /** Big facade cards for list mode, or compact rows beside the map. */
+  variant?: "grid" | "rows";
+  /** Grid columns, e.g. "grid-cols-2". */
+  gridClassName?: string;
   totalCount: number;
   selectedId: string | null;
   highlightedId: string | null;
@@ -87,8 +91,55 @@ export function PlaceCard({
   );
 }
 
+/** A compact row for the rail beside the map: thumbnail, name, what it's known for. */
+export function PlaceRow({
+  place,
+  active,
+  onSelect,
+  onHighlight,
+}: {
+  place: Place;
+  active: boolean;
+  onSelect: () => void;
+  onHighlight: (hovering: boolean) => void;
+}) {
+  const pick = place.tags.includes("top-pick");
+  const detail = [
+    place.signatureSubject && signatureShort(place.signatureSubject),
+    place.neighborhood,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
+      onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
+      className={cn(
+        "flex w-full cursor-pointer items-center gap-3 rounded-[18px] p-2 text-left transition-colors",
+        "hover:bg-white/40 focus-visible:bg-white/40 focus-visible:outline-none active:bg-white/55",
+        active && "bg-white/45",
+      )}
+    >
+      <PlaceImage place={place} sizes="56px" className="w-14 shrink-0 rounded-[12px]" />
+      <span className="block min-w-0 flex-1">
+        <span className="flex items-center gap-1.5">
+          <span className="truncate text-base font-medium">{smartQuotes(place.name)}</span>
+          {pick && <Star size={12} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
+        </span>
+        <span className="block truncate text-sm text-muted-foreground">
+          {smartQuotes(detail || getCategory(place.category).label)}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export function PlaceList({
   places,
+  variant = "grid",
+  gridClassName = "grid-cols-2",
   totalCount,
   selectedId,
   highlightedId,
@@ -121,11 +172,12 @@ export function PlaceList({
     );
   }
 
+  const Item = variant === "rows" ? PlaceRow : PlaceCard;
   return (
-    <ul className="grid grid-cols-2 gap-1">
+    <ul className={cn("grid gap-1", variant === "rows" ? "grid-cols-1" : gridClassName)}>
       {places.map((place) => (
         <li key={place.id}>
-          <PlaceCard
+          <Item
             place={place}
             active={place.id === selectedId || place.id === highlightedId}
             onSelect={() => onSelect(place.id)}

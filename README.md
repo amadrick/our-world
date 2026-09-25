@@ -5,10 +5,13 @@ restaurants, bars, coffee, activities, and sights, on a calm map that any guest
 can use on a phone or a laptop. Tap a place to read their note and a short
 write-up, then open it in Apple Maps or Google Maps with one tap.
 
-- **Guests** get a full-screen map with a pin per place, filter pills
-  (category, tags like _Brunch_ or _Late night_, and neighborhood), a draggable
-  bottom sheet on phones, and a side panel on desktop. Every place has a
-  shareable link (`/?place=zuni-cafe`).
+- **Guests** flip between **List** and **Map** with one tap on the switch
+  floating at the bottom of the screen, and the guide remembers their choice.
+  List is a grid of place illustrations; Map is a full-screen map with a pin
+  per place, a slim list rail beside it on desktop, and a draggable sheet for
+  the open place on phones. Filter pills (category, tags like _Brunch_ or
+  _Late night_, and neighborhood) work in both. Every place has a shareable
+  link (`/?place=zuni-cafe`).
 - **Andy and Kirissa** add places at `/admin`: search by name or paste a Maps
   link, pick a category, add a note, and save. An AI summary is written once,
   when the place is added, so guests never wait on it.
@@ -175,15 +178,15 @@ data/places.json            the places guests see
 src/app/page.tsx            guest map
 src/app/admin/page.tsx      add / edit places
 src/app/api/admin/*         admin API (session, lookup, summary, places)
-src/components/explorer/*   map, pins, filters, list, detail, bottom sheet
+src/components/explorer/*   map, pins, filters, list, detail, sheet, List | Map switch
 src/components/admin/*      admin sign-in, form, and place list
 src/config/site.ts          title and copy shown to guests
 ```
 
 ## Liquid Glass
 
-Glass is the functional layer: the side panel, bottom sheet, filter pills, map
-controls, buttons, popovers, dialogs, and admin chrome. It floats over the
+Glass is the functional layer: the List | Map switch, map rail, bottom sheet,
+filter pills, map controls, buttons, popovers, dialogs, and admin chrome. It floats over the
 content layer (the map, place illustrations, and the admin's blurred mosaic)
 and is never applied to content itself. The primitive is a set of CSS classes in
 `src/app/globals.css`, driven by variables:
@@ -208,6 +211,9 @@ What follows Apple's guidance:
   opaque, when fully expanded.
 - Corners are concentric with their containers.
 - Map controls are grouped into shared capsules.
+- The List | Map switch is a segmented control: one capsule, an ink thumb that
+  slides to the selected mode, arrow keys to change it. It sits bottom center
+  in both modes, in thumb reach on phones.
 - Color stays out of the chrome so the content can tint it.
 
 In Chromium, small controls also get an SVG edge-refraction filter

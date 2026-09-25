@@ -15,6 +15,8 @@ export interface MapViewHandle {
   zoomIn: () => void;
   zoomOut: () => void;
   showAll: () => void;
+  /** Centers the selected place, e.g. after the map comes back into view. */
+  focusSelected: () => void;
 }
 
 interface MapViewProps {
@@ -175,8 +177,12 @@ export function MapView({
       zoomIn: () => instanceRef.current?.zoomBy(1),
       zoomOut: () => instanceRef.current?.zoomBy(-1),
       showAll: () => instanceRef.current?.fitTo(places, { maxZoom: 15 }),
+      focusSelected: () => {
+        const place = places.find((p) => p.id === selectedId);
+        if (place) instanceRef.current?.focus(place, { minZoom: 14.5 });
+      },
     }),
-    [places],
+    [places, selectedId],
   );
 
   return (

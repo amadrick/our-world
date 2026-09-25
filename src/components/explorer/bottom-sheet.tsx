@@ -74,8 +74,16 @@ export function BottomSheet({
     sheet.style.transform = `translate3d(0, ${offset}px, 0)`;
   };
 
+  // The first placement slides up from below the screen edge.
+  const entered = useRef(false);
   useLayoutEffect(() => {
-    if (!drag.current?.moved) moveTo(heights.full - heights[snap], true);
+    if (drag.current?.moved) return;
+    if (!entered.current) {
+      entered.current = true;
+      moveTo(heights.full + 24, false);
+      void sheetRef.current?.offsetHeight;
+    }
+    moveTo(heights.full - heights[snap], true);
   }, [snap, heights]);
 
   // Move/up listen on window so a fast drag that leaves the handle keeps tracking,

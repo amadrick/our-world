@@ -70,6 +70,8 @@ interface PlaceDetailProps {
   showBackRow?: boolean;
   /** Extra inset for everything below the image (the image sits closer to the edge). */
   bodyClassName?: string;
+  /** "split" puts the image beside the details on wide screens. */
+  layout?: "stack" | "split";
 }
 
 export function PlaceDetail({
@@ -77,14 +79,22 @@ export function PlaceDetail({
   onBack,
   showBackRow = true,
   bodyClassName,
+  layout = "stack",
 }: PlaceDetailProps) {
   const pick = place.tags.includes("top-pick");
   const tags = place.tags.filter((t) => t !== "top-pick");
+  const split = layout === "split" && Boolean(place.image);
 
   return (
-    <article className="@container flex flex-col gap-6" aria-label={place.name}>
+    <article
+      className={cn(
+        "@container flex flex-col gap-6",
+        split && "md:grid md:grid-cols-2 md:items-start md:gap-10",
+      )}
+      aria-label={place.name}
+    >
       {place.image && (
-        <div className="relative">
+        <div className={cn("relative", split && "md:sticky md:top-0")}>
           <PlaceImage
             place={place}
             alt={
@@ -93,14 +103,14 @@ export function PlaceDetail({
                 : `Clay illustration for ${place.name}`
             }
             priority
-            sizes="(min-width: 1024px) 376px, 100vw"
-            className="aspect-[5/4] rounded-[20px]"
+            sizes={split ? "(min-width: 768px) 460px, 100vw" : "(min-width: 1024px) 376px, 100vw"}
+            className={cn("aspect-[5/4] rounded-[20px]", split && "md:aspect-square md:rounded-[28px]")}
           />
           {showBackRow && <BackOverImage onBack={onBack} />}
         </div>
       )}
 
-      <div className={cn("flex flex-col gap-6", bodyClassName)}>
+      <div className={cn("flex flex-col gap-6", split && "md:pt-4", bodyClassName)}>
         {!place.image && showBackRow && <PlaceDetailBackRow onBack={onBack} />}
         <header className="space-y-2">
           <p className="text-muted-foreground flex items-center gap-2 text-sm">

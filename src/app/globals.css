@@ -340,6 +340,15 @@ body .maplibregl-ctrl-attrib {
 .maplibregl-ctrl-attrib a {
   color: #737373 !important;
 }
+/* Phones: keep the attribution clear of the floating List | Map switch. */
+@media (max-width: 1023px) {
+  body .maplibregl-ctrl-bottom-right {
+    bottom: calc(max(env(safe-area-inset-bottom), 12px) + 72px);
+  }
+  body .maplibregl-ctrl-attrib {
+    border-radius: 12px 0 0 12px;
+  }
+}
 .maplibregl-marker:has([data-highlighted]) {
   z-index: 2;
 }
