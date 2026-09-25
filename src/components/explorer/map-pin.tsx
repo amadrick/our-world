@@ -6,20 +6,27 @@ import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
+/** How much each pin says at the current zoom: a dot, the category glyph, or glyph and name. */
+export type PinDensity = "dot" | "glyph" | "label";
+
 interface MapPinProps {
   place: Place;
   selected: boolean;
   highlighted: boolean;
-  /** Zoomed out: draw a small dot instead of the full pin. */
-  compact: boolean;
+  density: PinDensity;
   onSelect: () => void;
   onHover: (hovering: boolean) => void;
 }
 
-export function MapPin({ place, selected, highlighted, compact, onSelect, onHover }: MapPinProps) {
+/**
+ * A price-pill-style marker: a white capsule with the category glyph (and the
+ * name up close), inverted to ink when selected. Hovered and selected pins
+ * always show their name.
+ */
+export function MapPin({ place, selected, highlighted, density, onSelect, onHover }: MapPinProps) {
   const pick = place.tags.includes("top-pick");
-  const showLabel = selected || highlighted;
-  const dot = compact && !selected && !highlighted;
+  const showName = selected || highlighted || density === "label";
+  const dot = density === "dot" && !showName;
 
   return (
     <button
@@ -36,38 +43,38 @@ export function MapPin({ place, selected, highlighted, compact, onSelect, onHove
       onPointerLeave={(event) => event.pointerType === "mouse" && onHover(false)}
       onFocus={() => onHover(true)}
       onBlur={() => onHover(false)}
-      className="group relative flex size-7 cursor-pointer items-center justify-center outline-none lg:size-8"
+      // The hit area reaches past the drawn pill so small pins stay easy to tap.
+      className="group relative flex cursor-pointer items-center justify-center outline-none before:absolute before:-inset-2 before:content-['']"
     >
       {dot ? (
-        <span className="size-3 rounded-full bg-foreground ring-2 ring-white shadow-[0_4px_12px_-4px_rgb(0_0_0/0.5)] group-focus-visible:ring-4 group-focus-visible:ring-black/20" />
+        <span className="block size-3 rounded-full bg-ink shadow-pin ring-2 ring-white transition-transform duration-200 group-hover:scale-125 group-focus-visible:ring-4 group-focus-visible:ring-ink/30" />
       ) : (
         <span
           className={cn(
-            "relative flex size-full items-center justify-center rounded-full bg-foreground text-white ring-2 ring-white transition-transform duration-200 ease-out group-focus-visible:ring-4 group-focus-visible:ring-black/20 [&_svg]:size-3.5 lg:[&_svg]:size-[15px]",
-            "shadow-[0_8px_24px_-8px_rgb(0_0_0/0.45)]",
-            selected ? "scale-[1.25]" : highlighted && "scale-110",
+            "relative flex h-8 items-center gap-1.5 rounded-full text-sm font-semibold whitespace-nowrap shadow-pin",
+            "transition-[scale,background-color,color] duration-200 ease-snappy motion-reduce:transition-none",
+            "group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-ink",
+            showName ? "pr-3 pl-2.5" : "w-8 justify-center",
+            selected
+              ? "scale-110 bg-ink text-white"
+              : cn("bg-surface text-ink", highlighted ? "scale-110" : "group-hover:scale-110"),
           )}
         >
-          <CategoryIcon category={place.category} size={15} />
+          <CategoryIcon category={place.category} size={15} className="shrink-0" />
+          {showName && <span className="max-w-40 truncate">{smartQuotes(place.name)}</span>}
           {pick && (
             <span
               aria-hidden
-              className="absolute -top-1.5 -right-1.5 flex size-[18px] items-center justify-center rounded-full hairline border-black/15 bg-white text-foreground"
+              className={cn(
+                "absolute -top-1.5 -right-1.5 flex size-[18px] items-center justify-center rounded-full shadow-pin",
+                selected ? "bg-surface text-ink" : "bg-ink text-white",
+              )}
             >
               <Star size={10} fill="currentColor" />
             </span>
           )}
         </span>
       )}
-      <span
-        aria-hidden
-        className={cn(
-          "glass pointer-events-none absolute top-1/2 left-[calc(100%+8px)] -translate-y-1/2 rounded-full px-3 py-1 text-sm font-medium whitespace-nowrap transition-all duration-200",
-          showLabel ? "opacity-100" : "-translate-x-1 opacity-0",
-        )}
-      >
-        {smartQuotes(place.name)}
-      </span>
     </button>
   );
 }

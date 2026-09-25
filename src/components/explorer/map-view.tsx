@@ -9,7 +9,7 @@ import { createPortal } from "react-dom";
 import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from "@/lib/map";
 import type { Place } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
-import { MapPin } from "./map-pin";
+import { MapPin, type PinDensity } from "./map-pin";
 
 export interface MapViewHandle {
   zoomIn: () => void;
@@ -35,8 +35,14 @@ interface MapViewProps {
 
 type Status = "loading" | "ready" | "error";
 
-/** Below this zoom, pins shrink to dots so a dense city view stays readable. */
-const COMPACT_BELOW_ZOOM = 13.5;
+/** Pins say more as you zoom in: dots across the city, glyphs by neighborhood, names by the block. */
+const GLYPH_FROM_ZOOM = 12;
+const LABEL_FROM_ZOOM = 15.5;
+
+function pinDensity(zoom: number): PinDensity {
+  if (zoom >= LABEL_FROM_ZOOM) return "label";
+  return zoom >= GLYPH_FROM_ZOOM ? "glyph" : "dot";
+}
 
 // Frames the main cluster, so one far-flung place (say, across the Bay) doesn't zoom the city out.
 function framingSet(places: Place[]): Place[] {
@@ -196,7 +202,7 @@ export function MapView({
               place={place}
               selected={place.id === selectedId}
               highlighted={place.id === highlightedId}
-              compact={zoom < COMPACT_BELOW_ZOOM}
+              density={pinDensity(zoom)}
               onSelect={() => onSelect(place.id)}
               onHover={(hovering) => onHighlight(hovering ? place.id : null)}
             />,
@@ -207,17 +213,19 @@ export function MapView({
 
       {status === "loading" && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <span className="glass animate-pulse rounded-full px-4 py-2 text-sm text-muted-foreground">
+          <span className="flex h-11 animate-pulse items-center rounded-full bg-surface px-5 text-sm font-medium text-muted-foreground shadow-float">
             Loading the map…
           </span>
         </div>
       )}
 
       {status === "error" && (
-        <div className="absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center glass glass-thick rounded-[28px] p-6 text-center lg:left-[440px]">
-          <MapIcon size={22} className="text-muted-foreground" />
-          <p className="mt-3 text-base font-medium">The map couldn’t load</p>
-          <p className="mt-1 text-sm text-muted-foreground">
+        <div className="absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center rounded-2xl bg-surface p-8 text-center shadow-raised lg:left-[448px]">
+          <span className="flex size-14 items-center justify-center rounded-full bg-secondary">
+            <MapIcon size={22} />
+          </span>
+          <p className="mt-5 text-lg font-semibold">The map couldn’t load</p>
+          <p className="mt-1 text-base text-muted-foreground">
             Every place is still in the list, and each one opens in Apple Maps or Google Maps.
           </p>
         </div>

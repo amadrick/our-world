@@ -13,6 +13,8 @@ interface BottomSheetProps {
   onSnapChange: (snap: SheetSnap) => void;
   /** Always-visible drag area (handle, title row). */
   header: React.ReactNode;
+  /** Pinned to the bottom of the visible sheet at every height, e.g. primary actions. */
+  footer?: React.ReactNode;
   /** Floats just above the sheet's top edge and moves with it. */
   accessory?: React.ReactNode;
   /** Identifies what the content shows; each view keeps its own scroll position. */
@@ -23,8 +25,8 @@ interface BottomSheetProps {
 
 const SNAPS: SheetSnap[] = ["full", "mid", "peek"];
 const CURVE = "420ms cubic-bezier(0.32, 0.72, 0, 1)";
-// The sheet slides and, between snap points, morphs its inset, corners, and opacity.
-const EASE = ["transform", "left", "right", "bottom", "border-radius", "background-color"]
+// The sheet slides and, between snap points, morphs its inset and corners.
+const EASE = ["transform", "left", "right", "bottom", "border-radius"]
   .map((property) => `${property} ${CURVE}`)
   .join(", ");
 
@@ -48,6 +50,7 @@ export function BottomSheet({
   heights,
   onSnapChange,
   header,
+  footer,
   accessory,
   scrollKey,
   children,
@@ -164,11 +167,11 @@ export function BottomSheet({
     <div
       ref={sheetRef}
       className={cn(
-        "glass fixed z-20 flex flex-col will-change-transform",
-        // Partial heights float inset so the map peeks around them; full height is edge to edge and more opaque.
+        "fixed z-20 flex flex-col bg-surface shadow-raised will-change-transform",
+        // Partial heights float inset as a card so the map peeks around them; full height is edge to edge.
         snap === "full"
-          ? "glass-thick inset-x-0 bottom-0 rounded-t-[32px] rounded-b-none"
-          : "inset-x-2 bottom-2 rounded-[32px]",
+          ? "inset-x-0 bottom-0 rounded-t-2xl rounded-b-none"
+          : "inset-x-2 bottom-2 rounded-2xl",
         className,
       )}
       style={{ height: heights.full, transform: `translate3d(0, ${offsetFor(snap)}px, 0)` }}
@@ -188,8 +191,8 @@ export function BottomSheet({
           className="shrink-0 cursor-grab touch-none select-none active:cursor-grabbing"
           onPointerDown={onPointerDown}
         >
-          <div className="flex justify-center pt-2.5 pb-1.5" aria-hidden>
-            <span className="h-1 w-9 rounded-full bg-black/15" />
+          <div className="flex justify-center pt-2 pb-2" aria-hidden>
+            <span className="h-1.5 w-10 rounded-full bg-border" />
           </div>
           {header}
         </div>
@@ -198,10 +201,19 @@ export function BottomSheet({
           onScroll={(event) =>
             scrollPositions.current.set(scrollKeyRef.current, event.currentTarget.scrollTop)
           }
-          className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]"
+          className={cn(
+            "min-h-0 flex-1 overflow-y-auto overscroll-contain",
+            snap !== "peek" && "border-t border-hairline",
+            !footer && "pb-[env(safe-area-inset-bottom)]",
+          )}
         >
           {children}
         </div>
+        {footer && (
+          <div className="shrink-0 border-t border-hairline px-4 pt-3 pb-[max(env(safe-area-inset-bottom),12px)]">
+            {footer}
+          </div>
+        )}
       </div>
     </div>
   );

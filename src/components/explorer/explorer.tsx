@@ -21,13 +21,15 @@ import { BottomSheet, type SheetSnap } from "./bottom-sheet";
 import { FilterBar } from "./filter-bar";
 import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
-import { PlaceDetail, PlaceDetailBackRow } from "./place-detail";
+import { PlaceActions, PlaceDetail, PlaceSheetHeader } from "./place-detail";
 import { PlaceList } from "./place-list";
 
-const RAIL_WIDTH = 360;
+const RAIL_WIDTH = 400;
 const RAIL_INSET = 16;
 /** Room kept clear at the bottom for the floating List | Map switch. */
-const SWITCH_CLEARANCE = 88;
+const SWITCH_CLEARANCE = 96;
+/** Phone sheet peek: handle, name row, and the action bar (before any home-indicator inset). */
+const SHEET_PEEK = 176;
 
 function MapButton({
   label,
@@ -47,7 +49,7 @@ function MapButton({
       title={label}
       onClick={onClick}
       className={cn(
-        "flex size-11 cursor-pointer items-center justify-center rounded-full transition-colors",
+        "pressable focus-ring flex size-12 cursor-pointer items-center justify-center rounded-full text-ink hover:bg-secondary",
         className,
       )}
     >
@@ -66,15 +68,15 @@ function ResultsSummary({
   onClear: () => void;
 }) {
   return (
-    <div className="flex h-10 items-center justify-between text-sm text-muted-foreground">
-      <p aria-live="polite">
+    <div className="flex h-11 items-center justify-between gap-4">
+      <p aria-live="polite" className="text-sm font-semibold">
         {count} {count === 1 ? "place" : "places"}
       </p>
       {filtersActive && (
         <button
           type="button"
           onClick={onClear}
-          className="cursor-pointer text-foreground underline decoration-black/25 underline-offset-4 hover:decoration-black"
+          className="focus-ring -mx-2 h-11 cursor-pointer rounded-md px-2 text-sm font-semibold underline decoration-1 underline-offset-4 hover:bg-secondary"
         >
           Clear filters
         </button>
@@ -96,8 +98,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   );
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [snap, setSnap] = useState<SheetSnap>("mid");
-  const [topBarHeight, setTopBarHeight] = useState(112);
+  const [topBarHeight, setTopBarHeight] = useState(148);
+  const [safeBottom, setSafeBottom] = useState(0);
   const topBarRef = useRef<HTMLDivElement>(null);
+  const safeBottomRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapViewHandle>(null);
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
@@ -125,11 +129,12 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
   const sheetHeights = useMemo(
     () => ({
-      peek: 136,
-      mid: Math.max(320, Math.round(viewportHeight * 0.48)),
-      full: Math.max(360, viewportHeight - topBarHeight - 4),
+      // The action bar pads itself above the home indicator; the peek grows to match.
+      peek: SHEET_PEEK + Math.max(0, safeBottom - 12),
+      mid: Math.max(360, Math.round(viewportHeight * 0.5)),
+      full: Math.max(400, viewportHeight - topBarHeight - 8),
     }),
-    [viewportHeight, topBarHeight],
+    [viewportHeight, topBarHeight, safeBottom],
   );
 
   // Framed for map mode even while the list covers it, so switching back is instant.
@@ -138,7 +143,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       isDesktop
         ? {
             top: RAIL_INSET,
-            right: 72,
+            right: 80,
             bottom: SWITCH_CLEARANCE,
             left: RAIL_INSET * 2 + RAIL_WIDTH,
           }
@@ -152,10 +157,15 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   );
 
   useEffect(() => {
-    const element = topBarRef.current;
-    if (!element) return;
-    const observer = new ResizeObserver(() => setTopBarHeight(element.offsetHeight));
-    observer.observe(element);
+    const topBar = topBarRef.current;
+    const safeArea = safeBottomRef.current;
+    if (!topBar || !safeArea) return;
+    const observer = new ResizeObserver(() => {
+      setTopBarHeight(topBar.offsetHeight);
+      setSafeBottom(safeArea.offsetHeight);
+    });
+    observer.observe(topBar);
+    observer.observe(safeArea);
     return () => observer.disconnect();
   }, []);
 
@@ -207,7 +217,12 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const filterProps = { filters, onChange: changeFilters, neighborhoods, available };
 
   return (
-    <main className="relative h-dvh w-full overflow-hidden bg-map">
+    <main className="relative h-dvh w-full overflow-hidden bg-canvas">
+      <div
+        ref={safeBottomRef}
+        aria-hidden
+        className="pointer-events-none invisible absolute bottom-0 left-0 h-[env(safe-area-inset-bottom)] w-px"
+      />
       <MapView
         ref={mapRef}
         className="absolute inset-0"
@@ -221,75 +236,67 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         onBackgroundClick={closeDetail}
       />
 
-      {/* Map mode, desktop: a slim rail of compact rows, or the open place */}
+      {/* Map mode, desktop: a solid rail of compact rows, or the open place */}
       <aside
-        className="glass absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-[32px] lg:flex"
+        className="absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-2xl bg-surface shadow-raised lg:flex"
         style={{ width: RAIL_WIDTH }}
         aria-label="Places"
         inert={listMode}
       >
-        <div className={cn("min-h-0 flex-1 overflow-y-auto", selected && "hidden")}>
-          <header className="px-6 pt-7 pb-5">
-            <h1 className="text-xl font-medium">{site.title}</h1>
+        <div className={cn("flex min-h-0 flex-1 flex-col", selected && "hidden")}>
+          <header className="shrink-0 border-b border-hairline px-6 pt-6">
+            <h1 className="text-lg font-semibold">{site.title}</h1>
+            <FilterBar className="-mx-6 mt-2" inset="px-6" {...filterProps} />
+            <ResultsSummary
+              count={visible.length}
+              filtersActive={filtersActive}
+              onClear={clearFilters}
+            />
           </header>
-          <div className="px-6 pb-4">
-            <FilterBar layout="wrap" {...filterProps} />
-          </div>
-          <div className="scroll-edge px-6 pb-2">
-            <ResultsSummary count={visible.length} filtersActive={filtersActive} onClear={clearFilters} />
-          </div>
-          <div className="px-3 pb-24">
+          <div className="min-h-0 flex-1 overflow-y-auto px-3 pt-3 pb-6">
             <PlaceList variant="rows" {...listProps} />
           </div>
         </div>
         {selected && (
           <div
             key={selected.id}
-            className="min-h-0 flex-1 overflow-y-auto px-3 pt-3 pb-24 animate-in fade-in duration-200"
+            className="min-h-0 flex-1 overflow-y-auto p-3 pb-6 animate-in fade-in duration-200"
           >
-            <PlaceDetail place={selected} onBack={closeDetail} bodyClassName="px-3" />
+            <PlaceDetail place={selected} onBack={closeDetail} variant="rail" />
           </div>
         )}
       </aside>
 
-      {/* Map mode, desktop: zoom and reset */}
-      <div className="absolute right-4 bottom-8 z-10 hidden flex-col gap-3 lg:flex" inert={listMode}>
-        <div className="glass glass-refract flex flex-col overflow-hidden rounded-full">
-          <MapButton
-            label="Zoom in"
-            className="hover:bg-white/30 active:bg-white/45"
-            onClick={() => mapRef.current?.zoomIn()}
-          >
-            <Plus size={18} />
+      {/* Map mode, desktop: zoom and reset, top right like the map apps */}
+      <div className="absolute top-4 right-4 z-10 hidden flex-col gap-3 lg:flex" inert={listMode}>
+        <div className="flex flex-col overflow-hidden rounded-full bg-surface shadow-float">
+          <MapButton label="Zoom in" onClick={() => mapRef.current?.zoomIn()}>
+            <Plus size={20} />
           </MapButton>
-          <span aria-hidden className="mx-3 h-[0.5px] bg-black/15" />
-          <MapButton
-            label="Zoom out"
-            className="hover:bg-white/30 active:bg-white/45"
-            onClick={() => mapRef.current?.zoomOut()}
-          >
-            <Minus size={18} />
+          <span aria-hidden className="mx-3 h-px bg-hairline" />
+          <MapButton label="Zoom out" onClick={() => mapRef.current?.zoomOut()}>
+            <Minus size={20} />
           </MapButton>
         </div>
         <MapButton
           label="Show all places"
-          className="glass glass-interactive glass-refract"
+          className="bg-surface shadow-float"
           onClick={() => mapRef.current?.showAll()}
         >
-          <Crosshair size={18} />
+          <Crosshair size={20} />
         </MapButton>
       </div>
 
-      {/* Map mode, phone: filters float over a full map */}
+      {/* Map mode, phone: filters in a solid bar across the top */}
       <div
         ref={topBarRef}
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 pt-[max(env(safe-area-inset-top),6px)] lg:hidden"
+        className="absolute inset-x-0 top-0 z-10 border-b border-hairline bg-surface pt-[max(env(safe-area-inset-top),8px)] pb-3 shadow-[0_6px_20px_-12px_rgb(0_0_0/0.25)] lg:hidden"
         inert={listMode}
       >
-        <FilterBar layout="scroll" {...filterProps} />
+        <FilterBar inset="px-4" {...filterProps} />
       </div>
 
-      {/* Map mode, phone: the open place slides up in a sheet */}
+      {/* Map mode, phone: the open place rises in a sheet, name on top and actions pinned below */}
       {!listMode && selected && (
         <div className="lg:hidden">
           <BottomSheet
@@ -298,13 +305,16 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             onSnapChange={setSnap}
             scrollKey={`place:${selected.id}`}
             header={
-              <div className="px-5 pb-1">
-                <PlaceDetailBackRow onBack={closeDetail} />
-              </div>
+              <PlaceSheetHeader
+                place={selected}
+                showThumbnail={snap === "peek"}
+                onClose={closeDetail}
+              />
             }
+            footer={<PlaceActions place={selected} layout="bar" />}
           >
-            <div className="px-5 pt-1 pb-8">
-              <PlaceDetail place={selected} onBack={closeDetail} showBackRow={false} />
+            <div className="px-4 pt-4 pb-2">
+              <PlaceDetail place={selected} onBack={closeDetail} variant="sheet" />
             </div>
           </BottomSheet>
         </div>
@@ -312,10 +322,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       {!listMode && !selected && (
         <MapButton
           label="Show all places"
-          className="glass glass-interactive absolute right-4 bottom-[calc(max(env(safe-area-inset-bottom),12px)+14px)] z-20 size-12 lg:hidden"
+          className="absolute right-4 bottom-[calc(max(env(safe-area-inset-bottom),16px)+4px)] z-20 bg-surface shadow-float lg:hidden"
           onClick={() => mapRef.current?.showAll()}
         >
-          <Crosshair size={18} />
+          <Crosshair size={20} />
         </MapButton>
       )}
 
@@ -323,33 +333,35 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       <section
         aria-label="Places"
         inert={!listMode}
-        className={cn("absolute inset-0 z-20 bg-map", !listMode && "invisible")}
+        className={cn("absolute inset-0 z-20 bg-canvas", !listMode && "invisible")}
       >
         <div
-          className={cn("absolute inset-0 overflow-y-auto overscroll-contain", selected && "invisible")}
+          className={cn(
+            "absolute inset-0 overflow-y-auto overscroll-contain",
+            selected && "invisible",
+          )}
           inert={Boolean(selected)}
         >
-          <div className="mx-auto max-w-6xl px-4 pt-[max(env(safe-area-inset-top),20px)] pb-32 lg:px-10 lg:pt-12">
-            <header className="px-1 lg:px-0">
-              <h1 className="text-xl font-medium">{site.title}</h1>
-              <p className="mt-1.5 max-w-xl text-base text-muted-foreground">{site.tagline}</p>
-            </header>
-            <div className="sticky top-0 z-10 -mx-4 mt-4 lg:static lg:mx-0 lg:mt-6">
-              {/* The fade sits beside the pills, not around them: a mask on their ancestor would cut off their blur. */}
-              <div className="relative lg:hidden">
-                <div aria-hidden className="scroll-edge absolute inset-x-0 top-0 -bottom-3 z-0" />
-                <FilterBar layout="scroll" {...filterProps} />
-              </div>
-              <div className="hidden lg:block">
-                <FilterBar layout="wrap" {...filterProps} />
-              </div>
+          <header className="bg-surface">
+            <div className="mx-auto max-w-7xl px-5 pt-[max(env(safe-area-inset-top),28px)] pb-2 lg:px-10 lg:pt-14">
+              <h1 className="text-xl font-semibold text-balance lg:text-2xl">{site.title}</h1>
+              <p className="mt-2 max-w-xl text-base text-muted-foreground">{site.tagline}</p>
             </div>
-            <div className="mt-2 px-1 lg:mt-4 lg:px-0">
-              <ResultsSummary count={visible.length} filtersActive={filtersActive} onClear={clearFilters} />
+          </header>
+          <div className="sticky top-0 z-10 border-b border-hairline bg-surface">
+            <div className="mx-auto max-w-7xl pt-2 pb-3 lg:px-9">
+              <FilterBar inset="px-5 lg:px-1" {...filterProps} />
             </div>
-            <div className="-mx-1.5 mt-1">
+          </div>
+          <div className="mx-auto max-w-7xl px-5 pt-4 pb-36 lg:px-10 lg:pt-6">
+            <ResultsSummary
+              count={visible.length}
+              filtersActive={filtersActive}
+              onClear={clearFilters}
+            />
+            <div className="mt-2">
               <PlaceList
-                gridClassName="grid-cols-2 sm:grid-cols-3 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] lg:gap-3"
+                gridClassName="grid-cols-2 gap-x-3 gap-y-7 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-[repeat(auto-fill,minmax(224px,1fr))] lg:gap-x-6 lg:gap-y-10"
                 {...listProps}
               />
             </div>
@@ -360,19 +372,25 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             key={selected.id}
             className="absolute inset-0 overflow-y-auto overscroll-contain animate-in fade-in duration-200"
           >
-            <div className="mx-auto max-w-md px-4 pt-[max(env(safe-area-inset-top),16px)] pb-32 md:max-w-4xl md:px-10 md:pt-12">
-              <PlaceDetail place={selected} onBack={closeDetail} layout="split" />
-            </div>
+            <PlaceDetail
+              place={selected}
+              onBack={closeDetail}
+              onShowOnMap={() => changeMode("map")}
+              variant="page"
+            />
           </div>
         )}
       </section>
 
-      {/* One switch, same spot in both modes: bottom center, in thumb reach */}
-      {(listMode || isDesktop || !selected) && (
+      {/* One switch, same spot in both modes: bottom center (of the map, beside the rail), in thumb reach */}
+      {(isDesktop || !selected) && (
         <ModeSwitch
           value={mode}
           onChange={changeMode}
-          className="absolute bottom-[max(env(safe-area-inset-bottom),12px)] left-1/2 z-30 mb-2 -translate-x-1/2 lg:bottom-6"
+          className={cn(
+            "absolute bottom-[max(env(safe-area-inset-bottom),16px)] left-1/2 z-30 -translate-x-1/2 lg:bottom-6",
+            !listMode && "lg:left-[calc(50%+216px)]",
+          )}
         />
       )}
     </main>

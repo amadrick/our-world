@@ -47,6 +47,15 @@ export const Bread = featherIcon("Bread", [
   "M6 10.5A3.5 3.5 0 0 1 8 4h8a3.5 3.5 0 0 1 2 6.5V19a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z",
 ]);
 
+export const Bridge = featherIcon("Bridge", [
+  "M2 17h20",
+  "M7 21V4",
+  "M17 21V4",
+  "M7 5q5 9 10 0",
+  "M2 12q3.5-2 5-7",
+  "M17 5q1.5 5 5 7",
+]);
+
 export const IceCream = featherIcon("IceCream", [
   "M17 9.5a5 5 0 1 0-10 0",
   "M6 9.5h12",

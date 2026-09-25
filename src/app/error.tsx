@@ -17,14 +17,14 @@ export default function Error({
   }, [error]);
 
   return (
-    <main className="flex min-h-dvh items-center justify-center bg-map p-6">
-      <div className="max-w-sm glass glass-thick rounded-[32px] p-8 text-center">
-        <p className="text-lg font-medium">Something went sideways</p>
+    <main className="flex min-h-dvh items-center justify-center bg-canvas p-6">
+      <div className="w-full max-w-sm rounded-2xl border border-hairline bg-surface p-8 text-center shadow-raised">
+        <p className="text-lg font-semibold">Something went sideways</p>
         <p className="mt-2 text-base text-muted-foreground">
           The guide couldn’t load just now. Give it another try in a moment.
         </p>
-        <Button onClick={reset} className="mt-6">
-          <RotateCcw size={16} />
+        <Button onClick={reset} size="lg" className="mt-6 w-full">
+          <RotateCcw size={18} />
           Try again
         </Button>
       </div>

@@ -13,8 +13,9 @@ const MODES: { id: ViewMode; label: string; icon: Icon }[] = [
 ];
 
 /**
- * List | Map segmented control: a glass capsule with an ink thumb that slides
- * to the selected mode. A radio group, so arrow keys move the selection.
+ * List | Map segmented control: an ink capsule floating over the content, with
+ * a white thumb that slides to the selected mode. A radio group, so arrow keys
+ * move the selection.
  */
 export function ModeSwitch({
   value,
@@ -42,11 +43,14 @@ export function ModeSwitch({
       role="radiogroup"
       aria-label="View"
       onKeyDown={onKeyDown}
-      className={cn("glass relative grid h-12 grid-cols-2 rounded-full p-1", className)}
+      className={cn(
+        "relative grid h-14 w-max grid-cols-2 rounded-full bg-ink p-1.5 shadow-[0_8px_28px_-6px_rgb(0_0_0/0.4)] transition-[scale] duration-200 ease-snappy hover:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100",
+        className,
+      )}
     >
       <span
         aria-hidden
-        className="glass glass-ink absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full transition-transform duration-300 ease-[var(--glass-ease)] motion-reduce:transition-none"
+        className="absolute inset-y-1.5 left-1.5 w-[calc(50%-6px)] rounded-full bg-surface shadow-[0_2px_8px_rgb(0_0_0/0.3)] transition-transform duration-300 ease-snappy motion-reduce:transition-none"
         style={{ transform: `translateX(${index * 100}%)` }}
       />
       {MODES.map((mode, i) => {
@@ -64,12 +68,11 @@ export function ModeSwitch({
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(mode.id)}
             className={cn(
-              "relative z-10 flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 text-base font-medium transition-colors duration-200",
-              "focus-visible:ring-4 focus-visible:ring-black/15 focus-visible:outline-none",
-              selected ? "text-white" : "text-foreground hover:text-black/70",
+              "pressable relative z-10 flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-base font-semibold outline-white focus-visible:outline-2 focus-visible:outline-offset-2",
+              selected ? "text-ink" : "text-white/75 hover:text-white",
             )}
           >
-            <ModeIcon size={17} aria-hidden />
+            <ModeIcon size={18} strokeWidth={2.25} className="shrink-0" aria-hidden />
             {mode.label}
           </button>
         );

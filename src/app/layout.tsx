@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 
-import { GlassRefraction } from "@/components/ui/glass-refraction";
 import { Toaster } from "@/components/ui/sonner";
 import { site } from "@/config/site";
 import "./globals.css";
@@ -30,7 +29,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full">
-        <GlassRefraction />
         {children}
         <Toaster position="top-center" />
       </body>

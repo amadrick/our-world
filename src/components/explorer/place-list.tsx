@@ -13,9 +13,9 @@ import { cn } from "@/lib/utils";
 
 interface PlaceListProps {
   places: Place[];
-  /** Big facade cards for list mode, or compact rows beside the map. */
+  /** Big listing cards for list mode, or compact rows beside the map. */
   variant?: "grid" | "rows";
-  /** Grid columns, e.g. "grid-cols-2". */
+  /** Grid columns and gaps, e.g. "grid-cols-2 gap-x-3 gap-y-6". */
   gridClassName?: string;
   totalCount: number;
   selectedId: string | null;
@@ -37,15 +37,24 @@ function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center px-6 py-12 text-center">
-      <EmptyIcon size={22} className="text-muted-foreground" />
-      <p className="mt-4 text-base font-medium">{title}</p>
-      <p className="mt-1 max-w-[18rem] text-sm text-muted-foreground">{body}</p>
-      {action && <div className="mt-5">{action}</div>}
+    <div className="flex flex-col items-center px-6 py-16 text-center">
+      <span className="flex size-14 items-center justify-center rounded-full border border-hairline bg-surface shadow-card">
+        <EmptyIcon size={22} />
+      </span>
+      <p className="mt-5 text-lg font-semibold">{title}</p>
+      <p className="mt-1 max-w-[20rem] text-base text-balance text-muted-foreground">{body}</p>
+      {action && <div className="mt-6">{action}</div>}
     </div>
   );
 }
 
+function placeMeta(place: Place) {
+  const where = [getCategory(place.category).label, place.neighborhood].filter(Boolean).join(" · ");
+  const knownFor = place.signatureSubject ? smartQuotes(signatureShort(place.signatureSubject)) : null;
+  return { where, knownFor };
+}
+
+/** Airbnb-style listing card: the picture on top, then name and two quiet lines of detail. */
 export function PlaceCard({
   place,
   active,
@@ -58,40 +67,44 @@ export function PlaceCard({
   onHighlight: (hovering: boolean) => void;
 }) {
   const pick = place.tags.includes("top-pick");
+  const { where, knownFor } = placeMeta(place);
   return (
     <button
       type="button"
       onClick={onSelect}
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
-      className={cn(
-        "group flex w-full cursor-pointer flex-col gap-2 rounded-[22px] p-1.5 text-center transition-colors",
-        "hover:bg-white/40 focus-visible:bg-white/40 focus-visible:outline-none active:bg-white/55",
-        active && "bg-white/45",
-      )}
+      className="group focus-ring flex w-full cursor-pointer flex-col gap-3 rounded-xl text-left"
     >
-      <PlaceImage
-        place={place}
-        sizes="(min-width: 1024px) 180px, 46vw"
-        className={cn("rounded-[14px]", !place.image && "aspect-[4/3]")}
-        imageClassName="transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-      />
-      <span className="block min-w-0 px-1.5 pb-1">
-        <span className="flex items-center justify-center gap-1.5">
-          <span className="truncate text-base font-medium">{smartQuotes(place.name)}</span>
-          {pick && <Star size={12} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
-        </span>
-        <span className="block truncate text-sm text-muted-foreground">
-          {place.signatureSubject
-            ? smartQuotes(signatureShort(place.signatureSubject))
-            : [getCategory(place.category).label, place.neighborhood].filter(Boolean).join(" · ")}
-        </span>
+      <span className="relative block">
+        <PlaceImage
+          place={place}
+          sizes="(min-width: 1024px) 260px, (min-width: 640px) 30vw, 46vw"
+          className={cn(
+            "image-frame rounded-xl transition-shadow duration-200",
+            active && "shadow-float",
+          )}
+          imageClassName="transition-transform duration-500 ease-snappy group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        />
+        {pick && (
+          <span className="absolute top-3 left-3 flex h-8 items-center gap-1.5 rounded-full bg-surface px-3 text-sm font-semibold shadow-card">
+            <Star size={14} fill="currentColor" aria-hidden />
+            Top pick
+          </span>
+        )}
+      </span>
+      <span className="block min-w-0 px-0.5">
+        <span className="block truncate text-base font-semibold">{smartQuotes(place.name)}</span>
+        {knownFor && (
+          <span className="block truncate text-sm text-muted-foreground">{knownFor}</span>
+        )}
+        <span className="block truncate text-sm text-muted-foreground">{where}</span>
       </span>
     </button>
   );
 }
 
-/** A compact row for the rail beside the map: thumbnail, name, what it's known for. */
+/** A compact row for the rail beside the map: thumbnail, name, what it's known for, where. */
 export function PlaceRow({
   place,
   active,
@@ -104,12 +117,7 @@ export function PlaceRow({
   onHighlight: (hovering: boolean) => void;
 }) {
   const pick = place.tags.includes("top-pick");
-  const detail = [
-    place.signatureSubject && signatureShort(place.signatureSubject),
-    place.neighborhood,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+  const { where, knownFor } = placeMeta(place);
   return (
     <button
       type="button"
@@ -117,20 +125,20 @@ export function PlaceRow({
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
-        "flex w-full cursor-pointer items-center gap-3 rounded-[18px] p-2 text-left transition-colors",
-        "hover:bg-white/40 focus-visible:bg-white/40 focus-visible:outline-none active:bg-white/55",
-        active && "bg-white/45",
+        "focus-ring flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 text-left transition-colors hover:bg-secondary",
+        active && "bg-secondary",
       )}
     >
-      <PlaceImage place={place} sizes="56px" className="w-14 shrink-0 rounded-[12px]" />
+      <PlaceImage place={place} sizes="72px" className="image-frame w-18 shrink-0 rounded-md" />
       <span className="block min-w-0 flex-1">
         <span className="flex items-center gap-1.5">
-          <span className="truncate text-base font-medium">{smartQuotes(place.name)}</span>
-          {pick && <Star size={12} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
+          <span className="truncate text-base font-semibold">{smartQuotes(place.name)}</span>
+          {pick && <Star size={14} fill="currentColor" className="shrink-0" aria-label="Top pick" />}
         </span>
-        <span className="block truncate text-sm text-muted-foreground">
-          {smartQuotes(detail || getCategory(place.category).label)}
-        </span>
+        {knownFor && (
+          <span className="block truncate text-sm text-muted-foreground">{knownFor}</span>
+        )}
+        <span className="block truncate text-sm text-muted-foreground">{where}</span>
       </span>
     </button>
   );
@@ -139,7 +147,7 @@ export function PlaceRow({
 export function PlaceList({
   places,
   variant = "grid",
-  gridClassName = "grid-cols-2",
+  gridClassName = "grid-cols-2 gap-x-3 gap-y-6",
   totalCount,
   selectedId,
   highlightedId,
@@ -164,7 +172,7 @@ export function PlaceList({
         title="Nothing matches those filters"
         body="Try removing a filter or two to see more places."
         action={
-          <Button variant="outline" size="sm" onClick={onClearFilters}>
+          <Button variant="outline" onClick={onClearFilters}>
             Clear filters
           </Button>
         }
@@ -174,7 +182,7 @@ export function PlaceList({
 
   const Item = variant === "rows" ? PlaceRow : PlaceCard;
   return (
-    <ul className={cn("grid gap-1", variant === "rows" ? "grid-cols-1" : gridClassName)}>
+    <ul className={cn("grid", variant === "rows" ? "grid-cols-1 gap-1" : gridClassName)}>
       {places.map((place) => (
         <li key={place.id}>
           <Item

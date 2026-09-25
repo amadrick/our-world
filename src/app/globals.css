@@ -12,25 +12,59 @@
 }
 
 /*
- * One family (Inter Variable), two weights (425 and 550), four sizes.
- * Resetting the default scales means any stray size or weight class simply
- * doesn't exist, which keeps the type system tight.
+ * One family (Inter Variable), three weights, five sizes. Resetting the default
+ * scales means any stray size or weight class simply doesn't exist, which
+ * keeps the type system tight.
+ *
+ *   sm    14/20  meta, captions, chips, tags
+ *   base  16/24  body copy, buttons, card titles
+ *   lg    20/26  panel and sheet titles
+ *   xl    28/32  place title, page title on phones
+ *   2xl   40/44  page title on wide screens
  */
 @theme {
   --text-*: initial;
-  --text-sm: 13px;
-  --text-sm--line-height: 18px;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
   --text-base: 16px;
   --text-base--line-height: 24px;
   --text-lg: 20px;
   --text-lg--line-height: 26px;
+  --text-lg--letter-spacing: -0.01em;
   --text-xl: 28px;
   --text-xl--line-height: 32px;
-  --text-xl--letter-spacing: -0.02em;
+  --text-xl--letter-spacing: -0.022em;
+  --text-2xl: 40px;
+  --text-2xl--line-height: 44px;
+  --text-2xl--letter-spacing: -0.03em;
 
   --font-weight-*: initial;
   --font-weight-normal: 425;
   --font-weight-medium: 550;
+  --font-weight-semibold: 650;
+
+  /*
+   * Radius: 8 (inner bits), 12 (thumbnails, menu rows), 16 (buttons, inset
+   * cards), 20 (listing images), 24 (panels, sheets, dialogs), full (chips,
+   * switch, pins, icon buttons).
+   */
+  --radius-*: initial;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+
+  /* Elevation: resting cards, floating controls, raised panels, map pins. */
+  --shadow-*: initial;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-float: 0 0 0 1px rgb(0 0 0 / 0.04), 0 6px 16px rgb(0 0 0 / 0.12);
+  --shadow-raised: 0 0 0 1px rgb(0 0 0 / 0.04), 0 12px 40px -8px rgb(0 0 0 / 0.2);
+  --shadow-pin: 0 0 0 1px rgb(0 0 0 / 0.08), 0 2px 6px rgb(0 0 0 / 0.16);
+  --shadow-bar: 0 -1px 0 #ebebeb, 0 -8px 24px -12px rgb(0 0 0 / 0.12);
+
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
 }
 
 @theme inline {
@@ -53,40 +87,40 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-map: var(--map);
+  --color-canvas: var(--map);
+  --color-surface: var(--surface);
+  --color-hairline: var(--hairline);
+  --color-ink: var(--ink);
+  --color-ink-hover: var(--ink-hover);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-
-  --radius-sm: calc(var(--radius) - 6px);
-  --radius-md: calc(var(--radius) - 4px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 16px);
-
-  --shadow-float: 0 10px 36px -10px rgb(0 0 0 / 0.14);
-  --shadow-panel: 0 28px 80px -24px rgb(0 0 0 / 0.18);
 }
 
 :root {
   --radius: 1rem;
+  /* Ink for text, the primary action, and selection; one warm canvas under everything. */
+  --ink: #222222;
+  --ink-hover: #000000;
+  --surface: #ffffff;
+  --hairline: #ebebeb;
   --background: #ffffff;
-  --foreground: #1a1a1a;
+  --foreground: #222222;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #222222;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #1a1a1a;
+  --popover-foreground: #222222;
+  --primary: #222222;
   --primary-foreground: #ffffff;
-  --secondary: #f2f2f2;
-  --secondary-foreground: #1a1a1a;
-  --muted: #f2f2f2;
-  --muted-foreground: rgb(0 0 0 / 0.55);
-  --accent: #f2f2f2;
-  --accent-foreground: #1a1a1a;
-  --destructive: #1a1a1a;
-  --border: rgb(0 0 0 / 0.16);
-  --input: rgb(0 0 0 / 0.2);
-  --ring: #a3a3a3;
+  --secondary: #f7f7f7;
+  --secondary-foreground: #222222;
+  --muted: #f7f7f7;
+  --muted-foreground: #6a6a6a;
+  --accent: #f7f7f7;
+  --accent-foreground: #222222;
+  --destructive: #222222;
+  --border: #dddddd;
+  --input: #b0b0b0;
+  --ring: #222222;
   --map: #f5f4f1;
 
   /*
@@ -153,20 +187,66 @@
   }
 }
 
+/* Horizontal rows fade out only on the side that has more to scroll (ScrollRow sets the attributes). */
 @utility scroll-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black var(--fade-start, 0px),
+    black calc(100% - var(--fade-end, 0px)),
+    transparent 100%
+  );
   mask-image: linear-gradient(
     to right,
     transparent 0,
-    black 12px,
-    black calc(100% - 24px),
+    black var(--fade-start, 0px),
+    black calc(100% - var(--fade-end, 0px)),
     transparent 100%
   );
 }
+[data-fade-start] {
+  --fade-start: 48px;
+}
+[data-fade-end] {
+  --fade-end: 48px;
+}
+
+/* A crisp 1px inner edge, so white-backed pictures still read as a bounded tile. */
+@utility image-frame {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06);
+    pointer-events: none;
+  }
+}
+
+/* Tactile press: controls sink slightly while held. */
+@utility pressable {
+  transition-property: transform, background-color, border-color, color, box-shadow;
+  transition-duration: 160ms;
+  transition-timing-function: var(--ease-snappy);
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+}
+
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
 
 /*
- * The glass primitive. Variants: .glass (regular), .glass-thick, .glass-clear,
- * .glass-ink, plus .glass-interactive for controls that react to touch, and
- * .glass-fill for controls that sit on glass (glass is never stacked on glass).
+ * The glass primitive, kept for the admin's chrome over its image mosaic. The
+ * guest guide uses solid surfaces (bg-surface, border-hairline, shadow-*).
+ * Variants: .glass (regular), .glass-thick, .glass-clear, .glass-ink, plus
+ * .glass-interactive for controls that react to touch, and .glass-fill for
+ * controls that sit on glass (glass is never stacked on glass).
  */
 @layer components {
   .glass {
@@ -255,26 +335,6 @@
   .glass-fill:hover {
     background-color: rgb(255 255 255 / 0.66);
   }
-
-  /* Scroll edge effect: content sliding under a sticky bar blurs and fades out. */
-  .scroll-edge {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: linear-gradient(to bottom, rgb(255 255 255 / 0.3) 50%, rgb(255 255 255 / 0));
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent);
-    mask-image: linear-gradient(to bottom, #000 62%, transparent);
-  }
-
-  /* Chromium-only edge refraction for small controls; see the filter in layout.tsx. */
-  [data-refraction] .glass-refract {
-    -webkit-backdrop-filter: url(#glass-refraction) blur(6px) saturate(var(--glass-saturation))
-      brightness(var(--glass-brightness));
-    backdrop-filter: url(#glass-refraction) blur(6px) saturate(var(--glass-saturation))
-      brightness(var(--glass-brightness));
-  }
 }
 
 /* Reduce Transparency, or no backdrop-filter support: solid, legible surfaces. */
@@ -287,20 +347,13 @@
     --glass-fill: #ececeb;
   }
   .glass,
-  .glass-fill,
-  .scroll-edge,
-  [data-refraction] .glass-refract {
+  .glass-fill {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
   .glass::before,
   .glass::after {
     display: none;
-  }
-  .scroll-edge {
-    background: #fbfbfa;
-    -webkit-mask-image: none;
-    mask-image: none;
   }
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -316,7 +369,9 @@
     --glass-tint: rgb(255 255 255 / 0.9);
     --glass-tint-clear: rgb(255 255 255 / 0.85);
     --glass-edge: rgb(0 0 0 / 0.45);
-    --muted-foreground: rgb(0 0 0 / 0.75);
+    --muted-foreground: #3f3f3f;
+    --hairline: #b0b0b0;
+    --border: #717171;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -324,29 +379,31 @@
   .glass-fill {
     transition: none;
   }
-  .glass-interactive:active {
+  .glass-interactive:active,
+  .pressable:active {
     transform: none;
   }
 }
-
 body .maplibregl-map {
   font: inherit;
 }
+body .maplibregl-ctrl-bottom-right {
+  margin: 0 12px 12px 0;
+}
 body .maplibregl-ctrl-attrib {
-  font-size: var(--text-sm);
-  background: rgb(255 255 255 / 0.7) !important;
-  border-radius: 12px 0 0 0;
+  font-size: 12px;
+  background: #fff !important;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-float);
+  margin: 0 !important;
 }
 .maplibregl-ctrl-attrib a {
-  color: #737373 !important;
+  color: #6a6a6a !important;
 }
 /* Phones: keep the attribution clear of the floating List | Map switch. */
 @media (max-width: 1023px) {
   body .maplibregl-ctrl-bottom-right {
-    bottom: calc(max(env(safe-area-inset-bottom), 12px) + 72px);
-  }
-  body .maplibregl-ctrl-attrib {
-    border-radius: 12px 0 0 12px;
+    bottom: calc(max(env(safe-area-inset-bottom), 16px) + 64px);
   }
 }
 .maplibregl-marker:has([data-highlighted]) {
