@@ -1,12 +1,13 @@
 import { blurLayers, dissolveGradient } from "@/lib/progressive-blur";
 import { cn } from "@/lib/utils";
 
-const LAYERS = blurLayers();
+/** A light touch: the photo stays crisp and only its last stretch softens. */
+const LAYERS = blurLayers(4, 8);
 
 /**
- * Laid over the lower part of a hero photo: a blur that ramps up toward the
- * bottom, then the page color gathering over it, so the photo dissolves into
- * the page rather than just fading. Without translucency, only the color runs.
+ * Laid over the bottom of a full-bleed phone photo: a short, light blur that
+ * ramps up toward the edge, with the page color gathering over it, so the
+ * photo melts into the page. Without translucency, only the color runs.
  * On a see-through surface (the glass map sheet) there's no solid color to
  * gather to: leave `color` out and fade the photo itself out beneath the blur.
  */

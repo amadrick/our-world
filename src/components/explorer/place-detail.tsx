@@ -303,11 +303,11 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
             priority
             sizes="100vw"
             placeholder={color}
-            className="aspect-[4/3] [mask-image:linear-gradient(to_bottom,black_50%,transparent)]"
+            className="aspect-[4/3] [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
           />
-          <PhotoDissolve className="h-3/5" />
+          <PhotoDissolve className="h-[35%]" />
         </div>
-        <div className="relative -mt-12 px-5 pb-4">{details}</div>
+        <div className="relative -mt-6 px-5 pb-4">{details}</div>
       </article>
     );
   }
