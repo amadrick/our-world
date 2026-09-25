@@ -2,7 +2,7 @@ import { validateStyleMin } from "@maplibre/maplibre-gl-style-spec";
 import { describe, expect, it } from "vitest";
 
 import { buildMapStyle } from "./style";
-import { MAP_THEMES, parseMapTheme, type MapThemeId } from "./theme";
+import { DEFAULT_MAP_THEME, MAP_THEMES, currentMapTheme, parseMapTheme, type MapThemeId } from "./theme";
 import { missingImage } from "./themes/kit";
 
 const themes = Object.keys(MAP_THEMES) as MapThemeId[];
@@ -102,5 +102,12 @@ describe("parseMapTheme", () => {
     expect(parseMapTheme("z")).toBeNull();
     expect(parseMapTheme("")).toBeNull();
     expect(parseMapTheme(null)).toBeNull();
+  });
+});
+
+describe("currentMapTheme", () => {
+  it("shows the film basemap unless ?map= asks for another", () => {
+    expect(DEFAULT_MAP_THEME).toBe("film");
+    expect(currentMapTheme()).toBe("film");
   });
 });
