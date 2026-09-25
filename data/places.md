@@ -1,12 +1,46 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 93 places: what each is known for (reviewed in
+Per-place notes for all 116 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 93 of 93 places are researched.
+place. 116 of 116 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
+
+## Alcatraz
+
+Sight · Alcatraz · Alcatraz Island, San Francisco, CA 94133
+
+**Known for:** The cellhouse of the former federal penitentiary (high confidence). NPS presents Alcatraz as the former maximum-security federal penitentiary and builds the visit around its cellhouse audio tour. Wikipedia calls the former prison one of San Francisco's major tourist attractions.
+
+### Place research
+
+- **Neighborhood and street:** Alcatraz. The island sits about 1.25 miles offshore in the middle of San Francisco Bay and is reached only by Alcatraz City Cruises ferry from Pier 33 on The Embarcadero. Boats land at the dock on the east side, beside brick casemates of the 1860s topped by the three-story Building 64 barracks, and a steep switchback road climbs about a quarter mile and 130 feet past the lighthouse to the cellhouse at the summit.
+- **Terrain and setting:** A rocky 22-acre island rising steeply to about 130 feet at the cellhouse, with sheer western cliffs up to nearly 100 feet, a leveled concrete parade ground on the southeast end, and restored terraced gardens and seabird nesting areas on the slopes. Fog banks roll in through the Golden Gate, and open water all around gives views back to the city skyline, the Golden Gate Bridge and the Marin Headlands.
+- **Architecture:** The Main Cellhouse (1909-1912) is a long reinforced-concrete block built by military convict labor on top of the 1859 Citadel, with two rows of barred windows set between ornamental concrete columns along its sides and flanking halls at either end; inside, one vast two-story hall holds four three-tiered steel cellblocks along corridors nicknamed Broadway and Michigan Avenue. Beside it, the 1909 lighthouse is an 84-foot tapered octagonal concrete tower with a black lantern. Down by the dock, the 1905 barracks of hollow concrete block sits on top of Civil War-era brick casemates, and a 1940-41 steel water tower on six cross-braced legs, the burned-out shell of the Warden's House and the long New Industries Building fill out the island.
+- **Unique architectural notes:** The cellhouse was reputedly the longest reinforced-concrete building in the world when finished, and its cellar is the dry moat and lower story of the 1859 Citadel. The island also holds the oldest operating lighthouse station on the West Coast.
+- **Most iconic physical characteristics:**
+  - long concrete cellhouse along the island's crest
+  - tapered octagonal lighthouse tower beside it
+  - three-tiered steel cellblocks along Broadway
+  - steel water tower on cross-braced legs
+- **More recognizable view:** the facade
+- **View used for the image:** From the water well south of the island, looking north with the whole island in frame: rock cliffs and terraced gardens rising to the long concrete cellhouse along the crest with its rows of barred windows, the tapered octagonal lighthouse tower beside it, the leveled parade ground on the southeast shoulder, gulls over the rocks, and Angel Island's hills across the water behind.
+- **Not verified:** No source gave the cellhouse's exterior paint color. The lighthouse is described as unpainted concrete and as a grey tower. The south-water sightline with Angel Island behind is inferred from the map, not a photo. Sources disagree on where the Warden's House ruin sits. NPS pages were read through search snippets.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Alcatraz_Island>
+  - <https://en.wikipedia.org/wiki/Alcatraz_Federal_Penitentiary>
+  - <https://en.wikipedia.org/wiki/Alcatraz_Island_Lighthouse>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NRHP/76000209_text>
+  - <https://www.nps.gov/alca/>
+  - <https://www.nps.gov/alca/faqs.htm>
+  - <https://www.nps.gov/alca/planyourvisit/hours.htm>
+  - <https://www.nps.gov/alca/planyourvisit/accessibility.htm>
+  - <https://www.nps.gov/articles/000/structural-upgrades-for-alcatraz-prison-hospital-wing.htm>
+  - <https://www.parksconservancy.org/sites/default/files/Alcatraz-Historic-Gardens-West-Side-Gardens-Treatment-Plan.pdf>
+  - <https://alcatrazcitycruises.com/plan-your-visit-directions>
+  - <https://www.sfchronicle.com/sf/article/alcatraz-closed-unsafe-dock-22221108.php>
 
 ## Andytown Coffee Roasters
 
@@ -245,6 +279,40 @@ Restaurant · North Beach · 641 Vallejo St, San Francisco, CA 94133 · Andy’s
   - <https://www.kqed.org/checkplease/11105/capos-restaurant-info>
   - <https://sfguide.co/eat-drink/capos/>
 
+## Castro Theatre
+
+Sight · Castro · 429 Castro St, San Francisco, CA 94114
+
+**Known for:** Red neon blade sign and marquee over Castro Street (high confidence). The city's 2023 landmark amendment lists the 1937 blade sign and marquee as character-defining features and says the neighborhood's name, the Castro, was inspired by the theater's red vertical blade sign. Wikipedia calls the marquee a landmark.
+
+### Place research
+
+- **Neighborhood and street:** Castro. Mid-block on the east side of Castro Street between 17th and 18th Streets, just south of the Market and 17th Street crossing and diagonally across from Harvey Milk Plaza, where the giant rainbow flag flies over the entrance to the Castro Muni station. Its roughly 100-foot frontage rises above the low neighboring shopfronts and bars of the Castro Street commercial strip, and visitors arrive by Muni Metro or the F-line streetcar at 17th and Castro.
+- **Terrain and setting:** A busy commercial block in the valley historically called Eureka Valley; the facade faces west across Castro Street, so it takes the afternoon sun, and the red neon of the blade sign and marquee glows over the street after dark.
+- **Architecture:** Timothy Pflueger's first theater (1922), a concrete building whose smooth stucco west facade in Spanish Colonial Baroque is divided by piers into three broad bays. The center bay rises to a stepped-arch parapet crowned by a plaster niche, around a great arched mullioned window wrapped in Churrigueresque plaster niches, shells, foliage, swags, brackets and columns that recall Spanish colonial churches and the Mission Dolores basilica; the flanking bays have two-leaf mullioned windows framed by serpentine banding. Pflueger added the Art Deco neon marquee and the tall red vertical blade sign in 1937, and below the marquee a recessed arcade with painted-plaster arches shelters a tile-clad freestanding ticket booth, with storefronts on either side.
+- **Unique architectural notes:** Inside, the auditorium ceiling is cast plaster made to look like a vast tasseled fabric canopy hung on golden ropes, like the awning of a Roman amphitheater, with a 1937 Art Deco metal chandelier and a gold-painted plaster proscenium rediscovered behind the screen during the renovation.
+- **Most iconic physical characteristics:**
+  - cast-plaster ceiling shaped like a vast tasseled fabric canopy
+  - 1937 Art Deco metal chandelier
+  - gold-painted plaster proscenium
+  - Spanish Colonial Baroque ornament on the walls
+- **More recognizable view:** the interior
+- **View used for the image:** Inside the empty auditorium from the back of the orchestra, looking up and forward: the cast-plaster ceiling shaped like a vast tasseled fabric canopy on golden ropes, the Art Deco metal chandelier hanging at its center, and the gold proscenium framing a closed stage curtain below.
+- **Not verified:** The facade's paint color after the 2024 repainting and the marquee's current letter-board layout are not confirmed. No daytime public tours were found. The street's slope at the theater was not verified.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Castro_Theatre>
+  - <https://citypln-m-extnl.sfgov.org/Commissions/HPC/2_1_2023/Commission%20Packet/2022-006075DES.pdf>
+  - <https://sfplanninggis.org/docs/landmarks_and_districts/LM100.pdf>
+  - <https://cdn.kqed.org/wp-content/uploads/sites/2/2022/08/Plans-429-Castro-Street.pdf>
+  - <https://www.architecturalrecord.com/articles/18028-san-franciscos-historic-castro-theatre-reopens-following-extensive-renovation>
+  - <https://evergreene.com/castro-theatre/>
+  - <https://www.enr.com/articles/61838-castro-theatre-team-reinvents-a-san-francisco-icon>
+  - <https://sfbaytimes.com/castro-theatre-renovation-uncovers-decodes-artistic-treasures/>
+  - <https://hoodline.com/2026/02/castro-theatre-reopens-with-grammy-award-winning-singer-sam-smith-kicking-off-20-show-residency/>
+  - <https://news.pollstar.com/2026/02/13/san-franciscos-historic-castro-reopens-with-stunning-41m-renovation-sam-smith-another-planet/>
+  - <http://thecastro.com/listing/>
+  - <https://en.wikipedia.org/wiki/Harvey_Milk_Plaza>
+
 ## China Live
 
 Restaurant · Chinatown · 644 Broadway, San Francisco, CA 94133 · Andy’s pick
@@ -278,6 +346,72 @@ Restaurant · Chinatown · 644 Broadway, San Francisco, CA 94133 · Andy’s pic
   - <https://sfist.com/2017/02/27/china_live_opens_broadway_chinatown/>
   - <https://www.opentable.com/r/cold-drinks-bar-san-francisco>
   - <https://commissions.sfplanning.org/cpcpackets/2016-004115CUA121417.pdf>
+
+## City Hall
+
+Sight · Civic Center · 1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102
+
+**Known for:** Gilded Beaux-Arts dome, taller than the U.S. Capitol's (high confidence). Wikipedia and the National Register nomination both name the dome as the building's principal design feature and note that it rises higher than the U.S. Capitol's.
+
+### Place research
+
+- **Neighborhood and street:** Civic Center. Fills the double block bounded by Van Ness Avenue, McAllister Street, Grove Street and Polk Street, whose frontage here was renamed Dr. Carlton B. Goodlett Place in 1999. The ceremonial east front faces Civic Center Plaza, with the Asian Art Museum and Main Library beyond it on Larkin Street, while the War Memorial Opera House and Veterans Building stand across Van Ness to the west. Most visitors walk two blocks west along Grove Street from Civic Center BART.
+- **Terrain and setting:** Flat downtown ground at the head of a broad formal plaza, so the dome stands clear above lawns and rows of pollarded sycamores (London planes) whose clipped, knobby crowns line the approach. Open sky all around; after dark the facade is washed in colored LED light.
+- **Architecture:** Beaux-Arts civic palace (1913 to 1916) by Arthur Brown Jr. of Bakewell & Brown, a steel frame clad in gray Madera County granite: two long office blocks with colonnades over a rusticated base, linked by a central dome modeled on Mansart's domes in Paris. Pedimented, columned porticoes front Polk Street and Van Ness, the Polk side reached by a steep flight of steps to three arched entrances, with door frames, sconces and balustrades in iron painted blue and gold. The near-black copper dome has 16 bays with helmet and lion's head ornaments and festoons, its ornament and vertical banding re-gilded in gold leaf in 1999, and a spired lantern topped by a gilded torch. Inside, a pink marble grand staircase rises through the Rotunda beneath the dome, ringed by limestone and granite columns and balustrades.
+- **Unique architectural notes:** Its dome rises higher than the U.S. Capitol's, and the building rests on a base-isolation system that made it the world's largest base-isolated structure when it reopened in 1999.
+- **Most iconic physical characteristics:**
+  - near-black dome with gold-leaf banding and gilded lantern
+  - columned portico above a steep flight of granite steps
+  - blue-and-gold ironwork
+  - pollarded plane trees on the plaza lawn
+- **More recognizable view:** the facade
+- **View used for the image:** From the middle of Civic Center Plaza looking west along the central path: the Polk Street portico and its steps centered at the far end of the lawn, the gray granite colonnades stretching to either side, and the near-black, gold-banded dome and gilded lantern rising against the sky, framed left and right by the knobby, clipped crowns of the pollarded plane trees.
+- **Not verified:** Sources give different figures for how much taller the dome is than the Capitol's. The portico's column order is described inconsistently. Public hours are given as until 6 p.m. (SF.gov) or 8 p.m. (events office). The plaza may change under the 2025 Civic Center Public Realm Plan.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/San_Francisco_City_Hall>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NHLS/78000757_text>
+  - <https://noehill.com/sf/landmarks/sf021.asp>
+  - <http://sfch.budryerson.com/index.html>
+  - <https://www.witpress.com/Secure/elibrary/papers/STR97/STR97033FU.pdf>
+  - <https://www.sfgate.com/politics/article/A-Treasury-of-City-Hall-Trivia-Restored-2954562.php>
+  - <https://www.latimes.com/archives/la-xpm-1999-jan-06-mn-60706-story.html>
+  - <https://www.sf.gov/location/san-francisco-city-hall>
+  - <https://www.sf.gov/city-hall-rotunda-closures-and-restricted-access>
+  - <https://sfcityhallevents.org/docent-tours/>
+  - <https://www.cbsnews.com/sanfrancisco/news/landscape-architect-has-new-vision-for-san-franciscos-civic-center-plaza/>
+  - <https://usingsfhistory.com/2011/12/04/changing-place-names-to-change-historical-memory/>
+
+## Coit Tower
+
+Sight · Telegraph Hill · 1 Telegraph Hill Blvd, San Francisco, CA 94133
+
+**Known for:** 360-degree city and bay views from the top (high confidence). SF Rec & Park and Wikipedia both describe the observation deck's panoramic views across the city and bay, from the Golden Gate Bridge to the Bay Bridge.
+
+### Place research
+
+- **Neighborhood and street:** Telegraph Hill. The tower stands at the summit of Telegraph Hill inside Pioneer Park, at the end of Telegraph Hill Boulevard, a narrow two-lane road that winds up to a circular parking plaza in front of the tower. A wide staircase climbs from the south side of that circle to a landscaped plaza and the north-facing entrance. On foot, the Filbert and Greenwich street stairways climb the hill from the neighborhoods below.
+- **Terrain and setting:** A hilltop with steep slopes falling away on every side, wooded with Monterey cypress and pines planted in the 1930s that now block much of the view from the parking circle. The full panorama of both bridges, Alcatraz and the downtown skyline is from the top of the tower, while quieter terraces and a lawn sit on the south side.
+- **Architecture:** An Art Deco memorial tower completed in 1933, designed by Arthur Brown Jr. with Henry Temple Howard. It is a slender shaft of unpainted reinforced concrete with a white cement dash-coat finish and 24 vertical flutes like a classical column, narrowing slightly toward the top. The shaft rises from a squared 32-foot base, colonnaded on three sides with floor-to-ceiling steel windows. At the top is a belvedere of eight tall arched openings behind a concrete balustrade, crowned by an open-air circular lantern. Over the recessed north entrance, flanked by fluted columns, is a cast-concrete high relief of a rising phoenix between two bundled fasces.
+- **Unique architectural notes:** The walls of the ground floor and the winding stair hold 27 murals from 1934, mostly true fresco in a saturated earth-toned palette. They were the pilot project of the Public Works of Art Project, the first New Deal program for artists.
+- **Most iconic physical characteristics:**
+  - Slender fluted white concrete column
+  - Ring of tall arched openings at the top
+  - Phoenix relief above the entrance
+  - Hilltop perch above cypress treetops
+- **More recognizable view:** the facade
+- **View used for the image:** From the lawn of Washington Square in North Beach, looking east-northeast: the slender fluted tower, with its ring of arched openings at the crown, rises above the dark cypress and pine canopy on top of Telegraph Hill, seen over the trees of the square under open sky.
+- **Not verified:** Height figures differ by source (180 to 212 ft). Tree species are cypress per Rec & Park and cypress plus Monterey pine per SFGATE. Hours come from search-indexed copies of the official pages.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Coit_Tower>
+  - <https://commissions.sfplanning.org/hpcpackets/2017-015688FED.pdf>
+  - <https://npgallery.nps.gov/NRHP/GetAsset/NRHP/07001468_text>
+  - <https://sfrecpark.org/Facilities/Facility/Details/Coit-Tower-290>
+  - <https://sfrecpark.org/DocumentCenter/View/7387/CoitTowerBrochure_V5?bidId=>
+  - <https://www.sfgate.com/local/article/coit-tower-view-blocked-by-trees-18611531.php>
+  - <https://www.sfgate.com/bayarea/matier-ross/article/wide-ranging-views-of-forest-ringing-coit-tower-5503130.php>
+  - <https://www.sfchronicle.com/sf/article/coit-tower-elevator-issues-19974041.php>
+  - <https://www.pioneerparksf.org/visit>
+  - <https://topoquest.com/place/california/tower/coit-tower/1988649>
 
 ## Comstock Saloon
 
@@ -342,6 +476,40 @@ Restaurant · Jackson Square · 490 Pacific Ave, San Francisco, CA 94133 · Andy
   - <https://www.sftravel.com/article/your-guide-to-san-franciscos-jackson-square>
   - <https://www.timeout.com/san-francisco/restaurants/cotogna>
   - <https://www.untappedcities.com/from-the-barbary-coast-to-jackson-square-an-historic-neighborhood-transformed/>
+
+## Crissy Field
+
+Sight · Presidio · 1199 East Beach, San Francisco, CA 94129
+
+**Known for:** Golden Gate Bridge views from East Beach and the shoreline promenade (high confidence). The Presidio Trust says this stretch of shoreline is known for iconic views of the Golden Gate Bridge, and the Parks Conservancy says the Crissy Promenade offers spectacular views of the Golden Gate and the bay.
+
+### Place research
+
+- **Neighborhood and street:** Presidio. East Beach is the east end of Crissy Field, reached from Marina Boulevard via Old Mason Street and a short beach road into a beachfront parking lot, with picnic tables, grills and a restroom building beside the sand. The St. Francis Yacht Harbor and the Wave Organ jetty lie just east, and historic Army airfield buildings line Mason Street behind. The Golden Gate Promenade heads west about a mile past the marsh to the Warming Hut near the bridge.
+- **Terrain and setting:** Dead-flat former marsh and airfield on the bay shore, where a wide sandy beach, low vegetated dunes, a tidal marsh and the long grassy former landing field lie between the water and Mason Street. Wind usually builds by midday and fog blows in through the Golden Gate. Views run west to the bridge and the Marin Headlands and out across the bay to Alcatraz.
+- **Architecture:** A national-park landscape by Hargreaves Associates (built 1998-2001) on the former Crissy Army airfield (1921-1974). It includes a sandy east beach, restored native dune fields, an 18-acre tidal marsh reopened to the bay in 1999, and the rehabilitated grass airfield. A flat promenade of compacted decomposed granite ties these together, with raised boardwalks over the beach and a wooden footbridge across the marsh inlet near East Beach. Along the south edge stand 1920s airfield buildings in Mission Revival and Mediterranean Revival styles.
+- **Unique architectural notes:** A former Army airfield where the long grass landing field survives as open lawn beside a re-created tidal marsh, with the Golden Gate Bridge closing the view at the west end of the shoreline.
+- **Most iconic physical characteristics:**
+  - the Golden Gate Bridge closing the view at the west end of the shoreline
+  - a wide sandy beach backed by low native dunes
+  - a flat promenade beside the long grassy former airfield
+  - a tidal marsh with a wooden footbridge over its inlet
+- **More recognizable view:** the facade
+- **View used for the image:** From the East Beach sand near the water's edge, looking west along the gently curving shoreline: low grassy dunes and the promenade on the left, open bay on the right with a few distant windsurf sails, and the Golden Gate Bridge and Marin Headlands closing the view under a band of fog.
+- **Not verified:** The pin is a photographer's GPS point, not an official map. Dune acreage varies by source (16 acres per NPS, 22 per the Landscape Architecture Foundation). The 1199 East Beach address belongs to the former Crissy Field Center building; its current use is not verified. Shoreline trees not checked. Some official pages were read through search excerpts.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Crissy_Field>
+  - <https://presidio.gov/explore/attractions/crissy-field-east-beach>
+  - <https://presidio.gov/explore/attractions/crissy-field>
+  - <https://presidio.gov/explore/itineraries/a-day-at-crissy-field-east-beach>
+  - <https://www.nps.gov/goga/planyourvisit/crissy-field-promenade.htm>
+  - <https://nps.gov/articles/crissy-field-restoration.htm>
+  - <https://www.parksconservancy.org/parks/crissy-field>
+  - <https://www.parksconservancy.org/projects/crissy-field>
+  - <https://www.hargreaves.com/work/crissy-field/>
+  - <https://www.sfchronicle.com/opinion/article/Fog-sky-water-land-define-Crissy-Field-5172669.php>
+  - <https://www.sfgate.com/outdoors/sundaydrive/article/Sunday-Drive-Crissy-Field-2530498.php>
+  - <https://www.explorest.com/places/california/san-francisco/crissy-field-east-beach-view-of-golden-gate-bridge>
 
 ## Daeho
 
@@ -497,6 +665,68 @@ Restaurant · SoMa · 1058 Folsom St, San Francisco, CA 94103
   - <https://www.sfstation.com/2011/09/30/deli-board-finds-a-new-home/>
   - <https://www.yelp.com/biz/deli-board-san-francisco>
 
+## Dolores Park
+
+Sight · Mission · 19th St & Dolores St, San Francisco, CA 94114
+
+**Known for:** Sunny hillside lawns with a downtown skyline view (high confidence). Wikipedia describes the park's warm, sunny microclimate and its northeast view of downtown from the southwest corner; Lonely Planet highlights the palm-framed skyline view from the upper corner.
+
+### Place research
+
+- **Neighborhood and street:** Mission. The park fills the blocks between 18th and 20th Streets and Dolores and Church Streets at the western edge of the Mission; Mission High School faces its north end across 18th Street, and two- to four-story houses line the other sides. The J-Church streetcar runs on its own right-of-way along the west edge with a stop at 20th Street, and the domed former Second Church of Christ, Scientist stands across Dolores Street.
+- **Terrain and setting:** The lawns slope steeply from the southwest corner down to the northeast, so the upper corner at 20th and Church has an unobstructed view over the Mission to the downtown skyline, the Bay Bridge and the East Bay hills. The park sits in a sunny, sheltered pocket east of Twin Peaks, with palms scattered across the grass and lining the Dolores Street median.
+- **Architecture:** A roughly 16-acre city park created after 1905 on a former Jewish cemetery and regraded in a 2012-2016 renovation that added fresh sod, an accessible path, a skyline overlook in the southwest corner and a restroom tucked into the hillside. The lawns step down in terraces toward flatter ground holding six tennis courts, basketball and multi-use courts, a sports field and the Helen Diller Playground with its large slides and granite climbing structure; palms stand in small circular groves near the Dolores side.
+- **Unique architectural notes:** At the southwest corner, 20th and Church, stands the Golden Fire Hydrant, repainted gold every year because it kept working after the 1906 earthquake and was used to stop the fire from spreading through the Mission.
+- **Most iconic physical characteristics:**
+  - downtown skyline beyond steep green lawns
+  - palm trees framing the view
+  - J-Church streetcar along the west edge
+  - Mission High School's baroque dome at the far end
+- **More recognizable view:** the facade
+- **View used for the image:** From the upper southwest corner near 20th and Church on an early weekday morning, looking northeast: the green lawn dropping in terraces toward the flat fields and courts of the lower park, palms in the middle distance, Mission High School's baroque dome at the far north end, and the downtown skyline and Bay Bridge beyond, with only a few tiny distant figures.
+- **Not verified:** Not confirmed: the exact design of the southwest-corner overlook (paving, railings, benches), the palm species, and exactly where the tennis courts and playground sit within the park. The current finish of the former church's dome is also unconfirmed.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Mission_Dolores_Park>
+  - <https://sfrecpark.org/facilities/facility/details/Mission-Dolores-Park-188>
+  - <https://www.sfchronicle.com/bayarea/article/Dolores-Park-with-spiffy-new-look-reopens-next-6744096.php>
+  - <https://www.lonelyplanet.com/points-of-interest/dolores-park/383867>
+  - <http://www.noevalleyvoice.com/2005/February/ByV.html>
+  - <https://en.wikipedia.org/wiki/Golden_Fire_Hydrant>
+  - <https://en.wikipedia.org/wiki/Second_Church_of_Christ,_Scientist_(San_Francisco)>
+  - <https://en.wikipedia.org/wiki/Mission_High_School_(San_Francisco)>
+  - <https://www.highnote360.com/living-in-san-francisco/mission-dolores/>
+  - <https://www.mishalov.net/2018/02/san-francisco-february-2018.html>
+  - <https://hoodline.com/2026/09/her-viral-dolores-park-picnic-ballooned-to-1-500-rsvps-now-partiful-is-covering-sf-permit-costs/>
+
+## Dragon Gate
+
+Sight · Chinatown · Grant Ave & Bush St, San Francisco, CA 94108
+
+**Known for:** Chinatown's southern gateway on Grant Avenue (high confidence). Wikipedia calls the gate one of the most photographed locations in Chinatown, and SF Public Works describes it as marking the southern entrance to Chinatown.
+
+### Place research
+
+- **Neighborhood and street:** Chinatown. The gate straddles Grant Avenue just north of Bush Street, its central portal over the roadway and its two side portals over the sidewalks, with commercial buildings pressing close on both sides. North of it, Grant Avenue runs into Chinatown past ornate dragon street lamps; south of it, Grant continues toward Union Square.
+- **Terrain and setting:** The gate faces south down Grant Avenue and sits in a narrow street canyon, somewhat dwarfed by the larger buildings around it, with open sky only in the strip above the street.
+- **Architecture:** A traditional Chinese pailou-style ceremonial gate designed by Clayton Lee with Melvin Lee and Joseph Yee after a 1967 competition, built from 1968 to 1970 with materials donated by Taiwan. Unlike most American Chinatown gates it stands on stone columns rather than wooden pillars, with a large central portal flanked by two smaller pedestrian portals under green-tiled, two-tiered pagoda-style roofs. Sculpted dragons and fish ride the rooflines, and a pair of stone guardian lions flanks the side portals.
+- **Unique architectural notes:** It was the first permanent ceremonial gate of its kind in the United States and, unusually for an American Chinatown gate, is built of stone from base to top rather than on wooden pillars.
+- **Most iconic physical characteristics:**
+  - Three portals under green-tiled pagoda-style roofs
+  - Dragons and fish along the rooflines
+  - Pair of stone guardian lions
+  - Stone columns rather than wooden pillars
+- **More recognizable view:** the facade
+- **View used for the image:** Looking straight up at the eaves of the west side portal's green-tiled, two-tiered pagoda roof: glazed green tiles, a sculpted dragon and fish along the ridge against pale open sky, and carved stone brackets beneath, with nothing else in frame.
+- **Not verified:** The paint colors of the beams and the exact roof arrangement over each portal were not confirmed, and no description of the gate's north face was found.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Dragon_Gate_(San_Francisco)>
+  - <https://artandarchitecture-sf.com/chinatown-san-francisco-may-11-2012.html>
+  - <https://www.sfpublicworkstv.org/february2026>
+  - <https://www.sfchronicle.com/chronicle_vault/article/How-S-F-s-Dragon-Gate-came-to-stand-at-Grant-15639444.php>
+  - <https://www.sfchronicle.com/projects/2022/visuals/dragon-gate-chinatown-grant-avenue/>
+  - <https://en.wikipedia.org/wiki/Chinatown,_San_Francisco>
+  - <https://99percentinvisible.org/episode/pagodas-dragon-gates/>
+
 ## Ernest
 
 Restaurant · Mission · 1890 Bryant St, San Francisco, CA 94110
@@ -558,6 +788,40 @@ Shop · Mission · 1367 Valencia St, San Francisco, CA 94110
   - <https://worldshoppingatlas.com/city/san-francisco/buyers-guide>
   - <https://evankinori.com/blogs/notes/north-americans>
 
+## Exploratorium
+
+Sight · Embarcadero · Pier 15, The Embarcadero at Green St, San Francisco, CA 94111
+
+**Known for:** Hundreds of hands-on science and perception exhibits (high confidence). Wikipedia and the AIA Top Ten citation describe it as a museum built around hands-on, participatory exhibits on science, art and human perception, with more than 600 at Pier 15.
+
+### Place research
+
+- **Neighborhood and street:** Embarcadero. The museum sits on Pier 15, which runs about 800 feet into the bay from the Embarcadero at Green Street, between the Ferry Building and Pier 39. The F-line streetcar stops right out front. A free public plaza has replaced the old parking deck between Piers 15 and 17; the space is now open water dotted with old pilings and crossed by footbridges, and public walkways wrap the pier's edges.
+- **Terrain and setting:** A flat pier deck standing on pilings over the bay, with open water on three sides. From the far end the view reaches east to the Bay Bridge, Treasure Island and the Oakland cranes, and back to Coit Tower and the downtown skyline. Clerestory windows fill the long shed with daylight, and bay breezes and fog are part of the setting.
+- **Architecture:** A concrete pier shed from 1931, nearly three football fields long, rehabilitated by EHDD with preservation architects Page & Turnbull and reopened in 2013. It meets the Embarcadero with an arched two-story Beaux-Arts bulkhead facade of stucco made to look like stone, painted gray close to its historic shade. The long sides keep their exposed steel-framed concrete panels, steel-sash windows, roll-up steel doors and glassed-in cargo openings under clerestories that run the length of the roof. At the pier's far end stands the only new building, the Bay Observatory, a two-story box of fritted glass. The roof is covered with nearly 5,900 solar panels.
+- **Unique architectural notes:** Fujiko Nakaya's Fog Bridge #72494 is a 150-foot footbridge between Piers 15 and 17 with more than 800 nozzles that wrap walkers in man-made fog at set times. The building's exterior metal cladding is perforated with silhouettes of the bay's phytoplankton, and faded painted ghost signs from old shipping lines survive on the pier's east end.
+- **Most iconic physical characteristics:**
+  - Long pier shed with clerestory windows
+  - Gray arched bulkhead facing the Embarcadero
+  - Glass Bay Observatory at the pier's end
+  - Footbridge wrapped in drifting mist
+- **More recognizable view:** the facade
+- **View used for the image:** From the public walkway on the south edge of Pier 17, looking southeast across the channel of open water and old pilings: the long concrete side of the Pier 15 shed with its tall glazed cargo openings and band of clerestory windows, the footbridge between the piers half-hidden in drifting mist, and the two-story glass Bay Observatory at the far end against the open bay.
+- **Not verified:** Pier 15's construction date differs by source (1912, 1915 or 1931). Where the phytoplankton-perforated cladding sits was not found. Which footbridge carries the Fog Bridge was not confirmed; it runs only at set times.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Exploratorium>
+  - <https://www.exploratorium.edu/hours>
+  - <https://www.exploratorium.edu/press-office/press-releases/pier-15-facts-interest>
+  - <https://www.exploratorium.edu/exhibits/fog-bridge-72494>
+  - <https://www.aiatopten.org/node/472>
+  - <https://www.architectmagazine.com/project-gallery/exploratorium-3064>
+  - <https://www.sfgate.com/bayarea/place/article/exploratorium-is-impressive-if-flawed-4440211.php>
+  - <https://glsarch.com/michael-webb-exploratorium/>
+  - <https://www.nps.gov/articles/pier-15-ca.htm>
+  - <https://www.exploratorium.edu/blogs/spectrum/exploratorium-closed-our-outdoor-exhibits-are-here-explore>
+  - <https://www.exploratorium.edu/visit/gallery-6>
+  - <https://www.openstreetmap.org/node/621529017>
+
 ## Farmhouse Kitchen Thai
 
 Restaurant · Mission · 710 Florida St, San Francisco, CA 94110
@@ -585,6 +849,74 @@ Restaurant · Mission · 710 Florida St, San Francisco, CA 94110
   - <https://www.timeout.com/san-francisco/restaurants/farmhouse-kitchen-thai-cuisine>
   - <https://farmhousethai.com/san-francisco>
   - <https://oaklandside.org/2024/02/21/farmhouse-kitchen-thai-berkeley-opening/>
+
+## Ferry Building
+
+Sight · Embarcadero · 1 Ferry Building, San Francisco, CA 94111
+
+**Known for:** Clock tower at the foot of Market Street (high confidence). Wikipedia and the Emperor Norton Trust single out the 245-foot clock tower, whose best-known view is straight down Market Street, as the building's defining landmark.
+
+### Place research
+
+- **Neighborhood and street:** Embarcadero. It stands on the Embarcadero at the foot of Market Street, facing the city across a wide boulevard with a double row of Canary Island date palms in its twin median and historic F-line streetcar tracks, with Embarcadero Plaza across the roadway to the west. The bay side opens onto a waterfront plaza and promenade, with ferry gates off the north end, at a central wharf behind the building, and to the south.
+- **Terrain and setting:** Flat waterfront built out over the bay on concrete piers set on thousands of timber piles, with open water, the Bay Bridge and Yerba Buena Island directly behind. The tower closes the long, straight vista down Market Street.
+- **Architecture:** A Beaux-Arts ferry terminal designed by A. Page Brown and completed in 1898: a 660-foot-long, three-story steel-framed building faced in Colusa sandstone, now painted a warm gray matched to that original stone, with an arched arcade running the length of its city and bay frontages. At its center rises a slender square clock tower about 245 feet tall, often likened to Seville's Giralda and re-clad in concrete after 1906, with a clock dial 22 feet across on each face. Inside, the restored 660-foot Great Nave has steel arched trusses under a long skylight, brick and terra-cotta arches, and a white-and-gray marble mosaic floor centered on the California state seal; two long openings cut into its floor carry daylight down to the ground-level marketplace hall.
+- **Unique architectural notes:** Its tower terminates the long vista down Market Street, and the building rests on concrete piers and timber piles that were called the largest foundation over water in the world when it was built.
+- **Most iconic physical characteristics:**
+  - Clock tower at the foot of Market Street
+  - Four 22-foot clock dials
+  - Long arched sandstone arcade
+  - Skylit Great Nave with steel arched trusses
+- **More recognizable view:** the facade
+- **View used for the image:** From the far west side of Embarcadero Plaza at the foot of Market Street, looking east across the plaza and the Embarcadero: the pale clock tower rising from the center of the long arched arcade, seen above the line of palm trees in the boulevard median, under open bay sky.
+- **Not verified:** Tower height is given as roughly 235 to 245 feet depending on the source. The tower's exact shade (warm white or Ferry Building Gray) is unconfirmed. The placement of any lettering on the Embarcadero facade was not confirmed.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/San_Francisco_Ferry_Building>
+  - <https://www.ferrybuildingmarketplace.com/visit/>
+  - <https://www.ferrybuildingmarketplace.com/about/>
+  - <https://www.loc.gov/item/ca0641/>
+  - <https://legacy.seaonc.org/structure/ferry-building/>
+  - <https://casestudies.uli.org/wp-content/uploads/2015/12/C033019.pdf>
+  - <https://perkinswill.com/project/ferry-building/>
+  - <https://sfist.com/2023/02/21/scaffolding-is-up-ferry-building-paint-job-and-restoration-is-underway/>
+  - <https://www.sfchronicle.com/bayarea/article/ferry-building-tower-repairs-17788546.php>
+  - <https://www.latimes.com/archives/la-xpm-1996-06-16-mn-15735-story.html>
+  - <https://www.sfgate.com/news/article/PALMS-POP-UP-ALL-OVER-S-F-Since-the-1989-2497705.php>
+  - <https://emperornortontrust.org/blog/2023/7/20/the-ferry-building-clock-tower-from-emperor-nortons-street>
+
+## Fisherman's Wharf
+
+Sight · Fisherman's Wharf · 2820 Taylor St, San Francisco, CA 94133
+
+**Known for:** Ship's-wheel sign at Jefferson and Taylor (high confidence). The Fisherman's Wharf Community Benefit District calls the sign famous and the Wharf's go-to meeting spot, and LEDinside calls it one of the city's most photographed landmarks.
+
+### Place research
+
+- **Neighborhood and street:** Fisherman's Wharf. The sign stands in a small corner plaza at the northeast corner of Jefferson and Taylor streets, the Wharf's central crossroads, beside the Jefferson and Taylor heritage streetcar stop. Taylor Street runs north past it to the Inner Lagoon, where the new Alioto's Plaza (opened September 2, 2026) looks out over the moored fishing fleet, and Jefferson Street's sidewalks lead east toward Pier 39 and west toward Aquatic Park and Ghirardelli Square.
+- **Terrain and setting:** Flat bayfront at sea level, with the Taylor Street buildings standing partly on land and partly on a century-old timber wharf over the water. From the lagoon edge the view opens west across moored boats toward the Golden Gate Bridge.
+- **Architecture:** The sign is a nearly 16-foot round disc shaped like a ship's wheel, first put up in 1968 and rebuilt in 2013 of aluminum, polycarbonate and high-density foam, keeping the original wooden handles around its rim; LEDs behind its plastic face give an even bright-white glow, with a vivid crustacean emblem at the hub. Around the corner, low restaurant buildings along Taylor Street sit on old timber-pile wharves at the edge of the Inner Lagoon, and Fish Alley keeps some of the simple wood structures of the early fishing days. North of the lagoon, the long sheds of Pier 45 house the working fishing industry.
+- **Unique architectural notes:** The Inner Lagoon at the foot of Taylor Street, the oldest part of the Wharf's working harbor, still berths commercial fishing boats and classic Monterey fishing vessels a few steps from the ship's-wheel sign.
+- **Most iconic physical characteristics:**
+  - fishing boats moored in the Inner Lagoon
+  - old timber-pile wharves around the water
+  - heritage streetcars on Jefferson Street
+  - low weathered plank wharf buildings
+- **More recognizable view:** the facade
+- **View used for the image:** From the waterside railing of Alioto's Plaza, with the ship's-wheel sign behind the viewer and out of frame, looking west across the Inner Lagoon: classic wooden Monterey fishing boats moored along old timber wharves, masts and rigging in the foreground, low weathered plank buildings with blank walls, and the Golden Gate Bridge's towers far off.
+- **Not verified:** Alioto's Plaza's exact side of Taylor Street relative to the sign is not confirmed. Whether the sign carries artwork on both faces is unknown, and the emblem's color is described only as vibrant. The Fish Alley wood structures come from a truncated Port document.
+- **Sources:**
+  - <https://www.fishermanswharf.org/about-us/faqs/>
+  - <https://www.fishermanswharf.org/plan-your-visit/getting-around/driving-directions/>
+  - <https://www.sfexaminer.com/news/new-fishermans-wharf-sign-a-near-replica-of-old-crab-wheel/article_63740196-ab87-56cf-ae59-b80f16681116.html>
+  - <https://www.ledinside.com/lighting/2014/4/ge_illuminates_san_francisco_fisherman_warf>
+  - <https://www.sfmemory.org/Display/sfm005-02875>
+  - <https://en.wikipedia.org/wiki/Fisherman%27s_Wharf,_San_Francisco>
+  - <https://en.wikipedia.org/wiki/Jefferson_and_Taylor_Station>
+  - <https://www.sfport.com/fwforward>
+  - <https://www.sfport.com/sites/default/files/125-135_Fisherman%27s%20Wharf%20Subarea_smaller.pdf>
+  - <https://www.bcdc.ca.gov/wp-content/uploads/sites/354/2025/12/Staff-Report_FishermansWharf_ADA.pdf>
+  - <https://www.cbsnews.com/sanfrancisco/news/san-francisco-unveils-aliotos-plaza-at-fishermans-wharf-where-iconic-restaurant-once-stood/>
+  - <https://sfist.com/2026/09/02/aliotos-plaza-unveiled-at-fishermans-wharf-with-new-seating-beer-concession/>
 
 ## Flour + Water
 
@@ -701,6 +1033,38 @@ Dessert · Mission · 3566 20th St, San Francisco, CA 94110 · Andy’s pick
   - <https://downing-co.com/our-properties/leased-3566-20th-street/>
   - <https://www.katherinetincher.com/garden-creamery>
 
+## Ghirardelli Square
+
+Sight · Fisherman's Wharf · 900 North Point St, San Francisco, CA 94109
+
+**Known for:** The illuminated rooftop Ghirardelli sign over the bay (high confidence). SF Planning calls the rooftop sign the square's primary identification marker, visible as one approaches from the bay. Noe Hill calls it familiar to all who sail the bay, and the SF Standard notes it has been part of the skyline for over a century.
+
+### Place research
+
+- **Neighborhood and street:** Fisherman's Wharf. Fills the whole block bounded by North Point, Larkin, Beach and Polk streets at the west end of Fisherman's Wharf, across Beach Street from Aquatic Park and the bay. The Clock Tower stands at the North Point and Larkin corner, and the Powell-Hyde cable car line ends nearby at Aquatic Park.
+- **Terrain and setting:** The block slopes, and steps, ramps and tree-shaded terraces climb across it between the plazas. It sits just above the bay's edge at Aquatic Park, with open views over San Francisco Bay.
+- **Architecture:** Red-brick industrial buildings from the Pioneer Woolen Mill era through 1919, many designed by William S. Mooser Sr., with crenelated parapets, white-painted cast-concrete quoins, string courses and lintels, and steel industrial windows. The 1915-16 Clock Tower, styled after the Château de Blois, rises more than 100 feet in red brick under a steep grey slate roof restored in 2025, its peaked roofline outlined in lights at night. Wurster, Bernardi & Emmons and landscape architect Lawrence Halprin converted the former chocolate factory in 1962-68, adding red sand-mold-brick buildings, board-formed concrete retaining walls, custom lights and benches, and terraced plazas over an underground garage. On the roofs of the Mustard and Cocoa buildings, the big sheet-metal company-name sign has its lit letters facing only the bay.
+- **Unique architectural notes:** Ruth Asawa's 1968 bronze fountain Andrea, two mermaids (one nursing a merbaby) ringed by frogs and turtles, anchors the plaza. The rooftop sign has faced the bay since 1915, its city-facing letters removed in 1964.
+- **Most iconic physical characteristics:**
+  - Clock Tower with a steep grey slate roof
+  - red-brick walls with crenelated parapets
+  - terraced brick plazas under shade trees
+  - Asawa's bronze mermaid fountain
+- **More recognizable view:** the facade
+- **View used for the image:** A close, low view in the Fountain Plaza: Ruth Asawa's bronze mermaid fountain with its frogs and turtles filling most of the frame among plantings, and behind it, softly out of focus, plain red-brick terrace walls, shade trees and the Clock Tower's steep grey slate roof against the sky.
+- **Not verified:** Sources conflict on the rooftop sign's date (1915, 1912 or 1923). The final colors of the 2017 replacement letters were not confirmed. The slope's direction and the sightline from the Fountain Plaza to the Clock Tower were not confirmed.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Ghirardelli_Square>
+  - <https://www.tclf.org/landscapes/ghirardelli-square>
+  - <https://noehill.com/sf/landmarks/sf030.asp>
+  - <https://commissions.sfplanning.org/hpcpackets/2017-008875COA.pdf>
+  - <https://www.sfchronicle.com/sf/article/ghirardelli-square-clock-tower-restoration-20383756.php>
+  - <https://ruthasawa.com/andrea-ghirardelli-square-1966-1968/>
+  - <https://www.opensfhistory.org/osfhcrucible/2024/02/27/streetwise-san-francisco-fountains/>
+  - <https://www.ghirardellisq.com/visit>
+  - <https://sfstandard.com/2026/04/24/ghiradelli-square-miami-investment-firm/>
+  - <https://therealdeal.com/san-francisco/2026/04/27/embrace-1823-partners-buy-ghirardelli-square-complex/>
+
 ## Golden Boy Pizza
 
 Restaurant · North Beach · 542 Green St, San Francisco, CA 94133 · Andy’s pick
@@ -730,6 +1094,40 @@ Restaurant · North Beach · 542 Green St, San Francisco, CA 94133 · Andy’s p
   - <https://www.theinfatuation.com/san-francisco/reviews/gino-and-carlo>
   - <https://wcapt.org/event-1983310>
   - <https://www.goldenboypizza.com/>
+
+## Golden Gate Bridge
+
+Sight · Presidio · Golden Gate Bridge Welcome Center, Presidio, San Francisco, CA 94129
+
+**Known for:** International Orange Art Deco towers spanning the Golden Gate (high confidence). Wikipedia calls the bridge one of the most internationally recognized symbols of San Francisco and credits consulting architect Irving Morrow with its Art Deco towers and International Orange color.
+
+### Place research
+
+- **Neighborhood and street:** Presidio. At the south (San Francisco) end of the bridge in the Presidio, just east of the toll plaza. The International Orange Welcome Center pavilion, the round 1938 Art Deco Round House and a paved plaza with a bronze statue of engineer Joseph Strauss sit beside a small southeast parking lot. Paths lead from the plaza to the bridge's east sidewalk and to Presidio trails, and Muni's 28 line stops near the toll plaza.
+- **Terrain and setting:** High ground at the bridge's south abutment above Fort Point and the strait, with native plantings and open views north along the span to the Marin Headlands. Summer fog often pours through the Golden Gate and can hide the towers completely.
+- **Architecture:** The bridge (1933-37) is a steel suspension bridge with a 4,200-foot main span and two 746-foot towers. Its two main cables carry 250 pairs of vertical suspender ropes, and Irving Morrow designed the stepped tower shapes, the Art Deco lamps, railings and tower details, and chose the International Orange color. On the plaza, the 2012 Welcome Center by Jensen Architects and Project Frog is a 3,500-square-foot prefabricated pavilion, also painted International Orange. It stands beside the 1938 Art Deco Round House by Alfred Finnila, on a plaza whose alternating light and dark pavers echo the shadows of the cables.
+- **Unique architectural notes:** The Cable Overlook next to the plaza displays a cut-away cross-section of one main cable, about a yard across and made of 27,572 parallel wires, lined up with the bridge itself. Inside the pavilion is the original 12-foot stainless-steel test tower from 1933.
+- **Most iconic physical characteristics:**
+  - International Orange Art Deco towers
+  - main cables sweeping between the towers with rows of vertical suspenders
+  - fog spilling through the strait around the towers
+  - the round 1938 Art Deco Round House at the south plaza
+- **More recognizable view:** the facade
+- **View used for the image:** From the east edge of the south visitor plaza near the Cable Overlook, looking north along the bridge: the south tower in International Orange a few hundred yards ahead, the main cables sweeping down and away toward the north tower and the brown-green Marin Headlands, and a low bank of fog sliding through the strait beneath the deck, with the toll plaza kept out of frame to the left.
+- **Not verified:** Pin from third-party coordinate listings checked against Wikipedia's Round House coordinates, not a map of the building footprint. Plaza height above the water and exact path routes not verified. Whether the Strauss statue base and cable display carry plaques was not checked. The Round House's current use in 2026 is not confirmed. Some official pages were read through search excerpts.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Golden_Gate_Bridge>
+  - <https://www.goldengate.org/bridge/visiting-the-bridge/>
+  - <https://www.goldengate.org/-weekend--holiday-parking-lot-closures/>
+  - <https://www.goldengate.org/assets/1/6/exhibit-map-legend.pdf>
+  - <https://presidio.gov/explore/attractions/golden-gate-bridge-welcome-center>
+  - <https://www.parksconservancy.org/services/golden-gate-bridge-welcome-center>
+  - <https://www.parksconservancy.org/projects/golden-gate-bridge-visitor-plaza-and-bridge-pavilion-welcome-center>
+  - <https://jensen-architects.com/work/golden-gate-bridge-pavilion/>
+  - <https://www.sdisf.com/golden-gate-bridge-plaza>
+  - <https://www.enr.com/articles/10547-award-of-merit-small-project-golden-gate-bridge-improvement-project>
+  - <https://mwg.aaa.com/via/places-visit/best-views-golden-gate-bridge>
+  - <https://www.nps.gov/places/000/battery-spencer-overlook.htm>
 
 ## Golden Gate Park
 
@@ -829,6 +1227,73 @@ Restaurant · Mission · 3560 18th St, San Francisco, CA 94110
   - <https://architizer.com/projects/farina-restaurant/>
   - <https://www.womensbuilding.org/our-building/the-mural>
   - <https://goodgoodcultureclub.com/pages/good-info>
+
+## Grace Cathedral
+
+Sight · Nob Hill · 1100 California St, San Francisco, CA 94108
+
+**Known for:** Gilded Doors of Paradise and the labyrinths (high confidence). The cathedral's treasures page and SFGATE highlight the gilded replicas of Ghiberti's Florence doors at the main entrance, and Wikipedia and the cathedral note its indoor and outdoor labyrinths.
+
+### Place research
+
+- **Neighborhood and street:** Nob Hill. The cathedral crowns Nob Hill on the block bounded by California, Taylor, Sacramento and Jones streets, its main front and a 40-step grand staircase facing east across Taylor Street to Huntington Park, with the California Street cable car running past its south side. North of the church, toward Sacramento Street, a plaza with an outdoor labyrinth and the Chapter House is edged by 1877 basalt, granite and cast-iron walls from the Crocker mansion along Sacramento and Taylor streets.
+- **Terrain and setting:** It stands on the summit of Nob Hill, its sanctuary floor about 300 feet above sea level and raised some 20 feet above the street, with Sacramento Street steep along its north side; across Taylor, Huntington Park is ringed by acacia trees.
+- **Architecture:** A French Gothic cathedral designed by Lewis P. Hobart and built of reinforced concrete and steel in four campaigns from 1928 to 1964, with cast stone detail, lead-coated copper roofs and Guastavino tile vaulting inside. Twin 174-foot towers flank the east front, where Gabriel Loire's 28-foot rose window of about 3,800 pieces of glass sits above gilded bronze replicas of Ghiberti's Florence Baptistery doors, each more than 16 feet tall, and a slender flèche rises to 247 feet above the roof. The church is 329 feet long with a polygonal apse and a 91-foot-high nave lit by Charles Connick stained glass, and a Chartres-pattern labyrinth is set into the floor inside.
+- **Unique architectural notes:** It is one of the last major Gothic Revival cathedrals ever built, and its gilded doors were cast in 1956 from molds taken from Ghiberti's originals in Florence.
+- **Most iconic physical characteristics:**
+  - Twin towers and rose window above the great steps
+  - Gilded Doors of Paradise
+  - Slender flèche over the roofline
+  - Outdoor labyrinth on the plaza
+- **More recognizable view:** the facade
+- **View used for the image:** From the top of the steps at the western edge of Huntington Park, looking west across Taylor Street in morning light: the twin towers and round rose window above the great staircase and the gilded doors, with the slender flèche rising behind, framed by the park's acacia branches.
+- **Not verified:** The color of the concrete exterior was not confirmed. Whether the rose window is lit at night was not confirmed. The exact extent of the plaza at the top of the steps was not verified.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Grace_Cathedral,_San_Francisco>
+  - <https://gracecathedral.org/architecture/>
+  - <https://gracecathedral.org/the-cathedrals-treasures/>
+  - <https://gracecathedral.org/visit/>
+  - <https://gracecathedral.org/visit-faq/>
+  - <https://sfplanninggis.org/docs/landmarks_and_districts/LM170.pdf>
+  - <https://noehill.com/sf/landmarks/sf170.asp>
+  - <https://www.sfchronicle.com/art/article/Let-there-be-light-through-Grace-Cathedral-window-6655385.php>
+  - <https://www.sfgate.com/bayarea/article/grace-cathedral-replica-doors-a-doorway-to-italy-3640981.php>
+  - <https://www.sfgate.com/news/article/Grace-Cathedral-changes-cityscape-3128428.php>
+  - <https://en.wikipedia.org/wiki/Huntington_Park_(San_Francisco)>
+
+## Haight-Ashbury
+
+Sight · Haight-Ashbury · Haight St & Ashbury St, San Francisco, CA 94117
+
+**Known for:** The Haight and Ashbury street corner, heart of the 1960s counterculture (high confidence). Wikipedia says the district is named for this intersection and is known as a main center of the 1960s counterculture. The city landmark resolution calls the northwest corner the neighborhood's ground zero, marked by the street names on its facade.
+
+### Place research
+
+- **Neighborhood and street:** Haight-Ashbury. The crossing of Haight Street, the Upper Haight's strip of Victorian buildings with flats over shops, and Ashbury Street, four blocks east of Golden Gate Park at Stanyan Street. The white Doolan-Larson building fills the northwest corner, 1890s Victorian mixed-use buildings hold the other three, and the Counterculture Museum occupies the southeast corner storefront; the Muni 7 bus runs along Haight.
+- **Terrain and setting:** Haight Street runs fairly level here, in a valley partly sheltered from summer fog, while Ashbury Street climbs uphill to the south toward Ashbury Heights; the wooded hill of Buena Vista Park rises a few blocks east. The corner building's south face catches full sun, and the one-story shop row beside it leaves open sky over the corner.
+- **Architecture:** The Doolan-Larson building (1903, designed by Frank T. Doolan) is a rare Colonial Revival house, painted near white, that was raised in 1907 over ground-floor shops, with a separate one-story row of storefronts added down Haight Street. Its flat shiplap facade has no bay windows; instead it has Palladian windows with projecting shelf moldings, oval windows with festoons, a dentiled crown molding, a hipped roof with a semicircular dormer facing Haight and pedimented dormers on the sides, and a clock on the corner face, while the corner shop keeps marble facing and mosaic tile. The other three corners are 1890s Victorian buildings with flats above storefronts, in the Queen Anne style of bay windows and gables that dominates the Upper Haight.
+- **Unique architectural notes:** The one flat, pale Colonial Revival building at a crossing otherwise lined with bay-windowed Victorians, with a corner clock stopped at 4:20.
+- **Most iconic physical characteristics:**
+  - white Colonial Revival corner house with Palladian windows
+  - semicircular dormer on a hipped roof
+  - one-story shop row stepping up to the corner house
+  - Victorian bay windows along the Upper Haight
+- **More recognizable view:** the facade
+- **View used for the image:** From across Haight Street looking up at the upper story and roof of the pale Doolan-Larson house: its Palladian window, oval windows with festoons, dentiled crown molding, semicircular dormer and hipped roof against open sky, and bay-windowed Victorians beside it, the walls plain and the shopfronts below out of frame.
+- **Not verified:** The placement and size of the painted street names on the Doolan-Larson facade were not checked against photos. Its near-white color comes from the 2011 National Register form. The current tenants and paint colors of the other three corners were not verified.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Haight-Ashbury>
+  - <https://noehill.com/sf/landmarks/sf253.asp>
+  - <https://www.hmdb.org/m.asp?m=176626>
+  - <https://npgallery.nps.gov/GetAsset/6f66e715-1e13-42c3-8cea-1154ac01b69d>
+  - <https://haightandashbury.org/heritage/>
+  - <http://www.sfheritage.org/news/now-live-rfcp-to-revitalize-the-historic-doolan-larson-house-and-storefronts/>
+  - <https://savingplaces.org/stories/haight-ashburys-hippie-house-preserving-san-franciscos-1960s-counterculture>
+  - <https://www.hanc-sf.org/24-home/933-doolan-larson-house-update>
+  - <https://sfstandard.com/2026/09/24/haight-ashbury-music-hub-debate-small-businesses/>
+  - <https://counterculturemuseum.org/location/>
+  - <https://friendsof1800.org/VIEWPOINT/haight.html>
+  - <https://voicemap.me/tour/san-francisco/syn-city-sf-the-haight-ashbury/sites/haight-st-ashbury-st-san-francisco-s-most-famous-crossroad>
 
 ## Han Il Kwan
 
@@ -1129,6 +1594,74 @@ Restaurant · Mission · 2889 Mission St, San Francisco, CA 94110
   - <https://sf.eater.com/2018/10/19/17996904/la-taqueria-sf-building-dispute-property-sale-lawsuit-2889-mission-street>
   - <https://projects.sfchronicle.com/2017/top-100-restaurants/la-taqueria/>
 
+## Lands End & Sutro Baths
+
+Sight · Lands End · 680 Point Lobos Ave, San Francisco, CA 94121
+
+**Known for:** Sutro Baths ruins and cliff-top Golden Gate views (high confidence). NPS pages present the concrete Sutro Baths ruins and the Coastal Trail's Golden Gate views as the highlights of Lands End, and Wikipedia's Lands End article features both.
+
+### Place research
+
+- **Neighborhood and street:** Lands End. The ruins fill a small cove where Point Lobos Avenue bends down toward the Great Highway and Ocean Beach, just north of the Cliff House on its bluff. Above them to the east are the Merrie Way parking lot and the Lands End Lookout visitor center, from which a steep paved path and stairs lead down; Sutro Heights Park is across the avenue, and the Coastal Trail sets off northeast along the cliffs toward Eagle's Point.
+- **Terrain and setting:** Steep, eroding coastal bluffs drop to a rocky cove open to the Pacific, with frequent wind, fog and heavy surf; the Point Lobos headland just north of the ruins is crowned with cypress. The Coastal Trail runs nearly level along an old railbed high on the cliffs through cypress, eucalyptus and coastal scrub, with views across the Golden Gate to the Marin Headlands and the bridge.
+- **Architecture:** The ruins are the concrete foundations of Adolph Sutro's 1894-1896 bathhouse, a three-acre iron-and-glass pavilion that burned in 1966: low concrete walls outlining the old pool tanks, now a large concrete-lined pond, a smaller circular settling pool at the north end, a rock seawall across the cove, blocked-off stairs, and an 8-foot-high tunnel blasted about 150 feet through the headland. Above them the 2012 Lands End Lookout by EHDD rises from dune plantings as a set of concrete walls with reclaimed redwood siding, broad glazing, clerestory windows and a floating roof.
+- **Unique architectural notes:** The pools were once filled by the tides through that tunnel in the headland, which is now a walkable sea cave opening onto the cliffs on the far side, with gaps where waves have broken through its wall.
+- **Most iconic physical characteristics:**
+  - concrete pool outlines holding still water in a cove
+  - rock seawall with Pacific surf breaking over it
+  - dark tunnel mouth in the Point Lobos headland
+  - cypress-framed Golden Gate views from the Coastal Trail
+- **More recognizable view:** the facade
+- **View used for the image:** From the path just below the Lands End Lookout, looking northwest down into the cove in late-afternoon light: the grid of low concrete walls and the large still pond reflecting the sky, the rock seawall with surf breaking beyond it, the dark tunnel mouth in the Point Lobos headland at right with cypress on its crest, and the open Pacific filling the horizon.
+- **Not verified:** Not confirmed: which walls and stairs are currently fenced and whether the circular settling pool is still clearly visible today. The tunnel's length in older sources (153 ft) may not match its eroded condition.
+- **Sources:**
+  - <https://www.nps.gov/goga/planyourvisit/cliff-house-sutro-baths.htm>
+  - <https://www.nps.gov/goga/learn/historyculture/vestiges-sutro-baths.htm>
+  - <https://nps.gov/goga/learn/historyculture/upload/Sutro-Physical-History.pdf>
+  - <https://www.nps.gov/places/000/lands-end-trailhead.htm>
+  - <https://www.nps.gov/goga/planyourvisit/landsend.htm>
+  - <https://home.nps.gov/places/000/lands-end-lookout-visitor-center.htm>
+  - <https://en.wikipedia.org/wiki/Sutro_Baths>
+  - <https://en.wikipedia.org/wiki/Lands_End_(San_Francisco)>
+  - <https://www.kqed.org/news/11985359/inside-sutro-baths-san-franciscos-once-grand-bathing-palace>
+  - <https://ehdd.com/project/lands-end-lookout/>
+  - <https://www.parksconservancy.org/news/san-franciscos-lands-end-gets-visitor-center-worthy-its-world-class-views>
+  - <https://www.treesandtents.com/trailguide/sutro-baths-ruins-and-cave-trail-to-point-lobos/>
+
+## Legion of Honor
+
+Sight · Outer Richmond · 100 34th Ave, San Francisco, CA 94121
+
+**Known for:** Rodin's The Thinker in the colonnaded Court of Honor (high confidence). FAMSF says the bronze cast of The Thinker has stood in the Court of Honor since the 1924 opening and calls it the courtyard's focal point. Wikipedia names the Rodin sculpture collection as the museum's most distinguished.
+
+### Place research
+
+- **Neighborhood and street:** Outer Richmond. On a hilltop in Lincoln Park at the city's northwest corner, reached by the park road that climbs from 34th Avenue and Clement Street past the golf clubhouse. In front are a parking lot and a plaza with a fountain marking the western end of the Lincoln Highway. A broad lawn with bronze equestrian statues of Joan of Arc and El Cid rises to the Roman arch of the Court of Honor. George Segal's Holocaust Memorial stands in a grove of trees across the road.
+- **Terrain and setting:** An elevated bluff (about 380 feet, per USGS) at Lands End, ringed by the hilly fairways of Lincoln Park golf course with their cypresses and Monterey pines. Views run north over the Golden Gate and the bridge and east to the downtown skyline, and wind and fog off the Pacific are common.
+- **Architecture:** A 1924 French neoclassical museum by George Applegarth, adapted from Henri Guillaume's 1915 French Pavilion as a three-quarter-scale version of the 18th-century Palais de la Légion d'Honneur in Paris, built of reinforced concrete with hollow walls. The U-shaped Court of Honor is a peristyle of Ionic columns entered through a Roman triumphal arch, with travertine paving and a Corinthian-columned entrance porch at the base of the U; relief panels sit over the door and at the ends of the U. The 1995 expansion by Edward Larrabee Barnes and Mark Cavagnero added a small glass pyramid skylight in the court over underground galleries. At the back, statues and busts line the top of the domed west end above a garden, with cypresses reaching toward the bridge.
+- **Unique architectural notes:** The courtyard pairs a bronze cast of Rodin's The Thinker, there since the museum opened in 1924, with a small glass pyramid that lights the galleries below. The museum's 1924 organ has 4,526 pipes hidden behind canvas painted to look like stone.
+- **Most iconic physical characteristics:**
+  - a Roman triumphal arch opening into a colonnaded Court of Honor
+  - Rodin's The Thinker at the center of the courtyard
+  - a small glass pyramid skylight in the court
+  - bronze equestrian statues on the front lawn with the Golden Gate beyond
+- **More recognizable view:** the facade
+- **View used for the image:** From the far side of the front lawn near the fountain plaza, looking up at the Roman triumphal arch and the long Ionic colonnade of the Court of Honor in late-afternoon light, with the bronze equestrian Joan of Arc in silhouette on one side of the lawn and cypress trees framing the edges.
+- **Not verified:** Exterior color is commonly seen as white or cream, but no primary source states it. Inscriptions on the arch and porch were not checked, so the vantage is kept distant. The arch's compass orientation comes only from FoundSF. Whether Mark di Suvero's Pax Jerusalemme still stands near the plaza in 2026 is unconfirmed, so it is left out.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Legion_of_Honor_(museum)>
+  - <https://www.famsf.org/visit/legion-of-honor>
+  - <https://www.famsf.org/visit/legion-tickets-hours>
+  - <https://www.famsf.org/about/legion-of-honor-history>
+  - <https://www.famsf.org/learn-engage/read-watch-listen/close-look/legion-100-history-highlights>
+  - <https://www.famsf.org/learn-engage/read-watch-listen/5-spaces-contemplation-legion-of-honor>
+  - <https://www.foundsf.org/The_Palace_of_the_Legion_of_Honor>
+  - <https://www.pmrsf.com/portfolio-item/legion-on-honor/>
+  - <https://sfrecpark.org/facilities/facility/details/Lincoln-Park-186>
+  - <https://en.wikipedia.org/wiki/Lincoln_Park_(San_Francisco)>
+  - <https://abc7news.com/archive/5837651/>
+  - <https://topoquest.com/place/california/building/palace-of-the-legion-of-honor/247118>
+
 ## Liholiho Yacht Club
 
 Restaurant · Nob Hill · 871 Sutter St, San Francisco, CA 94109
@@ -1251,6 +1784,40 @@ Restaurant · Mission · 974 Valencia St, San Francisco, CA 94110
   - <https://theperfectspotsf.com/2014/04/01/the-latest-62/>
   - <https://www.yelp.com/biz/lol%C3%B3-san-francisco-4>
   - <https://loloconjirbilla.com/about-me/>
+
+## Lombard Street
+
+Sight · Russian Hill · Lombard St between Hyde St & Leavenworth St, San Francisco, CA 94109
+
+**Known for:** Eight brick-paved hairpin turns down Russian Hill (high confidence). Wikipedia and SF Travel both describe the one-way block's eight sharp hairpin turns, billed as the crookedest street in the world.
+
+### Place research
+
+- **Neighborhood and street:** Russian Hill. This is the 1000 block of Lombard Street, a residential block lined with houses and apartment buildings, with Hyde Street at the top and Leavenworth Street at the bottom. The Powell-Hyde cable car stops at the crest on Hyde. Cars enter only from Hyde and go one way downhill, while people on foot use the stairways that run down both sides.
+- **Terrain and setting:** A steep east-facing slope of Russian Hill with a natural 27 percent grade, which the curves ease to about 16 percent. From the crest the view opens east over North Beach to Telegraph Hill and Coit Tower, the bay and the Bay Bridge.
+- **Architecture:** A serpentine red-brick roadway from 1922. A resident proposed the switchbacks and city engineer Clyde Healy designed them, fitting about 600 feet of winding road into a block about 412 feet long. Tiered garden beds of clipped shrubs, blue and purple hydrangeas, roses and Matilija poppies fill the space between the curves, tended for the Lombard Hill Improvement Association. Stairways of roughly 250 steps run down each side.
+- **Unique architectural notes:** Eight hairpin turns fit into a single one-way city block, with a planted bed filling the inside of every curve. The famous hydrangeas were added in the late 1950s, and a postcard in 1961 made the block a tourist draw.
+- **Most iconic physical characteristics:**
+  - Red-brick zigzag roadway
+  - Eight tight hairpin turns
+  - Tiered hydrangea beds between the curves
+  - Stairways down both sides
+- **More recognizable view:** the facade
+- **View used for the image:** From the foot of the block at Leavenworth Street, looking west up the hill: the red-brick road zigzags through its hairpins between tiered beds of blue and purple hydrangeas and clipped shrubs, stairways climb on either side, and houses and apartment buildings stack up the slope toward the crest at Hyde Street.
+- **Not verified:** Garden-bed counts differ by source (10, 12 or 14). Step counts come from a private family's marker. Hydrangea colors vary by source and season. Sources give the grade as 27 degrees or 27 percent; 27 percent is used here.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Lombard_Street_(San_Francisco)>
+  - <https://www.sftravel.com/things-to-do/attractions/iconic-sf/lombard-street>
+  - <https://www.sfcta.org/projects/lombard-crooked-street>
+  - <https://www.sfcta.org/sites/default/files/2019-03/Lombard_final_report_020918.pdf>
+  - <https://www.sfgate.com/bayarea/article/worlds-crookedest-Lombard-Street-san-francisco-9125265.php>
+  - <https://sf.curbed.com/2012/9/17/10328514/creating-the-2nd-crookedest-street>
+  - <https://sfstandard.com/2022/11/30/this-gardener-takes-care-of-lombard-streets-crookedest-block-all-by-herself/>
+  - <https://sfpublicworks.org/calendar/crooked-streets-new-water-saving-irrigation-system-blooming-success>
+  - <https://www.hmdb.org/m.asp?m=132206>
+  - <https://www.visitcalifornia.com/experience/san-franciscos-lombard-street/>
+  - <https://www.sfmta.com/media/18441/download?inline=>
+  - <https://sfbaytransit.org/hyde-st-lombard-st-cable-car-south>
 
 ## Lovely's
 
@@ -1750,6 +2317,72 @@ Restaurant · Financial District · 101 California St, San Francisco, CA 94111 �
   - <https://ojb-studios.com/work/101-california/>
   - <https://www.instagram.com/p/DRAhT8IEuT5/>
 
+## Painted Ladies
+
+Sight · Alamo Square · 710–720 Steiner St, San Francisco, CA 94117
+
+**Known for:** View of Postcard Row with the downtown skyline behind (high confidence). Wikipedia and the city's 1984 Alamo Square Historic District designation both single out Postcard Row with its background of the downtown skyline, and SF Travel describes the raised view from the park.
+
+### Place research
+
+- **Neighborhood and street:** Alamo Square. On the east side of Steiner Street between Hayes and Grove Streets, directly across the street from the eastern edge of Alamo Square Park; the larger 1892 Kavanaugh house at 722 Steiner anchors the Grove Street corner at the north end of the row. Visitors arrive on foot or by Muni bus and look at the row from the park's lawn or from the Hayes and Steiner corner.
+- **Terrain and setting:** Alamo Square Park sits on a hilltop, and its grassy east slope drops toward Steiner Street, which itself runs on a gentle slope, giving an elevated line of sight over the rooftops to the downtown towers. A tall cluster of Monterey cypress stands at the park's heart; the houses face west toward the park, so their fronts are in shadow in the morning and lit by afternoon sun.
+- **Architecture:** Wood-frame Queen Anne Victorian row houses built 1892 to 1896 by developer Matthew Kavanaugh, standing shoulder to shoulder with steep, ornamented front-facing gables, bay windows, raised entry stairs and porches, patterned shingle surfaces and lacy spindlework. Each house is painted in its own multi-color scheme of soft pastels with white and gold trim picking out the details; 714 Steiner is the pink one. Kavanaugh's own 1892 house at 722 Steiner, on the Grove corner, is larger, four stories, with a Steiner-facing garden behind wrought iron fencing.
+- **Unique architectural notes:** A matched row of 1890s gables seen from a hilltop park against the modern downtown skyline, the pairing that the city's 1984 Alamo Square Historic District designation names as identified worldwide with San Francisco.
+- **Most iconic physical characteristics:**
+  - row of pastel Queen Anne gables shoulder to shoulder
+  - downtown towers rising directly behind the rooftops
+  - sloping lawn of Alamo Square in the foreground
+- **More recognizable view:** the facade
+- **View used for the image:** From high on the grassy east slope of Alamo Square Park, looking east across Steiner Street: the row of pastel Queen Anne gables and bay windows lined up side by side, an empty stretch of sloping lawn and a park bench in the foreground, and the Transamerica Pyramid and Salesforce Tower rising above the rooftops against open sky in early afternoon light.
+- **Not verified:** The current color of each house is not confirmed (714 Steiner was reported pink in 2022). Sources disagree on whether the row is six houses or seven, counting 722 Steiner. Photo guides disagree on the best light. Most pages were read through search-result snippets.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Painted_ladies>
+  - <https://en.wikipedia.org/wiki/Alamo_Square,_San_Francisco>
+  - <https://sf.curbed.com/2020/1/8/21057053/sf-san-francisco-painted-ladies-postcard-row-facts>
+  - <https://www.sftravel.com/things-to-do/attractions/iconic-sf/painted-ladies>
+  - <https://victorianalliance.org/the-kavanaugh-house-history/>
+  - <https://www.sacbee.com/news/business/real-estate-news/article261707132.html>
+  - <https://www.ft.com/content/ca1fc000-2c3a-11e3-acf4-00144feab7de>
+  - <https://hoodline.com/2016/05/asna-fundraising-campaign-aims-to-bring-100-new-trees-to-alamo-square/>
+  - <https://sfrecpark.org/facilities/facility/details/Alamo-Square-323/>
+  - <https://www.openstreetmap.org/node/822484002>
+  - <https://aroundus.com/p/5508194-painted-ladies>
+  - <https://paintedladiesalamosquare.com/>
+
+## Palace of Fine Arts
+
+Sight · Marina · 3601 Lyon St, San Francisco, CA 94123
+
+**Known for:** The domed rotunda reflected in the lagoon (high confidence). Wikipedia and the California Historical Landmark nomination describe the lagoon as a mirror for the rotunda and colonnades, and SF Rec & Park calls the Palace one of the most photographed sites in the city.
+
+### Place research
+
+- **Neighborhood and street:** Marina. At the western edge of the Marina next to the Presidio, in a park bounded by Baker Street on the east, Marina Boulevard and Jefferson Street on the north, and Bay and Lyon Streets on the south, with the Golden Gate Bridge approach roads to the west. The lagoon fronts Baker Street and its row of houses. The rotunda stands on the lagoon's west shore, flanked by curving colonnades, with the long curved exhibition hall (home of the Palace of Fine Arts Theatre) behind them.
+- **Terrain and setting:** Flat ground near the bay, where lawns slope down to an irregular lagoon with a small wooded island at its north end that shelters egrets and herons. Mature Monterey cypresses stand at the northeast corner, a screen of redwoods planted in 1968 rises behind the colonnades, and fog and shifting light often play across the water.
+- **Architecture:** Designed by Bernard Maybeck for the 1915 exposition as a Beaux-Arts evocation of an overgrown Roman ruin, inspired by Piranesi and Böcklin, and rebuilt in 1964-74 in exposed poured-in-place concrete with precast ornament, in an overall buff tone. The open-air octagonal rotunda rests on eight piers faced with paired Corinthian columns tinted russet like Numidian marble. These stand on a high rusticated podium with giant urns, beneath an attic of relief panels and niches and a hemispherical dome 162 feet high. The flanking Corinthian colonnades carry large boxes atop column clusters, with colossal weeping-maiden figures by Ulric Ellerhusen at each corner looking inward. Behind is the 1,100-foot curved exhibition hall, a plain stucco steel-truss building.
+- **Unique architectural notes:** The only 1915 exposition structure still on its original site: a wall-less rotunda built as a deliberate 'ruin' at the water's edge, so that its dome and colonnades double in the lagoon. The colonnade tops carry empty boxes guarded by figures facing inward.
+- **Most iconic physical characteristics:**
+  - a 162-foot open-air domed rotunda at the lagoon's edge
+  - russet paired Corinthian columns on a high podium
+  - colonnade boxes with weeping maidens at the corners
+  - the whole ensemble reflected in the lagoon, with swans on the water
+- **More recognizable view:** the facade
+- **View used for the image:** From the path along the lagoon's east bank near Baker Street, looking west across the water: the domed rotunda on its small peninsula with the curving colonnades reaching out on either side, the ensemble reflected in the still lagoon, a pair of swans on the water, and tall redwoods rising behind the colonnades against a pale sky.
+- **Not verified:** Present-day paint colors beyond the landmark nomination's buff tone and russet rotunda columns are not confirmed from recent photos. Swans are mentioned by SF Rec & Park and a 2011 report, but their presence in 2026 is not confirmed. Sources give the street number as 3601 Lyon St (SF Rec & Park) or 3301 Lyon St (Wikipedia, the theatre).
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Palace_of_Fine_Arts>
+  - <https://ohp.parks.ca.gov/pages/1067/files/CHL_San%20Francisco_Palace%20of%20Fine%20Arts.pdf>
+  - <https://sfrecpark.org/facilities/facility/details/Palace-of-Fine-Arts-423>
+  - <https://sfrecpark.org/917/Palace-of-Fine-Arts>
+  - <https://commissions.sfplanning.org/cpcpackets/2013.0535CER.pdf>
+  - <https://digital.lib.umd.edu/worldsfairs/result/id/umd:1006>
+  - <https://www.mercurynews.com/2011/01/14/palace-of-fine-arts-reopens-after-renovation/>
+  - <https://sfpublicworks.org/project/palace-fine-arts-restoration>
+  - <https://www.nps.gov/prsf/planyourvisit/palace-of-fine-arts.htm>
+  - <https://www.loc.gov/item/ca0686/>
+  - <https://www.palaceoffinearts.org/rentals>
+
 ## Pearl 6101
 
 Restaurant · Outer Richmond · 6101 California St, San Francisco, CA 94121 · Andy’s pick
@@ -1805,6 +2438,73 @@ Restaurant · Mission · 3000 20th St, San Francisco, CA 94110 · Andy’s pick
   - <https://www.7x7.com/first-taste-penny-roma-from-flour-and-water-sf-2655365549.html>
   - <https://tudoandco.com/blogs/news/customer-showcase-penny-roma-san-francisco>
   - <https://visitoffice.com/news/hello-penny-roma>
+
+## Pier 39
+
+Sight · Fisherman's Wharf · Pier 39, The Embarcadero & Beach St, San Francisco, CA 94133
+
+**Known for:** Sea lions on K-Dock (high confidence). Pier 39's own site and Wikipedia describe the California sea lion colony hauled out on K-Dock since 1989 as the pier's star attraction, and NPR calls them its star attraction for tourists.
+
+### Place research
+
+- **Neighborhood and street:** Fisherman's Wharf. K-Dock lies in Pier 39's West Marina, on the west side of the pier facing Pier 41, reached by walking out along the pier's left side (facing the water) from the Entrance Plaza at The Embarcadero and Beach Street. Visitors watch from the wooden railing above the docks and from the Sea Lion Center area on the pier's upper level.
+- **Terrain and setting:** Flat, over the water at bay level, with the floats riding up and down on the tide so the sea lions can stay put. Open water views reach Alcatraz and the Golden Gate Bridge.
+- **Architecture:** K-Dock is now a raft of low floating wooden platforms: the original boat dock sank and fell apart under the animals' weight, so Pier 39 set twelve 10-by-12-foot floats between its fingers and in 1995 replaced the dock entirely with floats. Above them, Pier 39's two-level complex, opened in 1978, was built with weathered 1910-era wood salvaged from the sheds of Piers 3 and 34, giving its boardwalks and storefronts an old-waterfront look. A two-story, Italian-made carousel painted with San Francisco landmarks stands toward the end of the pier.
+- **Unique architectural notes:** A wild colony of California sea lions, from a few hundred in winter to a record of more than 2,100 in 2024, has occupied a working marina dock in the middle of a busy pier since 1989-90.
+- **Most iconic physical characteristics:**
+  - sea lions heaped on low floating docks
+  - wooden railing above the West Marina
+  - weathered-wood two-level pier buildings
+  - Alcatraz across the water
+- **More recognizable view:** the facade
+- **View used for the image:** Looking down from close above K-Dock: brown sea lions sprawled and piled across the weathered floating platforms, filling the whole frame, dark green bay water between the floats, and at the top edge only open water and Alcatraz far off, with no buildings in view.
+- **Not verified:** No source gave the current number or size of the K-Dock floats; only the first twelve floats are documented. The Sea Lion Center's upper-level location comes from a historical marker's directions. The sightline to Alcatraz from the railing is inferred from the map.
+- **Sources:**
+  - <https://pier39.com/sea-lions>
+  - <http://pier39.com/sea-lion-qa/>
+  - <https://www.pier39.com/history-of-pier-39/>
+  - <https://www.pier39.com/wp-content/uploads/2024/04/2024_PIER39_Reference_Guide_English.pdf>
+  - <https://en.wikipedia.org/wiki/Pier_39>
+  - <https://cawatchablewildlife.org/viewsite.php?display=q&site=162>
+  - <https://www.fishermanswharf.org/things-to-do/attractions/sea-lions/>
+  - <https://www.fishermanswharf.org/things-to-do/attractions/pier-39/>
+  - <https://www.hmdb.org/m.asp?m=233381>
+  - <https://www-s1.npr.org/2024/05/04/1249133148/sea-lions-pier-39-san-francisco-bay>
+  - <https://abc7news.com/post/massive-steller-sea-lion-appears-pier-39-docks-san-franciscos-fishermans-wharf-is-chonkers/19861415/>
+  - <https://www.sfgate.com/local/article/chonkers-imitator-pier-39-22416911.php>
+
+## Powell & Market Cable Car Turnaround
+
+Sight · Union Square · Powell St & Market St, San Francisco, CA 94102
+
+**Known for:** Crews turning cable cars by hand on the turntable (high confidence). Market Street Railway calls it the most-photographed cable car turntable and notes that cable car travelogues began with the crew pushing a car around it.
+
+### Place research
+
+- **Neighborhood and street:** Union Square. The turntable sits at the foot of Powell Street where it meets Market Street, with the rounded prow of the Flood Building on the east corner, the One Powell building on the west, and the sunken, brick-paved Hallidie Plaza just to the south. Cable car tracks run north from the turntable up Powell Street between older commercial buildings, past a ticket kiosk and the boarding line.
+- **Terrain and setting:** Flat at the turntable on the Market Street level, with Powell Street running north toward its steep climb up Nob Hill; tall buildings on both corners frame a narrow view up the street.
+- **Architecture:** A single turntable, rebuilt in 2002 with an added set of ball bearings: a round rotating deck described with unfinished redwood facing, removable metal grates and pipe push handles and ringed by brick, turning on rollers and a central spindle over a pit while the cable loops around a separate sheave under the Market Street sidewalk. The single-ended Powell cable cars, about 27 feet long, roll onto it and are pushed around by the crew. Its corners are framed by the 1904 Flood Building, a 12-story office block in gray Colusa sandstone with a rounded prow by Albert Pissis, and by One Powell of 1920-21 by Bliss & Faville, with granite below its first cornice and terra cotta above.
+- **Unique architectural notes:** Market Street Railway calls it the most-photographed cable car turntable; the single-ended Powell cars can only reverse direction on turntables like this one, turned by hand.
+- **Most iconic physical characteristics:**
+  - Cable car pushed around by hand on the round turntable
+  - Flood Building's rounded gray sandstone prow
+  - Cable car tracks running north up Powell Street
+- **More recognizable view:** the facade
+- **View used for the image:** From a raised vantage looking down at the foot of Powell Street: a cable car angled mid-turn on the brick-ringed round turntable, the curved gray sandstone base of the Flood Building's prow at one edge with its upper floors out of frame, and the twin tracks running away up Powell.
+- **Not verified:** The turntable's diameter was not found, and the redwood facing is not confirmed after the 2002 rebuild. The current boarding queue and railing layout was not verified.
+- **Sources:**
+  - <https://www.sfmta.com/places/powell-cable-car-turnaround>
+  - <https://www.sfmta.com/routes/powell-mason-cable-car>
+  - <https://en.wikipedia.org/wiki/San_Francisco_cable_car_system>
+  - <https://en.wikipedia.org/wiki/Hallidie_Plaza>
+  - <https://en.wikipedia.org/wiki/Flood_Building>
+  - <https://www.streetcar.org/wheels-motion/ride-cable-car-lines/>
+  - <https://www.streetcar.org/75-years-ago-cable-car-war/>
+  - <https://www.streetcar.org/cablecarhistory/>
+  - <https://www.cable-car-guy.com/html/ccttwk.html>
+  - <https://www.quarriesandbeyond.org/states/ca/structures/ca-structures_9.html>
+  - <https://sfpublicworks.org/sites/default/files/Commissions/Feb%2026%2C%202026/Item%205_PWC%20Powell%20Street%20SR%20Reso%20Preso%202026-2-26%20v225.pdf>
+  - <https://hoodline.com/2026/06/powell-street-cable-car-turnaround-scores-14-5-million-glow-up/>
 
 ## R&G Lounge
 
@@ -2605,6 +3305,40 @@ Bar · Lower Haight · 547 Haight St, San Francisco, CA 94117
   - <https://commons.wikimedia.org/wiki/File:Toronado_Pub_Lower_Haight_San_Francisco.jpg>
   - <https://www.foodrepublic.com/2013/07/16/a-brooklyn-beer-geek-discovers-san-francisco-serving-a-little-more-than-fernet/>
 
+## Transamerica Pyramid
+
+Sight · Financial District · 600 Montgomery St, San Francisco, CA 94111
+
+**Known for:** Tapering white pyramid on the skyline (high confidence). Wikipedia and the SF Chronicle describe the 853-foot pyramid-shaped tower as one of the symbols of San Francisco and the city's best-known skyscraper, rising at the end of Columbus Avenue.
+
+### Place research
+
+- **Neighborhood and street:** Financial District. The tower fronts Montgomery Street between Clay and Washington streets at the foot of Columbus Avenue, where the high-rise Financial District meets the low brick buildings of Jackson Square. Transamerica Redwood Park fills the east side of the block, with Mark Twain Alley and its eastern redbud trees beside it. New raised planters with masonry seating ledges line Washington Street.
+- **Terrain and setting:** Flat downtown ground on filled land that was once the shoreline of Yerba Buena Cove. The pyramid shape was chosen to let daylight reach the streets below. The tower can be seen from hills across the city and closes the long diagonal view down Columbus Avenue, while the redwood grove at its base is dappled and shaded.
+- **Architecture:** A modernist skyscraper completed in 1972 and designed by William L. Pereira with Harry D. Som. It is a slender four-sided pyramid clad in white precast concrete panels studded with crushed quartz, with 3,678 windows in rows up each face. From the 29th floor up, two narrow buttress-like shafts stand out from the east and west faces: an elevator shaft on one side and a stair and smoke tower on the other. The top 212 feet is a hollow spire covered in aluminum panels, ending in a small glass cap. At street level the tower stands on diagonal concrete trusses that form an arcade around a glass-walled lobby, which Foster + Partners renovated in 2024.
+- **Unique architectural notes:** Transamerica Redwood Park at its foot holds about 50 mature coast redwoods brought from the Santa Cruz Mountains in the 1970s, set in berms of ferns and rhododendrons. The park also has a pond with a bronze leaping frog and lily pads honoring Mark Twain's jumping frog story. A glass cap at the tip of the spire holds a beacon that is lit on certain holidays.
+- **Most iconic physical characteristics:**
+  - Tapering white pyramid silhouette
+  - Two narrow side shafts near the top
+  - Pointed aluminum spire
+  - Redwood grove at its base
+- **More recognizable view:** the facade
+- **View used for the image:** From Columbus Avenue in North Beach, looking southeast down the diagonal avenue and framed above the street-level storefronts: the copper-green flatiron Sentinel Building with its corner dome stands in the middle ground, and the pale pyramid rises steeply behind it to its aluminum spire against the sky.
+- **Not verified:** The redwood count varies between 49 and about 50. The frog fountain was covered in early 2026 for a temporary art installation; its status for wedding week is unknown. One engineering page gives the height as 845 ft; most say 853 ft.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Transamerica_Pyramid>
+  - <https://transamericapyramid.com/visit-us>
+  - <https://transamericapyramid.com/redwood-park>
+  - <https://transamericapyramid.com/>
+  - <https://www.asce.org/publications-and-news/civil-engineering-source/article/2024/10/28/san-franciscos-iconic-transamerica-pyramid-completes-massive-renovation>
+  - <https://www.sfchronicle.com/news/article/pyramid-s-steep-path-from-civic-eyesore-to-icon-3277598.php>
+  - <https://www.sfchronicle.com/sf/article/transamerica-pyramid-reopening-shvo-19747650.php>
+  - <https://www.sfchronicle.com/oursf/article/Transamerica-Pyramid-sf-17154748.php>
+  - <https://vibrationdata.com/earthquakes/Pyramid.htm>
+  - <https://en.wikipedia.org/wiki/Columbus_Tower_(San_Francisco)>
+  - <https://pcad.lib.washington.edu/building/17928/>
+  - <https://structurae.net/en/structures/transamerica-pyramid>
+
 ## Trick Dog
 
 Bar · Mission · 3010 20th St, San Francisco, CA 94110
@@ -2664,6 +3398,40 @@ Bar · Mission · 753 Alabama St, San Francisco, CA 94110 · Andy’s pick
   - <https://www.7x7.com/first-taste-true-laurel-2519995153.html>
   - <https://www.truelaurelsf.com/>
   - <https://www.exploretock.com/truelaurelsf>
+
+## Twin Peaks
+
+Sight · Twin Peaks · 100 Christmas Tree Point Rd, San Francisco, CA 94131
+
+**Known for:** Panoramic view down Market Street to downtown and the Bay (high confidence). SF Rec & Park describes visitors coming to the north-peak lot for 180-degree Bay Area views, and SFGATE notes that the peaks sit at the far end of Market Street's diagonal line from the Ferry Building.
+
+### Place research
+
+- **Neighborhood and street:** Twin Peaks. The overlook sits on Christmas Tree Point, a knoll just north of and about 70 feet below the North Peak, beside the small loop parking lot of Christmas Tree Point Road at the top of Twin Peaks Boulevard. Cars come up from Portola Drive (the Burnett Avenue gate is closed to vehicles), and a cluster of steel radio towers with a small building stands next to the lot.
+- **Terrain and setting:** A treeless, wind-scoured hilltop of grass and coastal scrub on thin sandy soil at roughly 900 feet; the west slopes catch fog and wind while the east face is usually sunnier. The view opens about 180 degrees over the city to downtown and the Bay, with Sutro Tower rising close behind to the west.
+- **Architecture:** A natural area rather than a built landmark: two rounded, bare summits about 660 feet apart, circled by the figure-eight of Twin Peaks Boulevard, whose car-free east side is being rebuilt in 2026 as a promenade with concrete seat walls, overlooks and native plantings. At Christmas Tree Point a broad curving walkway edged by a rocky retaining wall, with a row of coin-operated telescopes, looks out over the city.
+- **Unique architectural notes:** Market Street's long diagonal from the Ferry Building ends visually at Twin Peaks, so from the overlook the street reads as one straight line running down to the waterfront. Each June a one-acre pink triangle of sailcloth is laid out on the slope near the overlook, facing the Castro and downtown.
+- **Most iconic physical characteristics:**
+  - Market Street running straight toward the downtown towers
+  - city-wide panorama with the Bay Bridge beyond
+  - red-and-white three-pronged Sutro Tower close behind
+  - two bare grassy summits
+- **More recognizable view:** the facade
+- **View used for the image:** From the curving walkway at Christmas Tree Point looking northeast over the rocky retaining wall at dusk: a coin telescope seen from behind at the wall, the grassy slope falling away, the city spread below with Market Street's straight line of lights running to the downtown towers, and the Bay Bridge and East Bay hills beyond.
+- **Not verified:** Not confirmed: how many telescopes there are today, the exact material and shape of the retaining wall today, whether the restrooms at the lot are open, and how much construction fencing is visible from the overlook during the promenade work.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Twin_Peaks_(San_Francisco)>
+  - <https://www.sfrecpark.org/Facilities/Facility/Details/Twin-Peaks-384>
+  - <https://sfrecpark.org/m/newsflash/Home/Detail/2856>
+  - <https://www.sfrecpark.org/634/Twin-Peaks-Trails-Improvement-Promenade->
+  - <https://www.sf.gov/news-mayor-lurie-celebrates-groundbreaking-of-improved-twin-peaks-promenade>
+  - <https://www.sfmta.com/projects/twin-peaks-all>
+  - <https://www.sfgate.com/bayarea/place/article/Twin-Peaks-a-towering-tribute-to-nature-4404456.php>
+  - <https://www.sfgate.com/local/article/twin-peaks-san-francisco-17760032.php>
+  - <https://www.sfchronicle.com/totalsf/article/christmas-tree-point-san-francisco-21221070.php>
+  - <https://www.inside-guide-to-san-francisco-tourism.com/twin-peaks-san-francisco.html>
+  - <https://inspiredimperfection.com/adventures/twin-peaks-natural-area/>
+  - <https://en.wikipedia.org/wiki/Twin_Peaks_Pink_Triangle>
 
 ## Two Pitchers Brewing Co.
 

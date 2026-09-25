@@ -1025,6 +1025,292 @@
         "https://en.wikipedia.org/wiki/De_Young_Museum"
       ],
       "approved": false
+    },
+    {
+      "id": "golden-gate-bridge",
+      "name": "Golden Gate Bridge",
+      "signatureSubject": "International Orange Art Deco towers spanning the Golden Gate",
+      "signatureRationale": "Wikipedia calls the bridge one of the most internationally recognized symbols of San Francisco and credits consulting architect Irving Morrow with its Art Deco towers and International Orange color.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Golden_Gate_Bridge",
+        "https://jensen-architects.com/work/golden-gate-bridge-pavilion/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "crissy-field",
+      "name": "Crissy Field",
+      "signatureSubject": "Golden Gate Bridge views from East Beach and the shoreline promenade",
+      "signatureRationale": "The Presidio Trust says this stretch of shoreline is known for iconic views of the Golden Gate Bridge, and the Parks Conservancy says the Crissy Promenade offers spectacular views of the Golden Gate and the bay.",
+      "confidence": "high",
+      "sources": [
+        "https://presidio.gov/explore/attractions/crissy-field-east-beach",
+        "https://www.parksconservancy.org/projects/crissy-field"
+      ],
+      "approved": false
+    },
+    {
+      "id": "palace-of-fine-arts",
+      "name": "Palace of Fine Arts",
+      "signatureSubject": "The domed rotunda reflected in the lagoon",
+      "signatureRationale": "Wikipedia and the California Historical Landmark nomination describe the lagoon as a mirror for the rotunda and colonnades, and SF Rec & Park calls the Palace one of the most photographed sites in the city.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Palace_of_Fine_Arts",
+        "https://ohp.parks.ca.gov/pages/1067/files/CHL_San%20Francisco_Palace%20of%20Fine%20Arts.pdf",
+        "https://sfrecpark.org/facilities/facility/details/Palace-of-Fine-Arts-423"
+      ],
+      "approved": false
+    },
+    {
+      "id": "legion-of-honor",
+      "name": "Legion of Honor",
+      "signatureSubject": "Rodin's The Thinker in the colonnaded Court of Honor",
+      "signatureRationale": "FAMSF says the bronze cast of The Thinker has stood in the Court of Honor since the 1924 opening and calls it the courtyard's focal point. Wikipedia names the Rodin sculpture collection as the museum's most distinguished.",
+      "confidence": "high",
+      "sources": [
+        "https://www.famsf.org/learn-engage/read-watch-listen/5-spaces-contemplation-legion-of-honor",
+        "https://www.famsf.org/learn-engage/read-watch-listen/close-look/legion-100-history-highlights",
+        "https://en.wikipedia.org/wiki/Legion_of_Honor_(museum)"
+      ],
+      "approved": false
+    },
+    {
+      "id": "alcatraz",
+      "name": "Alcatraz",
+      "signatureSubject": "The cellhouse of the former federal penitentiary",
+      "signatureRationale": "NPS presents Alcatraz as the former maximum-security federal penitentiary and builds the visit around its cellhouse audio tour. Wikipedia calls the former prison one of San Francisco's major tourist attractions.",
+      "confidence": "high",
+      "sources": [
+        "https://www.nps.gov/alca/",
+        "https://www.nps.gov/alca/faqs.htm",
+        "https://en.wikipedia.org/wiki/Alcatraz_Federal_Penitentiary"
+      ],
+      "approved": false
+    },
+    {
+      "id": "fishermans-wharf",
+      "name": "Fisherman's Wharf",
+      "signatureSubject": "Ship's-wheel sign at Jefferson and Taylor",
+      "signatureRationale": "The Fisherman's Wharf Community Benefit District calls the sign famous and the Wharf's go-to meeting spot, and LEDinside calls it one of the city's most photographed landmarks.",
+      "confidence": "high",
+      "sources": [
+        "https://www.fishermanswharf.org/about-us/faqs/",
+        "https://www.ledinside.com/lighting/2014/4/ge_illuminates_san_francisco_fisherman_warf"
+      ],
+      "approved": false
+    },
+    {
+      "id": "pier-39",
+      "name": "Pier 39",
+      "signatureSubject": "Sea lions on K-Dock",
+      "signatureRationale": "Pier 39's own site and Wikipedia describe the California sea lion colony hauled out on K-Dock since 1989 as the pier's star attraction, and NPR calls them its star attraction for tourists.",
+      "confidence": "high",
+      "sources": [
+        "https://pier39.com/sea-lions",
+        "https://en.wikipedia.org/wiki/Pier_39",
+        "https://www-s1.npr.org/2024/05/04/1249133148/sea-lions-pier-39-san-francisco-bay"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ghirardelli-square",
+      "name": "Ghirardelli Square",
+      "signatureSubject": "The illuminated rooftop Ghirardelli sign over the bay",
+      "signatureRationale": "SF Planning calls the rooftop sign the square's primary identification marker, visible as one approaches from the bay. Noe Hill calls it familiar to all who sail the bay, and the SF Standard notes it has been part of the skyline for over a century.",
+      "confidence": "high",
+      "sources": [
+        "https://commissions.sfplanning.org/hpcpackets/2017-008875COA.pdf",
+        "https://noehill.com/sf/landmarks/sf030.asp",
+        "https://sfstandard.com/2026/04/24/ghiradelli-square-miami-investment-firm/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "lombard-street",
+      "name": "Lombard Street",
+      "signatureSubject": "Eight brick-paved hairpin turns down Russian Hill",
+      "signatureRationale": "Wikipedia and SF Travel both describe the one-way block's eight sharp hairpin turns, billed as the crookedest street in the world.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lombard_Street_(San_Francisco)",
+        "https://www.sftravel.com/things-to-do/attractions/iconic-sf/lombard-street"
+      ],
+      "approved": false
+    },
+    {
+      "id": "coit-tower",
+      "name": "Coit Tower",
+      "signatureSubject": "360-degree city and bay views from the top",
+      "signatureRationale": "SF Rec & Park and Wikipedia both describe the observation deck's panoramic views across the city and bay, from the Golden Gate Bridge to the Bay Bridge.",
+      "confidence": "high",
+      "sources": [
+        "https://sfrecpark.org/Facilities/Facility/Details/Coit-Tower-290",
+        "https://en.wikipedia.org/wiki/Coit_Tower"
+      ],
+      "approved": false
+    },
+    {
+      "id": "transamerica-pyramid",
+      "name": "Transamerica Pyramid",
+      "signatureSubject": "Tapering white pyramid on the skyline",
+      "signatureRationale": "Wikipedia and the SF Chronicle describe the 853-foot pyramid-shaped tower as one of the symbols of San Francisco and the city's best-known skyscraper, rising at the end of Columbus Avenue.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Transamerica_Pyramid",
+        "https://www.sfchronicle.com/news/article/pyramid-s-steep-path-from-civic-eyesore-to-icon-3277598.php"
+      ],
+      "approved": false
+    },
+    {
+      "id": "exploratorium",
+      "name": "Exploratorium",
+      "signatureSubject": "Hundreds of hands-on science and perception exhibits",
+      "signatureRationale": "Wikipedia and the AIA Top Ten citation describe it as a museum built around hands-on, participatory exhibits on science, art and human perception, with more than 600 at Pier 15.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Exploratorium",
+        "https://www.aiatopten.org/node/472"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ferry-building",
+      "name": "Ferry Building",
+      "signatureSubject": "Clock tower at the foot of Market Street",
+      "signatureRationale": "Wikipedia and the Emperor Norton Trust single out the 245-foot clock tower, whose best-known view is straight down Market Street, as the building's defining landmark.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/San_Francisco_Ferry_Building",
+        "https://emperornortontrust.org/blog/2023/7/20/the-ferry-building-clock-tower-from-emperor-nortons-street"
+      ],
+      "approved": false
+    },
+    {
+      "id": "dragon-gate",
+      "name": "Dragon Gate",
+      "signatureSubject": "Chinatown's southern gateway on Grant Avenue",
+      "signatureRationale": "Wikipedia calls the gate one of the most photographed locations in Chinatown, and SF Public Works describes it as marking the southern entrance to Chinatown.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Dragon_Gate_(San_Francisco)",
+        "https://www.sfpublicworkstv.org/february2026",
+        "https://artandarchitecture-sf.com/chinatown-san-francisco-may-11-2012.html"
+      ],
+      "approved": false
+    },
+    {
+      "id": "powell-market-cable-car-turnaround",
+      "name": "Powell & Market Cable Car Turnaround",
+      "signatureSubject": "Crews turning cable cars by hand on the turntable",
+      "signatureRationale": "Market Street Railway calls it the most-photographed cable car turntable and notes that cable car travelogues began with the crew pushing a car around it.",
+      "confidence": "high",
+      "sources": [
+        "https://www.streetcar.org/wheels-motion/ride-cable-car-lines/",
+        "https://www.streetcar.org/75-years-ago-cable-car-war/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "grace-cathedral",
+      "name": "Grace Cathedral",
+      "signatureSubject": "Gilded Doors of Paradise and the labyrinths",
+      "signatureRationale": "The cathedral's treasures page and SFGATE highlight the gilded replicas of Ghiberti's Florence doors at the main entrance, and Wikipedia and the cathedral note its indoor and outdoor labyrinths.",
+      "confidence": "high",
+      "sources": [
+        "https://gracecathedral.org/the-cathedrals-treasures/",
+        "https://www.sfgate.com/bayarea/article/grace-cathedral-replica-doors-a-doorway-to-italy-3640981.php",
+        "https://en.wikipedia.org/wiki/Grace_Cathedral,_San_Francisco"
+      ],
+      "approved": false
+    },
+    {
+      "id": "painted-ladies",
+      "name": "Painted Ladies",
+      "signatureSubject": "View of Postcard Row with the downtown skyline behind",
+      "signatureRationale": "Wikipedia and the city's 1984 Alamo Square Historic District designation both single out Postcard Row with its background of the downtown skyline, and SF Travel describes the raised view from the park.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Alamo_Square,_San_Francisco",
+        "https://en.wikipedia.org/wiki/Painted_ladies",
+        "https://www.sftravel.com/things-to-do/attractions/iconic-sf/painted-ladies"
+      ],
+      "approved": false
+    },
+    {
+      "id": "city-hall",
+      "name": "City Hall",
+      "signatureSubject": "Gilded Beaux-Arts dome, taller than the U.S. Capitol's",
+      "signatureRationale": "Wikipedia and the National Register nomination both name the dome as the building's principal design feature and note that it rises higher than the U.S. Capitol's.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/San_Francisco_City_Hall",
+        "https://npgallery.nps.gov/NRHP/GetAsset/NHLS/78000757_text"
+      ],
+      "approved": false
+    },
+    {
+      "id": "haight-ashbury",
+      "name": "Haight-Ashbury",
+      "signatureSubject": "The Haight and Ashbury street corner, heart of the 1960s counterculture",
+      "signatureRationale": "Wikipedia says the district is named for this intersection and is known as a main center of the 1960s counterculture. The city landmark resolution calls the northwest corner the neighborhood's ground zero, marked by the street names on its facade.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Haight-Ashbury",
+        "https://noehill.com/sf/landmarks/sf253.asp"
+      ],
+      "approved": false
+    },
+    {
+      "id": "castro-theatre",
+      "name": "Castro Theatre",
+      "signatureSubject": "Red neon blade sign and marquee over Castro Street",
+      "signatureRationale": "The city's 2023 landmark amendment lists the 1937 blade sign and marquee as character-defining features and says the neighborhood's name, the Castro, was inspired by the theater's red vertical blade sign. Wikipedia calls the marquee a landmark.",
+      "confidence": "high",
+      "sources": [
+        "https://citypln-m-extnl.sfgov.org/Commissions/HPC/2_1_2023/Commission%20Packet/2022-006075DES.pdf",
+        "https://en.wikipedia.org/wiki/Castro_Theatre"
+      ],
+      "approved": false
+    },
+    {
+      "id": "twin-peaks",
+      "name": "Twin Peaks",
+      "signatureSubject": "Panoramic view down Market Street to downtown and the Bay",
+      "signatureRationale": "SF Rec & Park describes visitors coming to the north-peak lot for 180-degree Bay Area views, and SFGATE notes that the peaks sit at the far end of Market Street's diagonal line from the Ferry Building.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfrecpark.org/Facilities/Facility/Details/Twin-Peaks-384",
+        "https://www.sfgate.com/bayarea/place/article/Twin-Peaks-a-towering-tribute-to-nature-4404456.php",
+        "https://en.wikipedia.org/wiki/Twin_Peaks_(San_Francisco)"
+      ],
+      "approved": false
+    },
+    {
+      "id": "dolores-park",
+      "name": "Dolores Park",
+      "signatureSubject": "Sunny hillside lawns with a downtown skyline view",
+      "signatureRationale": "Wikipedia describes the park's warm, sunny microclimate and its northeast view of downtown from the southwest corner; Lonely Planet highlights the palm-framed skyline view from the upper corner.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mission_Dolores_Park",
+        "https://www.lonelyplanet.com/points-of-interest/dolores-park/383867"
+      ],
+      "approved": false
+    },
+    {
+      "id": "lands-end-sutro-baths",
+      "name": "Lands End & Sutro Baths",
+      "signatureSubject": "Sutro Baths ruins and cliff-top Golden Gate views",
+      "signatureRationale": "NPS pages present the concrete Sutro Baths ruins and the Coastal Trail's Golden Gate views as the highlights of Lands End, and Wikipedia's Lands End article features both.",
+      "confidence": "high",
+      "sources": [
+        "https://www.nps.gov/goga/planyourvisit/cliff-house-sutro-baths.htm",
+        "https://www.nps.gov/goga/planyourvisit/landsend.htm",
+        "https://en.wikipedia.org/wiki/Lands_End_(San_Francisco)"
+      ],
+      "approved": false
     }
   ]
 }

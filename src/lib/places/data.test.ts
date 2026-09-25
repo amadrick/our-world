@@ -35,8 +35,9 @@ describe("data/places.json", () => {
     }
   });
 
-  it("holds Andy's 93 places, with no Wellness section left", () => {
-    expect(places).toHaveLength(93);
+  it("holds Andy's 93 places plus the 23 Sights, with no Wellness section left", () => {
+    expect(places).toHaveLength(116);
+    expect(places.filter((p) => p.category !== "sight")).toHaveLength(93);
     expect(places.some((p) => p.id === "alchemy-springs")).toBe(false);
     expect(new Set(places.map((p) => p.category)).has("wellness" as Place["category"])).toBe(false);
   });
@@ -64,9 +65,54 @@ describe("data/places.json", () => {
     expect(inSection("park")).toEqual(["golden-gate-park", "ocean-beach"]);
   });
 
-  it("never tags shops or parks with meals or late night", () => {
+  it("fills Sights with the iconic places, none of them duplicating a place already in the guide", () => {
+    expect(
+      places
+        .filter((p) => p.category === "sight")
+        .map((p) => p.id)
+        .sort(),
+    ).toEqual(
+      [
+        "golden-gate-bridge",
+        "alcatraz",
+        "fishermans-wharf",
+        "pier-39",
+        "ghirardelli-square",
+        "lombard-street",
+        "coit-tower",
+        "transamerica-pyramid",
+        "ferry-building",
+        "dragon-gate",
+        "powell-market-cable-car-turnaround",
+        "painted-ladies",
+        "palace-of-fine-arts",
+        "crissy-field",
+        "twin-peaks",
+        "dolores-park",
+        "city-hall",
+        "lands-end-sutro-baths",
+        "legion-of-honor",
+        "haight-ashbury",
+        "castro-theatre",
+        "grace-cathedral",
+        "exploratorium",
+      ].sort(),
+    );
+  });
+
+  it("keeps Sights out of Andy's picks, each researched with its own photo and a view for it", () => {
+    for (const place of places.filter((p) => p.category === "sight")) {
+      expect(place.andyFavorite, place.id).toBeUndefined();
+      expect(place.signatureRationale, place.id).not.toMatch(/Andy/);
+      expect(place.placeResearch?.viewNote, place.id).toBeTruthy();
+      expect(place.placeResearch?.sources.length, place.id).toBeGreaterThanOrEqual(3);
+      expect(place.image, place.id).toMatch(/^\/places\//);
+    }
+  });
+
+  it("never tags shops, parks, or sights with meals or late night", () => {
     for (const place of places) {
-      if (!["shop", "park"].includes(place.category)) continue;
+      if (!["shop", "park", "sight"].includes(place.category)) continue;
       expect(
         place.tags.filter((t) => t !== "views"),
         place.id,
