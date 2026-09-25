@@ -197,12 +197,12 @@ Both also rewrite `data/places.md`.
   [Feather](https://feathericons.com) (`react-feather`), plus a few
   Feather-style glyphs Feather lacks (`src/components/icons/feather-extras.tsx`),
   including the Golden Gate on the "All" tab.
-- **Map:** [MapLibre GL](https://maplibre.org) with "Film paper", a calm custom
-  style (`src/lib/map/style.ts`), on free
-  [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed.
-  Map labels use the same Inter file through MapLibre's `font-faces`. Map code
-  sits behind a small `MapProvider` interface (`src/lib/map/types.ts`) so Apple
-  MapKit JS can be added later.
+- **Map:** [MapLibre GL](https://maplibre.org) on free
+  [OpenFreeMap](https://openfreemap.org) tiles, so no account or key is needed,
+  styled by one of three designed basemaps (`src/lib/map/themes/`, see Map
+  below). Map labels use Inter and Newsreader files from `public/fonts`
+  through MapLibre's `font-faces`. Map code sits behind a small `MapProvider`
+  interface (`src/lib/map/types.ts`) so Apple MapKit JS can be added later.
 - **Data:** a JSON file behind a `PlaceStore` interface (`src/lib/storage`), so
   it can be swapped for hosted storage when the site is deployed.
 - **Place search:** [Photon](https://photon.komoot.io) with a
@@ -249,13 +249,20 @@ system (`prefers-color-scheme`), map included.
     bar and the round smoked-glass back, share, and map buttons, and only its
     last stretch melts into the color, through a short, light progressive blur
     (a few stacked `backdrop-filter` layers) with the color gathering over it.
-    The phone map sheet's photo does the same into the sheet's tinted glass.
   - Wider screens: a rounded square photo on the left with a soft, low halo of
     its own colors (drawn from a tiny thumbnail), and everything else beside
     it on the right; both start at the top under the buttons, centered as one
     unit. The List | Map switch floats at the bottom over a plain fade of the
-    page color, and the page ends with room to clear it. The desktop map rail
-    is the same: rounded photo with its halo, details below.
+    page color, and the page ends with room to clear it.
+  - The phone map sheet and the desktop map rail: the photo on top, edge to
+    edge, fading cleanly into the place's color; then the name with Andy's
+    pick, the Apple Maps and Google Maps pills right under it, and the rest.
+    Opening staggers them in (see Motion).
+  - Stepping between places: on phones, swipe the map sheet or the place page
+    left or right for the next or previous place, in the list's current
+    order; on the map, that pin opens and the camera glides to it. On wider
+    screens, the arrow keys and the small glass chevrons beside Share do the
+    same.
 - **List:** a faint glow behind the title in the colors of Andy's picks'
   photos (pale on the light page, deep on the dark one), easing out well
   before the first row of cards. The category row and glass pills sit on it;
@@ -263,9 +270,24 @@ system (`prefers-color-scheme`), map included.
   muted lines, with a smoked-glass "Andy's pick" badge.
 - **List | Map switch:** a glass capsule floating bottom center with an ink
   thumb that slides to the selected mode (arrow keys work).
-- **Map:** warm cream land, sea-glass water, and olive parks in the film
-  photos' tones (a warm charcoal version in dark mode), with a glass rail on
-  desktop, glass zoom buttons, and a glass filter bar on phones. Each pin is
+- **Map:** three basemap directions, each in light and dark, switchable with a
+  hidden `?map=` parameter (remembered for the session) for comparing them:
+  - `a` **Golden hour film** (the default): warm cream land, a deep teal bay
+    that pales in the shallows over a sandy shore, sage and olive parks with a
+    fine film grain, terracotta and ochre arterials, soft building footprints,
+    and the Golden Gate Bridge in International Orange.
+  - `b` **Editorial cartography**: a printed city map. Paper land and clear
+    water with engraved water lines along the coast, hairline streets,
+    neighborhood names in the Newsreader serif as the hero labels, districts
+    in spaced capitals, water and parks in italic, no points of interest.
+  - `c` **Dimensional city**: the hills shaded from the USGS elevation model in
+    warm western light, buildings extruded in sandstone tones with rounded
+    corners, a slight tilt when the map frames a neighborhood or a place, and
+    the landmarks and hills marked by name.
+
+  Basemap labels never sit under a pin or its name: each pin has an invisible
+  collision footprint the map places before its own labels. There's a glass
+  rail on desktop, glass zoom buttons, and a glass filter bar on phones. Each pin is
   the place's own photo (a ~2 KB thumbnail, fetched only once it's shown) in
   a ring of its page color, so the map, the list, and the page share color;
   up close the name sits beside it in a pill of the same color, and Andy's
@@ -281,16 +303,43 @@ system (`prefers-color-scheme`), map included.
 - While a picture loads its tile is a neutral grey (on a detail page, the
   place's color), so dark film photos don't flash in from white.
 
+- **Place colors** (`src/lib/images/palette.mjs`): each photo's own color,
+  looking past the film's amber cast, made livelier in OKLCH. The hue stays;
+  chroma comes from the color's most vivid pixels, times `1 + VIVIDNESS` (0.2,
+  the one knob), within a floor (so a muddy photo still gets a real color) and
+  a cap (no neon), at the lightest shade white text keeps AA on.
+  `npm run images -- --colors` resamples every place after a change.
+
+## Motion
+
+Named with Emil Kowalski's animation vocabulary
+(`.cursor/skills/animation-vocabulary`). Only transform and opacity animate,
+except the 420ms color transition between places.
+
+- Opening a place in the map sheet or rail: a scale in and fade in on the
+  photo (640ms) and a stagger of enters (rise and fade) for the name, the
+  actions, and each row (520ms each, 110ms in, 55ms apart), on a soft
+  ease-out (`cubic-bezier(0.22, 1, 0.36, 1)`).
+- Switching places: a crossfade of the photo (420ms) and a quicker re-stagger
+  (360ms, 35ms apart). Closing the sheet slides it out and fades it (240ms).
+- Swiping: the content follows the finger, the photo at 0.55x for parallax,
+  locked to one axis so it never fights scrolling or the sheet drag. Past the
+  ends it rubber-bands. Let go past 22% of the width, or with a flick faster
+  than 0.4 px/ms, and it flings out (170ms) while the next place slides in
+  from that side (a direction-aware transition); otherwise it springs back
+  (340ms). The neighbors' photos are fetched ahead, so none arrives empty.
+
 Accessibility:
-- Text on glass and on page colors is checked for contrast: every page color
-  keeps white text above 10:1 and its 70% tint above 5:1.
+- Text on glass and on page colors is checked for contrast: white text and
+  its 70% tint keep AA on every page color, and on the dark map's lifted pins.
 - `prefers-reduced-transparency` (and browsers without `backdrop-filter`) get
   solid surfaces in place of glass, and a place's photo fades into its color
   without the blur.
 - `prefers-contrast: more` thickens glass and darkens muted text, borders,
   and hairlines, in light and dark.
 - `prefers-reduced-motion` removes the press, hover-zoom, thumb-slide, and
-  sheet animations.
+  sheet animations; entrances become a short fade, and swipes settle
+  instantly with no parallax.
 
 ## Scripts
 
@@ -299,12 +348,13 @@ Accessibility:
 | `npm run dev` | Dev server on port 4617 |
 | `npm run build` / `npm start` | Production build and server (port 4617) |
 | `npm run lint` / `npm run typecheck` | ESLint and TypeScript |
-| `npm test` | Unit tests (Maps link parsing, filters, data, prompt, page colors, research) |
+| `npm test` | Unit tests (Maps link parsing, filters, data, prompt, page colors, research, map styles, swipe) |
 | `npm run research` | Research what places are known for and look like (see The research pipeline) |
 | `npm run signatures:apply` / `:export` | Sync the signature review sheet (see Reviewing signatures) |
 | `npm run places:md` | Rewrite `data/places.md` from `data/places.json` |
 | `npm run images` | Generate or import place pictures (see Place images) |
 | `npm run tiles:offline` | Download an offline copy of the SF basemap (see below) |
+| `npm run terrain:offline` | Rebuild the hillshade elevation tiles (see below) |
 
 ## Offline map tiles
 
@@ -314,6 +364,11 @@ basemap in `public/offline-tiles/` from the public
 [Protomaps](https://protomaps.com) OpenStreetMap build, converted to the same
 schema so the map looks the same. Then set `NEXT_PUBLIC_MAP_TILES=offline` in
 `.env.local`.
+
+The dimensional basemap's hills come from `public/offline-terrain/` (1.5 MB,
+checked in), which `npm run terrain:offline` builds from the
+[USGS 3DEP](https://www.usgs.gov/3d-elevation-program) 1 arc-second elevation
+model. Without it, that basemap simply skips the hillshade.
 
 ## Deploying (later)
 
