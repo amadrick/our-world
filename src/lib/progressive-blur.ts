@@ -1,0 +1,65 @@
+/**
+ * A progressive blur: stacked backdrop-filter layers, each masked to its own
+ * band and twice as strong as the one above, so the blur ramps up smoothly
+ * toward the bottom instead of switching on at a line.
+ */
+export interface BlurLayer {
+  /** Blur radius in px. */
+  blur: number;
+  /** CSS mask for the band this layer covers. */
+  mask: string;
+}
+
+export function blurLayers(count = 7, maxBlur = 48): BlurLayer[] {
+  const step = 100 / (count + 1);
+  const pct = (n: number) => `${Math.min(100, Math.round(n * step * 100) / 100)}%`;
+  return Array.from({ length: count }, (_, i) => {
+    const blur = maxBlur / 2 ** (count - 1 - i);
+    // The strongest two layers hold to the bottom edge, so the ramp ends fully blurred.
+    const mask =
+      i >= count - 2
+        ? `linear-gradient(to bottom, transparent ${pct(i)}, black ${pct(i + 1)})`
+        : `linear-gradient(to bottom, transparent ${pct(i)}, black ${pct(i + 1)}, black ${pct(i + 2)}, transparent ${pct(i + 3)})`;
+    return { blur, mask };
+  });
+}
+
+/** Ease-in opacity stops, so the color gathers slowly and then covers, with no line where it lands. */
+const EASE_IN: [at: number, alpha: number][] = [
+  [0, 0],
+  [20, 0.03],
+  [35, 0.1],
+  [50, 0.22],
+  [64, 0.4],
+  [77, 0.62],
+  [89, 0.85],
+  [100, 1],
+];
+
+/**
+ * A top-to-bottom gradient from clear to `color` ("#rrggbb"), eased so it has
+ * no visible edge. It turns solid at `solidFrom` percent and stays solid below.
+ */
+export function dissolveGradient(color: string, solidFrom = 100): string {
+  const stops = EASE_IN.map(([at, alpha]) => {
+    const hex = Math.round(alpha * 255).toString(16).padStart(2, "0");
+    return `${color}${hex} ${Math.round(at * solidFrom) / 100}%`;
+  });
+  return `linear-gradient(to bottom, ${stops.join(", ")})`;
+}
+
+/** smootherstep: flat at both ends, so neither where the fade starts nor where it ends shows as a line. */
+const smooth = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
+
+/**
+ * A mask for a photo that holds it solid down to `from` percent, then fades it
+ * out to clear at the bottom edge, revealing whatever color is behind it.
+ */
+export function fadeOutMask(from = 50): string {
+  const stops = [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1].map((t) => {
+    const at = Math.round((from + t * (100 - from)) * 100) / 100;
+    const alpha = Math.round((1 - smooth(t)) * 1000) / 1000;
+    return `rgb(0 0 0 / ${alpha}) ${at}%`;
+  });
+  return `linear-gradient(to bottom, ${stops.join(", ")})`;
+}

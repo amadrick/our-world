@@ -1,0 +1,963 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * One family (Inter Variable), three weights, five sizes. Resetting the default
+ * scales means any stray size or weight class simply doesn't exist, which
+ * keeps the type system tight.
+ *
+ *   sm    14/20  meta, captions, chips, tags
+ *   base  16/24  body copy, buttons, card titles
+ *   lg    20/26  panel and sheet titles
+ *   xl    28/32  place title, page title on phones
+ *   2xl   40/44  page title on wide screens
+ */
+@theme {
+  --text-*: initial;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-lg: 20px;
+  --text-lg--line-height: 26px;
+  --text-lg--letter-spacing: -0.01em;
+  --text-xl: 28px;
+  --text-xl--line-height: 32px;
+  --text-xl--letter-spacing: -0.022em;
+  --text-2xl: 40px;
+  --text-2xl--line-height: 44px;
+  --text-2xl--letter-spacing: -0.03em;
+
+  --font-weight-*: initial;
+  --font-weight-normal: 425;
+  --font-weight-medium: 550;
+  --font-weight-semibold: 650;
+
+  /*
+   * Radius: 8 (inner bits), 12 (thumbnails, menu rows), 16 (buttons, inset
+   * cards), 20 (listing images), 24 (panels, sheets, dialogs), full (chips,
+   * switch, pins, icon buttons).
+   */
+  --radius-*: initial;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+
+  /* Elevation: resting cards, floating controls, raised panels, map pins. */
+  --shadow-*: initial;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-float: 0 0 0 1px rgb(0 0 0 / 0.04), 0 6px 16px rgb(0 0 0 / 0.12);
+  --shadow-raised: 0 0 0 1px rgb(0 0 0 / 0.04), 0 12px 40px -8px rgb(0 0 0 / 0.2);
+  --shadow-pin: 0 0 0 1px rgb(0 0 0 / 0.08), 0 2px 6px rgb(0 0 0 / 0.16);
+  --shadow-bar: 0 -1px 0 #ebebeb, 0 -8px 24px -12px rgb(0 0 0 / 0.12);
+
+
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  /* A soft ease-out: quick to start, long gentle landing. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-map: var(--map);
+  --color-canvas: var(--map);
+  --color-surface: var(--surface);
+  --color-hairline: var(--hairline);
+  --color-ink: var(--ink);
+  --color-ink-hover: var(--ink-hover);
+  --color-on-ink: var(--on-ink);
+  --color-hover: var(--hover);
+  --color-sand: var(--sand);
+  --color-photo: var(--photo);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  /* Ink for text, the primary action, and selection; one warm canvas under everything. */
+  --ink: #222222;
+  --ink-hover: #000000;
+  /* Text and icons on an ink fill (selected pills, pins, the switch thumb). */
+  --on-ink: #ffffff;
+  /* Rows and plain buttons on hover, over any surface or glass. */
+  --hover: rgb(0 0 0 / 0.05);
+  /* The tile a place shows until it has a picture. */
+  --sand: #ece8e1;
+  /* Behind a picture while it loads: a neutral mid-grey, so dark film photos don't flash in from white. */
+  --photo: #d4d4d4;
+  --surface: #ffffff;
+  --hairline: #ebebeb;
+  --background: #ffffff;
+  --foreground: #222222;
+  --card: #ffffff;
+  --card-foreground: #222222;
+  --popover: #ffffff;
+  --popover-foreground: #222222;
+  --primary: #222222;
+  --primary-foreground: #ffffff;
+  --secondary: #f7f7f7;
+  --secondary-foreground: #222222;
+  --muted: #f7f7f7;
+  --muted-foreground: #6a6a6a;
+  --accent: #f7f7f7;
+  --accent-foreground: #222222;
+  --destructive: #222222;
+  --border: #dddddd;
+  --input: #b0b0b0;
+  --ring: #222222;
+  --map: #f5f4f1;
+
+  /*
+   * Liquid Glass tokens. Glass is the functional layer (panels, sheets, pills,
+   * controls) floating over content (map, place images), never content itself.
+   */
+  --glass-blur: 22px;
+  --glass-saturation: 190%;
+  --glass-brightness: 1.06;
+  /* regular: blurs and lifts luminosity for legibility (text-heavy chrome) */
+  --glass-tint: rgb(255 255 255 / 0.5);
+  /* thick: expanded sheets and cards that hold a task */
+  --glass-tint-thick: rgb(255 255 255 / 0.78);
+  /* clear: over rich media, where the content should stay prominent */
+  --glass-tint-clear: rgb(255 255 255 / 0.14);
+  /* ink: tinted glass for the one prominent action or selection */
+  --glass-tint-ink: rgb(22 22 26 / 0.86);
+  --glass-edge: rgb(0 0 0 / 0.1);
+  --glass-rim: rgb(255 255 255 / 0.75);
+  --glass-sheen: linear-gradient(
+    150deg,
+    rgb(255 255 255 / 0.7) 0%,
+    rgb(255 255 255 / 0.08) 32%,
+    rgb(255 255 255 / 0) 62%,
+    rgb(255 255 255 / 0.3) 100%
+  );
+  --glass-glow: radial-gradient(
+    120% 70% at 22% -12%,
+    rgb(255 255 255 / 0.42),
+    rgb(255 255 255 / 0) 62%
+  );
+  --glass-shadow:
+    0 18px 50px -18px rgb(0 0 0 / 0.28), 0 2px 8px -2px rgb(0 0 0 / 0.08);
+  --glass-fill: rgb(255 255 255 / 0.46);
+  --glass-fill-hover: rgb(255 255 255 / 0.66);
+  --glass-inner: rgb(255 255 255 / 0.25);
+  --glass-ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Dark: the same roles on near-black, with glass that smokes rather than frosts. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --ink: #f2f2f3;
+    --ink-hover: #ffffff;
+    --on-ink: #161618;
+    --hover: rgb(255 255 255 / 0.08);
+    --sand: #2a2926;
+    --photo: #3a3a3d;
+    --surface: #1c1c1e;
+    --hairline: rgb(255 255 255 / 0.1);
+    --background: #111113;
+    --foreground: #f2f2f3;
+    --card: #1c1c1e;
+    --card-foreground: #f2f2f3;
+    --popover: #1c1c1e;
+    --popover-foreground: #f2f2f3;
+    --primary: #f2f2f3;
+    --primary-foreground: #161618;
+    --secondary: #2a2a2d;
+    --secondary-foreground: #f2f2f3;
+    --muted: #2a2a2d;
+    --muted-foreground: #a1a1a8;
+    --accent: #2a2a2d;
+    --accent-foreground: #f2f2f3;
+    --destructive: #f2f2f3;
+    --border: #3a3a3e;
+    --input: #5a5a60;
+    --ring: #f2f2f3;
+    --map: #131315;
+
+    --glass-brightness: 1;
+    --glass-tint: rgb(30 30 33 / 0.55);
+    --glass-tint-thick: rgb(26 26 29 / 0.8);
+    --glass-tint-clear: rgb(255 255 255 / 0.08);
+    --glass-tint-ink: rgb(242 242 243 / 0.92);
+    --glass-edge: rgb(255 255 255 / 0.12);
+    --glass-rim: rgb(255 255 255 / 0.14);
+    --glass-inner: rgb(255 255 255 / 0.06);
+    --glass-sheen: linear-gradient(
+      150deg,
+      rgb(255 255 255 / 0.22) 0%,
+      rgb(255 255 255 / 0.03) 32%,
+      rgb(255 255 255 / 0) 62%,
+      rgb(255 255 255 / 0.1) 100%
+    );
+    --glass-glow: radial-gradient(
+      120% 70% at 22% -12%,
+      rgb(255 255 255 / 0.1),
+      rgb(255 255 255 / 0) 62%
+    );
+    --glass-shadow:
+      0 18px 50px -18px rgb(0 0 0 / 0.7), 0 2px 8px -2px rgb(0 0 0 / 0.35);
+    --glass-fill: rgb(255 255 255 / 0.08);
+    --glass-fill-hover: rgb(255 255 255 / 0.14);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background font-normal text-foreground;
+    font-optical-sizing: auto;
+    /* Inter's square punctuation and square quotes */
+    font-feature-settings: "ss07", "ss08";
+  }
+}
+
+@utility hairline {
+  border-width: 0.5px;
+  border-style: solid;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Horizontal rows fade out only on the side that has more to scroll (ScrollRow sets the attributes). */
+@utility scroll-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black var(--fade-start, 0px),
+    black calc(100% - var(--fade-end, 0px)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black var(--fade-start, 0px),
+    black calc(100% - var(--fade-end, 0px)),
+    transparent 100%
+  );
+}
+[data-fade-start] {
+  --fade-start: 48px;
+}
+[data-fade-end] {
+  --fade-end: 48px;
+}
+
+/* A fine printed dot screen, so a picture-less tile reads as deliberate paper rather than a gap. */
+@utility dot-grid {
+  background-image: radial-gradient(rgb(0 0 0 / 0.08) 1px, transparent 1.2px);
+  background-size: 12px 12px;
+  background-position: 6px 6px;
+}
+
+/* A crisp 1px inner edge, so white-backed pictures still read as a bounded tile. */
+@utility image-frame {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06);
+    pointer-events: none;
+  }
+}
+
+/* Tactile press: controls sink slightly while held. */
+@utility pressable {
+  transition-property: transform, background-color, border-color, color, box-shadow;
+  transition-duration: 160ms;
+  transition-timing-function: var(--ease-snappy);
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+}
+
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
+
+/*
+ * The glass primitive: the switch, the map rail and controls, the sheet, the
+ * pills, and the admin's chrome over its image mosaic. Variants: .glass (regular), .glass-thick, .glass-clear, .glass-ink, plus
+ * .glass-interactive for controls that react to touch, and .glass-fill for
+ * controls that sit on glass (glass is never stacked on glass).
+ */
+@layer components {
+  .glass {
+    --_tint: var(--glass-tint);
+    position: relative;
+    isolation: isolate;
+    background-color: var(--_tint);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation))
+      brightness(var(--glass-brightness));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation))
+      brightness(var(--glass-brightness));
+    border: 0.5px solid var(--glass-edge);
+    box-shadow:
+      var(--glass-shadow),
+      inset 0 1px 0 0 var(--glass-rim),
+      inset 0 0 0 0.5px var(--glass-inner);
+    transition:
+      background-color 320ms var(--glass-ease),
+      box-shadow 320ms var(--glass-ease),
+      transform 260ms var(--glass-ease);
+  }
+  /* Lit bevel: a thin gradient ring that catches light at the top-left and bottom-right. */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    padding: 1px;
+    border-radius: inherit;
+    background: var(--glass-sheen);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  /* Specular glow pooling near the top edge. */
+  .glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--glass-glow);
+    pointer-events: none;
+  }
+  .glass-thick {
+    --_tint: var(--glass-tint-thick);
+  }
+  .glass-clear {
+    --_tint: var(--glass-tint-clear);
+    --glass-blur: 12px;
+    --glass-rim: rgb(255 255 255 / 0.55);
+  }
+  .glass-ink {
+    --_tint: var(--glass-tint-ink);
+    --glass-rim: rgb(255 255 255 / 0.28);
+    --glass-edge: rgb(0 0 0 / 0.2);
+    color: var(--on-ink);
+  }
+  .glass-ink::after {
+    opacity: 0.35;
+  }
+  .glass-interactive {
+    cursor: pointer;
+  }
+  .glass-interactive:hover {
+    --glass-brightness: 1.14;
+  }
+  .glass-interactive:active {
+    transform: scale(0.96);
+  }
+
+  /* Controls resting on a glass surface: a vibrant translucent fill with a lit rim. */
+  .glass-fill {
+    background-color: var(--glass-fill);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 0.5px solid var(--glass-edge);
+    box-shadow:
+      inset 0 1px 0 0 var(--glass-rim),
+      0 1px 2px rgb(0 0 0 / 0.04);
+    transition:
+      background-color 220ms var(--glass-ease),
+      transform 220ms var(--glass-ease);
+  }
+  .glass-fill:hover {
+    background-color: var(--glass-fill-hover);
+  }
+}
+
+/* Glass over a photo: a smoked tint, so white icons and text read on any picture. */
+@utility glass-media {
+  background-color: rgb(0 0 0 / 0.3);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 0.5px solid rgb(255 255 255 / 0.24);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    0 6px 20px -6px rgb(0 0 0 / 0.35);
+  color: #fff;
+}
+
+/* Glass on a place's color: a light veil lifting off the page, for white text and icons. */
+@utility glass-tinted {
+  background-color: rgb(255 255 255 / 0.14);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 0.5px solid rgb(255 255 255 / 0.2);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2);
+  color: #fff;
+}
+
+/* A full-width translucent bar that content scrolls under (list header, phone map filters). */
+@utility glass-bar {
+  background-color: var(--glass-tint);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  border-bottom: 0.5px solid var(--glass-edge);
+}
+
+/* Reduce Transparency, or no backdrop-filter support: solid, legible surfaces. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-tint: #f5f5f4;
+    --glass-tint-thick: #fbfbfa;
+    --glass-tint-clear: #f5f5f4;
+    --glass-tint-ink: #1f1f23;
+    --glass-fill: #ececeb;
+  }
+  .glass,
+  .glass-fill {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .glass::before,
+  .glass::after {
+    display: none;
+  }
+  .glass-media {
+    background-color: rgb(0 0 0 / 0.62);
+  }
+  .glass-tinted {
+    background-color: rgb(255 255 255 / 0.22);
+  }
+  .glass-bar {
+    background-color: var(--surface);
+  }
+  .tinted-sheet::before {
+    background-color: var(--tint);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .progressive-blur {
+    display: none;
+  }
+}
+@media (prefers-reduced-transparency: reduce) and (prefers-color-scheme: dark) {
+  :root {
+    --glass-tint: #1f1f22;
+    --glass-tint-thick: #1c1c1e;
+    --glass-tint-clear: #1f1f22;
+    --glass-tint-ink: #f2f2f3;
+    --glass-fill: #2a2a2d;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .progressive-blur {
+    display: none;
+  }
+  :root {
+    --glass-tint: #f5f5f4;
+    --glass-tint-thick: #fbfbfa;
+    --glass-tint-clear: #f5f5f4;
+    --glass-tint-ink: #1f1f23;
+  }
+}
+@media (prefers-contrast: more) {
+  :root {
+    --glass-tint: rgb(255 255 255 / 0.9);
+    --glass-tint-clear: rgb(255 255 255 / 0.85);
+    --glass-edge: rgb(0 0 0 / 0.45);
+    --muted-foreground: #3f3f3f;
+    --hairline: #b0b0b0;
+    --border: #717171;
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --glass-tint: rgb(20 20 22 / 0.94);
+    --glass-tint-clear: rgb(20 20 22 / 0.9);
+    --glass-edge: rgb(255 255 255 / 0.5);
+    --muted-foreground: #d0d0d5;
+    --hairline: #5a5a60;
+    --border: #8a8a90;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass,
+  .glass-fill {
+    transition: none;
+  }
+  .glass-interactive:active,
+  .pressable:active {
+    transform: none;
+  }
+}
+body .maplibregl-map {
+  font: inherit;
+}
+body .maplibregl-ctrl-bottom-right {
+  margin: 0 12px 12px 0;
+}
+body .maplibregl-ctrl-attrib {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  background: var(--surface) !important;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-float);
+  margin: 0 !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: var(--muted-foreground) !important;
+}
+/* Phones: keep the attribution clear of the floating List | Map switch. */
+@media (max-width: 1023px) {
+  body .maplibregl-ctrl-bottom-right {
+    bottom: calc(max(env(safe-area-inset-bottom), 16px) + 64px);
+  }
+}
+/* Shown pins above hidden ones, photos above glyphs; the hovered and open place above everything. */
+.maplibregl-marker:has([data-display="icon"], [data-display="named"]) {
+  z-index: 1;
+}
+.maplibregl-marker:has([data-kind="photo"]:not([data-display="hidden"])) {
+  z-index: 2;
+}
+.maplibregl-marker:has([data-highlighted]) {
+  z-index: 3;
+}
+.maplibregl-marker:has([data-selected]),
+.maplibregl-marker:has(:focus-visible) {
+  z-index: 4;
+}
+
+/*
+ * Basemap (e) Film: what makes the map look photographed rather than drawn,
+ * in one layer over the canvas and under the pins. The element carries the
+ * faint tonal unevenness, ::before a still grain tile, ::after the haze that
+ * softens the edges while the center stays calm for the glass UI. All of it
+ * is static: panning moves the map under it, nothing is redrawn.
+ */
+.map-film {
+  --film-haze: 238 233 225;
+  --film-light: 255 252 246;
+  --film-shade: 116 104 88;
+  --film-grain: 0.55;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 20% 24%, rgb(var(--film-light) / 0.13), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 30% 86%, rgb(var(--film-light) / 0.1), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 80% 68%, rgb(var(--film-shade) / 0.07), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 62% 14%, rgb(var(--film-shade) / 0.05), transparent 70%),
+    rgb(var(--film-haze) / 0.07);
+}
+.map-film::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/textures/film-grain.png") 0 0 / 128px 128px;
+  mix-blend-mode: overlay;
+  opacity: var(--film-grain);
+}
+.map-film::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 72% 68% at 50% 50%, transparent 58%, rgb(var(--film-haze) / 0.3) 100%);
+}
+/* A touch of optical blur at the very edges, where there's a pointer and a GPU to spare. */
+@media (hover: hover) and (pointer: fine) {
+  .map-film::after {
+    backdrop-filter: blur(1.1px);
+    mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, transparent 62%, #000 100%);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .map-film {
+    --film-haze: 60 56 51;
+    --film-light: 92 86 78;
+    --film-shade: 12 11 10;
+    --film-grain: 0.5;
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-reduced-motion: reduce) {
+  .map-film {
+    display: none;
+  }
+}
+
+/*
+ * Map pins in Apple Maps' language (sizes from src/lib/map/pin-style.ts). The
+ * button is the pin's resting head, centered on the spot. Selected, the head
+ * turns into a teardrop (one corner sharpens, the shape turns 45°) and lifts
+ * so its tip sits on the spot.
+ */
+.map-pin {
+  --size: 22px;
+  --grow: calc(40 / 22);
+  --lift: 28.28px;
+  --rim: var(--pin-ring, #ffffff);
+  --halo: var(--pin-halo, #ffffff);
+  --name: var(--cat-label);
+  --caption: var(--pin-caption, #6e6e73);
+  position: relative;
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.map-pin[data-kind="photo"] {
+  --size: 36px;
+  --grow: calc(56 / 36);
+  --lift: 39.6px;
+}
+@media (prefers-color-scheme: dark) {
+  .map-pin {
+    --rim: var(--pin-ring-dark, #ffffff);
+    --halo: var(--pin-halo-dark, #1a2433);
+    --name: var(--cat-label-dark);
+    --caption: var(--pin-caption-dark, #dde6f4);
+  }
+}
+/* The hit area reaches past the drawn pin so small pins stay easy to tap. */
+.map-pin::before {
+  content: "";
+  position: absolute;
+  inset: -9px;
+}
+.map-pin[data-display="hidden"] {
+  pointer-events: none;
+}
+.map-pin-head {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cat);
+  color: #ffffff;
+  box-shadow:
+    0 0 0 1.5px var(--rim),
+    0 1px 3px rgb(0 0 0 / 0.28);
+  transition:
+    transform 260ms var(--ease-snappy),
+    border-radius 260ms var(--ease-snappy),
+    opacity 200ms var(--ease-snappy);
+}
+.map-pin[data-kind="photo"] .map-pin-head {
+  padding: 2.5px;
+  background: var(--rim);
+  box-shadow:
+    0 0 0 0.5px rgb(0 0 0 / 0.1),
+    0 2px 6px rgb(0 0 0 / 0.3);
+}
+@media (prefers-color-scheme: dark) {
+  .map-pin[data-kind="glyph"] .map-pin-head {
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 0.45),
+      0 1px 3px rgb(0 0 0 / 0.5);
+  }
+}
+.map-pin-face {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 260ms var(--ease-snappy);
+}
+.map-pin:hover .map-pin-head,
+.map-pin[data-highlighted] .map-pin-head {
+  transform: scale(1.12);
+}
+.map-pin:focus-visible .map-pin-head {
+  outline: 2px solid var(--ink, #141414);
+  outline-offset: 3px;
+}
+.map-pin[data-selected] .map-pin-head {
+  border-radius: 50% 50% 50% 0;
+  transform: translateY(calc(-1 * var(--lift))) rotate(-45deg) scale(var(--grow));
+}
+.map-pin[data-selected] .map-pin-face {
+  transform: rotate(45deg);
+}
+.map-pin-star {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: flex;
+  width: 12px;
+  height: 12px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #1c1c1e;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+  transition:
+    transform 260ms var(--ease-snappy),
+    opacity 200ms var(--ease-snappy);
+}
+.map-pin[data-kind="photo"] .map-pin-star {
+  top: -2px;
+  right: -2px;
+}
+.map-pin[data-selected] .map-pin-star {
+  transform: translate(8px, calc(-1 * var(--lift) - 6px)) scale(1.25);
+}
+.map-pin[data-display="hidden"] :is(.map-pin-head, .map-pin-star) {
+  opacity: 0;
+  transform: scale(0.4);
+}
+.map-pin-name {
+  position: absolute;
+  width: max-content;
+  font-weight: 600;
+  color: var(--name);
+  text-wrap: balance;
+  pointer-events: none;
+  opacity: 0;
+  text-shadow:
+    0 0 1px var(--halo),
+    0 0 2px var(--halo),
+    0 0 2px var(--halo),
+    0 0 3px var(--halo);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition:
+    opacity 180ms var(--ease-snappy),
+    transform 260ms var(--ease-snappy);
+}
+.map-pin[data-display="named"] .map-pin-name {
+  opacity: 1;
+}
+/* Glyphs: the name to the right, in the category's color. */
+.map-pin[data-kind="glyph"] .map-pin-name {
+  top: 50%;
+  left: calc(100% + 5px);
+  max-width: 96px;
+  font-size: 12.5px;
+  line-height: 14px;
+  text-align: left;
+  -webkit-line-clamp: 3;
+  transform: translateY(-50%);
+}
+.map-pin[data-kind="glyph"][data-selected] .map-pin-name {
+  transform: translate(9px, calc(-50% - var(--lift)));
+}
+/* Photos: the name below, in small grey capitals. */
+.map-pin[data-kind="photo"] .map-pin-name {
+  top: calc(100% + 3px);
+  left: 50%;
+  max-width: 92px;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--caption);
+  -webkit-line-clamp: 2;
+  transform: translateX(-50%);
+}
+.map-pin[data-kind="photo"][data-selected] .map-pin-name {
+  transform: translate(-50%, calc(-1 * var(--size) / 2));
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-pin-head,
+  .map-pin-face,
+  .map-pin-star,
+  .map-pin-name {
+    transition: opacity 120ms linear;
+  }
+}
+
+/* The phone map sheet for an open place: glass tinted with the place's color. */
+/*
+ * The glass is its own layer rather than the sheet itself: a sheet with a
+ * backdrop-filter would hide the map from the photo's progressive blur inside
+ * it, which would then stack a second tint where it runs and show its edge.
+ */
+@utility tinted-sheet {
+  border: 0.5px solid rgb(255 255 255 / 0.16);
+  box-shadow: 0 -12px 40px -12px rgb(0 0 0 / 0.35);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: color-mix(in srgb, var(--tint) 86%, transparent);
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+    backdrop-filter: blur(28px) saturate(170%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18);
+  }
+}
+
+/*
+ * Opening a place in the map sheet or rail (terms from animation-vocabulary):
+ * orchestration of a scale in + fade in for the photo, then a stagger of
+ * enters (rise and fade in) for the title, the actions, and each detail row.
+ * Switching places crossfades the photo and re-staggers quicker and shorter.
+ * Only transform and opacity animate, so it stays on the compositor.
+ */
+@property --tint {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+[data-motion="open"] {
+  --item-duration: 520ms;
+  --item-start: 110ms;
+  --item-step: 55ms;
+  --item-rise: 14px;
+}
+[data-motion="switch"] {
+  --item-duration: 360ms;
+  --item-start: 60ms;
+  --item-step: 35ms;
+  --item-rise: 8px;
+}
+.motion-photo-in {
+  animation: photo-in 640ms var(--ease-out-soft) both;
+}
+.motion-photo-swap {
+  animation: photo-swap 420ms var(--ease-out-soft) both;
+}
+/* After a swipe the old photo has already slid away: the new one slides in from that side, visible from the first frame. */
+.motion-photo-slide {
+  animation: photo-slide 380ms var(--ease-out-soft) both;
+}
+.motion-item {
+  animation: item-in var(--item-duration, 520ms) var(--ease-out-soft) both;
+  animation-delay: calc(var(--item-start, 110ms) + var(--i, 0) * var(--item-step, 55ms));
+}
+@keyframes photo-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+@keyframes photo-swap {
+  from {
+    opacity: 0;
+    transform: translate3d(calc(var(--item-shift, 0px) * 0.6), 0, 0) scale(1.03);
+  }
+}
+@keyframes photo-slide {
+  from {
+    opacity: 0.3;
+    transform: translate3d(calc(var(--item-shift, 0px) * 2.5), 0, 0) scale(1.02);
+  }
+}
+@keyframes item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--item-shift, 0px), var(--item-rise, 14px), 0);
+  }
+}
+/* Stepping to the next or previous place: it comes in from the side you swiped toward (a direction-aware transition). */
+[data-enter="next"] {
+  --item-shift: 32px;
+  --item-rise: 0px;
+}
+[data-enter="prev"] {
+  --item-shift: -32px;
+  --item-rise: 0px;
+}
+@keyframes fade-only {
+  from {
+    opacity: 0;
+  }
+}
+
+/*
+ * Swiping between places: the content follows the finger (--swipe-x, set by
+ * useSwipeBetween), the photo at a little over half the speed for parallax.
+ * Let go and it springs back, or flings out the way it was going before the
+ * next place comes in.
+ */
+.swipe-follow {
+  translate: var(--swipe-x, 0px) 0;
+  opacity: var(--swipe-fade, 1);
+}
+.swipe-parallax {
+  translate: calc(var(--swipe-x, 0px) * 0.55) 0;
+  /* The photo dims but never empties, so the next one arrives over something. */
+  opacity: calc(0.35 + var(--swipe-fade, 1) * 0.65);
+}
+[data-swipe="back"] :is(.swipe-follow, .swipe-parallax) {
+  transition:
+    translate 340ms var(--ease-out-soft),
+    opacity 340ms var(--ease-out-soft);
+}
+[data-swipe="out"] :is(.swipe-follow, .swipe-parallax) {
+  transition:
+    translate 170ms var(--ease-out-soft),
+    opacity 170ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-photo-in,
+  .motion-photo-swap,
+  .motion-photo-slide,
+  .motion-item {
+    animation: fade-only 180ms ease-out both;
+  }
+  .swipe-parallax {
+    translate: var(--swipe-x, 0px) 0;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "tilejson": "3.0.0",
+  "name": "San Francisco elevation (USGS 3DEP 1 arc-second)",
+  "attribution": "<a href=\"https://www.usgs.gov/3d-elevation-program\" target=\"_blank\">USGS 3DEP</a>",
+  "tiles": [
+    "/offline-terrain/{z}/{x}/{y}.png"
+  ],
+  "encoding": "terrarium",
+  "bounds": [
+    -122.62,
+    37.64,
+    -122.18,
+    37.94
+  ],
+  "minzoom": 8,
+  "maxzoom": 12,
+  "tileSize": 256
+}

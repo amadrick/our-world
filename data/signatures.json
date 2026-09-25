@@ -1,0 +1,1316 @@
+{
+  "places": [
+    {
+      "id": "kope-house",
+      "name": "Kopê House",
+      "signatureSubject": "Short & Sweet (red bean–cherry espresso) / passion-fruit chocolate cappuccino",
+      "signatureRationale": "Infatuation says offbeat signatures are the main draw (Short & Sweet; passion-fruit chocolate cappuccino); Eater highlights cocktail-style drinks from the founders’ pop-up era.",
+      "confidence": "high",
+      "sources": [
+        "https://www.theinfatuation.com/san-francisco/reviews/kope-house",
+        "https://sf.eater.com/restaurant-news/210046/kope-house-open-cafe-hayes-valley"
+      ],
+      "approved": false
+    },
+    {
+      "id": "hedge-coffee",
+      "name": "Hedge Coffee",
+      "signatureSubject": "Cappuccino",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "the-coffee-movement",
+      "name": "The Coffee Movement",
+      "signatureSubject": "Cocoa cappuccino",
+      "signatureRationale": "Listed under Signature Drinks on the official menu as a dark-chocolate-dusted Australian-style cappuccino; dominates Yelp photo tags.",
+      "confidence": "high",
+      "sources": [
+        "https://www.thecoffeemovement.com/menu",
+        "https://www.yelp.com/biz/the-coffee-movement-san-francisco"
+      ],
+      "approved": false
+    },
+    {
+      "id": "bi-rite-creamery",
+      "name": "Bi-Rite Creamery",
+      "signatureSubject": "Black sesame ice cream",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "jules",
+      "name": "Jules",
+      "signatureSubject": "Drunken Sailor",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "toronado",
+      "name": "Toronado",
+      "signatureSubject": "Legendary draft-beer wall (~50 taps; Belgian + West Coast craft / Pliny culture)",
+      "signatureRationale": "Craft Beer & Brewing and SFGATE frame Toronado as a monument to characterful draft beer; long associated with rare taps and Russian River/Pliny culture.",
+      "confidence": "high",
+      "sources": [
+        "https://www.beerandbrewing.com/love-handles-toronado",
+        "https://www.toronado.com/index.html"
+      ],
+      "approved": false
+    },
+    {
+      "id": "flour-and-water",
+      "name": "Flour + Water",
+      "signatureSubject": "Taleggio scarpinocc",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "original-joes",
+      "name": "Original Joe's",
+      "signatureSubject": "Spicy rigatoni",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "hk-lounge-bistro",
+      "name": "HK Lounge Bistro",
+      "signatureSubject": "Peking duck",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "taqueria-el-farolito",
+      "name": "Taqueria El Farolito",
+      "signatureSubject": "Carne asada super burrito",
+      "signatureRationale": "Infatuation and Mission consensus: charred-steak Mission burrito is the order; El Farolito’s own framing is Mission-style burrito identity.",
+      "confidence": "high",
+      "sources": [
+        "https://www.theinfatuation.com/san-francisco/reviews/taqueria-el-farolito",
+        "https://elfarolitosf.com/about/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "san-tung",
+      "name": "San Tung",
+      "signatureSubject": "Orange chicken",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "maison-nico",
+      "name": "Maison Nico",
+      "signatureSubject": "Seasonal croissant",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "yank-sing",
+      "name": "Yank Sing",
+      "signatureSubject": "Pot stickers",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "hook-fish",
+      "name": "Hook Fish Co.",
+      "signatureSubject": "Baja fish burrito",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "cotogna",
+      "name": "Cotogna",
+      "signatureSubject": "Raviolo",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "tartine-bakery",
+      "name": "Tartine Bakery",
+      "signatureSubject": "Morning bun",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "mamahuhu",
+      "name": "Mamahuhu",
+      "signatureSubject": "Sweet & sour chicken (crispy rice batter)",
+      "signatureRationale": "Official Mamahuhu menu + Chronicle/Eater: Brandon Jew’s reinvented Chinese-American sweet-and-sour chicken is the headliner.",
+      "confidence": "high",
+      "sources": [
+        "https://eatmamahuhu.com/blogs/menu/sweet-sour-chicken",
+        "https://sf.eater.com/2020/1/13/21063378/mamahuhu-brandon-jew-chinese-american-photos-menu"
+      ],
+      "approved": false
+    },
+    {
+      "id": "nopalito",
+      "name": "Nopalito",
+      "signatureSubject": "Carnitas",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "nopa",
+      "name": "Nopa",
+      "signatureSubject": "Pork chop",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "saint-frank-coffee",
+      "name": "Saint Frank Coffee",
+      "signatureSubject": "Competition-style cappuccino",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "molinari-delicatessen",
+      "name": "Molinari Delicatessen",
+      "signatureSubject": "Grilled focaccia",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "ernest",
+      "name": "Ernest",
+      "signatureSubject": "Beef tartare + sushi-rice hand-roll kit",
+      "signatureRationale": "Resy, Infatuation, and Chronicle cite DIY tartare–ikura–nori handrolls as Ernest’s most-referenced signature.",
+      "confidence": "high",
+      "sources": [
+        "https://blog.resy.com/2024/06/ernest-san-francisco-restaurant/",
+        "https://www.theinfatuation.com/san-francisco/reviews/ernest"
+      ],
+      "approved": false
+    },
+    {
+      "id": "verjus",
+      "name": "Verjus",
+      "signatureSubject": "Omelet",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "nopa-fish",
+      "name": "Nopa Fish Market",
+      "signatureSubject": "Fancy fish over rice",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "the-laundromat-sf",
+      "name": "The Laundromat SF",
+      "signatureSubject": "Sausage and peppers",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "pearl-6101",
+      "name": "Pearl 6101",
+      "signatureSubject": "Pork chop",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "arsicault-bakery",
+      "name": "Arsicault Bakery",
+      "signatureSubject": "Chocolate almond croissant",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "flour-and-water-pizzeria",
+      "name": "Flour + Water Pizzeria",
+      "signatureSubject": "Cacio e pepe pizza",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "pabu-izakaya",
+      "name": "Pabu Izakaya",
+      "signatureSubject": "Scallop roll with salmon roe",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "capos",
+      "name": "Capo's",
+      "signatureSubject": "Old Chicago deep-dish (sausage/meatball)",
+      "signatureRationale": "Capo’s/Tony Gemignani site and USA Today: Chicago deep-dish is the raison d’être; Old Chicago is the flagship build.",
+      "confidence": "high",
+      "sources": [
+        "https://sfcapos.com/",
+        "https://www.usatoday.com/story/travel/columnist/greatamericanbites/2017/03/09/capos-pizza-san-francisco/98635132/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "tartine-manufactory",
+      "name": "Tartine Manufactory",
+      "signatureSubject": "Morning bun (Mission production hall)",
+      "signatureRationale": "Same Tartine morning-bun signature, famously baked at the Manufactory; SFGATE covered the Mission production of the city’s morning buns.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfgate.com/food/article/Tartine-Manufactory-bakery-morning-bun-San-12448081.php",
+        "https://www.theinfatuation.com/san-francisco/reviews/tartine-manufactory"
+      ],
+      "approved": false
+    },
+    {
+      "id": "garden-creamery",
+      "name": "Garden Creamery",
+      "signatureSubject": "Black sesame ice cream",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "liholiho-yacht-club",
+      "name": "Liholiho Yacht Club",
+      "signatureSubject": "Beef tongue steam buns",
+      "signatureRationale": "Chronicle/SFist classic signature (misoyaki tongue in poppyseed bun); menu rotates—confirm current availability.",
+      "confidence": "med",
+      "sources": [
+        "https://sfist.com/2015/02/13/go_eat_this_beef_tongue_steam_buns/",
+        "https://projects.sfchronicle.com/2017/top-100-restaurants/liholiho-yacht-club/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "tonys-pizza-napoletana",
+      "name": "Tony's Pizza Napoletana",
+      "signatureSubject": "World Pizza Cup Margherita (limited daily)",
+      "signatureRationale": "Official Tony’s: limited Neapolitan Margherita that won in Naples; only ~73 made per day.",
+      "confidence": "high",
+      "sources": [
+        "https://tonyspizzanapoletana.com/menu/",
+        "https://tonygemignani.com/restaurants/tonys-north-beach/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "lolo",
+      "name": "Loló",
+      "signatureSubject": "Taco Tropical (shrimp in jicama)",
+      "signatureRationale": "Perfect Spot / early press: panko shrimp in thin jicama “tortillas” with tropical relish is Loló’s signature.",
+      "confidence": "high",
+      "sources": [
+        "https://theperfectspotsf.com/2014/04/01/the-latest-62/",
+        "https://www.lolosf.com/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "deli-board",
+      "name": "Deli Board",
+      "signatureSubject": "The 49er (corned beef + pastrami + brisket)",
+      "signatureRationale": "Official menu and sandwich lore: the 49er is the stacked house monster; Allison also a top seller.",
+      "confidence": "high",
+      "sources": [
+        "https://www.deliboardsf.com/menu",
+        "https://www.sfgate.com/food/article/san-francisco-deli-board-owner-17391147.php"
+      ],
+      "approved": false
+    },
+    {
+      "id": "andytown-coffee-roasters",
+      "name": "Andytown Coffee Roasters",
+      "signatureSubject": "Cappuccino with whipped cream",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "rt-rotisserie",
+      "name": "RT Rotisserie",
+      "signatureSubject": "Rotisserie chicken (porcini / Douglas-fir brine)",
+      "signatureRationale": "7x7 and Eater: buttermilk–porcini–Douglas-fir rotisserie bird is the whole concept.",
+      "confidence": "high",
+      "sources": [
+        "https://www.7x7.com/a-tale-of-two-roast-chickens-san-francisco-2619949341.html",
+        "https://www.rtrotisserie.com/menu/rotisserie-chicken/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "house-of-prime-rib",
+      "name": "House of Prime Rib",
+      "signatureSubject": "King's cut",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "foreign-cinema",
+      "name": "Foreign Cinema",
+      "signatureSubject": "Fried chicken",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "limon-rotisserie",
+      "name": "Limón Rotisserie",
+      "signatureSubject": "Pollo a la brasa / Ceviche Limón",
+      "signatureRationale": "Official Limón menus: open-flame rotisserie chicken and house ceviche are the Peruvian signatures.",
+      "confidence": "high",
+      "sources": [
+        "https://www.limonrestaurants.com/menus/",
+        "https://www.limonrestaurants.com/menu/food-menu/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "kin-khao",
+      "name": "Kin Khao",
+      "signatureSubject": "Mushroom hor mok",
+      "signatureRationale": "Michelin, Eater, and Condé Nast Traveler: spicy mushroom curry mousse with rice cakes is Kin Khao’s signature.",
+      "confidence": "high",
+      "sources": [
+        "https://guide.michelin.com/ca/en/california/san-francisco/restaurant/kin-khao",
+        "https://sf.eater.com/dining-report/211119/kin-khao-review"
+      ],
+      "approved": false
+    },
+    {
+      "id": "china-live",
+      "name": "China Live",
+      "signatureSubject": "Duck buns and dumplings",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "r-and-g-lounge",
+      "name": "R&G Lounge",
+      "signatureSubject": "Mongolian beef",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "han-il-kwan",
+      "name": "Han Il Kwan",
+      "signatureSubject": "Kalbi",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "lovelys",
+      "name": "Lovely's",
+      "signatureSubject": "Drive-Thru smashburger",
+      "signatureRationale": "Infatuation: schmaltz-onion Drive-Thru smash is the Cole Valley order.",
+      "confidence": "high",
+      "sources": [
+        "https://www.theinfatuation.com/san-francisco/reviews/lovelys-sf",
+        "https://www.lovelysburgers.com/cole-valley"
+      ],
+      "approved": false
+    },
+    {
+      "id": "two-pitchers-brewing",
+      "name": "Two Pitchers Brewing Co.",
+      "signatureSubject": "$3 Baseline Lager (Ocean Beach taproom)",
+      "signatureRationale": "SFGATE, Infatuation, and official site: Outer Sunset taproom known for cheap Baseline Lager; food from Maillards on-site.",
+      "confidence": "high",
+      "sources": [
+        "https://www.twopitchers.com/oceanbeach",
+        "https://www.sfgate.com/food/article/smash-burgers-outer-sunset-22208919.php"
+      ],
+      "approved": false
+    },
+    {
+      "id": "maillards",
+      "name": "Maillards",
+      "signatureSubject": "Classic double smashburger",
+      "signatureRationale": "Chronicle, Infatuation, and Eater: caramelized-shallot double with Maillards sauce is the signature smash.",
+      "confidence": "high",
+      "sources": [
+        "https://www.maillardssf.com/",
+        "https://www.sfchronicle.com/food/restaurants/article/maillards-smashburger-outer-sunset-22336710.php"
+      ],
+      "approved": false
+    },
+    {
+      "id": "day-moon",
+      "name": "Day Moon",
+      "signatureSubject": "Cappuccino and a chocolate chip cookie",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "outerlands",
+      "name": "Outerlands",
+      "signatureSubject": "Levain toast with cultured butter & jam",
+      "signatureRationale": "Michelin, Thrillist, and Infatuation: thick house levain toast is the Outer Sunset brunch signature.",
+      "confidence": "high",
+      "sources": [
+        "https://guide.michelin.com/us/en/california/san-francisco/restaurant/outerlands",
+        "https://www.theinfatuation.com/san-francisco/reviews/outerlands"
+      ],
+      "approved": false
+    },
+    {
+      "id": "tony-niks",
+      "name": "Tony Nik's",
+      "signatureSubject": "Classic martini in historic North Beach bar",
+      "signatureRationale": "Tony Nik’s cafe history and SF Examiner: 1930s North Beach bar known for expert martinis and old-school vibe.",
+      "confidence": "high",
+      "sources": [
+        "https://www.tonyniks.com/",
+        "https://www.sfexaminer.com/culture/preserving-north-beach-history-one-martini-at-a-time-the-story-of-tony-niks-bar/article_ae3618fc-09e5-11ed-b8b8-db78417f9b6e.html"
+      ],
+      "approved": false
+    },
+    {
+      "id": "trick-dog",
+      "name": "Trick Dog",
+      "signatureSubject": "Rotating thematic cocktail menus",
+      "signatureRationale": "Imbibe and official site: twice-yearly conceptual menus are the bar’s signature—not one permanent drink.",
+      "confidence": "high",
+      "sources": [
+        "https://imbibemagazine.com/trick-dog-one-of-a-kind-cocktail-menus/",
+        "https://www.trickdogbar.com/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "true-laurel",
+      "name": "True Laurel",
+      "signatureSubject": "Mai O Mai",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "penny-roma",
+      "name": "Penny Roma",
+      "signatureSubject": "Seasonal pasta",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "bodega-sf",
+      "name": "Bodega SF",
+      "signatureSubject": "Pho and the chilled red wine",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "little-original-joes",
+      "name": "Little Original Joe's",
+      "signatureSubject": "Zucchini fries",
+      "signatureRationale": "The Chronicle lists zucchini fries among the dishes new to the Marina menu, The Infatuation says they are what you are really here for, and Food Gal predicted they would become the restaurant's signature.",
+      "confidence": "med",
+      "sources": [
+        "https://www.sfchronicle.com/food/restaurants/article/little-original-joes-marina-19473079.php",
+        "https://www.theinfatuation.com/san-francisco/reviews/little-original-joes",
+        "https://www.foodgal.com/2024/07/dining-at-the-new-little-original-joes/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "beit-rima",
+      "name": "Beit Rima",
+      "signatureSubject": "Chicken plate",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "farmhouse-kitchen-thai",
+      "name": "Farmhouse Kitchen Thai",
+      "signatureSubject": "Hat Yai fried chicken",
+      "signatureRationale": "Timeout and Chronicle: Hat Yai fried chicken with blue rice and curry is Farmhouse Kitchen’s signature.",
+      "confidence": "high",
+      "sources": [
+        "https://www.timeout.com/san-francisco/restaurants/farmhouse-kitchen-thai-cuisine",
+        "https://farmhousethai.com/san-francisco"
+      ],
+      "approved": false
+    },
+    {
+      "id": "daeho",
+      "name": "Daeho",
+      "signatureSubject": "Cheese kalbijjim (blowtorched)",
+      "signatureRationale": "Infatuation, Goldbelly, and viral press: braised short-rib stew capped with torched cheese.",
+      "confidence": "high",
+      "sources": [
+        "https://www.theinfatuation.com/san-francisco/reviews/daeho",
+        "https://www.goldbelly.com/restaurants/daeho-kalbijjim/kalbijjim-beef-braised-short-rib"
+      ],
+      "approved": false
+    },
+    {
+      "id": "burma-superstar",
+      "name": "Burma Superstar",
+      "signatureSubject": "Tea leaf salad (laphet thoke), tableside",
+      "signatureRationale": "Official menu and SFGATE: fermented tea-leaf salad mixed tableside made the Clement St. icon.",
+      "confidence": "high",
+      "sources": [
+        "https://www.burmasuperstar.co/menu/starters-salads-soups/",
+        "https://www.sfgate.com/food/article/Burma-Superstar-Tea-Leaf-Salad-returns-17203757.php"
+      ],
+      "approved": false
+    },
+    {
+      "id": "taqueria-el-buen-sabor",
+      "name": "Taqueria El Buen Sabor",
+      "signatureSubject": "Al pastor burrito",
+      "signatureRationale": "Official El Buen Sabor site and local writeups highlight the al pastor burrito; Infatuation covers the Mission taqueria.",
+      "confidence": "med",
+      "sources": [
+        "https://www.taqueriaelbuensabor.com/",
+        "https://www.theinfatuation.com/san-francisco/reviews/taqueria-el-buen-sabor"
+      ],
+      "approved": false
+    },
+    {
+      "id": "la-taqueria",
+      "name": "La Taqueria",
+      "signatureSubject": "Carne asada burrito, no rice (El Dorado crisp optional)",
+      "signatureRationale": "Infatuation, Bon Appétit, and Eater: riceless Mission burrito—often carne asada, optionally grill-crisped El Dorado-style.",
+      "confidence": "high",
+      "sources": [
+        "https://www.theinfatuation.com/san-francisco/reviews/la-taqueria",
+        "https://www.eater.com/2015/12/4/9835360/la-taqueria-mission-style-burrito-san-francisco"
+      ],
+      "approved": false
+    },
+    {
+      "id": "good-good-culture-club",
+      "name": "Good Good Culture Club",
+      "signatureSubject": "Stuffed Good Good chicken wing",
+      "signatureRationale": "Resy, Eater, and Infatuation: deboned wing stuffed with sticky rice, double-fried, mango-adobo glaze—the bestseller.",
+      "confidence": "high",
+      "sources": [
+        "https://blog.resy.com/2022/04/good-good-culture-club/",
+        "https://sf.eater.com/2022/6/9/23157301/stuffed-chicken-wings-san-francisco-restaurants"
+      ],
+      "approved": false
+    },
+    {
+      "id": "golden-boy-pizza",
+      "name": "Golden Boy Pizza",
+      "signatureSubject": "Sausage pizza",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "comstock-saloon",
+      "name": "Comstock Saloon",
+      "signatureSubject": "Martini or dirty martini",
+      "signatureRationale": "Andy’s own pick.",
+      "confidence": "andy",
+      "sources": [],
+      "approved": true
+    },
+    {
+      "id": "rampant-bottle-and-bar",
+      "name": "Rampant Bottle & Bar",
+      "signatureSubject": "Natural wine by-the-glass + bottle shop",
+      "signatureRationale": "Official About and Chronicle: Outer Richmond natural-wine bottle shop/bar; rotating small-production pours are the draw.",
+      "confidence": "high",
+      "sources": [
+        "https://rampantwine.com/pages/about",
+        "https://www.sfchronicle.com/food/restaurants/article/rampant-wine-bar-outer-richmond-19823494.php"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ordinaire",
+      "name": "Ordinaire",
+      "signatureSubject": "Natural wine shrine (BTG + retail)",
+      "signatureRationale": "SFGATE “shrine to natural wine” plus Infatuation/Wikipedia: Grand Ave. Oakland natural-wine bar/shop (Bay Area list fixture).",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfgate.com/wine/article/Ordinaire-in-Oakland-A-shrine-to-natural-wine-6879993.php",
+        "https://ordinairewine.com/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "waystone",
+      "name": "Waystone",
+      "signatureSubject": "Curated wine list + live jazz nights",
+      "signatureRationale": "Official About/calendar: Causwells wine director’s list plus live jazz in North Beach.",
+      "confidence": "high",
+      "sources": [
+        "https://www.waystonesf.com/about",
+        "https://www.waystonesf.com/calendar"
+      ],
+      "approved": false
+    },
+    {
+      "id": "golden-sardine",
+      "name": "Golden Sardine",
+      "signatureSubject": "Riesling and tinned fish among poetry shelves",
+      "signatureRationale": "Eater SF reported the owner's plan for 'an unreasonable amount of riesling' plus a tinned-fish shop, the Chronicle noted 10 Rieslings by the glass at opening, and The Infatuation describes drinking Riesling surrounded by poetry books.",
+      "confidence": "high",
+      "sources": [
+        "https://sf.eater.com/2023/10/4/23903341/golden-sardine-opening-north-beach-wine",
+        "https://www.sfchronicle.com/food/restaurants/article/san-francisco-new-open-18600609.php",
+        "https://www.theinfatuation.com/san-francisco/reviews/golden-sardine"
+      ],
+      "approved": false
+    },
+    {
+      "id": "radhaus",
+      "name": "Radhaus",
+      "signatureSubject": "Bay-view hall with a Ponderosa pine bar",
+      "signatureRationale": "Eater SF's review headline says the big, beautiful space is the draw, and Architectural Record calls the Ponderosa pine bar and communal bench the restaurant's signature elements.",
+      "confidence": "high",
+      "sources": [
+        "https://sf.eater.com/2018/10/4/17933678/radhaus-beer-review-marina-san-francisco",
+        "https://www.architecturalrecord.com/articles/14046-radhaus-by-envelope-ad",
+        "https://fortmason.org/resident/radhaus-2/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "the-interval",
+      "name": "The Interval",
+      "signatureSubject": "Floor-to-ceiling library and 10,000 Year Clock prototypes",
+      "signatureRationale": "Long Now's own page and Fast Company single out the floor-to-ceiling Manual for Civilization library, the Orrery, and the Chime Generator table as the room's defining features.",
+      "confidence": "high",
+      "sources": [
+        "https://longnow.org/interval/",
+        "https://www.fastcompany.com/3034480/inside-the-worlds-most-intriguing-and-probably-only-futurist-bar/",
+        "https://longnow.org/ideas/the-interval-home-of-long-now/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "the-page",
+      "name": "The Page",
+      "signatureSubject": "Parklet built as a replica of the bar inside",
+      "signatureRationale": "SFGATE calls it probably the coolest parklet in San Francisco, a reconstruction of the interior with a faux-brick wall and fireplace, and SFist calls it the most charming and clever pandemic-era parklet in the city.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfgate.com/food/article/the-page-san-francisco-dive-bar-18362731.php",
+        "https://sfist.com/2024/06/05/lower-haight-bar-the-page-gets-their-live-music-permit-despite-neighbors-noise-objections/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "zam-zam",
+      "name": "Zam Zam",
+      "signatureSubject": "Gin martini (and the half-size “Bruno”)",
+      "signatureRationale": "The city's Legacy Business Registry report, Time Out, and the SF Examiner all name the gin martini as the house signature, and the Examiner explains the smaller 'Bruno' pour named for the late owner.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfexaminer.com/culture/food-and-drink/zam-zam-keeps-its-martinis-cold-and-its-history-on-display/article_4d1342bf-43e2-4d02-b87b-3342a059f982.html",
+        "https://www.timeout.com/san-francisco/bars/aub-zam-zam",
+        "https://www.sf.gov/sites/default/files/2024-11/item_3o._lbr-2016-17-006_zam_zam.pdf"
+      ],
+      "approved": false
+    },
+    {
+      "id": "mosto",
+      "name": "Mosto",
+      "signatureSubject": "Deep tequila and mezcal lineup",
+      "signatureRationale": "Mosto's own site calls its agave-spirits selection one of SF's best, and 2011 opening coverage (tablehopper, Thrillist) counted more than 300 tequilas and mezcals.",
+      "confidence": "high",
+      "sources": [
+        "https://www.mostobar.com/about-us",
+        "https://www.tablehopper.com/chatterbox/tacolicious-ii-and-mosto-now-open-in-the-mission/",
+        "https://www.thrillist.com/bars/san-francisco/the-mission/mosto_tequila_mexican"
+      ],
+      "approved": false
+    },
+    {
+      "id": "self-edge",
+      "name": "Self Edge",
+      "signatureSubject": "Japanese selvedge denim",
+      "signatureRationale": "Self Edge's own listing says it specializes in Japanese selvedge denim, most of it exclusive to the store in North America, and the SF Chronicle calls it San Francisco's Japanese denim mecca.",
+      "confidence": "high",
+      "sources": [
+        "https://www.selfedge.com/?route=information%2Fabout_us",
+        "https://www.sfchronicle.com/style/article/Remembering-Karl-Lagerfeld-in-San-Francisco-and-13632249.php",
+        "https://www.7x7.com/best-mens-clothing-stores-san-francisco-2482054826/self-edge-for-the-die-hard-selvedge-denim-fan"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ministry-of-scent",
+      "name": "Ministry of Scent",
+      "signatureSubject": "Niche and indie perfumes",
+      "signatureRationale": "The shop's About page says it presents artistic scents from independent perfumers and niche houses, and The New Fillmore calls it an S.F. original known for its wide selection of niche and indie scent houses.",
+      "confidence": "high",
+      "sources": [
+        "https://ministryofscent.com/pages/about",
+        "https://newfillmore.com/2024/07/09/new-on-perfume-row-ministry-of-scent/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "stonemill-matcha",
+      "name": "Stonemill Matcha",
+      "signatureSubject": "Stone-ground Kyoto matcha",
+      "signatureRationale": "Eater SF's opening coverage and the cafe's own site center it on stone-ground matcha from shade-grown Kyoto farms, served hand-whisked at a ceremonial counter or as lattes.",
+      "confidence": "high",
+      "sources": [
+        "https://sf.eater.com/2018/5/9/17336632/stonemill-matcha-cafe-opens-valencia-inside",
+        "https://www.stonemillmatcha-us.com/",
+        "https://teasquirrel.com/home/2018/5/14/san-francisco-stonemill-matcha-cafe-first-impressions"
+      ],
+      "approved": false
+    },
+    {
+      "id": "evan-kinori",
+      "name": "Evan Kinori",
+      "signatureSubject": "Relaxed, natural-fiber menswear",
+      "signatureRationale": "The FT and SF Standard describe the store as the flagship for Kinori's soft, wide-cut, earth-toned clothing made from carefully sourced natural fabrics, shown alongside ceramics and furniture.",
+      "confidence": "high",
+      "sources": [
+        "https://www.ft.com/content/2876394f-3174-4585-99d8-3ffb4af04b58",
+        "https://sfstandard.com/2025/03/02/evan-kinori-menswear-fashion-designer-san-francisco/",
+        "https://evankinori.com/pages/visit"
+      ],
+      "approved": false
+    },
+    {
+      "id": "rachel-comey",
+      "name": "Rachel Comey",
+      "signatureSubject": "Stacked-heel clogs and Legion jeans",
+      "signatureRationale": "The brand's own bio credits it with pioneering stacked-heel clogs and booties and cropped high-waist denim, and GQ and Vogue single out the wide-leg cropped Legion jean as its signature.",
+      "confidence": "high",
+      "sources": [
+        "https://rachelcomey.com/pages/about-rachel",
+        "https://www.gq.com/story/rachel-comey-interview",
+        "https://www.vogue.com/article/rachel-comey-legion-jeans"
+      ],
+      "approved": false
+    },
+    {
+      "id": "sf76",
+      "name": "SF76",
+      "signatureSubject": "Japanese tableware (Hasami Porcelain)",
+      "signatureRationale": "The shop's own site names Hasami Porcelain, ARAS tableware, donabe, kitchen tools and incense as its core lines, and its FAQ steers visitors to compare Hasami Porcelain in store.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sf-76.com/pages/about",
+        "https://www.sf-76.com/pages/faq"
+      ],
+      "approved": false
+    },
+    {
+      "id": "song-tea-and-ceramics",
+      "name": "Song Tea & Ceramics",
+      "signatureSubject": "Rare Chinese and Taiwanese teas and artist-made ceramics",
+      "signatureRationale": "The shop's site, Fresh Cup and Time Out all describe small-batch teas sourced directly from producers in China and Taiwan, led by its flagship oolongs, sold alongside handmade ceramics from Taiwan, China and the US.",
+      "confidence": "high",
+      "sources": [
+        "https://songtea.com/",
+        "https://freshcup.com/song-tea-ceramics/",
+        "https://www.timeout.com/san-francisco/restaurants/song-tea-ceramics"
+      ],
+      "approved": false
+    },
+    {
+      "id": "relove",
+      "name": "ReLove",
+      "signatureSubject": "Curated designer, vintage and contemporary resale",
+      "signatureRationale": "Time Out, InsideHook and the shop's own site describe a hand-picked mix of true vintage, designer and contemporary pieces for women and men.",
+      "confidence": "high",
+      "sources": [
+        "https://www.timeout.com/san-francisco/shopping/relove",
+        "https://www.insidehook.com/style-san-francisco/best-thrift-stores-san-francisco",
+        "https://shoprelove.myshopify.com/pages/about-us"
+      ],
+      "approved": false
+    },
+    {
+      "id": "reliquary",
+      "name": "Reliquary",
+      "signatureSubject": "Antique jewelry and a 22K gold house line",
+      "signatureRationale": "Time Out highlights the owner's trove of antique and vintage jewelry, and the shop's site leads with its 22K gold house-line strands and rings.",
+      "confidence": "high",
+      "sources": [
+        "https://www.timeout.com/san-francisco/shopping/reliquary",
+        "https://reliquarysf.com/collections/reliquary-house-line-jewelry"
+      ],
+      "approved": false
+    },
+    {
+      "id": "heath-ceramics",
+      "name": "Heath Ceramics",
+      "signatureSubject": "Heath tile and tableware (tile made on site)",
+      "signatureRationale": "Heath's own San Francisco and factory-tour pages present the building as its tile factory and showroom, and 7x7 and The Bold Italic highlight watching tile production through glass from the showroom.",
+      "confidence": "high",
+      "sources": [
+        "https://www.heathceramics.com/pages/factory-tours",
+        "https://www.7x7.com/first-look-heath-ceramics-new-mission-store-opening-exhibit-1781612255.html",
+        "https://www.thebolditalic.com/behind-the-scenes-at-heath-ceramics-the-bold-italic-san-francisco/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "dandelion-chocolate",
+      "name": "Dandelion Chocolate",
+      "signatureSubject": "Single-origin chocolate bars and toasted-to-order s'mores",
+      "signatureRationale": "Dandelion's Ferry Building page and its 2026 post single out its bean-to-bar chocolate bars, hot chocolate, and freshly toasted s'mores as the draws at this shop.",
+      "confidence": "high",
+      "sources": [
+        "https://www.dandelionchocolate.com/pages/ferry-building",
+        "https://www.facebook.com/DandelionChocolate/videos/who-doesnt-love-the-ferry-building-were-honored-to-have-been-calling-this-bay-ar/4191167301095852/",
+        "https://sfstandard.com/2022/09/29/best-food-ferry-building-san-francisco-guide/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "william-stout-architectural-books",
+      "name": "William Stout Architectural Books",
+      "signatureSubject": "Architecture and design books",
+      "signatureRationale": "The shop's About page and SF Heritage describe it as one of only three US bookstores dedicated to architecture and design, stocking everything from rare books to contemporary monographs.",
+      "confidence": "high",
+      "sources": [
+        "https://stoutbooks.com/pages/about",
+        "https://www.sfheritage.org/heritage-in-the-neighborhoods/jackson-square-business-spotlights-william-stout-tricolore-caffe-pizzeria/",
+        "https://www.eamesinstitute.org/stories/william-stout-architectural-books/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "shoji",
+      "name": "Shoji",
+      "signatureSubject": "Matcha einspänner",
+      "signatureRationale": "The SF Chronicle and Hoodline call the whipped-cream-topped matcha einspänner Shoji's viral signature; the Chronicle reports it sells more than 200 a day.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfchronicle.com/food/wine/article/shoji-bar-drink-san-francisco-21197526.php",
+        "https://hoodline.com/2026/06/downtown-sf-loses-it-over-shota-s-matcha-by-day-izakaya-by-night-hot-spot/",
+        "https://www.wane.com/news/cafe-by-day-and-bar-by-night-shoji-is-ingi-shota-sons-new-sf-spot/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "golden-gate-park",
+      "name": "Golden Gate Park",
+      "signatureSubject": "Conservatory of Flowers",
+      "signatureRationale": "Gardens of Golden Gate Park calls it the oldest public wood-and-glass conservatory in North America and one of San Francisco's most photographed attractions; Wikipedia names it the park's oldest building.",
+      "confidence": "med",
+      "sources": [
+        "https://gggp.org/conservatory-of-flowers-celebrates-20th-anniversary-of-re-opening/",
+        "https://en.wikipedia.org/wiki/Conservatory_of_Flowers",
+        "https://en.wikipedia.org/wiki/Golden_Gate_Park"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ocean-beach",
+      "name": "Ocean Beach",
+      "signatureSubject": "Surf, fog, and beach bonfires",
+      "signatureRationale": "Wikipedia says Ocean Beach is known for its strong currents, surf culture, and foggy late-spring and summer weather; the NPS describes a 3.5-mile beach whose currents suit only experienced surfers.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ocean_Beach,_San_Francisco",
+        "https://www.nps.gov/goga/planyourvisit/oceanbeach.htm"
+      ],
+      "approved": false
+    },
+    {
+      "id": "lush-gelato",
+      "name": "Lush Gelato",
+      "signatureSubject": "Brown butter and chocolate honeycomb gelato",
+      "signatureRationale": "The Infatuation's review leads with brown butter & chocolate honeycomb, it is a standing item on the shop's official flavor list, and it is one of the most-reviewed items on the shop's Yelp menu.",
+      "confidence": "high",
+      "sources": [
+        "https://www.theinfatuation.com/san-francisco/reviews/lush-gelato",
+        "https://www.lushgelato.com/menu",
+        "https://www.yelp.com/menu/lush-gelato-san-francisco-2"
+      ],
+      "approved": false
+    },
+    {
+      "id": "breadbelly",
+      "name": "Breadbelly",
+      "signatureSubject": "Kaya toast",
+      "signatureRationale": "The bakery's site gives kaya toast its own page, The Infatuation calls it the must-order, and Eater SF credits it with building Breadbelly's following.",
+      "confidence": "high",
+      "sources": [
+        "https://www.breadbellysf.com/info/kaya-toast",
+        "https://www.theinfatuation.com/san-francisco/reviews/breadbelly",
+        "https://sf.eater.com/2019/2/15/18217667/breadbelly-san-francisco-bakery-cafe-asian-american-pastry-kaya-toast"
+      ],
+      "approved": false
+    },
+    {
+      "id": "sfmoma",
+      "name": "SFMOMA",
+      "signatureSubject": "Doris and Donald Fisher Collection",
+      "signatureRationale": "SFMOMA calls the Fisher Collection one of the world's greatest private collections of contemporary art, shown under a 100-year partnership; it was fully reinstalled across Floors 3–6 in April 2026.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfmoma.org/artists-artworks/fisher-collection/",
+        "https://www.sfmoma.org/press-release/sfmoma-to-unveil-major-transformation-of-the-renowned-doris-and-donald-fisher-collection-the-first-full-reinstallation-of-the-collection-at-sfmoma-since-2016/",
+        "https://en.wikipedia.org/wiki/San_Francisco_Museum_of_Modern_Art"
+      ],
+      "approved": false
+    },
+    {
+      "id": "de-young-museum",
+      "name": "de Young Museum",
+      "signatureSubject": "Free Hamon Observation Tower",
+      "signatureRationale": "FAMSF lists the ninth-floor Hamon Observation Tower as open to everyone without a ticket; SFGATE and the SF Chronicle describe its 360-degree view as a well-loved free draw and the highest viewpoint in Golden Gate Park.",
+      "confidence": "high",
+      "sources": [
+        "https://www.famsf.org/visit/de-young-tickets-hours",
+        "https://www.sfgate.com/local/article/hamon-observation-tower-golden-gate-park-18156404.php",
+        "https://en.wikipedia.org/wiki/De_Young_Museum"
+      ],
+      "approved": false
+    },
+    {
+      "id": "golden-gate-bridge",
+      "name": "Golden Gate Bridge",
+      "signatureSubject": "International Orange Art Deco towers spanning the Golden Gate",
+      "signatureRationale": "Wikipedia calls the bridge one of the most internationally recognized symbols of San Francisco and credits consulting architect Irving Morrow with its Art Deco towers and International Orange color.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Golden_Gate_Bridge",
+        "https://jensen-architects.com/work/golden-gate-bridge-pavilion/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "crissy-field",
+      "name": "Crissy Field",
+      "signatureSubject": "Golden Gate Bridge views from East Beach and the shoreline promenade",
+      "signatureRationale": "The Presidio Trust says this stretch of shoreline is known for iconic views of the Golden Gate Bridge, and the Parks Conservancy says the Crissy Promenade offers spectacular views of the Golden Gate and the bay.",
+      "confidence": "high",
+      "sources": [
+        "https://presidio.gov/explore/attractions/crissy-field-east-beach",
+        "https://www.parksconservancy.org/projects/crissy-field"
+      ],
+      "approved": false
+    },
+    {
+      "id": "palace-of-fine-arts",
+      "name": "Palace of Fine Arts",
+      "signatureSubject": "The domed rotunda reflected in the lagoon",
+      "signatureRationale": "Wikipedia and the California Historical Landmark nomination describe the lagoon as a mirror for the rotunda and colonnades, and SF Rec & Park calls the Palace one of the most photographed sites in the city.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Palace_of_Fine_Arts",
+        "https://ohp.parks.ca.gov/pages/1067/files/CHL_San%20Francisco_Palace%20of%20Fine%20Arts.pdf",
+        "https://sfrecpark.org/facilities/facility/details/Palace-of-Fine-Arts-423"
+      ],
+      "approved": false
+    },
+    {
+      "id": "legion-of-honor",
+      "name": "Legion of Honor",
+      "signatureSubject": "Rodin's The Thinker in the colonnaded Court of Honor",
+      "signatureRationale": "FAMSF says the bronze cast of The Thinker has stood in the Court of Honor since the 1924 opening and calls it the courtyard's focal point. Wikipedia names the Rodin sculpture collection as the museum's most distinguished.",
+      "confidence": "high",
+      "sources": [
+        "https://www.famsf.org/learn-engage/read-watch-listen/5-spaces-contemplation-legion-of-honor",
+        "https://www.famsf.org/learn-engage/read-watch-listen/close-look/legion-100-history-highlights",
+        "https://en.wikipedia.org/wiki/Legion_of_Honor_(museum)"
+      ],
+      "approved": false
+    },
+    {
+      "id": "alcatraz",
+      "name": "Alcatraz",
+      "signatureSubject": "The cellhouse of the former federal penitentiary",
+      "signatureRationale": "NPS presents Alcatraz as the former maximum-security federal penitentiary and builds the visit around its cellhouse audio tour. Wikipedia calls the former prison one of San Francisco's major tourist attractions.",
+      "confidence": "high",
+      "sources": [
+        "https://www.nps.gov/alca/",
+        "https://www.nps.gov/alca/faqs.htm",
+        "https://en.wikipedia.org/wiki/Alcatraz_Federal_Penitentiary"
+      ],
+      "approved": false
+    },
+    {
+      "id": "fishermans-wharf",
+      "name": "Fisherman's Wharf",
+      "signatureSubject": "Ship's-wheel sign at Jefferson and Taylor",
+      "signatureRationale": "The Fisherman's Wharf Community Benefit District calls the sign famous and the Wharf's go-to meeting spot, and LEDinside calls it one of the city's most photographed landmarks.",
+      "confidence": "high",
+      "sources": [
+        "https://www.fishermanswharf.org/about-us/faqs/",
+        "https://www.ledinside.com/lighting/2014/4/ge_illuminates_san_francisco_fisherman_warf"
+      ],
+      "approved": false
+    },
+    {
+      "id": "pier-39",
+      "name": "Pier 39",
+      "signatureSubject": "Sea lions on K-Dock",
+      "signatureRationale": "Pier 39's own site and Wikipedia describe the California sea lion colony hauled out on K-Dock since 1989 as the pier's star attraction, and NPR calls them its star attraction for tourists.",
+      "confidence": "high",
+      "sources": [
+        "https://pier39.com/sea-lions",
+        "https://en.wikipedia.org/wiki/Pier_39",
+        "https://www-s1.npr.org/2024/05/04/1249133148/sea-lions-pier-39-san-francisco-bay"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ghirardelli-square",
+      "name": "Ghirardelli Square",
+      "signatureSubject": "The illuminated rooftop Ghirardelli sign over the bay",
+      "signatureRationale": "SF Planning calls the rooftop sign the square's primary identification marker, visible as one approaches from the bay. Noe Hill calls it familiar to all who sail the bay, and the SF Standard notes it has been part of the skyline for over a century.",
+      "confidence": "high",
+      "sources": [
+        "https://commissions.sfplanning.org/hpcpackets/2017-008875COA.pdf",
+        "https://noehill.com/sf/landmarks/sf030.asp",
+        "https://sfstandard.com/2026/04/24/ghiradelli-square-miami-investment-firm/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "lombard-street",
+      "name": "Lombard Street",
+      "signatureSubject": "Eight brick-paved hairpin turns down Russian Hill",
+      "signatureRationale": "Wikipedia and SF Travel both describe the one-way block's eight sharp hairpin turns, billed as the crookedest street in the world.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lombard_Street_(San_Francisco)",
+        "https://www.sftravel.com/things-to-do/attractions/iconic-sf/lombard-street"
+      ],
+      "approved": false
+    },
+    {
+      "id": "coit-tower",
+      "name": "Coit Tower",
+      "signatureSubject": "360-degree city and bay views from the top",
+      "signatureRationale": "SF Rec & Park and Wikipedia both describe the observation deck's panoramic views across the city and bay, from the Golden Gate Bridge to the Bay Bridge.",
+      "confidence": "high",
+      "sources": [
+        "https://sfrecpark.org/Facilities/Facility/Details/Coit-Tower-290",
+        "https://en.wikipedia.org/wiki/Coit_Tower"
+      ],
+      "approved": false
+    },
+    {
+      "id": "transamerica-pyramid",
+      "name": "Transamerica Pyramid",
+      "signatureSubject": "Tapering white pyramid on the skyline",
+      "signatureRationale": "Wikipedia and the SF Chronicle describe the 853-foot pyramid-shaped tower as one of the symbols of San Francisco and the city's best-known skyscraper, rising at the end of Columbus Avenue.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Transamerica_Pyramid",
+        "https://www.sfchronicle.com/news/article/pyramid-s-steep-path-from-civic-eyesore-to-icon-3277598.php"
+      ],
+      "approved": false
+    },
+    {
+      "id": "exploratorium",
+      "name": "Exploratorium",
+      "signatureSubject": "Hundreds of hands-on science and perception exhibits",
+      "signatureRationale": "Wikipedia and the AIA Top Ten citation describe it as a museum built around hands-on, participatory exhibits on science, art and human perception, with more than 600 at Pier 15.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Exploratorium",
+        "https://www.aiatopten.org/node/472"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ferry-building",
+      "name": "Ferry Building",
+      "signatureSubject": "Clock tower at the foot of Market Street",
+      "signatureRationale": "Wikipedia and the Emperor Norton Trust single out the 245-foot clock tower, whose best-known view is straight down Market Street, as the building's defining landmark.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/San_Francisco_Ferry_Building",
+        "https://emperornortontrust.org/blog/2023/7/20/the-ferry-building-clock-tower-from-emperor-nortons-street"
+      ],
+      "approved": false
+    },
+    {
+      "id": "dragon-gate",
+      "name": "Dragon Gate",
+      "signatureSubject": "Chinatown's southern gateway on Grant Avenue",
+      "signatureRationale": "Wikipedia calls the gate one of the most photographed locations in Chinatown, and SF Public Works describes it as marking the southern entrance to Chinatown.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Dragon_Gate_(San_Francisco)",
+        "https://www.sfpublicworkstv.org/february2026",
+        "https://artandarchitecture-sf.com/chinatown-san-francisco-may-11-2012.html"
+      ],
+      "approved": false
+    },
+    {
+      "id": "powell-market-cable-car-turnaround",
+      "name": "Powell & Market Cable Car Turnaround",
+      "signatureSubject": "Crews turning cable cars by hand on the turntable",
+      "signatureRationale": "Market Street Railway calls it the most-photographed cable car turntable and notes that cable car travelogues began with the crew pushing a car around it.",
+      "confidence": "high",
+      "sources": [
+        "https://www.streetcar.org/wheels-motion/ride-cable-car-lines/",
+        "https://www.streetcar.org/75-years-ago-cable-car-war/"
+      ],
+      "approved": false
+    },
+    {
+      "id": "grace-cathedral",
+      "name": "Grace Cathedral",
+      "signatureSubject": "Gilded Doors of Paradise and the labyrinths",
+      "signatureRationale": "The cathedral's treasures page and SFGATE highlight the gilded replicas of Ghiberti's Florence doors at the main entrance, and Wikipedia and the cathedral note its indoor and outdoor labyrinths.",
+      "confidence": "high",
+      "sources": [
+        "https://gracecathedral.org/the-cathedrals-treasures/",
+        "https://www.sfgate.com/bayarea/article/grace-cathedral-replica-doors-a-doorway-to-italy-3640981.php",
+        "https://en.wikipedia.org/wiki/Grace_Cathedral,_San_Francisco"
+      ],
+      "approved": false
+    },
+    {
+      "id": "painted-ladies",
+      "name": "Painted Ladies",
+      "signatureSubject": "View of Postcard Row with the downtown skyline behind",
+      "signatureRationale": "Wikipedia and the city's 1984 Alamo Square Historic District designation both single out Postcard Row with its background of the downtown skyline, and SF Travel describes the raised view from the park.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Alamo_Square,_San_Francisco",
+        "https://en.wikipedia.org/wiki/Painted_ladies",
+        "https://www.sftravel.com/things-to-do/attractions/iconic-sf/painted-ladies"
+      ],
+      "approved": false
+    },
+    {
+      "id": "city-hall",
+      "name": "City Hall",
+      "signatureSubject": "Gilded Beaux-Arts dome, taller than the U.S. Capitol's",
+      "signatureRationale": "Wikipedia and the National Register nomination both name the dome as the building's principal design feature and note that it rises higher than the U.S. Capitol's.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/San_Francisco_City_Hall",
+        "https://npgallery.nps.gov/NRHP/GetAsset/NHLS/78000757_text"
+      ],
+      "approved": false
+    },
+    {
+      "id": "haight-ashbury",
+      "name": "Haight-Ashbury",
+      "signatureSubject": "The Haight and Ashbury street corner, heart of the 1960s counterculture",
+      "signatureRationale": "Wikipedia says the district is named for this intersection and is known as a main center of the 1960s counterculture. The city landmark resolution calls the northwest corner the neighborhood's ground zero, marked by the street names on its facade.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Haight-Ashbury",
+        "https://noehill.com/sf/landmarks/sf253.asp"
+      ],
+      "approved": false
+    },
+    {
+      "id": "castro-theatre",
+      "name": "Castro Theatre",
+      "signatureSubject": "Red neon blade sign and marquee over Castro Street",
+      "signatureRationale": "The city's 2023 landmark amendment lists the 1937 blade sign and marquee as character-defining features and says the neighborhood's name, the Castro, was inspired by the theater's red vertical blade sign. Wikipedia calls the marquee a landmark.",
+      "confidence": "high",
+      "sources": [
+        "https://citypln-m-extnl.sfgov.org/Commissions/HPC/2_1_2023/Commission%20Packet/2022-006075DES.pdf",
+        "https://en.wikipedia.org/wiki/Castro_Theatre"
+      ],
+      "approved": false
+    },
+    {
+      "id": "twin-peaks",
+      "name": "Twin Peaks",
+      "signatureSubject": "Panoramic view down Market Street to downtown and the Bay",
+      "signatureRationale": "SF Rec & Park describes visitors coming to the north-peak lot for 180-degree Bay Area views, and SFGATE notes that the peaks sit at the far end of Market Street's diagonal line from the Ferry Building.",
+      "confidence": "high",
+      "sources": [
+        "https://www.sfrecpark.org/Facilities/Facility/Details/Twin-Peaks-384",
+        "https://www.sfgate.com/bayarea/place/article/Twin-Peaks-a-towering-tribute-to-nature-4404456.php",
+        "https://en.wikipedia.org/wiki/Twin_Peaks_(San_Francisco)"
+      ],
+      "approved": false
+    },
+    {
+      "id": "dolores-park",
+      "name": "Dolores Park",
+      "signatureSubject": "Sunny hillside lawns with a downtown skyline view",
+      "signatureRationale": "Wikipedia describes the park's warm, sunny microclimate and its northeast view of downtown from the southwest corner; Lonely Planet highlights the palm-framed skyline view from the upper corner.",
+      "confidence": "high",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mission_Dolores_Park",
+        "https://www.lonelyplanet.com/points-of-interest/dolores-park/383867"
+      ],
+      "approved": false
+    },
+    {
+      "id": "lands-end-sutro-baths",
+      "name": "Lands End & Sutro Baths",
+      "signatureSubject": "Sutro Baths ruins and cliff-top Golden Gate views",
+      "signatureRationale": "NPS pages present the concrete Sutro Baths ruins and the Coastal Trail's Golden Gate views as the highlights of Lands End, and Wikipedia's Lands End article features both.",
+      "confidence": "high",
+      "sources": [
+        "https://www.nps.gov/goga/planyourvisit/cliff-house-sutro-baths.htm",
+        "https://www.nps.gov/goga/planyourvisit/landsend.htm",
+        "https://en.wikipedia.org/wiki/Lands_End_(San_Francisco)"
+      ],
+      "approved": false
+    }
+  ]
+}
