@@ -251,7 +251,10 @@ system (`prefers-color-scheme`), map included.
   Google Maps pill, what it's known for, the tags, the note, the write-up, and
   the address all sit right on the color, with no card. The desktop map rail
   is the same page at rail width; in the phone map sheet the photo runs edge
-  to edge and dissolves the same way into the sheet's tinted glass.
+  to edge and dissolves the same way into the sheet's tinted glass. On wide
+  screens the List | Map switch stays at the bottom of a place page over a
+  strip of the same dissolve, so text fades out before it instead of running
+  under it.
 - **List:** a faint glow behind the title in the colors of Andy's picks'
   photos (pale on the light page, deep on the dark one), easing out well
   before the first row of cards. The category row and glass pills sit on it;

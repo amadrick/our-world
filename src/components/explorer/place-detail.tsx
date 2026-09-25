@@ -360,8 +360,13 @@ export function PlaceDetail({ place, onBack, onShowOnMap, variant }: PlaceDetail
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-2xl px-5 pt-10 pb-36 md:px-8 md:pt-12 md:pb-24">
+      <div className="relative mx-auto max-w-2xl px-5 pt-10 pb-36 md:px-8 md:pt-12 md:pb-24 lg:pb-4">
         {details}
+      </div>
+
+      {/* Wide screens keep the List | Map switch floating at the bottom: text dissolves before it rather than running under it. */}
+      <div aria-hidden className="pointer-events-none sticky bottom-0 hidden h-28 lg:block">
+        <PhotoDissolve color={color} className="h-full" />
       </div>
     </article>
   );
