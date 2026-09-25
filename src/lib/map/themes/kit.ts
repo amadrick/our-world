@@ -21,7 +21,7 @@ export type Palette = Record<string, string>;
 /** How far each surface leans toward an open place's color, and how colorful it gets. */
 export type TintTable<P extends Palette> = Partial<Record<keyof P, [mix: number, chroma: number]>>;
 
-export type MapThemeId = "golden" | "editorial" | "dimensional";
+export type MapThemeId = "golden" | "editorial" | "dimensional" | "apple";
 
 export interface MapTheme<P extends Palette = Palette> {
   id: MapThemeId;
@@ -32,6 +32,8 @@ export interface MapTheme<P extends Palette = Palette> {
   light?(C: P, ctx: StyleContext): LightSpecification;
   /** Camera tilt when the map frames a neighborhood or a place; 0 keeps it flat. */
   pitch: number;
+  /** Shades the hills from the offline elevation tiles, when they're there. */
+  hills?: boolean;
 }
 
 export interface StyleContext {
@@ -95,7 +97,9 @@ export const roadFilter = (group: RoadGroup, extra: Expr[] = []): FilterSpecific
 export const FONT = {
   sans: ["Inter"],
   medium: ["Inter Medium"],
+  mediumItalic: ["Inter Medium Italic"],
   semibold: ["Inter SemiBold"],
+  bold: ["Inter Bold"],
   serif: ["Newsreader"],
   serifItalic: ["Newsreader Italic"],
 };
@@ -104,7 +108,9 @@ export function fontFaces(origin: string): Record<string, string> {
   return {
     Inter: `${origin}/fonts/InterVariable.woff2`,
     "Inter Medium": `${origin}/fonts/Inter-Medium.woff2`,
+    "Inter Medium Italic": `${origin}/fonts/Inter-MediumItalic.woff2`,
     "Inter SemiBold": `${origin}/fonts/Inter-SemiBold.woff2`,
+    "Inter Bold": `${origin}/fonts/Inter-Bold.woff2`,
     Newsreader: `${origin}/fonts/Newsreader-Medium.woff2`,
     "Newsreader Italic": `${origin}/fonts/Newsreader-Italic.woff2`,
   };
@@ -225,9 +231,37 @@ const parseColor = (hex: string, alpha = 1): [number, number, number, number] =>
 
 /**
  * Draws a generated image by id: `blank-<px>`, `stipple-<hex>-<alpha%>`,
- * `landmark-<hex>`, `peak-<hex>`. Unknown ids return null.
+ * `landmark-<hex>`, `peak-<hex>`, `dot-<hex>`. Unknown ids return null.
  */
 export function missingImage(id: string): GeneratedImage | null {
+  const dot = /^dot-([0-9a-f]{6})$/.exec(id);
+  if (dot) {
+    // A round marker with a white rim and a white center, like Apple's point-of-interest glyphs.
+    const size = 30;
+    const data = new Uint8Array(size * size * 4);
+    const [r, g, b] = parseColor(`#${dot[1]}`);
+    const c = size / 2;
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const d = Math.hypot(x + 0.5 - c, y + 0.5 - c);
+        const outer = Math.min(1, Math.max(0, 13 - d));
+        if (outer <= 0) continue;
+        const fill = Math.min(1, Math.max(0, 10.5 - d)) - Math.min(1, Math.max(0, 3.5 - d));
+        const white = 1 - fill;
+        data.set(
+          [
+            Math.round(r * fill + 255 * white),
+            Math.round(g * fill + 255 * white),
+            Math.round(b * fill + 255 * white),
+            Math.round(outer * 255),
+          ],
+          (y * size + x) * 4,
+        );
+      }
+    }
+    return { width: size, height: size, data, pixelRatio: 2 };
+  }
+
   const blank = /^blank-(\d+)$/.exec(id);
   if (blank) {
     const size = Number(blank[1]);

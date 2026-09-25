@@ -36,7 +36,7 @@ function safePadding(map: MapLibreMap, padding: MapPadding, margin: number): Map
 const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 const scheme = (): ColorScheme => (darkQuery().matches ? "dark" : "light");
 
-/** Framed this close, a theme that tilts (the dimensional city) leans the camera in. */
+/** Framed this close, a theme that tilts (dimensional, Apple) leans the camera in. */
 const TILT_FROM_ZOOM = 13.5;
 /** A glide to a place farther than this many screen diagonals flies instead. */
 const GLIDE_REACH = 1.5;
@@ -216,7 +216,7 @@ export const maplibreProvider: MapProvider = {
     const theme = currentMapTheme();
     const [lib, terrain] = await Promise.all([
       import("maplibre-gl"),
-      theme === "dimensional" ? hasTerrain() : Promise.resolve(false),
+      MAP_THEMES[theme].hills ? hasTerrain() : Promise.resolve(false),
     ]);
     // Served from public/ by scripts/copy-maplibre-worker.mjs (runs on npm install).
     lib.setWorkerUrl(`/maplibre/${lib.getVersion()}/maplibre-gl-worker.mjs`);

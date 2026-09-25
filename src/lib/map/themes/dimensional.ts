@@ -113,6 +113,7 @@ export const dimensional: MapTheme<DimensionalPalette> = {
     shallow: [0.2, 0.04],
   },
   pitch: 32,
+  hills: true,
   // Low sun from the west, warm, so the buildings' west faces glow and their east faces fall into shade.
   light: (C, ctx) => ({
     anchor: "map",

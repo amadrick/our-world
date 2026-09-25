@@ -34,12 +34,14 @@ describe("buildMapStyle", () => {
     }
   });
 
-  it("only shades hills when elevation tiles are there", () => {
-    const withTerrain = buildMapStyle({ theme: "dimensional", tiles: "offline", origin: "", terrain: true });
-    const without = buildMapStyle({ theme: "dimensional", tiles: "offline", origin: "", terrain: false });
-    expect(withTerrain.sources.terrain).toBeDefined();
-    expect(without.sources.terrain).toBeUndefined();
-    expect(without.layers.some((layer) => layer.type === "hillshade")).toBe(false);
+  it("only shades hills when elevation tiles are there, in the themes that shade them", () => {
+    for (const theme of themes) {
+      const withTerrain = buildMapStyle({ theme, tiles: "offline", origin: "", terrain: true });
+      const without = buildMapStyle({ theme, tiles: "offline", origin: "", terrain: false });
+      expect(Boolean(withTerrain.sources.terrain), theme).toBe(Boolean(MAP_THEMES[theme].hills));
+      expect(without.sources.terrain).toBeUndefined();
+      expect(without.layers.some((layer) => layer.type === "hillshade")).toBe(false);
+    }
   });
 
   it("draws every generated image a theme asks for", () => {
@@ -68,6 +70,7 @@ describe("parseMapTheme", () => {
     expect(parseMapTheme("a")).toBe("golden");
     expect(parseMapTheme("B")).toBe("editorial");
     expect(parseMapTheme("dimensional")).toBe("dimensional");
+    expect(parseMapTheme("d")).toBe("apple");
   });
 
   it("ignores anything else", () => {
