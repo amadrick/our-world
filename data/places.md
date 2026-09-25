@@ -1,9 +1,9 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 90 places: what each is known for (reviewed in
+Per-place notes for all 92 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 90 of 90 places are researched.
+place. 92 of 92 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
@@ -185,6 +185,39 @@ Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133
   - <https://www.corner.inc/place/pvFtUtBJfZJ5>
   - <https://opengovus.com/san-francisco-business/0378606-01-001>
   - <https://sf.eater.com/2024/3/6/24092322/friend-of-a-friend-san-francisco-wine-bar>
+
+## Breadbelly
+
+Bakery · Outer Richmond · 1408 Clement St, San Francisco, CA 94118
+
+**Known for:** Kaya toast (high confidence). The bakery's site gives kaya toast its own page, The Infatuation calls it the must-order, and Eater SF credits it with building Breadbelly's following.
+
+### Place research
+
+- **Neighborhood and street:** Outer Richmond. Mid-block on the north side of Clement Street between 15th and 16th Avenues, toward the 15th Avenue end and a block west of Park Presidio Boulevard. It is a quiet, mostly residential stretch of outer Clement. The shop occupies the ground floor of an apartment building, its western neighbor is a two-story residential flats building, and a curbside parklet fills the parking lane in front.
+- **Terrain and setting:** A largely flat block on the Richmond District's avenue grid, a few blocks north of Golden Gate Park. Because it is on the north side of the street, the shopfront faces south and catches midday and afternoon sun, and the parklet out front is open to the sky with no umbrellas.
+- **Architecture:** A three-story mixed-use building from 1909, with apartments above a tiny ground-floor shopfront. The shopfront is painted a bright, sunny teal and carries a gilded logo sign made by New Bohemia Signs, a San Francisco shop that does hand-painted and gold-leaf signs. The front windows carry seasonal window art. Inside is a small room the owners built out themselves: custom banquettes, tile work, new light fixtures, plants from a nearby nursery, cream-colored walls (as of opening) hung with local painters' San Francisco scenes, and a compact counter and display case with separate spots to order and to pick up.
+- **Unique architectural notes:** The gilded logo sign by New Bohemia Signs against the vivid teal shopfront, and a do-it-yourself interior whose banquettes and tile work were built by the three owners and their families.
+- **Most iconic physical characteristics:**
+  - bright teal shopfront
+  - gilded gold-leaf logo sign
+  - busy, sunny curbside parklet
+  - seasonal window art
+- **More recognizable view:** the facade
+- **Not verified:** Page fetches were blocked, so sources were read through search-result excerpts. Not verified: whether the teal paint covers only the ground-floor shopfront or the whole building, and what the upper floors look like (bays, siding, trim color); the sign's form (hanging blade sign, fascia board, or gold leaf on window glass) and its lettering style; the parklet's materials, color and layout; whether the interior walls are still cream after the 2025 reopening, and how many indoor seats there are now; street trees, exact street grade, and fog at this block.
+- **Sources:**
+  - <https://www.breadbellysf.com/clement-street-san-francisco>
+  - <https://www.breadbellysf.com/faq>
+  - <https://sf.eater.com/2018/12/14/18140834/breadbelly-bakery-asian-american-pastry-richmond-san-francisco-open>
+  - <https://hoodline.com/2018/12/new-cafe-breadbelly-makes-richmond-debut-with-asian-inspired-sweet-treats-and-more/>
+  - <https://www.7x7.com/first-taste-breadbelly-bakery-outer-richmond-2625926672.html>
+  - <https://richmondsunsetnews.com/2024/07/12/family-meal-breadbelly-on-clement/>
+  - <https://sf.eater.com/dining-report/210002/breadbelly-review>
+  - <https://www.amysuto.com/desk-of-amy-suto/breadbelly-san-francisco-review>
+  - <https://sfstandard.com/2025/07/09/pier-70-sf-restaurants-openings/>
+  - <https://richmondsfblog.com/2013/06/17/heartbaker-brings-pastries-savory-bites-to-outer-clement-street/>
+  - <https://augrented.com/sf/1418019-1408-1410-clement-st.md>
+  - <https://sagemenu.com/san-francisco/breadbelly-san-francisco/>
 
 ## Burma Superstar
 
@@ -1156,34 +1189,36 @@ Restaurant · Mission · 1001 S Van Ness Ave, San Francisco, CA 94110
 
 ## Little Original Joe's
 
-Restaurant · West Portal · 393 West Portal Ave, San Francisco, CA 94127
+Restaurant · Marina · 2301 Chestnut St, San Francisco, CA 94123
 
-**Known for:** Chicken parmigiana (high confidence). House dinner menu and Forbes: Joe’s Classic Chicken Parm is the West Portal Italian-American signature.
+**Known for:** Zucchini fries (med confidence). The Chronicle lists zucchini fries among the dishes new to the Marina menu, The Infatuation says they are what you are really here for, and Food Gal predicted they would become the restaurant's signature.
 
 ### Place research
 
-- **Neighborhood and street:** West Portal. On the corner of West Portal Avenue and 15th Avenue, at the southwest end of the West Portal commercial strip, in a space a neighborhood shop occupied for about 30 years. Muni streetcar tracks run down West Portal Avenue, and its outdoor tables sit under street trees strung with lights.
-- **Terrain and setting:** Tree-lined avenue west of Twin Peaks with sandy soils, persistent wind and frequent fog. The outdoor tables are fully exposed to the cool marine air.
-- **Architecture:** A compact corner storefront renovated in 2020 with black awnings. There is no indoor dining room: inside is an order counter with a big open kitchen to the left, market shelving to the right, refrigerated cases at the back, and tiled floors. Seating is limited to a few sidewalk tables under light-strung street trees.
-- **Unique architectural notes:** Nothing architecturally unusual; it works as a takeout counter and Italian market, and its tables under light-strung street trees serve as the only dining space.
+- **Neighborhood and street:** Marina. Holds the southwest corner of Chestnut and Scott streets, at the east end of the Scott-to-Divisadero block of the Marina's main strip of shops, bars and cafes. Marina Supermarket shares the block to the west, and Marina Deli faces it from the opposite corner across Scott Street.
+- **Terrain and setting:** Flat, filled ground on the Marina street grid a few blocks inland from the bay, with no grade to speak of. The Chestnut frontage faces north and sits in shade much of the day while the far side of the street is sunlit; after dark the wraparound windows glow, and marine fog is common in the neighborhood.
+- **Architecture:** A one-story 1931 Art Deco commercial building by architect Alex Stern, formerly a clothing store, painted dark blue with gold accents picking out the original frieze and pilasters. Floor-to-ceiling glass storefronts in painted wood frames wrap both the Chestnut and Scott sides, custom signs sit on each street face, and the original front doors and door handles were kept. Inside, a high-ceilinged room with white brick walls and a black-and-white checkered terrazzo floor holds black tufted vinyl banquettes, burgundy club-style chairs, six custom brass chandeliers with perimeter pendants, a 12-seat Calacatta Oro marble bar with a small lounge, and an open kitchen line trimmed in polished brass under a red-painted hood.
+- **Unique architectural notes:** A six-foot black-and-white photograph of founder Tony Rodin standing at the counter of the original 1937 Taylor Street restaurant is the only artwork on the walls, and the Deco frieze motifs from the exterior are repeated in the custom millwork around the bar and kitchen line.
 - **Most iconic physical characteristics:**
-  - black awnings on a West Portal corner storefront
-  - outdoor tables under street trees strung with lights
-  - tiled floor and open kitchen behind an order counter
-  - densely stocked Italian-market shelving
+  - dark blue Deco corner with gold trim
+  - floor-to-ceiling windows on two streets
+  - black-and-white checkered terrazzo floor
+  - six-foot portrait of Tony Rodin
 - **More recognizable view:** the facade
-- **Not verified:** Sign lettering and style, facade color, and whether any neon exists not verified; the older brief's vertical neon sign and cream stucco are unconfirmed. Floor tile pattern not confirmed (only a low-quality site claims black-and-white checkered).
+- **Not verified:** Sign lettering, style, color and exact placement are not described beyond custom-designed signs on either side of the building. The dark blue and gold exterior comes from a single architect materials list; the architects say only that the exterior was repainted in a new color scheme. The southwest-corner placement is inferred from address numbering, parcel coordinates, and a 2011 blog noting this side of Chestnut is in shadow. Current sidewalk seating is unconfirmed. Awning presence, street trees and fog come from general Marina geography, not from sources. Press calls the building 1920s, while property records and a Deco guide date it to 1931. Most pages were blocked, so details come from search-result excerpts.
 - **Sources:**
-  - <https://sf.eater.com/2020/12/14/22175598/little-original-joes-new-restaurant-san-francisco-west-portal>
-  - <https://www.sfchronicle.com/food/article/Historic-Italian-restaurant-Original-Joe-s-opens-15803671.php>
-  - <https://hoodline.com/2020/12/little-original-joe-s-opens-for-pizza-and-pasta-takeout-in-west-portal/>
-  - <https://www.theinfatuation.com/san-francisco/reviews/little-original-joes-west-portal>
-  - <https://www.pearlclub.com/cities/san-francisco/dinner/little-original-joes>
-  - <https://www.corner.inc/place/pisiWA2SvkJG>
-  - <https://www.forbes.com/sites/chelseadavis/2024/07/30/family-behind-original-joes-unveils-little-original-joes-the-marina-districts-newest-italian-restaurant/>
-  - <http://www.sftrees.com/blog/2020/9/28/west-portal-covidtreetour>
-  - <https://sfpublicworks.org/project/west-portal-avenue-and-quintara-street-water-main-sewer-and-paving-project>
-  - <https://www.foundsf.org/West_Portal>
+  - <https://www.littleoriginaljoes.com/marina-contact-hours>
+  - <https://www.fsrmagazine.com/industry-news/little-original-joes-opens-second-location/>
+  - <https://archinect.com/ArcanumArchitectureInc/project/little-original-joe-s-chestnut-street>
+  - <https://www.e-architect.com/sanfrancisco/little-original-joes-chestnut-street-san-francisco-california>
+  - <https://www.arcanumarchitecture.com/little-original-joes-chestnut>
+  - <https://www.tablehopper.com/newsletter/this-weeks-tablehopper-onward-and-upward-free/>
+  - <http://artdecobuildings.blogspot.com/2011/01/2301-chestnut-st-marina.html>
+  - <https://property.compstak.com/2301-Chestnut-Street-San-Francisco/p/95823>
+  - <https://www.sfchronicle.com/food/restaurants/article/little-original-joes-marina-19473079.php>
+  - <https://www.hautelivingsf.com/2025/04/07/little-original-joes-is-a-full-circle-marina-moment-for-the-duggan-family/>
+  - <https://www.theinfatuation.com/san-francisco/reviews/little-original-joes>
+  - <https://www.sfgate.com/food/article/little-original-joes-opens-marina-19489149.php>
 
 ## Loló
 
@@ -1245,6 +1280,39 @@ Restaurant · Cole Valley · 848 Cole St, San Francisco, CA 94117
   - <https://www.corner.inc/place/p9Ma6brSv3aT>
   - <https://www.sfchronicle.com/sf/article/san-francisco-reverie-cafe-closing-17788343.php>
   - <https://opengovus.com/san-francisco-business/1365184-07-241>
+
+## Lush Gelato
+
+Dessert · North Beach · 520 Columbus Ave, San Francisco, CA 94133
+
+**Known for:** Brown butter and chocolate honeycomb gelato (high confidence). The Infatuation's review leads with brown butter & chocolate honeycomb, it is a standing item on the shop's official flavor list, and it is one of the most-reviewed items on the shop's Yelp menu.
+
+### Place research
+
+- **Neighborhood and street:** North Beach. Tucked into the narrow wedge-shaped building where Columbus Avenue and Stockton Street converge at Green Street, in the heart of North Beach a block south of Washington Square, with shopfronts on both Columbus and Stockton. The pointed corner of the same building is Red Window, its glass hand-painted with a bright floral mural and flanked by parklets on both streets; residences (the former Il Triangolo hotel) fill the floors above, and farther along Columbus toward Union Street are the Ebiko counter in the old Caffe Roma space and Flour + Water.
+- **Terrain and setting:** On the low valley floor of North Beach between Telegraph Hill and Russian Hill, where the open three-way intersection of Columbus, Stockton and Green gives a long view southeast down Columbus Avenue to the Transamerica Pyramid. The lawn and trees of Washington Square, with Saints Peter and Paul Church on its far side, are a block north.
+- **Architecture:** The shop fills a small ground-floor space, about 876 square feet and irregular in plan where it follows the angle of Columbus, in a multi-story wood-frame 1907 former hotel by Martens & Coffey whose facade was remodeled in the late 1930s with stucco walls and Moderne ornament. Its storefronts are glass walls on both the Columbus Avenue and Stockton Street sides, a condition the neighborhood set so the room would stay visible from the street. Inside is a compact, mostly takeaway room with a display case at the counter, a couple of small benches rather than tables, a bench out front, and the brand's production kitchen on site; a tour blogger describes the look as black-and-white striped.
+- **Unique architectural notes:** The glass walls on both Columbus and Stockton exist because the neighborhood required a see-through storefront after the Portofino Cafe, a bar at this address, was raided repeatedly in the early 1990s. Few shops sit in such a narrow wedge building with windows on two streets.
+- **Most iconic physical characteristics:**
+  - glass storefronts on both Columbus and Stockton
+  - narrow wedge building where Columbus meets Stockton at Green
+  - black-and-white stripes
+  - muraled Red Window corner next door
+- **More recognizable view:** the facade
+- **Not verified:** Facade color, sign lettering and placement, and whether there is an awning could not be confirmed (no photos could be viewed). The black-and-white stripes come from a single tour blog, and it is unclear whether they are on an awning, the exterior, or interior walls. Interior layout (where the display case and production kitchen sit, finishes, lighting) is not confirmed. A designer's published interior (marble counter, pendant lights, wood and tile) appears to be the closed Polk Street shop and was not used. The glass-walls-on-both-streets and 876-square-foot details date from Gelateria Naia's 2006 fit-out of the same space; whether the Stockton side is still fully glazed today is not confirmed. The building's story count, street grade, and street trees on this block are not confirmed.
+- **Sources:**
+  - <https://www.lushgelato.com/find-us>
+  - <https://www.lushgelato.com/about>
+  - <https://hoodline.com/2018/03/lush-gelato-debuts-in-north-beach/>
+  - <https://www.gelaterianaia.com/the-stories/the-north-beach-store>
+  - <https://www.yumpu.com/en/document/view/39300170/volume-176-08-2006-telegraph-hill-dwellers/7>
+  - <https://knowthis.place/san-francisco/north-beach/columbus-avenue/500/>
+  - <https://www.postcardsfrompeta.com/postcardsfrompeta/qsvt83jjq9c1wwqfgl1b4fnqrakqu5>
+  - <https://frankiapp.com/business/lush-gelato-95311>
+  - <https://www.yelp.com/brands/lush-gelato>
+  - <https://sf.eater.com/2021/4/26/22403674/red-window-spanish-tapas-cocktails-north-beach-open>
+  - <https://www.7x7.com/first-taste-red-window-restaurant-north-beach-sf-2651273484.html>
+  - <https://sfstandard.com/2025/07/15/ebiko-sushi-north-beach/>
 
 ## Maillards
 

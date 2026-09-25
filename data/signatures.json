@@ -663,12 +663,13 @@
     {
       "id": "little-original-joes",
       "name": "Little Original Joe's",
-      "signatureSubject": "Chicken parmigiana",
-      "signatureRationale": "House dinner menu and Forbes: Joe’s Classic Chicken Parm is the West Portal Italian-American signature.",
-      "confidence": "high",
+      "signatureSubject": "Zucchini fries",
+      "signatureRationale": "The Chronicle lists zucchini fries among the dishes new to the Marina menu, The Infatuation says they are what you are really here for, and Food Gal predicted they would become the restaurant's signature.",
+      "confidence": "med",
       "sources": [
-        "https://www.littleoriginaljoes.com/wp-dinner",
-        "https://www.forbes.com/sites/chelseadavis/2021/04/11/little-original-joes-brings-unpretentious-italian-american-fare-to-san-franciscos-west-portal-neighborhood/"
+        "https://www.sfchronicle.com/food/restaurants/article/little-original-joes-marina-19473079.php",
+        "https://www.theinfatuation.com/san-francisco/reviews/little-original-joes",
+        "https://www.foodgal.com/2024/07/dining-at-the-new-little-original-joes/"
       ],
       "approved": false
     },
@@ -1094,6 +1095,32 @@
       "sources": [
         "https://en.wikipedia.org/wiki/Ocean_Beach,_San_Francisco",
         "https://www.nps.gov/goga/planyourvisit/oceanbeach.htm"
+      ],
+      "approved": false
+    },
+    {
+      "id": "lush-gelato",
+      "name": "Lush Gelato",
+      "signatureSubject": "Brown butter and chocolate honeycomb gelato",
+      "signatureRationale": "The Infatuation's review leads with brown butter & chocolate honeycomb, it is a standing item on the shop's official flavor list, and it is one of the most-reviewed items on the shop's Yelp menu.",
+      "confidence": "high",
+      "sources": [
+        "https://www.theinfatuation.com/san-francisco/reviews/lush-gelato",
+        "https://www.lushgelato.com/menu",
+        "https://www.yelp.com/menu/lush-gelato-san-francisco-2"
+      ],
+      "approved": false
+    },
+    {
+      "id": "breadbelly",
+      "name": "Breadbelly",
+      "signatureSubject": "Kaya toast",
+      "signatureRationale": "The bakery's site gives kaya toast its own page, The Infatuation calls it the must-order, and Eater SF credits it with building Breadbelly's following.",
+      "confidence": "high",
+      "sources": [
+        "https://www.breadbellysf.com/info/kaya-toast",
+        "https://www.theinfatuation.com/san-francisco/reviews/breadbelly",
+        "https://sf.eater.com/2019/2/15/18217667/breadbelly-san-francisco-bakery-cafe-asian-american-pastry-kaya-toast"
       ],
       "approved": false
     }

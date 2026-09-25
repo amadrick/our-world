@@ -65,7 +65,7 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 Places you add show up for guests immediately. Existing places can be edited or
 removed from the list below the form.
 
-`data/places.json` holds Andy and Kirissa's list: 94 places (restaurants, bars,
+`data/places.json` holds Andy and Kirissa's list: 92 places (restaurants, bars,
 cafés, shops, and a few outdoor places) geocoded against OpenStreetMap and
 Overture Maps, each with a short neutral summary, a
 researched `signatureSubject` (what it's known for), a `signatureRationale`
