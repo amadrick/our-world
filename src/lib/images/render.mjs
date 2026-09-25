@@ -5,7 +5,20 @@ import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
+import { pageColor } from "./palette.mjs";
+
 export const IMAGE_SIZE = 960;
+
+/** The detail page's background color for an image (see palette.mjs). */
+export async function sampleImageColor(input) {
+  const pixels = await sharp(input)
+    .resize(64, 64, { fit: "cover" })
+    .removeAlpha()
+    .toColourspace("srgb")
+    .raw()
+    .toBuffer();
+  return pageColor(pixels);
+}
 
 /** Rendering spends image API budget, so it stays off unless PLACE_IMAGE_GENERATION=on. */
 export function imageGenerationEnabled() {

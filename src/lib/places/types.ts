@@ -78,6 +78,8 @@ export interface Place {
   googleMapsUrl?: string;
   /** Square image of the place itself, e.g. "/places/tartine-bakery-1a2b3c4d.webp". */
   image?: string;
+  /** The detail page's background, sampled from the image when it's saved, e.g. "#3b2a20". */
+  imageColor?: string;
   createdAt: string;
   updatedAt?: string;
 }

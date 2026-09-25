@@ -43,6 +43,7 @@ interface Draft {
   appleMapsUrl?: string;
   googleMapsUrl?: string;
   image?: string;
+  imageColor?: string;
 }
 
 /** Place research as edited in the form; iconic details are one per line. */
@@ -122,6 +123,7 @@ function draftFromPlace(place: Place): Draft {
     appleMapsUrl: place.appleMapsUrl,
     googleMapsUrl: place.googleMapsUrl,
     image: place.image,
+    imageColor: place.imageColor,
   };
 }
 

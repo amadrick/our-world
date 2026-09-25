@@ -76,6 +76,10 @@ export const placeInputSchema = z.object({
     .string()
     .regex(/^\/places\/[a-z0-9-]+\.(webp|png|jpe?g)$/, "Must be an image under /places/")
     .optional(),
+  imageColor: z
+    .string()
+    .regex(/^#[0-9a-f]{6}$/, "Must be a #rrggbb color")
+    .optional(),
 });
 
 export type PlaceInputPayload = z.input<typeof placeInputSchema>;

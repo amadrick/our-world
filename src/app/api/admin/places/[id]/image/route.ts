@@ -6,6 +6,7 @@ import {
   IMAGE_GENERATION_OFF,
   imageGenerationEnabled,
   renderImage,
+  sampleImageColor,
   saveImage,
 } from "@/lib/images/render.mjs";
 import { getPlaceStore } from "@/lib/storage";
@@ -40,9 +41,13 @@ export async function POST(request: NextRequest, ctx: RouteContext<"/api/admin/p
     return NextResponse.json({ error: (error as Error).message }, { status: 422 });
   }
   try {
-    const image = await saveImage(await renderImage(prompt), place.id);
+    const rendered = await renderImage(prompt);
+    const [image, imageColor] = await Promise.all([
+      saveImage(rendered, place.id),
+      sampleImageColor(rendered),
+    ]);
     const { id: placeId, createdAt, updatedAt, ...input } = place;
-    return NextResponse.json({ place: await store.update(placeId, { ...input, image }) });
+    return NextResponse.json({ place: await store.update(placeId, { ...input, image, imageColor }) });
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     console.error("Image generation failed:", reason);

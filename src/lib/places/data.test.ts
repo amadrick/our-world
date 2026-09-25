@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
+import { contrastRatio } from "../images/palette.mjs";
 import { placeInputSchema } from "./schema";
 import type { Place } from "./types";
 
@@ -20,6 +21,14 @@ describe("data/places.json", () => {
       };
       const result = placeInputSchema.safeParse({ ...place, placeResearch: research });
       expect(result.success, `${place.id}: ${result.error?.issues[0]?.message}`).toBe(true);
+    }
+  });
+
+  it("gives every picture a sampled page color that white text reads on", () => {
+    for (const place of places) {
+      if (!place.image) continue;
+      expect(place.imageColor, place.id).toMatch(/^#[0-9a-f]{6}$/);
+      expect(contrastRatio(place.imageColor!, "#ffffff"), place.id).toBeGreaterThan(7);
     }
   });
 
