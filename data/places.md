@@ -1,9 +1,9 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 94 places: what each is known for (reviewed in
+Per-place notes for all 90 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 94 of 94 places are researched.
+place. 90 of 90 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
@@ -185,62 +185,6 @@ Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133
   - <https://www.corner.inc/place/pvFtUtBJfZJ5>
   - <https://opengovus.com/san-francisco-business/0378606-01-001>
   - <https://sf.eater.com/2024/3/6/24092322/friend-of-a-friend-san-francisco-wine-bar>
-
-## Bottega
-
-Restaurant · Mission · 1132 Valencia St, San Francisco, CA 94110
-
-**Known for:** Roman pinsa / pear–taleggio sachetti (med confidence). Bottega Valencia: Roman-style pinsa is the concept; 48 Hills Best of Bay highlights pear–taleggio sachetti pasta.
-
-### Place research
-
-- **Neighborhood and street:** Mission. On the Valencia Street corridor between 22nd and 23rd streets, directly across the street from City College of San Francisco's Mission Campus, whose Aztec-calendar motif was once seen reflected in this storefront's windows; outdoor seating sits out front.
-- **Terrain and setting:** Flat Mission District valley floor with the neighborhood's typically sunnier weather; a wide, level commercial street with low buildings and open sky.
-- **Architecture:** Storefront restaurant in the former Crepevine space with a cotton-candy pink exterior, large front windows and outdoor seating. Inside: exposed brick walls, wooden ceiling beams hung with floral arrangements, a grass-and-flower wall, rose-gold seating, a bar with a balcony or mezzanine visible above it, and a long communal table for large groups.
-- **Unique architectural notes:** The pink exterior stands out on Valencia, and the flower-draped wooden beams over exposed brick are the room's photographed signature.
-- **Most iconic physical characteristics:**
-  - cotton-candy pink exterior across from City College
-  - wooden ceiling beams draped with hanging flowers
-  - exposed brick and a grass-and-flower wall
-  - rose-gold chairs
-- **More recognizable view:** the interior
-- **Not verified:** Thin research: few physical descriptions or photos found. Pink exterior comes from a single 2024 48 Hills line; building type and era, number of stories, sign lettering, awning, and whether the outdoor seating is a parklet not verified (input's cream plaster, arched windows and green door are unsupported). Interior details come from weak sources (a venue-marketing listing and an AI-generated video description); the balcony above the bar is from the video description only.
-- **Sources:**
-  - <https://48hills.org/2024/09/best-of-the-bay-2024-editors-pick-bottega/>
-  - <https://missionlocal.org/2022/04/bottega-homey-italiano-in-the-hood/>
-  - <https://missionlocal.org/2009/12/build-a-block-valencia-street/>
-  - <https://www.ccsf.edu/about/our-locations/mission-center>
-  - <https://places.thebest100hotels.com/en/generic/bottega/>
-  - <https://atmosfy.io/location/san-francisco/bottega90>
-  - <https://www.tripadvisor.ca/Restaurant_Review-g60713-d26312988-Reviews-Bottega-San_Francisco_California.html>
-  - <https://www.bottegavalencia.com/>
-
-## Burma Love
-
-Restaurant · Mission · 211 Valencia St, San Francisco, CA 94103
-
-**Known for:** Tea leaf salad (laphet thoke) (high confidence). Taste Edit / OpenTable: same family signature laphet thoke; garlic noodles also house-noted.
-
-### Place research
-
-- **Neighborhood and street:** Mission. On Valencia Street near Duboce Avenue, at the north end of the Valencia corridor close to Market Street, in the former Bodhi space.
-- **Terrain and setting:** Flat northern stretch of Valencia Street where the Mission meets Duboce Triangle.
-- **Architecture:** A larger, modern restaurant (opened late 2014) with two long dining rooms and a separate bar area, built with plenty of hard surfaces. A wall of orange-and-white scallop-shaped tile runs through the dining room and bar, and a metal open-work screen repeating the scallop motif stands against the back wall, partly separating the kitchen. Floors are gray poured concrete, banquettes are gray leather (including a roomy horseshoe booth in back), and tables are handmade from Southeast Asian monkeypod wood, with Burmese carvings and antiques throughout.
-- **Unique architectural notes:** The orange-and-white scallop tilework and matching scallop-pattern metal screen give it a sleek look unlike the cozier original on Clement Street.
-- **Most iconic physical characteristics:**
-  - orange-and-white scallop tile wall
-  - scallop-pattern metal open-work screen before the kitchen
-  - gray leather banquettes and a horseshoe booth
-  - monkeypod wood tables on gray concrete floors
-- **More recognizable view:** the interior
-- **Not verified:** Facade, sign, windows and exterior colors not verified; the older brief's teak panels and brass trim are unconfirmed. Interior details come from 2014 opening coverage.
-- **Sources:**
-  - <https://www.tablehopper.com/chatterbox/a-sneak-peek-of-burma-superstar-opening-soon-on-valencia/>
-  - <https://www.urbandaddy.com/articles/33344/san-francisco/burma-love-burm-after-reading-an-elegant-burma-superstar-spin-off-on-valencia>
-  - <https://sf.eater.com/2014/12/30/7463203/burma-love-san-francisco-photos>
-  - <https://sfist.com/2014/12/24/burma_superstar_valencia_st_spinoff/>
-  - <https://www.sfweekly.com/dining/burma-love-aka-burma-superstar-now-open-in-the-mission/article_7fa87b8d-c5bb-5e70-8bb9-59b88bbc832f.html>
-  - <https://burmafoodgroup.com/burma-love-valencia.html>
 
 ## Burma Superstar
 
@@ -491,37 +435,6 @@ Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122
   - <https://sf.eater.com/venue/110621/day-moon-2>
   - <https://opengovus.com/san-francisco-business/1271083-03-211>
   - <https://www.bizprofile.net/ca/san-francisco/day-moon-llc>
-
-## Delfina
-
-Restaurant · Mission · 3621 18th St, San Francisco, CA 94110
-
-**Known for:** Spaghetti pomodoro (high confidence). Chronicle recipe features and Eater reopen coverage: Mission spaghetti finished in reduced tomato sauce is Delfina’s iconic dish.
-
-### Place research
-
-- **Neighborhood and street:** Mission. Mid-block on the busy 18th Street block between Guerrero and Dolores streets in the Mission, a few doors from the Tartine Bakery corner at Guerrero and near Bi-Rite Market, with Dolores Park at the top of the block. Its walk-up takeout window, Pizzeria Delfina, adjoins it at 3611 18th St, and a parklet sits out front.
-- **Terrain and setting:** 18th Street rises gently westward toward the sloping lawns of Dolores Park, and the Mission's comparatively sunny microclimate gives the long storefront plenty of daylight. Grade and street trees not verified.
-- **Architecture:** Three older storefronts and buildings merged into one long frontage in a 2022 renovation by Fucinaro Architecture and Roy Hospitality: the facade was refaced in forest-green Zia Tile glazed brick, with new storefront windows, transoms and doors fitted with custom 3form louvers. Inside are the original Jarrah wood floor patched with concrete, mosaic and terrazzo, patinated zinc tables, tan leather banquettes under portraits with tattooed sleeves, midcentury orb pendants, a tambour-fronted bar moved toward the street windows, blackened steel, walnut and oak, and a private dining room under a glowing golden barrel-vaulted metal ceiling.
-- **Unique architectural notes:** A private dining room tucked under a custom golden barrel-vaulted metal ceiling, and a long green-glazed-brick frontage stitched together from three historic storefronts.
-- **Most iconic physical characteristics:**
-  - forest-green glazed-brick storefront with tall windows and transoms
-  - golden barrel-vaulted metal ceiling in the private dining room
-  - tan leather banquettes under portraits with tattooed sleeves
-  - adjoining walk-up takeout window next door
-- **More recognizable view:** the facade
-- **Not verified:** Exterior sign lettering, any awning, and whether the green tile covers the full frontage not verified. Street grade and sunlight are general neighborhood knowledge.
-- **Sources:**
-  - <https://interiordesign.net/projects/delfina-roy-hospitality-san-francisco/>
-  - <https://sf.eater.com/2022/10/24/23421006/delfina-san-francisco-open-italian-restaurant>
-  - <https://hospitalitysnapshots.com/projects/25974/delfina-san-francisco/>
-  - <https://www.thisisroy.com/projects/delfina>
-  - <https://www.sfgate.com/food/article/san-francisco-restaurant-delfina-reopens-17530689.php>
-  - <https://www.delfinasf.com/>
-  - <https://www.pizzeriadelfina.com/location/mission-district/>
-  - <https://sf.eater.com/2018/11/14/18076238/delfina-restaurant-20-years-san-francisco-anniversary-cal-italian>
-  - <https://localwiki.org/sf/Delfina>
-  - <http://darindines.com/2010/09/02/tartine-pizzeria-delfina-bi-rite-82910/>
 
 ## Deli Board
 
@@ -2248,36 +2161,6 @@ Coffee & tea · Mission · 561 Valencia St, San Francisco, CA 94110
   - <https://missionlocal.org/2023/08/stonemill-matcha-closing-sunday-long-lines/>
   - <https://default.sfplanning.org/Preservation/imn_survey/16th_and_Valencia_Streets_Post-Fire_Historic_District_Record.pdf>
   - <https://abcdocz.com/doc/1050052/2014.1520c---san-francisco-planning-department>
-
-## Tacolicious
-
-Restaurant · Mission · 741 Valencia St, San Francisco, CA 94110
-
-**Known for:** Coca-Cola carnitas taco (high confidence). Tacolicious menu and reviews: traditional Coca-Cola-braised carnitas is the house classic taco.
-
-### Place research
-
-- **Neighborhood and street:** Mission. On the east side of Valencia Street between 18th and 19th streets in the Mission, in a former New College of California building on a through lot that backs onto Lexington Street. Its sister bar Mosto is next door, and covered, heated sidewalk and parklet seating front the restaurant.
-- **Terrain and setting:** Flat Valencia corridor on the Mission valley floor, a couple of blocks east of Mission High School and Dolores Park, both depicted in the side-patio mural. Comparatively sunny for San Francisco, though foggy evenings occur; street trees not verified.
-- **Architecture:** A two-story commercial-and-residential building with about 50 feet of Valencia frontage whose storefront windows and front facade materials were updated for the 2011 conversion; dramatic floor-to-ceiling windows open the dining room to the street. A side entrance flanked by mid-century brick screens leads past a side-yard patio (originally under a retractable roof) whose 48-by-10-foot Paul Madonna mural shows Dolores Park and Mission High School. Inside are rustic wood walls, brightly colored Guanajuato cement tile floors, banquettes and high tables, a collection of vintage juicers, and a back private room with exposed rafters and skylights.
-- **Unique architectural notes:** The long Paul Madonna panorama of Dolores Park and Mission High along the side patio wall, framed by Palm Springs-style brick screens, is specific to this location.
-- **Most iconic physical characteristics:**
-  - floor-to-ceiling windows onto Valencia Street
-  - Paul Madonna panoramic mural of Dolores Park on the patio wall
-  - mid-century brick screens flanking the side entrance
-  - brightly colored Guanajuato cement tile floor
-- **More recognizable view:** the facade
-- **Not verified:** Current facade color and sign lettering not verified. Whether the side patio (and its retractable roof) is still in use is unclear: the website now lists only sidewalk and parklet seating. Most details date from 2011-2012 opening coverage.
-- **Sources:**
-  - <https://www.tablehopper.com/hardhat/tacolicious-and-mosto/>
-  - <https://www.sfgate.com/style/article/HOT-SPOT-Tacolicious-2446519.php>
-  - <https://www.tablehopper.com/chatterbox/tacolicious-ii-and-mosto-now-open-in-the-mission/>
-  - <https://www.tacolicious.com/location/tacolicious-mission/>
-  - <https://www.tacolicious.com/news-item/mission-high-the-school-the-mural-and-now-the-book/>
-  - <https://blowuplab.com/paul-madonna-tacoliscious/>
-  - <https://commissions.sfplanning.org/cpcpackets/2010.1162C.pdf>
-  - <https://www.grubstreet.com/2011/11/tacolicious_and_mosto_open_at.html>
-  - <https://sf.eater.com/2011/11/28/6634087/inside-tacolicious-and-mosto-now-open-in-the-mission>
 
 ## Taqueria El Buen Sabor
 

@@ -434,30 +434,6 @@
       "approved": false
     },
     {
-      "id": "delfina",
-      "name": "Delfina",
-      "signatureSubject": "Spaghetti pomodoro",
-      "signatureRationale": "Chronicle recipe features and Eater reopen coverage: Mission spaghetti finished in reduced tomato sauce is Delfina’s iconic dish.",
-      "confidence": "high",
-      "sources": [
-        "https://sf.eater.com/2022/10/24/23421006/delfina-san-francisco-open-italian-restaurant",
-        "https://www.sfgate.com/food/restaurants/article/Recipes-from-Top-100-Restaurants-Delfina-s-6261405.php"
-      ],
-      "approved": false
-    },
-    {
-      "id": "tacolicious",
-      "name": "Tacolicious",
-      "signatureSubject": "Coca-Cola carnitas taco",
-      "signatureRationale": "Tacolicious menu and reviews: traditional Coca-Cola-braised carnitas is the house classic taco.",
-      "confidence": "high",
-      "sources": [
-        "https://www.tacolicious.com/menu/",
-        "https://avitalexperiences.com/resources/tacolicious-restaurant-review/"
-      ],
-      "approved": false
-    },
-    {
       "id": "andytown-coffee-roasters",
       "name": "Andytown Coffee Roasters",
       "signatureSubject": "Snowy Plover (espresso cream soda)",
@@ -745,18 +721,6 @@
       "approved": false
     },
     {
-      "id": "burma-love",
-      "name": "Burma Love",
-      "signatureSubject": "Tea leaf salad (laphet thoke)",
-      "signatureRationale": "Taste Edit / OpenTable: same family signature laphet thoke; garlic noodles also house-noted.",
-      "confidence": "high",
-      "sources": [
-        "https://thetasteedit.com/what-to-order-at-burma-love/",
-        "https://burmafoodgroup.com/burma-love.html"
-      ],
-      "approved": false
-    },
-    {
       "id": "taqueria-el-buen-sabor",
       "name": "Taqueria El Buen Sabor",
       "signatureSubject": "Al pastor burrito",
@@ -777,18 +741,6 @@
       "sources": [
         "https://www.theinfatuation.com/san-francisco/reviews/la-taqueria",
         "https://www.eater.com/2015/12/4/9835360/la-taqueria-mission-style-burrito-san-francisco"
-      ],
-      "approved": false
-    },
-    {
-      "id": "bottega",
-      "name": "Bottega",
-      "signatureSubject": "Roman pinsa / pear–taleggio sachetti",
-      "signatureRationale": "Bottega Valencia: Roman-style pinsa is the concept; 48 Hills Best of Bay highlights pear–taleggio sachetti pasta.",
-      "confidence": "med",
-      "sources": [
-        "https://www.bottegavalencia.com/",
-        "https://48hills.org/2024/09/best-of-the-bay-2024-editors-pick-bottega/"
       ],
       "approved": false
     },
