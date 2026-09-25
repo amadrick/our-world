@@ -133,7 +133,7 @@ Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133
 
 ### Place research
 
-- **Neighborhood and street:** North Beach. At 700 Columbus Avenue at Filbert Street in North Beach, a short walk from Washington Square and Saints Peter and Paul Church. Heated sidewalk seating sits out front.
+- **Neighborhood and street:** North Beach. On Columbus Avenue at Filbert Street in North Beach, a short walk from Washington Square and Saints Peter and Paul Church. Heated sidewalk seating sits out front.
 - **Terrain and setting:** Level North Beach valley floor between Telegraph Hill and Russian Hill. The room is known as a sun trap, with strong late-afternoon light through its windows.
 - **Architecture:** A small storefront wine bar that took over the longtime Melt! space in 2016 and gave it an airy, clean makeover. Inside are white walls, plants, antlers mounted on the wall, a hi-fi system built into the wall, window seats, bar seating and small communal tables, with a big pink neon sign reading "wet your lips" glowing at the back.
 - **Unique architectural notes:** The oversized neon "wet your lips" sign at the back of the room is its signature fixture; otherwise it is a simple white-walled room.
@@ -190,7 +190,7 @@ Restaurant · Mission · 211 Valencia St, San Francisco, CA 94103
 
 ### Place research
 
-- **Neighborhood and street:** Mission. At 211 Valencia Street near Duboce Avenue, at the north end of the Valencia corridor close to Market Street, in the former Bodhi space.
+- **Neighborhood and street:** Mission. On Valencia Street near Duboce Avenue, at the north end of the Valencia corridor close to Market Street, in the former Bodhi space.
 - **Terrain and setting:** Flat northern stretch of Valencia Street where the Mission meets Duboce Triangle.
 - **Architecture:** A larger, modern restaurant (opened late 2014) with two long dining rooms and a separate bar area, built with plenty of hard surfaces. A wall of orange-and-white scallop-shaped tile runs through the dining room and bar, and a metal open-work screen repeating the scallop motif stands against the back wall, partly separating the kitchen. Floors are gray poured concrete, banquettes are gray leather (including a roomy horseshoe booth in back), and tables are handmade from Southeast Asian monkeypod wood, with Burmese carvings and antiques throughout.
 - **Unique architectural notes:** The orange-and-white scallop tilework and matching scallop-pattern metal screen give it a sleek look unlike the cozier original on Clement Street.
@@ -404,7 +404,7 @@ Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122
 
 ### Place research
 
-- **Neighborhood and street:** Outer Sunset. Small storefront at 3928 Irving Street at 40th Avenue, in a largely residential stretch of the Outer Sunset near Clancey's Market and Swell Bicycles, several blocks inland from Ocean Beach; a curbside parklet sits out front.
+- **Neighborhood and street:** Outer Sunset. Small storefront on Irving Street at 40th Avenue, in a largely residential stretch of the Outer Sunset near Clancey's Market and Swell Bicycles, several blocks inland from Ocean Beach; a curbside parklet sits out front.
 - **Terrain and setting:** Flat to gently sloping Outer Sunset avenues in the fog belt, with wide streets and gray marine light much of the year.
 - **Architecture:** Small, minimalist neighborhood bakery storefront, opened in 2023, with a green-painted facade wall and an outdoor bench on the sidewalk. The parklet out front fills with tables on occasional evening events. Inside is a compact service room with a display case and coffee counter.
 - **Unique architectural notes:** Nothing architecturally unusual is documented; its identity is a small, minimalist green-fronted shop with sidewalk bench seating in a residential stretch.
@@ -492,7 +492,7 @@ Restaurant · Mission · 1890 Bryant St, San Francisco, CA 94110
 
 ### Place research
 
-- **Neighborhood and street:** Mission. Corner lot where Florida Street meets Mariposa Street on the Mission and Potrero Hill border. The address is 1890 Bryant Street, but the entrance is on the back of the building, tucked behind an industrial gate and a gated patio, and Heath Ceramics is next door.
+- **Neighborhood and street:** Mission. Corner lot where Florida Street meets Mariposa Street on the Mission and Potrero Hill border. The address is Bryant Street, but the entrance is on the back of the building, tucked behind an industrial gate and a gated patio, and Heath Ceramics is next door.
 - **Terrain and setting:** Flat, low-lying former industrial district at the Mission and Potrero edge, surrounded by warehouse buildings.
 - **Architecture:** Former "Best Foods" shipping dock and warehouse, later a café called "Coffee Bar", converted into a two-level space with 16- to 20-foot ceilings. Upstairs is the main dining room, open to a kitchen with custom stainless-steel work; downstairs is a small bar with about ten seats and two tables. Finishes include ash tables, pendant lights, soft blue tile and blue-gray panels.
 - **Unique architectural notes:** A high wall shelf lined with rows of waving maneki-neko lucky cats, with donor plaques beneath them.
@@ -581,7 +581,7 @@ Restaurant · North Beach · 532 Columbus Ave, San Francisco, CA 94133
 
 ### Place research
 
-- **Neighborhood and street:** North Beach. Mid-block on Columbus Avenue a short walk south of Washington Square in North Beach, in a deep building that runs clear through the block to Stockton Street. The sit-down restaurant opens onto Columbus, while a separate walk-up shop has its own entrance at 1533 Stockton St.
+- **Neighborhood and street:** North Beach. Mid-block on Columbus Avenue a short walk south of Washington Square in North Beach, in a deep building that runs clear through the block to Stockton Street. The sit-down restaurant opens onto Columbus, while a separate walk-up shop has its own entrance on Stockton St.
 - **Terrain and setting:** Flat ground on the North Beach valley floor between Telegraph Hill and Russian Hill; strong daylight pours in from the Columbus frontage and reaches deep into the room. Street trees and exact grade not verified.
 - **Architecture:** A 1915 unreinforced-masonry commercial building designed by Louis Mastropasqua (a 1913 map shows a theater running through the site), remodeled in 2023 by Lundberg Design with architect Gavin Knowles. Huge street windows face Columbus, and each entrance has a custom floor tile mosaic; signage uses custom letterforms inspired by mid-century Italian type in a terra cotta palette. Inside, the dropped ceiling was removed to expose heavy timber structure above a very white room of oak, Carrara marble, leather booths and thin square-bar steel, set on a restored mosaic floor in black, white, gray and yellow, with chandeliers of painted conduit bent like old neon signs.
 - **Unique architectural notes:** A rare through-block plan with a glass-walled production room at its center that divides the Columbus dining room from the Stockton walk-up shop and doubles as a semi-private room. The mosaic floor from the previous occupant, Rose Pistola, was kept and restored.
@@ -1174,7 +1174,7 @@ Restaurant · Outer Sunset · 3821 Noriega St, San Francisco, CA 94122
 
 ### Place research
 
-- **Neighborhood and street:** Outer Sunset. Inside the Two Pitchers taproom at 3821 Noriega Street, mid-block between 45th and 46th avenues on the Outer Sunset's Noriega strip, across from Devil's Teeth Baking Company and a few blocks from Ocean Beach; a street parklet with benches out front takes the overflow.
+- **Neighborhood and street:** Outer Sunset. Inside the Two Pitchers taproom on Noriega Street, mid-block between 45th and 46th avenues on the Outer Sunset's Noriega strip, across from Devil's Teeth Baking Company and a few blocks from Ocean Beach; a street parklet with benches out front takes the overflow.
 - **Terrain and setting:** Flat Outer Sunset street in the ocean fog belt, often gray and breezy.
 - **Architecture:** Not a separate storefront: Maillards is the counter-service window at the front of the narrow, one-story former Noriega Produce grocery, with an ordering counter and kiosk and the flat-top griddle kitchen visible behind it. The long room has mix-and-match wooden tables and chairs on either side of a central aisle, exposed wooden beams overhead, and the taproom bar at the back.
 - **Unique architectural notes:** The brand is a pun on the Maillard reaction with a mallard-duck logo; physically it is a counter inside a converted grocery rather than a space of its own.
@@ -1237,7 +1237,7 @@ Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118
 
 ### Place research
 
-- **Neighborhood and street:** Inner Richmond. Mid-block storefront at 517 Clement Street between 6th and 7th Avenues, on the Inner Richmond's busy Clement commercial strip, across the street from Green Apple Books on the same block. The storefront is narrow, about 20 feet wide.
+- **Neighborhood and street:** Inner Richmond. Mid-block storefront on Clement Street between 6th and 7th Avenues, on the Inner Richmond's busy Clement commercial strip, across the street from Green Apple Books on the same block. The storefront is narrow, about 20 feet wide.
 - **Terrain and setting:** Flat, level stretch of Clement Street in the Inner Richmond, on the city's foggier western side.
 - **Architecture:** Storefront redesigned in 2020 by Studio BBA: the facade is a wall of variegated teal Heath tile in several shades, with large glass windows and neon Chinese characters spelling the restaurant's name. Inside, a vintage lantern hangs over a bar-height communal table at the front, and arched openings lead back past white board-and-batten walls, Tectum ceiling panels and open rafters. Book-matched walnut booths, solid walnut benches, blue-green and pale salmon tile, Verner Panton pendants and hunter-green Hay chairs fill the room, with a sculptural skylight over the point of sale.
 - **Unique architectural notes:** The glossy, multi-shade teal tile facade with neon Chinese-character lettering stands out among the Clement Street storefronts.
@@ -1352,7 +1352,7 @@ Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117
 
 ### Place research
 
-- **Neighborhood and street:** NoPa. Ground floor of Broderick Place, a 2000s shingle-sided condominium building with a central plaza, at 306 Broderick Street between Oak and Fell, one block west of Divisadero. The "Falletti Foods" grocery is its neighbor in the same development.
+- **Neighborhood and street:** NoPa. Ground floor of Broderick Place, a 2000s shingle-sided condominium building with a central plaza, on Broderick Street between Oak and Fell, one block west of Divisadero. The "Falletti Foods" grocery is its neighbor in the same development.
 - **Terrain and setting:** Block between the busy one-way Oak and Fell Street arterials, a block east of the tree-lined eastern tip of the Panhandle.
 - **Architecture:** Small 1,250-square-foot space by ABMO (Abueg Morris), two-thirds of it an open kitchen conceived as a glowing stage behind a counter. Walls use strips of reclaimed barrel oak, pendant lights are pierced tin punched from large cans, acoustic panels are covered in burlap sacking, and the tables were all cut from a single fallen oak tree. Outside, an awning shelters sidewalk seating with heaters mounted on the facade, alongside a covered patio and a "para llevar" take-out window.
 - **Unique architectural notes:** Tables milled from one fallen oak and pendant lights punched from tin cans give the small room a handmade, warm-lit character.
@@ -1651,7 +1651,7 @@ Coffee · Russian Hill · 2340 Polk St, San Francisco, CA 94109
 
 ### Place research
 
-- **Neighborhood and street:** Russian Hill. Mid-block storefront at 2340 Polk Street between Union and Green in Russian Hill, on Polk's neighborhood shopping strip, with a few tables on the sidewalk.
+- **Neighborhood and street:** Russian Hill. Mid-block storefront on Polk Street between Union and Green in Russian Hill, on Polk's neighborhood shopping strip, with a few tables on the sidewalk.
 - **Terrain and setting:** Level stretch of Polk Street in the low ground between Russian Hill and Pacific Heights. Inside, four large skylights fill the room with daylight.
 - **Architecture:** Former nail salon converted in 2013 by OpenScope Studio with Amanda Loper of David Baker Architects, winner of an AIA SF Merit Award. The exterior is painted charcoal grey, with a large picture window on the left bearing hand-painted gold-leaf lettering, a recessed glass door on the right and a bar-height window counter. Inside, white upper walls under four skylights meet engineered white-oak paneling that runs at an angle across floor and walls, with a bar faced in matte white hexagonal tile under a white quartz top, bent unfinished-steel shelving, a 20-foot solid wood bench and a rear mezzanine.
 - **Unique architectural notes:** The white-oak paneling runs at one continuous angle from the floor up the walls, and the machines are recessed below the white bar top so the counter reads as a clean white block.
@@ -1935,7 +1935,7 @@ Restaurant · Outer Richmond · 3725 Balboa St, San Francisco, CA 94121
 
 ### Place research
 
-- **Neighborhood and street:** Outer Richmond. Storefront at 3725 Balboa Street between 38th and 39th Avenues in the Outer Richmond, just up the block from the historic Balboa Theater, in a former coin laundrette whose decades-old sign has been removed. A heated parklet over three former parking spaces, with table and bar seating, was being built out front in April 2026.
+- **Neighborhood and street:** Outer Richmond. Storefront on Balboa Street between 38th and 39th Avenues in the Outer Richmond, just up the block from the historic Balboa Theater, in a former coin laundrette whose decades-old sign has been removed. A heated parklet over three former parking spaces, with table and bar seating, was being built out front in April 2026.
 - **Terrain and setting:** Flat Outer Richmond avenue grid under a mile from Ocean Beach, deep in the fog belt.
 - **Architecture:** Single-room storefront in a former laundromat, with high ceilings dotted with paper lanterns and a 32-foot bar running nearly the full length of the room. The back wall holds a collection of more than 1,000 vinyl records around a turntable, vintage rock posters hang on the walls, and old movies play on two flat screens over roughly 49 seats, including high-tops.
 - **Unique architectural notes:** The wall of more than a thousand vinyl records behind the turntable, facing a bar that runs almost the length of the old laundromat.
@@ -2090,7 +2090,7 @@ Bar · Mission · 753 Alabama St, San Francisco, CA 94110
 
 ### Place research
 
-- **Neighborhood and street:** Mission. At 753 Alabama Street near the 20th Street corner in the northeast Mission, around the corner from Trick Dog and Penny Roma. A large sidewalk and parklet patio stretches along the frontage.
+- **Neighborhood and street:** Mission. On Alabama Street near the 20th Street corner in the northeast Mission, around the corner from Trick Dog and Penny Roma. A large sidewalk and parklet patio stretches along the frontage.
 - **Terrain and setting:** Flat eastern Mission grid of old industrial buildings and homes. The front patio gets plenty of sun at quieter daytime hours.
 - **Architecture:** A bar set into an old industrial complex, fronted by a sunny patio; the building shell and exterior signage are not well documented. The mid-century-modern interior (Nicholas Roberto with owners David Barzelay and Nicolas Torres) is almost entirely custom: a main bar and a smaller tasting bar of white-green quartzite, the main bar inlaid at its front corner with a cross-section of old-growth Bay Laurel, Bay Laurel tables and trim, custom booths and banquettes, and welded steel back-bar shelving modeled on a geometric painting by María Freire.
 - **Unique architectural notes:** An enormous monochrome bas-relief wall sculpture in hard plaster, inspired by Isamu Noguchi's playground designs, dominates the room.
