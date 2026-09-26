@@ -311,7 +311,11 @@ export function MapView({
         )}
 
       {status === "loading" && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        // Centered in the map left uncovered, so a deep-linked sheet doesn't hide it.
+        <div
+          className="pointer-events-none absolute flex items-center justify-center"
+          style={{ top: padding.top, right: padding.right, bottom: padding.bottom, left: padding.left }}
+        >
           <span className="glass glass-luminous flex h-11 animate-pulse items-center rounded-full px-5 text-sm font-medium">
             Loading the map…
           </span>
