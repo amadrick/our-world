@@ -46,6 +46,12 @@ const EASE = [
 export const SHEET_EXIT_MS = 240;
 const EXIT = `transform ${SHEET_EXIT_MS}ms cubic-bezier(0.32, 0.72, 0, 1), opacity 180ms ease-out`;
 
+function swallowClick(withinMs: number) {
+  const swallow = (click: MouseEvent) => click.stopPropagation();
+  window.addEventListener("click", swallow, { capture: true, once: true });
+  window.setTimeout(() => window.removeEventListener("click", swallow, { capture: true }), withinMs);
+}
+
 interface DragState {
   pointerId: number;
   startX: number;
@@ -216,14 +222,15 @@ export function BottomSheet({
       if (!d.moved) {
         if (e.type === "pointercancel") return;
         if (downTarget.closest("button, a, input, [role='option']")) return;
+        // WebKit's touch adjustment can land the tap's click on the map just above the
+        // sheet's edge, where it would close the sheet.
+        swallowClick(400);
         onSnapChange(snap === "peek" ? "mid" : snap === "mid" ? "full" : "mid");
         return;
       }
 
       // A drag that ends over a header button shouldn't also press it.
-      const swallow = (click: MouseEvent) => click.stopPropagation();
-      window.addEventListener("click", swallow, { capture: true, once: true });
-      window.setTimeout(() => window.removeEventListener("click", swallow, { capture: true }), 0);
+      swallowClick(0);
 
       const projected = d.offset + d.velocity * 200;
       let next = SNAPS.reduce((best, s) =>
