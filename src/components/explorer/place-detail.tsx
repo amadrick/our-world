@@ -21,6 +21,7 @@ import { PhotoHalo } from "@/components/places/photo-halo";
 import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
+import { formatDrive } from "@/lib/geo/drive-times";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
 import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
 import type { StepDirection } from "@/lib/places/swipe";
@@ -248,9 +249,8 @@ export function PlaceSheetHeader({
           aria-hidden={slide.offset !== 0 || undefined}
           className="swipe-slide"
           data-offset={slide.offset}
-          style={
-            { "--offset": slide.offset, backgroundColor: placeColor(slide.place) } as React.CSSProperties
-          }
+          data-place={slide.place.id}
+          style={slideStyle(slide.place, slide.offset)}
         >
           <PeekRow
             place={slide.place}
@@ -438,85 +438,71 @@ function PhotoStage({
   );
 }
 
-interface PlaceDetailProps {
-  place: Place;
-  onBack: () => void;
-  /** Switches to the map with this place in view. */
-  onShowOnMap?: () => void;
-  /**
-   * "page": list mode, full screen. On phones, Apple Music style: the photo
-   * runs edge to edge and melts into the page color, with everything else set
-   * right on it. On wider screens, a rounded square photo with a soft halo of
-   * its colors, and everything else beside it, both starting at the top.
-   * "sheet" and "rail": the phone map sheet and the desktop map rail. The photo
-   * runs edge to edge on top and fades into the color, then the title with the
-   * actions right under it, then the rest; opening staggers them in.
-   * All three sit on the place's color; the caller paints it behind them.
-   */
-  variant: "page" | "rail" | "sheet";
-  /** Previous and next place, for the chevrons (wide screens). */
-  stepper?: Stepper;
-  /** This place was stepped to: it comes in from that side. */
-  enterFrom?: StepDirection | null;
-  /** Stepped to by a swipe, which already carried the old photo away. */
-  swiped?: boolean;
-  /** Neighbors kept mounted so a swipe only moves photos that are already painted. */
-  slides?: PlaceSlide[];
+function photoAlt(place: Place) {
+  return `${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`;
 }
 
-export function PlaceDetail({
-  place,
-  onBack,
-  onShowOnMap,
-  variant,
-  stepper,
-  enterFrom = null,
-  swiped = false,
-  slides,
-}: PlaceDetailProps) {
-  const color = placeColor(place);
-  const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
-  const page = variant === "page";
-  // The first place opened plays the full entrance; later ones re-stagger quicker.
-  const [firstId] = useState(place.id);
-  const [switched, setSwitched] = useState(false);
-  if (!switched && place.id !== firstId) setSwitched(true);
-  const alt = `${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`;
-
-  const controls = variant !== "sheet" && (
-    <div className="pointer-events-none flex items-center justify-between gap-2">
-      <FloatingButton label="All places" onClick={onBack}>
-        <ChevronLeft size={22} aria-hidden />
-      </FloatingButton>
-      <div className="flex gap-2">
-        {stepper && <StepButtons stepper={stepper} className={cn(page && "hidden md:flex")} />}
-        <FloatingButton label="Share" onClick={() => void sharePlace(place)}>
-          <Share size={18} aria-hidden />
-        </FloatingButton>
-        {onShowOnMap && (
-          <FloatingButton label="Show on map" onClick={onShowOnMap}>
-            <MapIcon size={18} aria-hidden />
-          </FloatingButton>
-        )}
-      </div>
-    </div>
+export function CarGlyph({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="shrink-0"
+    >
+      <path d="M5 16V11.5L6.9 6.6A1.6 1.6 0 0 1 8.4 5.6h7.2a1.6 1.6 0 0 1 1.5 1l1.9 4.9V16" />
+      <path d="M3.5 16h17v1.9a1.1 1.1 0 0 1-1.1 1.1H4.6a1.1 1.1 0 0 1-1.1-1.1Z" />
+      <path d="M5 11.5h14" />
+      <path d="M7.5 19v1.5M16.5 19v1.5" />
+    </svg>
   );
+}
 
+/** The drive from the reader's location, in the category line's style. Its line is kept even when empty. */
+export function DriveTime({ seconds, className }: { seconds?: number | null; className?: string }) {
+  return (
+    <p className={cn("flex h-6 items-center gap-2 text-base font-medium text-white/75", className)}>
+      {seconds != null && (
+        <>
+          <CarGlyph />
+          <span className="truncate">{formatDrive(seconds)}</span>
+        </>
+      )}
+    </p>
+  );
+}
+
+/**
+ * The phone sheet's title block, on a fixed grid: the pick chip and a name of up to
+ * two lines settle onto the same baseline, then the category and drive lines, so every
+ * place's title, meta, and buttons land at the same height.
+ */
+function SheetHeading({ place, drive }: { place: Place; drive?: number | null }) {
   const label = pickLabel(place.pickBy);
-  const header = (
-    <header className="space-y-3 [text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
-      {label && <PickChip label={label} />}
-      <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>
-        {smartQuotes(place.name)}
-      </h2>
-      <p className="flex items-center gap-2 text-base font-medium text-white/75">
-        <CategoryIcon category={place.category} size={16} />
-        {placeWhere(place)}
+  return (
+    <header className="[text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
+      <div className="flex h-[100px] flex-col items-start justify-end gap-3">
+        {label && <PickChip label={label} />}
+        <h2 className="line-clamp-2 text-xl leading-7 font-semibold text-balance">{smartQuotes(place.name)}</h2>
+      </div>
+      <p className="mt-3 flex h-6 items-center gap-2 text-base font-medium text-white/75">
+        <CategoryIcon category={place.category} size={16} className="shrink-0" />
+        <span className="truncate">{placeWhere(place)}</span>
       </p>
+      <DriveTime seconds={drive} className="mt-1" />
     </header>
   );
+}
 
-  const rows = [
+function detailRows(place: Place) {
+  const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
+  return [
     (place.signatureSubject || tags.length > 0) && (
       <div key="known" className="space-y-4">
         {place.signatureSubject && (
@@ -556,6 +542,92 @@ export function PlaceDetail({
     ),
     place.address && <CopyAddress key="address" address={place.address} />,
   ].filter(Boolean);
+}
+
+interface PlaceDetailProps {
+  place: Place;
+  onBack: () => void;
+  /** Switches to the map with this place in view. */
+  onShowOnMap?: () => void;
+  /**
+   * "page": list mode, full screen. On phones, Apple Music style: the photo
+   * runs edge to edge and melts into the page color, with everything else set
+   * right on it. On wider screens, a rounded square photo with a soft halo of
+   * its colors, and everything else beside it, both starting at the top.
+   * "sheet" and "rail": the phone map sheet and the desktop map rail. The photo
+   * runs edge to edge on top and fades into the color, then the title with the
+   * actions right under it, then the rest; opening staggers them in.
+   * All three sit on the place's color; the caller paints it behind them.
+   */
+  variant: "page" | "rail" | "sheet";
+  /** Previous and next place, for the chevrons (wide screens). */
+  stepper?: Stepper;
+  /** This place was stepped to: it comes in from that side. */
+  enterFrom?: StepDirection | null;
+  /** Stepped to by a swipe, which already carried the old photo away. */
+  swiped?: boolean;
+  /** Neighbors kept mounted so a swipe only moves photos that are already painted. */
+  slides?: PlaceSlide[];
+  /** Driving time from the reader, in seconds, by place id; missing until the location is known. */
+  driveTimes?: Readonly<Record<string, number>> | null;
+}
+
+export function PlaceDetail({
+  place,
+  onBack,
+  onShowOnMap,
+  variant,
+  stepper,
+  enterFrom = null,
+  swiped = false,
+  slides,
+  driveTimes,
+}: PlaceDetailProps) {
+  const color = placeColor(place);
+  const page = variant === "page";
+  // The first place opened plays the full entrance; later ones re-stagger quicker.
+  const [firstId] = useState(place.id);
+  const [switched, setSwitched] = useState(false);
+  if (!switched && place.id !== firstId) setSwitched(true);
+  const alt = photoAlt(place);
+
+  const controls = variant !== "sheet" && (
+    <div className="pointer-events-none flex items-center justify-between gap-2">
+      <FloatingButton label="All places" onClick={onBack}>
+        <ChevronLeft size={22} aria-hidden />
+      </FloatingButton>
+      <div className="flex gap-2">
+        {stepper && <StepButtons stepper={stepper} className={cn(page && "hidden md:flex")} />}
+        <FloatingButton label="Share" onClick={() => void sharePlace(place)}>
+          <Share size={18} aria-hidden />
+        </FloatingButton>
+        {onShowOnMap && (
+          <FloatingButton label="Show on map" onClick={onShowOnMap}>
+            <MapIcon size={18} aria-hidden />
+          </FloatingButton>
+        )}
+      </div>
+    </div>
+  );
+
+  const headerFor = (p: Place) => {
+    const label = pickLabel(p.pickBy);
+    const drive = driveTimes?.[p.id];
+    return (
+      <header className="space-y-3 [text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
+        {label && <PickChip label={label} />}
+        <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>{smartQuotes(p.name)}</h2>
+        <p className="flex items-center gap-2 text-base font-medium text-white/75">
+          <CategoryIcon category={p.category} size={16} />
+          {placeWhere(p)}
+        </p>
+        {drive != null && <DriveTime seconds={drive} />}
+      </header>
+    );
+  };
+  const header = headerFor(place);
+
+  const rows = detailRows(place);
 
   if (variant === "sheet" || variant === "rail") {
     const rail = variant === "rail";
@@ -582,7 +654,9 @@ export function PlaceDetail({
           key={place.id}
           className={cn("relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}
         >
-          <div {...item(0)}>{header}</div>
+          <div {...item(0)}>
+            {rail ? header : <SheetHeading place={place} drive={driveTimes?.[place.id]} />}
+          </div>
           <div {...item(1)} data-sheet-fold={rail ? undefined : true}>
             <PlaceActions place={place} />
           </div>
@@ -597,51 +671,50 @@ export function PlaceDetail({
       </article>
     );
     if (rail || !slides?.length) return article;
-    const sheetAlt = alt;
+    // Every card in the strip is complete and laid out on the same fixed grid, so a swipe
+    // moves whole sheets and nothing shifts when one becomes the open place.
     return (
-      <div className="swipe-track relative min-h-full">
+      <div className="swipe-track sheet-cards relative min-h-full">
         {slides.map((slide) => {
           const active = slide.offset === 0;
+          const motion = (i: number) =>
+            active && !swiped ? { className: "motion-item", style: { "--i": i } as React.CSSProperties } : {};
           return (
             <div
               key={slide.place.id}
               aria-hidden={active ? undefined : true}
+              inert={!active}
               className="swipe-slide text-white"
               data-offset={slide.offset}
+              data-place={slide.place.id}
               style={slideStyle(slide.place, slide.offset)}
             >
-              <div className="swipe-photo relative">
+              <div className="relative">
                 <StablePhoto
                   place={slide.place}
                   sizes={PHOTO_SIZES.sheet}
                   active={active}
-                  alt={sheetAlt}
+                  alt={photoAlt(slide.place)}
                   fade
                   className="aspect-[4/3]"
                 />
                 <PhotoDissolve color={placeColor(slide.place)} className="h-[30%]" />
               </div>
-              {active ? (
-                <div className="relative -mt-16 space-y-6 px-5 pb-8">
-                  <div className={cn(!swiped && "motion-item")} style={{ "--i": 0 } as React.CSSProperties}>
-                    {header}
-                  </div>
-                  <div className={cn(!swiped && "motion-item")} style={{ "--i": 1 } as React.CSSProperties} data-sheet-fold>
-                    <PlaceActions place={place} />
-                  </div>
-                  <div className="space-y-8 pt-2">
-                    {rows.map((row, i) => (
-                      <div key={i} className={cn(!swiped && "motion-item")} style={{ "--i": i + 2 } as React.CSSProperties}>
-                        {row}
-                      </div>
-                    ))}
-                  </div>
+              <div className="relative -mt-16 px-5 pb-8">
+                <div {...motion(0)}>
+                  <SheetHeading place={slide.place} drive={driveTimes?.[slide.place.id]} />
                 </div>
-              ) : (
-                <p className="px-5 pt-5 text-lg font-semibold text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.35)]">
-                  {smartQuotes(slide.place.name)}
-                </p>
-              )}
+                <div {...motion(1)} className={cn("mt-6", motion(1).className)} data-sheet-fold={active || undefined}>
+                  <PlaceActions place={slide.place} />
+                </div>
+                <div className="space-y-8 pt-8">
+                  {detailRows(slide.place).map((row, i) => (
+                    <div key={i} {...motion(i + 2)}>
+                      {row}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           );
         })}
@@ -663,20 +736,26 @@ export function PlaceDetail({
         <div className="swipe-track relative md:hidden">
           {slides.map((slide) => {
             const active = slide.offset === 0;
+            const motion = (i: number) =>
+              active && switched && !swiped
+                ? { className: "motion-item", style: { "--i": i } as React.CSSProperties }
+                : {};
             return (
               <div
                 key={slide.place.id}
                 aria-hidden={active ? undefined : true}
+                inert={!active}
                 className="swipe-slide"
                 data-offset={slide.offset}
+                data-place={slide.place.id}
                 style={slideStyle(slide.place, slide.offset)}
               >
-                <div className="swipe-photo relative">
+                <div className="relative">
                   <StablePhoto
                     place={slide.place}
                     sizes={PAGE_PHOTO_SIZES}
                     active={active}
-                    alt={alt}
+                    alt={photoAlt(slide.place)}
                     fade
                     className="aspect-square"
                   />
@@ -686,31 +765,20 @@ export function PlaceDetail({
                   />
                   <PhotoDissolve color={placeColor(slide.place)} className="h-2/5" />
                 </div>
-                {active ? (
-                  <div className="relative -mt-20 space-y-6 px-5 pb-36">
-                    <div className={cn(switched && !swiped && "motion-item")} style={{ "--i": 0 } as React.CSSProperties}>
-                      {header}
-                    </div>
-                    <div className={cn(switched && !swiped && "motion-item")} style={{ "--i": 1 } as React.CSSProperties}>
-                      <PlaceActions place={place} />
-                    </div>
-                    <div className="space-y-8 pt-4">
-                      {rows.map((row, i) => (
-                        <div
-                          key={i}
-                          className={cn(switched && !swiped && "motion-item")}
-                          style={{ "--i": i + 2 } as React.CSSProperties}
-                        >
-                          {row}
-                        </div>
-                      ))}
-                    </div>
+                {/* Neighbors are complete pages, so a swipe never lands on one that fills in afterwards. */}
+                <div className="relative -mt-20 space-y-6 px-5 pb-36">
+                  <div {...motion(0)}>{headerFor(slide.place)}</div>
+                  <div {...motion(1)}>
+                    <PlaceActions place={slide.place} />
                   </div>
-                ) : (
-                  <p className="px-5 pt-5 text-lg font-semibold text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.35)]">
-                    {smartQuotes(slide.place.name)}
-                  </p>
-                )}
+                  <div className="space-y-8 pt-4">
+                    {detailRows(slide.place).map((row, i) => (
+                      <div key={i} {...motion(i + 2)}>
+                        {row}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             );
           })}

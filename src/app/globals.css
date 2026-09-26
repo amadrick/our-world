@@ -621,6 +621,41 @@ body .maplibregl-ctrl-attrib {
     bottom: calc(max(env(safe-area-inset-bottom), 16px) + 64px);
   }
 }
+/* The reader's position, as in Apple Maps: a white-ringed blue dot in a soft accuracy halo, under every pin. */
+.maplibregl-marker.user-location {
+  z-index: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.user-location-halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  background: rgb(0 122 255 / 0.13);
+  border: 1px solid rgb(0 122 255 / 0.28);
+}
+.user-location-dot {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #007aff;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 6px rgb(0 0 0 / 0.3);
+}
+@media (prefers-color-scheme: dark) {
+  .user-location-halo {
+    background: rgb(10 132 255 / 0.18);
+    border-color: rgb(10 132 255 / 0.36);
+  }
+  .user-location-dot {
+    background: #0a84ff;
+  }
+}
 /* Shown pins above hidden ones, photos above glyphs; the hovered and open place above everything. */
 .maplibregl-marker {
   z-index: 1;
@@ -984,54 +1019,49 @@ body .maplibregl-ctrl-attrib {
 /*
  * Swiping between places: one track (the open place, with the neighbors parked
  * just off either side) follows the finger via --swipe-x. Let go and it eases
- * back, or pages across so the next photo is already in frame when it commits.
+ * back, or pages across so the next page is already in frame when it commits.
+ * Pages sit one width plus --swipe-gap apart and slide as whole, opaque pages.
  */
 .swipe-track {
+  --swipe-gap: 8px;
   transform: translate3d(var(--swipe-x, 0px), 0, 0);
 }
-/*
- * Slides overlap by --feather and sit one container-width apart, so a
- * translate of exactly one width lands the next photo in the same window.
- * The overlap hangs off the left of the border box. Padding of the same
- * size puts the text back on the sheet: the content box starts at
- * offset * 100% and is exactly one container wide, on open, after a swipe,
- * and on resize. The open slide (offset 0) is opaque and on top, which
- * hides the overlap at rest. While a swipe is in progress, only the shared
- * edge is masked, so the two photos crossfade and the page color never
- * shows through. The mask is not on the track, so the per-frame motion
- * stays a transform.
- */
 .swipe-slide {
-  --feather: 36px;
   position: absolute;
   inset-block: 0;
-  box-sizing: border-box;
-  width: calc(100% + var(--feather));
-  margin-left: calc(var(--feather) * -1);
-  padding-left: var(--feather);
-  left: calc(var(--offset) * 100%);
-}
-/* The photo fills that overlap. Text stays in the content box. */
-.swipe-photo {
-  margin-left: calc(var(--feather) * -1);
-  width: calc(100% + var(--feather));
+  width: 100%;
+  left: calc(var(--offset) * (100% + var(--swipe-gap)));
 }
 .swipe-slide[data-offset="0"] {
   position: relative;
   z-index: 1;
 }
-/*
- * Only the slide on top fades. The one underneath stays opaque, so the
- * overlap is a crossfade of the two photos and the sheet never shows through.
- * The mask is static for the gesture: per-frame motion stays the track transform.
- */
-[data-swipe-dir="next"] .swipe-slide[data-offset="0"] {
-  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - var(--feather)), transparent 100%);
-  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - var(--feather)), transparent 100%);
+/* A neighbor is cut to the open page's length, so it never stretches the scroll. */
+.swipe-slide:not([data-offset="0"]) {
+  overflow: hidden;
 }
-[data-swipe-dir="prev"] .swipe-slide[data-offset="0"] {
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--feather), #000 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 var(--feather), #000 100%);
+/*
+ * The half sheet is a strip of complete cards: each is exactly the sheet's
+ * height, rounded, and painted in its place's color, so the map shows in the
+ * gap between two cards mid-swipe.
+ */
+/* The handle and close button belong to the open card; they step aside while cards slide under them. */
+[data-sheet-chrome] {
+  transition: opacity 160ms ease-out;
+}
+[data-swipe] [data-snap="mid"] [data-sheet-chrome] {
+  opacity: 0;
+  transition-duration: 90ms;
+}
+[data-snap="mid"] .sheet-cards {
+  height: 100%;
+}
+[data-snap="mid"] .sheet-cards > .swipe-slide {
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-2xl, 1rem);
+  border: 0.5px solid rgb(255 255 255 / 0.16);
+  box-shadow: 0 -16px 40px -16px rgb(0 0 0 / 0.4);
 }
 [data-swipe="drag"] .swipe-track {
   transition: none;

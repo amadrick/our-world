@@ -25,6 +25,11 @@ interface BottomSheetProps {
   tint?: string;
   /** The handle and header float over the top of the content (e.g. a photo) instead of sitting above it. */
   overlay?: boolean;
+  /**
+   * At half height the content paints its own cards (a strip of places), so the
+   * sheet leaves them unclipped sideways and paints nothing behind them.
+   */
+  cards?: boolean;
   /** Plays the exit: the sheet slides down and fades out, quicker than it came in. The caller unmounts it after SHEET_EXIT_MS. */
   closing?: boolean;
   /** Dragging the half sheet down, or flicking the peek off, closes it. */
@@ -74,6 +79,7 @@ export function BottomSheet({
   scrollKey,
   tint,
   overlay = false,
+  cards = false,
   closing = false,
   onDismiss,
   children,
@@ -86,6 +92,7 @@ export function BottomSheet({
   const scrollPositions = useRef(new Map<string, number>());
   const scrollKeyRef = useRef(scrollKey);
   const offsetFor = (s: SheetSnap) => heights.full - heights[s];
+  const open = cards && snap === "mid";
 
   useLayoutEffect(() => {
     scrollKeyRef.current = scrollKey;
@@ -270,6 +277,7 @@ export function BottomSheet({
   return (
     <div
       ref={sheetRef}
+      data-snap={snap}
       className={cn(
         "absolute z-20 flex flex-col will-change-transform",
         closing && "pointer-events-none",
@@ -298,14 +306,16 @@ export function BottomSheet({
         ref={clipRef}
         data-sheet-clip
         className={cn(
-          "relative flex min-h-0 flex-col overflow-hidden",
-          tint ? "tinted-sheet text-white" : "glass glass-thick",
+          "relative flex min-h-0 flex-col",
+          open ? "overflow-visible text-white" : "overflow-hidden",
+          !open && (tint ? "tinted-sheet text-white" : "glass glass-thick"),
           snap === "full" ? "rounded-t-2xl rounded-b-none" : "rounded-2xl",
         )}
-        style={{ height: heights[snap], backgroundColor: tint }}
+        style={{ height: heights[snap], backgroundColor: open ? undefined : tint }}
         onPointerDown={onPointerDown}
       >
         <div
+          data-sheet-chrome
           className={cn(
             "cursor-grab touch-none select-none active:cursor-grabbing",
             overlay ? "absolute inset-x-0 top-0 z-10 h-14" : "shrink-0",
@@ -328,12 +338,13 @@ export function BottomSheet({
           }
           className={cn(
             "min-h-0 flex-1 overscroll-none",
-            snap === "full" ? "overlay-scroll-y touch-pan-y" : "touch-none overflow-hidden",
+            snap === "full" ? "overlay-scroll-y touch-pan-y" : "touch-none",
+            snap !== "full" && (open ? "overflow-visible" : "overflow-hidden"),
             snap === "peek" && "invisible",
             snap !== "peek" && !overlay && (tint ? "border-t border-white/12" : "border-t border-hairline"),
-            !footer && "pb-[env(safe-area-inset-bottom)]",
+            !footer && !open && "pb-[env(safe-area-inset-bottom)]",
           )}
-          style={tint ? { backgroundColor: tint } : undefined}
+          style={tint && !open ? { backgroundColor: tint } : undefined}
         >
           {children}
         </div>

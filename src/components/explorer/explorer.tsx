@@ -1,10 +1,12 @@
 "use client";
 
-import { Crosshair, Minus, Plus } from "react-feather";
+import { Maximize, Minus, Navigation, Plus, X } from "react-feather";
 import { useCallback, useEffect, useEffectEvent, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { site } from "@/config/site";
+import { useDriveTimes } from "@/hooks/use-drive-times";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
+import { locationMessage, useUserLocation, type LocationStatus } from "@/hooks/use-user-location";
 import { useViewMode } from "@/hooks/use-view-mode";
 import type { MapPadding } from "@/lib/map";
 import { Button } from "@/components/ui/button";
@@ -76,6 +78,53 @@ function MapButton({
   );
 }
 
+function LocateButton({
+  status,
+  onClick,
+  className,
+}: {
+  status: LocationStatus;
+  onClick: () => void;
+  className?: string;
+}) {
+  const on = status === "on";
+  return (
+    <MapButton label={on ? "Center on your location" : "Show your location"} onClick={onClick} className={className}>
+      <Navigation
+        size={19}
+        fill={on ? "currentColor" : "none"}
+        className={cn(on && "text-[#007aff] dark:text-[#0a84ff]", status === "locating" && "animate-pulse")}
+      />
+    </MapButton>
+  );
+}
+
+/** A small glass note under the pills when the location can't be shown. */
+function LocationNotice({ message, onDismiss, top }: { message: string; onDismiss: () => void; top: number }) {
+  useEffect(() => {
+    const timer = window.setTimeout(onDismiss, 6000);
+    return () => window.clearTimeout(timer);
+  }, [message, onDismiss]);
+  return (
+    <div
+      role="status"
+      className="glass absolute inset-x-4 z-30 mx-auto flex max-w-sm items-center gap-3 rounded-2xl py-2.5 pr-2 pl-4 text-sm font-medium animate-in fade-in slide-in-from-top-2 duration-200 lg:right-24 lg:left-auto lg:mx-0"
+      style={{ top }}
+    >
+      <Navigation size={16} className="shrink-0 opacity-70" aria-hidden />
+      <p className="min-w-0 flex-1 text-pretty">{message}</p>
+      <button
+        type="button"
+        aria-label="Dismiss"
+        onClick={onDismiss}
+        className="pressable focus-ring flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full hover:bg-hover"
+      >
+        <X size={16} aria-hidden />
+      </button>
+    </div>
+  );
+}
+
 function ResultsSummary({
   count,
   filtersActive,
@@ -127,6 +176,8 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const viewportHeight = useViewportHeight();
+  const here = useUserLocation();
+  const drive = useDriveTimes(here.position);
 
   const sorted = useMemo(() => sortPlaces(places), [places]);
   const visible = useMemo(() => filterPlaces(sorted, filters), [sorted, filters]);
@@ -249,11 +300,18 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     return () => window.removeEventListener("keydown", listener);
   }, []);
 
+  // A neighbor can be swiped to only once its page is complete: every picture on it decoded
+  // (not just requested) and, with a location, its drive time in. Until then the swipe rubber-bands.
+  const [decoded, setDecoded] = useState<Readonly<Record<string, true>>>({});
+  const drivesSettled = !here.position || !drive.pending;
+  const prevReady = prev !== null && decoded[prev.id] === true && drivesSettled;
+  const nextReady = next !== null && decoded[next.id] === true && drivesSettled;
+
   const sheetSwipeRef = useRef<HTMLDivElement>(null);
   useSwipeBetween(sheetSwipeRef, {
     enabled: !listMode && !isDesktop && selected !== null,
-    hasPrev: prev !== null,
-    hasNext: next !== null,
+    hasPrev: prevReady,
+    hasNext: nextReady,
     onStep: (direction) => step(direction, true),
   });
   useLayoutEffect(() => {
@@ -277,8 +335,8 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const pageRef = useRef<HTMLDivElement>(null);
   useSwipeBetween(pageRef, {
     enabled: listMode && !isDesktop && selected !== null,
-    hasPrev: prev !== null,
-    hasNext: next !== null,
+    hasPrev: prevReady,
+    hasNext: nextReady,
     onStep: (direction) => step(direction, true),
   });
   useEffect(() => {
@@ -294,6 +352,44 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       decodePlacePhoto(slide.place, photoSizes);
     }
   }, [slides, photoSizes]);
+
+  useEffect(() => {
+    const root = listMode ? pageRef.current : sheetSwipeRef.current;
+    if (!root) return;
+    let live = true;
+    for (const slide of slides) {
+      const id = slide.place.id;
+      if (slide.offset === 0 || decoded[id]) continue;
+      const pages = root.querySelectorAll(`[data-place="${CSS.escape(id)}"]`);
+      if (pages.length === 0) continue;
+      const images = [...pages].flatMap((page) => [...page.querySelectorAll("img")]);
+      const done = () => {
+        if (live) setDecoded((current) => (current[id] ? current : { ...current, [id]: true }));
+      };
+      // A picture that fails to decode won't get better; the swipe shouldn't wait on it forever.
+      void Promise.all(images.map((img) => img.decode().catch(() => {}))).then(done);
+    }
+    return () => {
+      live = false;
+    };
+  }, [slides, listMode, isDesktop, decoded]);
+
+  // The first tap asks for permission; the map centers once the first fix arrives.
+  const locateWhenFound = useRef(false);
+  const locate = () => {
+    if (here.position) mapRef.current?.locate(here.position);
+    else locateWhenFound.current = true;
+    here.start();
+  };
+  useEffect(() => {
+    if (!here.position || !locateWhenFound.current) return;
+    locateWhenFound.current = false;
+    mapRef.current?.locate(here.position);
+  }, [here.position]);
+  useEffect(() => {
+    if (here.status !== "on" && here.status !== "locating") locateWhenFound.current = false;
+  }, [here.status]);
+  const notice = locationMessage(here.status);
 
   const select = useCallback((id: string) => {
     setStepping(null);
@@ -346,6 +442,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     onHighlight: setHighlightedId,
     onClearFilters: clearFilters,
     noMatches,
+    driveTimes: drive.seconds,
   };
   const filterProps = {
     filters,
@@ -380,6 +477,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           onHighlight={setHighlightedId}
           onBackgroundClick={closeDetail}
           glide={stepping !== null}
+          userPosition={here.position}
         />
       </div>
 
@@ -420,6 +518,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               variant="rail"
               stepper={stepper}
               enterFrom={stepping?.direction}
+              driveTimes={drive.seconds}
             />
           </div>
         )}
@@ -436,13 +535,13 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             <Minus size={20} />
           </MapButton>
         </div>
-        <MapButton
-          label="Show all places"
-          className="glass"
-          onClick={() => mapRef.current?.showAll()}
-        >
-          <Crosshair size={20} />
-        </MapButton>
+        <div className="glass flex flex-col overflow-hidden rounded-full">
+          <LocateButton status={here.status} onClick={locate} />
+          <span aria-hidden className="mx-3 h-px bg-[var(--glass-edge)]" />
+          <MapButton label="Show all places" onClick={() => mapRef.current?.showAll()}>
+            <Maximize size={18} />
+          </MapButton>
+        </div>
       </div>
 
       {/* Map mode, phone: pills float on the map. No bar behind them. */}
@@ -474,6 +573,8 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               )
             }
             footer={snap === "peek" ? <PlaceActions place={sheetPlace} /> : undefined}
+            accessory={<LocateButton status={here.status} onClick={locate} className="glass" />}
+            cards
           >
             <PlaceDetail
               place={sheetPlace}
@@ -482,18 +583,22 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
               slides={slides}
+              driveTimes={drive.seconds}
             />
           </BottomSheet>
         </div>
       )}
       {!listMode && !selected && (
-        <MapButton
-          label="Show all places"
-          className="glass absolute right-4 bottom-[calc(max(env(safe-area-inset-bottom),16px)+4px)] z-20 lg:hidden"
-          onClick={() => mapRef.current?.showAll()}
-        >
-          <Crosshair size={20} />
-        </MapButton>
+        <div className="glass absolute right-4 bottom-[calc(max(env(safe-area-inset-bottom),16px)+4px)] z-20 flex flex-col overflow-hidden rounded-full lg:hidden">
+          <LocateButton status={here.status} onClick={locate} />
+          <span aria-hidden className="mx-3 h-px bg-[var(--glass-edge)]" />
+          <MapButton label="Show all places" onClick={() => mapRef.current?.showAll()}>
+            <Maximize size={18} />
+          </MapButton>
+        </div>
+      )}
+      {!listMode && notice && (
+        <LocationNotice message={notice} onDismiss={here.dismiss} top={isDesktop ? 16 : topBarHeight} />
       )}
 
       {/* List mode: the places are the page; the map waits underneath */}
@@ -563,6 +668,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
               slides={isDesktop ? undefined : slides}
+              driveTimes={drive.seconds}
             />
           </div>
         )}

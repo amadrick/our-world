@@ -10,6 +10,8 @@ import { getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
+import { formatDrive } from "@/lib/geo/drive-times";
+import { CarGlyph } from "./place-detail";
 
 /** A more specific message than "nothing matches", with ways out. */
 export interface NoMatches {
@@ -31,7 +33,12 @@ interface PlaceListProps {
   onHighlight: (id: string | null) => void;
   onClearFilters: () => void;
   noMatches?: NoMatches;
+  /** Driving time from the reader, in seconds, by place id. */
+  driveTimes?: Readonly<Record<string, number>> | null;
 }
+
+/** "12 min" for the tight spots, where the card or row already says what it is. */
+const shortDrive = (seconds: number) => formatDrive(seconds).replace(/ drive$/, "");
 
 function EmptyState({
   icon: EmptyIcon,
@@ -68,11 +75,13 @@ export function PlaceCard({
   active,
   onSelect,
   onHighlight,
+  drive,
 }: {
   place: Place;
   active: boolean;
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
+  drive?: number;
 }) {
   const label = pickLabel(place.pickBy);
   const { where, knownFor } = placeMeta(place);
@@ -100,6 +109,13 @@ export function PlaceCard({
             {label}
           </span>
         )}
+        {drive != null && (
+          <span className="glass-media absolute bottom-2 left-2 flex h-7 items-center gap-1.5 rounded-full pr-2.5 pl-2 text-sm font-semibold sm:bottom-2.5 sm:left-2.5">
+            <CarGlyph size={14} />
+            {shortDrive(drive)}
+            <span className="sr-only"> drive</span>
+          </span>
+        )}
       </span>
       <span className="block min-w-0 px-0.5">
         <span className="block truncate text-base font-semibold">{smartQuotes(place.name)}</span>
@@ -118,11 +134,13 @@ export function PlaceRow({
   active,
   onSelect,
   onHighlight,
+  drive,
 }: {
   place: Place;
   active: boolean;
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
+  drive?: number;
 }) {
   const favorite = isFavorite(place);
   const label = pickLabel(place.pickBy);
@@ -151,7 +169,15 @@ export function PlaceRow({
         {knownFor && (
           <span className="block truncate text-sm text-muted-foreground">{knownFor}</span>
         )}
-        <span className="block truncate text-sm text-muted-foreground">{where}</span>
+        <span className="flex min-w-0 gap-1 text-sm text-muted-foreground">
+          <span className="truncate">{where}</span>
+          {drive != null && (
+            <span className="shrink-0">
+              · {shortDrive(drive)}
+              <span className="sr-only"> drive</span>
+            </span>
+          )}
+        </span>
       </span>
     </button>
   );
@@ -168,6 +194,7 @@ export function PlaceList({
   onHighlight,
   onClearFilters,
   noMatches,
+  driveTimes,
 }: PlaceListProps) {
   if (totalCount === 0) {
     return (
@@ -215,6 +242,7 @@ export function PlaceList({
             active={place.id === selectedId || place.id === highlightedId}
             onSelect={() => onSelect(place.id)}
             onHighlight={(hovering) => onHighlight(hovering ? place.id : null)}
+            drive={driveTimes?.[place.id]}
           />
         </li>
       ))}

@@ -46,12 +46,7 @@ export function useSwipeBetween(
     };
     const reset = () => {
       el.removeAttribute("data-swipe");
-      el.removeAttribute("data-swipe-dir");
       el.style.removeProperty("--swipe-x");
-    };
-    const aim = (dx: number) => {
-      const dir = dx < 0 ? "next" : "prev";
-      if (el.dataset.swipeDir !== dir) el.dataset.swipeDir = dir;
     };
 
     const settle = (direction: StepDirection | 0, width: number) => {
@@ -64,15 +59,14 @@ export function useSwipeBetween(
         timer = window.setTimeout(reset, BACK_MS);
         return;
       }
-      // Page the track fully across, then swap. The neighbor photo is already
-      // where the new place's photo lands, so the commit doesn't flash a gap.
+      // Page the track fully across, then swap. The neighbor page is already
+      // where the new place's page lands, so the commit doesn't flash a gap.
       const commit = () => {
         flushSync(() => step(direction));
         reset();
       };
       if (reduced) return commit();
       el.dataset.swipe = "out";
-      el.dataset.swipeDir = direction === 1 ? "next" : "prev";
       void el.offsetWidth;
       show(-direction * width);
       timer = window.setTimeout(commit, OUT_MS);
@@ -85,7 +79,9 @@ export function useSwipeBetween(
       // A native image drag cancels the pointer, so the swipe never gets a move.
       if ((down.target as HTMLElement).closest("img")) down.preventDefault();
       const track = el.querySelector(".swipe-track");
-      const width = (track instanceof HTMLElement && track.clientWidth) || el.clientWidth || window.innerWidth;
+      const gap = track instanceof HTMLElement ? parseFloat(getComputedStyle(track).getPropertyValue("--swipe-gap")) || 0 : 0;
+      // One page is a page's width plus the gap to the next.
+      const width = ((track instanceof HTMLElement && track.clientWidth) || el.clientWidth || window.innerWidth) + gap;
       const g = {
         axis: null as "x" | "y" | null,
         dx: 0,
@@ -108,7 +104,6 @@ export function useSwipeBetween(
           el.dataset.swipe = "drag";
         }
         g.dx = dx;
-        aim(dx);
         g.samples.push([move.timeStamp, move.clientX]);
         while (g.samples.length > 2 && move.timeStamp - g.samples[0][0] > VELOCITY_WINDOW) g.samples.shift();
         const { hasPrev: prev, hasNext: next } = neighbors();
