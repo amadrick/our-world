@@ -1,5 +1,8 @@
-import type { GeoJSONSource, Map as MapLibreMap, Marker } from "maplibre-gl";
+import type { CustomLayerInterface, GeoJSONSource, Map as MapLibreMap, Marker } from "maplibre-gl";
 
+import { easeOutQuart, OPEN_CAMERA_MS, prefersReducedMotion } from "@/lib/motion";
+
+import { createFilmGrainLayer } from "./film-grain-layer";
 import { buildMapStyle, type ColorScheme, type PinFootprint, type TileSource } from "./style";
 import { MAP_THEMES, currentMapTheme, type MapThemeId } from "./theme";
 import { PIN_SOURCE, missingImage, pinCollection } from "./themes/kit";
@@ -86,12 +89,20 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
   if (theme.overlay) {
-    // Right after the canvas: markers are appended to the same container later, so pins stay on top.
+    // Vignette only. The grain itself is a canvas layer (below), so this div never blends or blurs.
     const overlay = document.createElement("div");
     overlay.className = `map-${theme.overlay}`;
     overlay.setAttribute("aria-hidden", "true");
     map.getCanvas().after(overlay);
   }
+  // setStyle drops custom layers, so the grain is put back after every restyle (tint, dark mode).
+  let grain: CustomLayerInterface | null = null;
+  const ensureGrain = () => {
+    if (theme.overlay !== "film") return;
+    grain ??= createFilmGrainLayer();
+    if (!map.getLayer(grain.id)) map.addLayer(grain);
+  };
+  map.on("style.load", ensureGrain);
   // Textures, markers, and the pins' collision boxes are drawn on demand.
   // A resolver, not the styleimagemissing event: only a resolver can answer the tile that's asking.
   map.setMissingStyleImageResolver((id) => {
@@ -114,6 +125,7 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   map.once("load", () => {
     loaded = true;
     window.clearTimeout(timeout);
+    ensureGrain();
     options.onReady();
     options.onZoomChange?.(map.getZoom());
     options.onMove?.();
@@ -156,19 +168,21 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
         ...(theme.pitch && { pitch: theme.pitch }),
         essential: true,
       };
-      if (glide) {
-        // Stepping to the next place: a short ease at the same zoom, no swoop out and back in.
-        const { x, y } = map.project(camera.center);
-        const { clientWidth: w, clientHeight: h } = map.getContainer();
-        const reach = Math.hypot(x - w / 2, y - h / 2) / Math.hypot(w, h);
-        if (reach < GLIDE_REACH) {
-          map.easeTo({ ...camera, duration: 650, easing: (t) => 1 - (1 - t) ** 3 });
-          return;
-        }
-        map.flyTo({ ...camera, curve: 1.1, speed: 1.8, maxDuration: 1100 });
+      if (prefersReducedMotion()) {
+        map.jumpTo(camera);
         return;
       }
-      map.flyTo({ ...camera, speed: 1.6, curve: 1.25 });
+      const { x, y } = map.project(camera.center);
+      const { clientWidth: w, clientHeight: h } = map.getContainer();
+      const reach = Math.hypot(x - w / 2, y - h / 2) / Math.hypot(w, h);
+      // A tap, or a step to a nearby place: one long ease-out, no flyover swoop.
+      // Farther than the screen, a gentle flight so it still feels like a move, not a wait.
+      if (glide || reach < GLIDE_REACH * 1.6) {
+        const duration = glide ? 920 : Math.round(760 + Math.min(reach, 1) * (OPEN_CAMERA_MS - 760));
+        map.easeTo({ ...camera, duration, easing: easeOutQuart });
+        return;
+      }
+      map.flyTo({ ...camera, curve: 1.2, speed: 0.72, maxDuration: 1500, easing: easeOutQuart });
     },
     fitTo(positions, { animate = true, maxZoom = 15 } = {}) {
       if (positions.length === 0) return;

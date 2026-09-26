@@ -21,8 +21,9 @@ import {
  * (Andy's reference, briefs/film-map-ref-andy.png). Warm pale stone land with
  * fine streets a shade lighter than it, mineral grey-blue water, muted sage
  * parks with a faint speckle, and only a few labels: districts and water in
- * widely spaced small grey capitals, street names only up close. The grain,
- * haze, and soft edges live in an overlay above the canvas (`.map-film`).
+ * widely spaced small grey capitals, street names only up close. The grain is
+ * drawn in the map canvas (so it pans with the streets and stays fine at phone
+ * resolution); the haze and soft edges stay a light overlay (`.map-film`).
  */
 const LIGHT = {
   land: "#E2D9CD",

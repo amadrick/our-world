@@ -25,8 +25,8 @@ import {
 export type { PinFootprint, TileSource } from "./themes/kit";
 export type ColorScheme = Scheme;
 
-/** Paint changes (the tint coming and going) crossfade instead of snapping. */
-export const TINT_FADE_MS = 450;
+/** Paint changes (the tint coming and going) crossfade on the same soft landing as the camera. */
+export const TINT_FADE_MS = 780;
 
 export interface MapStyleOptions {
   theme: MapThemeId;
