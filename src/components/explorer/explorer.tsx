@@ -1,7 +1,7 @@
 "use client";
 
 import { Crosshair, Minus, Plus } from "react-feather";
-import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { site } from "@/config/site";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
@@ -46,6 +46,8 @@ const RAIL_INSET = 16;
 const SWITCH_CLEARANCE = 96;
 /** Phone sheet peek: handle, name row, and the action bar (before any home-indicator inset). */
 const SHEET_PEEK = 176;
+/** Room under the map buttons at the bottom of the half sheet. */
+const SHEET_FOLD_GAP = 20;
 
 function MapButton({
   label,
@@ -157,13 +159,18 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   );
   const [stepping, setStepping] = useState<{ direction: StepDirection; swiped: boolean } | null>(null);
 
+  // How far down the sheet the open place's map buttons end, measured once it renders.
+  const [sheetFold, setSheetFold] = useState<number | null>(null);
   const sheetHeights = useMemo(() => {
-    const belowHeader = Math.max(200, viewportHeight - topBarHeight - 8);
+    const height = viewportHeight ?? 800;
+    const belowHeader = Math.max(200, height - topBarHeight - 8);
     const peek = SHEET_PEEK + Math.max(0, safeBottom - 12);
-    // Half the screen, but never taller than the room under the pills (landscape phones).
-    const mid = Math.min(Math.max(Math.round(viewportHeight * 0.5), 240), belowHeader);
+    // The half sheet ends just under the map buttons, whatever the screen height, but never
+    // grows taller than the room under the pills (landscape phones).
+    const fitted = sheetFold === null ? Math.max(Math.round(height * 0.5), 240) : sheetFold + SHEET_FOLD_GAP;
+    const mid = Math.min(fitted, belowHeader);
     return { peek: Math.min(peek, mid), mid, full: belowHeader };
-  }, [viewportHeight, topBarHeight, safeBottom]);
+  }, [viewportHeight, topBarHeight, safeBottom, sheetFold]);
 
   // Framed for map mode even while the list covers it, so switching back is instant.
   const padding = useMemo<MapPadding>(
@@ -249,6 +256,24 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     hasNext: next !== null,
     onStep: (direction) => step(direction, true),
   });
+  useLayoutEffect(() => {
+    const fold = sheetSwipeRef.current?.querySelector<HTMLElement>("[data-sheet-fold]");
+    if (!fold) return;
+    // offsetTop ignores the sheet's slide and the items' entrance transforms, so this is the resting layout.
+    const measure = () => {
+      let bottom = fold.offsetHeight;
+      for (let el: HTMLElement | null = fold; el && !el.hasAttribute("data-sheet-clip"); el = el.offsetParent as HTMLElement | null) {
+        bottom += el.offsetTop;
+      }
+      setSheetFold(Math.ceil(bottom));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (fold.offsetParent) observer.observe(fold.offsetParent);
+    observer.observe(fold);
+    return () => observer.disconnect();
+  }, [sheetPlace, selectedId, listMode, isDesktop]);
+
   const pageRef = useRef<HTMLDivElement>(null);
   useSwipeBetween(pageRef, {
     enabled: listMode && !isDesktop && selected !== null,
@@ -331,7 +356,11 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   };
 
   return (
-    <main className="relative h-dvh w-full overflow-hidden bg-canvas">
+    <main
+      data-explorer
+      className="relative h-dvh w-full overflow-hidden bg-canvas"
+      style={viewportHeight ? { height: viewportHeight } : undefined}
+    >
       <div
         ref={safeBottomRef}
         aria-hidden

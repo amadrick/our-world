@@ -277,6 +277,10 @@
     /* Inter's square punctuation and square quotes */
     font-feature-settings: "ss07", "ss08";
   }
+  /* The explorer fits the visible viewport; anything Safari's toolbar overlays below it is canvas, not white. */
+  body:has([data-explorer]) {
+    @apply bg-canvas;
+  }
 }
 
 @utility hairline {

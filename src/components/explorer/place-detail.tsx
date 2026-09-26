@@ -583,7 +583,7 @@ export function PlaceDetail({
           className={cn("relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}
         >
           <div {...item(0)}>{header}</div>
-          <div {...item(1)}>
+          <div {...item(1)} data-sheet-fold={rail ? undefined : true}>
             <PlaceActions place={place} />
           </div>
           <div className="space-y-8 pt-2">
@@ -626,7 +626,7 @@ export function PlaceDetail({
                   <div className={cn(!swiped && "motion-item")} style={{ "--i": 0 } as React.CSSProperties}>
                     {header}
                   </div>
-                  <div className={cn(!swiped && "motion-item")} style={{ "--i": 1 } as React.CSSProperties}>
+                  <div className={cn(!swiped && "motion-item")} style={{ "--i": 1 } as React.CSSProperties} data-sheet-fold>
                     <PlaceActions place={place} />
                   </div>
                   <div className="space-y-8 pt-2">

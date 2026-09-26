@@ -264,7 +264,7 @@ export function BottomSheet({
     <div
       ref={sheetRef}
       className={cn(
-        "fixed z-20 flex flex-col will-change-transform",
+        "absolute z-20 flex flex-col will-change-transform",
         closing && "pointer-events-none",
         // Partial heights float inset as a card so the map peeks around them; full height is edge to edge.
         snap === "full" ? "inset-x-0 bottom-0" : "inset-x-2 bottom-2",
@@ -289,6 +289,7 @@ export function BottomSheet({
       {/* Clips content (a photo edge to edge) to the sheet's rounded corners. */}
       <div
         ref={clipRef}
+        data-sheet-clip
         className={cn(
           "relative flex min-h-0 flex-col overflow-hidden",
           tint ? "tinted-sheet text-white" : "glass glass-thick",
