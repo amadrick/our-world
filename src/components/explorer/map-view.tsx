@@ -10,6 +10,8 @@ import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from 
 import { layoutPins, type PinDisplay } from "@/lib/map/pin-layout";
 import { APPLE_PINS, estimateText, pinKind, pinPalette, type PinPalette } from "@/lib/map/pin-style";
 import { currentMapTheme } from "@/lib/map/theme";
+import { accuracyHaloPx } from "@/lib/map/user-location";
+import type { UserPosition } from "@/hooks/use-user-location";
 import { isFavorite } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
@@ -23,6 +25,8 @@ export interface MapViewHandle {
   showAll: () => void;
   /** Centers the selected place, e.g. after the map comes back into view. */
   focusSelected: () => void;
+  /** Centers the reader's position, clear of the sheet and the pills. */
+  locate: (position: UserPosition) => void;
 }
 
 interface MapViewProps {
@@ -40,8 +44,12 @@ interface MapViewProps {
   onBackgroundClick: () => void;
   /** The selection is a step to the next or previous place: the camera glides instead of flying. */
   glide?: boolean;
+  /** The reader's position, drawn as a blue dot with its accuracy halo. */
+  userPosition?: UserPosition | null;
   className?: string;
 }
+
+const USER_MARKER = "__user-location";
 
 type Status = "loading" | "ready" | "error";
 
@@ -74,6 +82,7 @@ export function MapView({
   onHighlight,
   onBackgroundClick,
   glide = false,
+  userPosition = null,
   className,
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -95,6 +104,15 @@ export function MapView({
     }
     return element;
   };
+
+  const userElement = useRef<HTMLElement | null>(null);
+  const sizeHalo = useEffectEvent(() => {
+    const halo = userElement.current?.firstElementChild as HTMLElement | null | undefined;
+    const instance = instanceRef.current;
+    if (!halo || !instance || !userPosition) return;
+    const size = accuracyHaloPx(userPosition.accuracy, userPosition.lat, instance.zoom());
+    halo.style.width = halo.style.height = `${size}px`;
+  });
 
   const handleBackgroundClick = useEffectEvent(() => onBackgroundClick());
 
@@ -141,6 +159,7 @@ export function MapView({
     frameRef.current = requestAnimationFrame(() => {
       frameRef.current = 0;
       relayout();
+      sizeHalo();
     });
   });
 
@@ -227,6 +246,25 @@ export function MapView({
     );
   }, [places, layout, selectedId, status]);
 
+  useEffect(() => {
+    const instance = instanceRef.current;
+    if (status !== "ready" || !instance) return;
+    if (!userPosition) {
+      instance.removeMarker(USER_MARKER);
+      return;
+    }
+    if (!userElement.current) {
+      const element = document.createElement("div");
+      element.className = "user-location";
+      element.setAttribute("role", "img");
+      element.setAttribute("aria-label", "Your location");
+      element.innerHTML = '<span class="user-location-halo"></span><span class="user-location-dot"></span>';
+      userElement.current = element;
+    }
+    instance.addMarker(USER_MARKER, userPosition, userElement.current);
+    sizeHalo();
+  }, [userPosition, status]);
+
   // An open place washes the whole map faintly in its color; closing it fades back.
   const selected = places.find((p) => p.id === selectedId);
   const tint = selected ? placeColor(selected) : null;
@@ -273,6 +311,7 @@ export function MapView({
         const place = places.find((p) => p.id === selectedId);
         if (place) instanceRef.current?.focus(place, { minZoom: 14.5 });
       },
+      locate: (position) => instanceRef.current?.focus(position, { minZoom: 15 }),
     }),
     [places, selectedId],
   );
