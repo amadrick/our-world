@@ -9,10 +9,10 @@ write-up, then open it in Apple Maps or Google Maps with one tap.
   floating at the bottom of the screen, and the guide remembers their choice.
   List is a grid of place pictures; Map is a full-screen map with a pin
   per place, a slim list rail beside it on desktop, and a draggable sheet for
-  the open place on phones. A category row (the food and drink sections, then
-  _Shops_, _Sights_, _Museums_, and _Parks_), a neighborhood picker, and six
-  pills (_Andy's favorites_, _Dinner_, _Lunch_, _Late night_, _Brunch_,
-  _Views_) work in both.
+  the open place on phones. One scrolling row of pills filters both: a category
+  pill (_All_, or _Restaurants_, _Bars_, and the rest) opens the section menu,
+  then _Andy's favorites_, a neighborhood picker, _Dinner_, _Lunch_,
+  _Late night_, _Brunch_, and _Views_.
   Every place has a shareable link (`/?place=zuni-cafe`).
 - **Andy and Kirissa** add places at `/admin`: search by name or paste a Maps
   link, pick a category, add a note, and save. An AI summary is written once,
@@ -271,8 +271,8 @@ system (`prefers-color-scheme`), map included.
     same.
 - **List:** a faint glow behind the title in the colors of Andy's picks'
   photos (pale on the light page, deep on the dark one), easing out well
-  before the first row of cards. The category row and glass pills sit on it;
-  the bar turns to glass once cards scroll under it. Cards are the square picture, name, and two
+  before the first row of cards. The same single row of glass pills sits on it
+  and stays bare when the cards scroll underneath. Cards are the square picture, name, and two
   muted lines, with a smoked-glass "Andy's pick" badge.
 - **List | Map switch:** a glass capsule floating bottom center with an ink
   thumb that slides to the selected mode (arrow keys work).
@@ -283,11 +283,14 @@ system (`prefers-color-scheme`), map included.
     stone land, fine streets a shade lighter than it, mineral grey-blue water, muted sage
     parks with a soft mottle, and few labels: districts, the Presidio, and the
     bay in widely spaced small grey capitals, street names only from zoom 15.
-    One static layer over the canvas and under the pins (`.map-film` in
-    `globals.css`) adds a still grain tile (`public/textures/film-grain.png`),
-    faint tonal unevenness, and edges a little hazier than the center (with a
-    touch of blur where there's a mouse); it's left out for reduced motion or
-    reduced transparency. Dark is our own reading of the same film: warm
+    The grain is drawn in the map canvas (a fine device-pixel texture that pans
+    with the streets and does not enlarge as you zoom), not as a screen-fixed
+    overlay. A light vignette over the canvas (`.map-film` in `globals.css`)
+    adds faint tonal unevenness and edges a little hazier than the center,
+    with a touch of blur where there's a mouse; on a phone that vignette is a
+    single soft falloff, and it's left out for reduced transparency. The old
+    overlay grain (a 160px tile, blended over the canvas) looked coarse at
+    phone resolution and repainted on every pan. Dark is our own reading of the same film: warm
     charcoal land, deep grey-slate water, dark sage parks, lighter grain.
   - `d` **Apple Maps**: a flat, top-down lookalike of Apple Maps.
     One sky-blue water, pale grey land, fresh green parks, pale beige
@@ -363,8 +366,8 @@ system (`prefers-color-scheme`), map included.
   names slide above, below, or beside their point to make room. Where a pin
   already names a place, the basemap's own marker and label for it (Coit
   Tower, Mission Dolores Park, the Fisherman's Wharf district) are hidden.
-  There's a glass rail on desktop, glass zoom buttons, and a glass filter bar
-  on phones.
+  There's a glass rail on desktop, glass zoom buttons, and, on phones, the
+  filter pills float directly on the map with no bar behind them.
 - Pills with nothing to show in the current section are dimmed, and if a
   section comes up empty for pills already on, the empty state offers the
   matches in other sections instead of a dead end.
@@ -384,18 +387,28 @@ Named with Emil Kowalski's animation vocabulary
 (`.cursor/skills/animation-vocabulary`). Only transform and opacity animate,
 except the 420ms color transition between places.
 
-- Opening a place in the map sheet or rail: a scale in and fade in on the
-  photo (640ms) and a stagger of enters (rise and fade) for the name, the
-  actions, and each row (520ms each, 110ms in, 55ms apart), on a soft
-  ease-out (`cubic-bezier(0.22, 1, 0.36, 1)`).
-- Switching places: a crossfade of the photo (420ms) and a quicker re-stagger
-  (360ms, 35ms apart). Closing the sheet slides it out and fades it (240ms).
-- Swiping: the content follows the finger, the photo at 0.55x for parallax,
-  locked to one axis so it never fights scrolling or the sheet drag. Past the
-  ends it rubber-bands. Let go past 22% of the width, or with a flick faster
-  than 0.4 px/ms, and it flings out (170ms) while the next place slides in
-  from that side (a direction-aware transition); otherwise it springs back
-  (340ms). The neighbors' photos are fetched ahead, so none arrives empty.
+- Opening a place from a pin: the camera eases there on a long ease-out quart
+  (about 760–1080ms, a gentle flight if it's more than a couple of screens
+  away), the sheet rises over 860ms, and the map takes a wash of the place's
+  color over 780ms. The same soft ease-out
+  (`cubic-bezier(0.22, 1, 0.36, 1)`). The pin itself blooms into its balloon
+  over 560ms. Reduced motion jumps the camera and skips the slide.
+- In the sheet or rail, the photo scales and fades in (860ms) and a stagger of
+  enters (rise and fade) follows for the name, the actions, and each row
+  (520ms each, 110ms in, 55ms apart).
+- Switching places with the chevrons or arrow keys: a crossfade of the photo
+  (420ms) and a quicker re-stagger (360ms, 35ms apart). Closing the sheet
+  slides it out and fades it (240ms).
+- Swiping: the open place and its neighbors are one paging carousel. The
+  previous and next photos sit just off either side, so the drag reveals them
+  instead of the canvas. Locked to one axis so it never fights scrolling or
+  the sheet drag. Past the ends it rubber-bands. Let go past 22% of the width,
+  or with a flick faster than 0.4 px/ms, and it pages across (520ms); otherwise
+  it eases back (440ms). The neighbors' photos are fetched ahead, so none arrives empty.
+- The half-height sheet does not scroll. Dragging it goes up to full height or
+  down to dismiss. The writing scrolls only at full height, and a downward drag
+  at the top of that scroll collapses the sheet. Pulling past the top never
+  exposes the page behind it.
 
 Accessibility:
 - Text on glass and on page colors is checked for contrast: white text and
@@ -406,8 +419,8 @@ Accessibility:
 - `prefers-contrast: more` thickens glass and darkens muted text, borders,
   and hairlines, in light and dark.
 - `prefers-reduced-motion` removes the press, hover-zoom, thumb-slide, and
-  sheet animations; entrances become a short fade, and swipes settle
-  instantly with no parallax.
+  sheet animations; entrances become a short fade, the camera jumps, and
+  swipes settle instantly.
 
 ## Scripts
 
@@ -445,12 +458,13 @@ model. Without it, that basemap simply skips the hillshade.
 
 ## Deploying
 
-Connect the repository to [Vercel](https://vercel.com) with the defaults: the
-Next.js framework preset, `npm run build`, no output or root directory
-changes, and no environment variables. Everything the guide shows (tiles,
-glyphs, fonts, the MapLibre worker, place pictures) is served by the app from
-same-origin URLs. `npm run build` first copies the MapLibre worker into
-`public/maplibre/`, which is also done on install.
+The primary repository is [github.com/amadrick/our-world](https://github.com/amadrick/our-world).
+Vercel imports that repo with the default Next.js settings: the Next.js
+framework preset, `npm run build`, no output or root directory changes, and no
+environment variables. Pushing to `main` redeploys. Everything the guide shows
+(tiles, glyphs, fonts, the MapLibre worker, place pictures) is served by the
+app from same-origin URLs. `npm run build` first copies the MapLibre worker
+into `public/maplibre/`, which is also done on install.
 
 - The guide is shared by link: every page and file is sent with `noindex`
   (the metadata and an `X-Robots-Tag` header), and there's no `robots.txt`
