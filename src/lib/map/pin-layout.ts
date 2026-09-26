@@ -82,9 +82,13 @@ export function layoutPins(
   pins: PinCandidate[],
   viewport: { width: number; height: number },
   zoom: number,
+  options?: { everyIcon?: boolean },
 ): Map<string, PinDisplay> {
   const result = new Map<string, PinDisplay>();
-  const few = pins.length <= FEW_PLACES;
+  // A filter asks for every match, even when the city is too wide for the usual
+  // zoom tiers and the pins sit on top of each other. Names still take turns.
+  const everyIcon = options?.everyIcon ?? false;
+  const few = everyIcon || pins.length <= FEW_PLACES;
   const gap = gapForZoom(zoom);
   const ordered = [...pins].sort((a, b) => Number(b.forced ?? false) - Number(a.forced ?? false) || a.tier - b.tier);
   const placed: (Box & { owner: string })[] = [];
@@ -108,7 +112,7 @@ export function layoutPins(
       pin.y > viewport.height + OFFSCREEN;
     if (offscreen || (!few && zoom < ICON_FROM_ZOOM[pin.tier])) continue;
     const icon = iconBox(pin, gap);
-    if (!fits(icon, pin.id)) continue;
+    if (!everyIcon && !fits(icon, pin.id)) continue;
     result.set(pin.id, "icon");
     place(icon, pin.id);
     shown.push(pin);

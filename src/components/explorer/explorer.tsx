@@ -346,6 +346,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           highlightedId={highlightedId}
           padding={padding}
           fitKey={JSON.stringify(filters)}
+          showEveryPin={filtersActive}
           onSelect={select}
           onHighlight={setHighlightedId}
           onBackgroundClick={closeDetail}

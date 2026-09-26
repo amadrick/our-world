@@ -610,7 +610,7 @@ export function PlaceDetail({
               data-offset={slide.offset}
               style={slideStyle(slide.place, slide.offset)}
             >
-              <div className="relative">
+              <div className="swipe-photo relative">
                 <StablePhoto
                   place={slide.place}
                   sizes={PHOTO_SIZES.sheet}
@@ -671,7 +671,7 @@ export function PlaceDetail({
                 data-offset={slide.offset}
                 style={slideStyle(slide.place, slide.offset)}
               >
-                <div className="relative">
+                <div className="swipe-photo relative">
                   <StablePhoto
                     place={slide.place}
                     sizes={PAGE_PHOTO_SIZES}

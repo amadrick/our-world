@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { contrastRatio, darkPinColor, whiteTextReads } from "../images/palette.mjs";
+import { EMPTY_FILTERS, filterPlaces } from "./filters";
 import { placeInputSchema } from "./schema";
 import type { Place } from "./types";
 
@@ -247,6 +248,7 @@ describe("data/places.json", () => {
       expect(place.signatureRationale ?? "", place.id).not.toMatch(/own pick|Our pick\./);
     }
     expect(places.filter((p) => p.favorite)).toHaveLength(55);
+    expect(filterPlaces(places, { ...EMPTY_FILTERS, pills: ["favorites"] })).toHaveLength(55);
     expect(byId("arsicault-bakery")?.signatureSubject).toBe("Chocolate almond croissant");
     expect(byId("yank-sing")?.signatureSubject).toBe("Pot stickers");
     expect(byId("house-of-prime-rib")?.signatureSubject).toBe("King's cut");

@@ -33,6 +33,8 @@ interface MapViewProps {
   padding: MapPadding;
   /** Changes whenever the filtered set changes, so the map re-frames the results. */
   fitKey: string;
+  /** A filter is on: draw every matching pin, not only the ones the city zoom would keep. */
+  showEveryPin?: boolean;
   onSelect: (id: string) => void;
   onHighlight: (id: string | null) => void;
   onBackgroundClick: () => void;
@@ -67,6 +69,7 @@ export function MapView({
   highlightedId,
   padding,
   fitKey,
+  showEveryPin = false,
   onSelect,
   onHighlight,
   onBackgroundClick,
@@ -129,6 +132,7 @@ export function MapView({
       })),
       instance.size(),
       instance.zoom(),
+      { everyIcon: showEveryPin },
     );
     setLayout((current) => (sameLayout(current, next) ? current : next));
   });
@@ -206,7 +210,7 @@ export function MapView({
 
   useEffect(() => {
     if (status === "ready") relayout();
-  }, [places, selectedId, highlightedId, status]);
+  }, [places, selectedId, highlightedId, showEveryPin, status]);
 
   useEffect(() => {
     if (status !== "ready") return;

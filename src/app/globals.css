@@ -988,18 +988,29 @@ body .maplibregl-ctrl-attrib {
 /*
  * Slides overlap by --feather and sit one container-width apart, so a
  * translate of exactly one width lands the next photo in the same window.
- * The open slide (offset 0) is opaque and on top, which hides the overlap
- * at rest. While a swipe is in progress, only the shared edge is masked,
- * so the two photos crossfade and the page color never shows through.
- * The mask is not on the track, so the per-frame motion stays a transform.
+ * The overlap hangs off the left of the border box. Padding of the same
+ * size puts the text back on the sheet: the content box starts at
+ * offset * 100% and is exactly one container wide, on open, after a swipe,
+ * and on resize. The open slide (offset 0) is opaque and on top, which
+ * hides the overlap at rest. While a swipe is in progress, only the shared
+ * edge is masked, so the two photos crossfade and the page color never
+ * shows through. The mask is not on the track, so the per-frame motion
+ * stays a transform.
  */
 .swipe-slide {
   --feather: 36px;
   position: absolute;
   inset-block: 0;
+  box-sizing: border-box;
   width: calc(100% + var(--feather));
   margin-left: calc(var(--feather) * -1);
+  padding-left: var(--feather);
   left: calc(var(--offset) * 100%);
+}
+/* The photo fills that overlap. Text stays in the content box. */
+.swipe-photo {
+  margin-left: calc(var(--feather) * -1);
+  width: calc(100% + var(--feather));
 }
 .swipe-slide[data-offset="0"] {
   position: relative;

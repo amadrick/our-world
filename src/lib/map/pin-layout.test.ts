@@ -42,6 +42,16 @@ describe("layoutPins", () => {
     expect(layout.get("b")).toBe("icon");
   });
 
+  it("shows every icon of a wide filter, including overlaps below the tier zoom", () => {
+    const pins = Array.from({ length: 40 }, (_, i) =>
+      pin(`p${i}`, 220 + (i % 5) * 6, 220 + Math.floor(i / 5) * 6, { tier: 2 }),
+    );
+    const hidden = layoutPins(pins, view, 10.5);
+    expect([...hidden.values()].every((display) => display === "hidden")).toBe(true);
+    const shown = layoutPins(pins, view, 10.5, { everyIcon: true });
+    expect([...shown.values()].filter((display) => display !== "hidden")).toHaveLength(40);
+  });
+
   it("gives the icon to the higher tier when two collide", () => {
     const layout = layoutPins([pin("rest", 300, 300), pin("pick", 305, 300, { tier: 2 }), pin("sight", 900, 700, { kind: "photo", tier: 1 })], view, 15);
     expect(layout.get("pick")).toBe("named");
