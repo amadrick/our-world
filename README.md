@@ -45,6 +45,8 @@ Copy `.env.example` to `.env.local` and fill in what you need, then restart
 | `OPENAI_IMAGE_MODEL` | Image model for `npm run images`. Defaults to `gpt-image-1`. |
 | `PLACE_IMAGE_GENERATION` | Set to `on` to draw place pictures (from the admin and `npm run images`). Off by default so nothing spends image budget by accident. |
 | `NEXT_PUBLIC_MAP_TILES` | The map draws the San Francisco tiles the app serves itself (see Map tiles). Set to `openfreemap` to use OpenFreeMap's hosted planet tiles instead. |
+| `ROUTING_API_KEY` | An [openrouteservice](https://openrouteservice.org/dev/#/signup) key for drive times (its Matrix API, called from `/api/drive-times` so the key stays on the server). Without it, drive times come from OSRM's public server, which needs no key. |
+| `ROUTING_OSRM_URL` | Another OSRM server for drive times, instead of `router.project-osrm.org`. |
 
 ## Adding a place
 
