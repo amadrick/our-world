@@ -46,7 +46,12 @@ export function useSwipeBetween(
     };
     const reset = () => {
       el.removeAttribute("data-swipe");
+      el.removeAttribute("data-swipe-dir");
       el.style.removeProperty("--swipe-x");
+    };
+    const aim = (dx: number) => {
+      const dir = dx < 0 ? "next" : "prev";
+      if (el.dataset.swipeDir !== dir) el.dataset.swipeDir = dir;
     };
 
     const settle = (direction: StepDirection | 0, width: number) => {
@@ -67,6 +72,7 @@ export function useSwipeBetween(
       };
       if (reduced) return commit();
       el.dataset.swipe = "out";
+      el.dataset.swipeDir = direction === 1 ? "next" : "prev";
       void el.offsetWidth;
       show(-direction * width);
       timer = window.setTimeout(commit, OUT_MS);
@@ -102,6 +108,7 @@ export function useSwipeBetween(
           el.dataset.swipe = "drag";
         }
         g.dx = dx;
+        aim(dx);
         g.samples.push([move.timeStamp, move.clientX]);
         while (g.samples.length > 2 && move.timeStamp - g.samples[0][0] > VELOCITY_WINDOW) g.samples.shift();
         const { hasPrev: prev, hasNext: next } = neighbors();

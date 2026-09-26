@@ -985,6 +985,39 @@ body .maplibregl-ctrl-attrib {
 .swipe-track {
   transform: translate3d(var(--swipe-x, 0px), 0, 0);
 }
+/*
+ * Slides overlap by --feather and sit one container-width apart, so a
+ * translate of exactly one width lands the next photo in the same window.
+ * The open slide (offset 0) is opaque and on top, which hides the overlap
+ * at rest. While a swipe is in progress, only the shared edge is masked,
+ * so the two photos crossfade and the page color never shows through.
+ * The mask is not on the track, so the per-frame motion stays a transform.
+ */
+.swipe-slide {
+  --feather: 36px;
+  position: absolute;
+  inset-block: 0;
+  width: calc(100% + var(--feather));
+  margin-left: calc(var(--feather) * -1);
+  left: calc(var(--offset) * 100%);
+}
+.swipe-slide[data-offset="0"] {
+  position: relative;
+  z-index: 1;
+}
+/*
+ * Only the slide on top fades. The one underneath stays opaque, so the
+ * overlap is a crossfade of the two photos and the sheet never shows through.
+ * The mask is static for the gesture: per-frame motion stays the track transform.
+ */
+[data-swipe-dir="next"] .swipe-slide[data-offset="0"] {
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - var(--feather)), transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - var(--feather)), transparent 100%);
+}
+[data-swipe-dir="prev"] .swipe-slide[data-offset="0"] {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--feather), #000 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--feather), #000 100%);
+}
 [data-swipe="drag"] .swipe-track {
   transition: none;
 }
