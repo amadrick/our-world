@@ -44,9 +44,9 @@ Sight · Alcatraz · Alcatraz Island, San Francisco, CA 94133
 
 ## Andytown Coffee Roasters
 
-Coffee & tea · Outer Sunset · 3655 Lawton St, San Francisco, CA 94122 · Andy’s pick
+Coffee & tea · Outer Sunset · 3655 Lawton St, San Francisco, CA 94122
 
-**Known for:** Cappuccino with whipped cream (Andy’s own pick).
+**Known for:** Cappuccino with whipped cream.
 
 ### Place research
 
@@ -75,9 +75,9 @@ Coffee & tea · Outer Sunset · 3655 Lawton St, San Francisco, CA 94122 · Andy�
 
 ## Arsicault Bakery
 
-Bakery · Inner Richmond · 397 Arguello Blvd, San Francisco, CA 94118 · Andy’s pick
+Bakery · Inner Richmond · 397 Arguello Blvd, San Francisco, CA 94118 · Favorite
 
-**Known for:** Chocolate almond croissant (Andy’s own pick).
+**Known for:** Chocolate almond croissant.
 
 ### Place research
 
@@ -102,9 +102,9 @@ Bakery · Inner Richmond · 397 Arguello Blvd, San Francisco, CA 94118 · Andy�
 
 ## Beit Rima
 
-Restaurant · Cole Valley · 86 Carl St, San Francisco, CA 94117 · Andy’s pick
+Restaurant · Cole Valley · 86 Carl St, San Francisco, CA 94117
 
-**Known for:** Chicken plate (Andy’s own pick).
+**Known for:** Chicken plate.
 
 ### Place research
 
@@ -132,9 +132,9 @@ Restaurant · Cole Valley · 86 Carl St, San Francisco, CA 94117 · Andy’s pic
 
 ## Bi-Rite Creamery
 
-Dessert · Mission · 3692 18th St, San Francisco, CA 94110 · Andy’s pick
+Dessert · Mission · 3692 18th St, San Francisco, CA 94110
 
-**Known for:** Black sesame ice cream (Andy’s own pick).
+**Known for:** Black sesame ice cream.
 
 ### Place research
 
@@ -161,9 +161,9 @@ Dessert · Mission · 3692 18th St, San Francisco, CA 94110 · Andy’s pick
 
 ## Bodega SF
 
-Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133 · Andy’s pick
+Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133 · Favorite
 
-**Known for:** Pho and the chilled red wine (Andy’s own pick).
+**Known for:** Pho and the chilled red wine.
 
 ### Place research
 
@@ -250,7 +250,7 @@ Restaurant · Inner Richmond · 309 Clement St, San Francisco, CA 94118
 
 ## Capo's
 
-Restaurant · North Beach · 641 Vallejo St, San Francisco, CA 94133 · Andy’s pick
+Restaurant · North Beach · 641 Vallejo St, San Francisco, CA 94133 · Favorite
 
 **Known for:** Old Chicago deep-dish (sausage/meatball) (high confidence). Capo’s/Tony Gemignani site and USA Today: Chicago deep-dish is the raison d’être; Old Chicago is the flagship build.
 
@@ -315,9 +315,9 @@ Sight · Castro · 429 Castro St, San Francisco, CA 94114
 
 ## China Live
 
-Restaurant · Chinatown · 644 Broadway, San Francisco, CA 94133 · Andy’s pick
+Restaurant · Chinatown · 644 Broadway, San Francisco, CA 94133
 
-**Known for:** Duck buns and dumplings (Andy’s own pick).
+**Known for:** Duck buns and dumplings.
 
 ### Place research
 
@@ -383,7 +383,7 @@ Sight · Civic Center · 1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102
 
 ## Coit Tower
 
-Sight · Telegraph Hill · 1 Telegraph Hill Blvd, San Francisco, CA 94133
+Sight · Telegraph Hill · 1 Telegraph Hill Blvd, San Francisco, CA 94133 · Favorite
 
 **Known for:** 360-degree city and bay views from the top (high confidence). SF Rec & Park and Wikipedia both describe the observation deck's panoramic views across the city and bay, from the Golden Gate Bridge to the Bay Bridge.
 
@@ -415,9 +415,9 @@ Sight · Telegraph Hill · 1 Telegraph Hill Blvd, San Francisco, CA 94133
 
 ## Comstock Saloon
 
-Bar · North Beach · 155 Columbus Ave, San Francisco, CA 94133 · Andy’s pick
+Bar · North Beach · 155 Columbus Ave, San Francisco, CA 94133 · Favorite
 
-**Known for:** Martini or dirty martini (Andy’s own pick).
+**Known for:** Martini or dirty martini.
 
 ### Place research
 
@@ -447,9 +447,9 @@ Bar · North Beach · 155 Columbus Ave, San Francisco, CA 94133 · Andy’s pick
 
 ## Cotogna
 
-Restaurant · Jackson Square · 490 Pacific Ave, San Francisco, CA 94133 · Andy’s pick
+Restaurant · Jackson Square · 490 Pacific Ave, San Francisco, CA 94133 · Favorite
 
-**Known for:** Raviolo (Andy’s own pick).
+**Known for:** Raviolo.
 
 ### Place research
 
@@ -513,7 +513,7 @@ Sight · Presidio · 1199 East Beach, San Francisco, CA 94129
 
 ## Daeho
 
-Restaurant · Japantown · 1620 Post St, San Francisco, CA 94115 · Andy’s pick
+Restaurant · Japantown · 1620 Post St, San Francisco, CA 94115
 
 **Known for:** Cheese kalbijjim (blowtorched) (high confidence). Infatuation, Goldbelly, and viral press: braised short-rib stew capped with torched cheese.
 
@@ -543,7 +543,7 @@ Restaurant · Japantown · 1620 Post St, San Francisco, CA 94115 · Andy’s pic
 
 ## Dandelion Chocolate
 
-Dessert · Embarcadero · 1 Ferry Building, Shop 14, San Francisco, CA 94111
+Dessert · Embarcadero · 1 Ferry Building, Shop 14, San Francisco, CA 94111 · Favorite
 
 **Known for:** Single-origin chocolate bars and toasted-to-order s'mores (high confidence). Dandelion's Ferry Building page and its 2026 post single out its bean-to-bar chocolate bars, hot chocolate, and freshly toasted s'mores as the draws at this shop.
 
@@ -576,9 +576,9 @@ Dessert · Embarcadero · 1 Ferry Building, Shop 14, San Francisco, CA 94111
 
 ## Day Moon
 
-Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122 · Andy’s pick
+Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122
 
-**Known for:** Cappuccino and a chocolate chip cookie (Andy’s own pick).
+**Known for:** Cappuccino and a chocolate chip cookie.
 
 ### Place research
 
@@ -606,7 +606,7 @@ Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122 · Andy’s pi
 
 ## de Young Museum
 
-Museum · Golden Gate Park · 50 Hagiwara Tea Garden Dr, San Francisco, CA 94118
+Museum · Golden Gate Park · 50 Hagiwara Tea Garden Dr, San Francisco, CA 94118 · Favorite
 
 **Known for:** Free Hamon Observation Tower (high confidence). FAMSF lists the ninth-floor Hamon Observation Tower as open to everyone without a ticket; SFGATE and the SF Chronicle describe its 360-degree view as a well-loved free draw and the highest viewpoint in Golden Gate Park.
 
@@ -667,7 +667,7 @@ Restaurant · SoMa · 1058 Folsom St, San Francisco, CA 94103
 
 ## Dolores Park
 
-Sight · Mission · 19th St & Dolores St, San Francisco, CA 94114
+Sight · Mission · 19th St & Dolores St, San Francisco, CA 94114 · Favorite
 
 **Known for:** Sunny hillside lawns with a downtown skyline view (high confidence). Wikipedia describes the park's warm, sunny microclimate and its northeast view of downtown from the southwest corner; Lonely Planet highlights the palm-framed skyline view from the upper corner.
 
@@ -759,7 +759,7 @@ Restaurant · Mission · 1890 Bryant St, San Francisco, CA 94110
 
 ## Evan Kinori
 
-Shop · Mission · 1367 Valencia St, San Francisco, CA 94110
+Shop · Mission · 1367 Valencia St, San Francisco, CA 94110 · Andy’s pick
 
 **Known for:** Relaxed, natural-fiber menswear (high confidence). The FT and SF Standard describe the store as the flagship for Kinori's soft, wide-cut, earth-toned clothing made from carefully sourced natural fabrics, shown alongside ceramics and furniture.
 
@@ -852,7 +852,7 @@ Restaurant · Mission · 710 Florida St, San Francisco, CA 94110
 
 ## Ferry Building
 
-Sight · Embarcadero · 1 Ferry Building, San Francisco, CA 94111
+Sight · Embarcadero · 1 Ferry Building, San Francisco, CA 94111 · Favorite
 
 **Known for:** Clock tower at the foot of Market Street (high confidence). Wikipedia and the Emperor Norton Trust single out the 245-foot clock tower, whose best-known view is straight down Market Street, as the building's defining landmark.
 
@@ -920,9 +920,9 @@ Sight · Fisherman's Wharf · 2820 Taylor St, San Francisco, CA 94133
 
 ## Flour + Water
 
-Restaurant · Mission · 2401 Harrison St, San Francisco, CA 94110 · Andy’s pick
+Restaurant · Mission · 2401 Harrison St, San Francisco, CA 94110 · Our pick
 
-**Known for:** Taleggio scarpinocc (Andy’s own pick).
+**Known for:** Taleggio scarpinocc.
 
 ### Place research
 
@@ -951,9 +951,9 @@ Restaurant · Mission · 2401 Harrison St, San Francisco, CA 94110 · Andy’s p
 
 ## Flour + Water Pizzeria
 
-Restaurant · North Beach · 532 Columbus Ave, San Francisco, CA 94133 · Andy’s pick
+Restaurant · North Beach · 532 Columbus Ave, San Francisco, CA 94133
 
-**Known for:** Cacio e pepe pizza (Andy’s own pick).
+**Known for:** Cacio e pepe pizza.
 
 ### Place research
 
@@ -981,9 +981,9 @@ Restaurant · North Beach · 532 Columbus Ave, San Francisco, CA 94133 · Andy�
 
 ## Foreign Cinema
 
-Restaurant · Mission · 2534 Mission St, San Francisco, CA 94110 · Andy’s pick
+Restaurant · Mission · 2534 Mission St, San Francisco, CA 94110 · Favorite
 
-**Known for:** Fried chicken (Andy’s own pick).
+**Known for:** Fried chicken.
 
 ### Place research
 
@@ -1009,9 +1009,9 @@ Restaurant · Mission · 2534 Mission St, San Francisco, CA 94110 · Andy’s pi
 
 ## Garden Creamery
 
-Dessert · Mission · 3566 20th St, San Francisco, CA 94110 · Andy’s pick
+Dessert · Mission · 3566 20th St, San Francisco, CA 94110 · Favorite
 
-**Known for:** Black sesame ice cream (Andy’s own pick).
+**Known for:** Black sesame ice cream.
 
 ### Place research
 
@@ -1067,9 +1067,9 @@ Sight · Fisherman's Wharf · 900 North Point St, San Francisco, CA 94109
 
 ## Golden Boy Pizza
 
-Restaurant · North Beach · 542 Green St, San Francisco, CA 94133 · Andy’s pick
+Restaurant · North Beach · 542 Green St, San Francisco, CA 94133
 
-**Known for:** Sausage pizza (Andy’s own pick).
+**Known for:** Sausage pizza.
 
 ### Place research
 
@@ -1131,7 +1131,7 @@ Sight · Presidio · Golden Gate Bridge Welcome Center, Presidio, San Francisco,
 
 ## Golden Gate Park
 
-Park · Golden Gate Park · 501 Stanyan St, San Francisco, CA 94117
+Park · Golden Gate Park · 501 Stanyan St, San Francisco, CA 94117 · Favorite
 
 **Known for:** Conservatory of Flowers (med confidence). Gardens of Golden Gate Park calls it the oldest public wood-and-glass conservatory in North America and one of San Francisco's most photographed attractions; Wikipedia names it the park's oldest building.
 
@@ -1297,9 +1297,9 @@ Sight · Haight-Ashbury · Haight St & Ashbury St, San Francisco, CA 94117
 
 ## Han Il Kwan
 
-Restaurant · Outer Richmond · 1802 Balboa St, San Francisco, CA 94121 · Andy’s pick
+Restaurant · Outer Richmond · 1802 Balboa St, San Francisco, CA 94121
 
-**Known for:** Kalbi (Andy’s own pick).
+**Known for:** Kalbi.
 
 ### Place research
 
@@ -1358,9 +1358,9 @@ Shop · Mission · 2900 18th St, San Francisco, CA 94110
 
 ## Hedge Coffee
 
-Coffee & tea · Mission · 434 Shotwell St, San Francisco, CA 94110 · Andy’s pick
+Coffee & tea · Mission · 434 Shotwell St, San Francisco, CA 94110 · Our pick
 
-**Known for:** Cappuccino (Andy’s own pick).
+**Known for:** Cappuccino.
 
 ### Place research
 
@@ -1390,7 +1390,7 @@ Coffee & tea · Mission · 434 Shotwell St, San Francisco, CA 94110 · Andy’s 
 
 Restaurant · SoMa · 1136 Folsom St, San Francisco, CA 94103 · Andy’s pick
 
-**Known for:** Peking duck (Andy’s own pick).
+**Known for:** Peking duck.
 
 ### Place research
 
@@ -1417,9 +1417,9 @@ Restaurant · SoMa · 1136 Folsom St, San Francisco, CA 94103 · Andy’s pick
 
 ## Hook Fish Co.
 
-Restaurant · Outer Sunset · 4542 Irving St, San Francisco, CA 94122 · Andy’s pick
+Restaurant · Outer Sunset · 4542 Irving St, San Francisco, CA 94122 · Favorite
 
-**Known for:** Baja fish burrito (Andy’s own pick).
+**Known for:** Baja fish burrito.
 
 ### Place research
 
@@ -1448,7 +1448,7 @@ Restaurant · Outer Sunset · 4542 Irving St, San Francisco, CA 94122 · Andy’
 
 Restaurant · Nob Hill · 1906 Van Ness Ave, San Francisco, CA 94109 · Andy’s pick
 
-**Known for:** King's cut (Andy’s own pick).
+**Known for:** King's cut.
 
 ### Place research
 
@@ -1476,9 +1476,9 @@ Restaurant · Nob Hill · 1906 Van Ness Ave, San Francisco, CA 94109 · Andy’s
 
 ## Jules
 
-Restaurant · Lower Haight · 237 Fillmore St, San Francisco, CA 94117 · Andy’s pick
+Restaurant · Lower Haight · 237 Fillmore St, San Francisco, CA 94117 · Our pick
 
-**Known for:** Drunken Sailor (Andy’s own pick).
+**Known for:** Drunken Sailor.
 
 ### Place research
 
@@ -1535,7 +1535,7 @@ Restaurant · Union Square · 55 Cyril Magnin St, San Francisco, CA 94102
 
 ## Kopê House
 
-Coffee & tea · Hayes Valley · 546 Laguna St, San Francisco, CA 94102
+Coffee & tea · Hayes Valley · 546 Laguna St, San Francisco, CA 94102 · Our pick
 
 **Known for:** Short & Sweet (red bean–cherry espresso) / passion-fruit chocolate cappuccino (high confidence). Infatuation says offbeat signatures are the main draw (Short & Sweet; passion-fruit chocolate cappuccino); Eater highlights cocktail-style drinks from the founders’ pop-up era.
 
@@ -1565,7 +1565,7 @@ Coffee & tea · Hayes Valley · 546 Laguna St, San Francisco, CA 94102
 
 ## La Taqueria
 
-Restaurant · Mission · 2889 Mission St, San Francisco, CA 94110
+Restaurant · Mission · 2889 Mission St, San Francisco, CA 94110 · Andy’s pick
 
 **Known for:** Carne asada burrito, no rice (El Dorado crisp optional) (high confidence). Infatuation, Bon Appétit, and Eater: riceless Mission burrito—often carne asada, optionally grill-crisped El Dorado-style.
 
@@ -1821,7 +1821,7 @@ Sight · Russian Hill · Lombard St between Hyde St & Leavenworth St, San Franci
 
 ## Lovely's
 
-Restaurant · Cole Valley · 848 Cole St, San Francisco, CA 94117 · Andy’s pick
+Restaurant · Cole Valley · 848 Cole St, San Francisco, CA 94117
 
 **Known for:** Drive-Thru smashburger (high confidence). Infatuation: schmaltz-onion Drive-Thru smash is the Cole Valley order.
 
@@ -1853,7 +1853,7 @@ Restaurant · Cole Valley · 848 Cole St, San Francisco, CA 94117 · Andy’s pi
 
 ## Lush Gelato
 
-Dessert · North Beach · 520 Columbus Ave, San Francisco, CA 94133
+Dessert · North Beach · 520 Columbus Ave, San Francisco, CA 94133 · Favorite
 
 **Known for:** Brown butter and chocolate honeycomb gelato (high confidence). The Infatuation's review leads with brown butter & chocolate honeycomb, it is a standing item on the shop's official flavor list, and it is one of the most-reviewed items on the shop's Yelp menu.
 
@@ -1916,9 +1916,9 @@ Restaurant · Outer Sunset · 3821 Noriega St, San Francisco, CA 94122 · Andy�
 
 ## Maison Nico
 
-Bakery · Jackson Square · 710 Montgomery St, San Francisco, CA 94111 · Andy’s pick
+Bakery · Jackson Square · 710 Montgomery St, San Francisco, CA 94111 · Favorite
 
-**Known for:** Seasonal croissant (Andy’s own pick).
+**Known for:** Seasonal croissant.
 
 ### Place research
 
@@ -1950,7 +1950,7 @@ Bakery · Jackson Square · 710 Montgomery St, San Francisco, CA 94111 · Andy�
 
 ## Mamahuhu
 
-Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118 · Andy’s pick
+Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118
 
 **Known for:** Sweet & sour chicken (crispy rice batter) (high confidence). Official Mamahuhu menu + Chronicle/Eater: Brandon Jew’s reinvented Chinese-American sweet-and-sour chicken is the headliner.
 
@@ -1979,7 +1979,7 @@ Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118 · Andy�
 
 ## Ministry of Scent
 
-Shop · Mission · 962 Valencia St, San Francisco, CA 94110
+Shop · Mission · 962 Valencia St, San Francisco, CA 94110 · Kirissa’s pick
 
 **Known for:** Niche and indie perfumes (high confidence). The shop's About page says it presents artistic scents from independent perfumers and niche houses, and The New Fillmore calls it an S.F. original known for its wide selection of niche and indie scent houses.
 
@@ -2010,9 +2010,9 @@ Shop · Mission · 962 Valencia St, San Francisco, CA 94110
 
 ## Molinari Delicatessen
 
-Restaurant · North Beach · 373 Columbus Ave, San Francisco, CA 94133 · Andy’s pick
+Restaurant · North Beach · 373 Columbus Ave, San Francisco, CA 94133 · Our pick
 
-**Known for:** Grilled focaccia (Andy’s own pick).
+**Known for:** Grilled focaccia.
 
 ### Place research
 
@@ -2070,9 +2070,9 @@ Bar · Mission · 741 Valencia St, San Francisco, CA 94110
 
 ## Nopa
 
-Restaurant · NoPa · 560 Divisadero St, San Francisco, CA 94117 · Andy’s pick
+Restaurant · NoPa · 560 Divisadero St, San Francisco, CA 94117 · Favorite
 
-**Known for:** Pork chop (Andy’s own pick).
+**Known for:** Pork chop.
 
 ### Place research
 
@@ -2098,9 +2098,9 @@ Restaurant · NoPa · 560 Divisadero St, San Francisco, CA 94117 · Andy’s pic
 
 ## Nopa Fish Market
 
-Restaurant · Embarcadero · 1 Ferry Building, San Francisco, CA 94111 · Andy’s pick
+Restaurant · Embarcadero · 1 Ferry Building, San Francisco, CA 94111 · Kirissa’s pick
 
-**Known for:** Fancy fish over rice (Andy’s own pick).
+**Known for:** Fancy fish over rice.
 
 ### Place research
 
@@ -2129,9 +2129,9 @@ Restaurant · Embarcadero · 1 Ferry Building, San Francisco, CA 94111 · Andy�
 
 ## Nopalito
 
-Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117 · Andy’s pick
+Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117 · Our pick
 
-**Known for:** Carnitas (Andy’s own pick).
+**Known for:** Carnitas.
 
 ### Place research
 
@@ -2161,7 +2161,7 @@ Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117 · Andy’s pick
 
 ## Ocean Beach
 
-Park · Outer Sunset · Great Highway, San Francisco, CA 94122
+Park · Outer Sunset · Great Highway, San Francisco, CA 94122 · Favorite
 
 **Known for:** Surf, fog, and beach bonfires (high confidence). Wikipedia says Ocean Beach is known for its strong currents, surf culture, and foggy late-spring and summer weather; the NPS describes a 3.5-mile beach whose currents suit only experienced surfers.
 
@@ -2226,9 +2226,9 @@ Wine · Oakland · 3354 Grand Ave, Oakland, CA 94610
 
 ## Original Joe's
 
-Restaurant · North Beach · 601 Union St, San Francisco, CA 94133 · Andy’s pick
+Restaurant · North Beach · 601 Union St, San Francisco, CA 94133 · Favorite
 
-**Known for:** Spicy rigatoni (Andy’s own pick).
+**Known for:** Spicy rigatoni.
 
 ### Place research
 
@@ -2287,9 +2287,9 @@ Restaurant · Outer Sunset · 4001 Judah St, San Francisco, CA 94122
 
 ## Pabu Izakaya
 
-Restaurant · Financial District · 101 California St, San Francisco, CA 94111 · Andy’s pick
+Restaurant · Financial District · 101 California St, San Francisco, CA 94111
 
-**Known for:** Scallop roll with salmon roe (Andy’s own pick).
+**Known for:** Scallop roll with salmon roe.
 
 ### Place research
 
@@ -2387,7 +2387,7 @@ Sight · Marina · 3601 Lyon St, San Francisco, CA 94123
 
 Restaurant · Outer Richmond · 6101 California St, San Francisco, CA 94121 · Andy’s pick
 
-**Known for:** Pork chop (Andy’s own pick).
+**Known for:** Pork chop.
 
 ### Place research
 
@@ -2412,9 +2412,9 @@ Restaurant · Outer Richmond · 6101 California St, San Francisco, CA 94121 · A
 
 ## Penny Roma
 
-Restaurant · Mission · 3000 20th St, San Francisco, CA 94110 · Andy’s pick
+Restaurant · Mission · 3000 20th St, San Francisco, CA 94110
 
-**Known for:** Seasonal pasta (Andy’s own pick).
+**Known for:** Seasonal pasta.
 
 ### Place research
 
@@ -2508,9 +2508,9 @@ Sight · Union Square · Powell St & Market St, San Francisco, CA 94102
 
 ## R&G Lounge
 
-Restaurant · Chinatown · 631 Kearny St, San Francisco, CA 94108 · Andy’s pick
+Restaurant · Chinatown · 631 Kearny St, San Francisco, CA 94108
 
-**Known for:** Mongolian beef (Andy’s own pick).
+**Known for:** Mongolian beef.
 
 ### Place research
 
@@ -2538,7 +2538,7 @@ Restaurant · Chinatown · 631 Kearny St, San Francisco, CA 94108 · Andy’s pi
 
 ## Rachel Comey
 
-Shop · Pacific Heights · 2223 Fillmore St, San Francisco, CA 94115
+Shop · Pacific Heights · 2223 Fillmore St, San Francisco, CA 94115 · Kirissa’s pick
 
 **Known for:** Stacked-heel clogs and Legion jeans (high confidence). The brand's own bio credits it with pioneering stacked-heel clogs and booties and cropped high-waist denim, and GQ and Vogue single out the wide-leg cropped Legion jean as its signature.
 
@@ -2567,7 +2567,7 @@ Shop · Pacific Heights · 2223 Fillmore St, San Francisco, CA 94115
 
 ## Radhaus
 
-Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123
+Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123 · Kirissa’s pick
 
 **Known for:** Bay-view hall with a Ponderosa pine bar (high confidence). Eater SF's review headline says the big, beautiful space is the draw, and Architectural Record calls the Ponderosa pine bar and communal bench the restaurant's signature elements.
 
@@ -2601,7 +2601,7 @@ Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123
 
 ## Rampant Bottle & Bar
 
-Wine · Outer Richmond · 3516 Balboa St, San Francisco, CA 94121 · Andy’s pick
+Wine · Outer Richmond · 3516 Balboa St, San Francisco, CA 94121 · Our pick
 
 **Known for:** Natural wine by-the-glass + bottle shop (high confidence). Official About and Chronicle: Outer Richmond natural-wine bottle shop/bar; rotating small-production pours are the draw.
 
@@ -2627,7 +2627,7 @@ Wine · Outer Richmond · 3516 Balboa St, San Francisco, CA 94121 · Andy’s pi
 
 ## Reliquary
 
-Shop · Hayes Valley · 544 Hayes St, San Francisco, CA 94102
+Shop · Hayes Valley · 544 Hayes St, San Francisco, CA 94102 · Kirissa’s pick
 
 **Known for:** Antique jewelry and a 22K gold house line (high confidence). Time Out highlights the owner's trove of antique and vintage jewelry, and the shop's site leads with its 22K gold house-line strands and rings.
 
@@ -2657,7 +2657,7 @@ Shop · Hayes Valley · 544 Hayes St, San Francisco, CA 94102
 
 ## ReLove
 
-Shop · Nob Hill · 1815 Polk St, San Francisco, CA 94109
+Shop · Nob Hill · 1815 Polk St, San Francisco, CA 94109 · Kirissa’s pick
 
 **Known for:** Curated designer, vintage and contemporary resale (high confidence). Time Out, InsideHook and the shop's own site describe a hand-picked mix of true vintage, designer and contemporary pieces for women and men.
 
@@ -2687,7 +2687,7 @@ Shop · Nob Hill · 1815 Polk St, San Francisco, CA 94109
 
 ## RT Rotisserie
 
-Restaurant · Hayes Valley · 101 Oak St, San Francisco, CA 94102
+Restaurant · Hayes Valley · 101 Oak St, San Francisco, CA 94102 · Kirissa’s pick
 
 **Known for:** Rotisserie chicken (porcini / Douglas-fir brine) (high confidence). 7x7 and Eater: buttermilk–porcini–Douglas-fir rotisserie bird is the whole concept.
 
@@ -2719,9 +2719,9 @@ Restaurant · Hayes Valley · 101 Oak St, San Francisco, CA 94102
 
 ## Saint Frank Coffee
 
-Coffee & tea · Russian Hill · 2340 Polk St, San Francisco, CA 94109 · Andy’s pick
+Coffee & tea · Russian Hill · 2340 Polk St, San Francisco, CA 94109 · Kirissa’s pick
 
-**Known for:** Competition-style cappuccino (Andy’s own pick).
+**Known for:** Competition-style cappuccino.
 
 ### Place research
 
@@ -2745,9 +2745,9 @@ Coffee & tea · Russian Hill · 2340 Polk St, San Francisco, CA 94109 · Andy’
 
 ## San Tung
 
-Restaurant · Inner Sunset · 1031 Irving St, San Francisco, CA 94122 · Andy’s pick
+Restaurant · Inner Sunset · 1031 Irving St, San Francisco, CA 94122 · Favorite
 
-**Known for:** Orange chicken (Andy’s own pick).
+**Known for:** Orange chicken.
 
 ### Place research
 
@@ -2773,7 +2773,7 @@ Restaurant · Inner Sunset · 1031 Irving St, San Francisco, CA 94122 · Andy’
 
 ## Self Edge
 
-Shop · Mission · 569 Valencia St, San Francisco, CA 94110
+Shop · Mission · 569 Valencia St, San Francisco, CA 94110 · Favorite
 
 **Known for:** Japanese selvedge denim (high confidence). Self Edge's own listing says it specializes in Japanese selvedge denim, most of it exclusive to the store in North America, and the SF Chronicle calls it San Francisco's Japanese denim mecca.
 
@@ -2806,7 +2806,7 @@ Shop · Mission · 569 Valencia St, San Francisco, CA 94110
 
 ## SF76
 
-Shop · Japantown · 1758 Buchanan St, San Francisco, CA 94115
+Shop · Japantown · 1758 Buchanan St, San Francisco, CA 94115 · Our pick
 
 **Known for:** Japanese tableware (Hasami Porcelain) (high confidence). The shop's own site names Hasami Porcelain, ARAS tableware, donabe, kitchen tools and incense as its core lines, and its FAQ steers visitors to compare Hasami Porcelain in store.
 
@@ -2839,7 +2839,7 @@ Shop · Japantown · 1758 Buchanan St, San Francisco, CA 94115
 
 ## SFMOMA
 
-Museum · SoMa · 151 Third St, San Francisco, CA 94103
+Museum · SoMa · 151 Third St, San Francisco, CA 94103 · Favorite
 
 **Known for:** Doris and Donald Fisher Collection (high confidence). SFMOMA calls the Fisher Collection one of the world's greatest private collections of contemporary art, shown under a 100-year partnership; it was fully reinstalled across Floors 3–6 in April 2026.
 
@@ -2872,7 +2872,7 @@ Museum · SoMa · 151 Third St, San Francisco, CA 94103
 
 ## Shoji
 
-Bar · SoMa · 140 New Montgomery St, San Francisco, CA 94105
+Bar · SoMa · 140 New Montgomery St, San Francisco, CA 94105 · Kirissa’s pick
 
 **Known for:** Matcha einspänner (high confidence). The SF Chronicle and Hoodline call the whipped-cream-topped matcha einspänner Shoji's viral signature; the Chronicle reports it sells more than 200 a day.
 
@@ -3027,9 +3027,9 @@ Restaurant · Mission · 2779 Mission St, San Francisco, CA 94110
 
 ## Tartine Bakery
 
-Bakery · Mission · 600 Guerrero St, San Francisco, CA 94110 · Andy’s pick
+Bakery · Mission · 600 Guerrero St, San Francisco, CA 94110 · Favorite
 
-**Known for:** Morning bun (Andy’s own pick).
+**Known for:** Morning bun.
 
 ### Place research
 
@@ -3087,7 +3087,7 @@ Bakery · Mission · 595 Alabama St, San Francisco, CA 94110
 
 ## The Coffee Movement
 
-Coffee & tea · Nob Hill · 1030 Washington St, San Francisco, CA 94108 · Andy’s pick
+Coffee & tea · Nob Hill · 1030 Washington St, San Francisco, CA 94108 · Our pick
 
 **Known for:** Cocoa cappuccino (high confidence). Listed under Signature Drinks on the official menu as a dark-chocolate-dusted Australian-style cappuccino; dominates Yelp photo tags.
 
@@ -3150,9 +3150,9 @@ Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123
 
 ## The Laundromat SF
 
-Restaurant · Outer Richmond · 3725 Balboa St, San Francisco, CA 94121 · Andy’s pick
+Restaurant · Outer Richmond · 3725 Balboa St, San Francisco, CA 94121 · Our pick
 
-**Known for:** Sausage and peppers (Andy’s own pick).
+**Known for:** Sausage and peppers.
 
 ### Place research
 
@@ -3180,7 +3180,7 @@ Restaurant · Outer Richmond · 3725 Balboa St, San Francisco, CA 94121 · Andy�
 
 ## The Page
 
-Bar · Lower Haight · 298 Divisadero St, San Francisco, CA 94117
+Bar · Lower Haight · 298 Divisadero St, San Francisco, CA 94117 · Our pick
 
 **Known for:** Parklet built as a replica of the bar inside (high confidence). SFGATE calls it probably the coolest parklet in San Francisco, a reconstruction of the interior with a faux-brick wall and fireplace, and SFist calls it the most charming and clever pandemic-era parklet in the city.
 
@@ -3213,7 +3213,7 @@ Bar · Lower Haight · 298 Divisadero St, San Francisco, CA 94117
 
 ## Tony Nik's
 
-Bar · North Beach · 1534 Stockton St, San Francisco, CA 94133
+Bar · North Beach · 1534 Stockton St, San Francisco, CA 94133 · Andy’s pick
 
 **Known for:** Classic martini in historic North Beach bar (high confidence). Tony Nik’s cafe history and SF Examiner: 1930s North Beach bar known for expert martinis and old-school vibe.
 
@@ -3276,7 +3276,7 @@ Restaurant · North Beach · 1570 Stockton St, San Francisco, CA 94133
 
 ## Toronado
 
-Bar · Lower Haight · 547 Haight St, San Francisco, CA 94117
+Bar · Lower Haight · 547 Haight St, San Francisco, CA 94117 · Andy’s pick
 
 **Known for:** Legendary draft-beer wall (~50 taps; Belgian + West Coast craft / Pliny culture) (high confidence). Craft Beer & Brewing and SFGATE frame Toronado as a monument to characterful draft beer; long associated with rare taps and Russian River/Pliny culture.
 
@@ -3341,7 +3341,7 @@ Sight · Financial District · 600 Montgomery St, San Francisco, CA 94111
 
 ## Trick Dog
 
-Bar · Mission · 3010 20th St, San Francisco, CA 94110
+Bar · Mission · 3010 20th St, San Francisco, CA 94110 · Kirissa’s pick
 
 **Known for:** Rotating thematic cocktail menus (high confidence). Imbibe and official site: twice-yearly conceptual menus are the bar’s signature—not one permanent drink.
 
@@ -3372,9 +3372,9 @@ Bar · Mission · 3010 20th St, San Francisco, CA 94110
 
 ## True Laurel
 
-Bar · Mission · 753 Alabama St, San Francisco, CA 94110 · Andy’s pick
+Bar · Mission · 753 Alabama St, San Francisco, CA 94110 · Our pick
 
-**Known for:** Mai O Mai (Andy’s own pick).
+**Known for:** Mai O Mai.
 
 ### Place research
 
@@ -3467,9 +3467,9 @@ Bar · Outer Sunset · 3821 Noriega St, San Francisco, CA 94122
 
 ## Verjus
 
-Wine · Jackson Square · 550 Washington St, San Francisco, CA 94111 · Andy’s pick
+Wine · Jackson Square · 550 Washington St, San Francisco, CA 94111 · Favorite
 
-**Known for:** Omelet (Andy’s own pick).
+**Known for:** Omelet.
 
 ### Place research
 
@@ -3497,7 +3497,7 @@ Wine · Jackson Square · 550 Washington St, San Francisco, CA 94111 · Andy’s
 
 ## Waystone
 
-Wine · North Beach · 1609 Powell St, San Francisco, CA 94133 · Andy’s pick
+Wine · North Beach · 1609 Powell St, San Francisco, CA 94133
 
 **Known for:** Curated wine list + live jazz nights (high confidence). Official About/calendar: Causwells wine director’s list plus live jazz in North Beach.
 
@@ -3559,9 +3559,9 @@ Shop · Jackson Square · 804 Montgomery St, San Francisco, CA 94133
 
 ## Yank Sing
 
-Restaurant · Financial District · 49 Stevenson St, San Francisco, CA 94105 · Andy’s pick
+Restaurant · Financial District · 49 Stevenson St, San Francisco, CA 94105 · Our pick
 
-**Known for:** Pot stickers (Andy’s own pick).
+**Known for:** Pot stickers.
 
 ### Place research
 

@@ -1,4 +1,7 @@
+"use client";
+
 import Image, { getImageProps } from "next/image";
+import { useEffect, useRef } from "react";
 import { preload } from "react-dom";
 
 import { CategoryIcon } from "@/components/places/category-badge";
@@ -11,6 +14,8 @@ interface PlaceImageProps {
   sizes: string;
   alt?: string;
   priority?: boolean;
+  /** Decode ahead for a neighbor that is mounted but not the open place. */
+  eager?: boolean;
   /** Shown while the picture loads; a neutral grey unless the page knows the photo's color. */
   placeholder?: string;
   className?: string;
@@ -23,10 +28,26 @@ interface PlaceImageProps {
  * same `sizes`, so the browser picks the same file), so it's ready the moment
  * the place is shown.
  */
+function imageRequest(place: Pick<Place, "image">, sizes: string) {
+  if (!place.image) return null;
+  return getImageProps({ src: place.image, alt: "", fill: true, sizes }).props;
+}
+
 export function preloadPlacePhoto(place: Pick<Place, "image">, sizes: string) {
-  if (!place.image) return;
-  const { props } = getImageProps({ src: place.image, alt: "", fill: true, sizes });
-  preload(props.src, { as: "image", imageSrcSet: props.srcSet, imageSizes: props.sizes, fetchPriority: "low" });
+  const props = imageRequest(place, sizes);
+  if (!props) return;
+  preload(props.src, { as: "image", imageSrcSet: props.srcSet, imageSizes: props.sizes, fetchPriority: "high" });
+}
+
+/** Decode the same srcset the surface will paint, so a swipe doesn't wait on a blank frame. */
+export function decodePlacePhoto(place: Pick<Place, "image">, sizes: string) {
+  const props = imageRequest(place, sizes);
+  if (!props || typeof window === "undefined") return;
+  const img = new window.Image();
+  if (props.srcSet) img.srcset = props.srcSet;
+  if (props.sizes) img.sizes = props.sizes;
+  img.src = props.src;
+  void img.decode?.().catch(() => {});
 }
 
 /**
@@ -38,6 +59,7 @@ export function PlaceImage({
   sizes,
   alt = "",
   priority,
+  eager,
   placeholder,
   className,
   imageClassName,
@@ -66,7 +88,41 @@ export function PlaceImage({
     );
   }
   return (
+    <LoadedPlaceImage
+      place={{ ...place, image: place.image }}
+      sizes={sizes}
+      alt={alt}
+      priority={priority}
+      eager={eager}
+      placeholder={placeholder}
+      className={className}
+      imageClassName={imageClassName}
+      onLoad={onLoad}
+    />
+  );
+}
+
+function LoadedPlaceImage({
+  place,
+  sizes,
+  alt = "",
+  priority,
+  eager,
+  placeholder,
+  className,
+  imageClassName,
+  onLoad,
+}: Omit<PlaceImageProps, "place"> & { place: Pick<Place, "name" | "category"> & { image: string } }) {
+  const frame = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!priority && !eager) return;
+    const img = frame.current?.querySelector("img");
+    if (!img?.decode) return;
+    void img.decode().catch(() => {});
+  }, [place.image, sizes, priority, eager]);
+  return (
     <div
+      ref={frame}
       className={cn("relative aspect-square overflow-hidden bg-photo", className)}
       style={placeholder ? { backgroundColor: placeholder } : undefined}
       onDragStart={(event) => event.preventDefault()}
@@ -78,6 +134,7 @@ export function PlaceImage({
         draggable={false}
         sizes={sizes}
         priority={priority}
+        {...(eager && !priority ? { loading: "eager" as const } : {})}
         onLoad={onLoad}
         className={cn("object-cover", imageClassName)}
       />

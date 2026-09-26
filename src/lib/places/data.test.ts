@@ -100,10 +100,9 @@ describe("data/places.json", () => {
     );
   });
 
-  it("keeps Sights out of Andy's picks, each researched with its own photo and a view for it", () => {
+  it("keeps each sight researched with its own photo and a view, without an own-pick line", () => {
     for (const place of places.filter((p) => p.category === "sight")) {
-      expect(place.andyFavorite, place.id).toBeUndefined();
-      expect(place.signatureRationale, place.id).not.toMatch(/Andy/);
+      expect(place.signatureRationale ?? "", place.id).not.toMatch(/own pick/);
       expect(place.placeResearch?.viewNote, place.id).toBeTruthy();
       expect(place.placeResearch?.sources.length, place.id).toBeGreaterThanOrEqual(3);
       expect(place.image, place.id).toMatch(/^\/places\//);
@@ -120,20 +119,148 @@ describe("data/places.json", () => {
     }
   });
 
-  it("marks Andy's favorites and shows his own pick as what each is known for", () => {
+  it("marks favorites and who picked the place, without claiming they wrote Known for", () => {
     const byId = (id: string) => places.find((p) => p.id === id);
-    expect(places.filter((p) => p.andyFavorite)).toHaveLength(45);
+    const ids = (list: typeof places) => list.map((p) => p.id).sort();
+    expect(ids(places.filter((p) => p.favorite))).toEqual([
+      "arsicault-bakery",
+      "bodega-sf",
+      "capos",
+      "coit-tower",
+      "comstock-saloon",
+      "cotogna",
+      "dandelion-chocolate",
+      "de-young-museum",
+      "dolores-park",
+      "evan-kinori",
+      "ferry-building",
+      "flour-and-water",
+      "foreign-cinema",
+      "garden-creamery",
+      "golden-gate-park",
+      "hedge-coffee",
+      "hk-lounge-bistro",
+      "hook-fish",
+      "house-of-prime-rib",
+      "jules",
+      "kope-house",
+      "la-taqueria",
+      "lush-gelato",
+      "maillards",
+      "maison-nico",
+      "ministry-of-scent",
+      "molinari-delicatessen",
+      "nopa",
+      "nopa-fish",
+      "nopalito",
+      "ocean-beach",
+      "original-joes",
+      "pearl-6101",
+      "rachel-comey",
+      "radhaus",
+      "rampant-bottle-and-bar",
+      "reliquary",
+      "relove",
+      "rt-rotisserie",
+      "saint-frank-coffee",
+      "san-tung",
+      "self-edge",
+      "sf76",
+      "sfmoma",
+      "shoji",
+      "tartine-bakery",
+      "the-coffee-movement",
+      "the-laundromat-sf",
+      "the-page",
+      "tony-niks",
+      "toronado",
+      "trick-dog",
+      "true-laurel",
+      "verjus",
+      "yank-sing",
+    ]);
+    expect(ids(places.filter((p) => p.pickBy === "andy"))).toEqual([
+      "evan-kinori",
+      "hk-lounge-bistro",
+      "house-of-prime-rib",
+      "la-taqueria",
+      "maillards",
+      "pearl-6101",
+      "tony-niks",
+      "toronado",
+    ]);
+    expect(ids(places.filter((p) => p.pickBy === "kirissa"))).toEqual([
+      "ministry-of-scent",
+      "nopa-fish",
+      "rachel-comey",
+      "radhaus",
+      "reliquary",
+      "relove",
+      "rt-rotisserie",
+      "saint-frank-coffee",
+      "shoji",
+      "trick-dog",
+    ]);
+    expect(ids(places.filter((p) => p.pickBy === "both"))).toEqual([
+      "flour-and-water",
+      "hedge-coffee",
+      "jules",
+      "kope-house",
+      "molinari-delicatessen",
+      "nopalito",
+      "rampant-bottle-and-bar",
+      "sf76",
+      "the-coffee-movement",
+      "the-laundromat-sf",
+      "the-page",
+      "true-laurel",
+      "yank-sing",
+    ]);
+    expect(ids(places.filter((p) => p.favorite && !p.pickBy))).toEqual([
+      "arsicault-bakery",
+      "bodega-sf",
+      "capos",
+      "coit-tower",
+      "comstock-saloon",
+      "cotogna",
+      "dandelion-chocolate",
+      "de-young-museum",
+      "dolores-park",
+      "ferry-building",
+      "foreign-cinema",
+      "garden-creamery",
+      "golden-gate-park",
+      "hook-fish",
+      "lush-gelato",
+      "maison-nico",
+      "nopa",
+      "ocean-beach",
+      "original-joes",
+      "san-tung",
+      "self-edge",
+      "sfmoma",
+      "tartine-bakery",
+      "verjus",
+    ]);
+    for (const place of places) {
+      if (place.pickBy) expect(place.favorite, place.id).toBe(true);
+      expect(place.signatureRationale ?? "", place.id).not.toMatch(/own pick|Our pick\./);
+    }
+    expect(places.filter((p) => p.favorite)).toHaveLength(55);
     expect(byId("arsicault-bakery")?.signatureSubject).toBe("Chocolate almond croissant");
     expect(byId("yank-sing")?.signatureSubject).toBe("Pot stickers");
     expect(byId("house-of-prime-rib")?.signatureSubject).toBe("King's cut");
-    // "Good" or "fine" marks the place without replacing what it's known for.
-    expect(byId("daeho")).toMatchObject({ andyFavorite: true, signatureSubject: "Cheese kalbijjim (blowtorched)" });
+    expect(byId("daeho")?.favorite).toBeUndefined();
+    expect(byId("daeho")?.signatureSubject).toBe("Cheese kalbijjim (blowtorched)");
+    // The box is unticked, and the owner is what keeps it a favorite.
+    expect(byId("pearl-6101")).toMatchObject({ favorite: true, pickBy: "andy" });
   });
 
   it("leaves Limón, Ordinaire, and Song Tea as they are until Andy decides", () => {
     const byId = (id: string) => places.find((p) => p.id === id);
-    expect(byId("limon-rotisserie")?.andyFavorite).toBeUndefined();
-    expect(byId("ordinaire")?.andyFavorite).toBeUndefined();
+    expect(byId("limon-rotisserie")?.favorite).toBeUndefined();
+    expect(byId("limon-rotisserie")?.pickBy).toBeUndefined();
+    expect(byId("ordinaire")?.favorite).toBeUndefined();
     expect(byId("song-tea-and-ceramics")?.category).toBe("coffee");
   });
 

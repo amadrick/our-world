@@ -1,4 +1,4 @@
-import type { CategoryId, PillId, TagId } from "./types";
+import type { CategoryId, PickOwner, PillId, TagId } from "./types";
 
 export interface CategoryInfo {
   id: CategoryId;
@@ -56,7 +56,21 @@ export const FILTER_TAGS: TagInfo[] = (
   ["dinner", "lunch", "late-night", "brunch", "views"] as const
 ).map(getTag);
 
-export const ANDY_PICK = "Andy’s pick";
+/** Who picked the place, for the quiet label. Null when the place has no owner. */
+export function pickLabel(pickBy?: PickOwner): string | null {
+  if (pickBy === "andy") return "Andy’s pick";
+  if (pickBy === "kirissa") return "Kirissa’s pick";
+  if (pickBy === "both") return "Our pick";
+  return null;
+}
+
+/**
+ * A favorite if the box is checked or someone owns the pick. An owned place
+ * stays a favorite even when the box is unticked.
+ */
+export function isFavorite(place: { favorite?: boolean; pickBy?: PickOwner }): boolean {
+  return place.favorite === true || place.pickBy != null;
+}
 
 export interface PillInfo {
   id: PillId;
@@ -65,7 +79,7 @@ export interface PillInfo {
 
 /** The filter pills guests see, always all six and in this order. */
 export const FILTER_PILLS: PillInfo[] = [
-  { id: "favorites", label: "Andy’s favorites" },
+  { id: "favorites", label: "Our favorites" },
   ...FILTER_TAGS.map(({ id, label }) => ({ id, label })),
 ];
 

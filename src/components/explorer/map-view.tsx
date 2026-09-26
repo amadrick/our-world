@@ -10,6 +10,7 @@ import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from 
 import { layoutPins, type PinDisplay } from "@/lib/map/pin-layout";
 import { APPLE_PINS, estimateText, pinKind, pinPalette, type PinPalette } from "@/lib/map/pin-style";
 import { currentMapTheme } from "@/lib/map/theme";
+import { isFavorite } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -107,7 +108,7 @@ export function MapView({
       new Map(
         places.map((place) => {
           const kind = pinKind(place.category);
-          const tier = kind === "photo" ? 1 : place.andyFavorite ? 2 : 3;
+          const tier = kind === "photo" ? 1 : isFavorite(place) ? 2 : 3;
           return [place.id, { kind, tier, text: estimateText(smartQuotes(place.name), kind) }] as const;
         }),
       ),

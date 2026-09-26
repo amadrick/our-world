@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { filterPlaces, sortPlaces } from "./filters";
-import { lockAxis, placeNeighbors, rubberBand, swipeOffset, swipeOutcome } from "./swipe";
+import { lockAxis, placeNeighbors, placeWindow, rubberBand, swipeOffset, swipeOutcome } from "./swipe";
 import type { Place } from "./types";
 
 const place = (id: string, extra: Partial<Place> = {}) =>
@@ -32,6 +32,16 @@ describe("placeNeighbors: the order", () => {
     expect(prev).toBeNull();
     expect(next?.id).toBe(ids[1]);
     expect(ids).not.toContain("zuni");
+  });
+
+  it("keeps two places on either side mounted, and none past the ends", () => {
+    expect(placeWindow(order, "b").map((s) => [s.place.id, s.offset])).toEqual([
+      ["a", -1],
+      ["b", 0],
+      ["c", 1],
+    ]);
+    expect(placeWindow(order, "a", 2).map((s) => s.offset)).toEqual([0, 1, 2]);
+    expect(placeWindow(order, "missing")).toEqual([]);
   });
 
   it("starts a place missing from the list at the list's start", () => {

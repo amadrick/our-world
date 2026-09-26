@@ -26,9 +26,10 @@ const place = (id: string, overrides: Partial<Place> = {}): Place => ({
 });
 
 const places = [
-  place("zuni", { neighborhood: "Hayes Valley", tags: ["dinner", "lunch"], andyFavorite: true }),
+  place("zuni", { neighborhood: "Hayes Valley", tags: ["dinner", "lunch"], favorite: true }),
   place("trick-dog", { category: "bar", tags: ["dinner", "late-night"] }),
-  place("la-taqueria", { tags: ["lunch"], andyFavorite: true }),
+  place("la-taqueria", { tags: ["lunch"], favorite: true, pickBy: "andy" }),
+  place("pearl", { pickBy: "andy" }),
   place("ocean-beach", { category: "park", neighborhood: "Outer Sunset", tags: ["views"] }),
 ];
 const ids = (f: Partial<typeof EMPTY_FILTERS>) =>
@@ -36,21 +37,21 @@ const ids = (f: Partial<typeof EMPTY_FILTERS>) =>
 
 describe("filterPlaces", () => {
   it("returns everything with no filters", () => {
-    expect(filterPlaces(places, EMPTY_FILTERS)).toHaveLength(4);
+    expect(filterPlaces(places, EMPTY_FILTERS)).toHaveLength(5);
   });
 
   it("combines a section, a neighborhood, and pills", () => {
     expect(ids({ category: "bar" })).toEqual(["trick-dog"]);
     expect(ids({ category: "park" })).toEqual(["ocean-beach"]);
-    expect(ids({ neighborhood: "Mission" })).toEqual(["trick-dog", "la-taqueria"]);
+    expect(ids({ neighborhood: "Mission" })).toEqual(["trick-dog", "la-taqueria", "pearl"]);
     expect(ids({ pills: ["dinner"] })).toEqual(["zuni", "trick-dog"]);
     expect(ids({ pills: ["dinner", "late-night"] })).toEqual(["trick-dog"]);
     expect(ids({ category: "bar", pills: ["late-night"] })).toEqual(["trick-dog"]);
     expect(ids({ category: "restaurant", pills: ["late-night"] })).toEqual([]);
   });
 
-  it("filters to Andy's favorites, alone or with a section and other pills", () => {
-    expect(ids({ pills: ["favorites"] })).toEqual(["zuni", "la-taqueria"]);
+  it("filters to our favorites, including a pick with the box unticked", () => {
+    expect(ids({ pills: ["favorites"] })).toEqual(["zuni", "la-taqueria", "pearl"]);
     expect(ids({ pills: ["favorites", "dinner"] })).toEqual(["zuni"]);
     expect(ids({ category: "bar", pills: ["favorites"] })).toEqual([]);
   });
@@ -60,7 +61,7 @@ describe("pillCounts", () => {
   it("counts what each pill would leave across every section", () => {
     const counts = pillCounts(places, EMPTY_FILTERS, PILL_IDS);
     expect(Object.fromEntries(counts)).toEqual({
-      favorites: 2,
+      favorites: 3,
       dinner: 2,
       lunch: 2,
       "late-night": 1,
@@ -91,9 +92,9 @@ describe("matchesInOtherSections", () => {
     expect(matchesInOtherSections(places, filters)).toBe(1);
   });
 
-  it("offers Andy's favorites from other sections too", () => {
+  it("offers favorites from other sections too", () => {
     const filters = { ...EMPTY_FILTERS, category: "bar" as const, pills: ["favorites" as const] };
-    expect(matchesInOtherSections(places, filters)).toBe(2);
+    expect(matchesInOtherSections(places, filters)).toBe(3);
   });
 
   it("is zero without both a section and a pill", () => {
@@ -116,6 +117,7 @@ describe("sortPlaces", () => {
     expect(sortPlaces(places).map((p) => p.id)).toEqual([
       "la-taqueria",
       "ocean-beach",
+      "pearl",
       "trick-dog",
       "zuni",
     ]);

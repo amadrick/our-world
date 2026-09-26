@@ -5,7 +5,7 @@ import { Star } from "react-feather";
 import { CATEGORY_ICONS } from "@/components/places/category-badge";
 import type { PinDisplay } from "@/lib/map/pin-layout";
 import { PIN, pinKind, type CategoryColor } from "@/lib/map/pin-style";
-import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
+import { getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 
@@ -27,7 +27,8 @@ interface MapPinProps {
  * spot. Hidden pins stay mounted, faded out, so they pop in when there's room.
  */
 export const MapPin = memo(function MapPin({ place, color, selected, highlighted, display, onSelect, onHighlight }: MapPinProps) {
-  const pick = place.andyFavorite === true;
+  const favorite = isFavorite(place);
+  const label = pickLabel(place.pickBy);
   const kind = pinKind(place.category);
   const Glyph = CATEGORY_ICONS[place.category];
   const hidden = display === "hidden";
@@ -35,7 +36,7 @@ export const MapPin = memo(function MapPin({ place, color, selected, highlighted
   return (
     <button
       type="button"
-      aria-label={`${place.name}, ${getCategory(place.category).label}${pick ? `, ${ANDY_PICK}` : ""}`}
+      aria-label={`${place.name}, ${getCategory(place.category).label}${label ? `, ${label}` : ""}`}
       aria-pressed={selected}
       aria-hidden={hidden || undefined}
       tabIndex={hidden ? -1 : undefined}
@@ -69,7 +70,7 @@ export const MapPin = memo(function MapPin({ place, color, selected, highlighted
           )}
         </span>
       </span>
-      {pick && (
+      {favorite && (
         <span aria-hidden className="map-pin-star">
           <Star size={7} fill="currentColor" strokeWidth={0} />
         </span>

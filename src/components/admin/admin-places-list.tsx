@@ -15,7 +15,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
+import { getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 
@@ -56,8 +56,13 @@ export function AdminPlacesList({ places, onEdit, onDelete }: AdminPlacesListPro
               <div className="min-w-0 flex-1">
                 <p className="flex items-center gap-1.5 text-base font-medium">
                   <span className="truncate">{smartQuotes(place.name)}</span>
-                  {place.andyFavorite && (
-                    <Star size={12} fill="currentColor" className="shrink-0" aria-label={ANDY_PICK} />
+                  {isFavorite(place) && (
+                    <Star
+                      size={12}
+                      fill="currentColor"
+                      className="shrink-0"
+                      aria-label={pickLabel(place.pickBy) ?? "Favorite"}
+                    />
                   )}
                 </p>
                 <p className="truncate text-sm text-muted-foreground">

@@ -15,9 +15,13 @@ export type CategoryId = (typeof CATEGORY_IDS)[number];
 export const TAG_IDS = ["dinner", "lunch", "late-night", "brunch", "views"] as const;
 export type TagId = (typeof TAG_IDS)[number];
 
-/** The filter pills: Andy's favorites first, then the tags. */
+/** The filter pills: Our favorites first, then the tags. */
 export const PILL_IDS = ["favorites", ...TAG_IDS] as const;
 export type PillId = (typeof PILL_IDS)[number];
+
+/** Who picked the place. Absent when nobody owns the pick. */
+export const PICK_OWNERS = ["andy", "kirissa", "both"] as const;
+export type PickOwner = (typeof PICK_OWNERS)[number];
 
 /**
  * How a place's summary was produced. "placeholder" means no OpenAI key was
@@ -62,14 +66,19 @@ export interface Place {
   lat: number;
   lng: number;
   tags: TagId[];
-  /** One of Andy's own favorites. */
-  andyFavorite?: boolean;
+  /**
+   * A favorite. True when the Notion Favorite box is checked, and also whenever
+   * `pickBy` is set: an owned place is a favorite even if the box is unticked.
+   */
+  favorite?: boolean;
+  /** Who picked the place. Not who wrote `signatureSubject`. Absent when nobody owns it. */
+  pickBy?: PickOwner;
   note?: string;
   summary: string;
   summarySource: SummarySource;
   /**
-   * The dish, drink, or room the place is known for, e.g. "Morning bun". For
-   * Andy's favorites this is his own pick where he named one.
+   * The dish, drink, or room the place is known for, e.g. "Morning bun".
+   * This is not attributed to whoever picked the place.
    */
   signatureSubject?: string;
   /** One line on why, with where that came from (reviews, the menu, the venue). */

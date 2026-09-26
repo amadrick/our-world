@@ -1,8 +1,9 @@
+import { isFavorite } from "./taxonomy";
 import type { CategoryId, PillId, Place } from "./types";
 
 export interface PlaceFilters {
   category: CategoryId | null;
-  /** Andy's favorites and the tags; a place must match all of them. */
+  /** Our favorites and the tags; a place must match all of them. */
   pills: PillId[];
   neighborhood: string | null;
 }
@@ -22,7 +23,7 @@ export function hasActiveFilters(filters: PlaceFilters): boolean {
 }
 
 function matchesPill(place: Place, pill: PillId): boolean {
-  return pill === "favorites" ? place.andyFavorite === true : place.tags.includes(pill);
+  return pill === "favorites" ? isFavorite(place) : place.tags.includes(pill);
 }
 
 /** Category is a single choice; pills narrow the list (a place must match all of them). */

@@ -1,4 +1,5 @@
 import { shade } from "@/lib/images/palette.mjs";
+import { isFavorite } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 
 /** Where each glow sits and how far it reaches (ellipse radii), left to right across the top. */
@@ -36,7 +37,7 @@ const colorfulness = (hex: string) => {
 /** Andy's most colorful picks, one per hue family, so the glows don't repeat a color. */
 function glowColors(places: Place[]): string[] {
   const candidates = places
-    .filter((p) => p.andyFavorite && p.imageColor)
+    .filter((p) => isFavorite(p) && p.imageColor)
     .map((p) => p.imageColor!)
     .sort((a, b) => colorfulness(b) - colorfulness(a) || a.localeCompare(b));
   const picked: string[] = [];

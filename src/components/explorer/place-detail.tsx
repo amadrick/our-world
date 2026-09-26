@@ -24,7 +24,7 @@ import { site } from "@/config/site";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
 import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
 import type { StepDirection } from "@/lib/places/swipe";
-import { ANDY_PICK, FILTER_TAGS, getCategory } from "@/lib/places/taxonomy";
+import { FILTER_TAGS, getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -90,10 +90,10 @@ export interface Stepper {
   onStep: (direction: StepDirection) => void;
 }
 
-/** The places on either side, shown as the swipe pages. */
-export interface Beside {
-  prev: Place | null;
-  next: Place | null;
+/** One painted page of the swipe strip, offset from the open place. */
+export interface PlaceSlide {
+  place: Place;
+  offset: number;
 }
 
 /** Small glass chevrons to the previous and next place (the arrow keys do the same). */
@@ -129,11 +129,11 @@ function StepButtons({ stepper, className }: { stepper: Stepper; className?: str
 const enterSide = (direction: StepDirection | null | undefined) =>
   direction === 1 ? "next" : direction === -1 ? "prev" : undefined;
 
-function AndyPickChip() {
+function PickChip({ label }: { label: string }) {
   return (
     <p className="glass-tinted inline-flex h-8 items-center gap-1.5 rounded-full pr-3 pl-2.5 text-sm font-semibold">
       <Star size={13} fill="currentColor" aria-hidden />
-      {ANDY_PICK}
+      {label}
     </p>
   );
 }
@@ -208,9 +208,14 @@ function PeekRow({ place, trailing }: { place: Place; trailing?: React.ReactNode
       <div className="min-w-0 flex-1">
         <h2 className="flex items-center gap-1.5 text-lg font-semibold">
           <span className="truncate">{smartQuotes(place.name)}</span>
-          {place.andyFavorite && (
-            <Star size={15} fill="currentColor" className="shrink-0" aria-label={ANDY_PICK}>
-              <title>{ANDY_PICK}</title>
+          {isFavorite(place) && (
+            <Star
+              size={15}
+              fill="currentColor"
+              className="shrink-0"
+              aria-label={pickLabel(place.pickBy) ?? "Favorite"}
+            >
+              <title>{pickLabel(place.pickBy) ?? "Favorite"}</title>
             </Star>
           )}
         </h2>
@@ -228,80 +233,98 @@ function PeekRow({ place, trailing }: { place: Place; trailing?: React.ReactNode
 export function PlaceSheetHeader({
   place,
   onClose,
-  beside,
+  slides,
 }: {
   place: Place;
   onClose: () => void;
-  beside?: Beside;
+  slides?: PlaceSlide[];
 }) {
+  const rows = slides?.length ? slides : [{ place, offset: 0 }];
   return (
     <div className="swipe-track relative">
-      {beside?.prev && (
-        <div aria-hidden className="absolute inset-y-0 right-full w-full">
-          <PeekRow place={beside.prev} />
+      {rows.map((slide) => (
+        <div
+          key={slide.place.id}
+          aria-hidden={slide.offset !== 0 || undefined}
+          className="swipe-slide"
+          data-offset={slide.offset}
+          style={
+            { "--offset": slide.offset, backgroundColor: placeColor(slide.place) } as React.CSSProperties
+          }
+        >
+          <PeekRow
+            place={slide.place}
+            trailing={
+              slide.offset === 0 ? (
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={onClose}
+                  className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
+                >
+                  <X size={20} aria-hidden />
+                </button>
+              ) : (
+                <span className="size-11 shrink-0" />
+              )
+            }
+          />
         </div>
-      )}
-      {beside?.next && (
-        <div aria-hidden className="absolute inset-y-0 left-full w-full">
-          <PeekRow place={beside.next} />
-        </div>
-      )}
-      <PeekRow
-        place={place}
-        trailing={
-          <button
-            type="button"
-            aria-label="Close"
-            onClick={onClose}
-            className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
-            <X size={20} aria-hidden />
-          </button>
-        }
-      />
+      ))}
     </div>
   );
 }
 
 /**
- * The previous or next place, parked a full width off to the side, so a swipe
- * reveals its photo instead of the canvas.
+ * The photo for one strip slide. The same element stays mounted when its
+ * offset changes, so a swipe never swaps src or fades up from empty.
+ * The first time a place opens (not when it slides in from a neighbor) it
+ * still plays the sheet's entrance.
  */
-function NeighborSlide({
+function StablePhoto({
   place,
   sizes,
-  side,
-  imageClassName,
+  active,
+  alt,
   className,
+  fade = false,
 }: {
   place: Place;
   sizes: string;
-  side: "prev" | "next";
-  imageClassName?: string;
+  active: boolean;
+  alt: string;
   className?: string;
+  fade?: boolean;
 }) {
+  // Captured once: the place that is open when this slide first mounts fades in.
+  // A neighbor that later becomes the open place keeps the element it already painted.
+  const [playEntrance] = useState(active);
   return (
     <div
-      aria-hidden
-      className={cn(
-        "absolute inset-y-0 w-full overflow-hidden",
-        side === "next" ? "left-full" : "right-full",
-        className,
-      )}
-      style={{ backgroundColor: placeColor(place) }}
+      className={cn("relative overflow-hidden", className)}
+      style={fade ? { maskImage: PHOTO_FADE, WebkitMaskImage: PHOTO_FADE } : undefined}
     >
       <PlaceImage
         place={place}
-        alt=""
+        alt={active ? alt : ""}
         sizes={sizes}
+        priority
+        eager
         placeholder={placeColor(place)}
-        className={cn("w-full", imageClassName)}
+        className={cn("absolute inset-0 aspect-auto", playEntrance && "motion-photo-in")}
       />
-      <p className="px-5 pt-5 text-lg font-semibold text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.35)]">
-        {smartQuotes(place.name)}
-      </p>
+      {fade && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/30 to-transparent"
+        />
+      )}
     </div>
   );
+}
+
+function slideStyle(place: Place, offset: number): React.CSSProperties {
+  return { "--offset": offset, backgroundColor: placeColor(place) } as React.CSSProperties;
 }
 
 /** Top right of the phone map sheet, over the photo. */
@@ -437,8 +460,8 @@ interface PlaceDetailProps {
   enterFrom?: StepDirection | null;
   /** Stepped to by a swipe, which already carried the old photo away. */
   swiped?: boolean;
-  /** Neighbors rendered beside this place so a swipe previews their photos. */
-  beside?: Beside;
+  /** Neighbors kept mounted so a swipe only moves photos that are already painted. */
+  slides?: PlaceSlide[];
 }
 
 export function PlaceDetail({
@@ -449,7 +472,7 @@ export function PlaceDetail({
   stepper,
   enterFrom = null,
   swiped = false,
-  beside,
+  slides,
 }: PlaceDetailProps) {
   const color = placeColor(place);
   const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
@@ -479,9 +502,10 @@ export function PlaceDetail({
     </div>
   );
 
+  const label = pickLabel(place.pickBy);
   const header = (
     <header className="space-y-3 [text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
-      {place.andyFavorite && <AndyPickChip />}
+      {label && <PickChip label={label} />}
       <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>
         {smartQuotes(place.name)}
       </h2>
@@ -572,16 +596,55 @@ export function PlaceDetail({
         </div>
       </article>
     );
-    if (rail || !beside) return article;
+    if (rail || !slides?.length) return article;
+    const sheetAlt = alt;
     return (
       <div className="swipe-track relative min-h-full">
-        {beside.prev && (
-          <NeighborSlide place={beside.prev} sizes={PHOTO_SIZES.sheet} side="prev" imageClassName="aspect-[4/3]" />
-        )}
-        {beside.next && (
-          <NeighborSlide place={beside.next} sizes={PHOTO_SIZES.sheet} side="next" imageClassName="aspect-[4/3]" />
-        )}
-        {article}
+        {slides.map((slide) => {
+          const active = slide.offset === 0;
+          return (
+            <div
+              key={slide.place.id}
+              aria-hidden={active ? undefined : true}
+              className="swipe-slide text-white"
+              data-offset={slide.offset}
+              style={slideStyle(slide.place, slide.offset)}
+            >
+              <div className="relative">
+                <StablePhoto
+                  place={slide.place}
+                  sizes={PHOTO_SIZES.sheet}
+                  active={active}
+                  alt={sheetAlt}
+                  fade
+                  className="aspect-[4/3]"
+                />
+                <PhotoDissolve color={placeColor(slide.place)} className="h-[30%]" />
+              </div>
+              {active ? (
+                <div className="relative -mt-16 space-y-6 px-5 pb-8">
+                  <div className={cn(!swiped && "motion-item")} style={{ "--i": 0 } as React.CSSProperties}>
+                    {header}
+                  </div>
+                  <div className={cn(!swiped && "motion-item")} style={{ "--i": 1 } as React.CSSProperties}>
+                    <PlaceActions place={place} />
+                  </div>
+                  <div className="space-y-8 pt-2">
+                    {rows.map((row, i) => (
+                      <div key={i} className={cn(!swiped && "motion-item")} style={{ "--i": i + 2 } as React.CSSProperties}>
+                        {row}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <p className="px-5 pt-5 text-lg font-semibold text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.35)]">
+                  {smartQuotes(slide.place.name)}
+                </p>
+              )}
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -596,23 +659,63 @@ export function PlaceDetail({
       </div>
 
       {/* Stepping to another place re-keys this, so it comes in with the switch stagger; the first place opens as before. */}
-      <div className={cn("relative", beside && "swipe-track")}>
-        {beside?.prev && (
-          <NeighborSlide
-            place={beside.prev}
-            sizes={PAGE_PHOTO_SIZES}
-            side="prev"
-            className="md:hidden"
-          />
-        )}
-        {beside?.next && (
-          <NeighborSlide
-            place={beside.next}
-            sizes={PAGE_PHOTO_SIZES}
-            side="next"
-            className="md:hidden"
-          />
-        )}
+      {slides?.length ? (
+        <div className="swipe-track relative md:hidden">
+          {slides.map((slide) => {
+            const active = slide.offset === 0;
+            return (
+              <div
+                key={slide.place.id}
+                aria-hidden={active ? undefined : true}
+                className="swipe-slide"
+                data-offset={slide.offset}
+                style={slideStyle(slide.place, slide.offset)}
+              >
+                <div className="relative">
+                  <StablePhoto
+                    place={slide.place}
+                    sizes={PAGE_PHOTO_SIZES}
+                    active={active}
+                    alt={alt}
+                    fade
+                    className="aspect-square"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/30 to-transparent"
+                  />
+                  <PhotoDissolve color={placeColor(slide.place)} className="h-2/5" />
+                </div>
+                {active ? (
+                  <div className="relative -mt-20 space-y-6 px-5 pb-36">
+                    <div className={cn(switched && !swiped && "motion-item")} style={{ "--i": 0 } as React.CSSProperties}>
+                      {header}
+                    </div>
+                    <div className={cn(switched && !swiped && "motion-item")} style={{ "--i": 1 } as React.CSSProperties}>
+                      <PlaceActions place={place} />
+                    </div>
+                    <div className="space-y-8 pt-4">
+                      {rows.map((row, i) => (
+                        <div
+                          key={i}
+                          className={cn(switched && !swiped && "motion-item")}
+                          style={{ "--i": i + 2 } as React.CSSProperties}
+                        >
+                          {row}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="px-5 pt-5 text-lg font-semibold text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.35)]">
+                    {smartQuotes(slide.place.name)}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
       <div
         key={place.id}
         data-motion={switched ? "switch" : undefined}
@@ -653,7 +756,7 @@ export function PlaceDetail({
           </div>
         </div>
       </div>
-      </div>
+      )}
 
       {/* Wide screens keep the List | Map switch floating at the bottom: the page color fades up behind it, so no text sits under it. */}
       <div

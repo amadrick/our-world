@@ -21,8 +21,8 @@ import {
 } from "@/lib/admin/api";
 import { foodIn, researchText } from "@/lib/images/food-guard.mjs";
 import type { PlaceInputPayload } from "@/lib/places/schema";
-import { ANDY_PICK, CATEGORIES, TAGS } from "@/lib/places/taxonomy";
-import type { CategoryId, Place, PlaceResearch, SummarySource, TagId } from "@/lib/places/types";
+import { CATEGORIES, pickLabel, TAGS } from "@/lib/places/taxonomy";
+import type { CategoryId, PickOwner, Place, PlaceResearch, SummarySource, TagId } from "@/lib/places/types";
 import { LocationPreview } from "./location-preview";
 
 interface Draft {
@@ -33,7 +33,8 @@ interface Draft {
   lat: number;
   lng: number;
   tags: TagId[];
-  andyFavorite: boolean;
+  favorite: boolean;
+  pickBy?: PickOwner;
   note: string;
   summary: string;
   summarySource: SummarySource;
@@ -113,7 +114,8 @@ function draftFromPlace(place: Place): Draft {
     lat: place.lat,
     lng: place.lng,
     tags: place.tags,
-    andyFavorite: place.andyFavorite === true,
+    favorite: place.favorite === true || place.pickBy != null,
+    pickBy: place.pickBy,
     note: place.note ?? "",
     summary: place.summary,
     summarySource: place.summarySource,
@@ -136,7 +138,7 @@ function draftFromCandidate(candidate: PlaceCandidate, lookup?: LookupResult): D
     lat: candidate.lat,
     lng: candidate.lng,
     tags: [],
-    andyFavorite: false,
+    favorite: false,
     note: "",
     summary: "",
     summarySource: "written",
@@ -148,7 +150,14 @@ function draftFromCandidate(candidate: PlaceCandidate, lookup?: LookupResult): D
 }
 
 function toPayload({ research, ...draft }: Draft, category: CategoryId): PlaceInputPayload {
-  return { ...draft, category, placeResearch: researchFromDraft(research) };
+  const pickBy = draft.pickBy;
+  return {
+    ...draft,
+    category,
+    pickBy,
+    favorite: Boolean(draft.favorite || pickBy),
+    placeResearch: researchFromDraft(research),
+  };
 }
 
 const looksLikeLink = (value: string) => /https?:\/\//i.test(value);
@@ -683,12 +692,33 @@ export function PlaceForm({
           <Label id="tags-label">Tags</Label>
           <div role="group" aria-labelledby="tags-label" className="flex flex-wrap gap-2">
             <Pill
-              active={draft.andyFavorite}
-              onClick={() => update({ andyFavorite: !draft.andyFavorite })}
+              active={draft.favorite || Boolean(draft.pickBy)}
+              onClick={() =>
+                update(
+                  draft.favorite || draft.pickBy
+                    ? { favorite: false, pickBy: undefined }
+                    : { favorite: true },
+                )
+              }
             >
               <Star size={15} fill="currentColor" />
-              {ANDY_PICK}
+              Favorite
             </Pill>
+            {(["andy", "kirissa", "both"] as const).map((owner) => (
+              <Pill
+                key={owner}
+                active={draft.pickBy === owner}
+                onClick={() =>
+                  update(
+                    draft.pickBy === owner
+                      ? { pickBy: undefined }
+                      : { pickBy: owner, favorite: true },
+                  )
+                }
+              >
+                {pickLabel(owner)}
+              </Pill>
+            ))}
             {TAGS.map((tag) => (
               <Pill key={tag.id} active={draft.tags.includes(tag.id)} onClick={() => toggleTag(tag.id)}>
                 {tag.badge}

@@ -11,7 +11,7 @@ write-up, then open it in Apple Maps or Google Maps with one tap.
   per place, a slim list rail beside it on desktop, and a draggable sheet for
   the open place on phones. One scrolling row of pills filters both: a category
   pill (_All_, or _Restaurants_, _Bars_, and the rest) opens the section menu,
-  then _Andy's favorites_, a neighborhood picker, _Dinner_, _Lunch_,
+  then _Our favorites_, a neighborhood picker, _Dinner_, _Lunch_,
   _Late night_, _Brunch_, and _Views_.
   Every place has a shareable link (`/?place=zuni-cafe`).
 - **Andy and Kirissa** add places at `/admin`: search by name or paste a Maps
@@ -76,14 +76,19 @@ sources). `data/places.md` is the readable version of all of it, one section
 per place. Pill tags come from each place's current hours, menus, and sources:
 _Late night_ means posted hours that run past 11pm (to 11:30pm or later) on at
 least two nights a week, and _Views_ means a view the sources call out. Notes
-are left empty for them to write in their own words from `/admin`. 45 places
-are **Andy's picks** (`andyFavorite`): they get an "Andy's pick" badge, a star
-on their pin, and the _Andy's favorites_ pill at the start of the pill row.
-Where Andy named a dish or drink, it is what the place shows as Known for.
-The _Sights_ are the touristy classics (the Golden Gate Bridge, Alcatraz,
-Fisherman's Wharf, Pier 39, Coit Tower, the Painted Ladies, Twin Peaks, and
-so on): same research and pictures, no Andy's pick, and the summary names the
-practical thing to know (Alcatraz ferries leave from Pier 33).
+are left empty for them to write in their own words from `/admin`. 55 places
+are **favorites** (`favorite`): the Notion Favorite box is checked, or someone
+owns the pick. `pickBy` is `"andy"`, `"kirissa"`, or `"both"` when one of them
+picked the place, and absent when nobody owns it. An owned place is a favorite
+even if the box is unticked. The label (on the sheet, the place page, and the
+list card) says who picked the place — "Andy’s pick", "Kirissa’s pick", or
+"Our pick" — and never who wrote Known for. A favorite with no owner gets the
+star on the map and no label. The _Our favorites_ pill is the first pill in
+the row and shows every favorite. The _Sights_ are the touristy classics (the
+Golden Gate Bridge, Alcatraz, Fisherman's Wharf, Pier 39, Coit Tower, the
+Painted Ladies, Twin Peaks, and so on): same research and pictures, and the
+summary names the practical thing to know (Alcatraz ferries leave from Pier 33).
+A few sights are favorites too.
 
 ## Place images
 
@@ -261,19 +266,19 @@ system (`prefers-color-scheme`), map included.
     page color, and the page ends with room to clear it.
   - The phone map sheet and the desktop map rail: the photo on top, edge to
     edge, its last 30% softening through the same light progressive blur as
-    it fades into the place's color; then the name with Andy's
-    pick, the Apple Maps and Google Maps pills right under it, and the rest.
+    it fades into the place's color; then the name with the pick label when
+    someone owns it, the Apple Maps and Google Maps pills right under it, and the rest.
     Opening staggers them in (see Motion).
   - Stepping between places: on phones, swipe the map sheet or the place page
     left or right for the next or previous place, in the list's current
     order; on the map, that pin opens and the camera glides to it. On wider
     screens, the arrow keys and the small glass chevrons beside Share do the
     same.
-- **List:** a faint glow behind the title in the colors of Andy's picks'
+- **List:** a faint glow behind the title in the colors of favorite
   photos (pale on the light page, deep on the dark one), easing out well
   before the first row of cards. The same single row of glass pills sits on it
   and stays bare when the cards scroll underneath. Cards are the square picture, name, and two
-  muted lines, with a smoked-glass "Andy's pick" badge.
+  muted lines, with a smoked-glass pick label when someone owns the place.
 - **List | Map switch:** a glass capsule floating bottom center with an ink
   thumb that slides to the selected mode (arrow keys work).
 - **Map:** five basemap directions, each in light and dark, switchable with a
@@ -399,12 +404,15 @@ except the 420ms color transition between places.
 - Switching places with the chevrons or arrow keys: a crossfade of the photo
   (420ms) and a quicker re-stagger (360ms, 35ms apart). Closing the sheet
   slides it out and fades it (240ms).
-- Swiping: the open place and its neighbors are one paging carousel. The
-  previous and next photos sit just off either side, so the drag reveals them
-  instead of the canvas. Locked to one axis so it never fights scrolling or
-  the sheet drag. Past the ends it rubber-bands. Let go past 22% of the width,
-  or with a flick faster than 0.4 px/ms, and it pages across (520ms); otherwise
-  it eases back (440ms). The neighbors' photos are fetched ahead, so none arrives empty.
+- Swiping: the open place and two neighbors each way stay mounted as one paging
+  carousel, already decoded at the size the phone paints them. The drag only
+  moves that strip, so the photo that slides in is the same element, not a new
+  image fading up from empty. Where the two photos overlap, a soft mask feathers
+  the shared edge; it is off at rest, and reduced motion skips the page
+  animation for an instant switch. Locked to one axis so it never fights
+  scrolling or the sheet drag. Past the ends it rubber-bands. Let go past 22%
+  of the width, or with a flick faster than 0.4 px/ms, and it pages across
+  (520ms); otherwise it eases back (440ms).
 - The half-height sheet does not scroll. Dragging it goes up to full height or
   down to dismiss. The writing scrolls only at full height, and a downward drag
   at the top of that scroll collapses the sheet. Pulling past the top never

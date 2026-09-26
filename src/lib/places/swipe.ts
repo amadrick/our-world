@@ -20,6 +20,26 @@ export function placeNeighbors<T extends { id: string }>(
   return { prev: order[index - 1] ?? null, next: order[index + 1] ?? null, index };
 }
 
+/**
+ * The open place and its neighbors in `order`, each with its offset from the
+ * open one. Radius 2 keeps two places painted on either side, so a swipe only
+ * moves layers that are already on screen. No wrapping.
+ */
+export function placeWindow<T extends { id: string }>(
+  order: readonly T[],
+  id: string | null,
+  radius = 2,
+): { place: T; offset: number }[] {
+  const index = id ? order.findIndex((p) => p.id === id) : -1;
+  if (index < 0) return [];
+  const slides: { place: T; offset: number }[] = [];
+  for (let offset = -radius; offset <= radius; offset++) {
+    const place = order[index + offset];
+    if (place) slides.push({ place, offset });
+  }
+  return slides;
+}
+
 /** Movement (px) before a gesture commits to an axis. */
 export const AXIS_SLOP = 10;
 /** How much more one axis must move than the other to win it. */

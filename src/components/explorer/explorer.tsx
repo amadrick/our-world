@@ -18,10 +18,10 @@ import {
   sortPlaces,
   type PlaceFilters,
 } from "@/lib/places/filters";
-import { placeNeighbors, type StepDirection } from "@/lib/places/swipe";
+import { placeNeighbors, placeWindow, type StepDirection } from "@/lib/places/swipe";
 import { getCategory, getPill } from "@/lib/places/taxonomy";
 import { PILL_IDS, type Place } from "@/lib/places/types";
-import { preloadPlacePhoto } from "@/components/places/place-image";
+import { decodePlacePhoto, preloadPlacePhoto } from "@/components/places/place-image";
 import { cn } from "@/lib/utils";
 import { BottomSheet, SHEET_EXIT_MS, type SheetSnap } from "./bottom-sheet";
 import { FilterBar } from "./filter-bar";
@@ -151,6 +151,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
 
   // Swipes, arrow keys, and the chevrons step through the same order as the list.
   const { prev, next } = placeNeighbors(mapPlaces, selectedId);
+  const slides = useMemo(
+    () => placeWindow(mapPlaces, selectedId ?? sheetPlace?.id ?? null, 2),
+    [mapPlaces, selectedId, sheetPlace],
+  );
   const [stepping, setStepping] = useState<{ direction: StepDirection; swiped: boolean } | null>(null);
 
   const sheetHeights = useMemo(() => {
@@ -259,10 +263,12 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   // The neighbors' photos load ahead, in the size this surface shows them, so a step never waits on one.
   const photoSizes = listMode ? PHOTO_SIZES.page : isDesktop ? PHOTO_SIZES.rail : PHOTO_SIZES.sheet;
   useEffect(() => {
-    if (!selectedId) return;
-    if (prev) preloadPlacePhoto(prev, photoSizes);
-    if (next) preloadPlacePhoto(next, photoSizes);
-  }, [selectedId, prev, next, photoSizes]);
+    for (const slide of slides) {
+      if (slide.offset === 0) continue;
+      preloadPlacePhoto(slide.place, photoSizes);
+      decodePlacePhoto(slide.place, photoSizes);
+    }
+  }, [slides, photoSizes]);
 
   const select = useCallback((id: string) => {
     setStepping(null);
@@ -432,7 +438,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             onDismiss={closeDetail}
             header={
               snap === "peek" ? (
-                <PlaceSheetHeader place={sheetPlace} onClose={closeDetail} beside={{ prev, next }} />
+                <PlaceSheetHeader place={sheetPlace} onClose={closeDetail} slides={slides} />
               ) : (
                 <SheetCloseButton onClose={closeDetail} />
               )
@@ -445,7 +451,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               variant="sheet"
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
-              beside={{ prev, next }}
+              slides={slides}
             />
           </BottomSheet>
         </div>
@@ -526,7 +532,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               stepper={stepper}
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
-              beside={{ prev, next }}
+              slides={isDesktop ? undefined : slides}
             />
           </div>
         )}

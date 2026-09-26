@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { foodIn, researchText } from "@/lib/images/food-guard.mjs";
-import { CATEGORY_IDS, TAG_IDS } from "./types";
+import { CATEGORY_IDS, PICK_OWNERS, TAG_IDS } from "./types";
 
 const MAPS_HOSTS = /(^|\.)(apple\.com|maps\.apple|google\.[a-z.]+|goo\.gl)$/i;
 
@@ -60,10 +60,11 @@ export const placeInputSchema = z.object({
     .array(z.enum(TAG_IDS))
     .default([])
     .transform((tags) => [...new Set(tags)]),
-  andyFavorite: z
+  favorite: z
     .boolean()
     .optional()
     .transform((value) => value || undefined),
+  pickBy: z.enum(PICK_OWNERS).optional(),
   note: optionalText(1000),
   summary: z.string().trim().max(1500).default(""),
   summarySource: z.enum(["ai", "written", "placeholder"]).default("written"),

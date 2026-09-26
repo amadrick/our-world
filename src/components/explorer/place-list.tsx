@@ -6,7 +6,7 @@ import { PlaceImage } from "@/components/places/place-image";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { signatureShort } from "@/lib/places/signature";
-import { ANDY_PICK, getCategory } from "@/lib/places/taxonomy";
+import { getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
@@ -74,7 +74,7 @@ export function PlaceCard({
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
 }) {
-  const pick = place.andyFavorite === true;
+  const label = pickLabel(place.pickBy);
   const { where, knownFor } = placeMeta(place);
   return (
     <button
@@ -94,10 +94,10 @@ export function PlaceCard({
           )}
           imageClassName="transition-transform duration-500 ease-snappy group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
-        {pick && (
+        {label && (
           <span className="glass-media absolute top-2 left-2 flex h-7 items-center gap-1 rounded-full pr-2.5 pl-2 text-sm font-semibold sm:top-2.5 sm:left-2.5 sm:h-8 sm:gap-1.5 sm:pr-3 sm:pl-2.5">
             <Star size={12} fill="currentColor" aria-hidden />
-            {ANDY_PICK}
+            {label}
           </span>
         )}
       </span>
@@ -124,7 +124,8 @@ export function PlaceRow({
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
 }) {
-  const pick = place.andyFavorite === true;
+  const favorite = isFavorite(place);
+  const label = pickLabel(place.pickBy);
   const { where, knownFor } = placeMeta(place);
   return (
     <button
@@ -141,9 +142,9 @@ export function PlaceRow({
       <span className="block min-w-0 flex-1">
         <span className="flex items-center gap-1.5">
           <span className="truncate text-base font-semibold">{smartQuotes(place.name)}</span>
-          {pick && (
-            <Star size={14} fill="currentColor" className="shrink-0" aria-label={ANDY_PICK}>
-              <title>{ANDY_PICK}</title>
+          {favorite && (
+            <Star size={14} fill="currentColor" className="shrink-0" aria-label={label ?? "Favorite"}>
+              <title>{label ?? "Favorite"}</title>
             </Star>
           )}
         </span>
