@@ -5,9 +5,9 @@ import { flushSync } from "react-dom";
 
 import { lockAxis, swipeOffset, swipeOutcome, type StepDirection } from "@/lib/places/swipe";
 
-/** How long the content flings out before the next place comes in, and how long it springs back. */
-const OUT_MS = 170;
-const BACK_MS = 340;
+/** How long a committed swipe pages to the neighbor, and how long a short one eases back. */
+const OUT_MS = 520;
+const BACK_MS = 440;
 /** Velocity is measured over the last stretch of the drag, ms. */
 const VELOCITY_WINDOW = 100;
 
@@ -23,10 +23,10 @@ const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)"
 /**
  * Horizontal swipes on `ref` step to the next or previous place. The gesture
  * locks to one axis first, so vertical scrolling and the sheet's own drag
- * never turn into a step. While dragging, the element's --swipe-x (px) and
- * --swipe-fade (0 to 1) follow the finger for `.swipe-follow` and
- * `.swipe-parallax` inside it; data-swipe ("drag", "back", "out") lets CSS
- * time the settle. Scrollable areas inside need `touch-action: pan-y` so a
+ * never turn into a step. While dragging, --swipe-x follows the finger and a
+ * `.swipe-track` inside translates by it, with the neighbors parked just off
+ * either side. data-swipe ("drag", "back", "out") times the settle. Scrollable
+ * areas inside need `touch-action: pan-y` so a
  * horizontal drag reaches here instead of starting a browser pan.
  */
 export function useSwipeBetween(
@@ -41,14 +41,12 @@ export function useSwipeBetween(
     if (!el || !enabled) return;
     let timer = 0;
 
-    const show = (x: number, width: number) => {
+    const show = (x: number) => {
       el.style.setProperty("--swipe-x", `${x}px`);
-      el.style.setProperty("--swipe-fade", String(1 - Math.min(1, Math.abs(x) / width) * 0.7));
     };
     const reset = () => {
       el.removeAttribute("data-swipe");
       el.style.removeProperty("--swipe-x");
-      el.style.removeProperty("--swipe-fade");
     };
 
     const settle = (direction: StepDirection | 0, width: number) => {
@@ -56,19 +54,21 @@ export function useSwipeBetween(
       if (direction === 0) {
         if (reduced) return reset();
         el.dataset.swipe = "back";
-        show(0, width);
+        void el.offsetWidth;
+        show(0);
         timer = window.setTimeout(reset, BACK_MS);
         return;
       }
-      // The next place renders in the same frame the old content is cleared, so nothing flashes back.
+      // Page the track fully across, then swap. The neighbor photo is already
+      // where the new place's photo lands, so the commit doesn't flash a gap.
       const commit = () => {
         flushSync(() => step(direction));
         reset();
       };
       if (reduced) return commit();
       el.dataset.swipe = "out";
-      show(-direction * width * 0.4, width);
-      el.style.setProperty("--swipe-fade", "0");
+      void el.offsetWidth;
+      show(-direction * width);
       timer = window.setTimeout(commit, OUT_MS);
     };
 
@@ -76,7 +76,10 @@ export function useSwipeBetween(
       if (down.pointerType === "mouse" && down.button !== 0) return;
       if (el.dataset.swipe === "out") return;
       if ((down.target as HTMLElement).closest("[data-no-swipe], input, textarea, select")) return;
-      const width = el.clientWidth || window.innerWidth;
+      // A native image drag cancels the pointer, so the swipe never gets a move.
+      if ((down.target as HTMLElement).closest("img")) down.preventDefault();
+      const track = el.querySelector(".swipe-track");
+      const width = (track instanceof HTMLElement && track.clientWidth) || el.clientWidth || window.innerWidth;
       const g = {
         axis: null as "x" | "y" | null,
         dx: 0,
@@ -102,7 +105,7 @@ export function useSwipeBetween(
         g.samples.push([move.timeStamp, move.clientX]);
         while (g.samples.length > 2 && move.timeStamp - g.samples[0][0] > VELOCITY_WINDOW) g.samples.shift();
         const { hasPrev: prev, hasNext: next } = neighbors();
-        show(swipeOffset(dx, width, prev, next), width);
+        show(swipeOffset(dx, width, prev, next));
       };
       const onEnd = (end: PointerEvent) => {
         if (end.pointerId !== down.pointerId) return;

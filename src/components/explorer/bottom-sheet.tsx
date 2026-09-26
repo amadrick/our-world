@@ -1,7 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 
+import { OPEN_SHEET_MS, OPEN_TINT_MS, prefersReducedMotion } from "@/lib/motion";
 import { lockAxis } from "@/lib/places/swipe";
 import { cn } from "@/lib/utils";
 
@@ -26,14 +27,17 @@ interface BottomSheetProps {
   overlay?: boolean;
   /** Plays the exit: the sheet slides down and fades out, quicker than it came in. The caller unmounts it after SHEET_EXIT_MS. */
   closing?: boolean;
+  /** Dragging the half sheet down, or flicking the peek off, closes it. */
+  onDismiss?: () => void;
   children: React.ReactNode;
   className?: string;
 }
 
 const SNAPS: SheetSnap[] = ["full", "mid", "peek"];
-const CURVE = "420ms cubic-bezier(0.32, 0.72, 0, 1)";
-// Switching places eases the glass from one place's color to the next.
-const TINT_FADE = "--tint 420ms cubic-bezier(0.22, 1, 0.36, 1)";
+const EASE_SOFT = "cubic-bezier(0.22, 1, 0.36, 1)";
+const CURVE = `${OPEN_SHEET_MS}ms ${EASE_SOFT}`;
+// The place color eases on the same landing as the camera's wash.
+const TINT_FADE = `--tint ${OPEN_TINT_MS}ms ${EASE_SOFT}`;
 // The sheet slides and, between snap points, morphs its inset and corners.
 const EASE = [
   ...["transform", "left", "right", "bottom", "border-radius"].map((property) => `${property} ${CURVE}`),
@@ -41,10 +45,6 @@ const EASE = [
 ].join(", ");
 export const SHEET_EXIT_MS = 240;
 const EXIT = `transform ${SHEET_EXIT_MS}ms cubic-bezier(0.32, 0.72, 0, 1), opacity 180ms ease-out`;
-
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
 
 interface DragState {
   pointerId: number;
@@ -69,10 +69,12 @@ export function BottomSheet({
   tint,
   overlay = false,
   closing = false,
+  onDismiss,
   children,
   className,
 }: BottomSheetProps) {
   const sheetRef = useRef<HTMLDivElement>(null);
+  const clipRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const drag = useRef<DragState | null>(null);
   const scrollPositions = useRef(new Map<string, number>());
@@ -86,12 +88,21 @@ export function BottomSheet({
     }
   }, [scrollKey]);
 
-  const moveTo = (offset: number, animate: boolean) => {
+  const moveTo = useCallback((offset: number, animate: boolean) => {
     const sheet = sheetRef.current;
-    if (!sheet) return;
-    sheet.style.transition = animate && !prefersReducedMotion() ? EASE : TINT_FADE;
+    const clip = clipRef.current;
+    if (!sheet || !clip) return;
+    const reduce = prefersReducedMotion();
+    sheet.style.transition = animate && !reduce ? EASE : TINT_FADE;
     sheet.style.transform = `translate3d(0, ${offset}px, 0)`;
-  };
+    // The card grows and shrinks with the drag. Only the clip is painted, so a
+    // pull never uncovers a slab of page color below the content.
+    const visible = Math.min(heights.full, Math.max(96, heights.full - offset));
+    clip.style.transition = animate && !reduce
+      ? `height ${OPEN_SHEET_MS}ms ${EASE_SOFT}, border-radius ${OPEN_SHEET_MS}ms ${EASE_SOFT}`
+      : "none";
+    clip.style.height = `${visible}px`;
+  }, [heights]);
 
   // The first placement slides up from below the screen edge.
   const entered = useRef(false);
@@ -110,13 +121,41 @@ export function BottomSheet({
       void sheetRef.current?.offsetHeight;
     }
     moveTo(heights.full - heights[snap], true);
-  }, [snap, heights, closing]);
+    // Half and peek show the photo from the top. Scrolling only happens at full height.
+    if (snap !== "full" && contentRef.current) contentRef.current.scrollTop = 0;
+  }, [snap, heights, closing, moveTo]);
+
+  // At full height, a pull down from the top must drag the sheet, never rubber-band
+  // the canvas into view. Below full height the sheet doesn't scroll at all.
+  useEffect(() => {
+    const content = contentRef.current;
+    if (!content) return;
+    let startY = 0;
+    const onStart = (event: TouchEvent) => {
+      startY = event.touches[0]?.clientY ?? 0;
+    };
+    const onMove = (event: TouchEvent) => {
+      if (snap !== "full") return;
+      const dy = (event.touches[0]?.clientY ?? 0) - startY;
+      if (content.scrollTop <= 0 && dy > 0 && event.cancelable) event.preventDefault();
+    };
+    content.addEventListener("touchstart", onStart, { passive: true });
+    content.addEventListener("touchmove", onMove, { passive: false });
+    return () => {
+      content.removeEventListener("touchstart", onStart);
+      content.removeEventListener("touchmove", onMove);
+    };
+  }, [snap]);
 
   // Move/up listen on window so a fast drag that leaves the handle keeps tracking,
   // without pointer capture swallowing taps on buttons in the header.
   const onPointerDown = (event: React.PointerEvent) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
     const downTarget = event.target as HTMLElement;
+    // Dragging a photo must move the sheet, not start a native image drag.
+    if (downTarget.closest("img")) event.preventDefault();
+    const fromContent = contentRef.current?.contains(downTarget) ?? false;
+    const scrollTop = contentRef.current?.scrollTop ?? 0;
     const startOffset = offsetFor(snap);
     const d: DragState = {
       pointerId: event.pointerId,
@@ -145,6 +184,12 @@ export function BottomSheet({
         if (!axis) return;
         // Sideways is a swipe between places, not a sheet drag.
         if (axis === "x") {
+          stop();
+          drag.current = null;
+          return;
+        }
+        // At full height the content scrolls, except a downward pull at the top, which collapses the sheet.
+        if (snap === "full" && fromContent && (scrollTop > 0 || dy < 0)) {
           stop();
           drag.current = null;
           return;
@@ -189,6 +234,23 @@ export function BottomSheet({
         const i = SNAPS.indexOf(snap) + (d.velocity > 0 ? 1 : -1);
         next = SNAPS[Math.min(Math.max(i, 0), SNAPS.length - 1)];
       }
+      // The half sheet drags up to full or down to dismiss. It does not settle into the peek.
+      if (snap === "mid" && next === "peek") {
+        onDismiss?.();
+        return;
+      }
+      if (snap === "peek" && d.velocity > 0.4 && d.offset > offsetFor("mid")) {
+        onDismiss?.();
+        return;
+      }
+      // Full height collapses to half. Dragging it nearly off screen dismisses.
+      if (snap === "full" && next === "peek") {
+        if (d.offset > offsetFor("peek") + 36) {
+          onDismiss?.();
+          return;
+        }
+        next = "mid";
+      }
       moveTo(offsetFor(next), true);
       if (next !== snap) onSnapChange(next);
     };
@@ -203,12 +265,9 @@ export function BottomSheet({
       ref={sheetRef}
       className={cn(
         "fixed z-20 flex flex-col will-change-transform",
-        tint ? "tinted-sheet text-white" : "glass glass-thick",
         closing && "pointer-events-none",
         // Partial heights float inset as a card so the map peeks around them; full height is edge to edge.
-        snap === "full"
-          ? "inset-x-0 bottom-0 rounded-t-2xl rounded-b-none"
-          : "inset-x-2 bottom-2 rounded-2xl",
+        snap === "full" ? "inset-x-0 bottom-0" : "inset-x-2 bottom-2",
         className,
       )}
       style={{
@@ -229,15 +288,20 @@ export function BottomSheet({
       )}
       {/* Clips content (a photo edge to edge) to the sheet's rounded corners. */}
       <div
-        className="relative flex min-h-0 flex-col overflow-hidden rounded-[inherit]"
-        style={{ height: heights[snap] }}
+        ref={clipRef}
+        className={cn(
+          "relative flex min-h-0 flex-col overflow-hidden",
+          tint ? "tinted-sheet text-white" : "glass glass-thick",
+          snap === "full" ? "rounded-t-2xl rounded-b-none" : "rounded-2xl",
+        )}
+        style={{ height: heights[snap], backgroundColor: tint }}
+        onPointerDown={onPointerDown}
       >
         <div
           className={cn(
             "cursor-grab touch-none select-none active:cursor-grabbing",
             overlay ? "absolute inset-x-0 top-0 z-10 h-14" : "shrink-0",
           )}
-          onPointerDown={onPointerDown}
         >
           <div className="flex justify-center pt-2 pb-2" aria-hidden>
             <span
@@ -255,11 +319,13 @@ export function BottomSheet({
             scrollPositions.current.set(scrollKeyRef.current, event.currentTarget.scrollTop)
           }
           className={cn(
-            "min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain",
+            "min-h-0 flex-1 overscroll-none",
+            snap === "full" ? "overlay-scroll-y touch-pan-y" : "touch-none overflow-hidden",
             snap === "peek" && "invisible",
             snap !== "peek" && !overlay && (tint ? "border-t border-white/12" : "border-t border-hairline"),
             !footer && "pb-[env(safe-area-inset-bottom)]",
           )}
+          style={tint ? { backgroundColor: tint } : undefined}
         >
           {children}
         </div>

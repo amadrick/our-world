@@ -69,11 +69,13 @@ export function PlaceImage({
     <div
       className={cn("relative aspect-square overflow-hidden bg-photo", className)}
       style={placeholder ? { backgroundColor: placeholder } : undefined}
+      onDragStart={(event) => event.preventDefault()}
     >
       <Image
         src={place.image}
         alt={alt}
         fill
+        draggable={false}
         sizes={sizes}
         priority={priority}
         onLoad={onLoad}

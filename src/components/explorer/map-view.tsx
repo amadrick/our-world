@@ -307,14 +307,14 @@ export function MapView({
 
       {status === "loading" && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <span className="flex h-11 animate-pulse items-center rounded-full bg-surface px-5 text-sm font-medium text-muted-foreground shadow-float">
+          <span className="glass glass-luminous flex h-11 animate-pulse items-center rounded-full px-5 text-sm font-medium">
             Loading the map…
           </span>
         </div>
       )}
 
       {status === "error" && (
-        <div className="absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center rounded-2xl bg-surface p-8 text-center shadow-raised lg:left-[448px]">
+        <div className="glass glass-thick absolute inset-x-4 top-1/3 mx-auto flex max-w-sm flex-col items-center rounded-2xl p-8 text-center lg:left-[448px]">
           <span className="flex size-14 items-center justify-center rounded-full bg-secondary">
             <MapIcon size={22} />
           </span>

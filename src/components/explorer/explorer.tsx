@@ -114,9 +114,9 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   );
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [snap, setSnap] = useState<SheetSnap>("mid");
-  const [topBarHeight, setTopBarHeight] = useState(148);
+  const [topBarHeight, setTopBarHeight] = useState(72);
   const [safeBottom, setSafeBottom] = useState(0);
-  // The list's filter bar turns to glass once cards scroll under it.
+  // Once the title has scrolled away, keep the notch clear of the cards. The pills themselves stay bare.
   const [barStuck, setBarStuck] = useState(false);
   const listHeaderRef = useRef<HTMLElement>(null);
   const topBarRef = useRef<HTMLDivElement>(null);
@@ -153,15 +153,13 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const { prev, next } = placeNeighbors(mapPlaces, selectedId);
   const [stepping, setStepping] = useState<{ direction: StepDirection; swiped: boolean } | null>(null);
 
-  const sheetHeights = useMemo(
-    () => ({
-      // The action bar pads itself above the home indicator; the peek grows to match.
-      peek: SHEET_PEEK + Math.max(0, safeBottom - 12),
-      mid: Math.max(360, Math.round(viewportHeight * 0.5)),
-      full: Math.max(400, viewportHeight - topBarHeight - 8),
-    }),
-    [viewportHeight, topBarHeight, safeBottom],
-  );
+  const sheetHeights = useMemo(() => {
+    const belowHeader = Math.max(200, viewportHeight - topBarHeight - 8);
+    const peek = SHEET_PEEK + Math.max(0, safeBottom - 12);
+    // Half the screen, but never taller than the room under the pills (landscape phones).
+    const mid = Math.min(Math.max(Math.round(viewportHeight * 0.5), 240), belowHeader);
+    return { peek: Math.min(peek, mid), mid, full: belowHeader };
+  }, [viewportHeight, topBarHeight, safeBottom]);
 
   // Framed for map mode even while the list covers it, so switching back is instant.
   const padding = useMemo<MapPadding>(
@@ -353,7 +351,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       <aside
         className={cn(
           "absolute top-4 bottom-4 left-4 z-10 hidden flex-col overflow-hidden rounded-2xl lg:flex",
-          selected ? "shadow-raised transition-colors duration-300" : "glass glass-thick",
+          selected ? "shadow-raised transition-colors duration-300" : "glass",
         )}
         style={{ width: RAIL_WIDTH, backgroundColor: selected ? placeColor(selected) : undefined }}
         aria-label="Places"
@@ -365,21 +363,21 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             selected && "hidden",
           )}
         >
-          <header className="shrink-0 border-b border-hairline px-6 pt-6">
+          <header className="shrink-0 px-6 pt-6">
             <h1 className="text-lg font-semibold">{site.title}</h1>
-            <FilterBar className="-mx-6 mt-2" inset="px-6" {...filterProps} />
+            <FilterBar className="-mx-6 mt-3" inset="px-6" floating={false} {...filterProps} />
             <ResultsSummary
               count={visible.length}
               filtersActive={filtersActive}
               onClear={clearFilters}
             />
           </header>
-          <div className="min-h-0 flex-1 overflow-y-auto px-3 pt-3 pb-6">
+          <div className="overlay-scroll-y min-h-0 flex-1 px-3 pt-1 pb-6">
             <PlaceList variant="rows" {...listProps} />
           </div>
         </div>
         {selected && (
-          <div ref={railScrollRef} className="min-h-0 flex-1 overflow-y-auto">
+          <div ref={railScrollRef} className="overlay-scroll-y min-h-0 flex-1">
             <PlaceDetail
               place={selected}
               onBack={closeDetail}
@@ -411,13 +409,13 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         </MapButton>
       </div>
 
-      {/* Map mode, phone: filters in a solid bar across the top */}
+      {/* Map mode, phone: pills float on the map. No bar behind them. */}
       <div
         ref={topBarRef}
-        className="glass-bar absolute inset-x-0 top-0 z-10 pt-[max(env(safe-area-inset-top),8px)] pb-3 lg:hidden"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 pt-[max(env(safe-area-inset-top),10px)] pr-[env(safe-area-inset-right)] pb-3 pl-[env(safe-area-inset-left)] lg:hidden"
         inert={listMode}
       >
-        <FilterBar inset="px-4" {...filterProps} />
+        <FilterBar className="pointer-events-auto" inset="px-4" {...filterProps} />
       </div>
 
       {/* Map mode, phone: the open place rises in a sheet, photo on top; peeking, just its name and actions */}
@@ -431,9 +429,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
             scrollKey={`place:${sheetPlace.id}`}
             overlay={snap !== "peek"}
             closing={sheetClosing}
+            onDismiss={closeDetail}
             header={
               snap === "peek" ? (
-                <PlaceSheetHeader place={sheetPlace} onClose={closeDetail} />
+                <PlaceSheetHeader place={sheetPlace} onClose={closeDetail} beside={{ prev, next }} />
               ) : (
                 <SheetCloseButton onClose={closeDetail} />
               )
@@ -446,6 +445,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               variant="sheet"
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
+              beside={{ prev, next }}
             />
           </BottomSheet>
         </div>
@@ -464,16 +464,21 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
       <section
         aria-label="Places"
         inert={!listMode}
-        className={cn("absolute inset-0 z-20 bg-canvas", !listMode && "invisible")}
+        className={cn(
+          "absolute inset-0 z-20",
+          !listMode && "invisible",
+          !(listMode && selected) && "bg-canvas",
+        )}
+        style={listMode && selected ? { backgroundColor: placeColor(selected) } : undefined}
       >
         <div
           className={cn(
-            "absolute inset-0 overflow-y-auto overscroll-contain",
+            "overlay-scroll-y absolute inset-0",
             selected && "invisible",
           )}
           inert={Boolean(selected)}
           onScroll={(event) =>
-            setBarStuck(event.currentTarget.scrollTop >= (listHeaderRef.current?.offsetHeight ?? 0))
+            setBarStuck(event.currentTarget.scrollTop >= (listHeaderRef.current?.offsetHeight ?? 0) - 1)
           }
         >
           <header ref={listHeaderRef} className="relative">
@@ -485,12 +490,10 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               </p>
             </div>
           </header>
-          <div
-            className={cn(
-              "sticky top-0 z-10 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200",
-              barStuck && "glass-bar",
+          <div className="sticky top-0 z-10">
+            {barStuck && (
+              <div aria-hidden className="h-[env(safe-area-inset-top)] bg-canvas" />
             )}
-          >
             <div className="mx-auto max-w-7xl pt-2 pb-3 lg:px-9">
               <FilterBar inset="px-5 lg:px-1" {...filterProps} />
             </div>
@@ -512,7 +515,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         {listMode && selected && (
           <div
             ref={pageRef}
-            className="absolute inset-0 touch-pan-y overflow-y-auto overscroll-contain [transition:background-color_420ms_var(--ease-out-soft)] animate-in duration-200 fade-in"
+            className="overlay-scroll-y absolute inset-0 touch-pan-y [transition:background-color_var(--open-tint)_var(--ease-out-soft)] animate-in duration-200 fade-in"
             style={{ backgroundColor: placeColor(selected) }}
           >
             <PlaceDetail
@@ -523,6 +526,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               stepper={stepper}
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
+              beside={{ prev, next }}
             />
           </div>
         )}

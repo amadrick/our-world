@@ -90,6 +90,12 @@ export interface Stepper {
   onStep: (direction: StepDirection) => void;
 }
 
+/** The places on either side, shown as the swipe pages. */
+export interface Beside {
+  prev: Place | null;
+  next: Place | null;
+}
+
 /** Small glass chevrons to the previous and next place (the arrow keys do the same). */
 function StepButtons({ stepper, className }: { stepper: Stepper; className?: string }) {
   const button = (direction: StepDirection, target: Place | null) => {
@@ -190,10 +196,9 @@ export function PlaceActions({ place }: { place: Place }) {
   );
 }
 
-/** The phone map sheet at its smallest: thumbnail, name, and quiet meta. */
-export function PlaceSheetHeader({ place, onClose }: { place: Place; onClose: () => void }) {
+function PeekRow({ place, trailing }: { place: Place; trailing?: React.ReactNode }) {
   return (
-    <div className="swipe-follow flex items-center gap-3 px-5 pt-1 pb-4 text-white">
+    <div className="flex items-center gap-3 px-5 pt-1 pb-4 text-white">
       <PlaceImage
         place={place}
         sizes="56px"
@@ -214,14 +219,87 @@ export function PlaceSheetHeader({ place, onClose }: { place: Place; onClose: ()
           {placeWhere(place)}
         </p>
       </div>
-      <button
-        type="button"
-        aria-label="Close"
-        onClick={onClose}
-        className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
-      >
-        <X size={20} aria-hidden />
-      </button>
+      {trailing ?? <span className="size-11 shrink-0" />}
+    </div>
+  );
+}
+
+/** The phone map sheet at its smallest: thumbnail, name, and quiet meta. */
+export function PlaceSheetHeader({
+  place,
+  onClose,
+  beside,
+}: {
+  place: Place;
+  onClose: () => void;
+  beside?: Beside;
+}) {
+  return (
+    <div className="swipe-track relative">
+      {beside?.prev && (
+        <div aria-hidden className="absolute inset-y-0 right-full w-full">
+          <PeekRow place={beside.prev} />
+        </div>
+      )}
+      {beside?.next && (
+        <div aria-hidden className="absolute inset-y-0 left-full w-full">
+          <PeekRow place={beside.next} />
+        </div>
+      )}
+      <PeekRow
+        place={place}
+        trailing={
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
+          >
+            <X size={20} aria-hidden />
+          </button>
+        }
+      />
+    </div>
+  );
+}
+
+/**
+ * The previous or next place, parked a full width off to the side, so a swipe
+ * reveals its photo instead of the canvas.
+ */
+function NeighborSlide({
+  place,
+  sizes,
+  side,
+  imageClassName,
+  className,
+}: {
+  place: Place;
+  sizes: string;
+  side: "prev" | "next";
+  imageClassName?: string;
+  className?: string;
+}) {
+  return (
+    <div
+      aria-hidden
+      className={cn(
+        "absolute inset-y-0 w-full overflow-hidden",
+        side === "next" ? "left-full" : "right-full",
+        className,
+      )}
+      style={{ backgroundColor: placeColor(place) }}
+    >
+      <PlaceImage
+        place={place}
+        alt=""
+        sizes={sizes}
+        placeholder={placeColor(place)}
+        className={cn("w-full", imageClassName)}
+      />
+      <p className="px-5 pt-5 text-lg font-semibold text-white [text-shadow:0_1px_12px_rgb(0_0_0/0.35)]">
+        {smartQuotes(place.name)}
+      </p>
     </div>
   );
 }
@@ -324,7 +402,8 @@ function PhotoStage({
           onLoad={() => markReady(layer.serial)}
           className={cn(
             "absolute inset-0 aspect-auto",
-            !layer.ready ? "opacity-0" : `motion-photo-${layer.motion}`,
+            !layer.ready && "opacity-0",
+            layer.ready && !(replace && layer.motion === "slide") && `motion-photo-${layer.motion}`,
           )}
         />
       ))}
@@ -358,6 +437,8 @@ interface PlaceDetailProps {
   enterFrom?: StepDirection | null;
   /** Stepped to by a swipe, which already carried the old photo away. */
   swiped?: boolean;
+  /** Neighbors rendered beside this place so a swipe previews their photos. */
+  beside?: Beside;
 }
 
 export function PlaceDetail({
@@ -368,6 +449,7 @@ export function PlaceDetail({
   stepper,
   enterFrom = null,
   swiped = false,
+  beside,
 }: PlaceDetailProps) {
   const color = placeColor(place);
   const tags = FILTER_TAGS.filter((t) => place.tags.includes(t.id));
@@ -454,7 +536,7 @@ export function PlaceDetail({
   if (variant === "sheet" || variant === "rail") {
     const rail = variant === "rail";
     const item = (i: number) => ({ className: "motion-item", style: { "--i": i } as React.CSSProperties });
-    return (
+    const article = (
       <article
         aria-label={place.name}
         className="relative text-white"
@@ -467,15 +549,14 @@ export function PlaceDetail({
             alt={alt}
             sizes={rail ? PHOTO_SIZES.rail : PHOTO_SIZES.sheet}
             replace={swiped}
-            className={cn("swipe-parallax", rail ? "aspect-square" : "aspect-[4/3]")}
+            className={rail ? "aspect-square" : "aspect-[4/3]"}
           />
-          {/* Outside the stage, so it stays put while photos slide, crossfade, and parallax beneath it. */}
-          <PhotoDissolve className="h-[30%]" />
+          <PhotoDissolve color={color} className="h-[30%]" />
           {rail && <div className="absolute inset-x-3 top-3 z-10">{controls}</div>}
         </div>
         <div
           key={place.id}
-          className={cn("swipe-follow relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}
+          className={cn("relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}
         >
           <div {...item(0)}>{header}</div>
           <div {...item(1)}>
@@ -491,6 +572,18 @@ export function PlaceDetail({
         </div>
       </article>
     );
+    if (rail || !beside) return article;
+    return (
+      <div className="swipe-track relative min-h-full">
+        {beside.prev && (
+          <NeighborSlide place={beside.prev} sizes={PHOTO_SIZES.sheet} side="prev" imageClassName="aspect-[4/3]" />
+        )}
+        {beside.next && (
+          <NeighborSlide place={beside.next} sizes={PHOTO_SIZES.sheet} side="next" imageClassName="aspect-[4/3]" />
+        )}
+        {article}
+      </div>
+    );
   }
 
   return (
@@ -503,15 +596,30 @@ export function PlaceDetail({
       </div>
 
       {/* Stepping to another place re-keys this, so it comes in with the switch stagger; the first place opens as before. */}
+      <div className={cn("relative", beside && "swipe-track")}>
+        {beside?.prev && (
+          <NeighborSlide
+            place={beside.prev}
+            sizes={PAGE_PHOTO_SIZES}
+            side="prev"
+            className="md:hidden"
+          />
+        )}
+        {beside?.next && (
+          <NeighborSlide
+            place={beside.next}
+            sizes={PAGE_PHOTO_SIZES}
+            side="next"
+            className="md:hidden"
+          />
+        )}
       <div
         key={place.id}
         data-motion={switched ? "switch" : undefined}
         data-enter={enterSide(enterFrom)}
         className="relative mx-auto max-w-[1144px] md:grid md:grid-cols-2 md:items-start md:gap-10 md:px-10 md:pt-8 md:pb-24 lg:grid-cols-[440px_minmax(0,1fr)] lg:gap-16 lg:pb-8"
       >
-        <div
-          className={cn("swipe-parallax relative", switched && (swiped ? "motion-photo-slide" : "motion-photo-swap"))}
-        >
+        <div className={cn("relative", switched && !swiped && "motion-photo-swap")}>
           <PhotoHalo place={place} className="hidden md:block" />
           <PlaceImage
             place={place}
@@ -529,7 +637,7 @@ export function PlaceDetail({
           <PhotoDissolve color={color} className="h-2/5 md:hidden" />
         </div>
 
-        <div className="swipe-follow relative -mt-20 space-y-6 px-5 pb-36 md:mt-0 md:max-w-xl md:space-y-7 md:px-0 md:pb-0">
+        <div className="relative -mt-20 space-y-6 px-5 pb-36 md:mt-0 md:max-w-xl md:space-y-7 md:px-0 md:pb-0">
           <div className={cn(switched && "motion-item")} style={{ "--i": 0 } as React.CSSProperties}>
             {header}
           </div>
@@ -544,6 +652,7 @@ export function PlaceDetail({
             ))}
           </div>
         </div>
+      </div>
       </div>
 
       {/* Wide screens keep the List | Map switch floating at the bottom: the page color fades up behind it, so no text sits under it. */}
