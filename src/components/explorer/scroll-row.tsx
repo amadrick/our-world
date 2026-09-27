@@ -37,10 +37,10 @@ function syncEdges(wrapper: HTMLElement | null, scroller: HTMLElement | null) {
  * whichever side has more to see. Edges are written to data attributes rather
  * than state, so scrolling never re-renders the row.
  *
- * The scroller is padded out past the row on every side and pulled back with
- * negative margins, so the children's shadows fit inside it: a horizontal
- * scroller clips vertically too. It takes no pointer events itself, only its
- * children do, so that padding never blocks what's underneath. No mask either:
+ * A horizontal scroller clips vertically too, so it's padded just enough for
+ * the children's shadows and pulled back with negative margins. It must take
+ * pointer events itself: a scroller with pointer-events: none is never the
+ * target of a pan or wheel, even one that starts on a child. No mask either:
  * a masked ancestor would stop the children's backdrop blur at the row.
  */
 export function ScrollRow({
@@ -88,7 +88,7 @@ export function ScrollRow({
         aria-label={label}
         onScroll={sync}
         className={cn(
-          "no-scrollbar pointer-events-none -my-7 flex overflow-x-auto py-7 [&>*]:pointer-events-auto",
+          "no-scrollbar -mt-2 -mb-3 flex touch-pan-x overflow-x-auto overscroll-x-contain pt-2 pb-3",
           innerClassName,
         )}
       >
