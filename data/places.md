@@ -1,9 +1,9 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 116 places: what each is known for (reviewed in
+Per-place notes for all 117 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 116 of 116 places are researched.
+place. 117 of 117 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
@@ -2969,6 +2969,26 @@ Coffee & tea · Mission · 561 Valencia St, San Francisco, CA 94110
   - <https://missionlocal.org/2023/08/stonemill-matcha-closing-sunday-long-lines/>
   - <https://default.sfplanning.org/Preservation/imn_survey/16th_and_Valencia_Streets_Post-Fire_Historic_District_Record.pdf>
   - <https://abcdocz.com/doc/1050052/2014.1520c---san-francisco-planning-department>
+
+## Sully's Marina Lounge
+
+Bar · Marina · 2138 Chestnut St, San Francisco, CA 94123 · Andy’s pick
+
+### Place research
+
+- **Neighborhood and street:** Marina. Mid-block on the north side of Chestnut Street between Steiner and Pierce, on the Marina's main strip of shops, bars and cafes. The Marina Theatre faces it from across the street.
+- **Terrain and setting:** Flat, filled ground on the Marina street grid a few blocks inland from the bay, with no grade to speak of.
+- **Architecture:** A ground-floor storefront bar in the row of low commercial buildings that lines Chestnut Street. Inside it is a neighborhood dive bar with a jukebox, a pool table and TVs for the big games.
+- **Unique architectural notes:** A bar on this block of Chestnut Street since 1937.
+- **Most iconic physical characteristics:**
+  - pool table
+  - jukebox
+  - TVs showing the big games
+- **More recognizable view:** the interior
+- **Not verified:** Researched without web access, from the bar's verified basics (address, opening year, hours, jukebox, pool table, big games) and OpenStreetMap, which maps the bar as "Marina Lounge" at this point. The facade, sign, colors, materials and room layout are unverified, so these notes describe only the pool table, jukebox and game TVs. No signature was researched.
+- **Sources:**
+  - <https://sullysmarinalounge.com>
+  - <https://www.openstreetmap.org/#map=19/37.80073/-122.43869>
 
 ## Taqueria El Buen Sabor
 

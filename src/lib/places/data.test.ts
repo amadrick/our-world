@@ -36,9 +36,9 @@ describe("data/places.json", () => {
     }
   });
 
-  it("holds Andy's 93 places plus the 23 Sights, with no Wellness section left", () => {
-    expect(places).toHaveLength(116);
-    expect(places.filter((p) => p.category !== "sight")).toHaveLength(93);
+  it("holds Andy's 94 places plus the 23 Sights, with no Wellness section left", () => {
+    expect(places).toHaveLength(117);
+    expect(places.filter((p) => p.category !== "sight")).toHaveLength(94);
     expect(places.some((p) => p.id === "alchemy-springs")).toBe(false);
     expect(new Set(places.map((p) => p.category)).has("wellness" as Place["category"])).toBe(false);
   });
@@ -169,6 +169,7 @@ describe("data/places.json", () => {
       "sf76",
       "sfmoma",
       "shoji",
+      "sullys-marina-lounge",
       "tartine-bakery",
       "the-coffee-movement",
       "the-laundromat-sf",
@@ -187,6 +188,7 @@ describe("data/places.json", () => {
       "la-taqueria",
       "maillards",
       "pearl-6101",
+      "sullys-marina-lounge",
       "tony-niks",
       "toronado",
     ]);
@@ -247,8 +249,8 @@ describe("data/places.json", () => {
       if (place.pickBy) expect(place.favorite, place.id).toBe(true);
       expect(place.signatureRationale ?? "", place.id).not.toMatch(/own pick|Our pick\./);
     }
-    expect(places.filter((p) => p.favorite)).toHaveLength(55);
-    expect(filterPlaces(places, { ...EMPTY_FILTERS, pills: ["favorites"] })).toHaveLength(55);
+    expect(places.filter((p) => p.favorite)).toHaveLength(56);
+    expect(filterPlaces(places, { ...EMPTY_FILTERS, pills: ["favorites"] })).toHaveLength(56);
     expect(byId("arsicault-bakery")?.signatureSubject).toBe("Chocolate almond croissant");
     expect(byId("yank-sing")?.signatureSubject).toBe("Pot stickers");
     expect(byId("house-of-prime-rib")?.signatureSubject).toBe("King's cut");
@@ -256,6 +258,31 @@ describe("data/places.json", () => {
     expect(byId("daeho")?.signatureSubject).toBe("Cheese kalbijjim (blowtorched)");
     // The box is unticked, and the owner is what keeps it a favorite.
     expect(byId("pearl-6101")).toMatchObject({ favorite: true, pickBy: "andy" });
+  });
+
+  it("adds Sully's Marina Lounge as Andy's pick, with nothing said for him", () => {
+    const sullys = places.find((p) => p.id === "sullys-marina-lounge");
+    expect(sullys).toMatchObject({
+      name: "Sully's Marina Lounge",
+      category: "bar",
+      neighborhood: "Marina",
+      address: "2138 Chestnut St, San Francisco, CA 94123",
+      favorite: true,
+      pickBy: "andy",
+    });
+    // On the north side of Chestnut between Steiner and Pierce, where OpenStreetMap has it.
+    expect(sullys!.lat).toBeCloseTo(37.80073, 4);
+    expect(sullys!.lng).toBeCloseTo(-122.43869, 4);
+    // Andy named no order, so there's no Known for, no note, and no quote in his voice.
+    expect(sullys!.signatureSubject).toBeUndefined();
+    expect(sullys!.note).toBeUndefined();
+    expect(sullys!.placeResearch?.view).toBe("interior");
+    for (const filters of [
+      { ...EMPTY_FILTERS, pills: ["favorites" as const] },
+      { ...EMPTY_FILTERS, category: "bar" as const, neighborhood: "Marina" },
+    ]) {
+      expect(filterPlaces(places, filters).map((p) => p.id)).toContain("sullys-marina-lounge");
+    }
   });
 
   it("leaves Limón, Ordinaire, and Song Tea as they are until Andy decides", () => {

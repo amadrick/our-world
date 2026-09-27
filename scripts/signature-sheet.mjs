@@ -111,7 +111,7 @@ if (command === "export") {
   const previous = new Map(sheet.places.map((e) => [e.id, e]));
   sheet.places = data.places.map((p) => {
     const old = previous.get(p.id);
-    const same = old?.signatureSubject === p.signatureSubject;
+    const same = old !== undefined && old.signatureSubject === p.signatureSubject;
     const confidence = !same ? "unreviewed" : old.confidence === "andy" ? "unreviewed" : old.confidence;
     return {
       id: p.id,

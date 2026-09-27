@@ -1311,6 +1311,15 @@
         "https://en.wikipedia.org/wiki/Lands_End_(San_Francisco)"
       ],
       "approved": false
+    },
+    {
+      "id": "sullys-marina-lounge",
+      "name": "Sully's Marina Lounge",
+      "signatureSubject": "",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
     }
   ]
 }
