@@ -256,7 +256,7 @@ export function FilterBar({
 
   return (
     <div className={className}>
-      <ScrollRow label="Filters" innerClassName={cn("gap-2 py-1", inset)}>
+      <ScrollRow label="Filters" className="py-1" innerClassName={cn("gap-2", inset)}>
         <CategoryMenu
           value={filters.category}
           categories={categories}

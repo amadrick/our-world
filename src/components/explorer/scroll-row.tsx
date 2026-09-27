@@ -16,8 +16,8 @@ function ScrollButton({ side, onClick }: { side: "start" | "end"; onClick: () =>
       className={cn(
         "pressable absolute top-1/2 z-10 hidden size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full glass text-ink",
         side === "start"
-          ? "left-0 pointer-fine:group-data-[fade-start]/row:flex"
-          : "right-0 pointer-fine:group-data-[fade-end]/row:flex",
+          ? "left-0 pointer-fine:group-data-[more-start]/row:flex"
+          : "right-0 pointer-fine:group-data-[more-end]/row:flex",
       )}
     >
       <Icon size={16} strokeWidth={2.5} />
@@ -28,14 +28,20 @@ function ScrollButton({ side, onClick }: { side: "start" | "end"; onClick: () =>
 function syncEdges(wrapper: HTMLElement | null, scroller: HTMLElement | null) {
   if (!wrapper || !scroller) return;
   const max = scroller.scrollWidth - scroller.clientWidth;
-  wrapper.toggleAttribute("data-fade-start", scroller.scrollLeft > 1);
-  wrapper.toggleAttribute("data-fade-end", scroller.scrollLeft < max - 1);
+  wrapper.toggleAttribute("data-more-start", scroller.scrollLeft > 1);
+  wrapper.toggleAttribute("data-more-end", scroller.scrollLeft < max - 1);
 }
 
 /**
- * A horizontally scrolling row that fades out on whichever side has more to
- * see, with chevron buttons for mouse users. Edges are written to data
- * attributes rather than state, so scrolling never re-renders the row.
+ * A horizontally scrolling row, with chevron buttons for mouse users on
+ * whichever side has more to see. Edges are written to data attributes rather
+ * than state, so scrolling never re-renders the row.
+ *
+ * The scroller is padded out past the row on every side and pulled back with
+ * negative margins, so the children's shadows fit inside it: a horizontal
+ * scroller clips vertically too. It takes no pointer events itself, only its
+ * children do, so that padding never blocks what's underneath. No mask either:
+ * a masked ancestor would stop the children's backdrop blur at the row.
  */
 export function ScrollRow({
   label,
@@ -75,13 +81,16 @@ export function ScrollRow({
   };
 
   return (
-    <div ref={wrapperRef} className={cn("group/row relative", className)}>
+    <div ref={wrapperRef} className={cn("group/row relative flow-root", className)}>
       <div
         ref={scrollerRef}
         role="group"
         aria-label={label}
         onScroll={sync}
-        className={cn("no-scrollbar scroll-fade-x flex overflow-x-auto", innerClassName)}
+        className={cn(
+          "no-scrollbar pointer-events-none -my-7 flex overflow-x-auto py-7 [&>*]:pointer-events-auto",
+          innerClassName,
+        )}
       >
         {children}
       </div>
