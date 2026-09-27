@@ -163,8 +163,6 @@ Dessert · Mission · 3692 18th St, San Francisco, CA 94110
 
 Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133 · Favorite
 
-**Known for:** Pho and the chilled red wine.
-
 ### Place research
 
 - **Neighborhood and street:** North Beach. On Columbus Avenue at Filbert Street in North Beach, a short walk from Washington Square and Saints Peter and Paul Church. Heated sidewalk seating sits out front.

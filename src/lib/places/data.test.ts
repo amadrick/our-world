@@ -260,6 +260,18 @@ describe("data/places.json", () => {
     expect(byId("pearl-6101")).toMatchObject({ favorite: true, pickBy: "andy" });
   });
 
+  it("says nothing about what to order at Bodega SF (the pho was another Bodega's)", () => {
+    const bodega = places.find((p) => p.id === "bodega-sf");
+    expect(bodega?.signatureSubject).toBeUndefined();
+    expect(bodega).toMatchObject({
+      name: "Bodega SF",
+      category: "wine",
+      favorite: true,
+      address: "700 Columbus Ave, San Francisco, CA 94133",
+      image: "/places/bodega-sf-d951b485.webp",
+    });
+  });
+
   it("adds Sully's Marina Lounge as Andy's pick, with nothing said for him", () => {
     const sullys = places.find((p) => p.id === "sullys-marina-lounge");
     expect(sullys).toMatchObject({
