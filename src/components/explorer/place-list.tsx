@@ -11,6 +11,7 @@ import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 import { formatDrive } from "@/lib/geo/drive-times";
+import { openState, shortHoursLine } from "@/lib/places/hours";
 import { CarGlyph } from "./place-detail";
 
 /** A more specific message than "nothing matches", with ways out. */
@@ -35,6 +36,17 @@ interface PlaceListProps {
   noMatches?: NoMatches;
   /** Driving time from the reader, in seconds, by place id. */
   driveTimes?: Readonly<Record<string, number>> | null;
+  /** The time in San Francisco, for each place's hours line. */
+  now?: Date;
+  /** Headed groups (the Smart order's "Good right now", "Closed now"…); otherwise one grid. */
+  sections?: { id: string; title: string; places: Place[] }[];
+}
+
+/** A card's hours line, and whether it's closed now (muted). */
+function hoursFor(place: Place, now: Date | undefined) {
+  if (!now) return { line: null, closed: false };
+  const state = openState(place.hours, now);
+  return { line: shortHoursLine(state, now), closed: state.kind === "closed" };
 }
 
 /** "12 min" for the tight spots, where the card or row already says what it is. */
@@ -76,22 +88,28 @@ export function PlaceCard({
   onSelect,
   onHighlight,
   drive,
+  now,
 }: {
   place: Place;
   active: boolean;
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
   drive?: number;
+  now?: Date;
 }) {
   const label = pickLabel(place.pickBy);
   const { where, knownFor } = placeMeta(place);
+  const hours = hoursFor(place, now);
   return (
     <button
       type="button"
       onClick={onSelect}
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
-      className="group flex w-full cursor-pointer flex-col gap-3 rounded-xl text-left outline-ink focus-visible:outline-2 focus-visible:outline-offset-4"
+      className={cn(
+        "group flex w-full cursor-pointer flex-col gap-3 rounded-xl text-left outline-ink transition-opacity duration-300 focus-visible:outline-2 focus-visible:outline-offset-4",
+        hours.closed && "opacity-55 hover:opacity-100",
+      )}
     >
       <span className="relative block">
         <PlaceImage
@@ -123,6 +141,7 @@ export function PlaceCard({
           <span className="block truncate text-sm text-muted-foreground">{knownFor}</span>
         )}
         <span className="block truncate text-sm text-muted-foreground">{where}</span>
+        {hours.line && <span className="block truncate text-sm text-muted-foreground">{hours.line}</span>}
       </span>
     </button>
   );
@@ -135,16 +154,19 @@ export function PlaceRow({
   onSelect,
   onHighlight,
   drive,
+  now,
 }: {
   place: Place;
   active: boolean;
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
   drive?: number;
+  now?: Date;
 }) {
   const favorite = isFavorite(place);
   const label = pickLabel(place.pickBy);
   const { where, knownFor } = placeMeta(place);
+  const hours = hoursFor(place, now);
   return (
     <button
       type="button"
@@ -154,6 +176,7 @@ export function PlaceRow({
       className={cn(
         "focus-ring flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 text-left transition-colors hover:bg-hover",
         active && "bg-hover",
+        hours.closed && "opacity-55 hover:opacity-100",
       )}
     >
       <PlaceImage place={place} sizes="72px" className="image-frame w-18 shrink-0 rounded-md" />
@@ -178,6 +201,7 @@ export function PlaceRow({
             </span>
           )}
         </span>
+        {hours.line && <span className="block truncate text-sm text-muted-foreground">{hours.line}</span>}
       </span>
     </button>
   );
@@ -195,6 +219,8 @@ export function PlaceList({
   onClearFilters,
   noMatches,
   driveTimes,
+  now,
+  sections,
 }: PlaceListProps) {
   if (totalCount === 0) {
     return (
@@ -233,9 +259,9 @@ export function PlaceList({
   }
 
   const Item = variant === "rows" ? PlaceRow : PlaceCard;
-  return (
+  const grid = (list: Place[]) => (
     <ul className={cn("grid", variant === "rows" ? "grid-cols-1 gap-1" : gridClassName)}>
-      {places.map((place) => (
+      {list.map((place) => (
         <li key={place.id}>
           <Item
             place={place}
@@ -243,9 +269,23 @@ export function PlaceList({
             onSelect={() => onSelect(place.id)}
             onHighlight={(hovering) => onHighlight(hovering ? place.id : null)}
             drive={driveTimes?.[place.id]}
+            now={now}
           />
         </li>
       ))}
     </ul>
+  );
+  if (!sections) return grid(places);
+  return (
+    <div className={variant === "rows" ? "space-y-4" : "space-y-9"}>
+      {sections.map((section) => (
+        <section key={section.id} aria-label={section.title}>
+          <h2 className={cn("text-sm font-semibold text-muted-foreground", variant === "rows" ? "mb-1 px-2" : "mb-3")}>
+            {section.title}
+          </h2>
+          {grid(section.places)}
+        </section>
+      ))}
+    </div>
   );
 }

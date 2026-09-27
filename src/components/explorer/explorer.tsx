@@ -4,9 +4,11 @@ import { Maximize, Minus, Navigation, Plus, X } from "react-feather";
 import { useCallback, useEffect, useEffectEvent, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { site } from "@/config/site";
+import { useClocks } from "@/hooks/use-clock";
 import { useDriveTimes } from "@/hooks/use-drive-times";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
 import { locationMessage, useUserLocation, type LocationStatus } from "@/hooks/use-user-location";
+import { useSortMode } from "@/hooks/use-sort-mode";
 import { useViewMode } from "@/hooks/use-view-mode";
 import type { MapPadding } from "@/lib/map";
 import { Button } from "@/components/ui/button";
@@ -17,9 +19,9 @@ import {
   matchesInOtherSections,
   neighborhoodCounts,
   pillCounts,
-  sortPlaces,
   type PlaceFilters,
 } from "@/lib/places/filters";
+import { SECTION_TITLES, groupBySection, orderPlaces, type SortMode } from "@/lib/places/smart-order";
 import { placeNeighbors, placeWindow, type StepDirection } from "@/lib/places/swipe";
 import { getCategory, getPill } from "@/lib/places/taxonomy";
 import { PILL_IDS, type Place } from "@/lib/places/types";
@@ -39,6 +41,7 @@ import {
   type Stepper,
 } from "./place-detail";
 import { PlaceList, type NoMatches } from "./place-list";
+import { SortControl } from "./sort-control";
 import { useSwipeBetween } from "./use-swipe-between";
 
 const RAIL_WIDTH = 400;
@@ -149,25 +152,32 @@ function ResultsSummary({
   count,
   filtersActive,
   onClear,
+  sort,
+  onSort,
 }: {
   count: number;
   filtersActive: boolean;
   onClear: () => void;
+  sort: SortMode;
+  onSort: (mode: SortMode) => void;
 }) {
   return (
-    <div className="flex h-11 items-center justify-between gap-4">
-      <p aria-live="polite" className="text-sm font-semibold">
-        {count} {count === 1 ? "place" : "places"}
-      </p>
-      {filtersActive && (
-        <button
-          type="button"
-          onClick={onClear}
-          className="focus-ring -mx-2 h-11 cursor-pointer rounded-md px-2 text-sm font-semibold underline decoration-1 underline-offset-4 hover:bg-hover"
-        >
-          Clear filters
-        </button>
-      )}
+    <div className="flex h-11 items-center justify-between gap-3">
+      <div className="flex min-w-0 items-center gap-3">
+        <p aria-live="polite" className="shrink-0 text-sm font-semibold">
+          {count} {count === 1 ? "place" : "places"}
+        </p>
+        {filtersActive && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="focus-ring -mx-1 h-11 cursor-pointer truncate rounded-md px-1 text-sm font-semibold underline decoration-1 underline-offset-4 hover:bg-hover"
+          >
+            Clear filters
+          </button>
+        )}
+      </div>
+      <SortControl value={sort} onChange={onSort} />
     </div>
   );
 }
@@ -175,9 +185,11 @@ function ResultsSummary({
 interface ExplorerProps {
   places: Place[];
   initialPlaceId?: string | null;
+  /** When the server rendered the page, so hours and order hydrate the same. */
+  renderedAt: string;
 }
 
-export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
+export function Explorer({ places, initialPlaceId = null, renderedAt }: ExplorerProps) {
   const [mode, setMode] = useViewMode();
   const [filters, setFilters] = useState<PlaceFilters>(EMPTY_FILTERS);
   const [selectedId, setSelectedId] = useState<string | null>(
@@ -190,6 +202,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   // Once the title has scrolled away, keep the notch clear of the cards. The pills themselves stay bare.
   const [barStuck, setBarStuck] = useState(false);
   const listHeaderRef = useRef<HTMLElement>(null);
+  const listScrollRef = useRef<HTMLDivElement>(null);
   const topBarRef = useRef<HTMLDivElement>(null);
   const safeBottomRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapViewHandle>(null);
@@ -198,9 +211,31 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   const viewportHeight = useViewportHeight();
   const here = useUserLocation();
   const drive = useDriveTimes(here.position);
-
-  const sorted = useMemo(() => sortPlaces(places), [places]);
-  const visible = useMemo(() => filterPlaces(sorted, filters), [sorted, filters]);
+  const [sortMode, setSortMode] = useSortMode();
+  // The order holds while the reader is into the list or has a place open, so nothing moves under a finger.
+  const clocks = useClocks(
+    renderedAt,
+    () => selectedId !== null || (mode === "list" && (listScrollRef.current?.scrollTop ?? 0) > 8),
+  );
+  // Proximity from where the reader is, to about a kilometer, so GPS drift doesn't reshuffle the list.
+  const originLat = here.position ? Math.round(here.position.lat * 100) / 100 : null;
+  const originLng = here.position ? Math.round(here.position.lng * 100) / 100 : null;
+  const origin = useMemo(
+    () => (originLat === null || originLng === null ? null : { lat: originLat, lng: originLng }),
+    [originLat, originLng],
+  );
+  const ranked = useMemo(
+    () => orderPlaces(filterPlaces(places, filters), sortMode, { now: clocks.orderNow, origin }),
+    [places, filters, sortMode, clocks.orderNow, origin],
+  );
+  const visible = useMemo(() => ranked.map((r) => r.place), [ranked]);
+  const sections = useMemo(
+    () =>
+      sortMode === "smart"
+        ? groupBySection(ranked).map((g) => ({ id: g.id, title: SECTION_TITLES[g.id], places: g.items.map((r) => r.place) }))
+        : undefined,
+    [ranked, sortMode],
+  );
   const categories = useMemo(() => new Set(places.map((p) => p.category)), [places]);
   const neighborhoods = useMemo(
     () => neighborhoodCounts(filterPlaces(places, { ...filters, neighborhood: null })),
@@ -464,6 +499,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
     onClearFilters: clearFilters,
     noMatches,
     driveTimes: drive.seconds,
+    now: clocks.now,
   };
   const filterProps = {
     filters,
@@ -525,10 +561,12 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               count={visible.length}
               filtersActive={filtersActive}
               onClear={clearFilters}
+              sort={sortMode}
+              onSort={setSortMode}
             />
           </header>
           <div className="overlay-scroll-y min-h-0 flex-1 px-3 pt-1 pb-6">
-            <PlaceList variant="rows" {...listProps} />
+            <PlaceList variant="rows" sections={sections} {...listProps} />
             <MapCredit className="mt-6 px-3" />
           </div>
         </div>
@@ -541,6 +579,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               stepper={stepper}
               enterFrom={stepping?.direction}
               driveTimes={drive.seconds}
+              now={clocks.now}
             />
           </div>
         )}
@@ -606,6 +645,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               swiped={stepping?.swiped}
               slides={slides}
               driveTimes={drive.seconds}
+              now={clocks.now}
             />
           </BottomSheet>
         </div>
@@ -635,6 +675,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
         style={listMode && selected ? { backgroundColor: placeColor(selected) } : undefined}
       >
         <div
+          ref={listScrollRef}
           className={cn(
             "overlay-scroll-y absolute inset-0",
             selected && "invisible",
@@ -665,9 +706,12 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               count={visible.length}
               filtersActive={filtersActive}
               onClear={clearFilters}
+              sort={sortMode}
+              onSort={setSortMode}
             />
             <div className="mt-2">
               <PlaceList
+                sections={sections}
                 gridClassName="grid-cols-2 gap-x-3 gap-y-7 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-[repeat(auto-fill,minmax(224px,1fr))] lg:gap-x-6 lg:gap-y-10"
                 {...listProps}
               />
@@ -691,6 +735,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
               swiped={stepping?.swiped}
               slides={isDesktop ? undefined : slides}
               driveTimes={drive.seconds}
+              now={clocks.now}
             />
           </div>
         )}

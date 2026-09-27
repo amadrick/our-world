@@ -14,5 +14,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
   const [places, params] = await Promise.all([getPlaceStore().list(), searchParams]);
   const placeId = typeof params.place === "string" ? params.place : null;
 
-  return <Explorer places={places.map(forGuests)} initialPlaceId={placeId} />;
+  return (
+    <Explorer places={places.map(forGuests)} initialPlaceId={placeId} renderedAt={new Date().toISOString()} />
+  );
 }
