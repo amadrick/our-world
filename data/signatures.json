@@ -552,11 +552,11 @@
     {
       "id": "bodega-sf",
       "name": "Bodega SF",
-      "signatureSubject": "",
+      "signatureSubject": "The chilled red wine",
       "signatureRationale": "",
       "confidence": "unreviewed",
       "sources": [],
-      "approved": false
+      "approved": true
     },
     {
       "id": "little-original-joes",

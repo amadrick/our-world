@@ -260,9 +260,9 @@ describe("data/places.json", () => {
     expect(byId("pearl-6101")).toMatchObject({ favorite: true, pickBy: "andy" });
   });
 
-  it("says nothing about what to order at Bodega SF (the pho was another Bodega's)", () => {
+  it("knows Bodega SF for the chilled red wine, not pho (that was another Bodega)", () => {
     const bodega = places.find((p) => p.id === "bodega-sf");
-    expect(bodega?.signatureSubject).toBeUndefined();
+    expect(bodega?.signatureSubject).toBe("The chilled red wine");
     expect(bodega).toMatchObject({
       name: "Bodega SF",
       category: "wine",
