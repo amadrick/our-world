@@ -1,11 +1,27 @@
 import { validateStyleMin } from "@maplibre/maplibre-gl-style-spec";
 import { describe, expect, it } from "vitest";
 
-import { buildMapStyle } from "./style";
+import { LANDMARK_LAYERS, LANDMARKS_FROM_ZOOM, buildMapStyle } from "./style";
 import { DEFAULT_MAP_THEME, MAP_THEMES, currentMapTheme, parseMapTheme, type MapThemeId } from "./theme";
 import { missingImage } from "./themes/kit";
 
 const themes = Object.keys(MAP_THEMES) as MapThemeId[];
+
+describe("basemap landmarks", () => {
+  it("keeps every theme's parks, landmarks, and hills off the city view and fades them in closer", () => {
+    for (const theme of themes) {
+      for (const scheme of ["light", "dark"] as const) {
+        const style = buildMapStyle({ theme, tiles: "offline", origin: "http://localhost", scheme });
+        const landmarks = style.layers.filter((layer) => LANDMARK_LAYERS.has(layer.id));
+        for (const layer of landmarks) {
+          expect(layer.minzoom ?? 0, `${theme} ${layer.id}`).toBeGreaterThanOrEqual(LANDMARKS_FROM_ZOOM);
+          const opacity = (layer.paint as Record<string, unknown>)["text-opacity"];
+          expect(JSON.stringify(opacity), `${theme} ${layer.id}`).toContain("zoom");
+        }
+      }
+    }
+  });
+});
 
 describe("buildMapStyle", () => {
   for (const theme of themes) {

@@ -2,10 +2,10 @@ import { PIN, balloonLift, type PinKind } from "./pin-style";
 
 /**
  * Which pins show, and which show their names, the way Apple Maps decides:
- * zoomed out only the photo landmarks and the top places appear; zooming in
- * reveals the rest, then their names. Every icon is placed before any name, in
- * priority order, so a name drops out before it covers another pin or name,
- * and an icon stays when its name can't fit.
+ * zoomed out, the favorites stand out on their own (bigger, always shown);
+ * zooming in reveals the rest, then their names. Every icon is placed before
+ * any name, in priority order, so a name drops out before it covers another pin
+ * or name, and an icon stays when its name can't fit.
  */
 export type PinDisplay = "hidden" | "icon" | "named";
 
@@ -17,8 +17,10 @@ export interface PinCandidate {
   kind: PinKind;
   /** The name (or caption) as it would be drawn. */
   text: { width: number; height: number };
-  /** 1 sights, parks, museums; 2 Andy's picks; 3 the rest. */
+  /** 1 the favorites ("Our favorites"), of any kind; 2 other sights, parks, museums; 3 the rest. */
   tier: 1 | 2 | 3;
+  /** Drawn a size up (favorites). */
+  large?: boolean;
   /** Selected or hovered: always shown with its name, and placed first. */
   forced?: boolean;
   /** The selected pin, drawn as the bigger balloon. */
@@ -26,8 +28,8 @@ export interface PinCandidate {
 }
 
 /** Zoom at which each tier's icons appear, and then their names. */
-export const ICON_FROM_ZOOM = { 1: 0, 2: 11, 3: 12.8 } as const;
-export const NAME_FROM_ZOOM = { 1: 11.8, 2: 14, 3: 14.8 } as const;
+export const ICON_FROM_ZOOM = { 1: 0, 2: 12, 3: 12.8 } as const;
+export const NAME_FROM_ZOOM = { 1: 12.8, 2: 13.8, 3: 14.8 } as const;
 /** A filter this narrow shows every result right away, a little earlier with names, like a search. */
 export const FEW_PLACES = 30;
 const FEW_NAME_HEADSTART = 0.6;
@@ -57,7 +59,8 @@ function head(pin: PinCandidate): { cx: number; cy: number; r: number; tip: numb
     const lift = balloonLift(size);
     return { cx: pin.x, cy: pin.y - lift, r: size / 2, tip: pin.y };
   }
-  const r = (pin.kind === "photo" ? PIN.photo : PIN.glyph) / 2;
+  const size = pin.kind === "photo" ? (pin.large ? PIN.photoLarge : PIN.photo) : pin.large ? PIN.glyphLarge : PIN.glyph;
+  const r = size / 2;
   return { cx: pin.x, cy: pin.y, r, tip: pin.y + r };
 }
 
@@ -96,6 +99,7 @@ export function layoutPins(
   const fits = (b: Box, owner: string) => !placed.some((p) => p.owner !== owner && overlaps(p, b));
   const place = (b: Box, owner: string) => placed.push({ ...b, owner });
 
+  const forcedIds = new Set(pins.filter((pin) => pin.forced).map((pin) => pin.id));
   const shown: PinCandidate[] = [];
   for (const pin of ordered) {
     if (pin.forced) {
@@ -112,7 +116,9 @@ export function layoutPins(
       pin.y > viewport.height + OFFSCREEN;
     if (offscreen || (!few && zoom < ICON_FROM_ZOOM[pin.tier])) continue;
     const icon = iconBox(pin, gap);
-    if (!everyIcon && !fits(icon, pin.id)) continue;
+    // Favorites always show; only the open place (or the hovered one) can cover them.
+    const clear = pin.tier === 1 ? !placed.some((p) => forcedIds.has(p.owner) && overlaps(p, icon)) : fits(icon, pin.id);
+    if (!everyIcon && !clear) continue;
     result.set(pin.id, "icon");
     place(icon, pin.id);
     shown.push(pin);

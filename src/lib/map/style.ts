@@ -40,6 +40,32 @@ export interface MapStyleOptions {
   pins?: PinFootprint[];
 }
 
+/**
+ * The basemap's own points of interest (parks, landmarks, hills). The guide's
+ * places are the heroes: like Apple Maps, these stay hidden at the city view
+ * and fade in, a little quieter than before, from the neighborhood view.
+ */
+export const LANDMARK_LAYERS = new Set(["park-label", "landmark-label", "hill-label"]);
+export const LANDMARKS_FROM_ZOOM = 13.5;
+const LANDMARK_FADE: [zoom: number, opacity: number][] = [
+  [LANDMARKS_FROM_ZOOM, 0],
+  [LANDMARKS_FROM_ZOOM + 1, 0.8],
+];
+
+function quieterLandmarks(layer: LayerSpecification): LayerSpecification {
+  if (layer.type !== "symbol" || !LANDMARK_LAYERS.has(layer.id)) return layer;
+  const fade = (existing: unknown): ExpressionSpecification | number => {
+    // A layer that already fades by zoom keeps its own curve; the minzoom still hides it zoomed out.
+    if (existing !== undefined && typeof existing !== "number") return existing as ExpressionSpecification;
+    const scale = typeof existing === "number" ? existing : 1;
+    return ["interpolate", ["linear"], ["zoom"], ...LANDMARK_FADE.flatMap(([z, o]) => [z, o * scale])] as ExpressionSpecification;
+  };
+  const paint = { ...layer.paint };
+  paint["text-opacity"] = fade(paint["text-opacity"]);
+  if (layer.layout?.["icon-image"]) paint["icon-opacity"] = fade(paint["icon-opacity"]);
+  return { ...layer, minzoom: Math.max(layer.minzoom ?? 0, LANDMARKS_FROM_ZOOM), paint };
+}
+
 /** Basemap labels that can repeat a photo pin's caption: a park's name, or a neighborhood that's also a sight. */
 const REPEATING_LABELS = new Set(["park-label", "neighborhood-label"]);
 
@@ -80,7 +106,7 @@ export function buildMapStyle({
   const photoNames = [
     ...new Set(pins.filter((pin) => pin.kind === "photo").flatMap((pin) => [pin.name, pin.name.replaceAll("’", "'")])),
   ];
-  const layers = theme.layers(C, ctx).map((layer) => withoutRepeats(layer, photoNames));
+  const layers = theme.layers(C, ctx).map((layer) => quieterLandmarks(withoutRepeats(layer, photoNames)));
 
   const sources: Record<string, SourceSpecification> = {
     basemap: basemapSource(ctx),

@@ -17,21 +17,48 @@ const pin = (id: string, x: number, y: number, extra: Partial<PinCandidate> = {}
 const crowd = Array.from({ length: FEW_PLACES }, (_, i) => pin(`far-${i}`, 5000 + i * 100, 5000));
 
 describe("layoutPins", () => {
-  it("shows only the photo landmarks and the top places zoomed out", () => {
-    const layout = layoutPins(
-      [pin("sight", 200, 200, { kind: "photo", tier: 1 }), pin("pick", 500, 200, { tier: 2 }), pin("rest", 800, 200), ...crowd],
-      view,
-      12,
-    );
-    expect(layout.get("sight")).toBe("named");
-    expect(layout.get("pick")).toBe("icon");
-    expect(layout.get("rest")).toBe("hidden");
+  it("shows the favorites zoomed out, and keeps sights and the rest for closer in", () => {
+    const pins = [
+      pin("favorite", 200, 200, { tier: 1, large: true }),
+      pin("favorite-sight", 350, 200, { kind: "photo", tier: 1, large: true }),
+      pin("sight", 500, 200, { kind: "photo", tier: 2 }),
+      pin("rest", 800, 200),
+      ...crowd,
+    ];
+    const city = layoutPins(pins, view, 11.5);
+    expect(city.get("favorite")).toBe("icon");
+    expect(city.get("favorite-sight")).toBe("icon");
+    expect(city.get("sight")).toBe("hidden");
+    expect(city.get("rest")).toBe("hidden");
+    const closer = layoutPins(pins, view, 12.2);
+    expect(closer.get("sight")).toBe("icon");
+    expect(closer.get("rest")).toBe("hidden");
+    expect(layoutPins(pins, view, 13).get("favorite")).toBe("named");
+  });
+
+  it("never drops a favorite for a collision, and lets it take the spot from anything else", () => {
+    const pins = [
+      pin("sight", 300, 300, { kind: "photo", tier: 2 }),
+      pin("fav-a", 305, 300, { tier: 1, large: true }),
+      pin("fav-b", 310, 302, { tier: 1, large: true }),
+      ...crowd,
+    ];
+    const layout = layoutPins(pins, view, 12.5);
+    expect(layout.get("fav-a")).toBe("icon");
+    expect(layout.get("fav-b")).toBe("icon");
+    expect(layout.get("sight")).toBe("hidden");
+  });
+
+  it("sizes a favorite's icon a step up", () => {
+    const small = iconBox(pin("a", 300, 300), 0);
+    const large = iconBox(pin("b", 300, 300, { large: true }), 0);
+    expect(large.right - large.left).toBeGreaterThan(small.right - small.left);
   });
 
   it("reveals the rest as you zoom in, then all their names", () => {
-    const pins = [pin("pick", 300, 200, { tier: 2 }), pin("rest", 700, 200), ...crowd];
+    const pins = [pin("sight", 300, 200, { kind: "photo", tier: 2 }), pin("rest", 700, 200), ...crowd];
     expect(layoutPins(pins, view, 13.5).get("rest")).toBe("icon");
-    expect(layoutPins(pins, view, 14.2).get("pick")).toBe("named");
+    expect(layoutPins(pins, view, 14.2).get("sight")).toBe("named");
     expect(layoutPins(pins, view, 14.2).get("rest")).toBe("icon");
     expect(layoutPins(pins, view, 15).get("rest")).toBe("named");
   });
@@ -53,8 +80,8 @@ describe("layoutPins", () => {
   });
 
   it("gives the icon to the higher tier when two collide", () => {
-    const layout = layoutPins([pin("rest", 300, 300), pin("pick", 305, 300, { tier: 2 }), pin("sight", 900, 700, { kind: "photo", tier: 1 })], view, 15);
-    expect(layout.get("pick")).toBe("named");
+    const layout = layoutPins([pin("rest", 300, 300), pin("sight", 305, 300, { kind: "photo", tier: 2 }), pin("far", 900, 700, { tier: 1 })], view, 15);
+    expect(layout.get("sight")).not.toBe("hidden");
     expect(layout.get("rest")).toBe("hidden");
   });
 

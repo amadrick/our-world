@@ -93,6 +93,9 @@ export const PIN = {
   photoRing: 2.5,
   /** Glyph circle. */
   glyph: 22,
+  /** A favorite, a size up, so the picks read from the city view. */
+  photoLarge: 42,
+  glyphLarge: 28,
   glyphIcon: 12,
   /** The selected balloon's head: the pin grows into a teardrop whose tip marks the spot. */
   photoSelected: 56,

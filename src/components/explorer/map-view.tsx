@@ -129,8 +129,9 @@ export function MapView({
       new Map(
         places.map((place) => {
           const kind = pinKind(place.category);
-          const tier = kind === "photo" ? 1 : isFavorite(place) ? 2 : 3;
-          return [place.id, { kind, tier, text: estimateText(smartQuotes(place.name), kind) }] as const;
+          const favorite = isFavorite(place);
+          const tier = favorite ? 1 : kind === "photo" ? 2 : 3;
+          return [place.id, { kind, tier, large: favorite, text: estimateText(smartQuotes(place.name), kind) }] as const;
         }),
       ),
     [places],

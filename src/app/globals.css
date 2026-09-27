@@ -718,6 +718,15 @@ body .maplibregl-map {
   --grow: calc(56 / 36);
   --lift: 39.6px;
 }
+/* Favorites a size up (PIN.glyphLarge / photoLarge), so they read at the city view. The balloon is the same. */
+.map-pin[data-favorite] {
+  --size: 28px;
+  --grow: calc(40 / 28);
+}
+.map-pin[data-kind="photo"][data-favorite] {
+  --size: 42px;
+  --grow: calc(56 / 42);
+}
 @media (prefers-color-scheme: dark) {
   .map-pin {
     --rim: var(--pin-ring-dark, #ffffff);

@@ -41,6 +41,7 @@ export const MapPin = memo(function MapPin({ place, color, selected, highlighted
       aria-hidden={hidden || undefined}
       tabIndex={hidden ? -1 : undefined}
       data-kind={kind}
+      data-favorite={favorite || undefined}
       data-display={display}
       data-selected={selected || undefined}
       data-highlighted={highlighted || undefined}
@@ -66,7 +67,7 @@ export const MapPin = memo(function MapPin({ place, color, selected, highlighted
           {kind === "photo" ? (
             <Thumbnail place={place} />
           ) : (
-            <Glyph size={PIN.glyphIcon} strokeWidth={2.6} aria-hidden />
+            <Glyph size={favorite ? 15 : PIN.glyphIcon} strokeWidth={2.6} aria-hidden />
           )}
         </span>
       </span>
