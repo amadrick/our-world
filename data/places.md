@@ -2978,16 +2978,21 @@ Bar · Marina · 2138 Chestnut St, San Francisco, CA 94123 · Andy’s pick
 
 - **Neighborhood and street:** Marina. Mid-block on the north side of Chestnut Street between Steiner and Pierce, on the Marina's main strip of shops, bars and cafes. The Marina Theatre faces it from across the street.
 - **Terrain and setting:** Flat, filled ground on the Marina street grid a few blocks inland from the bay, with no grade to speak of.
-- **Architecture:** A ground-floor storefront bar in the row of low commercial buildings that lines Chestnut Street. Inside it is a neighborhood dive bar with a jukebox, a pool table and TVs for the big games.
-- **Unique architectural notes:** A bar on this block of Chestnut Street since 1937.
+- **Architecture:** A ground-floor storefront bar in the row of low commercial buildings that lines Chestnut Street. Inside is an old-school neighborhood dive: a cabin-like wood-slatted ceiling, walls stocked with sports memorabilia and knick-knacks, neon, a pool table, a jukebox, TVs for the big games, and classic arcade games such as Ms. Pac-Man and Golden Tee. A very narrow hallway leads back to the restrooms.
+- **Unique architectural notes:** A bar on this block of Chestnut Street since 1937, once listed as Donahue's Marina Lounge; OpenStreetMap still maps it as "Marina Lounge". The wood-slatted ceiling and memorabilia-covered walls give it a cabin-like, living-room feel.
 - **Most iconic physical characteristics:**
-  - pool table
-  - jukebox
-  - TVs showing the big games
+  - cabin-like wood-slatted ceiling
+  - walls crowded with sports memorabilia and neon
+  - pool table and jukebox
+  - classic arcade cabinets like Ms. Pac-Man and Golden Tee
 - **More recognizable view:** the interior
-- **Not verified:** Researched without web access, from the bar's verified basics (address, opening year, hours, jukebox, pool table, big games) and OpenStreetMap, which maps the bar as "Marina Lounge" at this point. The facade, sign, colors, materials and room layout are unverified, so these notes describe only the pool table, jukebox and game TVs. No signature was researched.
+- **Not verified:** The facade, exterior sign, colors and materials are unverified, so the notes stay inside. The wood-slatted ceiling and arcade games come from Thrillist (undated); the memorabilia, neon, pool table and narrow hallway from Apple Maps and Yelp reviews and photo captions. Corner, a user-review app, also mentions Grateful Dead posters and Buffalo Bills memorabilia, which nothing else confirms. Two review sites praise its Irish coffee, too thin to call a signature, so none is set.
 - **Sources:**
   - <https://sullysmarinalounge.com>
+  - <https://www.thrillist.com/bars/san-francisco/ca/94123/donahues-marina-lounge_dive-bars_sports-bars>
+  - <https://maps.apple.com/place?place-id=IC3FD2417AB324F87>
+  - <https://sagemenu.com/san-francisco/sullys-marina-lounge-san-francisco-2/>
+  - <https://www.corner.inc/place/pDDBxspHo7vH>
   - <https://www.openstreetmap.org/#map=19/37.80073/-122.43869>
 
 ## Taqueria El Buen Sabor
