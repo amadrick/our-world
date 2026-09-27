@@ -14,6 +14,11 @@ Sight · Alcatraz · Alcatraz Island, San Francisco, CA 94133
 
 **Known for:** The cellhouse of the former federal penitentiary (high confidence). NPS presents Alcatraz as the former maximum-security federal penitentiary and builds the visit around its cellhouse audio tour. Wikipedia calls the former prison one of San Francisco's major tourist attractions.
 
+- **Hours:** (<https://www.nps.gov/alca/planyourvisit/hours.htm>, <https://www.alcatrazislandtickets.com/Plan-Your-Visit/>) NPS island hours: Sun-Mon 9am-6:30pm, Tue-Sat 9am-9:30pm (night tours). Hours vary seasonally; in winter the island closes earlier (about 4:30pm). Ferries leave Pier 33 from about 8:40am. Closed Thanksgiving, Christmas, and New Year's Day.
+  - Mon: 9 AM–6:30 PM
+  - Tue–Sat: 9 AM–9:30 PM
+  - Sun: 9 AM–6:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** Alcatraz. The island sits about 1.25 miles offshore in the middle of San Francisco Bay and is reached only by Alcatraz City Cruises ferry from Pier 33 on The Embarcadero. Boats land at the dock on the east side, beside brick casemates of the 1860s topped by the three-story Building 64 barracks, and a steep switchback road climbs about a quarter mile and 130 feet past the lighthouse to the cellhouse at the summit.
@@ -48,6 +53,9 @@ Coffee & tea · Outer Sunset · 3655 Lawton St, San Francisco, CA 94122
 
 **Known for:** Cappuccino with whipped cream.
 
+- **Hours:** (<https://andytownsf.com/pages/locations>, <https://www.yelp.com/biz/andytown-coffee-roasters-san-francisco>) Lawton St (original) location. Holiday hours may differ.
+  - Mon–Sun: 7 AM–5 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Sunset. Corner storefront at Lawton Street and 43rd Avenue on a quiet, mostly residential stretch of Lawton in the Outer Sunset, a few blocks inland from Ocean Beach. Since a 2022-23 remodel the cafe spans its original narrow unit plus the former shop next door.
@@ -79,6 +87,10 @@ Bakery · Inner Richmond · 397 Arguello Blvd, San Francisco, CA 94118 · Favori
 
 **Known for:** Chocolate almond croissant.
 
+- **Hours:** (<https://www.yelp.com/biz/arsicault-bakery-san-francisco>, <https://www.sfbakeryride.com/bakery-collection/arsicault-bakery>) Official site content didn't show hours; Yelp (updated 2026) and SF Bakery Ride agree. May sell out early.
+  - Mon–Fri: 8 AM–3 PM
+  - Sat–Sun: 8 AM–3:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** Inner Richmond. On Arguello Boulevard just off the corner of Clement Street in the Inner Richmond, where Clement's commercial strip begins. The corner storefront itself (2 Clement St) is Breck's, a café and wine shop directly next door with a few sidewalk tables; the Presidio lies to the north and Golden Gate Park to the south.
@@ -105,6 +117,13 @@ Bakery · Inner Richmond · 397 Arguello Blvd, San Francisco, CA 94118 · Favori
 Restaurant · Cole Valley · 86 Carl St, San Francisco, CA 94117
 
 **Known for:** Chicken plate.
+
+- **Hours:** (<https://beitrimasf.com/locations/cole-valley/>, <https://www.yelp.com/biz/beit-rima-san-francisco-4>) This is the Cole Valley (Carl St) location, closed Tuesday. Apple Maps and Uber Eats show closing 30 minutes earlier, which is likely the delivery/ordering cutoff.
+  - Mon: 11 AM–9 PM
+  - Tue: closed
+  - Wed–Thu: 11 AM–9 PM
+  - Fri–Sat: 11 AM–9:30 PM
+  - Sun: 11 AM–9 PM
 
 ### Place research
 
@@ -136,6 +155,9 @@ Dessert · Mission · 3692 18th St, San Francisco, CA 94110
 
 **Known for:** Black sesame ice cream.
 
+- **Hours:** (<https://biritemarket.com/locations/>, <https://www.yelp.com/biz/bi-rite-creamery-san-francisco>) Open daily 12pm-9pm. Closed on Thanksgiving Day.
+  - Mon–Sun: noon–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. At the southeast corner of 18th and Dolores Streets, across Dolores from the northeast corner of Mission Dolores Park with its palms and lawns. The Art Moderne Bi-Rite Market, with its glazed tile facade and neon, stands nearby across 18th Street.
@@ -165,6 +187,8 @@ Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133 · Favorite
 
 **Known for:** The chilled red wine.
 
+- **Hours:** unknown. The official site (bodegasf.com) shows no hours. Yelp (claimed, Aug 2025), Restaurantji, and InTravel say Tue-Thu 4-11pm, Fri 4pm-12:30am, Sat 9am-12:30pm and 2pm-12:30am, Sun 2-9pm, and closed Monday. Apple Maps disagrees on Friday and Saturday closing times (11pm). Could not confirm which is current. Not the same place as Bodega at 138 Mason St.
+
 ### Place research
 
 - **Neighborhood and street:** North Beach. On Columbus Avenue at Filbert Street in North Beach, a short walk from Washington Square and Saints Peter and Paul Church. Heated sidewalk seating sits out front.
@@ -192,6 +216,9 @@ Wine · North Beach · 700 Columbus Ave, San Francisco, CA 94133 · Favorite
 Bakery · Outer Richmond · 1408 Clement St, San Francisco, CA 94118
 
 **Known for:** Kaya toast (high confidence). The bakery's site gives kaya toast its own page, The Infatuation calls it the must-order, and Eater SF credits it with building Breadbelly's following.
+
+- **Hours:** (<https://www.breadbellysf.com/clement-street-san-francisco>, <https://www.breadbellysf.com/faq>) Official site: open every day 8am-2pm. One summary mentioned Toast ordering listing 9am-2pm Wed-Mon, but I didn't see that page; the official site is used.
+  - Mon–Sun: 8 AM–2 PM
 
 ### Place research
 
@@ -226,6 +253,8 @@ Restaurant · Inner Richmond · 309 Clement St, San Francisco, CA 94118
 
 **Known for:** Tea leaf salad (laphet thoke), tableside (high confidence). Official menu and SFGATE: fermented tea-leaf salad mixed tableside made the Clement St. icon.
 
+- **Hours:** unknown. The official site contradicts itself. Some pages give dine-in lunch Mon-Thu 11:30am-3pm and Fri-Sun 11:30am-3:30pm, with dinner Sun-Thu 5-9:30pm and Fri-Sat 5-10pm. Other pages (home, About) give Mon-Thu 11:30am-2:30pm and Fri-Sun until 3pm, with dinner Sun-Thu 5-9pm and Fri-Sat 5-9:30pm. Could not tell which is current.
+
 ### Place research
 
 - **Neighborhood and street:** Inner Richmond. On Clement Street between 4th and 5th Avenues in the Inner Richmond, a commercial strip where shops and restaurants fill the ground floors of older two- to four-story apartment buildings. A waiting bench sits out front.
@@ -253,6 +282,8 @@ Restaurant · Inner Richmond · 309 Clement St, San Francisco, CA 94118
 Restaurant · North Beach · 641 Vallejo St, San Francisco, CA 94133 · Favorite
 
 **Known for:** Old Chicago deep-dish (sausage/meatball) (high confidence). Capo’s/Tony Gemignani site and USA Today: Chicago deep-dish is the raison d’être; Old Chicago is the flagship build.
+
+- **Hours:** unknown. Official site conflicts with itself: homepage says Sun/Wed/Thu 5-10pm, Fri-Sat 5-11pm; contact page (and tonygemignani.com, Restaurantji) say Sun/Wed/Thu 4:30-9:30pm, Fri-Sat 4:30-11pm. Closed Mon-Tue in all sources. Can't tell which is current.
 
 ### Place research
 
@@ -284,6 +315,8 @@ Restaurant · North Beach · 641 Vallejo St, San Francisco, CA 94133 · Favorite
 Sight · Castro · 429 Castro St, San Francisco, CA 94114
 
 **Known for:** Red neon blade sign and marquee over Castro Street (high confidence). The city's 2023 landmark amendment lists the 1937 blade sign and marquee as character-defining features and says the neighborhood's name, the Castro, was inspired by the theater's red vertical blade sign. Wikipedia calls the marquee a landmark.
+
+- **Hours:** unknown. Official site: no regular box office hours; open only on show nights (30 min before doors). Hours vary by event.
 
 ### Place research
 
@@ -319,6 +352,12 @@ Restaurant · Chinatown · 644 Broadway, San Francisco, CA 94133
 
 **Known for:** Duck buns and dumplings.
 
+- **Hours:** (<https://chinalivesf.com/>, <https://www.opentable.com/r/china-live-san-francisco>) These are the main restaurant hours. The Cold Drinks Bar is open Sun-Thu 5-9pm and Fri-Sat 5-9:30pm.
+  - Mon–Thu: noon–9 PM
+  - Fri: noon–9:30 PM
+  - Sat: 4 PM–9:30 PM
+  - Sun: 4 PM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Chinatown. North side of Broadway between Grant Avenue and Stockton Street, where Chinatown meets North Beach, on the Broadway stretch running from the Broadway Tunnel's east portal to Columbus Avenue. The block mixes one- to four-story buildings with grocers and residential hotels above; a motel sits directly across the street and narrow Kenneth Rexroth Place runs behind.
@@ -352,6 +391,10 @@ Restaurant · Chinatown · 644 Broadway, San Francisco, CA 94133
 Sight · Civic Center · 1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102
 
 **Known for:** Gilded Beaux-Arts dome, taller than the U.S. Capitol's (high confidence). Wikipedia and the National Register nomination both name the dome as the building's principal design feature and note that it rises higher than the U.S. Capitol's.
+
+- **Hours:** (<https://www.sf.gov/location/san-francisco-city-hall>, <https://www.sf.gov/private-events-at-city-hall>) Open to public Mon-Fri 8am-6pm; some event pages say public access until 8pm on event evenings. Closed weekends except for private events.
+  - Mon–Fri: 8 AM–6 PM
+  - Sat–Sun: closed
 
 ### Place research
 
@@ -387,6 +430,9 @@ Sight · Telegraph Hill · 1 Telegraph Hill Blvd, San Francisco, CA 94133 · Fav
 
 **Known for:** 360-degree city and bay views from the top (high confidence). SF Rec & Park and Wikipedia both describe the observation deck's panoramic views across the city and bay, from the Golden Gate Bridge to the Bay Bridge.
 
+- **Hours:** (<https://sfrecpark.org/Facilities/Facility/Details/Coit-Tower-290>, <https://www.viator.com/San-Francisco-attractions/Coit-Tower/d651-a1058>) Seasonal: 10am-6pm April-October (recorded); 10am-5pm November-March. Closed Thanksgiving, Christmas, New Year's Day.
+  - Mon–Sun: 10 AM–6 PM
+
 ### Place research
 
 - **Neighborhood and street:** Telegraph Hill. The tower stands at the summit of Telegraph Hill inside Pioneer Park, at the end of Telegraph Hill Boulevard, a narrow two-lane road that winds up to a circular parking plaza in front of the tower. A wide staircase climbs from the south side of that circle to a landscaped plaza and the north-facing entrance. On foot, the Filbert and Greenwich street stairways climb the hill from the neighborhoods below.
@@ -418,6 +464,13 @@ Sight · Telegraph Hill · 1 Telegraph Hill Blvd, San Francisco, CA 94133 · Fav
 Bar · North Beach · 155 Columbus Ave, San Francisco, CA 94133 · Favorite
 
 **Known for:** Martini or dirty martini.
+
+- **Hours:** (<https://www.comstocksaloon.com/>, <https://maps.apple.com/place?place-id=I4AB558CFD7E6EB05>) Official: Tue-Sat 4pm-midnight, Fri noon-midnight; closed Sun-Mon. Older listings (DoTheBay, PUNCH) show outdated 2am/Sunday hours.
+  - Mon: closed
+  - Tue–Thu: 4 PM–midnight
+  - Fri: noon–midnight
+  - Sat: 4 PM–midnight
+  - Sun: closed
 
 ### Place research
 
@@ -451,6 +504,12 @@ Restaurant · Jackson Square · 490 Pacific Ave, San Francisco, CA 94133 · Favo
 
 **Known for:** Raviolo.
 
+- **Hours:** (<https://www.cotognasf.com/>, <https://www.sevenrooms.com/explore/cotogna/reservations/create/search/>) Dinner only on Monday and Tuesday. Wednesday through Saturday is listed as continuous lunch and dinner service. Closed Sunday.
+  - Mon–Tue: 4:30 PM–9 PM
+  - Wed–Thu: 11:30 AM–9 PM
+  - Fri–Sat: 11:30 AM–9:30 PM
+  - Sun: closed
+
 ### Place research
 
 - **Neighborhood and street:** Jackson Square. Corner storefront at Pacific Avenue and Montgomery Street in the Jackson Square historic district, sharing its early-1900s building with sister restaurant Quince next door at 470 Pacific. The Financial District and the Transamerica Pyramid rise a couple of blocks south along Montgomery.
@@ -482,6 +541,8 @@ Restaurant · Jackson Square · 490 Pacific Ave, San Francisco, CA 94133 · Favo
 Sight · Presidio · 1199 East Beach, San Francisco, CA 94129
 
 **Known for:** Golden Gate Bridge views from East Beach and the shoreline promenade (high confidence). The Presidio Trust says this stretch of shoreline is known for iconic views of the Golden Gate Bridge, and the Parks Conservancy says the Crissy Promenade offers spectacular views of the Golden Gate and the bay.
+
+- **Hours:** open 24 hours (<https://www.nps.gov/prsf/planyourvisit/basicinfo.htm>, <https://www.parksconservancy.org/parks/crissy-field>). NPS says the Presidio is open 24 hours every day; Parks Conservancy lists Crissy Field as open 24/7. Visitor facilities have their own hours.
 
 ### Place research
 
@@ -517,6 +578,10 @@ Restaurant · Japantown · 1620 Post St, San Francisco, CA 94115
 
 **Known for:** Cheese kalbijjim (blowtorched) (high confidence). Infatuation, Goldbelly, and viral press: braised short-rib stew capped with torched cheese.
 
+- **Hours:** (<https://daehokalbijjim.com/locations/>, <https://www.daeho-kalbijjim.com/location>) Hours are from the official site. Yelp (Mar 2026) and Apple Maps show Sat-Sun open straight through 10:30am-9pm with no afternoon break, so the weekend break may no longer apply.
+  - Mon–Fri: 11 AM–2:30 PM, 4:30 PM–9 PM
+  - Sat–Sun: 10:30 AM–2:30 PM, 4:30 PM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Japantown. On Post Street between Laguna and Buchanan in Japantown, in the space New Korea House occupied for years, across Post from the 16-story Hotel Kabuki and the Japan Center malls.
@@ -546,6 +611,8 @@ Restaurant · Japantown · 1620 Post St, San Francisco, CA 94115
 Dessert · Embarcadero · 1 Ferry Building, Shop 14, San Francisco, CA 94111 · Favorite
 
 **Known for:** Single-origin chocolate bars and toasted-to-order s'mores (high confidence). Dandelion's Ferry Building page and its 2026 post single out its bean-to-bar chocolate bars, hot chocolate, and freshly toasted s'mores as the draws at this shop.
+
+- **Hours:** unknown. Conflicting sources: the Dandelion visit page says Tue-Fri 9am-5:30pm, Sat-Sun 8am-4pm, closed Mon. An undated Dandelion Facebook post and listings (Restaurantji, Roadtrippers) say Mon-Sat 8am-6pm, Sun 9am-5pm. The Ferry Building Marketplace says Sun-Fri 10am-5pm, Sat 8am-5pm. Can't tell which is current.
 
 ### Place research
 
@@ -580,6 +647,12 @@ Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122
 
 **Known for:** Cappuccino and a chocolate chip cookie.
 
+- **Hours:** (<https://maps.apple.com/place?address=3928%20Irving%20St%2C%20San%20Francisco%2C%20CA%20%2094122%2C%20United%20States&coordinate=37.762693%2C-122.500169&name=Day%20Moon&place-id=I7DAFEAD5C3798E83&_provider=9902>, <https://local.yahoo.com/info-233794601-day-moon-san-francisco>) There is no official website, only Instagram (@daymoonbread). Restaurantji lists Friday until 9pm, but that disagrees with Apple Maps, Yahoo, and other listings, which all say Friday until 4pm.
+  - Mon–Wed: closed
+  - Thu: 9 AM–2 PM
+  - Fri–Sat: 9 AM–4 PM
+  - Sun: 9 AM–2 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Sunset. Small storefront on Irving Street at 40th Avenue, in a largely residential stretch of the Outer Sunset near Clancey's Market and Swell Bicycles, several blocks inland from Ocean Beach; a curbside parklet sits out front.
@@ -609,6 +682,10 @@ Bakery · Outer Sunset · 3928 Irving St, San Francisco, CA 94122
 Museum · Golden Gate Park · 50 Hagiwara Tea Garden Dr, San Francisco, CA 94118 · Favorite
 
 **Known for:** Free Hamon Observation Tower (high confidence). FAMSF lists the ninth-floor Hamon Observation Tower as open to everyone without a ticket; SFGATE and the SF Chronicle describe its 360-degree view as a well-loved free draw and the highest viewpoint in Golden Gate Park.
+
+- **Hours:** (<https://www.famsf.org/visit/de-young-tickets-hours>, <https://www.famsf.org/visit/de-young>) Hamon Observation Tower closes at 4:30pm. Closed Presidents' Day, Indigenous Peoples' Day, Thanksgiving, and Christmas.
+  - Mon: closed
+  - Tue–Sun: 9:30 AM–5:15 PM
 
 ### Place research
 
@@ -644,6 +721,10 @@ Restaurant · SoMa · 1058 Folsom St, San Francisco, CA 94103
 
 **Known for:** The 49er (corned beef + pastrami + brisket) (high confidence). Official menu and sandwich lore: the 49er is the stacked house monster; Allison also a top seller.
 
+- **Hours:** (<https://www.deliboardsf.com/menu-print?menu=deli-board-menu>, <https://www.restaurantji.com/ca/san-francisco/deli-board-/>) Last order 2:50pm. Carry-out only.
+  - Mon: closed
+  - Tue–Sun: 11 AM–3 PM
+
 ### Place research
 
 - **Neighborhood and street:** SoMa. Mid-block on Folsom Street between 6th and 7th streets in SoMa, directly across Folsom from the mouth of Cleveland Street, a narrow alley visible from the front door. A couple of outdoor tables sit out front.
@@ -670,6 +751,9 @@ Restaurant · SoMa · 1058 Folsom St, San Francisco, CA 94103
 Sight · Mission · 19th St & Dolores St, San Francisco, CA 94114 · Favorite
 
 **Known for:** Sunny hillside lawns with a downtown skyline view (high confidence). Wikipedia describes the park's warm, sunny microclimate and its northeast view of downtown from the southwest corner; Lonely Planet highlights the palm-framed skyline view from the upper corner.
+
+- **Hours:** (<https://sfrecpark.org/Facilities/Facility/Details/Mission-Dolores-Park-188>, <https://www.yelp.com/biz/mission-dolores-park-san-francisco>) Park hours 6am-10pm. Restrooms 8am-8pm spring/summer, 8am-5:30pm fall/winter.
+  - Mon–Sun: 6 AM–10 PM
 
 ### Place research
 
@@ -704,6 +788,8 @@ Sight · Chinatown · Grant Ave & Bush St, San Francisco, CA 94108
 
 **Known for:** Chinatown's southern gateway on Grant Avenue (high confidence). Wikipedia calls the gate one of the most photographed locations in Chinatown, and SF Public Works describes it as marking the southern entrance to Chinatown.
 
+- **Hours:** open 24 hours (<https://maps.apple.com/place?place-id=IC7C651D2CC215E8A>, <https://www.nomadotravel.app/en/attractions/dragons-gate>). Outdoor gate spanning a public street; Apple Maps lists 'Every Day, Open 24 Hours'.
+
 ### Place research
 
 - **Neighborhood and street:** Chinatown. The gate straddles Grant Avenue just north of Bush Street, its central portal over the roadway and its two side portals over the sidewalks, with commercial buildings pressing close on both sides. North of it, Grant Avenue runs into Chinatown past ornate dragon street lamps; south of it, Grant continues toward Union Square.
@@ -732,6 +818,11 @@ Sight · Chinatown · Grant Ave & Bush St, San Francisco, CA 94108
 Restaurant · Mission · 1890 Bryant St, San Francisco, CA 94110
 
 **Known for:** Beef tartare + sushi-rice hand-roll kit (high confidence). Resy, Infatuation, and Chronicle cite DIY tartare–ikura–nori handrolls as Ernest’s most-referenced signature.
+
+- **Hours:** (<https://www.ernestsf.com/>, <https://guide.michelin.com/us/en/california/san-francisco/restaurant/ernest>) Yelp lists Wed-Thu opening at 5pm; official site and Michelin say 5:30pm.
+  - Mon–Tue: closed
+  - Wed–Thu: 5:30 PM–9:30 PM
+  - Fri–Sun: 5 PM–9:30 PM
 
 ### Place research
 
@@ -763,6 +854,11 @@ Shop · Mission · 1367 Valencia St, San Francisco, CA 94110 · Andy’s pick
 
 **Known for:** Relaxed, natural-fiber menswear (high confidence). The FT and SF Standard describe the store as the flagship for Kinori's soft, wide-cut, earth-toned clothing made from carefully sourced natural fabrics, shown alongside ceramics and furniture.
 
+- **Hours:** (<https://evankinori.com/pages/visit>) Mon-Wed open by appointment only (recorded as closed).
+  - Mon–Wed: closed
+  - Thu–Fri: noon–6 PM
+  - Sat–Sun: 11 AM–6 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. On the east side of Valencia Street between 24th and 25th streets, toward the southern end of the Valencia shopping corridor, among small independent shops. The storefront takes the south half of the building's ground floor, with the arched residential entrance to the apartments upstairs beside it on the north.
@@ -793,6 +889,13 @@ Shop · Mission · 1367 Valencia St, San Francisco, CA 94110 · Andy’s pick
 Sight · Embarcadero · Pier 15, The Embarcadero at Green St, San Francisco, CA 94111
 
 **Known for:** Hundreds of hands-on science and perception exhibits (high confidence). Wikipedia and the AIA Top Ten citation describe it as a museum built around hands-on, participatory exhibits on science, art and human perception, with more than 600 at Pier 15.
+
+- **Hours:** (<https://www.exploratorium.edu/hours>, <https://www.exploratorium.edu/visit>) Thursday 6-10pm is After Dark (18+). Sunday 10am-noon members/donors only. Official site lists a closure for maintenance Sep 8-28, 2026.
+  - Mon: closed
+  - Tue–Wed: 10 AM–5 PM
+  - Thu: 10 AM–5 PM, 6 PM–10 PM
+  - Fri–Sat: 10 AM–5 PM
+  - Sun: noon–5 PM
 
 ### Place research
 
@@ -828,6 +931,12 @@ Restaurant · Mission · 710 Florida St, San Francisco, CA 94110
 
 **Known for:** Hat Yai fried chicken (high confidence). Timeout and Chronicle: Hat Yai fried chicken with blue rice and curry is Farmhouse Kitchen’s signature.
 
+- **Hours:** (<https://farmhousethai.com/san-francisco>, <https://www.opentable.com/r/farmhouse-kitchen-thai-cuisine-san-francisco>) The official page's text matches OpenTable, Yelp, and Apple Maps. The same page also has a pickup/delivery hours widget with different, longer hours, which I did not use. Time Out's hours are from 2019 and out of date.
+  - Mon–Thu: 11:30 AM–2 PM, 5 PM–8:30 PM
+  - Fri: 11:30 AM–2 PM, 5 PM–9:30 PM
+  - Sat: noon–3 PM, 4:30 PM–9:30 PM
+  - Sun: noon–3 PM, 4:30 PM–8:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. At 19th and Florida Streets in the northeast Mission, with an easy-to-miss entrance on Florida Street. The surrounding flat blocks mix warehouses and low commercial buildings, within a block of Trick Dog and True Laurel.
@@ -855,6 +964,9 @@ Restaurant · Mission · 710 Florida St, San Francisco, CA 94110
 Sight · Embarcadero · 1 Ferry Building, San Francisco, CA 94111 · Favorite
 
 **Known for:** Clock tower at the foot of Market Street (high confidence). Wikipedia and the Emperor Norton Trust single out the 245-foot clock tower, whose best-known view is straight down Market Street, as the building's defining landmark.
+
+- **Hours:** (<https://www.ferrybuildingmarketplace.com/visit/>, <https://projectsf.com/listings/ferry-building-marketplace/>) Building hours; merchants set their own hours. Closed Thanksgiving and Christmas. Farmers market Tue/Thu 10am-2pm, Sat 8am-2pm.
+  - Mon–Sun: 6 AM–10 PM
 
 ### Place research
 
@@ -890,6 +1002,8 @@ Sight · Fisherman's Wharf · 2820 Taylor St, San Francisco, CA 94133
 
 **Known for:** Ship's-wheel sign at Jefferson and Taylor (high confidence). The Fisherman's Wharf Community Benefit District calls the sign famous and the Wharf's go-to meeting spot, and LEDinside calls it one of the city's most photographed landmarks.
 
+- **Hours:** open 24 hours (<https://www.fishermanswharf.org/about-us/faqs/>, <https://tripomatic.com/en/poi/fisherman-s-wharf-of-san-francisco-poi:12713>). The official Wharf site says the public waterfront area is open 24/7. Individual shops, restaurants, and attractions typically run about 9-11am to 8-10pm.
+
 ### Place research
 
 - **Neighborhood and street:** Fisherman's Wharf. The sign stands in a small corner plaza at the northeast corner of Jefferson and Taylor streets, the Wharf's central crossroads, beside the Jefferson and Taylor heritage streetcar stop. Taylor Street runs north past it to the Inner Lagoon, where the new Alioto's Plaza (opened September 2, 2026) looks out over the moored fishing fleet, and Jefferson Street's sidewalks lead east toward Pier 39 and west toward Aquatic Park and Ghirardelli Square.
@@ -924,6 +1038,9 @@ Restaurant · Mission · 2401 Harrison St, San Francisco, CA 94110 · Our pick
 
 **Known for:** Taleggio scarpinocc.
 
+- **Hours:** (<https://www.flourandwater.com/contact/>) The official site says 5:00-9:30pm seven days a week. Third-party listings (unilocal, goop) show older, longer hours (5:30-11pm, and until midnight Fri-Sat); those were ignored.
+  - Mon–Sun: 5 PM–9:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. At the corner of 20th and Harrison Streets in the northeast Mission, a former warehouse and light-industrial district now anchored by a cluster of restaurants and bars along 20th Street.
@@ -955,6 +1072,9 @@ Restaurant · North Beach · 532 Columbus Ave, San Francisco, CA 94133
 
 **Known for:** Cacio e pepe pizza.
 
+- **Hours:** (<https://www.fwpizzeria.com/visit>, <https://www.7x7.com/flour-and-water-pizzeria-north-beach-2662672707.html>) Pizzeria at 532 Columbus (not the separate Pizza Shop on Stockton St).
+  - Mon–Sun: 11:30 AM–10 PM
+
 ### Place research
 
 - **Neighborhood and street:** North Beach. Mid-block on Columbus Avenue a short walk south of Washington Square in North Beach, in a deep building that runs clear through the block to Stockton Street. The sit-down restaurant opens onto Columbus, while a separate walk-up shop has its own entrance on Stockton St.
@@ -985,6 +1105,12 @@ Restaurant · Mission · 2534 Mission St, San Francisco, CA 94110 · Favorite
 
 **Known for:** Fried chicken.
 
+- **Hours:** (<https://foreigncinema.com/reservation/>, <https://www.opentable.com/r/foreign-cinema-san-francisco>) Weekend brunch ends 2pm on the official site; OpenTable says 2:30pm.
+  - Mon–Thu: 5 PM–9:30 PM
+  - Fri: 5 PM–10 PM
+  - Sat: 10:30 AM–2 PM, 5 PM–10 PM
+  - Sun: 10:30 AM–2 PM, 5 PM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. Mid-block on the west side of busy Mission Street between 21st and 22nd streets in the Mission's commercial core. It shares its brick commercial building with sister bar Laszlo (2526 Mission), and the Alamo Drafthouse New Mission theater is next door at 2550 Mission.
@@ -1013,6 +1139,13 @@ Dessert · Mission · 3566 20th St, San Francisco, CA 94110 · Favorite
 
 **Known for:** Black sesame ice cream.
 
+- **Hours:** (<https://gardencreamery.com/locations/>) Official site used. Eater/Restaurantji/Apple Maps list Wed-Thu 6-10:30pm, Fri 3-11pm, Sun 12-9:30pm. Mon-Tue not listed on official site; third parties say closed.
+  - Mon–Tue: closed
+  - Wed–Thu: 6 PM–10 PM
+  - Fri: 6 PM–11 PM
+  - Sat: noon–11 PM
+  - Sun: noon–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. A corner shop at 20th and Lexington streets in the Mission, just off the busy Valencia Street shopping corridor, with Dog Eared Books and other Valencia storefronts as near neighbors. Lexington is the side street on the shop's corner.
@@ -1038,6 +1171,9 @@ Dessert · Mission · 3566 20th St, San Francisco, CA 94110 · Favorite
 Sight · Fisherman's Wharf · 900 North Point St, San Francisco, CA 94109
 
 **Known for:** The illuminated rooftop Ghirardelli sign over the bay (high confidence). SF Planning calls the rooftop sign the square's primary identification marker, visible as one approaches from the bay. Noe Hill calls it familiar to all who sail the bay, and the SF Standard notes it has been part of the skyline for over a century.
+
+- **Hours:** (<https://www.ghirardellisq.com/visit>) Official site: square open 9am-10pm every day; individual retailer and restaurant hours vary (Yelp and the Chocolate Experience list Fri-Sat until 11pm for the flagship store).
+  - Mon–Sun: 9 AM–10 PM
 
 ### Place research
 
@@ -1071,6 +1207,11 @@ Restaurant · North Beach · 542 Green St, San Francisco, CA 94133
 
 **Known for:** Sausage pizza.
 
+- **Hours:** (<https://www.goldenboypizza.com/northbeach>, <https://www.kqed.org/arts/13959808/golden-boy-pizza-north-beach-sf-late-night>) Official page lists Sunday as '11:30PM-9:00PM' (evident typo for 11:30AM); KQED, SFGate and Yelp all say Sun 11:30am-9pm.
+  - Mon–Thu: 11:30 AM–9 PM
+  - Fri–Sat: 11:30 AM–11 PM
+  - Sun: 11:30 AM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** North Beach. On Green Street's 500 block between Grant Avenue and Columbus, in the heart of North Beach's old bar-and-cafe blocks, right next door to Gino & Carlo, a bar open since 1942 at 548 Green.
@@ -1100,6 +1241,9 @@ Restaurant · North Beach · 542 Green St, San Francisco, CA 94133
 Sight · Presidio · Golden Gate Bridge Welcome Center, Presidio, San Francisco, CA 94129
 
 **Known for:** International Orange Art Deco towers spanning the Golden Gate (high confidence). Wikipedia calls the bridge one of the most internationally recognized symbols of San Francisco and credits consulting architect Irving Morrow with its Art Deco towers and International Orange color.
+
+- **Hours:** (<https://www.goldengate.org/bridge/visiting-the-bridge/bikes-pedestrians/>, <https://goldengatebridgetoll.com/walking-biking>) Pedestrian east-sidewalk hours during daylight saving time (early March to early November): 5am-9pm. During standard time the sidewalk closes at 6:30pm. The Welcome Center is open daily 9am-6pm (closed Thanksgiving and Christmas). Cyclists have 24-hour access. Construction may cause closures.
+  - Mon–Sun: 5 AM–9 PM
 
 ### Place research
 
@@ -1135,6 +1279,9 @@ Park · Golden Gate Park · 501 Stanyan St, San Francisco, CA 94117 · Favorite
 
 **Known for:** Conservatory of Flowers (med confidence). Gardens of Golden Gate Park calls it the oldest public wood-and-glass conservatory in North America and one of San Francisco's most photographed attractions; Wikipedia names it the park's oldest building.
 
+- **Hours:** (<https://sfgov.legistar.com/gateway.aspx?ID=66644.doc&M=F>, <https://sf-parks.com/explore/golden-gate-park/recreation-and-activities/ggp-dog-play-area-2/>) SF Park Code (2013 ordinance) sets city park hours at 5am-midnight; roads crossing Golden Gate Park are exempt. Wikipedia says 24 hours, but the posted park-code hours are used. Gardens and museums inside the park have their own hours.
+  - Mon–Sun: 5 AM–midnight
+
 ### Place research
 
 - **Neighborhood and street:** Golden Gate Park. A long rectangle about three miles by half a mile, bounded by Fulton Street and the Richmond District on the north, Lincoln Way and the Sunset District on the south, Stanyan Street at the Haight-Ashbury edge on the east, and the Great Highway and Ocean Beach on the west; the narrow, tree-lined Panhandle continues east between Fell and Oak streets. Main ways in include the car-free JFK Promenade at Stanyan by McLaren Lodge, Haight and Stanyan by Alvord Lake, the N Judah stop at 9th Avenue and Irving south of the museums, and the Beach Chalet at the ocean end.
@@ -1167,6 +1314,12 @@ Park · Golden Gate Park · 501 Stanyan St, San Francisco, CA 94117 · Favorite
 Wine · North Beach · 362 Columbus Ave, San Francisco, CA 94133
 
 **Known for:** Riesling and tinned fish among poetry shelves (high confidence). Eater SF reported the owner's plan for 'an unreasonable amount of riesling' plus a tinned-fish shop, the Chronicle noted 10 Rieslings by the glass at opening, and The Infatuation describes drinking Riesling surrounded by poetry books.
+
+- **Hours:** (<https://www.goldensardinesf.com/info>, <https://www.enprimeurclub.com/bars/golden-sardine-san-francisco-bar>) Official site lists Monday 4-10pm; Apple Maps/Yahoo show Monday closed and Fri 4pm open (likely stale). Official site preferred.
+  - Mon–Wed: 4 PM–10 PM
+  - Thu: 4 PM–11 PM
+  - Fri–Sat: 2 PM–11 PM
+  - Sun: 2 PM–9 PM
 
 ### Place research
 
@@ -1202,6 +1355,11 @@ Restaurant · Mission · 3560 18th St, San Francisco, CA 94110
 
 **Known for:** Stuffed Good Good chicken wing (high confidence). Resy, Eater, and Infatuation: deboned wing stuffed with sticky rice, double-fried, mango-adobo glaze—the bestseller.
 
+- **Hours:** (<https://goodgoodcultureclub.com/pages/good-info>, <https://guide.michelin.com/us/en/california/san-francisco/restaurant/good-good-culture-club>) Closing time is last seating; kitchen stays open past it. Closed Sunday and on major holidays; occasional private-event closures.
+  - Mon–Thu: 5 PM–9 PM
+  - Fri–Sat: 5 PM–9:30 PM
+  - Sun: closed
+
 ### Place research
 
 - **Neighborhood and street:** Mission. On a sunny, south-facing corner of 18th Street at Dearborn Street, a short block from Guerrero, on the Mission Dolores restaurant strip; the Women's Building, wrapped in its MaestraPeace mural, stands across the block at 18th and Lapidge, and Dolores Park is a couple of blocks west.
@@ -1233,6 +1391,10 @@ Restaurant · Mission · 3560 18th St, San Francisco, CA 94110
 Sight · Nob Hill · 1100 California St, San Francisco, CA 94108
 
 **Known for:** Gilded Doors of Paradise and the labyrinths (high confidence). The cathedral's treasures page and SFGATE highlight the gilded replicas of Ghiberti's Florence doors at the main entrance, and Wikipedia and the cathedral note its indoor and outdoor labyrinths.
+
+- **Hours:** (<https://gracecathedral.org/visit/>, <https://gracecathedral.org/visit-/>) Sightseeing hours; working church may close for events/services. Worship services occur outside these hours.
+  - Mon–Sat: 10 AM–5 PM
+  - Sun: 1 PM–5 PM
 
 ### Place research
 
@@ -1266,6 +1428,8 @@ Sight · Nob Hill · 1100 California St, San Francisco, CA 94108
 Sight · Haight-Ashbury · Haight St & Ashbury St, San Francisco, CA 94117
 
 **Known for:** The Haight and Ashbury street corner, heart of the 1960s counterculture (high confidence). Wikipedia says the district is named for this intersection and is known as a main center of the 1960s counterculture. The city landmark resolution calls the northwest corner the neighborhood's ground zero, marked by the street names on its facade.
+
+- **Hours:** unknown. Public street intersection/neighborhood; no source explicitly states hours or 24-hour access. Shops keep individual hours.
 
 ### Place research
 
@@ -1301,6 +1465,13 @@ Restaurant · Outer Richmond · 1802 Balboa St, San Francisco, CA 94121
 
 **Known for:** Kalbi.
 
+- **Hours:** (<https://hanilkwan.store/>, <https://maps.apple.com/place?place-id=IC89440ADB1E97464>) Closed Tuesday and Wednesday. The hanilkwan.org hours page is blank and says to call and confirm.
+  - Mon: 11 AM–8 PM
+  - Tue–Wed: closed
+  - Thu: 11 AM–8 PM
+  - Fri–Sat: 11 AM–9 PM
+  - Sun: 11 AM–8 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Richmond. Corner of Balboa Street and 19th Avenue in the Richmond, on Balboa's neighborhood commercial strip amid residential blocks, two blocks north of Golden Gate Park; tour buses occasionally park out front.
@@ -1328,6 +1499,10 @@ Restaurant · Outer Richmond · 1802 Balboa St, San Francisco, CA 94121
 Shop · Mission · 2900 18th St, San Francisco, CA 94110
 
 **Known for:** Heath tile and tableware (tile made on site) (high confidence). Heath's own San Francisco and factory-tour pages present the building as its tile factory and showroom, and 7x7 and The Bold Italic highlight watching tile production through glass from the showroom.
+
+- **Hours:** (<https://www.heathceramics.com/pages/san-francisco>, <https://www.yelp.com/biz/heath-ceramics-san-francisco-2>) Showroom hours; also confirmed by a Heath event post from Aug 2026. Holiday hours differ.
+  - Mon–Fri: 10 AM–6 PM
+  - Sat–Sun: 10 AM–5 PM
 
 ### Place research
 
@@ -1362,6 +1537,10 @@ Coffee & tea · Mission · 434 Shotwell St, San Francisco, CA 94110 · Our pick
 
 **Known for:** Cappuccino.
 
+- **Hours:** (<https://www.hedge.coffee/cafe>) Official site used. Other sources conflict: Apple Maps says weekdays 7am-3pm, joe.coffee says weekdays 8am-3pm, and Eater's opening article said daily 8am-3pm. Weekend hours of 8am-5pm agree across sources.
+  - Mon–Fri: 7 AM–4 PM
+  - Sat–Sun: 8 AM–5 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. Mid-block on an industrial stretch of Shotwell Street between 18th and 19th Streets in the Mission District.
@@ -1392,6 +1571,12 @@ Restaurant · SoMa · 1136 Folsom St, San Francisco, CA 94103 · Andy’s pick
 
 **Known for:** Peking duck.
 
+- **Hours:** (<https://hkloungebistro.com/>, <https://guide.michelin.com/us/en/california/san-francisco/restaurant/hk-lounge-bistro>) Closed every Tuesday. Eater lists only the lunch service.
+  - Mon: 11 AM–2:30 PM, 5 PM–8:30 PM
+  - Tue: closed
+  - Wed–Fri: 11 AM–2:30 PM, 5 PM–8:30 PM
+  - Sat–Sun: 10 AM–2:30 PM, 5 PM–8:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** SoMa. On Folsom Street between Rausch and Langton in SoMa, in the ground floor of a 2018 condominium building at the corner of Rausch, a small residential side street.
@@ -1421,6 +1606,9 @@ Restaurant · Outer Sunset · 4542 Irving St, San Francisco, CA 94122 · Favorit
 
 **Known for:** Baja fish burrito.
 
+- **Hours:** (<https://www.hookfishco.com/>, <https://maps.apple.com/place?place-id=IC7C9D93FBA64E550>) The official site says 'Open daily 11:30am-9pm' and appears to apply that to both locations. Yelp (2025) shows an 11am opening instead.
+  - Mon–Sun: 11:30 AM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Sunset. Small storefront on the block of Irving Street between 46th and 47th Avenues in the Outer Sunset (the official site gives it as Irving at 47th), on a quiet, mostly residential stretch about two blocks from Ocean Beach, in the former Cajun Pacific restaurant space. Built-in wooden benches and a raised wooden sidewalk deck sit out front, and the next-door neighbor is longtime business The Last Straw.
@@ -1449,6 +1637,10 @@ Restaurant · Outer Sunset · 4542 Irving St, San Francisco, CA 94122 · Favorit
 Restaurant · Nob Hill · 1906 Van Ness Ave, San Francisco, CA 94109 · Andy’s pick
 
 **Known for:** King's cut.
+
+- **Hours:** (<https://www.houseofprimerib.net/>, <https://www.opentable.com/house-of-prime-rib>) Dinner only.
+  - Mon–Fri: 5 PM–10 PM
+  - Sat–Sun: 4 PM–10 PM
 
 ### Place research
 
@@ -1480,6 +1672,12 @@ Restaurant · Lower Haight · 237 Fillmore St, San Francisco, CA 94117 · Our pi
 
 **Known for:** Drunken Sailor.
 
+- **Hours:** (<https://www.julespizza.co/where-to-find-us>, <https://www.sfgate.com/food/article/tartine-alum-making-pizza-sf-20339442.php>) The official site lists only Tuesday through Saturday. Restaurantji confirms it is closed Sunday and Monday.
+  - Mon: closed
+  - Tue–Thu: 5 PM–9 PM
+  - Fri–Sat: 5 PM–10 PM
+  - Sun: closed
+
 ### Place research
 
 - **Neighborhood and street:** Lower Haight. On Fillmore Street between Laussat and Haight, steps from the Fillmore and Haight intersection at the center of the Lower Haight's strip of bars, cafes and small shops, with Toronado a few doors around the corner on Haight.
@@ -1508,6 +1706,11 @@ Restaurant · Lower Haight · 237 Fillmore St, San Francisco, CA 94117 · Our pi
 Restaurant · Union Square · 55 Cyril Magnin St, San Francisco, CA 94102
 
 **Known for:** Mushroom hor mok (high confidence). Michelin, Eater, and Condé Nast Traveler: spicy mushroom curry mousse with rice cakes is Kin Khao’s signature.
+
+- **Hours:** (<https://www.kinkhao.com/>, <https://www.yelp.com/biz/kin-khao-san-francisco-2>) Official site says the closing times are the last seating times, so guests already seated may stay later. Michelin Guide agrees.
+  - Mon–Thu: 11:30 AM–2 PM, 5:30 PM–9 PM
+  - Fri–Sat: 11:30 AM–2 PM, 5:30 PM–10 PM
+  - Sun: 11:30 AM–2 PM, 5:30 PM–9 PM
 
 ### Place research
 
@@ -1539,6 +1742,10 @@ Coffee & tea · Hayes Valley · 546 Laguna St, San Francisco, CA 94102 · Our pi
 
 **Known for:** Short & Sweet (red bean–cherry espresso) / passion-fruit chocolate cappuccino (high confidence). Infatuation says offbeat signatures are the main draw (Short & Sweet; passion-fruit chocolate cappuccino); Eater highlights cocktail-style drinks from the founders’ pop-up era.
 
+- **Hours:** (<https://www.instagram.com/kope.house/>) Cafe's Instagram bio and Aug 24, 2026 post announce 'Temporary Hours' Mon-Wed 8am-2pm, Thu-Sun 8am-4pm. Its website (kopehouse.com) still says 'Daily 8am-4pm' in the footer, though its homepage header shows Thu-Sun 8am-4pm, which agrees. Apple Maps shows 'Temporarily Closed', which is likely stale. These are temporary hours, so they may change.
+  - Mon–Wed: 8 AM–2 PM
+  - Thu–Sun: 8 AM–4 PM
+
 ### Place research
 
 - **Neighborhood and street:** Hayes Valley. On Laguna Street just south of Hayes, at the western edge of the Hayes Valley shopping strip, with Patricia's Green about a block east at Hayes and Octavia. The shop fronts an unusually wide stretch of sidewalk, and Suppenküche occupies the corner directly across Laguna.
@@ -1568,6 +1775,12 @@ Coffee & tea · Hayes Valley · 546 Laguna St, San Francisco, CA 94102 · Our pi
 Restaurant · Mission · 2889 Mission St, San Francisco, CA 94110 · Andy’s pick
 
 **Known for:** Carne asada burrito, no rice (El Dorado crisp optional) (high confidence). Infatuation, Bon Appétit, and Eater: riceless Mission burrito—often carne asada, optionally grill-crisped El Dorado-style.
+
+- **Hours:** (<https://lataqueriasf.net/about>, <https://www.restaurantji.com/ca/san-francisco/la-taqueria-/>) Closed Mon-Tue. Apple Maps also agrees.
+  - Mon–Tue: closed
+  - Wed–Thu: 11 AM–8:45 PM
+  - Fri–Sat: 11 AM–8:15 PM
+  - Sun: 11 AM–7:15 PM
 
 ### Place research
 
@@ -1599,6 +1812,9 @@ Restaurant · Mission · 2889 Mission St, San Francisco, CA 94110 · Andy’s pi
 Sight · Lands End · 680 Point Lobos Ave, San Francisco, CA 94121
 
 **Known for:** Sutro Baths ruins and cliff-top Golden Gate views (high confidence). NPS pages present the concrete Sutro Baths ruins and the Coastal Trail's Golden Gate views as the highlights of Lands End, and Wikipedia's Lands End article features both.
+
+- **Hours:** (<https://www.nps.gov/places/000/lands-end-lookout-visitor-center.htm>, <https://www.parksconservancy.org/services/lands-end-lookout>) Hours are for Lands End Lookout Visitor Center at 680 Point Lobos Ave. NPS says Sutro Baths ruins and Sutro Heights Park close 1 hour after sunset; trails have no posted hours.
+  - Mon–Sun: 9 AM–5 PM
 
 ### Place research
 
@@ -1634,6 +1850,10 @@ Sight · Outer Richmond · 100 34th Ave, San Francisco, CA 94121
 
 **Known for:** Rodin's The Thinker in the colonnaded Court of Honor (high confidence). FAMSF says the bronze cast of The Thinker has stood in the Court of Honor since the 1924 opening and calls it the courtyard's focal point. Wikipedia names the Rodin sculpture collection as the museum's most distinguished.
 
+- **Hours:** (<https://www.famsf.org/visit/de-young>, <https://www.famsf.org/>) The FAMSF locations block lists the Legion of Honor as open Tue-Sun 9:30am-5:15pm. Seen on FAMSF pages, not the Legion's own hours page.
+  - Mon: closed
+  - Tue–Sun: 9:30 AM–5:15 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Richmond. On a hilltop in Lincoln Park at the city's northwest corner, reached by the park road that climbs from 34th Avenue and Clement Street past the golf clubhouse. In front are a parking lot and a plaza with a fountain marking the western end of the Lincoln Highway. A broad lawn with bronze equestrian statues of Joan of Arc and El Cid rises to the Roman arch of the Court of Honor. George Segal's Holocaust Memorial stands in a grove of trees across the road.
@@ -1668,6 +1888,10 @@ Restaurant · Nob Hill · 871 Sutter St, San Francisco, CA 94109
 
 **Known for:** Beef tongue steam buns (med confidence). Chronicle/SFist classic signature (misoyaki tongue in poppyseed bun); menu rotates—confirm current availability.
 
+- **Hours:** (<https://lycsf.com/pages/contact-us>, <https://sf.eater.com/venue/12798/liholiho-yacht-club>) 9pm is last seating; kitchen stays open for seated guests. Closed on major holidays.
+  - Mon–Sat: 5 PM–9 PM
+  - Sun: closed
+
 ### Place research
 
 - **Neighborhood and street:** Nob Hill. Mid-block on the south side of Sutter Street between Jones and Leavenworth in Lower Nob Hill (the 'Tendernob'), in a freestanding two-story former grocery building with about 88 feet of Sutter frontage and a rear yard. The entrance is tucked into a shallow recess off the sidewalk.
@@ -1699,6 +1923,8 @@ Restaurant · Mission · 1001 S Van Ness Ave, San Francisco, CA 94110
 
 **Known for:** Pollo a la brasa / Ceviche Limón (high confidence). Official Limón menus: open-flame rotisserie chicken and house ceviche are the Peruvian signatures.
 
+- **Hours:** reported permanently closed (<https://missionlocal.org/2025/02/limon-on-south-van-ness-is-out-brasa-bros-is-in-same-owners-deliver-fast-casual-dining/>). Mission Local (Feb 2025) reports Limón at 1001 S Van Ness closed and was replaced by Brasa Bros (same owners; brasa-bros.com lists Mon-Sun 11am-9pm at this address). Limón's own site still shows an old South Van Ness hours page, which looks stale.
+
 ### Place research
 
 - **Neighborhood and street:** Mission. Corner of South Van Ness Avenue and 21st Street in the Mission, on a wide, traffic-heavy stretch of South Van Ness two blocks east of the Mission Street corridor; the long side wall runs along 21st Street.
@@ -1727,6 +1953,12 @@ Restaurant · Mission · 1001 S Van Ness Ave, San Francisco, CA 94110
 Restaurant · Marina · 2301 Chestnut St, San Francisco, CA 94123
 
 **Known for:** Zucchini fries (med confidence). The Chronicle lists zucchini fries among the dishes new to the Marina menu, The Infatuation says they are what you are really here for, and Food Gal predicted they would become the restaurant's signature.
+
+- **Hours:** (<https://www.littleoriginaljoes.com/marina-contact-hours>, <https://sf.eater.com/venue/108684/little-original-joe-s>) This is the Marina (Chestnut St) location. Yelp shows it closed on Thanksgiving and Christmas.
+  - Mon–Thu: 11:30 AM–10 PM
+  - Fri: 11:30 AM–11 PM
+  - Sat: 10:30 AM–11 PM
+  - Sun: 10:30 AM–10 PM
 
 ### Place research
 
@@ -1762,6 +1994,11 @@ Restaurant · Mission · 974 Valencia St, San Francisco, CA 94110
 
 **Known for:** Taco Tropical (shrimp in jicama) (high confidence). Perfect Spot / early press: panko shrimp in thin jicama “tortillas” with tropical relish is Loló’s signature.
 
+- **Hours:** (<https://www.lolosf.com/>, <https://www.restaurantji.com/ca/san-francisco/lol-/>) Official site doesn't mention Sunday; Yelp/Restaurantji/SF Station say closed Sunday. Yelp shows Fri-Sat closing at 10pm.
+  - Mon–Thu: 5:30 PM–10 PM
+  - Fri–Sat: 5:30 PM–11 PM
+  - Sun: closed
+
 ### Place research
 
 - **Neighborhood and street:** Mission. Mid-block on Valencia Street between 21st Street and Liberty Street in the Mission, on the busy Valencia restaurant row, in the former Lot 7 space. A large parklet with heat lamps runs along the front.
@@ -1790,6 +2027,8 @@ Restaurant · Mission · 974 Valencia St, San Francisco, CA 94110
 Sight · Russian Hill · Lombard St between Hyde St & Leavenworth St, San Francisco, CA 94109
 
 **Known for:** Eight brick-paved hairpin turns down Russian Hill (high confidence). Wikipedia and SF Travel both describe the one-way block's eight sharp hairpin turns, billed as the crookedest street in the world.
+
+- **Hours:** open 24 hours (<https://www.sftourismtips.com/lombard-street-san-francisco.html>, <https://onlyeverywhere.com/things_to_do/listing/lombard-street-crooked-street/>). Public street, described as open 24 hours a day, 7 days a week; no official city page states hours.
 
 ### Place research
 
@@ -1825,6 +2064,12 @@ Restaurant · Cole Valley · 848 Cole St, San Francisco, CA 94117
 
 **Known for:** Drive-Thru smashburger (high confidence). Infatuation: schmaltz-onion Drive-Thru smash is the Cole Valley order.
 
+- **Hours:** (<https://www.lovelysburgers.com/cole-valley>, <https://www.woodsbeer.com/colevalley>) These are Lovely's kitchen hours inside Woods Beer & Wine. The Woods bar keeps longer hours (Mon-Thu 4-10pm, Fri 4-11pm, Sat 3-11pm, Sun 12-8pm). The line may be cut off up to 20 minutes before closing.
+  - Mon: 5 PM–9 PM
+  - Tue: closed
+  - Wed–Sat: 5 PM–9 PM
+  - Sun: 1 PM–5 PM
+
 ### Place research
 
 - **Neighborhood and street:** Cole Valley. Storefront on Cole Street near Carl Street in Cole Valley's small commercial node; Lovely's is the kitchen inside the Woods Cole Valley taproom (the former Reverie Cafe), close to where N Judah streetcars exit the Sunset Tunnel.
@@ -1856,6 +2101,11 @@ Restaurant · Cole Valley · 848 Cole St, San Francisco, CA 94117
 Dessert · North Beach · 520 Columbus Ave, San Francisco, CA 94133 · Favorite
 
 **Known for:** Brown butter and chocolate honeycomb gelato (high confidence). The Infatuation's review leads with brown butter & chocolate honeycomb, it is a standing item on the shop's official flavor list, and it is one of the most-reviewed items on the shop's Yelp menu.
+
+- **Hours:** (<https://www.lushgelato.com/find-us>, <https://www.restaurantji.com/ca/san-francisco/lush-gelato-/>) North Beach location, from the official site.
+  - Mon–Thu: noon–10 PM
+  - Fri–Sat: noon–10:30 PM
+  - Sun: noon–10 PM
 
 ### Place research
 
@@ -1891,6 +2141,13 @@ Restaurant · Outer Sunset · 3821 Noriega St, San Francisco, CA 94122 · Andy�
 
 **Known for:** Classic double smashburger (high confidence). Chronicle, Infatuation, and Eater: caramelized-shallot double with Maillards sauce is the signature smash.
 
+- **Hours:** (<https://www.maillardssf.com/>, <https://sf.eater.com/venue/107027/maillards>) Counter inside the Two Pitchers taproom, open Wed-Sun. It also pops up on Sundays at the Outer Sunset Farmers Market.
+  - Mon–Tue: closed
+  - Wed–Thu: 4 PM–10 PM
+  - Fri: 4 PM–11 PM
+  - Sat: noon–11 PM
+  - Sun: noon–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Sunset. Inside the Two Pitchers taproom on Noriega Street, mid-block between 45th and 46th avenues on the Outer Sunset's Noriega strip, across from Devil's Teeth Baking Company and a few blocks from Ocean Beach; a street parklet with benches out front takes the overflow.
@@ -1919,6 +2176,11 @@ Restaurant · Outer Sunset · 3821 Noriega St, San Francisco, CA 94122 · Andy�
 Bakery · Jackson Square · 710 Montgomery St, San Francisco, CA 94111 · Favorite
 
 **Known for:** Seasonal croissant.
+
+- **Hours:** (<https://maisonnico.com/>, <https://www.7x7.com/chef-nicolas-delaroque-maison-nico-2674858936.html>) Closed Monday.
+  - Mon: closed
+  - Tue–Fri: 8 AM–5 PM
+  - Sat–Sun: 9 AM–4 PM
 
 ### Place research
 
@@ -1954,6 +2216,9 @@ Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118
 
 **Known for:** Sweet & sour chicken (crispy rice batter) (high confidence). Official Mamahuhu menu + Chronicle/Eater: Brandon Jew’s reinvented Chinese-American sweet-and-sour chicken is the headliner.
 
+- **Hours:** (<https://eatmamahuhu.com/pages/restaurants>, <https://maps.apple.com/place?place-id=IBF6ADF896841278>) Hours shown for the 517 Clement St location.
+  - Mon–Sun: 11:30 AM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Inner Richmond. Mid-block storefront on Clement Street between 6th and 7th Avenues, on the Inner Richmond's busy Clement commercial strip, across the street from Green Apple Books on the same block. The storefront is narrow, about 20 feet wide.
@@ -1982,6 +2247,9 @@ Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118
 Shop · Mission · 962 Valencia St, San Francisco, CA 94110 · Kirissa’s pick
 
 **Known for:** Niche and indie perfumes (high confidence). The shop's About page says it presents artistic scents from independent perfumers and niche houses, and The New Fillmore calls it an S.F. original known for its wide selection of niche and indie scent houses.
+
+- **Hours:** (<https://ministryofscent.com/pages/contact-us>, <https://maps.apple.com/place?place-id=I99896F1EEE913D85>) Same hours for Mission (962 Valencia) and Pacific Heights locations.
+  - Mon–Sun: 11 AM–7 PM
 
 ### Place research
 
@@ -2014,6 +2282,11 @@ Restaurant · North Beach · 373 Columbus Ave, San Francisco, CA 94133 · Our pi
 
 **Known for:** Grilled focaccia.
 
+- **Hours:** (<https://www.themolinarideli.com/>) Official site lists Fri-Sat until 9pm and Sun 10:30-4:30; Yelp/SF Guide/Tripadvisor list Mon-Sat 9-5:30 and Sun 11-4. Used official site per preference; verify Fri/Sat evening hours.
+  - Mon–Thu: 9 AM–5:30 PM
+  - Fri–Sat: 9 AM–9 PM
+  - Sun: 10:30 AM–4:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** North Beach. Storefront on Columbus Avenue at Vallejo Street in North Beach, in business here since the early 1900s, a short walk from Caffe Trieste on Vallejo and two blocks from Washington Square. A few small tables sit on the sidewalk out front.
@@ -2040,6 +2313,11 @@ Restaurant · North Beach · 373 Columbus Ave, San Francisco, CA 94133 · Our pi
 Bar · Mission · 741 Valencia St, San Francisco, CA 94110
 
 **Known for:** Deep tequila and mezcal lineup (high confidence). Mosto's own site calls its agave-spirits selection one of SF's best, and 2011 opening coverage (tablehopper, Thrillist) counted more than 300 tequilas and mezcals.
+
+- **Hours:** (<https://www.mostobar.com/location>, <https://www.restaurantji.com/ca/san-francisco/mosto-/>)
+  - Mon–Thu: 5 PM–11 PM
+  - Fri–Sat: 4 PM–midnight
+  - Sun: 5 PM–11 PM
 
 ### Place research
 
@@ -2074,6 +2352,11 @@ Restaurant · NoPa · 560 Divisadero St, San Francisco, CA 94117 · Favorite
 
 **Known for:** Pork chop.
 
+- **Hours:** (<https://www.nopasf.com/reservations>, <https://www.opentable.com/restaurant/profile/43240?refreshed=true>) The official site contradicts itself. The Reservations and Menus pages say Mon-Sat opens at 5:30pm, and the Reservations page carries a recent 'closed Saturday, July 4th' notice. The homepage says Mon-Sat opens at 5:00pm. The 5:30pm times were used because OpenTable and Yelp also show them. Sunday is 5-9:30pm on every source.
+  - Mon–Thu: 5:30 PM–10 PM
+  - Fri–Sat: 5:30 PM–11 PM
+  - Sun: 5 PM–9:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** NoPa. Corner of Divisadero and Hayes Streets, a block west of Alamo Square, with a heated, covered parklet along the Hayes Street side.
@@ -2101,6 +2384,11 @@ Restaurant · NoPa · 560 Divisadero St, San Francisco, CA 94117 · Favorite
 Restaurant · Embarcadero · 1 Ferry Building, San Francisco, CA 94111 · Kirissa’s pick
 
 **Known for:** Fancy fish over rice.
+
+- **Hours:** (<https://www.nopafish.com/>, <https://www.nopafish.com/fish-market>) Saturday: fish market opens 8am, restaurant opens 10am. Ferry Building Marketplace page lists older hours (Mon-Fri 11-7, Sat 8-7, Sun closed); official site used.
+  - Mon–Fri: 11 AM–8 PM
+  - Sat: 8 AM–8 PM
+  - Sun: 11 AM–8 PM
 
 ### Place research
 
@@ -2133,6 +2421,8 @@ Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117 · Our pick
 
 **Known for:** Carnitas.
 
+- **Hours:** unknown. Official hours were not found; nopalitosf.com showed no hours in search results. Friday and Saturday closing times conflict: Yelp (2025) says 10pm, Apple Maps says 9:30pm, and Flytown and Restaurantji say 9pm. Other days agree across sources: Sun-Tue and Thu 11:30am-9pm, Wed 4:30-9pm.
+
 ### Place research
 
 - **Neighborhood and street:** NoPa. Ground floor of Broderick Place, a 2000s shingle-sided condominium building with a central plaza, on Broderick Street between Oak and Fell, one block west of Divisadero. The "Falletti Foods" grocery is its neighbor in the same development.
@@ -2164,6 +2454,8 @@ Restaurant · NoPa · 306 Broderick St, San Francisco, CA 94117 · Our pick
 Park · Outer Sunset · Great Highway, San Francisco, CA 94122 · Favorite
 
 **Known for:** Surf, fog, and beach bonfires (high confidence). Wikipedia says Ocean Beach is known for its strong currents, surf culture, and foggy late-spring and summer weather; the NPS describes a 3.5-mile beach whose currents suit only experienced surfers.
+
+- **Hours:** open 24 hours (<https://www.parksconservancy.org/parks/ocean-beach>, <https://www.nps.gov/goga/planyourvisit/hours.htm>). Parks Conservancy says open 24/7. NPS says the Golden Gate National Recreation Area is accessible 24 hours in most areas, with parking lots open sunrise to sunset.
 
 ### Place research
 
@@ -2200,6 +2492,11 @@ Wine · Oakland · 3354 Grand Ave, Oakland, CA 94610
 
 **Known for:** Natural wine shrine (BTG + retail) (high confidence). SFGATE “shrine to natural wine” plus Infatuation/Wikipedia: Grand Ave. Oakland natural-wine bar/shop (Bay Area list fixture).
 
+- **Hours:** (<https://ordinairewine.com/pages/contact>, <https://sf.eater.com/venue/114598/ordinaire>) Closed every first Tuesday of the month, plus holiday closures and periodic closures to visit winemakers (posted on site/newsletter). Oakland location.
+  - Mon–Thu: noon–9 PM
+  - Fri–Sat: noon–10 PM
+  - Sun: noon–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Oakland. On Grand Avenue in Oakland's Grand Lake District at the northwest corner of Lake Merritt, between Elwood and Santa Clara avenues, on a commercial strip of everyday storefronts such as dry cleaners; sidewalk seating and a parklet sit out front.
@@ -2230,6 +2527,12 @@ Restaurant · North Beach · 601 Union St, San Francisco, CA 94133 · Favorite
 
 **Known for:** Spicy rigatoni.
 
+- **Hours:** (<https://www.originaljoes.com/north-beach>, <https://www.opentable.com/r/original-joes-san-francisco>) Official North Beach page. Weekend brunch runs 11am-3pm. Older Yelp and menupix listings show weekend hours of 10am-10pm; the official site and OpenTable were used instead.
+  - Mon–Thu: 4 PM–10 PM
+  - Fri: 11:30 AM–10 PM
+  - Sat: 11 AM–10 PM
+  - Sun: 11 AM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** North Beach. At the corner of Union and Stockton Streets on the south side of Union in North Beach, facing Washington Square Park, with Saints Peter and Paul Church across the park on Filbert.
@@ -2258,6 +2561,12 @@ Restaurant · North Beach · 601 Union St, San Francisco, CA 94133 · Favorite
 Restaurant · Outer Sunset · 4001 Judah St, San Francisco, CA 94122
 
 **Known for:** Levain toast with cultured butter & jam (high confidence). Michelin, Thrillist, and Infatuation: thick house levain toast is the Outer Sunset brunch signature.
+
+- **Hours:** (<https://www.outerlandssf.com/>, <https://www.yelp.com/biz/outerlands-san-francisco?start=100>) Brunch is weekends only. Monday is a special smaller menu and Wednesday is burger night. An older Yelp snapshot (2024) shows different hours and is out of date.
+  - Mon–Thu: 5 PM–9 PM
+  - Fri: 5 PM–9:30 PM
+  - Sat: 9:30 AM–2 PM, 4:30 PM–9:30 PM
+  - Sun: 9:30 AM–2 PM, 4:30 PM–9 PM
 
 ### Place research
 
@@ -2291,6 +2600,11 @@ Restaurant · Financial District · 101 California St, San Francisco, CA 94111
 
 **Known for:** Scallop roll with salmon roe.
 
+- **Hours:** (<https://theminagroup.com/restaurants/pabu-izakaya/>) Official Mina Group page lists lunch Mon-Fri; OpenTable and downtownsf.org list lunch Tue-Fri only (no Monday lunch). Dinner Mon-Sat 4-9pm agreed by all. Verify Monday lunch.
+  - Mon–Fri: 11 AM–2 PM, 4 PM–9 PM
+  - Sat: 4 PM–9 PM
+  - Sun: closed
+
 ### Place research
 
 - **Neighborhood and street:** Financial District. At plaza level in the eight-story podium annex of 101 California, Philip Johnson's 1982 48-story cylindrical glass-and-granite tower in the Financial District, opening onto the building's granite-paved triangular public plaza off California Street. A newer freestanding glass pavilion across the plaza, the Pabu-Chan tasting room, belongs to the restaurant.
@@ -2322,6 +2636,9 @@ Restaurant · Financial District · 101 California St, San Francisco, CA 94111
 Sight · Alamo Square · 710–720 Steiner St, San Francisco, CA 94117
 
 **Known for:** View of Postcard Row with the downtown skyline behind (high confidence). Wikipedia and the city's 1984 Alamo Square Historic District designation both single out Postcard Row with its background of the downtown skyline, and SF Travel describes the raised view from the park.
+
+- **Hours:** (<https://sfrecpark.org/facilities/facility/details/Alamo-Square-323/>, <https://www.yelp.com/biz/alamo-square-san-francisco>) The houses are private residences; hours are for Alamo Square park (5am-midnight), the classic viewing spot. They can also be seen from the public Steiner St sidewalk.
+  - Mon–Sun: 5 AM–midnight
 
 ### Place research
 
@@ -2356,6 +2673,9 @@ Sight · Marina · 3601 Lyon St, San Francisco, CA 94123
 
 **Known for:** The domed rotunda reflected in the lagoon (high confidence). Wikipedia and the California Historical Landmark nomination describe the lagoon as a mirror for the rotunda and colonnades, and SF Rec & Park calls the Palace one of the most photographed sites in the city.
 
+- **Hours:** (<https://sfrecpark.org/Facilities/Facility/Details/Palace-of-Fine-Arts-423>, <https://sf-parks.com/explore/points-of-interest/palace-of-fine-arts/>) SF Rec & Park grounds hours: 5am-midnight. The theater and event spaces have separate schedules. Intermittent closures Jan 2-Mar 31 for rotunda repairs.
+  - Mon–Sun: 5 AM–midnight
+
 ### Place research
 
 - **Neighborhood and street:** Marina. At the western edge of the Marina next to the Presidio, in a park bounded by Baker Street on the east, Marina Boulevard and Jefferson Street on the north, and Bay and Lyon Streets on the south, with the Golden Gate Bridge approach roads to the west. The lagoon fronts Baker Street and its row of houses. The rotunda stands on the lagoon's west shore, flanked by curving colonnades, with the long curved exhibition hall (home of the Palace of Fine Arts Theatre) behind them.
@@ -2389,6 +2709,9 @@ Restaurant · Outer Richmond · 6101 California St, San Francisco, CA 94121 · A
 
 **Known for:** Pork chop.
 
+- **Hours:** (<https://www.pearl6101.com/contact-us>, <https://www.pearl6101.com/frequently-asked-questions>) Dinner only, daily. 9:15pm may be last seating per third-party guide.
+  - Mon–Sun: 5 PM–9:15 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Richmond. Southwest corner of California Street and 23rd Avenue in the Outer Richmond, next door to sister restaurant "Pizzetta 211", with a parklet and outdoor seating.
@@ -2415,6 +2738,10 @@ Restaurant · Outer Richmond · 6101 California St, San Francisco, CA 94121 · A
 Restaurant · Mission · 3000 20th St, San Francisco, CA 94110
 
 **Known for:** Seasonal pasta.
+
+- **Hours:** (<https://pennyroma.com/>, <https://maps.apple.com/place?address=3000%2020th%20St,%20San%20Francisco,%20CA%20%2094110,%20United%20States&coordinate=37.759301,-122.4111268&name=Penny%20Roma&place-id=IF587FA588A25525A&_provider=9902>) Restaurantji shows Tuesday closed, but that disagrees with the official site and Apple Maps, so I used the official hours.
+  - Mon–Sat: 5:30 PM–10 PM
+  - Sun: 5:30 PM–9 PM
 
 ### Place research
 
@@ -2444,6 +2771,8 @@ Restaurant · Mission · 3000 20th St, San Francisco, CA 94110
 Sight · Fisherman's Wharf · Pier 39, The Embarcadero & Beach St, San Francisco, CA 94133
 
 **Known for:** Sea lions on K-Dock (high confidence). Pier 39's own site and Wikipedia describe the California sea lion colony hauled out on K-Dock since 1989 as the pier's star attraction, and NPR calls them its star attraction for tourists.
+
+- **Hours:** open 24 hours (<https://www.fishermanswharf.org/things-to-do/attractions/pier-39/>). The walkable pier area is open 24/7 per fishermanswharf.org. Business hours conflict on pier39.com: the homepage says retail 10am-9pm and restaurants 11am-10pm, while the Address & Hours page says retail 10am-8pm and restaurants 11am-9pm. These are likely seasonal.
 
 ### Place research
 
@@ -2479,6 +2808,9 @@ Sight · Union Square · Powell St & Market St, San Francisco, CA 94102
 
 **Known for:** Crews turning cable cars by hand on the turntable (high confidence). Market Street Railway calls it the most-photographed cable car turntable and notes that cable car travelogues began with the crew pushing a car around it.
 
+- **Hours:** (<https://www.sfmta.com/routes/powell-hyde-cable-car>, <https://www.streetcar.org/rider-information-map-2/>) Hours are Powell cable car service hours (7am-11pm daily per SFMTA); the turntable plaza itself is a public street corner.
+  - Mon–Sun: 7 AM–11 PM
+
 ### Place research
 
 - **Neighborhood and street:** Union Square. The turntable sits at the foot of Powell Street where it meets Market Street, with the rounded prow of the Flood Building on the east corner, the One Powell building on the west, and the sunken, brick-paved Hallidie Plaza just to the south. Cable car tracks run north from the turntable up Powell Street between older commercial buildings, past a ticket kiosk and the boarding line.
@@ -2512,6 +2844,11 @@ Restaurant · Chinatown · 631 Kearny St, San Francisco, CA 94108
 
 **Known for:** Mongolian beef.
 
+- **Hours:** (<https://www.rnglounge.com/>, <https://www.opentable.com/r/r-and-g-lounge-san-francisco>) The site-wide 'Business Hours' footer and OpenTable both say 8:45pm (Sun-Thu) and 9:15pm (Fri-Sat). The body of the official contact page says 9pm and 9:30pm instead, so the earlier times may be last seating.
+  - Mon–Thu: 11 AM–8:45 PM
+  - Fri–Sat: 11 AM–9:15 PM
+  - Sun: 11 AM–8:45 PM
+
 ### Place research
 
 - **Neighborhood and street:** Chinatown. West side of Kearny Street at Commercial Street in Chinatown, one block south of Portsmouth Square; Kearny is a one-way northbound street along the Chinatown/Financial District edge, with the Hilton Financial District tower facing the square.
@@ -2542,6 +2879,10 @@ Shop · Pacific Heights · 2223 Fillmore St, San Francisco, CA 94115 · Kirissa�
 
 **Known for:** Stacked-heel clogs and Legion jeans (high confidence). The brand's own bio credits it with pioneering stacked-heel clogs and booties and cropped high-waist denim, and GQ and Vogue single out the wide-leg cropped Legion jean as its signature.
 
+- **Hours:** (<https://rachelcomey.com/pages/stores-privateappointments-stockists>, <https://www.bizarchive.com/business/rachel-comey_5c-415-429-5968>)
+  - Mon–Sat: 11 AM–6 PM
+  - Sun: noon–5 PM
+
 ### Place research
 
 - **Neighborhood and street:** Pacific Heights. On Upper Fillmore Street just north of Sacramento Street, mid-block on the boutique strip between Sacramento and Clay streets in Pacific Heights, set among other independent boutiques, cafes and restaurants.
@@ -2570,6 +2911,13 @@ Shop · Pacific Heights · 2223 Fillmore St, San Francisco, CA 94115 · Kirissa�
 Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123 · Kirissa’s pick
 
 **Known for:** Bay-view hall with a Ponderosa pine bar (high confidence). Eater SF's review headline says the big, beautiful space is the draw, and Architectural Record calls the Ponderosa pine bar and communal bench the restaurant's signature elements.
+
+- **Hours:** (<https://radhaussf.com/>, <https://www.timeout.com/san-francisco/restaurants/radhaus>) Fort Mason page lists Tue 12-8pm (conflict); official site and Time Out say Tue 12-9pm. Official site lists special hours/closures around late Sept-mid Oct (e.g. Sept 29 and Oct 6, 13 closed).
+  - Mon: noon–8 PM
+  - Tue–Thu: noon–9 PM
+  - Fri: noon–10 PM
+  - Sat: 11 AM–10 PM
+  - Sun: 10 AM–8 PM
 
 ### Place research
 
@@ -2605,6 +2953,13 @@ Wine · Outer Richmond · 3516 Balboa St, San Francisco, CA 94121 · Our pick
 
 **Known for:** Natural wine by-the-glass + bottle shop (high confidence). Official About and Chronicle: Outer Richmond natural-wine bottle shop/bar; rotating small-production pours are the draw.
 
+- **Hours:** (<https://rampantwine.com/pages/contact-us>, <https://sf.eater.com/venue/114900/rampant-bottle-bar>) Closed Tuesday. Older SF Chronicle opening article listed different hours. Poorboy Coffee pop-up operates in the space Fri-Sun mornings (separate).
+  - Mon: 4 PM–9 PM
+  - Tue: closed
+  - Wed–Fri: 4 PM–10 PM
+  - Sat: 3 PM–10 PM
+  - Sun: 3 PM–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Richmond. On Balboa Street near 36th Avenue in the Outer Richmond, on a low-key neighborhood commercial stretch between 33rd and 39th avenues that has seen a wave of new openings, a few blocks from the Balboa Theatre and within reach of Ocean Beach.
@@ -2630,6 +2985,11 @@ Wine · Outer Richmond · 3516 Balboa St, San Francisco, CA 94121 · Our pick
 Shop · Hayes Valley · 544 Hayes St, San Francisco, CA 94102 · Kirissa’s pick
 
 **Known for:** Antique jewelry and a 22K gold house line (high confidence). Time Out highlights the owner's trove of antique and vintage jewelry, and the shop's site leads with its 22K gold house-line strands and rings.
+
+- **Hours:** (<https://reliquarysf.com/pages/about-us>, <https://www.shopenauer.com/en/store/reliquary>) Official site (with 2026 special hours). Sunday closed for lunch 2-2:30pm. Yelp lists 12-6 daily; official site preferred.
+  - Mon–Thu: noon–6 PM
+  - Fri–Sat: noon–7 PM
+  - Sun: noon–2 PM, 2:30 PM–6 PM
 
 ### Place research
 
@@ -2661,6 +3021,10 @@ Shop · Nob Hill · 1815 Polk St, San Francisco, CA 94109 · Kirissa’s pick
 
 **Known for:** Curated designer, vintage and contemporary resale (high confidence). Time Out, InsideHook and the shop's own site describe a hand-picked mix of true vintage, designer and contemporary pieces for women and men.
 
+- **Hours:** (<https://shoprelove.myshopify.com/pages/about-us>, <https://www.loc8nearme.com/california/san-francisco/relove/5104242/>) Official site: Tue-Sun 11am-6pm. Store notes hours change seasonally.
+  - Mon: closed
+  - Tue–Sun: 11 AM–6 PM
+
 ### Place research
 
 - **Neighborhood and street:** Nob Hill. On upper Polk Street at Washington Street, on the commercial strip where Nob Hill meets Russian Hill; a ground-floor boutique among the street's small shops, cafes and bars.
@@ -2690,6 +3054,9 @@ Shop · Nob Hill · 1815 Polk St, San Francisco, CA 94109 · Kirissa’s pick
 Restaurant · Hayes Valley · 101 Oak St, San Francisco, CA 94102 · Kirissa’s pick
 
 **Known for:** Rotisserie chicken (porcini / Douglas-fir brine) (high confidence). 7x7 and Eater: buttermilk–porcini–Douglas-fir rotisserie bird is the whole concept.
+
+- **Hours:** (<https://www.rtrotisserie.com/location/hayes-valley/>, <https://www.rtrotisserie.com/about/>) Hayes Valley location. Closed on major holidays; Christmas Eve until 5pm.
+  - Mon–Sun: 11 AM–9 PM
 
 ### Place research
 
@@ -2723,6 +3090,9 @@ Coffee & tea · Russian Hill · 2340 Polk St, San Francisco, CA 94109 · Kirissa
 
 **Known for:** Competition-style cappuccino.
 
+- **Hours:** (<https://www.saintfrankcoffee.com/pages/our-locations>, <https://www.yelp.com/biz/saint-frank-coffee-san-francisco-2>) Hours for the Russian Hill location (2340 Polk St). Menupix shows Sunday closing at 4pm, but the official site, Yelp and Apple Maps all say 6pm.
+  - Mon–Sun: 7 AM–6 PM
+
 ### Place research
 
 - **Neighborhood and street:** Russian Hill. Mid-block storefront on Polk Street between Union and Green in Russian Hill, on Polk's neighborhood shopping strip, with a few tables on the sidewalk.
@@ -2748,6 +3118,11 @@ Coffee & tea · Russian Hill · 2340 Polk St, San Francisco, CA 94109 · Kirissa
 Restaurant · Inner Sunset · 1031 Irving St, San Francisco, CA 94122 · Favorite
 
 **Known for:** Orange chicken.
+
+- **Hours:** (<https://www.santungsf.com/>, <https://maps.apple.com/place?place-id=IF21E7BDA7085179B>) Closed Tuesday and Wednesday. Also closed on Thanksgiving, Christmas and Chinese New Year.
+  - Mon: 11 AM–3 PM, 4:30 PM–8:30 PM
+  - Tue–Wed: closed
+  - Thu–Sun: 11 AM–3 PM, 4:30 PM–8:30 PM
 
 ### Place research
 
@@ -2776,6 +3151,10 @@ Restaurant · Inner Sunset · 1031 Irving St, San Francisco, CA 94122 · Favorit
 Shop · Mission · 569 Valencia St, San Francisco, CA 94110 · Favorite
 
 **Known for:** Japanese selvedge denim (high confidence). Self Edge's own listing says it specializes in Japanese selvedge denim, most of it exclusive to the store in North America, and the SF Chronicle calls it San Francisco's Japanese denim mecca.
+
+- **Hours:** (<https://www.selfedge.com/index.php?route=information%2Flocations>, <https://maps.apple.com/place?place-id=I246AA0EDF031945E>)
+  - Mon–Sat: noon–7 PM
+  - Sun: noon–6 PM
 
 ### Place research
 
@@ -2810,6 +3189,9 @@ Shop · Japantown · 1758 Buchanan St, San Francisco, CA 94115 · Our pick
 
 **Known for:** Japanese tableware (Hasami Porcelain) (high confidence). The shop's own site names Hasami Porcelain, ARAS tableware, donabe, kitchen tools and incense as its core lines, and its FAQ steers visitors to compare Hasami Porcelain in store.
 
+- **Hours:** (<https://www.sf-76.com/pages/visit-our-store>, <https://www.yelp.com/biz/sf76-san-francisco>)
+  - Mon–Sun: noon–6 PM
+
 ### Place research
 
 - **Neighborhood and street:** Japantown. Toward the Sutter Street end of the Buchanan Mall (Osaka Way), the one-block, car-free stretch of Buchanan Street between Post and Sutter that forms the heart of Japantown. Two- and three-story shops, restaurants and community organizations line both sides, a timber-trellis gate modeled on a Japanese mountain temple gate marks the Sutter Street entrance, and the Peace Plaza and Japan Center malls lie across Post Street to the south.
@@ -2842,6 +3224,12 @@ Shop · Japantown · 1758 Buchanan St, San Francisco, CA 94115 · Our pick
 Museum · SoMa · 151 Third St, San Francisco, CA 94103 · Favorite
 
 **Known for:** Doris and Donald Fisher Collection (high confidence). SFMOMA calls the Fisher Collection one of the world's greatest private collections of contemporary art, shown under a 100-year partnership; it was fully reinstalled across Floors 3–6 in April 2026.
+
+- **Hours:** (<https://tickets.sfmoma.org/tickets/entry?performanceId=10000&type=ga>, <https://thebettervacation.com/san-francisco/sfmoma/>) Official ticketing page: Fri-Tue 10am-5pm, Thu 12-8pm, closed Wed. Also closed Thanksgiving, Christmas, and New Year's Day.
+  - Mon–Tue: 10 AM–5 PM
+  - Wed: closed
+  - Thu: noon–8 PM
+  - Fri–Sun: 10 AM–5 PM
 
 ### Place research
 
@@ -2876,6 +3264,12 @@ Bar · SoMa · 140 New Montgomery St, San Francisco, CA 94105 · Kirissa’s pic
 
 **Known for:** Matcha einspänner (high confidence). The SF Chronicle and Hoodline call the whipped-cream-topped matcha einspänner Shoji's viral signature; the Chronicle reports it sells more than 200 a day.
 
+- **Hours:** (<https://www.theshojisf.com/>, <https://www.restaurantji.com/ca/san-francisco/shoji-/>) Combined cafe and bar hours from the official homepage. The bar is open Tue-Sat 5-11pm; the FAQ page says the bar opens at 4pm, but the homepage and bar menu page say 5pm. The FAQ also lists cafe close as 2:30pm on weekdays.
+  - Mon: 8 AM–2:30 PM
+  - Tue–Fri: 8 AM–3 PM, 5 PM–11 PM
+  - Sat: 9 AM–3 PM, 5 PM–11 PM
+  - Sun: 9 AM–2:30 PM
+
 ### Place research
 
 - **Neighborhood and street:** SoMa. On the ground floor of the 26-story tower mid-block on New Montgomery Street between Mission and Howard in SoMa, a short walk from SFMOMA. Daytime lines spill onto the New Montgomery sidewalk, and a covered, heated patio sits at the back of the space.
@@ -2908,6 +3302,10 @@ Bar · SoMa · 140 New Montgomery St, San Francisco, CA 94105 · Kirissa’s pic
 Coffee & tea · Lower Pacific Heights · 2120 Sutter St, San Francisco, CA 94115
 
 **Known for:** Rare Chinese and Taiwanese teas and artist-made ceramics (high confidence). The shop's site, Fresh Cup and Time Out all describe small-batch teas sourced directly from producers in China and Taiwan, led by its flagship oolongs, sold alongside handmade ceramics from Taiwan, China and the US.
+
+- **Hours:** (<https://songtea.com/>, <https://songtea.com/pages/support>) Site-wide footer says open Wed-Sun 12-5pm. The local pick-up page says the studio is open only Fri-Sun 12-5pm (likely stale); footer used.
+  - Mon–Tue: closed
+  - Wed–Sun: noon–5 PM
 
 ### Place research
 
@@ -2943,6 +3341,10 @@ Coffee & tea · Mission · 561 Valencia St, San Francisco, CA 94110
 
 **Known for:** Stone-ground Kyoto matcha (high confidence). Eater SF's opening coverage and the cafe's own site center it on stone-ground matcha from shade-grown Kyoto farms, served hand-whisked at a ceremonial counter or as lattes.
 
+- **Hours:** (<https://www.stonemillmatcha-us.com/contact>, <https://www.yelp.com/biz/stonemill-matcha-san-francisco?start=60>) Official site and Yelp (Mar 2026) agree: daily, weekdays 10-4, weekends 9-7. Conflicting older sources: a Square site says Wed-Sun 10am-3pm and a 2023 Eater article says Wed-Sun 10-4 after reopening; verify if critical.
+  - Mon–Fri: 10 AM–4 PM
+  - Sat–Sun: 9 AM–7 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. Mid-block on the east side of Valencia Street between 16th and 17th streets, about half a block south of 16th, in the former Bar Tartine space. Self Edge is its next-door neighbor to the south, and the Roxie Theater is a short walk away on 16th Street.
@@ -2974,6 +3376,9 @@ Coffee & tea · Mission · 561 Valencia St, San Francisco, CA 94110
 
 Bar · Marina · 2138 Chestnut St, San Francisco, CA 94123 · Andy’s pick
 
+- **Hours:** (<https://sullysmarinalounge.com/>, <https://www.restaurantji.com/ca/san-francisco/marina-lounge-/>) Official site: open daily 12pm-2am.
+  - Mon–Sun: noon–2 AM
+
 ### Place research
 
 - **Neighborhood and street:** Marina. Mid-block on the north side of Chestnut Street between Steiner and Pierce, on the Marina's main strip of shops, bars and cafes. The Marina Theatre faces it from across the street.
@@ -3000,6 +3405,9 @@ Bar · Marina · 2138 Chestnut St, San Francisco, CA 94123 · Andy’s pick
 Restaurant · Mission · 699 Valencia St, San Francisco, CA 94110
 
 **Known for:** Al pastor burrito (med confidence). Official El Buen Sabor site and local writeups highlight the al pastor burrito; Infatuation covers the Mission taqueria.
+
+- **Hours:** (<https://www.taqueriaelbuensabor.com/>, <https://www.yelp.com/biz/taqueria-el-buen-sabor-san-francisco>) Official site: Mon-Sun 11am-9:30pm; Yelp (Sept 2026) agrees. Apple Maps shows 10am open and 10pm Fri-Sat close; official site preferred.
+  - Mon–Sun: 11 AM–9:30 PM
 
 ### Place research
 
@@ -3029,6 +3437,8 @@ Restaurant · Mission · 2779 Mission St, San Francisco, CA 94110
 
 **Known for:** Carne asada super burrito (high confidence). Infatuation and Mission consensus: charred-steak Mission burrito is the order; El Farolito’s own framing is Mission-style burrito identity.
 
+- **Hours:** unknown. Sources conflict on late-night closing times. elfarolitosf.com, which may not be official, says Mon-Wed and Sat until 3am, Thu-Fri until 3:30am, and Sun until midnight, but its own About page says it stays open past 3am most nights. Restaurantji and enprimeurclub say 2:45am, and 3:45am on Fri-Sat. Yelp says 1:45am, and 2:45am on Fri-Sat. Eater gives a different pattern again. All agree it opens at 10am.
+
 ### Place research
 
 - **Neighborhood and street:** Mission. At Mission and 24th Streets, the original 1982 location, steps from the 24th Street BART station plazas along the Mission's busy commercial corridor.
@@ -3055,6 +3465,9 @@ Restaurant · Mission · 2779 Mission St, San Francisco, CA 94110
 Bakery · Mission · 600 Guerrero St, San Francisco, CA 94110 · Favorite
 
 **Known for:** Morning bun.
+
+- **Hours:** (<https://www.yelp.com/biz/tartine-bakery-san-francisco-3>, <https://projectsf.com/listings/tartine-bakery/>) Official tartinebakery.com hours were not visible in search results. A page on tartineb.cylosoftdemo.com, which looks like a demo copy of the site, also says 7:30am-6pm daily, but it was not used as the source. Closed on Thanksgiving and Christmas Day.
+  - Mon–Sun: 7:30 AM–6 PM
 
 ### Place research
 
@@ -3084,6 +3497,10 @@ Bakery · Mission · 600 Guerrero St, San Francisco, CA 94110 · Favorite
 Bakery · Mission · 595 Alabama St, San Francisco, CA 94110
 
 **Known for:** Morning bun (Mission production hall) (high confidence). Same Tartine morning-bun signature, famously baked at the Manufactory; SFGATE covered the Mission production of the city’s morning buns.
+
+- **Hours:** (<https://tartinebakery.com/sanfrancisco/manufactory>, <https://maps.apple.com/place?address=595+Alabama+St%2C+San+Francisco%2C+CA++94110%2C+United+States&coordinate=37.7618221%2C-122.4118245&name=Tartine+Manufactory&place-id=IE2A7A15E18C68D19&_provider=9902>) Breakfast/lunch 8am-4pm daily; dinner 5-9pm Tue-Sun (limited on Tuesday). Yelp (2024) shows older hours.
+  - Mon: 8 AM–4 PM
+  - Tue–Sun: 8 AM–9 PM
 
 ### Place research
 
@@ -3116,6 +3533,10 @@ Coffee & tea · Nob Hill · 1030 Washington St, San Francisco, CA 94108 · Our p
 
 **Known for:** Cocoa cappuccino (high confidence). Listed under Signature Drinks on the official menu as a dark-chocolate-dusted Australian-style cappuccino; dominates Yelp photo tags.
 
+- **Hours:** (<https://www.thecoffeemovement.com/>, <https://www.restaurantji.com/ca/san-francisco/the-coffee-movement-/>) The official site gives one set of hours that it appears to apply to both locations, including 1030 Washington St. Apple Maps and Crema agree.
+  - Mon–Fri: 7 AM–2 PM
+  - Sat–Sun: 7 AM–4 PM
+
 ### Place research
 
 - **Neighborhood and street:** Nob Hill. On steep Washington Street between Powell and Mason, roughly halfway up Nob Hill at the Chinatown edge, near the Cable Car Museum with cable car tracks running in the street. Looking downhill, the view runs past the Transamerica Pyramid toward the bay and Bay Bridge.
@@ -3145,6 +3566,12 @@ Coffee & tea · Nob Hill · 1030 Washington St, San Francisco, CA 94108 · Our p
 Bar · Marina · 2 Marina Blvd, Building A, San Francisco, CA 94123
 
 **Known for:** Floor-to-ceiling library and 10,000 Year Clock prototypes (high confidence). Long Now's own page and Fast Company single out the floor-to-ceiling Manual for Civilization library, the Orrery, and the Chime Generator table as the room's defining features.
+
+- **Hours:** (<https://longnow.org/interval/>, <https://fortmason.org/resident/the-interval/>) Special hours for private events/holidays posted on the Long Now site. Older Yelp listing differs.
+  - Mon: 5 PM–10 PM
+  - Tue–Fri: 10 AM–11 PM
+  - Sat: 5 PM–11 PM
+  - Sun: 3 PM–10 PM
 
 ### Place research
 
@@ -3179,6 +3606,12 @@ Restaurant · Outer Richmond · 3725 Balboa St, San Francisco, CA 94121 · Our p
 
 **Known for:** Sausage and peppers.
 
+- **Hours:** (<https://www.thelaundromatsf.com/hours>, <https://www.restaurantji.com/ca/san-francisco/the-laundromat-sf-/>) Daytime is bagels to go; evening is dinner. The site's /visit page shows template placeholder hours (demo address), ignored.
+  - Mon–Tue: closed
+  - Wed–Thu: 8 AM–2 PM, 5 PM–9 PM
+  - Fri–Sat: 8 AM–2 PM, 5 PM–10 PM
+  - Sun: 9 AM–2 PM, 5 PM–8 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Richmond. Storefront on Balboa Street between 38th and 39th Avenues in the Outer Richmond, just up the block from the historic Balboa Theater, in a former coin laundrette whose decades-old sign has been removed. A heated parklet over three former parking spaces, with table and bar seating, was being built out front in April 2026.
@@ -3208,6 +3641,10 @@ Restaurant · Outer Richmond · 3725 Balboa St, San Francisco, CA 94121 · Our p
 Bar · Lower Haight · 298 Divisadero St, San Francisco, CA 94117 · Our pick
 
 **Known for:** Parklet built as a replica of the bar inside (high confidence). SFGATE calls it probably the coolest parklet in San Francisco, a reconstruction of the interior with a faux-brick wall and fireplace, and SFist calls it the most charming and clever pandemic-era parklet in the city.
+
+- **Hours:** (<https://www.yelp.com/biz/the-page-san-francisco>, <https://www.restaurantji.com/ca/san-francisco/the-page-/>) Official site only says 'Open daily until 2am' (no opening times). Opening times from Yelp (April 2025) and Restaurantji; Eater agrees. SF Station lists older 5pm weekday opening.
+  - Mon–Thu: 4 PM–2 AM
+  - Fri–Sun: 1 PM–2 AM
 
 ### Place research
 
@@ -3242,6 +3679,12 @@ Bar · North Beach · 1534 Stockton St, San Francisco, CA 94133 · Andy’s pick
 
 **Known for:** Classic martini in historic North Beach bar (high confidence). Tony Nik’s cafe history and SF Examiner: 1930s North Beach bar known for expert martinis and old-school vibe.
 
+- **Hours:** (<https://www.tonyniks.com/contact/>) Hours are from the official site. Third-party listings (joe coffee, Restaurantji, SFGATE) say it closes at 2am every night and Mon-Thu opens at 4pm. I used the official site's 1am closing Sun-Thu.
+  - Mon–Thu: 4 PM–1 AM
+  - Fri: 3 PM–2 AM
+  - Sat: 2 PM–2 AM
+  - Sun: 2 PM–1 AM
+
 ### Place research
 
 - **Neighborhood and street:** North Beach. Mid-block on Stockton Street in North Beach, near the Union Street corner and a short walk from Washington Square, in a dense row of ground-floor bars and restaurants with apartments above.
@@ -3269,6 +3712,10 @@ Bar · North Beach · 1534 Stockton St, San Francisco, CA 94133 · Andy’s pick
 Restaurant · North Beach · 1570 Stockton St, San Francisco, CA 94133
 
 **Known for:** World Pizza Cup Margherita (limited daily) (high confidence). Official Tony’s: limited Neapolitan Margherita that won in Naples; only ~73 made per day.
+
+- **Hours:** (<https://tonyspizzanapoletana.com/location/>, <https://sfguide.co/eat-drink/tonys-pizza-napoletana/>) Close times are last seating. Closed Thanksgiving and Christmas. tonygemignani.com shows older, different hours.
+  - Mon–Thu: noon–10 PM
+  - Fri–Sun: noon–11 PM
 
 ### Place research
 
@@ -3305,6 +3752,9 @@ Bar · Lower Haight · 547 Haight St, San Francisco, CA 94117 · Andy’s pick
 
 **Known for:** Legendary draft-beer wall (~50 taps; Belgian + West Coast craft / Pliny culture) (high confidence). Craft Beer & Brewing and SFGATE frame Toronado as a monument to characterful draft beer; long associated with rare taps and Russian River/Pliny culture.
 
+- **Hours:** (<https://www.toronado.com/index.html>, <https://www.menupix.com/sf/restaurants/401460/Toronado-Pub-San-Francisco-CA>) Open daily 11:30am-2am. The bar was sold to a new owner in 2026 and is still operating.
+  - Mon–Sun: 11:30 AM–2 AM
+
 ### Place research
 
 - **Neighborhood and street:** Lower Haight. Mid-block on Haight Street between Fillmore and Steiner, in the Lower Haight's strip of small bars and shops; a tiny adjoining storefront at 545 Haight shares the same building.
@@ -3335,6 +3785,9 @@ Bar · Lower Haight · 547 Haight St, San Francisco, CA 94117 · Andy’s pick
 Sight · Financial District · 600 Montgomery St, San Francisco, CA 94111
 
 **Known for:** Tapering white pyramid on the skyline (high confidence). Wikipedia and the SF Chronicle describe the 853-foot pyramid-shaped tower as one of the symbols of San Francisco and the city's best-known skyscraper, rising at the end of Columbus Avenue.
+
+- **Hours:** (<https://transamericapyramid.com/visit-us>, <https://downtownsf.org/do/exhibition-stratagems-by-tara-donovan>) Hours are for the public exhibitions/Annex gallery (daily 10am-5pm); Redwood Park is open sunrise to sunset. Office tower itself is not open to visitors. Homepage notes the Time Capsule exhibit is temporarily closed.
+  - Mon–Sun: 10 AM–5 PM
 
 ### Place research
 
@@ -3370,6 +3823,11 @@ Bar · Mission · 3010 20th St, San Francisco, CA 94110 · Kirissa’s pick
 
 **Known for:** Rotating thematic cocktail menus (high confidence). Imbibe and official site: twice-yearly conceptual menus are the bar’s signature—not one permanent drink.
 
+- **Hours:** (<https://www.yelp.com/biz/trick-dog-san-francisco>, <https://barmagazine.com/bars/trick-dog>) The official site (trickdogbar.com) only shows Fri-Sat 4pm-2am (food until midnight), which matches. Sun-Thu 4pm-midnight comes from Yelp (Apr 2026) and BarMagazine.
+  - Mon–Thu: 4 PM–midnight
+  - Fri–Sat: 4 PM–2 AM
+  - Sun: 4 PM–midnight
+
 ### Place research
 
 - **Neighborhood and street:** Mission. On 20th Street near Florida Street in the northeast Mission's former light-industrial blocks, sandwiched between the Sightglass building and Penny Roma. True Laurel and Farmhouse Kitchen are within a block.
@@ -3401,6 +3859,14 @@ Bar · Mission · 753 Alabama St, San Francisco, CA 94110 · Our pick
 
 **Known for:** Mai O Mai.
 
+- **Hours:** (<https://www.truelaurelsf.com/>, <https://sf.eater.com/venue/106410/true-laurel>) Closed Monday. Weekend brunch runs 11am-3pm.
+  - Mon: closed
+  - Tue–Wed: 4 PM–10 PM
+  - Thu: 4 PM–11 PM
+  - Fri: 4 PM–midnight
+  - Sat: 11 AM–midnight
+  - Sun: 11 AM–10 PM
+
 ### Place research
 
 - **Neighborhood and street:** Mission. On Alabama Street near the 20th Street corner in the northeast Mission, around the corner from Trick Dog and Penny Roma. A large sidewalk and parklet patio stretches along the frontage.
@@ -3429,6 +3895,9 @@ Bar · Mission · 753 Alabama St, San Francisco, CA 94110 · Our pick
 Sight · Twin Peaks · 100 Christmas Tree Point Rd, San Francisco, CA 94131
 
 **Known for:** Panoramic view down Market Street to downtown and the Bay (high confidence). SF Rec & Park describes visitors coming to the north-peak lot for 180-degree Bay Area views, and SFGATE notes that the peaks sit at the far end of Market Street's diagonal line from the Ferry Building.
+
+- **Hours:** (<https://sfrecpark.org/Facilities/Facility/Details/Twin-Peaks-384>, <https://travel.usnews.com/San_Francisco_CA/Things_To_Do/Twin_Peaks_62980/>) SF Rec & Park: park hours 5am to midnight (sfrecpark lists address 501 Twin Peaks Blvd).
+  - Mon–Sun: 5 AM–midnight
 
 ### Place research
 
@@ -3464,6 +3933,13 @@ Bar · Outer Sunset · 3821 Noriega St, San Francisco, CA 94122
 
 **Known for:** $3 Baseline Lager (Ocean Beach taproom) (high confidence). SFGATE, Infatuation, and official site: Outer Sunset taproom known for cheap Baseline Lager; food from Maillards on-site.
 
+- **Hours:** (<https://www.twopitchers.com/oceanbeach>, <https://fr.yelp.ca/biz/two-pitchers-brewing-san-francisco>) This is the Ocean Beach taproom. SFGATE lists the same hours.
+  - Mon–Tue: closed
+  - Wed–Thu: 4 PM–10 PM
+  - Fri: 4 PM–11 PM
+  - Sat: noon–11 PM
+  - Sun: noon–9 PM
+
 ### Place research
 
 - **Neighborhood and street:** Outer Sunset. Mid-block on the Noriega Street commercial strip between 45th and 46th avenues, a few blocks from Ocean Beach. Devil's Teeth Baking Company is across the street and Gus's Community Market is a block east at 44th; a parklet with benches sits at the curb out front.
@@ -3496,6 +3972,13 @@ Wine · Jackson Square · 550 Washington St, San Francisco, CA 94111 · Favorite
 
 **Known for:** Omelet.
 
+- **Hours:** (<https://www.verjuscave.com/>, <https://www.verjuscave.com/upcoming-events>) Full menu until 10pm; bar snacks until 11pm Fri-Sat. Star Wine List shows slightly different Thu/Fri opening times; official site used.
+  - Mon: closed
+  - Tue–Thu: 4 PM–10 PM
+  - Fri: 4 PM–11 PM
+  - Sat: 11:30 AM–11 PM
+  - Sun: closed
+
 ### Place research
 
 - **Neighborhood and street:** Jackson Square. Corner of Washington Street and Hotaling Place, a one-block lane called San Francisco's oldest alley, in the Jackson Square historic district, directly across Washington from the Transamerica Pyramid. It fills two joined storefronts.
@@ -3526,6 +4009,13 @@ Wine · North Beach · 1609 Powell St, San Francisco, CA 94133
 
 **Known for:** Curated wine list + live jazz nights (high confidence). Official About/calendar: Causwells wine director’s list plus live jazz in North Beach.
 
+- **Hours:** (<https://www.waystonesf.com/>, <https://maps.apple.com/place?place-id=IBABA74ACB3D93CDA>) Restaurantji lists Fri close at 11pm; official site and Apple Maps say midnight.
+  - Mon–Wed: 4 PM–10 PM
+  - Thu: 4 PM–11 PM
+  - Fri: 4 PM–midnight
+  - Sat: 4 PM–11 PM
+  - Sun: 4 PM–10 PM
+
 ### Place research
 
 - **Neighborhood and street:** North Beach. On Powell Street near Green in North Beach, one door from the corner laundromat at Green and Powell (Lily Laundromat, 1601 Powell) and a block south of Washington Square; a heated, covered parklet out front extends the room into the street.
@@ -3554,6 +4044,10 @@ Wine · North Beach · 1609 Powell St, San Francisco, CA 94133
 Shop · Jackson Square · 804 Montgomery St, San Francisco, CA 94133
 
 **Known for:** Architecture and design books (high confidence). The shop's About page and SF Heritage describe it as one of only three US bookstores dedicated to architecture and design, stocking everything from rare books to contemporary monographs.
+
+- **Hours:** (<https://stoutbooks.com/blogs/news>, <https://stoutbooks.com/pages/services>) Site-wide footer (seen on pages with Sept 2026 posts) says Mon-Sat 11:30am-6pm. The homepage 'New Shop Hours!' banner says 11am-6pm, and the FAQ page has an older schedule. The later 11:30 opening from the footer is used. Closed Sunday.
+  - Mon–Sat: 11:30 AM–6 PM
+  - Sun: closed
 
 ### Place research
 
@@ -3588,6 +4082,11 @@ Restaurant · Financial District · 49 Stevenson St, San Francisco, CA 94105 · 
 
 **Known for:** Pot stickers.
 
+- **Hours:** (<https://yanksing.com/locations/>, <https://www.opentable.com/yank-sing-stevenson-street>) The official site lists only Tuesday through Sunday, so Monday is recorded as closed. meetselect.com says it is also closed Tuesday, which conflicts with the official site and OpenTable. The Rincon Center (Spear St) location closed on Sep 20, 2026; this Stevenson St location remains open.
+  - Mon: closed
+  - Tue–Fri: 11 AM–3 PM
+  - Sat–Sun: 10 AM–3 PM
+
 ### Place research
 
 - **Neighborhood and street:** Financial District. On Stevenson Street, a narrow side street between Market and Mission, between First and Second Streets near Ecker Alley, at the base of downtown office towers.
@@ -3619,6 +4118,10 @@ Restaurant · Financial District · 49 Stevenson St, San Francisco, CA 94105 · 
 Bar · Haight-Ashbury · 1633 Haight St, San Francisco, CA 94117
 
 **Known for:** Gin martini (and the half-size “Bruno”) (high confidence). The city's Legacy Business Registry report, Time Out, and the SF Examiner all name the gin martini as the house signature, and the Examiner explains the smaller 'Bruno' pour named for the late owner.
+
+- **Hours:** (<https://www.yelp.com/biz/zam-zam-san-francisco>, <https://punchdrink.com/venues/aub-zam-zam/>) No official website; hours from claimed Yelp listing (Sept 2026), consistent with Restaurantji and PUNCH. Cash only.
+  - Mon–Fri: 3 PM–2 AM
+  - Sat–Sun: 1 PM–2 AM
 
 ### Place research
 

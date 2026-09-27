@@ -305,6 +305,28 @@ describe("data/places.json", () => {
     expect(byId("song-tea-and-ceramics")?.category).toBe("coffee");
   });
 
+  it("gives every place sourced hours, or says they're unknown", () => {
+    const time = /^([01]\d|2[0-3]):[0-5]\d$/;
+    for (const place of places) {
+      const hours = place.hours;
+      expect(hours, place.id).toBeDefined();
+      expect(["listed", "always", "unknown"], place.id).toContain(hours!.status);
+      if (hours!.status !== "unknown") expect(hours!.source, place.id).toMatch(/^https?:\/\//);
+      if (hours!.status === "listed") {
+        for (const day of ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const) {
+          for (const [open, close] of hours!.weekly![day]) {
+            expect(open, `${place.id} ${day}`).toMatch(time);
+            expect(close, `${place.id} ${day}`).toMatch(time);
+          }
+        }
+      }
+    }
+    // Sully's own site: noon to 2 AM daily.
+    expect(places.find((p) => p.id === "sullys-marina-lounge")?.hours?.weekly?.fri).toEqual([["12:00", "02:00"]]);
+    // Reported closed for good, kept in the guide until Andy decides.
+    expect(places.find((p) => p.id === "limon-rotisserie")?.hours).toMatchObject({ status: "unknown", closedPermanently: true });
+  });
+
   it("has unique ids", () => {
     expect(new Set(places.map((p) => p.id)).size).toBe(places.length);
   });

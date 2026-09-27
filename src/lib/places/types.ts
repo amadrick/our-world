@@ -1,3 +1,5 @@
+import type { PlaceHours } from "./hours";
+
 export const CATEGORY_IDS = [
   "restaurant",
   "bar",
@@ -90,6 +92,8 @@ export interface Place {
   image?: string;
   /** The detail page's background, sampled from the image when it's saved, e.g. "#3b2a20". */
   imageColor?: string;
+  /** Opening hours from a public listing, or "unknown"; see src/lib/places/hours.ts. */
+  hours?: PlaceHours;
   createdAt: string;
   updatedAt?: string;
 }

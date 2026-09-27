@@ -4,6 +4,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  Clock,
   Copy,
   Map as MapIcon,
   MapPin,
@@ -22,6 +23,7 @@ import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
 import { formatDrive } from "@/lib/geo/drive-times";
+import { hoursLine, openState } from "@/lib/places/hours";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
 import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
 import type { StepDirection } from "@/lib/places/swipe";
@@ -479,11 +481,38 @@ export function DriveTime({ seconds, className }: { seconds?: number | null; cla
 }
 
 /**
+ * The sheet's third line, kept even when empty: the hours ("Open now · closes 10 PM"),
+ * then the drive time once the reader's location is known.
+ */
+function MetaLine({ place, drive, now, className }: { place: Place; drive?: number | null; now?: Date; className?: string }) {
+  return (
+    <p className={cn("flex h-6 min-w-0 items-center gap-2 text-base font-medium text-white/75", className)}>
+      {now && (
+        <>
+          <Clock size={16} className="shrink-0" aria-hidden />
+          <span className="truncate">{hoursLine(openState(place.hours, now), now)}</span>
+        </>
+      )}
+      {drive != null && (
+        <>
+          {now && <span aria-hidden className="shrink-0">·</span>}
+          <CarGlyph />
+          <span className="shrink-0">
+            {formatDrive(drive).replace(/ drive$/, "")}
+            <span className="sr-only"> drive</span>
+          </span>
+        </>
+      )}
+    </p>
+  );
+}
+
+/**
  * The phone sheet's title block, on a fixed grid: the pick chip and a name of up to
  * two lines settle onto the same baseline, then the category and drive lines, so every
  * place's title, meta, and buttons land at the same height.
  */
-function SheetHeading({ place, drive }: { place: Place; drive?: number | null }) {
+function SheetHeading({ place, drive, now }: { place: Place; drive?: number | null; now?: Date }) {
   const label = pickLabel(place.pickBy);
   return (
     <header className="[text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
@@ -495,7 +524,7 @@ function SheetHeading({ place, drive }: { place: Place; drive?: number | null })
         <CategoryIcon category={place.category} size={16} className="shrink-0" />
         <span className="truncate">{placeWhere(place)}</span>
       </p>
-      <DriveTime seconds={drive} className="mt-1" />
+      <MetaLine place={place} drive={drive} now={now} className="mt-1" />
     </header>
   );
 }
@@ -570,6 +599,8 @@ interface PlaceDetailProps {
   slides?: PlaceSlide[];
   /** Driving time from the reader, in seconds, by place id; missing until the location is known. */
   driveTimes?: Readonly<Record<string, number>> | null;
+  /** The time in San Francisco, for the hours line. */
+  now?: Date;
 }
 
 export function PlaceDetail({
@@ -582,6 +613,7 @@ export function PlaceDetail({
   swiped = false,
   slides,
   driveTimes,
+  now,
 }: PlaceDetailProps) {
   const color = placeColor(place);
   const page = variant === "page";
@@ -621,6 +653,12 @@ export function PlaceDetail({
           <CategoryIcon category={p.category} size={16} />
           {placeWhere(p)}
         </p>
+        {now && (
+          <p className="flex items-center gap-2 text-base font-medium text-white/75">
+            <Clock size={16} className="shrink-0" aria-hidden />
+            {hoursLine(openState(p.hours, now), now)}
+          </p>
+        )}
         {drive != null && <DriveTime seconds={drive} />}
       </header>
     );
@@ -655,7 +693,7 @@ export function PlaceDetail({
           className={cn("relative space-y-6 pb-8", rail ? "-mt-20 px-6" : "-mt-16 px-5")}
         >
           <div {...item(0)}>
-            {rail ? header : <SheetHeading place={place} drive={driveTimes?.[place.id]} />}
+            {rail ? header : <SheetHeading place={place} drive={driveTimes?.[place.id]} now={now} />}
           </div>
           <div {...item(1)} data-sheet-fold={rail ? undefined : true}>
             <PlaceActions place={place} />
@@ -702,7 +740,7 @@ export function PlaceDetail({
               </div>
               <div className="relative -mt-16 px-5 pb-8">
                 <div {...motion(0)}>
-                  <SheetHeading place={slide.place} drive={driveTimes?.[slide.place.id]} />
+                  <SheetHeading place={slide.place} drive={driveTimes?.[slide.place.id]} now={now} />
                 </div>
                 <div {...motion(1)} className={cn("mt-6", motion(1).className)} data-sheet-fold={active || undefined}>
                   <PlaceActions place={slide.place} />

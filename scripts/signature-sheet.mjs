@@ -43,6 +43,45 @@ const CATEGORY_LABEL = {
   park: "Park",
 };
 
+const WEEK = [
+  ["mon", "Mon"],
+  ["tue", "Tue"],
+  ["wed", "Wed"],
+  ["thu", "Thu"],
+  ["fri", "Fri"],
+  ["sat", "Sat"],
+  ["sun", "Sun"],
+];
+
+function clock(time) {
+  const [h, m] = time.split(":").map(Number);
+  if (h === 0 && m === 0) return "midnight";
+  if (h === 12 && m === 0) return "noon";
+  return `${h % 12 || 12}${m ? `:${String(m).padStart(2, "0")}` : ""} ${h < 12 ? "AM" : "PM"}`;
+}
+
+/** "Mon–Thu 11:30 AM–2 AM", with runs of days that share hours grouped. */
+function hoursMarkdown(hours) {
+  if (!hours) return ["- **Hours:** not checked yet"];
+  const source = hours.source ? ` (<${hours.source}>${hours.confirmedBy ? `, <${hours.confirmedBy}>` : ""})` : "";
+  const note = hours.note ? ` ${hours.note}` : "";
+  if (hours.closedPermanently) return [`- **Hours:** reported permanently closed${source}.${note}`];
+  if (hours.status === "always") return [`- **Hours:** open 24 hours${source}.${note}`];
+  if (hours.status !== "listed" || !hours.weekly) return [`- **Hours:** unknown.${note}`];
+  const text = (day) => {
+    const intervals = hours.weekly[day] ?? [];
+    return intervals.length ? intervals.map(([o, c]) => `${clock(o)}–${clock(c)}`).join(", ") : "closed";
+  };
+  const runs = [];
+  for (const [day, label] of WEEK) {
+    const last = runs[runs.length - 1];
+    if (last && last.text === text(day)) last.to = label;
+    else runs.push({ from: label, to: label, text: text(day) });
+  }
+  const lines = runs.map((r) => `  - ${r.from === r.to ? r.from : `${r.from}–${r.to}`}: ${r.text}`);
+  return [`- **Hours:**${source}${note}`, ...lines];
+}
+
 function placeMarkdown(place, entry) {
   const r = place.placeResearch;
   const out = [`## ${place.name}`, ""];
@@ -65,6 +104,7 @@ function placeMarkdown(place, entry) {
     const rationale = place.signatureRationale ?? "";
     out.push(`**Known for:** ${place.signatureSubject}${confidence}. ${rationale}`.trim(), "");
   }
+  out.push(...hoursMarkdown(place.hours), "");
   out.push("### Place research", "");
   if (!r) {
     out.push("Not researched yet. Run `npm run research -- " + place.id + "`.", "");
