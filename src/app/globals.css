@@ -601,26 +601,6 @@
 body .maplibregl-map {
   font: inherit;
 }
-body .maplibregl-ctrl-bottom-right {
-  margin: 0 12px 12px 0;
-}
-body .maplibregl-ctrl-attrib {
-  font-size: 12px;
-  color: var(--muted-foreground);
-  background: var(--surface) !important;
-  border-radius: 9999px;
-  box-shadow: var(--shadow-float);
-  margin: 0 !important;
-}
-.maplibregl-ctrl-attrib a {
-  color: var(--muted-foreground) !important;
-}
-/* Phones: keep the attribution clear of the floating List | Map switch. */
-@media (max-width: 1023px) {
-  body .maplibregl-ctrl-bottom-right {
-    bottom: calc(max(env(safe-area-inset-bottom), 16px) + 64px);
-  }
-}
 /* The reader's position, as in Apple Maps: a white-ringed blue dot in a soft accuracy halo, under every pin. */
 .maplibregl-marker.user-location {
   z-index: 0;

@@ -125,6 +125,27 @@ function LocationNotice({ message, onDismiss, top }: { message: string; onDismis
   );
 }
 
+/** The map data's credit, kept off the map: at the end of the list and the desktop rail. */
+function MapCredit({ className }: { className?: string }) {
+  return (
+    <p className={cn("text-xs text-muted-foreground/80", className)}>
+      Map data ©{" "}
+      <a
+        href="https://www.openstreetmap.org/copyright"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline-offset-2 hover:underline"
+      >
+        OpenStreetMap
+      </a>{" "}
+      contributors ·{" "}
+      <a href="https://protomaps.com" target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
+        Protomaps
+      </a>
+    </p>
+  );
+}
+
 function ResultsSummary({
   count,
   filtersActive,
@@ -389,7 +410,8 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
   useEffect(() => {
     if (here.status !== "on" && here.status !== "locating") locateWhenFound.current = false;
   }, [here.status]);
-  const notice = locationMessage(here.status);
+  // Location is asked for on load; only a locate tap earns a message about it.
+  const notice = here.asked ? locationMessage(here.status) : null;
 
   const select = useCallback((id: string) => {
     setStepping(null);
@@ -508,6 +530,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           </header>
           <div className="overlay-scroll-y min-h-0 flex-1 px-3 pt-1 pb-6">
             <PlaceList variant="rows" {...listProps} />
+            <MapCredit className="mt-6 px-3" />
           </div>
         </div>
         {selected && (
@@ -651,6 +674,7 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
                 {...listProps}
               />
             </div>
+            <MapCredit className="mt-12 text-center" />
           </div>
         </div>
         {listMode && selected && (

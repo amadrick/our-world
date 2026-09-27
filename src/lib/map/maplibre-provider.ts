@@ -81,7 +81,8 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
     minZoom: 8,
     maxZoom: 18.5,
     maxPitch: theme.pitch ? 60 : 0,
-    attributionControl: { compact: true },
+    // Nothing is drawn over the map; the data credit lives in the list and the rail (MapCredit).
+    attributionControl: false,
     dragRotate: false,
     pitchWithRotate: false,
     touchPitch: theme.pitch > 0,
