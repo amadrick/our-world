@@ -238,7 +238,7 @@
     --glass-fill-hover: rgb(255 255 255 / 0.14);
   }
   .glass.glass-luminous {
-    --_tint: rgb(18 18 20 / 0.58);
+    --_tint: rgb(18 18 20 / 0.42);
     --glass-brightness: 1.08;
     --glass-rim: rgb(255 255 255 / 0.42);
     color: #fff;
@@ -305,30 +305,6 @@
   .overlay-scroll-y {
     overflow-y: overlay;
   }
-}
-
-/* Horizontal rows fade out only on the side that has more to scroll (ScrollRow sets the attributes). */
-@utility scroll-fade-x {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    black var(--fade-start, 0px),
-    black calc(100% - var(--fade-end, 0px)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    black var(--fade-start, 0px),
-    black calc(100% - var(--fade-end, 0px)),
-    transparent 100%
-  );
-}
-[data-fade-start] {
-  --fade-start: 48px;
-}
-[data-fade-end] {
-  --fade-end: 48px;
 }
 
 /* A fine printed dot screen, so a picture-less tile reads as deliberate paper rather than a gap. */
@@ -466,10 +442,10 @@
 
   /* Pills floating on the map or on photos: brighter frost, a lit rim, a soft shadow. */
   .glass.glass-luminous {
-    --_tint: rgb(255 255 255 / 0.62);
-    --glass-brightness: 1.18;
-    --glass-blur: 18px;
-    --glass-saturation: 185%;
+    --_tint: rgb(255 255 255 / 0.4);
+    --glass-brightness: 1.12;
+    --glass-blur: 14px;
+    --glass-saturation: 190%;
     color: var(--ink);
     box-shadow:
       0 10px 28px -12px rgb(0 0 0 / 0.55),
@@ -1005,6 +981,26 @@ body .maplibregl-map {
 .swipe-track {
   --swipe-gap: 8px;
   transform: translate3d(var(--swipe-x, 0px), 0, 0);
+  /*
+   * Always its own layer: Safari otherwise promotes the track when a slide
+   * starts and flattens it when it ends, re-rendering the text both times,
+   * which reads as the title and buttons blurring in after the swipe.
+   */
+  will-change: transform;
+}
+/*
+ * Nothing on a sliding page samples what's behind it. Safari doesn't redraw a
+ * backdrop blur while its layer moves, so blurs on a page pop in once it
+ * settles. The pages are opaque color anyway: the photo dissolve keeps its
+ * color gradient, and chips and buttons get a plain translucent fill.
+ */
+.swipe-track .progressive-blur {
+  display: none;
+}
+.swipe-track .glass-tinted {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: rgb(255 255 255 / 0.18);
 }
 .swipe-slide {
   position: absolute;
