@@ -29,7 +29,6 @@ import { BottomSheet, SHEET_EXIT_MS, type SheetSnap } from "./bottom-sheet";
 import { FilterBar } from "./filter-bar";
 import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
-import { ListBackdrop } from "./list-backdrop";
 import {
   PHOTO_SIZES,
   PlaceActions,
@@ -646,7 +645,6 @@ export function Explorer({ places, initialPlaceId = null }: ExplorerProps) {
           }
         >
           <header ref={listHeaderRef} className="relative">
-            <ListBackdrop places={places} />
             <div className="relative mx-auto max-w-7xl px-5 pt-[max(env(safe-area-inset-top),28px)] pb-2 lg:px-10 lg:pt-14">
               <h1 className="text-xl font-semibold text-balance lg:text-2xl">{site.title}</h1>
               <p className="mt-2 max-w-2xl text-base text-balance text-ink/80">
