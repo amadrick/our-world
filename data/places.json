@@ -5289,7 +5289,9 @@
           "https://www.openstreetmap.org/#map=19/37.80073/-122.43869"
         ],
         "unverified": "Researched without web access, from the bar's verified basics (address, opening year, hours, jukebox, pool table, big games) and OpenStreetMap, which maps the bar as \"Marina Lounge\" at this point. The facade, sign, colors, materials and room layout are unverified, so these notes describe only the pool table, jukebox and game TVs. No signature was researched."
-      }
+      },
+      "image": "/places/sullys-marina-lounge-49a0b2c1.webp",
+      "imageColor": "#7f3203"
     }
   ]
 }
