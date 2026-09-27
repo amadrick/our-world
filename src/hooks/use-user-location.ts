@@ -22,17 +22,39 @@ export type LocationStatus =
 interface LocationState {
   status: LocationStatus;
   position: UserPosition | null;
+  /** The reader tapped locate since the last notice, so a problem is worth telling them about. */
+  asked: boolean;
 }
 
 const WATCH_OPTIONS: PositionOptions = { enableHighAccuracy: true, maximumAge: 15000, timeout: 20000 };
+/** A denial is remembered for the session, so a reload doesn't ask again. */
+const DENIED_KEY = "location-denied";
+
+function rememberDenied(denied: boolean) {
+  try {
+    if (denied) sessionStorage.setItem(DENIED_KEY, "1");
+    else sessionStorage.removeItem(DENIED_KEY);
+  } catch {
+    // Storage can be off (private modes); then the browser's own answer is all there is.
+  }
+}
+
+function deniedThisSession() {
+  try {
+    return sessionStorage.getItem(DENIED_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 
 /**
- * The reader's position, kept current with watchPosition. Browsers only ask for
- * permission from a user gesture, so `start` belongs in a tap handler; if the site
- * is already allowed, watching starts on its own and nothing is asked.
+ * The reader's position, kept current with watchPosition. Watching starts as the
+ * explorer loads, so Safari asks right away and the dot and drive times can show
+ * without a tap; a denial on load stays quiet and isn't asked again this session.
+ * `start` is the locate button: it asks again and reports problems.
  */
 export function useUserLocation() {
-  const [state, setState] = useState<LocationState>({ status: "off", position: null });
+  const [state, setState] = useState<LocationState>({ status: "off", position: null, asked: false });
   const watchId = useRef<number | null>(null);
 
   const stop = useCallback(() => {
@@ -40,24 +62,23 @@ export function useUserLocation() {
     watchId.current = null;
   }, []);
 
-  const start = useCallback(() => {
-    if (!window.isSecureContext) return setState((s) => ({ ...s, status: "insecure" }));
-    if (!("geolocation" in navigator)) return setState((s) => ({ ...s, status: "unsupported" }));
-    if (watchId.current !== null) {
-      setState((s) => (s.position ? s : { ...s, status: "locating" }));
-      return;
-    }
-    setState((s) => ({ ...s, status: s.position ? "on" : "locating" }));
+  // Only registers the watch; every state change comes from its callbacks.
+  const watch = useCallback(() => {
+    if (watchId.current !== null || !window.isSecureContext || !("geolocation" in navigator)) return;
     watchId.current = navigator.geolocation.watchPosition(
-      ({ coords }) =>
+      ({ coords }) => {
+        rememberDenied(false);
         setState({
           status: "on",
           position: { lat: coords.latitude, lng: coords.longitude, accuracy: coords.accuracy },
-        }),
+          asked: false,
+        });
+      },
       (error) => {
         if (error.code === error.PERMISSION_DENIED) {
           stop();
-          setState({ status: "denied", position: null });
+          rememberDenied(true);
+          setState((s) => ({ status: "denied", position: null, asked: s.asked }));
           return;
         }
         // A slow or lost fix keeps the last known dot; the watch keeps trying.
@@ -69,14 +90,23 @@ export function useUserLocation() {
     );
   }, [stop]);
 
+  /** The locate button: asks again if needed, and any problem from here on is shown. */
+  const start = useCallback(() => {
+    if (!window.isSecureContext) return setState((s) => ({ ...s, status: "insecure", asked: true }));
+    if (!("geolocation" in navigator)) return setState((s) => ({ ...s, status: "unsupported", asked: true }));
+    setState((s) => ({ ...s, status: s.position ? "on" : "locating", asked: true }));
+    watch();
+  }, [watch]);
+
   useEffect(() => {
     let cancelled = false;
     let permission: PermissionStatus | null = null;
     const onChange = () => {
-      if (permission?.state === "granted") start();
+      if (permission?.state === "granted") watch();
       if (permission?.state === "denied") {
         stop();
-        setState({ status: "denied", position: null });
+        rememberDenied(true);
+        setState((s) => ({ ...s, status: "denied", position: null }));
       }
     };
     navigator.permissions
@@ -85,20 +115,17 @@ export function useUserLocation() {
         if (cancelled) return;
         permission = result;
         result.addEventListener("change", onChange);
-        if (result.state === "granted") start();
       })
       .catch(() => {});
+    if (!deniedThisSession()) watch();
     return () => {
       cancelled = true;
       permission?.removeEventListener("change", onChange);
       stop();
     };
-  }, [start, stop]);
+  }, [watch, stop]);
 
-  const dismiss = useCallback(
-    () => setState((s) => (s.status === "on" || s.status === "locating" ? s : { ...s, status: s.position ? "on" : "off" })),
-    [],
-  );
+  const dismiss = useCallback(() => setState((s) => ({ ...s, asked: false })), []);
 
   return { ...state, start, dismiss };
 }
