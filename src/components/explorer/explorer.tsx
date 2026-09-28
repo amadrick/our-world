@@ -7,6 +7,7 @@ import { site } from "@/config/site";
 import { useClocks } from "@/hooks/use-clock";
 import { useDriveTimes } from "@/hooks/use-drive-times";
 import { estimateTravel, trafficPeriod } from "@/lib/geo/travel-estimate";
+import { RUBBER_CAMERA } from "@/lib/map/swipe-camera";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
 import { locationMessage, useUserLocation, type LocationStatus } from "@/hooks/use-user-location";
 import { useSortMode } from "@/hooks/use-sort-mode";
@@ -380,6 +381,12 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     hasPrev: prevReady,
     hasNext: nextReady,
     onStep: (direction) => step(direction, true),
+    // The map pans (and for a far neighbor, dips out) with the card; past a place that isn't ready it only leans.
+    onDrag: (direction, p, open) => {
+      const target = direction === 1 ? next : prev;
+      mapRef.current?.swipeCamera(target?.id ?? null, open ? p : p * RUBBER_CAMERA);
+    },
+    onRelease: (_direction, to, durationMs) => mapRef.current?.settleSwipeCamera(to, durationMs),
   });
   useLayoutEffect(() => {
     const fold = sheetSwipeRef.current?.querySelector<HTMLElement>("[data-sheet-fold]");

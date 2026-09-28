@@ -4,11 +4,9 @@ import { useEffect, useEffectEvent, type RefObject } from "react";
 import { flushSync } from "react-dom";
 
 import { endGesture, gestureAxis } from "@/lib/gesture-axis";
+import { settleDuration } from "@/lib/map/swipe-camera";
 import { swipeOffset, swipeOutcome, type StepDirection } from "@/lib/places/swipe";
 
-/** How long a committed swipe pages to the neighbor, and how long a short one eases back. */
-const OUT_MS = 520;
-const BACK_MS = 440;
 /** Velocity is measured over the last stretch of the drag, ms. */
 const VELOCITY_WINDOW = 100;
 
@@ -17,6 +15,14 @@ interface SwipeOptions {
   hasPrev: boolean;
   hasNext: boolean;
   onStep: (direction: StepDirection) => void;
+  /**
+   * The drag's progress toward a neighbor, every move: `direction` is where the
+   * card is headed, `p` the share of a page it has covered (rubber-banded past the
+   * last ready neighbor), `open` whether that neighbor can be swiped to.
+   */
+  onDrag?: (direction: StepDirection, p: number, open: boolean) => void;
+  /** Let go: the rest of the way (`to` 1 commits, 0 goes back) takes `durationMs`, on the shared curve. */
+  onRelease?: (direction: StepDirection, to: 0 | 1, durationMs: number) => void;
 }
 
 const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -32,10 +38,12 @@ const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)"
  */
 export function useSwipeBetween(
   ref: RefObject<HTMLElement | null>,
-  { enabled, hasPrev, hasNext, onStep }: SwipeOptions,
+  { enabled, hasPrev, hasNext, onStep, onDrag, onRelease }: SwipeOptions,
 ) {
   const neighbors = useEffectEvent(() => ({ hasPrev, hasNext }));
   const step = useEffectEvent((direction: StepDirection) => onStep(direction));
+  const dragged = useEffectEvent((direction: StepDirection, p: number, open: boolean) => onDrag?.(direction, p, open));
+  const released = useEffectEvent((direction: StepDirection, to: 0 | 1, ms: number) => onRelease?.(direction, to, ms));
 
   useEffect(() => {
     const el = ref.current;
@@ -48,16 +56,21 @@ export function useSwipeBetween(
     const reset = () => {
       el.removeAttribute("data-swipe");
       el.style.removeProperty("--swipe-x");
+      el.style.removeProperty("--swipe-ms");
     };
 
-    const settle = (direction: StepDirection | 0, width: number) => {
+    // The card and the map share one curve and one duration, scaled by what's left of the page.
+    const settle = (direction: StepDirection | 0, width: number, toward: StepDirection, covered: number) => {
       const reduced = reducedMotion();
       if (direction === 0) {
+        const ms = settleDuration(covered);
+        released(toward, 0, reduced ? 0 : ms);
         if (reduced) return reset();
+        el.style.setProperty("--swipe-ms", `${ms}ms`);
         el.dataset.swipe = "back";
         void el.offsetWidth;
         show(0);
-        timer = window.setTimeout(reset, BACK_MS);
+        timer = window.setTimeout(reset, ms);
         return;
       }
       // Page the track fully across, then swap. The neighbor page is already
@@ -66,11 +79,14 @@ export function useSwipeBetween(
         flushSync(() => step(direction));
         reset();
       };
+      const ms = settleDuration(1 - (toward === direction ? covered : 0));
+      released(direction, 1, reduced ? 0 : ms);
       if (reduced) return commit();
+      el.style.setProperty("--swipe-ms", `${ms}ms`);
       el.dataset.swipe = "out";
       void el.offsetWidth;
       show(-direction * width);
-      timer = window.setTimeout(commit, OUT_MS);
+      timer = window.setTimeout(commit, ms);
     };
 
     const onPointerDown = (down: PointerEvent) => {
@@ -86,6 +102,8 @@ export function useSwipeBetween(
       const g = {
         axis: null as "x" | "y" | null,
         dx: 0,
+        toward: 1 as StepDirection,
+        covered: 0,
         samples: [[down.timeStamp, down.clientX]] as [time: number, x: number][],
       };
 
@@ -109,7 +127,13 @@ export function useSwipeBetween(
         g.samples.push([move.timeStamp, move.clientX]);
         while (g.samples.length > 2 && move.timeStamp - g.samples[0][0] > VELOCITY_WINDOW) g.samples.shift();
         const { hasPrev: prev, hasNext: next } = neighbors();
-        show(swipeOffset(dx, width, prev, next));
+        const offset = swipeOffset(dx, width, prev, next);
+        show(offset);
+        // Left is toward the next place.
+        const toward: StepDirection = offset < 0 ? 1 : -1;
+        g.toward = toward;
+        g.covered = Math.min(Math.abs(offset) / width, 1);
+        if (!reducedMotion()) dragged(toward, g.covered, toward === 1 ? next : prev);
       };
       const onEnd = (end: PointerEvent) => {
         if (end.pointerId !== down.pointerId) return;
@@ -132,7 +156,7 @@ export function useSwipeBetween(
           end.type === "pointercancel"
             ? 0
             : swipeOutcome({ dx: g.dx, velocity, width, hasPrev: prev, hasNext: next });
-        settle(direction, width);
+        settle(direction, width, g.toward, g.covered);
       };
 
       window.addEventListener("pointermove", onMove);

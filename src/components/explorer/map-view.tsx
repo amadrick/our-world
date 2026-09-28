@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 
 import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from "@/lib/map";
 import { resolveTap, type ShownPin, type TapResult } from "@/lib/map/pin-hit";
+import { cameraAt, planSwipeCamera, swipeEase, type Camera, type SwipePlan } from "@/lib/map/swipe-camera";
 import { layoutPins, type PinDisplay } from "@/lib/map/pin-layout";
 import { APPLE_PINS, estimateText, pinKind, pinPalette, type PinPalette } from "@/lib/map/pin-style";
 import { currentMapTheme } from "@/lib/map/theme";
@@ -28,6 +29,13 @@ export interface MapViewHandle {
   focusSelected: () => void;
   /** Centers the reader's position, clear of the sheet and the pills. */
   locate: (position: UserPosition) => void;
+  /**
+   * The swipe between places drives the camera: `p` is how far the card has gone
+   * toward the neighbor `toId` (0–1), or null when there's no neighbor that way.
+   */
+  swipeCamera: (toId: string | null, p: number) => void;
+  /** The swipe was let go: ease what's left to `p` (1 lands on the neighbor, 0 goes back) in `durationMs`. */
+  settleSwipeCamera: (p: number, durationMs: number) => void;
 }
 
 interface MapViewProps {
@@ -337,14 +345,71 @@ export function MapView({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fitKey, status]);
 
+  // The camera during a swipe between places (see swipeCamera below).
+  const swipeRef = useRef<{ start: Camera; toId: string | null; plan: SwipePlan | null; p: number } | null>(null);
+  const swipeFrame = useRef(0);
+  const landedRef = useRef<string | null>(null);
+
   const focusSelected = useEffectEvent(() => {
     const place = places.find((p) => p.id === selectedId);
+    // A swipe already flew the camera here with the card; don't fly again.
+    if (landedRef.current && landedRef.current === selectedId) {
+      landedRef.current = null;
+      return;
+    }
+    landedRef.current = null;
     if (place) instanceRef.current?.focus(place, { minZoom: 14.5, glide });
   });
 
   useEffect(() => {
     if (status === "ready" && selectedId) focusSelected();
   }, [selectedId, status]);
+
+  // The camera during a swipe between places: planned once from where the map is, then
+  // scrubbed with the card (one jumpTo per frame) and eased with it on release.
+  const applySwipe = () => {
+    swipeFrame.current = 0;
+    const swipe = swipeRef.current;
+    const instance = instanceRef.current;
+    if (!swipe || !instance) return;
+    instance.jumpCamera(swipe.plan ? cameraAt(swipe.plan, swipe.p) : swipe.start);
+  };
+  const swipeCamera = (toId: string | null, p: number) => {
+    const instance = instanceRef.current;
+    if (!instance || status !== "ready") return;
+    if (!swipeRef.current) {
+      instance.stopCamera();
+      swipeRef.current = { start: instance.camera(), toId: null, plan: null, p: 0 };
+    }
+    const swipe = swipeRef.current;
+    if (toId !== swipe.toId) {
+      const from = places.find((place) => place.id === selectedId);
+      const to = toId ? places.find((place) => place.id === toId) : undefined;
+      swipe.toId = toId;
+      swipe.plan =
+        from && to ? planSwipeCamera({ start: swipe.start, from, to, view: { ...instance.size(), padding: instance.padding() } }) : null;
+    }
+    swipe.p = p;
+    swipeFrame.current ||= requestAnimationFrame(applySwipe);
+  };
+  const settleSwipeCamera = (target: number, durationMs: number) => {
+    const swipe = swipeRef.current;
+    if (!swipe) return;
+    cancelAnimationFrame(swipeFrame.current);
+    swipeFrame.current = 0;
+    const from = swipe.p;
+    const began = performance.now();
+    if (target === 1 && swipe.plan) landedRef.current = swipe.toId;
+    const tick = (now: number) => {
+      if (swipeRef.current !== swipe) return;
+      const t = durationMs > 0 ? Math.min((now - began) / durationMs, 1) : 1;
+      swipe.p = from + (target - from) * swipeEase(t);
+      applySwipe();
+      if (t < 1) swipeFrame.current = requestAnimationFrame(tick);
+      else swipeRef.current = null;
+    };
+    swipeFrame.current = requestAnimationFrame(tick);
+  };
 
   useImperativeHandle(
     ref,
@@ -357,8 +422,9 @@ export function MapView({
         if (place) instanceRef.current?.focus(place, { minZoom: 14.5 });
       },
       locate: (position) => instanceRef.current?.focus(position, { minZoom: 15 }),
+      swipeCamera,
+      settleSwipeCamera,
     }),
-    [places, selectedId],
   );
 
   return (

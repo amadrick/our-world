@@ -214,6 +214,19 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
     zoom() {
       return map.getZoom();
     },
+    camera() {
+      const { lng, lat } = map.getCenter();
+      return { lng, lat, zoom: map.getZoom() };
+    },
+    jumpCamera({ lng, lat, zoom }) {
+      map.jumpTo({ center: [lng, lat], zoom });
+    },
+    stopCamera() {
+      map.stop();
+    },
+    padding() {
+      return padding;
+    },
     setTint(color) {
       if (color === tint) return;
       tint = color;

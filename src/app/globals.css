@@ -1052,11 +1052,10 @@ body .maplibregl-map {
 [data-swipe="drag"] .swipe-track {
   transition: none;
 }
-[data-swipe="back"] .swipe-track {
-  transition: transform 440ms var(--ease-out-soft);
-}
+/* Released: the rest of the page on the same curve and in the same time as the map (--swipe-ms, set per release). */
+[data-swipe="back"] .swipe-track,
 [data-swipe="out"] .swipe-track {
-  transition: transform 520ms var(--ease-out-soft);
+  transition: transform var(--swipe-ms, 400ms) var(--ease-out-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {

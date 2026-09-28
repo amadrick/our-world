@@ -61,6 +61,14 @@ export interface MapInstance {
   /** The map's size on screen, in px. */
   size(): { width: number; height: number };
   zoom(): number;
+  /** Where the camera is now. */
+  camera(): { lng: number; lat: number; zoom: number };
+  /** Moves the camera at once, for a camera driven frame by frame (the swipe between places). */
+  jumpCamera(camera: { lng: number; lat: number; zoom: number }): void;
+  /** Stops any camera animation in flight. */
+  stopCamera(): void;
+  /** The screen covered by panels and sheets, as last set. */
+  padding(): MapPadding;
   /** Washes the whole basemap faintly in a color (an open place's), or back to neutral with null. */
   setTint(color: string | null): void;
   /** Where the pins are and what they show, so basemap labels keep out from under them. */
