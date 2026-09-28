@@ -122,6 +122,91 @@ const spacedCaps = {
   "text-max-width": 9,
 } as const;
 
+type LabelColors = Pick<FilmPalette, "water" | "waterLabel" | "streetLabel" | "parkLabel" | "hood" | "labelHalo">;
+
+/**
+ * Film's few labels: districts and water in spaced capitals, the Presidio,
+ * street names only up close. `crisp` draws them solid with a firm halo, for
+ * basemaps with more contrast than film's soft stone.
+ */
+export function filmLabels(C: LabelColors, halos: "soft" | "crisp" = "soft"): LayerSpecification[] {
+  const crisp = halos === "crisp";
+  return [
+    {
+      id: "water-label",
+      type: "symbol",
+      source: "basemap",
+      "source-layer": "water_name",
+      filter: ["all", ["==", ["geometry-type"], "Point"], classIn(["ocean", "sea", "bay"])],
+      layout: { ...spacedCaps, "text-field": shortName({ "San Francisco Bay": "SF Bay" }), "text-size": byZoom(10, 10.5, 13, 12, 15, 13) },
+      paint: { "text-color": C.waterLabel, "text-halo-color": halo(C.water, "99"), "text-halo-width": 1 },
+    },
+    {
+      id: "street-label",
+      type: "symbol",
+      source: "basemap",
+      "source-layer": "transportation_name",
+      minzoom: 15,
+      filter: ["all", classIn(["motorway", "trunk", "primary", "secondary", "tertiary", "minor"]), named],
+      layout: {
+        "text-field": ["get", "name"],
+        "text-font": FONT.medium,
+        "text-transform": "uppercase",
+        "text-size": byZoom(15, 9, 18, 10.5),
+        "text-letter-spacing": 0.14,
+        "symbol-placement": "line",
+        "text-padding": 20,
+      },
+      paint: {
+        "text-color": C.streetLabel,
+        "text-halo-color": halo(C.labelHalo, crisp ? "f2" : "cc"),
+        "text-halo-width": crisp ? 1.6 : 1.2,
+        "text-opacity": byZoom(15, 0, 15.6, crisp ? 1 : 0.85),
+      },
+    },
+    // The Presidio is named like a district, as in the reference; other parks go unlabeled.
+    {
+      id: "park-label",
+      type: "symbol",
+      source: "basemap",
+      "source-layer": "poi",
+      minzoom: 11.5,
+      maxzoom: 15,
+      filter: ["==", ["get", "name"], "Presidio of San Francisco"],
+      layout: { ...spacedCaps, "text-field": "Presidio", "text-size": byZoom(11, 10.5, 13, 12, 15, 13) },
+      paint: { "text-color": C.parkLabel },
+    },
+    {
+      id: "neighborhood-label",
+      type: "symbol",
+      source: "basemap",
+      "source-layer": "place",
+      minzoom: 11.5,
+      maxzoom: 16.5,
+      filter: [
+        "all",
+        classIn(["neighbourhood", "suburb", "quarter"]),
+        ["any", [">=", ["zoom"], 14], ["in", ["get", "name"], ["literal", Object.keys(DISTRICTS)]]],
+      ],
+      layout: {
+        ...spacedCaps,
+        "text-field": shortName(DISTRICTS),
+        "text-size": byZoom(11, 10.5, 13, 12, 15, 13),
+        "text-padding": 8,
+        "text-variable-anchor": ["center", "top", "bottom", "left", "right"],
+        "text-radial-offset": 1,
+        "text-justify": "auto",
+      },
+      paint: {
+        "text-color": C.hood,
+        "text-halo-color": halo(C.labelHalo, crisp ? "e6" : "80"),
+        "text-halo-width": crisp ? 1.5 : 1,
+        "text-opacity": byZoom(11.5, 0.8, 12.5, 1, 16, 1, 16.5, 0),
+      },
+    },
+  ];
+}
+
 export const film: MapTheme<FilmPalette> = {
   id: "film",
   label: "Film",
@@ -250,78 +335,7 @@ export const film: MapTheme<FilmPalette> = {
           "line-blur": 0.3,
         },
       })),
-      {
-        id: "water-label",
-        type: "symbol",
-        source: "basemap",
-        "source-layer": "water_name",
-        filter: ["all", ["==", ["geometry-type"], "Point"], classIn(["ocean", "sea", "bay"])],
-        layout: { ...spacedCaps, "text-field": shortName({ "San Francisco Bay": "SF Bay" }), "text-size": byZoom(10, 10.5, 13, 12, 15, 13) },
-        paint: { "text-color": C.waterLabel, "text-halo-color": halo(C.water, "99"), "text-halo-width": 1 },
-      },
-      {
-        id: "street-label",
-        type: "symbol",
-        source: "basemap",
-        "source-layer": "transportation_name",
-        minzoom: 15,
-        filter: ["all", classIn(["motorway", "trunk", "primary", "secondary", "tertiary", "minor"]), named],
-        layout: {
-          "text-field": ["get", "name"],
-          "text-font": FONT.medium,
-          "text-transform": "uppercase",
-          "text-size": byZoom(15, 9, 18, 10.5),
-          "text-letter-spacing": 0.14,
-          "symbol-placement": "line",
-          "text-padding": 20,
-        },
-        paint: {
-          "text-color": C.streetLabel,
-          "text-halo-color": halo(C.labelHalo, "cc"),
-          "text-halo-width": 1.2,
-          "text-opacity": byZoom(15, 0, 15.6, 0.85),
-        },
-      },
-      // The Presidio is named like a district, as in the reference; other parks go unlabeled.
-      {
-        id: "park-label",
-        type: "symbol",
-        source: "basemap",
-        "source-layer": "poi",
-        minzoom: 11.5,
-        maxzoom: 15,
-        filter: ["==", ["get", "name"], "Presidio of San Francisco"],
-        layout: { ...spacedCaps, "text-field": "Presidio", "text-size": byZoom(11, 10.5, 13, 12, 15, 13) },
-        paint: { "text-color": C.parkLabel },
-      },
-      {
-        id: "neighborhood-label",
-        type: "symbol",
-        source: "basemap",
-        "source-layer": "place",
-        minzoom: 11.5,
-        maxzoom: 16.5,
-        filter: [
-          "all",
-          classIn(["neighbourhood", "suburb", "quarter"]),
-          ["any", [">=", ["zoom"], 14], ["in", ["get", "name"], ["literal", Object.keys(DISTRICTS)]]],
-        ],
-        layout: {
-          ...spacedCaps,
-          "text-field": shortName(DISTRICTS),
-          "text-size": byZoom(11, 10.5, 13, 12, 15, 13),
-          "text-padding": 8,
-          "text-variable-anchor": ["center", "top", "bottom", "left", "right"],
-          "text-radial-offset": 1,
-          "text-justify": "auto",
-        },
-        paint: {
-          "text-color": C.hood,
-          "text-halo-color": halo(C.labelHalo, "80"),
-          "text-halo-width": 1,
-          "text-opacity": byZoom(11.5, 0.8, 12.5, 1, 16, 1, 16.5, 0),
-        },
-      },
+      ...filmLabels(C),
       pinFootprintLayer(),
     ];
   },
