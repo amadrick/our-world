@@ -58,14 +58,16 @@ const DARK: InkPalette = {
   parkLabel: "#86CC92",
 };
 
+export type RoadId = "path" | "service" | "minor" | "tertiary" | "secondary" | "primary" | "freeway";
+
 interface Road {
-  id: string;
+  id: RoadId;
   classes: string[];
   minzoom: number;
   width: Stops;
 }
 
-/** One ink, so width is the whole hierarchy: hairline paths up to a firm freeway stroke, all thin enough to stay light. */
+/** Hairline paths up to a firm freeway stroke, all thin enough to stay light. In one ink, width is the whole hierarchy. */
 const ROADS: Road[] = [
   { id: "path", classes: ["path", "track"], minzoom: 15, width: [[15, 0.35], [17, 0.7], [19, 1.4]] },
   { id: "service", classes: ["service"], minzoom: 14.5, width: [[14.5, 0.3], [16, 0.6], [18, 1.3], [19, 2]] },
@@ -93,97 +95,126 @@ export const ink: MapTheme<InkPalette> = {
     water: [0.15, 0.04],
   },
   pitch: 0,
-  layers(C) {
-    return [
-      { id: "background", type: "background", paint: { "background-color": C.land } },
-      {
-        id: "sand",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "landcover",
-        filter: ["==", ["get", "class"], "sand"],
-        paint: { "fill-color": C.sand },
-      },
-      { id: "park", type: "fill", source: "basemap", "source-layer": "park", paint: { "fill-color": C.park } },
-      {
-        id: "greenery",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "landcover",
-        filter: classIn(["grass", "wood", "wetland"]),
-        paint: { "fill-color": ["match", ["get", "class"], "wood", C.wood, C.park] },
-      },
-      {
-        id: "pitch",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "landuse",
-        minzoom: 13,
-        filter: classIn(["pitch", "playground", "stadium", "cemetery"]),
-        paint: { "fill-color": C.park },
-      },
-      {
-        id: "water",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "water",
-        filter: notTunnel,
-        paint: { "fill-color": C.water, "fill-antialias": false },
-      },
-      {
-        id: "waterway",
-        type: "line",
-        source: "basemap",
-        "source-layer": "waterway",
-        minzoom: 12,
-        paint: { "line-color": C.water, "line-width": ramp([[12, 0.6], [16, 1.8], [18, 3.5]]) },
-      },
-      {
-        id: "ferry",
-        type: "line",
-        source: "basemap",
-        "source-layer": "transportation",
-        minzoom: 11,
-        filter: ["all", isLine, ["==", ["get", "class"], "ferry"]],
-        paint: { "line-color": C.ferry, "line-width": byZoom(11, 0.6, 16, 1.1), "line-dasharray": [3, 3] },
-      },
-      {
-        id: "pier",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "transportation",
-        filter: ["all", isPolygon, ["==", ["get", "class"], "pier"]],
-        paint: { "fill-color": C.pier },
-      },
-      {
-        id: "building",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "building",
-        minzoom: 15,
-        paint: { "fill-color": C.building, "fill-opacity": byZoom(15, 0, 16, 1) },
-      },
-      {
-        id: "rail",
-        type: "line",
-        source: "basemap",
-        "source-layer": "transportation",
-        minzoom: 13,
-        filter: ["all", isLine, classIn(["rail", "transit"]), notTunnel],
-        paint: { "line-color": C.rail, "line-width": byZoom(13, 0.5, 18, 1.2) },
-      },
-      ...ROADS.map<LayerSpecification>((r) => ({
-        id: `road-${r.id}`,
-        type: "line",
-        source: "basemap",
-        "source-layer": "transportation",
-        minzoom: r.minzoom,
-        filter: roadFilter(r.classes),
-        layout: { "line-cap": "round", "line-join": "round" },
-        paint: { "line-color": C.road, "line-width": ramp(r.width) },
-      })),
-      ...filmLabels(C, "crisp"),
-      pinFootprintLayer(),
-    ];
-  },
+  layers: (C) => flatLayers(C, () => C.road),
 };
+
+type FlatColors = Pick<
+  InkPalette,
+  "land" | "sand" | "park" | "wood" | "water" | "ferry" | "pier" | "building" | "rail" | "waterLabel" | "streetLabel" | "parkLabel" | "hood" | "labelHalo"
+>;
+
+/**
+ * Ink's flat map, shared with the basemaps that only recolor it: `roadColor`
+ * picks each class's line, `blocks` adds a tonal step for commercial and
+ * school land, and `waterway` draws creeks darker than the bay.
+ */
+export function flatLayers(
+  C: FlatColors,
+  roadColor: (road: RoadId) => string,
+  extra: { blocks?: string; waterway?: string } = {},
+): LayerSpecification[] {
+  return [
+    { id: "background", type: "background", paint: { "background-color": C.land } },
+    ...(extra.blocks
+      ? [
+          {
+            id: "blocks",
+            type: "fill",
+            source: "basemap",
+            "source-layer": "landuse",
+            minzoom: 12,
+            filter: classIn(["commercial", "retail", "industrial", "school", "college", "university", "hospital"]),
+            paint: { "fill-color": extra.blocks, "fill-opacity": byZoom(12, 0, 13, 1) },
+          } satisfies LayerSpecification,
+        ]
+      : []),
+    {
+      id: "sand",
+      type: "fill",
+      source: "basemap",
+      "source-layer": "landcover",
+      filter: ["==", ["get", "class"], "sand"],
+      paint: { "fill-color": C.sand },
+    },
+    { id: "park", type: "fill", source: "basemap", "source-layer": "park", paint: { "fill-color": C.park } },
+    {
+      id: "greenery",
+      type: "fill",
+      source: "basemap",
+      "source-layer": "landcover",
+      filter: classIn(["grass", "wood", "wetland"]),
+      paint: { "fill-color": ["match", ["get", "class"], "wood", C.wood, C.park] },
+    },
+    {
+      id: "pitch",
+      type: "fill",
+      source: "basemap",
+      "source-layer": "landuse",
+      minzoom: 13,
+      filter: classIn(["pitch", "playground", "stadium", "cemetery"]),
+      paint: { "fill-color": C.park },
+    },
+    {
+      id: "water",
+      type: "fill",
+      source: "basemap",
+      "source-layer": "water",
+      filter: notTunnel,
+      paint: { "fill-color": C.water, "fill-antialias": false },
+    },
+    {
+      id: "waterway",
+      type: "line",
+      source: "basemap",
+      "source-layer": "waterway",
+      minzoom: 12,
+      paint: { "line-color": extra.waterway ?? C.water, "line-width": ramp([[12, 0.6], [16, 1.8], [18, 3.5]]) },
+    },
+    {
+      id: "ferry",
+      type: "line",
+      source: "basemap",
+      "source-layer": "transportation",
+      minzoom: 11,
+      filter: ["all", isLine, ["==", ["get", "class"], "ferry"]],
+      paint: { "line-color": C.ferry, "line-width": byZoom(11, 0.6, 16, 1.1), "line-dasharray": [3, 3] },
+    },
+    {
+      id: "pier",
+      type: "fill",
+      source: "basemap",
+      "source-layer": "transportation",
+      filter: ["all", isPolygon, ["==", ["get", "class"], "pier"]],
+      paint: { "fill-color": C.pier },
+    },
+    {
+      id: "building",
+      type: "fill",
+      source: "basemap",
+      "source-layer": "building",
+      minzoom: 15,
+      paint: { "fill-color": C.building, "fill-opacity": byZoom(15, 0, 16, 1) },
+    },
+    {
+      id: "rail",
+      type: "line",
+      source: "basemap",
+      "source-layer": "transportation",
+      minzoom: 13,
+      filter: ["all", isLine, classIn(["rail", "transit"]), notTunnel],
+      paint: { "line-color": C.rail, "line-width": byZoom(13, 0.5, 18, 1.2) },
+    },
+    ...ROADS.map<LayerSpecification>((r) => ({
+      id: `road-${r.id}`,
+      type: "line",
+      source: "basemap",
+      "source-layer": "transportation",
+      minzoom: r.minzoom,
+      filter: roadFilter(r.classes),
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": roadColor(r.id), "line-width": ramp(r.width) },
+    })),
+    ...filmLabels(C, "crisp"),
+    pinFootprintLayer(),
+  ];
+}
