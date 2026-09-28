@@ -112,6 +112,8 @@ describe("parseMapTheme", () => {
     expect(parseMapTheme("dimensional")).toBe("dimensional");
     expect(parseMapTheme("d")).toBe("apple");
     expect(parseMapTheme("e")).toBe("film");
+    expect(parseMapTheme("f")).toBe("ink");
+    expect(parseMapTheme("Ink")).toBe("ink");
   });
 
   it("ignores anything else", () => {
