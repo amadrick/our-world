@@ -138,11 +138,13 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
     // After the first render, a missing tile is not worth an error screen.
     if (!loaded) options.onError(new Error(event.error?.message ?? "Map failed to load"));
   });
+  // Pins take no pointer events of their own: every tap reaches the map, which asks which pin it meant.
   map.on("click", (event) => {
-    const target = event.originalEvent.target as HTMLElement | null;
-    if (target?.closest(".maplibregl-marker")) return;
+    if (options.onTap?.({ x: event.point.x, y: event.point.y })) return;
     options.onBackgroundClick?.();
   });
+  map.on("mousemove", (event) => options.onHover?.({ x: event.point.x, y: event.point.y }));
+  map.on("mouseout", () => options.onHover?.(null));
 
   const toArray = (p: LngLat): [number, number] => [p.lng, p.lat];
 

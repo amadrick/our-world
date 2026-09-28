@@ -45,12 +45,11 @@ export const MapPin = memo(function MapPin({ place, color, selected, highlighted
       data-display={display}
       data-selected={selected || undefined}
       data-highlighted={highlighted || undefined}
+      // Taps and hover are the map's (pin-hit.ts); this stays for the keyboard and screen readers.
       onClick={(event) => {
         event.stopPropagation();
         onSelect(place.id);
       }}
-      onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(place.id)}
-      onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(null)}
       onFocus={() => onHighlight(place.id)}
       onBlur={() => onHighlight(null)}
       style={

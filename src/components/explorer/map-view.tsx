@@ -7,6 +7,7 @@ import { useCallback, useEffect, useEffectEvent, useImperativeHandle, useMemo, u
 import { createPortal } from "react-dom";
 
 import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from "@/lib/map";
+import { resolveTap, type ShownPin, type TapResult } from "@/lib/map/pin-hit";
 import { layoutPins, type PinDisplay } from "@/lib/map/pin-layout";
 import { APPLE_PINS, estimateText, pinKind, pinPalette, type PinPalette } from "@/lib/map/pin-style";
 import { currentMapTheme } from "@/lib/map/theme";
@@ -52,6 +53,9 @@ interface MapViewProps {
 const USER_MARKER = "__user-location";
 
 type Status = "loading" | "ready" | "error";
+
+/** Past this zoom, pins that still tie are at one address: the nearest is picked instead of zooming. */
+const CLUSTER_ZOOM_LIMIT = 17;
 
 type Layout = Map<string, PinDisplay>;
 
@@ -155,6 +159,44 @@ export function MapView({
     );
     setLayout((current) => (sameLayout(current, next) ? current : next));
   });
+  // Every tap on the map asks which pin it meant: the nearest to the finger, or a tie to zoom into.
+  const shownPins = (): ShownPin[] => {
+    const instance = instanceRef.current;
+    if (!instance) return [];
+    return places.map((place) => ({
+      id: place.id,
+      ...instance.project(place),
+      ...pinSpecs.get(place.id)!,
+      selected: place.id === selectedId,
+      display: layout.get(place.id) ?? "hidden",
+    }));
+  };
+  const handleTap = useEffectEvent((point: { x: number; y: number }): boolean => {
+    const instance = instanceRef.current;
+    if (!instance) return false;
+    const result = resolveTap(shownPins(), point);
+    if (result.kind === "none") return false;
+    if (result.kind === "cluster" && instance.zoom() < CLUSTER_ZOOM_LIMIT) {
+      const cluster = places.filter((place) => result.ids.includes(place.id));
+      instance.fitTo(cluster, { maxZoom: Math.min(instance.zoom() + 3, 18) });
+      return true;
+    }
+    latest.current.onSelect(result.kind === "pin" ? result.id : result.ids[0]);
+    return true;
+  });
+  const hoveredRef = useRef<string | null>(null);
+  const handleHover = useEffectEvent((point: { x: number; y: number } | null) => {
+    // A touch also sends mouse events after the tap; only a real pointer hovers.
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const result: TapResult = point ? resolveTap(shownPins(), point) : { kind: "none" };
+    const id = result.kind === "pin" ? result.id : result.kind === "cluster" ? result.ids[0] : null;
+    const canvas = containerRef.current?.querySelector<HTMLElement>(".maplibregl-canvas-container");
+    if (canvas) canvas.style.cursor = id ? "pointer" : "";
+    if (id === hoveredRef.current) return;
+    hoveredRef.current = id;
+    latest.current.onHighlight(id);
+  });
+
   const scheduleLayout = useEffectEvent(() => {
     if (frameRef.current) return;
     frameRef.current = requestAnimationFrame(() => {
@@ -188,6 +230,8 @@ export function MapView({
             setStatus("error");
           },
           onBackgroundClick: () => handleBackgroundClick(),
+          onTap: (point) => handleTap(point),
+          onHover: (point) => handleHover(point),
           onMove: () => scheduleLayout(),
         });
       })

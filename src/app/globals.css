@@ -735,13 +735,13 @@ body .maplibregl-map {
     --caption: var(--pin-caption-dark, #dde6f4);
   }
 }
-/* The hit area reaches past the drawn pin so small pins stay easy to tap. */
-.map-pin::before {
-  content: "";
-  position: absolute;
-  inset: -9px;
-}
-.map-pin[data-display="hidden"] {
+/*
+ * Pins take no pointer events: a tap goes to the map, which picks the pin
+ * nearest the finger across the pin and its name (src/lib/map/pin-hit.ts).
+ * Keyboard focus and screen readers still reach the buttons.
+ */
+.maplibregl-marker:has(.map-pin),
+.map-pin {
   pointer-events: none;
 }
 .map-pin-head {

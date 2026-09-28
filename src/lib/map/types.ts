@@ -27,6 +27,10 @@ export interface MapCreateOptions {
   onReady: () => void;
   onError: (error: Error) => void;
   onBackgroundClick?: () => void;
+  /** A tap on the map, in px from its top left. Return true when it meant a pin, so it isn't a background tap. */
+  onTap?: (point: ScreenPoint) => boolean;
+  /** The pointer over the map (mouse only), or null when it leaves. */
+  onHover?: (point: ScreenPoint | null) => void;
   /** Fires once the map is ready and after every zoom, with the new zoom level. */
   onZoomChange?: (zoom: number) => void;
   /** Fires on every frame the camera moves (pan, zoom, resize), and once when ready. */

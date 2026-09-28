@@ -25,7 +25,7 @@ describe("layoutPins", () => {
       pin("rest", 800, 200),
       ...crowd,
     ];
-    const city = layoutPins(pins, view, 11.5);
+    const city = layoutPins(pins, view, 11);
     expect(city.get("favorite")).toBe("icon");
     expect(city.get("favorite-sight")).toBe("icon");
     expect(city.get("sight")).toBe("hidden");
@@ -33,7 +33,7 @@ describe("layoutPins", () => {
     const closer = layoutPins(pins, view, 12.2);
     expect(closer.get("sight")).toBe("icon");
     expect(closer.get("rest")).toBe("hidden");
-    expect(layoutPins(pins, view, 13).get("favorite")).toBe("named");
+    expect(layoutPins(pins, view, 12).get("favorite")).toBe("named");
   });
 
   it("never drops a favorite for a collision, and lets it take the spot from anything else", () => {
@@ -44,8 +44,8 @@ describe("layoutPins", () => {
       ...crowd,
     ];
     const layout = layoutPins(pins, view, 12.5);
-    expect(layout.get("fav-a")).toBe("icon");
-    expect(layout.get("fav-b")).toBe("icon");
+    expect(layout.get("fav-a")).not.toBe("hidden");
+    expect(layout.get("fav-b")).not.toBe("hidden");
     expect(layout.get("sight")).toBe("hidden");
   });
 
@@ -57,10 +57,10 @@ describe("layoutPins", () => {
 
   it("reveals the rest as you zoom in, then all their names", () => {
     const pins = [pin("sight", 300, 200, { kind: "photo", tier: 2 }), pin("rest", 700, 200), ...crowd];
+    expect(layoutPins(pins, view, 12.5).get("rest")).toBe("hidden");
+    expect(layoutPins(pins, view, 13.2).get("sight")).toBe("named");
     expect(layoutPins(pins, view, 13.5).get("rest")).toBe("icon");
-    expect(layoutPins(pins, view, 14.2).get("sight")).toBe("named");
-    expect(layoutPins(pins, view, 14.2).get("rest")).toBe("icon");
-    expect(layoutPins(pins, view, 15).get("rest")).toBe("named");
+    expect(layoutPins(pins, view, 14.2).get("rest")).toBe("named");
   });
 
   it("shows every result of a narrow filter right away", () => {

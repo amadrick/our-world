@@ -29,7 +29,8 @@ export interface PinCandidate {
 
 /** Zoom at which each tier's icons appear, and then their names. */
 export const ICON_FROM_ZOOM = { 1: 0, 2: 12, 3: 12.8 } as const;
-export const NAME_FROM_ZOOM = { 1: 12.8, 2: 13.8, 3: 14.8 } as const;
+/** Names show wherever they fit, favorites first; a name that collides is left out and its pin stays tappable. */
+export const NAME_FROM_ZOOM = { 1: 11.5, 2: 13, 3: 14 } as const;
 /** A filter this narrow shows every result right away, a little earlier with names, like a search. */
 export const FEW_PLACES = 30;
 const FEW_NAME_HEADSTART = 0.6;
