@@ -27,8 +27,9 @@ interface BottomSheetProps {
   /** The handle and header float over the top of the content (e.g. a photo) instead of sitting above it. */
   overlay?: boolean;
   /**
-   * At half height the content paints its own cards (a strip of places), so the
-   * sheet leaves them unclipped sideways and paints nothing behind them.
+   * Above peek the content paints its own floating cards (a strip of places), so
+   * the sheet leaves them unclipped sideways and paints nothing behind them. At
+   * full height the open card (marked data-sheet-scroll) scrolls inside itself.
    */
   cards?: boolean;
   /** Plays the exit: the sheet slides down and fades out, quicker than it came in. The caller unmounts it after SHEET_EXIT_MS. */
@@ -55,6 +56,11 @@ function swallowClick(withinMs: number) {
   const swallow = (click: MouseEvent) => click.stopPropagation();
   window.addEventListener("click", swallow, { capture: true, once: true });
   window.setTimeout(() => window.removeEventListener("click", swallow, { capture: true }), withinMs);
+}
+
+/** What scrolls at full height: the content, or with cards, the open card. */
+function scrollerIn(content: HTMLElement | null, cards: boolean): HTMLElement | null {
+  return (cards ? content?.querySelector<HTMLElement>("[data-sheet-scroll]") : null) ?? content;
 }
 
 interface DragState {
@@ -95,14 +101,18 @@ export function BottomSheet({
   const scrollPositions = useRef(new Map<string, number>());
   const scrollKeyRef = useRef(scrollKey);
   const offsetFor = (s: SheetSnap) => heights.full - heights[s];
-  const open = cards && snap === "mid";
+  const open = cards && snap !== "peek";
+  const scrollerRef = useRef<HTMLElement | null>(null);
 
+  // Half and peek show the photo from the top. Scrolling only happens at full height.
   useLayoutEffect(() => {
     scrollKeyRef.current = scrollKey;
-    if (contentRef.current) {
-      contentRef.current.scrollTop = scrollPositions.current.get(scrollKey) ?? 0;
-    }
-  }, [scrollKey]);
+    const el = scrollerIn(contentRef.current, cards);
+    // The card that was open is parked beside the new one now; it waits at its top.
+    if (scrollerRef.current && scrollerRef.current !== el) scrollerRef.current.scrollTop = 0;
+    scrollerRef.current = el;
+    if (el) el.scrollTop = snap === "full" ? (scrollPositions.current.get(scrollKey) ?? 0) : 0;
+  }, [scrollKey, snap, cards]);
 
   const moveTo = useCallback((offset: number, animate: boolean) => {
     const sheet = sheetRef.current;
@@ -137,8 +147,6 @@ export function BottomSheet({
       void sheetRef.current?.offsetHeight;
     }
     moveTo(heights.full - heights[snap], true);
-    // Half and peek show the photo from the top. Scrolling only happens at full height.
-    if (snap !== "full" && contentRef.current) contentRef.current.scrollTop = 0;
   }, [snap, heights, closing, moveTo]);
 
   // At full height, a pull down from the top must drag the sheet, never rubber-band
@@ -153,7 +161,7 @@ export function BottomSheet({
     const onMove = (event: TouchEvent) => {
       if (snap !== "full") return;
       const dy = (event.touches[0]?.clientY ?? 0) - startY;
-      if (content.scrollTop <= 0 && dy > 0 && event.cancelable) event.preventDefault();
+      if ((scrollerRef.current?.scrollTop ?? 0) <= 0 && dy > 0 && event.cancelable) event.preventDefault();
     };
     content.addEventListener("touchstart", onStart, { passive: true });
     content.addEventListener("touchmove", onMove, { passive: false });
@@ -171,7 +179,7 @@ export function BottomSheet({
     // Dragging a photo must move the sheet, not start a native image drag.
     if (downTarget.closest("img")) event.preventDefault();
     const fromContent = contentRef.current?.contains(downTarget) ?? false;
-    const scrollTop = contentRef.current?.scrollTop ?? 0;
+    const scrollTop = scrollerIn(contentRef.current, cards)?.scrollTop ?? 0;
     const startOffset = offsetFor(snap);
     const d: DragState = {
       pointerId: event.pointerId,
@@ -277,8 +285,8 @@ export function BottomSheet({
       className={cn(
         "absolute z-20 flex flex-col will-change-transform",
         closing && "pointer-events-none",
-        // Partial heights float inset as a card so the map peeks around them; full height is edge to edge.
-        snap === "full" ? "inset-x-0 bottom-0" : "inset-x-2 bottom-2",
+        // Floats inset as a card so the map peeks around it. A plain sheet goes edge to edge at full height.
+        snap === "full" && !cards ? "inset-x-0 bottom-0" : "inset-x-2 bottom-2",
         className,
       )}
       style={{
@@ -329,13 +337,15 @@ export function BottomSheet({
         </div>
         <div
           ref={contentRef}
-          onScroll={(event) =>
-            scrollPositions.current.set(scrollKeyRef.current, event.currentTarget.scrollTop)
-          }
+          onScrollCapture={(event) => {
+            if (event.target === scrollerRef.current) {
+              scrollPositions.current.set(scrollKeyRef.current, scrollerRef.current.scrollTop);
+            }
+          }}
           className={cn(
             "min-h-0 flex-1 overscroll-none",
-            snap === "full" ? "overlay-scroll-y touch-pan-y" : "touch-none",
-            snap !== "full" && (open ? "overflow-visible" : "overflow-hidden"),
+            snap === "full" ? "touch-pan-y" : "touch-none",
+            open ? "overflow-visible" : snap === "full" ? "overlay-scroll-y" : "overflow-hidden",
             snap === "peek" && "invisible",
             snap !== "peek" && !overlay && (tint ? "border-t border-white/12" : "border-t border-hairline"),
             !footer && !open && "pb-[env(safe-area-inset-bottom)]",

@@ -282,7 +282,8 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
   const [sheetFold, setSheetFold] = useState<number | null>(null);
   const sheetHeights = useMemo(() => {
     const height = viewportHeight ?? 800;
-    const belowHeader = Math.max(200, height - topBarHeight - 8);
+    // The sheet floats 8 px off the bottom edge, and 8 px under the pills at full height.
+    const belowHeader = Math.max(200, height - topBarHeight - 16);
     const peek = SHEET_PEEK + Math.max(0, safeBottom - 12);
     // The half sheet ends just under the map buttons, whatever the screen height, but never
     // grows taller than the room under the pills (landscape phones).
@@ -381,7 +382,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     hasPrev: prevReady,
     hasNext: nextReady,
     onStep: (direction) => step(direction, true),
-    // The map pans (and for a far neighbor, dips out) with the card; past a place that isn't ready it only leans.
+    // The map pans with the card at the current zoom; past a place that isn't ready it only leans.
     onDrag: (direction, p, open) => {
       const target = direction === 1 ? next : prev;
       mapRef.current?.swipeCamera(target?.id ?? null, open ? p : p * RUBBER_CAMERA);

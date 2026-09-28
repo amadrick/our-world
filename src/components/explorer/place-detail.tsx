@@ -739,7 +739,7 @@ export function PlaceDetail({
     // Every card in the strip is complete and laid out on the same fixed grid, so a swipe
     // moves whole sheets and nothing shifts when one becomes the open place.
     return (
-      <div className="swipe-track sheet-cards relative min-h-full">
+      <div className="swipe-track sheet-cards relative">
         {slides.map((slide) => {
           const active = slide.offset === 0;
           const motion = (i: number) =>
@@ -752,6 +752,7 @@ export function PlaceDetail({
               className="swipe-slide text-white"
               data-offset={slide.offset}
               data-place={slide.place.id}
+              data-sheet-scroll={active || undefined}
               style={slideStyle(slide.place, slide.offset)}
             >
               <div className="relative">

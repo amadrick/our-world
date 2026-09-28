@@ -1027,27 +1027,46 @@ body .maplibregl-map {
   overflow: hidden;
 }
 /*
- * The half sheet is a strip of complete cards: each is exactly the sheet's
- * height, rounded, and painted in its place's color, so the map shows in the
- * gap between two cards mid-swipe.
+ * The place sheet is a strip of complete floating cards: each is exactly the
+ * sheet's height, rounded on every corner, lifted by its own shadow and painted
+ * in its place's color. Nothing sits between two cards, so the map shows in the
+ * gap mid-swipe. At full height the open card scrolls inside its own frame, so
+ * its corners stay rounded and a neighbor still slides in from the screen edge.
  */
 /* The handle and close button belong to the open card; they step aside while cards slide under them. */
 [data-sheet-chrome] {
   transition: opacity 160ms ease-out;
 }
-[data-swipe] [data-snap="mid"] [data-sheet-chrome] {
+[data-swipe] :is([data-snap="mid"], [data-snap="full"]) [data-sheet-chrome] {
   opacity: 0;
   transition-duration: 90ms;
 }
-[data-snap="mid"] .sheet-cards {
+.sheet-cards {
+  --swipe-gap: 12px;
   height: 100%;
 }
-[data-snap="mid"] .sheet-cards > .swipe-slide {
+.sheet-cards > .swipe-slide {
   height: 100%;
   overflow: hidden;
   border-radius: var(--radius-2xl, 1rem);
-  border: 0.5px solid rgb(255 255 255 / 0.16);
-  box-shadow: 0 -16px 40px -16px rgb(0 0 0 / 0.4);
+  /* Clear, so no edge line shows; the card's layout (and the 474 px half sheet) is measured inside it. */
+  border: 0.5px solid transparent;
+  box-shadow:
+    0 12px 32px -12px rgb(0 0 0 / 0.45),
+    0 2px 8px -2px rgb(0 0 0 / 0.2),
+    inset 0 1px 0 rgb(255 255 255 / 0.22);
+}
+[data-snap="full"] .sheet-cards > .swipe-slide[data-offset="0"] {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@supports (overflow-y: overlay) {
+  [data-snap="full"] .sheet-cards > .swipe-slide[data-offset="0"] {
+    overflow-y: overlay;
+  }
 }
 [data-swipe="drag"] .swipe-track {
   transition: none;
