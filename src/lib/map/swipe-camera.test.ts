@@ -1,8 +1,6 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  ARRIVAL_MIN_ZOOM,
-  MIN_DIP_ZOOM,
   cameraAt,
   mercator,
   planSwipeCamera,
@@ -30,48 +28,42 @@ const visible = (p: { x: number; y: number }) =>
 
 const startAt = (place: { lng: number; lat: number }, zoom: number): Camera => {
   // The resting camera on a place: centered in the map above the sheet.
-  const plan = planSwipeCamera({ start: { ...place, zoom }, from: place, to: place, view });
+  const plan = planSwipeCamera({ start: { ...place, zoom }, to: place, view });
   return cameraAt(plan, 1);
 };
 
 describe("swipe camera", () => {
   it("only pans between near places, landing the neighbor above the sheet", () => {
     const start = startAt(tartine, 15);
-    const plan = planSwipeCamera({ start, from: tartine, to: biRite, view });
-    expect(plan.dip).toBe(0);
-    for (const p of [0, 0.25, 0.5, 0.75, 1]) expect(cameraAt(plan, p).zoom).toBeCloseTo(15, 6);
+    const plan = planSwipeCamera({ start, to: biRite, view });
+    for (const p of [0, 0.25, 0.5, 0.75, 1]) expect(cameraAt(plan, p).zoom).toBe(15);
     const landed = screen(biRite, cameraAt(plan, 1));
     expect(landed.x).toBeCloseTo(view.width / 2, 3);
     expect(landed.y).toBeCloseTo((view.padding.top + view.height - view.padding.bottom) / 2, 3);
   });
 
-  it("dips out for far places so both are in view halfway, then lands at the arrival zoom", () => {
-    const start = startAt(tartine, 15);
-    const plan = planSwipeCamera({ start, from: tartine, to: coitTower, view });
-    expect(plan.dip).toBeGreaterThan(1);
-    const middle = cameraAt(plan, 0.5);
-    expect(middle.zoom).toBeLessThan(14);
-    expect(middle.zoom).toBeGreaterThanOrEqual(MIN_DIP_ZOOM);
-    expect(visible(screen(tartine, middle))).toBe(true);
-    expect(visible(screen(coitTower, middle))).toBe(true);
-    expect(cameraAt(plan, 1).zoom).toBeCloseTo(15, 6);
-    // The arc is smooth: it goes out, then comes back in.
-    const zooms = [0, 0.1, 0.2, 0.3, 0.4, 0.5].map((p) => cameraAt(plan, p).zoom);
-    for (let i = 1; i < zooms.length; i++) expect(zooms[i]).toBeLessThan(zooms[i - 1]);
+  it("only pans between far places too, at the current zoom, landing the neighbor above the sheet", () => {
+    for (const to of [coitTower, { lng: -122.5107, lat: 37.7594 }]) {
+      const start = startAt(tartine, 15);
+      const plan = planSwipeCamera({ start, to, view });
+      for (const p of [0, 0.1, 0.25, 0.5, 0.75, 0.9, 1]) expect(cameraAt(plan, p).zoom).toBe(15);
+      const landed = screen(to, cameraAt(plan, 1));
+      expect(landed.x).toBeCloseTo(view.width / 2, 3);
+      expect(landed.y).toBeCloseTo((view.padding.top + view.height - view.padding.bottom) / 2, 3);
+    }
   });
 
-  it("dips further for farther places, never past the city view", () => {
-    const start = startAt(tartine, 15);
-    const near = planSwipeCamera({ start, from: tartine, to: { lng: -122.4241, lat: 37.772 }, view });
-    const far = planSwipeCamera({ start, from: tartine, to: coitTower, view });
-    const beach = planSwipeCamera({ start, from: tartine, to: { lng: -122.5107, lat: 37.7594 }, view });
-    expect(near.dip).toBeLessThan(far.dip);
-    expect(far.dip).toBeLessThanOrEqual(beach.dip);
-    expect(cameraAt(beach, 0.5).zoom).toBeGreaterThanOrEqual(MIN_DIP_ZOOM - 1e-9);
+  it("moves the map straight across, evenly with progress", () => {
+    const plan = planSwipeCamera({ start: startAt(tartine, 15), to: coitTower, view });
+    const a = mercator(cameraAt(plan, 0));
+    const m = mercator(cameraAt(plan, 0.5));
+    const b = mercator(cameraAt(plan, 1));
+    expect(m.x).toBeCloseTo((a.x + b.x) / 2, 12);
+    expect(m.y).toBeCloseTo((a.y + b.y) / 2, 12);
   });
 
   it("gives the same view for the same progress, so dragging back reverses it exactly", () => {
-    const plan = planSwipeCamera({ start: startAt(tartine, 15), from: tartine, to: coitTower, view });
+    const plan = planSwipeCamera({ start: startAt(tartine, 15), to: coitTower, view });
     const there = cameraAt(plan, 0.6);
     cameraAt(plan, 0.9);
     expect(cameraAt(plan, 0.6)).toEqual(there);
@@ -80,11 +72,13 @@ describe("swipe camera", () => {
     expect(start.lng).toBeCloseTo(startAt(tartine, 15).lng, 9);
   });
 
-  it("clamps progress to the swipe, and lands at least at the arrival zoom", () => {
-    const plan = planSwipeCamera({ start: startAt(tartine, 13), from: tartine, to: biRite, view });
-    expect(cameraAt(plan, -0.4)).toEqual(cameraAt(plan, 0));
-    expect(cameraAt(plan, 1.7)).toEqual(cameraAt(plan, 1));
-    expect(cameraAt(plan, 1).zoom).toBe(ARRIVAL_MIN_ZOOM);
+  it("clamps progress to the swipe, and keeps whatever zoom the user is at", () => {
+    for (const zoom of [12, 13, 16.5]) {
+      const plan = planSwipeCamera({ start: startAt(tartine, zoom), to: coitTower, view });
+      expect(cameraAt(plan, -0.4)).toEqual(cameraAt(plan, 0));
+      expect(cameraAt(plan, 1.7)).toEqual(cameraAt(plan, 1));
+      expect(cameraAt(plan, 1).zoom).toBe(zoom);
+    }
   });
 
   it("eases the release like the cards and scales its length by what's left", () => {

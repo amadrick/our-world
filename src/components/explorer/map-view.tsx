@@ -387,7 +387,7 @@ export function MapView({
       const to = toId ? places.find((place) => place.id === toId) : undefined;
       swipe.toId = toId;
       swipe.plan =
-        from && to ? planSwipeCamera({ start: swipe.start, from, to, view: { ...instance.size(), padding: instance.padding() } }) : null;
+        from && to ? planSwipeCamera({ start: swipe.start, to, view: { ...instance.size(), padding: instance.padding() } }) : null;
     }
     swipe.p = p;
     swipeFrame.current ||= requestAnimationFrame(applySwipe);
