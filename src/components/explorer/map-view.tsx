@@ -53,6 +53,8 @@ interface MapViewProps {
   onBackgroundClick: () => void;
   /** The selection is a step to the next or previous place: the camera glides instead of flying. */
   glide?: boolean;
+  /** The places a swipe from the selected one can reach: the map loads the way to them ahead. */
+  swipeNeighbors?: string[];
   /** The reader's position, drawn as a blue dot with its accuracy halo. */
   userPosition?: UserPosition | null;
   className?: string;
@@ -94,6 +96,7 @@ export function MapView({
   onHighlight,
   onBackgroundClick,
   glide = false,
+  swipeNeighbors,
   userPosition = null,
   className,
 }: MapViewProps) {
@@ -379,6 +382,7 @@ export function MapView({
     if (!instance || status !== "ready") return;
     if (!swipeRef.current) {
       instance.stopCamera();
+      instance.prefetchRoutes(null);
       swipeRef.current = { start: instance.camera(), toId: null, plan: null, p: 0 };
     }
     const swipe = swipeRef.current;
@@ -392,6 +396,21 @@ export function MapView({
     swipe.p = p;
     swipeFrame.current ||= requestAnimationFrame(applySwipe);
   };
+  // Where a swipe could go next, for loading its tiles ahead whenever the map comes to rest.
+  const neighborKey = swipeNeighbors?.join(" ") ?? "";
+  const routeTargetsRef = useRef<Place[]>([]);
+  useEffect(() => {
+    routeTargetsRef.current = neighborKey
+      ? neighborKey.split(" ").flatMap((id) => places.find((place) => place.id === id) ?? [])
+      : [];
+  });
+  const prefetchRoutes = useEffectEvent(() => {
+    if (!swipeRef.current) instanceRef.current?.prefetchRoutes(routeTargetsRef.current);
+  });
+  useEffect(() => {
+    if (status === "ready") prefetchRoutes();
+  }, [neighborKey, places, status]);
+
   const settleSwipeCamera = (target: number, durationMs: number) => {
     const swipe = swipeRef.current;
     if (!swipe) return;
@@ -406,7 +425,10 @@ export function MapView({
       swipe.p = from + (target - from) * swipeEase(t);
       applySwipe();
       if (t < 1) swipeFrame.current = requestAnimationFrame(tick);
-      else swipeRef.current = null;
+      else {
+        swipeRef.current = null;
+        instanceRef.current?.prefetchRoutes(routeTargetsRef.current);
+      }
     };
     swipeFrame.current = requestAnimationFrame(tick);
   };

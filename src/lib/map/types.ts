@@ -69,6 +69,12 @@ export interface MapInstance {
   stopCamera(): void;
   /** The screen covered by panels and sheets, as last set. */
   padding(): MapPadding;
+  /**
+   * Loads ahead the basemap a swipe to each of these places would pan across,
+   * from wherever the camera settles, and again after every move or zoom.
+   * null holds off (a swipe is driving the camera) without dropping what's loading.
+   */
+  prefetchRoutes(targets: LngLat[] | null): void;
   /** Washes the whole basemap faintly in a color (an open place's), or back to neutral with null. */
   setTint(color: string | null): void;
   /** Where the pins are and what they show, so basemap labels keep out from under them. */

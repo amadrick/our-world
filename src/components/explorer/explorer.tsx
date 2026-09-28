@@ -554,6 +554,9 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
           onHighlight={setHighlightedId}
           onBackgroundClick={closeDetail}
           glide={stepping !== null}
+          swipeNeighbors={
+            !listMode && !isDesktop && selected ? [prev?.id, next?.id].filter((id) => id !== undefined) : undefined
+          }
           userPosition={here.position}
         />
       </div>

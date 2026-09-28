@@ -3,9 +3,11 @@ import type { CustomLayerInterface, GeoJSONSource, Map as MapLibreMap, Marker } 
 import { easeOutQuart, OPEN_CAMERA_MS, prefersReducedMotion } from "@/lib/motion";
 
 import { createFilmGrainLayer } from "./film-grain-layer";
+import { routeTiles } from "./route-tiles";
 import { buildMapStyle, type ColorScheme, type PinFootprint, type TileSource } from "./style";
 import { MAP_THEMES, currentMapTheme, type MapThemeId } from "./theme";
 import { PIN_SOURCE, missingImage, pinCollection } from "./themes/kit";
+import { createTilePrefetcher } from "./tile-prefetch";
 import type {
   LngLat,
   MapCreateOptions,
@@ -81,6 +83,8 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
     minZoom: 8,
     maxZoom: 18.5,
     maxPitch: theme.pitch ? 60 : 0,
+    // Room for the tiles loaded ahead along both swipe routes (see prefetchRoutes) next to the ones on screen.
+    maxTileCacheZoomLevels: 14,
     // Nothing is drawn over the map; the data credit lives in the list and the rail (MapCredit).
     attributionControl: false,
     dragRotate: false,
@@ -114,6 +118,21 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   // setStyle diffs against the current style, so a new tint only updates paint colors, which crossfade.
   const restyle = () => map.setStyle(style());
   darkQuery().addEventListener("change", restyle);
+
+  // The swipe between places pans across town at street zoom: its tiles load ahead, while the map rests.
+  const prefetcher = createTilePrefetcher(map, "basemap");
+  let routeTargets: LngLat[] | null = null;
+  const prefetch = () => {
+    const source = prefetcher.range();
+    if (!routeTargets || !source || map.isMoving()) return;
+    const { lng, lat } = map.getCenter();
+    const { clientWidth: width, clientHeight: height } = map.getContainer();
+    prefetcher.want(
+      routeTiles({ start: { lng, lat, zoom: map.getZoom() }, targets: routeTargets, view: { width, height, padding }, source }),
+    );
+  };
+  map.on("idle", prefetch);
+  let prefetchTimer = 0;
 
   const markers = new Map<string, Marker>();
   let padding: MapPadding = { top: 0, right: 0, bottom: 0, left: 0 };
@@ -227,6 +246,12 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
     padding() {
       return padding;
     },
+    prefetchRoutes(targets) {
+      routeTargets = targets;
+      window.clearTimeout(prefetchTimer);
+      // A camera still moving gets there on its own "idle".
+      if (targets) prefetchTimer = window.setTimeout(prefetch, 0);
+    },
     setTint(color) {
       if (color === tint) return;
       tint = color;
@@ -253,6 +278,7 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
     },
     destroy() {
       window.clearTimeout(timeout);
+      window.clearTimeout(prefetchTimer);
       darkQuery().removeEventListener("change", restyle);
       for (const marker of markers.values()) marker.remove();
       markers.clear();
