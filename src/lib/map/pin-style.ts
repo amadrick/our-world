@@ -37,6 +37,12 @@ export interface PinPalette {
   caption: ByScheme;
   /** The soft halo behind names and captions, close to the land. */
   halo: ByScheme;
+  /**
+   * Replaces the glyphs' ring and shadow, and the photos' edge and shadow, as
+   * CSS box-shadows. Colors must be written out: `var(--rim)` isn't defined
+   * where these are set. Unset keeps the defaults in globals.css.
+   */
+  shadow?: { glyph: ByScheme; photo: ByScheme };
 }
 
 /** Apple Maps' category colors: food orange, café and bakery warm tones, nightlife pink, shops yellow, parks green. */
@@ -82,7 +88,41 @@ export const FILM_PINS: PinPalette = {
   halo: { light: "#E2D9CD", dark: "#33302C" },
 };
 
-const PIN_PALETTES: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS };
+/**
+ * Basemap (f) Ink's product-style dots: full-chroma category colors on a
+ * clean white ring, lifted by a small, soft shadow. The ring is a whole 2px
+ * so it lands on device pixels at 1x, 2x, and 3x; a faint outer line keeps it
+ * from dissolving into the near-white land. Names hold 4.5:1 on their halos.
+ */
+export const INK_PINS: PinPalette = {
+  categories: {
+    restaurant: { fill: "#FF6B1A", label: "#B84300", labelDark: "#FF9E66" },
+    coffee: { fill: "#A8612A", label: "#8A4B1B", labelDark: "#E0A677" },
+    bakery: { fill: "#F5A000", label: "#8F5A00", labelDark: "#FFC44D" },
+    dessert: { fill: "#FF5A5F", label: "#C22F35", labelDark: "#FF9598" },
+    bar: { fill: "#F0287A", label: "#BA0F57", labelDark: "#FF85B6" },
+    wine: { fill: "#B0237A", label: "#961966", labelDark: "#F28AC8" },
+    shop: { fill: "#FFBE0B", label: "#825A00", labelDark: "#FFD75E" },
+    sight: { fill: "#3D5AFE", label: "#2A45D8", labelDark: "#9AABFF" },
+    museum: { fill: "#8E3FF0", label: "#7328D4", labelDark: "#C39CFF" },
+    park: { fill: "#15B04F", label: "#0F7D38", labelDark: "#6BE391" },
+  },
+  ring: { light: "#FFFFFF", dark: "#FFFFFF" },
+  caption: { light: "#4A4A4A", dark: "#D9D7D2" },
+  halo: { light: "#FFFFFF", dark: "#161615" },
+  shadow: {
+    glyph: {
+      light: "0 0 0 2px #FFFFFF, 0 0 0 3px rgb(17 17 17 / 0.07), 0 1px 2px rgb(0 0 0 / 0.14), 0 2px 6px rgb(0 0 0 / 0.1)",
+      dark: "0 0 0 2px #FFFFFF, 0 1px 2px rgb(0 0 0 / 0.5), 0 2px 6px rgb(0 0 0 / 0.35)",
+    },
+    photo: {
+      light: "0 0 0 1px rgb(17 17 17 / 0.07), 0 1px 2px rgb(0 0 0 / 0.14), 0 3px 8px rgb(0 0 0 / 0.1)",
+      dark: "0 1px 2px rgb(0 0 0 / 0.5), 0 3px 8px rgb(0 0 0 / 0.35)",
+    },
+  },
+};
+
+const PIN_PALETTES: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS };
 
 export const pinPalette = (theme: MapThemeId): PinPalette => PIN_PALETTES[theme] ?? APPLE_PINS;
 

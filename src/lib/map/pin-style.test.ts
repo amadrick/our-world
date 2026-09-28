@@ -1,27 +1,39 @@
 import { describe, expect, it } from "vitest";
 
 import { contrastRatio } from "../images/palette.mjs";
-import { APPLE_PINS, FILM_PINS, pinPalette } from "./pin-style";
+import { APPLE_PINS, FILM_PINS, INK_PINS, pinPalette, type PinPalette } from "./pin-style";
 import { MAP_THEMES, type MapThemeId } from "./theme";
 
 describe("pinPalette", () => {
-  it("gives the film basemap its own colors and every other basemap Apple's", () => {
+  it("gives film and ink their own colors and every other basemap Apple's", () => {
+    const own: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS };
     for (const theme of Object.keys(MAP_THEMES) as MapThemeId[]) {
-      expect(pinPalette(theme), theme).toBe(theme === "film" ? FILM_PINS : APPLE_PINS);
+      expect(pinPalette(theme), theme).toBe(own[theme] ?? APPLE_PINS);
     }
   });
 
-  it("keeps film names and captions readable on the film land", () => {
-    const { halo } = FILM_PINS;
-    for (const [category, color] of Object.entries(FILM_PINS.categories)) {
+  it.each([
+    ["film", FILM_PINS],
+    ["ink", INK_PINS],
+  ] as const)("keeps %s names and captions readable on their halos", (_, palette) => {
+    const { halo } = palette;
+    for (const [category, color] of Object.entries(palette.categories)) {
       expect(contrastRatio(color.label, halo.light), category).toBeGreaterThanOrEqual(4.5);
       expect(contrastRatio(color.labelDark, halo.dark), category).toBeGreaterThanOrEqual(4.5);
     }
-    expect(contrastRatio(FILM_PINS.caption.light, halo.light)).toBeGreaterThanOrEqual(4.5);
-    expect(contrastRatio(FILM_PINS.caption.dark, halo.dark)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(palette.caption.light, halo.light)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(palette.caption.dark, halo.dark)).toBeGreaterThanOrEqual(4.5);
   });
 
   it("covers the same categories in every palette", () => {
-    expect(Object.keys(FILM_PINS.categories).sort()).toEqual(Object.keys(APPLE_PINS.categories).sort());
+    for (const palette of [FILM_PINS, INK_PINS]) {
+      expect(Object.keys(palette.categories).sort()).toEqual(Object.keys(APPLE_PINS.categories).sort());
+    }
+  });
+
+  it("only overrides the pin shadows where a basemap asks to", () => {
+    expect(APPLE_PINS.shadow).toBeUndefined();
+    expect(FILM_PINS.shadow).toBeUndefined();
+    expect(INK_PINS.shadow?.glyph.light).toMatch(/^0 0 0 2px #FFFFFF/);
   });
 });

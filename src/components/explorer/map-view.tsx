@@ -460,6 +460,10 @@ export function MapView({
           "--pin-caption-dark": palette.caption.dark,
           "--pin-halo": palette.halo.light,
           "--pin-halo-dark": palette.halo.dark,
+          "--pin-glyph-shadow": palette.shadow?.glyph.light,
+          "--pin-glyph-shadow-dark": palette.shadow?.glyph.dark,
+          "--pin-photo-shadow": palette.shadow?.photo.light,
+          "--pin-photo-shadow-dark": palette.shadow?.photo.dark,
         } as React.CSSProperties
       }
     >

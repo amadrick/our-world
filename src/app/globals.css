@@ -753,9 +753,7 @@ body .maplibregl-map {
   border-radius: 50%;
   background: var(--cat);
   color: #ffffff;
-  box-shadow:
-    0 0 0 1.5px var(--rim),
-    0 1px 3px rgb(0 0 0 / 0.28);
+  box-shadow: var(--pin-glyph-shadow, 0 0 0 1.5px var(--rim), 0 1px 3px rgb(0 0 0 / 0.28));
   transition:
     transform var(--open-pin) var(--ease-out-soft),
     border-radius var(--open-pin) var(--ease-out-soft),
@@ -764,15 +762,14 @@ body .maplibregl-map {
 .map-pin[data-kind="photo"] .map-pin-head {
   padding: 2.5px;
   background: var(--rim);
-  box-shadow:
-    0 0 0 0.5px rgb(0 0 0 / 0.1),
-    0 2px 6px rgb(0 0 0 / 0.3);
+  box-shadow: var(--pin-photo-shadow, 0 0 0 0.5px rgb(0 0 0 / 0.1), 0 2px 6px rgb(0 0 0 / 0.3));
 }
 @media (prefers-color-scheme: dark) {
   .map-pin[data-kind="glyph"] .map-pin-head {
-    box-shadow:
-      0 0 0 1px rgb(0 0 0 / 0.45),
-      0 1px 3px rgb(0 0 0 / 0.5);
+    box-shadow: var(--pin-glyph-shadow-dark, 0 0 0 1px rgb(0 0 0 / 0.45), 0 1px 3px rgb(0 0 0 / 0.5));
+  }
+  .map-pin[data-kind="photo"] .map-pin-head {
+    box-shadow: var(--pin-photo-shadow-dark, 0 0 0 0.5px rgb(0 0 0 / 0.1), 0 2px 6px rgb(0 0 0 / 0.3));
   }
 }
 .map-pin-face {
