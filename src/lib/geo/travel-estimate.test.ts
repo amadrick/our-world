@@ -46,10 +46,10 @@ describe("travel estimates", () => {
     expect(estimateTravel(200, 1000, "day").mode).toBe("drive");
   });
 
-  it("always reads as an estimate", () => {
-    expect(formatTravel({ mode: "drive", minutes: 12 })).toBe("~12 min drive");
-    expect(formatTravel({ mode: "walk", minutes: 6 })).toBe("~6 min walk");
-    expect(formatTravel({ mode: "drive", minutes: 75 })).toBe("~1 hr 15 min drive");
-    expect(formatTravelShort({ mode: "drive", minutes: 9 })).toBe("~9 min");
+  it("says it plainly", () => {
+    expect(formatTravel({ mode: "drive", minutes: 12 })).toBe("12 min drive");
+    expect(formatTravel({ mode: "walk", minutes: 6 })).toBe("6 min walk");
+    expect(formatTravel({ mode: "drive", minutes: 75 })).toBe("1 hr 15 min drive");
+    expect(formatTravelShort({ mode: "drive", minutes: 9 })).toBe("9 min");
   });
 });

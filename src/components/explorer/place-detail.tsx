@@ -493,7 +493,7 @@ export function CarGlyph({ size = 16 }: { size?: number }) {
   );
 }
 
-/** The trip from the reader's location ("~12 min drive"), in the category line's style. Its line is kept even when empty. */
+/** The trip from the reader's location ("12 min drive"), in the category line's style. Its line is kept even when empty. */
 export function DriveTime({ travel, className }: { travel?: TravelEstimate | null; className?: string }) {
   return (
     <p className={cn("flex h-6 items-center gap-2 text-base font-medium text-white/75", className)}>

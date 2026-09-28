@@ -60,12 +60,12 @@ const minutesText = (minutes: number) => {
   return `${Math.floor(minutes / 60)} hr${rest ? ` ${rest} min` : ""}`;
 };
 
-/** "~12 min drive", "~6 min walk": always an estimate. */
+/** "12 min drive", "6 min walk". */
 export function formatTravel({ mode, minutes }: TravelEstimate): string {
-  return `~${minutesText(minutes)} ${mode}`;
+  return `${minutesText(minutes)} ${mode}`;
 }
 
-/** "~12 min", where a glyph already says drive or walk. */
+/** "12 min", where a glyph already says drive or walk. */
 export function formatTravelShort({ minutes }: TravelEstimate): string {
-  return `~${minutesText(minutes)}`;
+  return minutesText(minutes);
 }
