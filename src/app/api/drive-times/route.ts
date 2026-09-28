@@ -16,7 +16,11 @@ function readOrigin(params: URLSearchParams): Origin | null {
   return snapOrigin({ lat, lng });
 }
 
-/** Driving time in seconds from ?lat&lng to every place, by place id. */
+/**
+ * Free-flow driving time (seconds) and road distance (meters) from ?lat&lng to
+ * every place, by place id. The client turns them into traffic-aware estimates
+ * (src/lib/geo/travel-estimate.ts), since the right factor depends on the hour.
+ */
 export async function GET(request: NextRequest) {
   const origin = readOrigin(request.nextUrl.searchParams);
   if (!origin) return NextResponse.json({ error: "Pass lat and lng." }, { status: 400 });
@@ -28,12 +32,12 @@ export async function GET(request: NextRequest) {
 
   const places = await getPlaceStore().list();
   try {
-    const { service, seconds } = await fetchDriveTimes(
+    const { service, seconds, meters } = await fetchDriveTimes(
       origin,
       places.map(({ id, lat, lng }) => ({ id, lat, lng })),
       { apiKey: process.env.ROUTING_API_KEY || undefined, osrmUrl: process.env.ROUTING_OSRM_URL || undefined },
     );
-    const body = { origin, service, seconds };
+    const body = { origin, service, seconds, meters };
     if (cache.size >= CACHE_LIMIT) cache.delete(cache.keys().next().value!);
     cache.set(key, { at: Date.now(), body });
     return NextResponse.json(body, { headers });

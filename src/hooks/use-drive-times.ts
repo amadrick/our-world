@@ -10,7 +10,10 @@ export const REFETCH_METERS = 300;
 const RETRY_MS = 30000;
 
 interface DriveTimesState {
+  /** Free-flow car seconds, by place id. */
   seconds: Readonly<Record<string, number>> | null;
+  /** Road meters, by place id (for quoting short trips as a walk). */
+  meters: Readonly<Record<string, number>> | null;
   /** A position is known and its times haven't arrived (or failed) yet. */
   pending: boolean;
 }
@@ -21,7 +24,7 @@ interface DriveTimesState {
  * REFETCH_METERS from where the last answer was for.
  */
 export function useDriveTimes(position: Origin | null): DriveTimesState {
-  const [state, setState] = useState<DriveTimesState>({ seconds: null, pending: false });
+  const [state, setState] = useState<DriveTimesState>({ seconds: null, meters: null, pending: false });
   const fetchedFor = useRef<Origin | null>(null);
   const requestId = useRef(0);
   const retryAt = useRef(0);
@@ -39,8 +42,8 @@ export function useDriveTimes(position: Origin | null): DriveTimesState {
     setState((s) => ({ ...s, pending: true }));
     fetch(`/api/drive-times?lat=${origin.lat}&lng=${origin.lng}`)
       .then((response) => (response.ok ? response.json() : Promise.reject(new Error(`${response.status}`))))
-      .then((body: { seconds: Record<string, number> }) => {
-        if (id === requestId.current) setState({ seconds: body.seconds, pending: false });
+      .then((body: { seconds: Record<string, number>; meters?: Record<string, number> }) => {
+        if (id === requestId.current) setState({ seconds: body.seconds, meters: body.meters ?? null, pending: false });
       })
       .catch((error) => {
         console.warn("Drive times unavailable:", error);

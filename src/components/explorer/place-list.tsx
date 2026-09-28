@@ -10,9 +10,9 @@ import { getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
 import { smartQuotes } from "@/lib/typography";
 import { cn } from "@/lib/utils";
-import { formatDrive } from "@/lib/geo/drive-times";
+import { formatTravelShort, type TravelEstimate } from "@/lib/geo/travel-estimate";
 import { openState, shortHoursLine } from "@/lib/places/hours";
-import { CarGlyph } from "./place-detail";
+import { TravelGlyph } from "./place-detail";
 
 /** A more specific message than "nothing matches", with ways out. */
 export interface NoMatches {
@@ -35,7 +35,7 @@ interface PlaceListProps {
   onClearFilters: () => void;
   noMatches?: NoMatches;
   /** Driving time from the reader, in seconds, by place id. */
-  driveTimes?: Readonly<Record<string, number>> | null;
+  driveTimes?: Readonly<Record<string, TravelEstimate>> | null;
   /** The time in San Francisco, for each place's hours line. */
   now?: Date;
   /** Headed groups (the Smart order's "Good right now", "Closed now"…); otherwise one grid. */
@@ -50,7 +50,6 @@ function hoursFor(place: Place, now: Date | undefined) {
 }
 
 /** "12 min" for the tight spots, where the card or row already says what it is. */
-const shortDrive = (seconds: number) => formatDrive(seconds).replace(/ drive$/, "");
 
 function EmptyState({
   icon: EmptyIcon,
@@ -94,7 +93,7 @@ export function PlaceCard({
   active: boolean;
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
-  drive?: number;
+  drive?: TravelEstimate;
   now?: Date;
 }) {
   const label = pickLabel(place.pickBy);
@@ -129,9 +128,9 @@ export function PlaceCard({
         )}
         {drive != null && (
           <span className="glass-media absolute bottom-2 left-2 flex h-7 items-center gap-1.5 rounded-full pr-2.5 pl-2 text-sm font-semibold sm:bottom-2.5 sm:left-2.5">
-            <CarGlyph size={14} />
-            {shortDrive(drive)}
-            <span className="sr-only"> drive</span>
+            <TravelGlyph travel={drive} size={14} />
+            {formatTravelShort(drive)}
+            <span className="sr-only"> {drive.mode}</span>
           </span>
         )}
       </span>
@@ -160,7 +159,7 @@ export function PlaceRow({
   active: boolean;
   onSelect: () => void;
   onHighlight: (hovering: boolean) => void;
-  drive?: number;
+  drive?: TravelEstimate;
   now?: Date;
 }) {
   const favorite = isFavorite(place);
@@ -196,8 +195,8 @@ export function PlaceRow({
           <span className="truncate">{where}</span>
           {drive != null && (
             <span className="shrink-0">
-              · {shortDrive(drive)}
-              <span className="sr-only"> drive</span>
+              · {formatTravelShort(drive)}
+              <span className="sr-only"> {drive.mode}</span>
             </span>
           )}
         </span>

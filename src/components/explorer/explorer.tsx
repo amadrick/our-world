@@ -6,6 +6,7 @@ import { useCallback, useEffect, useEffectEvent, useLayoutEffect, useMemo, useRe
 import { site } from "@/config/site";
 import { useClocks } from "@/hooks/use-clock";
 import { useDriveTimes } from "@/hooks/use-drive-times";
+import { estimateTravel, trafficPeriod } from "@/lib/geo/travel-estimate";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
 import { locationMessage, useUserLocation, type LocationStatus } from "@/hooks/use-user-location";
 import { useSortMode } from "@/hooks/use-sort-mode";
@@ -229,6 +230,17 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     [places, filters, sortMode, clocks.orderNow, origin],
   );
   const visible = useMemo(() => ranked.map((r) => r.place), [ranked]);
+  // The router's free-flow times, scaled for the hour's traffic (or a walk, if it's close).
+  const period = trafficPeriod(clocks.now);
+  const travel = useMemo(
+    () =>
+      drive.seconds
+        ? Object.fromEntries(
+            Object.entries(drive.seconds).map(([id, s]) => [id, estimateTravel(s, drive.meters?.[id], period)]),
+          )
+        : null,
+    [drive.seconds, drive.meters, period],
+  );
   const sections = useMemo(
     () =>
       sortMode === "smart"
@@ -498,7 +510,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     onHighlight: setHighlightedId,
     onClearFilters: clearFilters,
     noMatches,
-    driveTimes: drive.seconds,
+    driveTimes: travel,
     now: clocks.now,
   };
   const filterProps = {
@@ -578,7 +590,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
               variant="rail"
               stepper={stepper}
               enterFrom={stepping?.direction}
-              driveTimes={drive.seconds}
+              driveTimes={travel}
               now={clocks.now}
             />
           </div>
@@ -644,7 +656,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
               slides={slides}
-              driveTimes={drive.seconds}
+              driveTimes={travel}
               now={clocks.now}
             />
           </BottomSheet>
@@ -734,7 +746,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
               enterFrom={stepping?.direction}
               swiped={stepping?.swiped}
               slides={isDesktop ? undefined : slides}
-              driveTimes={drive.seconds}
+              driveTimes={travel}
               now={clocks.now}
             />
           </div>

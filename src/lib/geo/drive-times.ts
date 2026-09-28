@@ -29,15 +29,6 @@ const ORS_URL = "https://api.openrouteservice.org/v2/matrix/driving-car";
 const USER_AGENT = "SF-Recs/1.0 (wedding guide drive times)";
 const TIMEOUT_MS = 8000;
 
-/** "12 min drive", or hours past an hour. */
-export function formatDrive(seconds: number): string {
-  const minutes = Math.max(1, Math.round(seconds / 60));
-  if (minutes < 60) return `${minutes} min drive`;
-  const hours = Math.floor(minutes / 60);
-  const rest = minutes % 60;
-  return `${hours} hr${rest ? ` ${rest} min` : ""} drive`;
-}
-
 /** Origins are snapped to about 110 m, so nearby readers share a cached answer. */
 export function snapOrigin({ lat, lng }: Origin): Origin {
   return { lat: Math.round(lat * 1000) / 1000, lng: Math.round(lng * 1000) / 1000 };
@@ -55,12 +46,12 @@ export function metersBetween(a: Origin, b: Origin): number {
 
 export function osrmTableUrl(origin: Origin, destinations: Destination[], base = OSRM_URL): string {
   const coords = [origin, ...destinations].map((p) => `${p.lng.toFixed(6)},${p.lat.toFixed(6)}`).join(";");
-  return `${base.replace(/\/$/, "")}/table/v1/driving/${coords}?sources=0&annotations=duration`;
+  return `${base.replace(/\/$/, "")}/table/v1/driving/${coords}?sources=0&annotations=duration,distance`;
 }
 
-/** Seconds by place id. Places the router can't reach are left out. */
+/** Seconds (or meters) by place id. Places the router can't reach are left out. */
 function durationsById(row: unknown, destinations: Destination[], offset: number): Record<string, number> {
-  if (!Array.isArray(row)) throw new RoutingUnavailableError("The router sent no durations");
+  if (!Array.isArray(row)) return {};
   const out: Record<string, number> = {};
   destinations.forEach((d, i) => {
     const seconds = row[i + offset];
@@ -69,11 +60,22 @@ function durationsById(row: unknown, destinations: Destination[], offset: number
   return out;
 }
 
-export function parseOsrmTable(body: unknown, destinations: Destination[]): Record<string, number> {
-  const table = body as { code?: string; message?: string; durations?: unknown[] } | null;
+export interface RouteTable {
+  /** Free-flow driving time, by place id. */
+  seconds: Record<string, number>;
+  /** Driving distance by road, by place id. */
+  meters: Record<string, number>;
+}
+
+export function parseOsrmTable(body: unknown, destinations: Destination[]): RouteTable {
+  const table = body as { code?: string; message?: string; durations?: unknown[]; distances?: unknown[] } | null;
   if (table?.code !== "Ok") throw new RoutingUnavailableError(table?.message ?? "The router refused the request");
+  if (!Array.isArray(table.durations?.[0])) throw new RoutingUnavailableError("The router sent no durations");
   // Row 0 is the origin; column 0 is the origin to itself.
-  return durationsById(table.durations?.[0], destinations, 1);
+  return {
+    seconds: durationsById(table.durations[0], destinations, 1),
+    meters: durationsById(table.distances?.[0], destinations, 1),
+  };
 }
 
 export function orsMatrixBody(origin: Origin, destinations: Destination[]) {
@@ -81,17 +83,18 @@ export function orsMatrixBody(origin: Origin, destinations: Destination[]) {
     locations: [origin, ...destinations].map((p) => [p.lng, p.lat]),
     sources: [0],
     destinations: destinations.map((_, i) => i + 1),
-    metrics: ["duration"],
+    metrics: ["duration", "distance"],
   };
 }
 
-export function parseOrsMatrix(body: unknown, destinations: Destination[]): Record<string, number> {
-  const matrix = body as { durations?: unknown[]; error?: { message?: string } | string } | null;
-  if (!matrix?.durations) {
+export function parseOrsMatrix(body: unknown, destinations: Destination[]): RouteTable {
+  const matrix = body as { durations?: unknown[]; distances?: unknown[]; error?: { message?: string } | string } | null;
+  if (!Array.isArray(matrix?.durations?.[0])) {
     const error = typeof matrix?.error === "string" ? matrix.error : matrix?.error?.message;
     throw new RoutingUnavailableError(error ?? "The router sent no durations");
   }
-  return durationsById(matrix.durations[0], destinations, 0);
+  // ORS reports distance in meters by default.
+  return { seconds: durationsById(matrix.durations[0], destinations, 0), meters: durationsById(matrix.distances?.[0], destinations, 0) };
 }
 
 async function request(url: string, init: RequestInit): Promise<unknown> {
@@ -110,18 +113,18 @@ export async function fetchDriveTimes(
   origin: Origin,
   destinations: Destination[],
   env: { apiKey?: string; osrmUrl?: string } = {},
-): Promise<{ service: RoutingService; seconds: Record<string, number> }> {
-  if (destinations.length === 0) return { service: env.apiKey ? "openrouteservice" : "osrm", seconds: {} };
+): Promise<{ service: RoutingService } & RouteTable> {
+  if (destinations.length === 0) return { service: env.apiKey ? "openrouteservice" : "osrm", seconds: {}, meters: {} };
   if (env.apiKey) {
     const body = await request(ORS_URL, {
       method: "POST",
       headers: { Authorization: env.apiKey, "Content-Type": "application/json", "User-Agent": USER_AGENT },
       body: JSON.stringify(orsMatrixBody(origin, destinations)),
     });
-    return { service: "openrouteservice", seconds: parseOrsMatrix(body, destinations) };
+    return { service: "openrouteservice", ...parseOrsMatrix(body, destinations) };
   }
   const body = await request(osrmTableUrl(origin, destinations, env.osrmUrl), {
     headers: { "User-Agent": USER_AGENT },
   });
-  return { service: "osrm", seconds: parseOsrmTable(body, destinations) };
+  return { service: "osrm", ...parseOsrmTable(body, destinations) };
 }

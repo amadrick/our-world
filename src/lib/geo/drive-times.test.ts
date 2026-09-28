@@ -3,7 +3,6 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   RoutingUnavailableError,
   fetchDriveTimes,
-  formatDrive,
   metersBetween,
   orsMatrixBody,
   osrmTableUrl,
@@ -23,12 +22,15 @@ describe("drive times", () => {
 
   it("asks OSRM's table service for one row from the origin", () => {
     expect(osrmTableUrl(origin, places, "https://router.example/")).toBe(
-      "https://router.example/table/v1/driving/-122.419300,37.779300;-122.418160,37.750870;-122.405820,37.802390?sources=0&annotations=duration",
+      "https://router.example/table/v1/driving/-122.419300,37.779300;-122.418160,37.750870;-122.405820,37.802390?sources=0&annotations=duration,distance",
     );
   });
 
   it("reads OSRM durations by place, skipping the origin column and unroutable places", () => {
-    expect(parseOsrmTable({ code: "Ok", durations: [[0, 642.4, null]] }, places)).toEqual({ "la-taqueria": 642 });
+    expect(parseOsrmTable({ code: "Ok", durations: [[0, 642.4, null]], distances: [[0, 3520.7, null]] }, places)).toEqual({
+      seconds: { "la-taqueria": 642 },
+      meters: { "la-taqueria": 3521 },
+    });
     expect(() => parseOsrmTable({ code: "TooBig", message: "Too many table coordinates" }, places)).toThrow(
       RoutingUnavailableError,
     );
@@ -43,9 +45,12 @@ describe("drive times", () => {
       ],
       sources: [0],
       destinations: [1, 2],
-      metrics: ["duration"],
+      metrics: ["duration", "distance"],
     });
-    expect(parseOrsMatrix({ durations: [[610.2, 480.9]] }, places)).toEqual({ "la-taqueria": 610, "coit-tower": 481 });
+    expect(parseOrsMatrix({ durations: [[610.2, 480.9]], distances: [[4100, 3900]] }, places)).toEqual({
+      seconds: { "la-taqueria": 610, "coit-tower": 481 },
+      meters: { "la-taqueria": 4100, "coit-tower": 3900 },
+    });
     expect(() => parseOrsMatrix({ error: { message: "Access to this API has been disallowed" } }, places)).toThrow(
       "Access to this API has been disallowed",
     );
@@ -61,10 +66,12 @@ describe("drive times", () => {
     await expect(fetchDriveTimes(origin, places)).resolves.toEqual({
       service: "osrm",
       seconds: { "la-taqueria": 90, "coit-tower": 180 },
+      meters: {},
     });
     await expect(fetchDriveTimes(origin, places, { apiKey: "key" })).resolves.toEqual({
       service: "openrouteservice",
       seconds: { "la-taqueria": 60, "coit-tower": 120 },
+      meters: {},
     });
     expect((calls[1][1].headers as Record<string, string>).Authorization).toBe("key");
   });
@@ -72,13 +79,6 @@ describe("drive times", () => {
   it("reports an unreachable router as unavailable", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => Promise.reject(new TypeError("fetch failed"))));
     await expect(fetchDriveTimes(origin, places)).rejects.toBeInstanceOf(RoutingUnavailableError);
-  });
-
-  it("says drive times in minutes, then hours", () => {
-    expect(formatDrive(20)).toBe("1 min drive");
-    expect(formatDrive(12 * 60 + 20)).toBe("12 min drive");
-    expect(formatDrive(3600)).toBe("1 hr drive");
-    expect(formatDrive(3600 + 25 * 60)).toBe("1 hr 25 min drive");
   });
 
   it("snaps origins to about 110 m and measures moves", () => {

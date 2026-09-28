@@ -22,7 +22,7 @@ import { PhotoHalo } from "@/components/places/photo-halo";
 import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
-import { formatDrive } from "@/lib/geo/drive-times";
+import { formatTravel, formatTravelShort, type TravelEstimate } from "@/lib/geo/travel-estimate";
 import { hoursLine, openState } from "@/lib/places/hours";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
 import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
@@ -444,6 +444,33 @@ function photoAlt(place: Place) {
   return `${place.name}${place.neighborhood ? ` in ${place.neighborhood}` : ""}, as a grainy film-style picture`;
 }
 
+/** A walking figure, in the car glyph's weight. */
+export function WalkGlyph({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="shrink-0"
+    >
+      <circle cx="13" cy="4.5" r="1.8" />
+      <path d="M10.5 21l2-6.5L15 17v4" />
+      <path d="M8 12.5l2.2-4.3a1.4 1.4 0 0 1 1.8-.6l2.4 1.2 1.6 3.2 2 .8" />
+      <path d="M12.5 14.5l-1.2-4.3" />
+    </svg>
+  );
+}
+
+export function TravelGlyph({ travel, size }: { travel: TravelEstimate; size?: number }) {
+  return travel.mode === "walk" ? <WalkGlyph size={size} /> : <CarGlyph size={size} />;
+}
+
 export function CarGlyph({ size = 16 }: { size?: number }) {
   return (
     <svg
@@ -466,14 +493,14 @@ export function CarGlyph({ size = 16 }: { size?: number }) {
   );
 }
 
-/** The drive from the reader's location, in the category line's style. Its line is kept even when empty. */
-export function DriveTime({ seconds, className }: { seconds?: number | null; className?: string }) {
+/** The trip from the reader's location ("~12 min drive"), in the category line's style. Its line is kept even when empty. */
+export function DriveTime({ travel, className }: { travel?: TravelEstimate | null; className?: string }) {
   return (
     <p className={cn("flex h-6 items-center gap-2 text-base font-medium text-white/75", className)}>
-      {seconds != null && (
+      {travel && (
         <>
-          <CarGlyph />
-          <span className="truncate">{formatDrive(seconds)}</span>
+          <TravelGlyph travel={travel} />
+          <span className="truncate">{formatTravel(travel)}</span>
         </>
       )}
     </p>
@@ -484,7 +511,7 @@ export function DriveTime({ seconds, className }: { seconds?: number | null; cla
  * The sheet's third line, kept even when empty: the hours ("Open now · closes 10 PM"),
  * then the drive time once the reader's location is known.
  */
-function MetaLine({ place, drive, now, className }: { place: Place; drive?: number | null; now?: Date; className?: string }) {
+function MetaLine({ place, drive, now, className }: { place: Place; drive?: TravelEstimate | null; now?: Date; className?: string }) {
   return (
     <p className={cn("flex h-6 min-w-0 items-center gap-2 text-base font-medium text-white/75", className)}>
       {now && (
@@ -493,13 +520,13 @@ function MetaLine({ place, drive, now, className }: { place: Place; drive?: numb
           <span className="truncate">{hoursLine(openState(place.hours, now), now)}</span>
         </>
       )}
-      {drive != null && (
+      {drive && (
         <>
           {now && <span aria-hidden className="shrink-0">·</span>}
-          <CarGlyph />
+          <TravelGlyph travel={drive} />
           <span className="shrink-0">
-            {formatDrive(drive).replace(/ drive$/, "")}
-            <span className="sr-only"> drive</span>
+            {formatTravelShort(drive)}
+            <span className="sr-only"> {drive.mode}</span>
           </span>
         </>
       )}
@@ -512,7 +539,7 @@ function MetaLine({ place, drive, now, className }: { place: Place; drive?: numb
  * two lines settle onto the same baseline, then the category and drive lines, so every
  * place's title, meta, and buttons land at the same height.
  */
-function SheetHeading({ place, drive, now }: { place: Place; drive?: number | null; now?: Date }) {
+function SheetHeading({ place, drive, now }: { place: Place; drive?: TravelEstimate | null; now?: Date }) {
   const label = pickLabel(place.pickBy);
   return (
     <header className="[text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
@@ -598,7 +625,7 @@ interface PlaceDetailProps {
   /** Neighbors kept mounted so a swipe only moves photos that are already painted. */
   slides?: PlaceSlide[];
   /** Driving time from the reader, in seconds, by place id; missing until the location is known. */
-  driveTimes?: Readonly<Record<string, number>> | null;
+  driveTimes?: Readonly<Record<string, TravelEstimate>> | null;
   /** The time in San Francisco, for the hours line. */
   now?: Date;
 }
@@ -659,7 +686,7 @@ export function PlaceDetail({
             {hoursLine(openState(p.hours, now), now)}
           </p>
         )}
-        {drive != null && <DriveTime seconds={drive} />}
+        {drive && <DriveTime travel={drive} />}
       </header>
     );
   };
