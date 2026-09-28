@@ -3,7 +3,8 @@
 import { useEffect, useEffectEvent, type RefObject } from "react";
 import { flushSync } from "react-dom";
 
-import { lockAxis, swipeOffset, swipeOutcome, type StepDirection } from "@/lib/places/swipe";
+import { endGesture, gestureAxis } from "@/lib/gesture-axis";
+import { swipeOffset, swipeOutcome, type StepDirection } from "@/lib/places/swipe";
 
 /** How long a committed swipe pages to the neighbor, and how long a short one eases back. */
 const OUT_MS = 520;
@@ -97,7 +98,8 @@ export function useSwipeBetween(
         if (move.pointerId !== down.pointerId) return;
         const dx = move.clientX - down.clientX;
         if (!g.axis) {
-          g.axis = lockAxis(dx, move.clientY - down.clientY);
+          // Decided once per touch, with the sheet's drag, so only one of them ever moves.
+          g.axis = gestureAxis(down.pointerId, dx, move.clientY - down.clientY);
           if (g.axis === "y") return stop();
           if (!g.axis) return;
           window.clearTimeout(timer);
@@ -112,6 +114,7 @@ export function useSwipeBetween(
       const onEnd = (end: PointerEvent) => {
         if (end.pointerId !== down.pointerId) return;
         stop();
+        endGesture(down.pointerId);
         if (g.axis !== "x") return;
         // A swipe that ends over a button or link shouldn't also press it.
         const swallow = (click: MouseEvent) => {

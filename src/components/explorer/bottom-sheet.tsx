@@ -3,10 +3,11 @@
 import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 
 import { OPEN_SHEET_MS, OPEN_TINT_MS, prefersReducedMotion } from "@/lib/motion";
-import { lockAxis } from "@/lib/places/swipe";
+import { endGesture, gestureAxis } from "@/lib/gesture-axis";
+import { TAP_SLOP, dragOffset, settleSheet, velocityOf, type Sample, type SheetSnap } from "@/lib/sheet-gesture";
 import { cn } from "@/lib/utils";
 
-export type SheetSnap = "peek" | "mid" | "full";
+export type { SheetSnap } from "@/lib/sheet-gesture";
 
 interface BottomSheetProps {
   snap: SheetSnap;
@@ -38,7 +39,6 @@ interface BottomSheetProps {
   className?: string;
 }
 
-const SNAPS: SheetSnap[] = ["full", "mid", "peek"];
 const EASE_SOFT = "cubic-bezier(0.22, 1, 0.36, 1)";
 const CURVE = `${OPEN_SHEET_MS}ms ${EASE_SOFT}`;
 // The place color eases on the same landing as the camera's wash.
@@ -63,10 +63,13 @@ interface DragState {
   startY: number;
   startOffset: number;
   offset: number;
-  lastY: number;
-  lastTime: number;
-  velocity: number;
+  samples: Sample[];
+  /** Farthest the finger got from where it went down, px. */
+  travel: number;
+  /** Locked to a vertical drag of the sheet. */
   moved: boolean;
+  /** Followed the finger before the axis was decided. */
+  provisional: boolean;
 }
 
 export function BottomSheet({
@@ -176,58 +179,66 @@ export function BottomSheet({
       startY: event.clientY,
       startOffset,
       offset: startOffset,
-      lastY: event.clientY,
-      lastTime: event.timeStamp,
-      velocity: 0,
+      samples: [[event.timeStamp, event.clientY]],
+      travel: 0,
       moved: false,
+      provisional: false,
     };
     drag.current = d;
+    // At full height the content scrolls, except a downward pull at the top, which collapses the sheet.
+    const contentScrolls = (dy: number) => snap === "full" && fromContent && (scrollTop > 0 || dy < 0);
 
     const stop = () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", end);
       window.removeEventListener("pointercancel", end);
     };
+    const follow = (e: PointerEvent, dy: number) => {
+      d.offset = dragOffset(d.startOffset, dy, offsetFor("peek"));
+      d.samples.push([e.timeStamp, e.clientY]);
+      moveTo(d.offset, false);
+    };
 
     const move = (e: PointerEvent) => {
       if (e.pointerId !== d.pointerId) return;
+      const dx = e.clientX - d.startX;
       const dy = e.clientY - d.startY;
+      d.travel = Math.max(d.travel, Math.hypot(dx, dy));
       if (!d.moved) {
-        const axis = lockAxis(e.clientX - d.startX, dy, 6);
-        if (!axis) return;
-        // Sideways is a swipe between places, not a sheet drag.
-        if (axis === "x") {
-          stop();
-          drag.current = null;
+        const axis = gestureAxis(d.pointerId, dx, dy);
+        if (!axis) {
+          // Follow the finger 1:1 from the first pixel while it's mostly vertical; a
+          // swipe that turns out sideways puts the sheet straight back.
+          if (Math.abs(dy) >= Math.abs(dx) && !contentScrolls(dy)) {
+            d.provisional = true;
+            follow(e, dy);
+          }
           return;
         }
-        // At full height the content scrolls, except a downward pull at the top, which collapses the sheet.
-        if (snap === "full" && fromContent && (scrollTop > 0 || dy < 0)) {
+        // Sideways is a swipe between places; scrolling the full sheet is the content's.
+        if (axis === "x" || contentScrolls(dy)) {
           stop();
           drag.current = null;
+          if (d.provisional) moveTo(d.startOffset, true);
           return;
         }
         d.moved = true;
       }
-      const max = offsetFor("peek");
-      let offset = d.startOffset + dy;
-      if (offset < 0) offset *= 0.25;
-      if (offset > max) offset = max + (offset - max) * 0.25;
-      const dt = e.timeStamp - d.lastTime;
-      if (dt > 0) d.velocity = 0.8 * ((e.clientY - d.lastY) / dt) + 0.2 * d.velocity;
-      d.lastY = e.clientY;
-      d.lastTime = e.timeStamp;
-      d.offset = offset;
-      moveTo(offset, false);
+      follow(e, dy);
     };
 
     const end = (e: PointerEvent) => {
       if (e.pointerId !== d.pointerId) return;
       stop();
+      endGesture(d.pointerId);
       drag.current = null;
 
       if (!d.moved) {
-        if (e.type === "pointercancel") return;
+        // A touch that moved a little but never became a drag settles back where it was.
+        if (d.travel > TAP_SLOP || e.type === "pointercancel") {
+          moveTo(d.startOffset, true);
+          return;
+        }
         if (downTarget.closest("button, a, input, [role='option']")) return;
         // WebKit's touch adjustment can land the tap's click on the map just above the
         // sheet's edge, where it would close the sheet.
@@ -238,32 +249,17 @@ export function BottomSheet({
 
       // A drag that ends over a header button shouldn't also press it.
       swallowClick(0);
-
-      const projected = d.offset + d.velocity * 200;
-      let next = SNAPS.reduce((best, s) =>
-        Math.abs(offsetFor(s) - projected) < Math.abs(offsetFor(best) - projected) ? s : best,
-      );
-      // A confident flick always moves at least one step.
-      if (next === snap && Math.abs(d.velocity) > 0.45) {
-        const i = SNAPS.indexOf(snap) + (d.velocity > 0 ? 1 : -1);
-        next = SNAPS[Math.min(Math.max(i, 0), SNAPS.length - 1)];
-      }
-      // The half sheet drags up to full or down to dismiss. It does not settle into the peek.
-      if (snap === "mid" && next === "peek") {
+      d.samples.push([e.timeStamp, e.clientY]);
+      const next = settleSheet({
+        from: snap,
+        startOffset: d.startOffset,
+        offset: d.offset,
+        velocity: e.type === "pointercancel" ? 0 : velocityOf(d.samples),
+        offsets: { full: offsetFor("full"), mid: offsetFor("mid"), peek: offsetFor("peek") },
+      });
+      if (next === "dismiss") {
         onDismiss?.();
         return;
-      }
-      if (snap === "peek" && d.velocity > 0.4 && d.offset > offsetFor("mid")) {
-        onDismiss?.();
-        return;
-      }
-      // Full height collapses to half. Dragging it nearly off screen dismisses.
-      if (snap === "full" && next === "peek") {
-        if (d.offset > offsetFor("peek") + 36) {
-          onDismiss?.();
-          return;
-        }
-        next = "mid";
       }
       moveTo(offsetFor(next), true);
       if (next !== snap) onSnapChange(next);
