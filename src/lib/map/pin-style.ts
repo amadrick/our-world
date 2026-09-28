@@ -122,7 +122,40 @@ export const INK_PINS: PinPalette = {
   },
 };
 
-const PIN_PALETTES: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS };
+/**
+ * Basemap (g) Paper's dots: the same hues in earthy, atlas-ink tones that sit
+ * on cream without going dusty, on a warm white ring with a soft warm shadow.
+ * Names hold 4.5:1 on their halos.
+ */
+export const PAPER_PINS: PinPalette = {
+  categories: {
+    restaurant: { fill: "#D2703E", label: "#9A4A22", labelDark: "#E8A27C" },
+    coffee: { fill: "#8E6B4E", label: "#735238", labelDark: "#CDAE93" },
+    bakery: { fill: "#C99A3E", label: "#7D5B17", labelDark: "#E0BF7C" },
+    dessert: { fill: "#CB6F66", label: "#9A4640", labelDark: "#E6A29B" },
+    bar: { fill: "#B9537A", label: "#96385E", labelDark: "#E49BB7" },
+    wine: { fill: "#874566", label: "#763A58", labelDark: "#D5A0BD" },
+    shop: { fill: "#C4A43E", label: "#6E5A12", labelDark: "#DCC77E" },
+    sight: { fill: "#56709A", label: "#465E86", labelDark: "#A6B8D6" },
+    museum: { fill: "#86609A", label: "#6E4D82", labelDark: "#C6A8D6" },
+    park: { fill: "#5F8A5B", label: "#476B44", labelDark: "#A2C29D" },
+  },
+  ring: { light: "#FBFAF6", dark: "#EDE8DE" },
+  caption: { light: "#6A6258", dark: "#C9C1B4" },
+  halo: { light: "#F7F5EE", dark: "#1F1E1B" },
+  shadow: {
+    glyph: {
+      light: "0 0 0 2px #FBFAF6, 0 0 0 3px rgb(90 75 55 / 0.1), 0 1px 2px rgb(60 45 30 / 0.16), 0 2px 6px rgb(60 45 30 / 0.1)",
+      dark: "0 0 0 2px #EDE8DE, 0 1px 2px rgb(0 0 0 / 0.5), 0 2px 6px rgb(0 0 0 / 0.35)",
+    },
+    photo: {
+      light: "0 0 0 1px rgb(90 75 55 / 0.1), 0 1px 2px rgb(60 45 30 / 0.16), 0 3px 8px rgb(60 45 30 / 0.1)",
+      dark: "0 1px 2px rgb(0 0 0 / 0.5), 0 3px 8px rgb(0 0 0 / 0.35)",
+    },
+  },
+};
+
+const PIN_PALETTES: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS, paper: PAPER_PINS };
 
 export const pinPalette = (theme: MapThemeId): PinPalette => PIN_PALETTES[theme] ?? APPLE_PINS;
 
