@@ -114,6 +114,7 @@ describe("parseMapTheme", () => {
     expect(parseMapTheme("e")).toBe("film");
     expect(parseMapTheme("f")).toBe("ink");
     expect(parseMapTheme("Ink")).toBe("ink");
+    expect(parseMapTheme("g")).toBe("paper");
   });
 
   it("ignores anything else", () => {

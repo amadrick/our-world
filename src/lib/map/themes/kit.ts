@@ -22,7 +22,7 @@ export type Palette = Record<string, string>;
 /** How far each surface leans toward an open place's color, and how colorful it gets. */
 export type TintTable<P extends Palette> = Partial<Record<keyof P, [mix: number, chroma: number]>>;
 
-export type MapThemeId = "golden" | "editorial" | "dimensional" | "apple" | "film" | "ink";
+export type MapThemeId = "golden" | "editorial" | "dimensional" | "apple" | "film" | "ink" | "paper";
 
 export interface MapTheme<P extends Palette = Palette> {
   id: MapThemeId;
