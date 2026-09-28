@@ -23,8 +23,6 @@ function screen(place: { lng: number; lat: number }, camera: Camera) {
   const c = mercator(camera);
   return { x: (m.x - c.x) * size + view.width / 2, y: (m.y - c.y) * size + view.height / 2 };
 }
-const visible = (p: { x: number; y: number }) =>
-  p.x >= 0 && p.x <= view.width && p.y >= view.padding.top && p.y <= view.height - view.padding.bottom;
 
 const startAt = (place: { lng: number; lat: number }, zoom: number): Camera => {
   // The resting camera on a place: centered in the map above the sheet.
