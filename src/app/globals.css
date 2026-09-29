@@ -632,66 +632,6 @@ body .maplibregl-map {
 }
 
 /*
- * Basemap (e) Film, the part that stays a DOM overlay: faint tonal unevenness
- * and an edge haze. The grain used to live here too (a 160px tile scaled to
- * 128 CSS px with mix-blend-mode: overlay). On a phone at DPR 3 that tile is
- * drawn across ~384 device px, so each grain speck is soft and chunky, and
- * overlay-blending it against the WebGL canvas forces a full recomposite on
- * every pan and every sheet drag (banding, and a texture that stays glued to
- * the screen). The grain is now inside the canvas. This overlay is only
- * gradients, so it doesn't repaint the map.
- */
-.map-film {
-  --film-haze: 238 233 225;
-  --film-light: 255 252 246;
-  --film-shade: 116 104 88;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 45% at 20% 24%, rgb(var(--film-light) / 0.13), transparent 70%),
-    radial-gradient(ellipse 50% 45% at 30% 86%, rgb(var(--film-light) / 0.1), transparent 70%),
-    radial-gradient(ellipse 55% 50% at 80% 68%, rgb(var(--film-shade) / 0.07), transparent 70%),
-    radial-gradient(ellipse 45% 40% at 62% 14%, rgb(var(--film-shade) / 0.05), transparent 70%),
-    rgb(var(--film-haze) / 0.07);
-}
-.map-film::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 72% 68% at 50% 50%, transparent 58%, rgb(var(--film-haze) / 0.3) 100%);
-}
-/* Phones: one soft vignette. Stacked low-alpha gradients band on an 8-bit mobile composite. */
-@media (max-width: 1023px), (pointer: coarse) {
-  .map-film {
-    background: radial-gradient(ellipse 88% 78% at 50% 42%, transparent 52%, rgb(var(--film-haze) / 0.2) 100%);
-  }
-  .map-film::after {
-    opacity: 0.4;
-  }
-}
-/* A touch of optical blur at the very edges, on a desktop pointer only. */
-@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  .map-film::after {
-    backdrop-filter: blur(1.1px);
-    mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, transparent 62%, #000 100%);
-  }
-}
-@media (prefers-color-scheme: dark) {
-  .map-film {
-    --film-haze: 60 56 51;
-    --film-light: 92 86 78;
-    --film-shade: 12 11 10;
-  }
-}
-@media (prefers-reduced-transparency: reduce) {
-  .map-film {
-    display: none;
-  }
-}
-
-/*
  * Map pins in Apple Maps' language (sizes from src/lib/map/pin-style.ts). The
  * button is the pin's resting head, centered on the spot. Selected, the head
  * turns into a teardrop (one corner sharpens, the shape turns 45°) and lifts

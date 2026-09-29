@@ -1,8 +1,7 @@
-import type { CustomLayerInterface, GeoJSONSource, Map as MapLibreMap, Marker } from "maplibre-gl";
+import type { GeoJSONSource, Map as MapLibreMap, Marker } from "maplibre-gl";
 
 import { easeOutQuart, OPEN_CAMERA_MS, prefersReducedMotion } from "@/lib/motion";
 
-import { createFilmGrainLayer } from "./film-grain-layer";
 import { routeTiles } from "./route-tiles";
 import { buildMapStyle, type ColorScheme, type PinFootprint, type TileSource } from "./style";
 import { MAP_THEMES, currentMapTheme, type MapThemeId } from "./theme";
@@ -93,21 +92,6 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   });
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
-  if (theme.overlay) {
-    // Vignette only. The grain itself is a canvas layer (below), so this div never blends or blurs.
-    const overlay = document.createElement("div");
-    overlay.className = `map-${theme.overlay}`;
-    overlay.setAttribute("aria-hidden", "true");
-    map.getCanvas().after(overlay);
-  }
-  // setStyle drops custom layers, so the grain is put back after every restyle (tint, dark mode).
-  let grain: CustomLayerInterface | null = null;
-  const ensureGrain = () => {
-    if (theme.overlay !== "film") return;
-    grain ??= createFilmGrainLayer();
-    if (!map.getLayer(grain.id)) map.addLayer(grain);
-  };
-  map.on("style.load", ensureGrain);
   // Textures, markers, and the pins' collision boxes are drawn on demand.
   // A resolver, not the styleimagemissing event: only a resolver can answer the tile that's asking.
   map.setMissingStyleImageResolver((id) => {
@@ -145,7 +129,6 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   map.once("load", () => {
     loaded = true;
     window.clearTimeout(timeout);
-    ensureGrain();
     options.onReady();
     options.onZoomChange?.(map.getZoom());
     options.onMove?.();

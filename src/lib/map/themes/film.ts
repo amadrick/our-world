@@ -5,7 +5,6 @@ import {
   byZoom,
   classIn,
   halo,
-  hexId,
   isLine,
   isPolygon,
   named,
@@ -17,13 +16,11 @@ import {
 } from "./kit";
 
 /**
- * (e) Film: a clean, precise map that looks gently photographed on Kodak 35mm
- * (Andy's reference, briefs/film-map-ref-andy.png). Warm pale stone land with
- * fine streets a shade lighter than it, mineral grey-blue water, muted sage
- * parks with a faint speckle, and only a few labels: districts and water in
- * widely spaced small grey capitals, street names only up close. The grain is
- * drawn in the map canvas (so it pans with the streets and stays fine at phone
- * resolution); the haze and soft edges stay a light overlay (`.map-film`).
+ * (e) Film: a clean, precise map in the palette of Kodak 35mm (Andy's
+ * reference, briefs/film-map-ref-andy.png), without its grain. Warm pale stone
+ * land with fine streets a shade lighter than it, mineral grey-blue water,
+ * muted sage parks, and only a few labels: districts and water in widely
+ * spaced small grey capitals, street names only up close.
  */
 const LIGHT = {
   land: "#E2D9CD",
@@ -31,7 +28,6 @@ const LIGHT = {
   park: "#A2A998",
   wood: "#9CA392",
   pitch: "#AAB0A0",
-  speckle: "#6C7265",
   water: "#AEB9B9",
   pier: "#DAD1C4",
   building: "#DAD1C5",
@@ -58,7 +54,6 @@ const DARK: FilmPalette = {
   park: "#3B4136",
   wood: "#373D33",
   pitch: "#414838",
-  speckle: "#262A23",
   water: "#262D31",
   pier: "#2F2C28",
   building: "#393531",
@@ -225,9 +220,7 @@ export const film: MapTheme<FilmPalette> = {
     labelHalo: [0.5, 0.018],
   },
   pitch: 0,
-  overlay: "film",
-  layers(C, { scheme }) {
-    const dark = scheme === "dark";
+  layers(C) {
     return [
       { id: "background", type: "background", paint: { "background-color": C.land } },
       {
@@ -255,15 +248,6 @@ export const film: MapTheme<FilmPalette> = {
         minzoom: 13,
         filter: classIn(["pitch", "playground", "stadium", "cemetery"]),
         paint: { "fill-color": C.pitch },
-      },
-      // The faint texture the reference's parks have, like foliage seen from far above.
-      {
-        id: "park-mottle",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "park",
-        minzoom: 10,
-        paint: { "fill-pattern": `mottle-${hexId(C.speckle)}-${dark ? 50 : 45}`, "fill-opacity": byZoom(10, 0, 11.5, 1) },
       },
       {
         id: "water",
