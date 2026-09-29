@@ -385,7 +385,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     // The map pans with the card at the current zoom; past a place that isn't ready it only leans.
     onDrag: (direction, p, open) => {
       const target = direction === 1 ? next : prev;
-      mapRef.current?.swipeCamera(target?.id ?? null, open ? p : p * RUBBER_CAMERA);
+      mapRef.current?.swipeCamera(target?.id ?? null, open ? p : p * RUBBER_CAMERA, open);
     },
     onRelease: (_direction, to, durationMs) => mapRef.current?.settleSwipeCamera(to, durationMs),
   });

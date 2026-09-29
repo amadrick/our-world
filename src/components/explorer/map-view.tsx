@@ -3,7 +3,7 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import { Map as MapIcon } from "react-feather";
-import { useCallback, useEffect, useEffectEvent, useImperativeHandle, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { DEFAULT_VIEW, getMapProvider, type MapInstance, type MapPadding } from "@/lib/map";
@@ -32,8 +32,10 @@ export interface MapViewHandle {
   /**
    * The swipe between places drives the camera: `p` is how far the card has gone
    * toward the neighbor `toId` (0–1), or null when there's no neighbor that way.
+   * When the neighbor can be reached (`open`), its pin turns into the selected one
+   * as the open place's pin turns back, in step with the card.
    */
-  swipeCamera: (toId: string | null, p: number) => void;
+  swipeCamera: (toId: string | null, p: number, open: boolean) => void;
   /** The swipe was let go: ease what's left to `p` (1 lands on the neighbor, 0 goes back) in `durationMs`. */
   settleSwipeCamera: (p: number, durationMs: number) => void;
 }
@@ -69,6 +71,18 @@ const CLUSTER_ZOOM_LIMIT = 17;
 
 type Layout = Map<string, PinDisplay>;
 
+interface Swipe {
+  start: Camera;
+  /** The open place, and the neighbor the card is headed to. */
+  fromId: string | null;
+  toId: string | null;
+  open: boolean;
+  plan: SwipePlan | null;
+  p: number;
+  /** The pins currently drawn by the swipe rather than by their selected state. */
+  scrubbed: Set<string>;
+}
+
 const sameLayout = (a: Layout, b: Layout) =>
   a.size === b.size && [...a].every(([id, display]) => b.get(id) === display);
 
@@ -82,6 +96,32 @@ function framingSet(places: Place[]): Place[] {
     Math.hypot((p.lat - lat) * 111, (p.lng - lng) * 111 * Math.cos((lat * Math.PI) / 180));
   const core = places.filter((p) => km(p) <= 10);
   return core.length ? core : places;
+}
+
+/**
+ * A swipe draws the two pins it moves between: --sel written straight onto the
+ * buttons each frame (no React render, no map restyle), the one nearer
+ * selected on top. `null` hands the pin back to its data-selected state.
+ */
+function scrubPin(pins: Map<string, HTMLElement>, id: string, sel: number | null, scrubbed: Set<string>) {
+  const marker = pins.get(id);
+  const button = marker?.firstElementChild as HTMLElement | null | undefined;
+  if (!marker || !button) return;
+  if (sel === null) {
+    button.style.removeProperty("--sel");
+    delete button.dataset.scrub;
+    marker.style.zIndex = "";
+    scrubbed.delete(id);
+    return;
+  }
+  button.dataset.scrub = "";
+  button.style.setProperty("--sel", sel.toFixed(4));
+  marker.style.zIndex = sel >= 0.5 ? "5" : "4";
+  scrubbed.add(id);
+}
+
+function releasePins(pins: Map<string, HTMLElement>, swipe: Swipe) {
+  for (const id of [...swipe.scrubbed]) scrubPin(pins, id, null, swipe.scrubbed);
 }
 
 export function MapView({
@@ -107,6 +147,9 @@ export function MapView({
   const [status, setStatus] = useState<Status>("loading");
   const [layout, setLayout] = useState<Layout>(() => new Map());
   const [palette, setPalette] = useState<PinPalette>(APPLE_PINS);
+  // The neighbor a swipe is headed to: laid out as a second selected pin until the swipe ends, so it never pops in.
+  const [swipeTargetId, setSwipeTargetId] = useState<string | null>(null);
+  const isSelected = (id: string) => id === selectedId || id === swipeTargetId;
   const frameRef = useRef(0);
   // Pin DOM nodes live outside React's tree (the map positions them), so React renders into them via portals.
   const [pinElements] = useState(() => new Map<string, HTMLElement>());
@@ -161,8 +204,8 @@ export function MapView({
         id: place.id,
         ...instance.project(place),
         ...pinSpecs.get(place.id)!,
-        forced: place.id === selectedId || place.id === highlightedId,
-        selected: place.id === selectedId,
+        forced: isSelected(place.id) || place.id === highlightedId,
+        selected: isSelected(place.id),
       })),
       instance.size(),
       instance.zoom(),
@@ -285,7 +328,7 @@ export function MapView({
 
   useEffect(() => {
     if (status === "ready") relayout();
-  }, [places, selectedId, highlightedId, showEveryPin, status]);
+  }, [places, selectedId, swipeTargetId, highlightedId, showEveryPin, status]);
 
   useEffect(() => {
     if (status !== "ready") return;
@@ -296,11 +339,13 @@ export function MapView({
         lat: place.lat,
         kind: pinKind(place.category),
         display: layout.get(place.id) ?? "hidden",
-        selected: place.id === selectedId,
+        selected: isSelected(place.id),
         name: smartQuotes(place.name),
       })),
     );
-  }, [places, layout, selectedId, status]);
+    // isSelected reads selectedId and swipeTargetId.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [places, layout, selectedId, swipeTargetId, status]);
 
   useEffect(() => {
     const instance = instanceRef.current;
@@ -349,7 +394,7 @@ export function MapView({
   }, [fitKey, status]);
 
   // The camera during a swipe between places (see swipeCamera below).
-  const swipeRef = useRef<{ start: Camera; toId: string | null; plan: SwipePlan | null; p: number } | null>(null);
+  const swipeRef = useRef<Swipe | null>(null);
   const swipeFrame = useRef(0);
   const landedRef = useRef<string | null>(null);
 
@@ -376,14 +421,18 @@ export function MapView({
     const instance = instanceRef.current;
     if (!swipe || !instance) return;
     instance.jumpCamera(swipe.plan ? cameraAt(swipe.plan, swipe.p) : swipe.start);
+    const t = swipe.open && swipe.toId ? Math.min(Math.max(swipe.p, 0), 1) : 0;
+    for (const id of swipe.scrubbed) if (id !== swipe.fromId && id !== swipe.toId) scrubPin(pinElements, id, null, swipe.scrubbed);
+    if (swipe.fromId) scrubPin(pinElements, swipe.fromId, 1 - t, swipe.scrubbed);
+    if (swipe.toId && swipe.open) scrubPin(pinElements, swipe.toId, t, swipe.scrubbed);
   };
-  const swipeCamera = (toId: string | null, p: number) => {
+  const swipeCamera = (toId: string | null, p: number, open: boolean) => {
     const instance = instanceRef.current;
     if (!instance || status !== "ready") return;
     if (!swipeRef.current) {
       instance.stopCamera();
       instance.prefetchRoutes(null);
-      swipeRef.current = { start: instance.camera(), toId: null, plan: null, p: 0 };
+      swipeRef.current = { start: instance.camera(), fromId: selectedId, toId: null, open: false, plan: null, p: 0, scrubbed: new Set() };
     }
     const swipe = swipeRef.current;
     if (toId !== swipe.toId) {
@@ -393,6 +442,8 @@ export function MapView({
       swipe.plan =
         from && to ? planSwipeCamera({ start: swipe.start, to, view: { ...instance.size(), padding: instance.padding() } }) : null;
     }
+    swipe.open = open;
+    setSwipeTargetId(open ? toId : null);
     swipe.p = p;
     swipeFrame.current ||= requestAnimationFrame(applySwipe);
   };
@@ -411,6 +462,24 @@ export function MapView({
     if (status === "ready") prefetchRoutes();
   }, [neighborKey, places, status]);
 
+  // A swipe that lands hands its pins back to their selected state once the step commits:
+  // by then the new place is data-selected and the values match, so nothing moves.
+  const handoffRef = useRef<Swipe | null>(null);
+  const selectedRef = useRef(selectedId);
+  const handOff = (swipe: Swipe) => {
+    releasePins(pinElements, swipe);
+    handoffRef.current = null;
+    setSwipeTargetId(null);
+  };
+  useLayoutEffect(() => {
+    selectedRef.current = selectedId;
+    const swipe = handoffRef.current;
+    if (!swipe || swipeRef.current === swipe) return;
+    releasePins(pinElements, swipe);
+    handoffRef.current = null;
+    setSwipeTargetId(null);
+  }, [selectedId, pinElements]);
+
   const settleSwipeCamera = (target: number, durationMs: number) => {
     const swipe = swipeRef.current;
     if (!swipe) return;
@@ -418,7 +487,9 @@ export function MapView({
     swipeFrame.current = 0;
     const from = swipe.p;
     const began = performance.now();
-    if (target === 1 && swipe.plan) landedRef.current = swipe.toId;
+    const lands = target === 1 && swipe.plan !== null;
+    if (lands) landedRef.current = swipe.toId;
+    if (lands && swipe.open) handoffRef.current = swipe;
     const tick = (now: number) => {
       if (swipeRef.current !== swipe) return;
       const t = durationMs > 0 ? Math.min((now - began) / durationMs, 1) : 1;
@@ -427,6 +498,8 @@ export function MapView({
       if (t < 1) swipeFrame.current = requestAnimationFrame(tick);
       else {
         swipeRef.current = null;
+        // Going back (or landing after the step already committed) needs no wait.
+        if (handoffRef.current !== swipe || selectedRef.current === swipe.toId) handOff(swipe);
         instanceRef.current?.prefetchRoutes(routeTargetsRef.current);
       }
     };

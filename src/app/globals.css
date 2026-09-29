@@ -636,8 +636,31 @@ body .maplibregl-map {
  * button is the pin's resting head, centered on the spot. Selected, the head
  * turns into a teardrop (one corner sharpens, the shape turns 45°) and lifts
  * so its tip sits on the spot.
+ *
+ * Every part of that is drawn from --sel, 0 (resting) to 1 (selected), so one
+ * number carries the whole change: data-selected transitions it, and a swipe
+ * between places writes it on the two pins each frame (data-scrub turns the
+ * transition off while it does). --hover and --shown work the same way.
  */
+@property --sel {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --hover {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --shown {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
 .map-pin {
+  --sel: 0;
+  --hover: 0;
+  --shown: 1;
   --size: 22px;
   --grow: calc(40 / 22);
   --lift: 28.28px;
@@ -652,6 +675,25 @@ body .maplibregl-map {
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: transparent;
+  transition:
+    --sel var(--open-pin) var(--ease-out-soft),
+    --hover var(--open-pin) var(--ease-out-soft),
+    --shown var(--open-pin) var(--ease-out-soft);
+}
+.map-pin[data-selected] {
+  --sel: 1;
+}
+.map-pin:hover,
+.map-pin[data-highlighted] {
+  --hover: 1;
+}
+.map-pin[data-display="hidden"] {
+  --shown: 0;
+}
+.map-pin[data-scrub] {
+  transition:
+    --hover var(--open-pin) var(--ease-out-soft),
+    --shown var(--open-pin) var(--ease-out-soft);
 }
 .map-pin[data-kind="photo"] {
   --size: 36px;
@@ -690,14 +732,15 @@ body .maplibregl-map {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  /* Selected, the bottom-left corner sharpens into the tip. */
+  border-radius: 50% 50% 50% calc(50% * (1 - var(--sel)));
   background: var(--cat);
   color: #ffffff;
   box-shadow: var(--pin-glyph-shadow, 0 0 0 1.5px var(--rim), 0 1px 3px rgb(0 0 0 / 0.28));
-  transition:
-    transform var(--open-pin) var(--ease-out-soft),
-    border-radius var(--open-pin) var(--ease-out-soft),
-    opacity 280ms var(--ease-out-soft);
+  /* Hovering grows a resting pin a little; hidden, it shrinks away. */
+  transform: translateY(calc(-1 * var(--lift) * var(--sel))) rotate(calc(-45deg * var(--sel)))
+    scale(calc((1 + (var(--grow) - 1) * var(--sel) + 0.12 * var(--hover) * (1 - var(--sel))) * (0.4 + 0.6 * var(--shown))));
+  transition: opacity 280ms var(--ease-out-soft);
 }
 .map-pin[data-kind="photo"] .map-pin-head {
   padding: 2.5px;
@@ -720,22 +763,11 @@ body .maplibregl-map {
   justify-content: center;
   border-radius: 50%;
   overflow: hidden;
-  transition: transform var(--open-pin) var(--ease-out-soft);
-}
-.map-pin:hover .map-pin-head,
-.map-pin[data-highlighted] .map-pin-head {
-  transform: scale(1.12);
+  transform: rotate(calc(45deg * var(--sel)));
 }
 .map-pin:focus-visible .map-pin-head {
   outline: 2px solid var(--ink, #141414);
   outline-offset: 3px;
-}
-.map-pin[data-selected] .map-pin-head {
-  border-radius: 50% 50% 50% 0;
-  transform: translateY(calc(-1 * var(--lift))) rotate(-45deg) scale(var(--grow));
-}
-.map-pin[data-selected] .map-pin-face {
-  transform: rotate(45deg);
 }
 .map-pin-star {
   position: absolute;
@@ -750,20 +782,16 @@ body .maplibregl-map {
   background: #ffffff;
   color: #1c1c1e;
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
-  transition:
-    transform var(--open-pin) var(--ease-out-soft),
-    opacity 280ms var(--ease-out-soft);
+  transform: translate(calc(8px * var(--sel)), calc((-1 * var(--lift) - 6px) * var(--sel)))
+    scale(calc((1 + 0.25 * var(--sel)) * (0.4 + 0.6 * var(--shown))));
+  transition: opacity 280ms var(--ease-out-soft);
 }
 .map-pin[data-kind="photo"] .map-pin-star {
   top: -2px;
   right: -2px;
 }
-.map-pin[data-selected] .map-pin-star {
-  transform: translate(8px, calc(-1 * var(--lift) - 6px)) scale(1.25);
-}
 .map-pin[data-display="hidden"] :is(.map-pin-head, .map-pin-star) {
   opacity: 0;
-  transform: scale(0.4);
 }
 .map-pin-name {
   position: absolute;
@@ -781,9 +809,7 @@ body .maplibregl-map {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  transition:
-    opacity 280ms var(--ease-out-soft),
-    transform var(--open-pin) var(--ease-out-soft);
+  transition: opacity 280ms var(--ease-out-soft);
 }
 .map-pin[data-display="named"] .map-pin-name {
   opacity: 1;
@@ -797,10 +823,7 @@ body .maplibregl-map {
   line-height: 14px;
   text-align: left;
   -webkit-line-clamp: 3;
-  transform: translateY(-50%);
-}
-.map-pin[data-kind="glyph"][data-selected] .map-pin-name {
-  transform: translate(9px, calc(-50% - var(--lift)));
+  transform: translate(calc(9px * var(--sel)), calc(-50% - var(--lift) * var(--sel)));
 }
 /* Photos: the name below, in small grey capitals. */
 .map-pin[data-kind="photo"] .map-pin-name {
@@ -814,12 +837,12 @@ body .maplibregl-map {
   text-align: center;
   color: var(--caption);
   -webkit-line-clamp: 2;
-  transform: translateX(-50%);
-}
-.map-pin[data-kind="photo"][data-selected] .map-pin-name {
-  transform: translate(-50%, calc(-1 * var(--size) / 2));
+  transform: translate(-50%, calc(-1 * var(--size) / 2 * var(--sel)));
 }
 @media (prefers-reduced-motion: reduce) {
+  .map-pin {
+    transition: none;
+  }
   .map-pin-head,
   .map-pin-face,
   .map-pin-star,
