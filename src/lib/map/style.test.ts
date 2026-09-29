@@ -130,3 +130,26 @@ describe("currentMapTheme", () => {
     expect(currentMapTheme()).toBe("film");
   });
 });
+
+describe("the open place's tint", () => {
+  // A data-driven paint value that changes makes MapLibre reload every tile of its source.
+  it("only changes paint values that are the same for every feature, so a selection never reloads the basemap", () => {
+    const dataDriven = (value: unknown): boolean =>
+      Array.isArray(value) && (value[0] === "get" || value[0] === "has" || value[0] === "geometry-type" || value.some(dataDriven));
+    // The default and the live experiments; the older directions still pick some tinted colors per feature.
+    for (const theme of ["film", "ink", "paper"] as const) {
+      for (const scheme of ["light", "dark"] as const) {
+        const plain = buildMapStyle({ theme, tiles: "offline", origin: "", scheme });
+        const tinted = buildMapStyle({ theme, tiles: "offline", origin: "", scheme, tint: "#b04a3a" });
+        tinted.layers.forEach((layer, i) => {
+          const before = (plain.layers[i] as { paint?: Record<string, unknown> }).paint ?? {};
+          const after = (layer as { paint?: Record<string, unknown> }).paint ?? {};
+          for (const [name, value] of Object.entries(after)) {
+            if (JSON.stringify(value) === JSON.stringify(before[name])) continue;
+            expect(dataDriven(value), `${theme} ${scheme} ${layer.id} ${name}`).toBe(false);
+          }
+        });
+      }
+    }
+  });
+});

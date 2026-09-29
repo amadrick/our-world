@@ -63,6 +63,26 @@ export const notTunnel: Expr = ["!=", ["coalesce", ["get", "brunnel"], ""], "tun
 export const isBridge: Expr = ["==", ["coalesce", ["get", "brunnel"], ""], "bridge"];
 export const named: Expr = ["has", "name"];
 
+/*
+ * A color the open place's tint changes has to be one value per layer, never
+ * picked per feature (`match` on the class): MapLibre re-parses every tile of
+ * the source when a data-driven paint value changes, so each selection would
+ * reload the basemap. Split the layer instead.
+ */
+
+/** Grass and wetland in the park color, woods a shade apart. */
+export function greeneryLayers(park: string, wood: string): LayerSpecification[] {
+  const layer = (id: string, classes: string[], color: string): LayerSpecification => ({
+    id,
+    type: "fill",
+    source: "basemap",
+    "source-layer": "landcover",
+    filter: classIn(classes),
+    paint: { "fill-color": color },
+  });
+  return [layer("greenery", ["grass", "wetland"], park), layer("woods", ["wood"], wood)];
+}
+
 export const ROAD_GROUPS = {
   service: ["service"],
   minor: ["minor"],

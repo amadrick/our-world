@@ -4,6 +4,7 @@ import {
   FONT,
   byZoom,
   classIn,
+  greeneryLayers,
   halo,
   isLine,
   isPolygon,
@@ -232,14 +233,7 @@ export const film: MapTheme<FilmPalette> = {
         paint: { "fill-color": C.sand },
       },
       { id: "park", type: "fill", source: "basemap", "source-layer": "park", paint: { "fill-color": C.park } },
-      {
-        id: "greenery",
-        type: "fill",
-        source: "basemap",
-        "source-layer": "landcover",
-        filter: classIn(["grass", "wood", "wetland"]),
-        paint: { "fill-color": ["match", ["get", "class"], "wood", C.wood, C.park] },
-      },
+      ...greeneryLayers(C.park, C.wood),
       {
         id: "pitch",
         type: "fill",
