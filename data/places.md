@@ -1,9 +1,9 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 117 places: what each is known for (reviewed in
+Per-place notes for all 123 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 117 of 117 places are researched.
+place. 123 of 123 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
@@ -180,6 +180,36 @@ Dessert · Mission · 3692 18th St, San Francisco, CA 94110
   - <https://www.thesweetestescapes.com/blog/ice-cream-review-bi-rite-creamery-san-francisco-california>
   - <https://monocle.com/fashion/retail/bi-rite-market-san-francisco/>
   - <https://www.sf.gov/sites/default/files/2024-10/item_3a._lbr-2018-19-009_bi-rite.pdf>
+
+## Bi-Rite Market (Polk Street)
+
+Shop · Russian Hill · 2140 Polk St, San Francisco, CA 94109
+
+**Known for:** Fresh produce. The Chronicle and Bi-Rite's own opening story lead with its seasonal produce from California farms, the thing all three Bi-Rite markets are known for.
+
+- **Hours:** (<https://biritemarket.com/locations/>, <https://www.prnewswire.com/news-releases/bi-rite-market-polk-street-a-freshly-arrived-destination-for-community-sustainability-and-simply-delicious-food-302226071.html>) Official: 8am-9pm daily.
+  - Mon–Sun: 8 AM–9 PM
+
+### Place research
+
+- **Neighborhood and street:** Russian Hill. On Polk Street between Broadway and Vallejo, in the busy stretch of the Polk corridor's independent shops, cafes and bars, in the former Real Foods Co. storefront and the old hair salon next door.
+- **Terrain and setting:** Polk Street runs along the level floor of the gulch between Russian Hill and Pacific Heights, with both hills rising steeply on either side of the corridor.
+- **Architecture:** A 1920s building of two joined storefronts, restored in 2024: a sky-blue facade with yellow highlights, molded plaster ornament over the windows cleaned of old paint, and shiny vintage black tile along its base. Inside, the ceiling was opened up to more than 20 feet, with exposed rafters and skylights over the sales floor, a staircase along one wall and an L-shaped mezzanine of offices across the back.
+- **Unique architectural notes:** The restoration kept the century-old facade's black tile base and plaster ornament and repainted the once-yellow front a bright sky blue.
+- **Most iconic physical characteristics:**
+  - sky-blue storefront with yellow highlights
+  - shiny black vintage tile along the base
+  - restored plaster ornament over the windows
+  - tall skylit interior with exposed rafters
+- **More recognizable view:** the facade
+- **View used for the image:** The storefront from across Polk Street in soft daylight: the sky-blue facade with its yellow highlights, the restored plaster ornament over the big windows and the shiny black tile along the base, with neighboring Polk Street shopfronts on either side.
+- **Not verified:** The storefront sign, any awning and the number of stories are not described. Which side of Polk the store is on is not stated in the sources.
+- **Sources:**
+  - <https://biritemarket.com/feast/stories/the-inside-scoop-on-the-new-bi-rite-market-on-polk-street/>
+  - <https://www.sfchronicle.com/food/article/bi-rite-market-russian-hill-opening-19659505.php>
+  - <https://sfist.com/2024/08/20/third-bi-rite-location-in-russian-hill-readies-for-opening-next-week/>
+  - <https://sf.eater.com/2024/8/29/24231542/bi-rite-market-russian-hill-polk-street>
+  - <https://www.prnewswire.com/news-releases/bi-rite-market-polk-street-a-freshly-arrived-destination-for-community-sustainability-and-simply-delicious-food-302226071.html>
 
 ## Bodega SF
 
@@ -423,6 +453,33 @@ Sight · Civic Center · 1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102
   - <https://sfcityhallevents.org/docent-tours/>
   - <https://www.cbsnews.com/sanfrancisco/news/landscape-architect-has-new-vision-for-san-franciscos-civic-center-plaza/>
   - <https://usingsfhistory.com/2011/12/04/changing-place-names-to-change-historical-memory/>
+
+## City Lights Booksellers & Publishers
+
+Shop · North Beach · 261 Columbus Ave, San Francisco, CA 94133
+
+- **Hours:** unknown. citylights.com couldn't be reached to verify. Listings conflict: Yelp, ARTBOOK and bookstore.guide say daily 10am-10pm; SF Guide and CBS say daily 10am-midnight; an older listing says noon-8pm.
+
+### Place research
+
+- **Neighborhood and street:** North Beach. On Columbus Avenue just south of Broadway in North Beach, beside Jack Kerouac Alley with Vesuvio on its far side; Specs' is across Columbus down William Saroyan Place, and Broadway's old nightclub signs light the corner.
+- **Terrain and setting:** Level ground where Broadway crosses the diagonal of Columbus Avenue at the foot of North Beach, with Telegraph Hill and Coit Tower rising to the northeast.
+- **Architecture:** The Artigues Building, a triangular flatiron designed by Oliver Everett in 1907 in a bare-bones Classical Revival style: ground-floor storefronts topped by a row of small clerestory windows, a mezzanine inside and apartments upstairs, with original elements restored in 2000. Inside are three floors of books: the main floor, the basement with the Beat collection and photographs of Kerouac and Ginsberg on the walls, and the upstairs Poetry Room.
+- **Unique architectural notes:** San Francisco Landmark #228 and the first all-paperback bookstore in the country, whose press published Ginsberg's Howl in 1956 and won the obscenity trial that followed.
+- **Most iconic physical characteristics:**
+  - triangular flatiron building on Columbus Avenue
+  - row of small clerestory windows above the storefronts
+  - Jack Kerouac Alley beside it, with Vesuvio across
+  - the upstairs Poetry Room
+- **More recognizable view:** the facade
+- **View used for the image:** The building from across Columbus Avenue at dusk: its lit storefront windows lined with books under the row of small clerestory windows, Jack Kerouac Alley opening at its side with Vesuvio beyond, framed so no sign lettering is legible.
+- **Not verified:** The facade's colors and sign lettering are not described in the sources read, and citylights.com couldn't be reached. How the triangular footprint reads from Columbus is not visually confirmed.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/City_Lights_Bookstore>
+  - <https://semaphore.thd.org/the-artigues-building/>
+  - <https://noehill.com/sf/landmarks/sf228.asp>
+  - <https://www.sfchronicle.com/projects/2024/sf-city-lights-timeline/>
+  - <https://sfguide.co/activity/city-lights-bookstore/>
 
 ## Coit Tower
 
@@ -1882,6 +1939,34 @@ Sight · Outer Richmond · 100 34th Ave, San Francisco, CA 94121
   - <https://abc7news.com/archive/5837651/>
   - <https://topoquest.com/place/california/building/palace-of-the-legion-of-honor/247118>
 
+## Liguria Bakery
+
+Bakery · North Beach · 1700 Stockton St, San Francisco, CA 94133
+
+**Known for:** Focaccia. Focaccia is all Liguria makes: Wikipedia says it sells only focaccia, and the city's Legacy Business report describes a family business specializing in it since 1911.
+
+- **Hours:** unknown. Tue-Sat mornings only, closes when the focaccia sells out; often cash only. No website. SFGATE (2024) gives Tue-Sat 7am-noon.
+
+### Place research
+
+- **Neighborhood and street:** North Beach. On the northeast corner of Stockton and Filbert Streets, facing Washington Square across Filbert and Mama's across Stockton, down the block from Saints Peter and Paul Church.
+- **Terrain and setting:** Level ground at the heart of North Beach beside the lawn and trees of Washington Square, with Telegraph Hill rising behind to the east.
+- **Architecture:** A corner storefront in a flats building designed by Charles Fantoni, the builder of Saints Peter and Paul Church, that keeps its original display windows, a row of clerestory windows above them and a glazed ceramic tile base. A mural on the outside wall depicts the bakery's 1911 brick oven. Inside there is no seating, only a counter where every order is wrapped in white paper and tied with string, and in back the original brick oven and an antique stainless-steel mixer.
+- **Unique architectural notes:** The original 1911 brick oven is still fired every morning, and the shop simply closes for the day once it sells out.
+- **Most iconic physical characteristics:**
+  - original display windows under a row of clerestory windows
+  - glazed ceramic tile base
+  - exterior mural of the brick oven
+  - corner storefront across from Washington Square
+- **More recognizable view:** the facade
+- **View used for the image:** The corner storefront from across Filbert in early morning light: the original display windows and the clerestory row above a glazed tile base, the painted mural of the brick oven on the outside wall, and the trees of Washington Square at the edge of the frame.
+- **Not verified:** The tile's color, the window frames' color, the storefront sign and which wall carries the mural are not described. The building's height and upper-floor details are not confirmed.
+- **Sources:**
+  - <https://www.sf.gov/sites/default/files/2024-02/Item%202d.%20LBR-2016-17-031%20Liguria%20Bakery.pdf>
+  - <https://en.wikipedia.org/wiki/Liguria_Bakery>
+  - <https://www.sfgate.com/food/article/san-francisco-liguria-bakery-focaccia-18587981.php>
+  - <https://www.sfchronicle.com/food/article/At-North-Beach-s-Liguria-Bakery-the-Soracco-12493858.php>
+
 ## Liholiho Yacht Club
 
 Restaurant · Nob Hill · 871 Sutter St, San Francisco, CA 94109
@@ -2210,6 +2295,37 @@ Bakery · Jackson Square · 710 Montgomery St, San Francisco, CA 94111 · Favori
   - <https://sfist.com/2024/05/24/the-same-insurrectionist-flag-that-flew-over-samuel-alitos-beach-house-just-flew-over-a-building-in-sfs-jackson-square/>
   - <https://hoodline.com/2015/08/canessa-gallery-a-hotspot-for-history-art-architecture/>
 
+## Mama's on Washington Square
+
+Restaurant · North Beach · 1701 Stockton St, San Francisco, CA 94133
+
+**Known for:** An omelette. Wikipedia says the restaurant specializes in omelettes, and the menu leads with seven house omelettes on Petaluma Farms eggs without singling one out.
+
+- **Hours:** (<https://mamas-sf.com/>) Official: Tue-Fri 8am-2pm, Sat-Sun 8am-3pm; closed Mon.
+  - Mon: closed
+  - Tue–Fri: 8 AM–2 PM
+  - Sat–Sun: 8 AM–3 PM
+
+### Place research
+
+- **Neighborhood and street:** North Beach. On the northwest corner of Stockton and Filbert Streets, facing Washington Square across Filbert and Liguria Bakery across Stockton, a few doors east of Saints Peter and Paul Church, whose twin white spires rise over the square.
+- **Terrain and setting:** Level ground at the heart of North Beach beside the open lawn and trees of Washington Square, with Telegraph Hill and Coit Tower rising to the east.
+- **Architecture:** A three-story wood-frame corner building with flats above a ground-floor storefront, built after the 1906 fire to a design by North Beach builder John A. Porporato. The corner storefront is small and homey: an awning out front covered with hearts, sun-yellow walls inside and a cozy dining room behind the order counter, made in 1964 by taking down the wall between the original corner shop and its back office.
+- **Unique architectural notes:** The name is written with a heart in place of the apostrophe, for Frances 'Mama' Sanchez, and the hearts carry onto the awning.
+- **Most iconic physical characteristics:**
+  - awning covered with hearts over the corner storefront
+  - three-story wood-frame corner building across from Washington Square
+  - sun-yellow walls inside
+  - twin white spires of Saints Peter and Paul Church just along Filbert
+- **More recognizable view:** the facade
+- **View used for the image:** The corner of Stockton and Filbert in soft morning light, seen from the edge of Washington Square: the three-story wood-frame building with its heart-covered awning over the corner storefront, and the twin white spires of Saints Peter and Paul Church rising just along Filbert.
+- **Not verified:** The facade's color and materials, the awning's color and the storefront windows are not described; the heart-covered awning and sun-yellow walls come from one review. That the church spires share the corner's sightline is inferred from the map.
+- **Sources:**
+  - <https://en.wikipedia.org/wiki/Mama's_(restaurant)>
+  - <https://knowthis.place/san-francisco/north-beach/stockton-street/1701/>
+  - <https://mamas-sf.com/>
+  - <https://maps.apple.com/place?place-id=I910B835D27FCB433>
+
 ## Mamahuhu
 
 Restaurant · Inner Richmond · 517 Clement St, San Francisco, CA 94118
@@ -2345,6 +2461,35 @@ Bar · Mission · 741 Valencia St, San Francisco, CA 94110
   - <https://diva.sfsu.edu/collections/kirkeberg/bundles/231633>
   - <https://www.tacolicious.com/location/tacolicious-mission/>
   - <https://www.sfstation.com/banhez-mezcal-tasting-and-happy-hour-e15770221>
+
+## Mr. Bing's Cocktail Lounge
+
+Bar · North Beach · 201 Columbus Ave, San Francisco, CA 94133
+
+**Known for:** Budweiser.
+
+- **Hours:** unknown. No official hours source. Yelp and Apple Maps show Mon-Fri 2pm-2am, Sat-Sun 1pm-2am.
+
+### Place research
+
+- **Neighborhood and street:** North Beach. On the corner of Columbus Avenue and Pacific Avenue where North Beach meets Chinatown and the Financial District, across Pacific from Comstock Saloon, with Brandy Ho's next door; City Lights and Specs' are a block up Columbus, and the Transamerica Pyramid rises a block to the south.
+- **Terrain and setting:** Flat ground at the foot of North Beach, where the diagonal of Columbus Avenue opens a long view south to the Transamerica Pyramid; sidewalk parklet seating wraps the corner on both Columbus and Pacific.
+- **Architecture:** A three-story corner building from 1907 that the city's Legacy Business report calls castle-like, with the bar on the ground floor. An illuminated blade sign that has hung on the corner since 1967 glows yellow, alongside a red and gold wall sign. Since a 2016 renovation the room has a wooden bar along the left-hand wall with wood shelving up to the ceiling, a long wooden bench and a few tables, where a big triangular bar once filled most of the space.
+- **Unique architectural notes:** The yellow blade sign, unchanged since the bar opened in 1967, is a common foreground in photographs of the Transamerica Pyramid; before Mr. Bing's the corner held an Italian speakeasy that fronted as a furniture store.
+- **Most iconic physical characteristics:**
+  - tall illuminated yellow blade sign on the corner
+  - castle-like 1907 three-story corner building at Columbus and Pacific
+  - the Transamerica Pyramid rising behind it down Columbus
+  - red and gold wall sign
+- **More recognizable view:** the facade
+- **View used for the image:** From up Columbus Avenue looking south at dusk: the corner building with its tall yellow blade sign glowing, seen edge-on so its lettering isn't legible, and the Transamerica Pyramid rising behind it at the end of the avenue.
+- **Not verified:** The facade's color, material and what makes it castle-like (turret, parapet) are not described beyond one line in the Legacy Business report. The blade sign's colors beyond its yellow glow and where the red and gold wall sign hangs are not confirmed. The south-looking sightline to the Pyramid is inferred from the map and the sign's reputation in photos.
+- **Sources:**
+  - <https://www.sf.gov/sites/default/files/2023-03/Item%202f.%20LBR-2022-23-015%20Mr.%20Bing's.pdf>
+  - <https://sfstandard.com/2023/02/15/one-of-anthony-bourdains-favorite-sf-bars-recognized-by-historic-preservation-committee/>
+  - <https://sfist.com/2016/12/29/mr_bings_destroyed_into_nice_clean/>
+  - <https://www.sfgate.com/food/article/Mr-Bing-s-back-in-business-following-renovation-10827668.php>
+  - <https://www.7x7.com/the-weeknighter-mr-bings-1786264698.html>
 
 ## Nopa
 
@@ -3334,6 +3479,38 @@ Coffee & tea · Lower Pacific Heights · 2120 Sutter St, San Francisco, CA 94115
   - <https://www.timidmag.com/features/song-tea>
   - <https://www.waitlistwizard.com/restaurants/song-tea-ceramics-san-francisco>
   - <https://fillmorestreetsf.com/dining/markets-specialty-foods/song-tea/>
+
+## Specs' Twelve Adler Museum Cafe
+
+Bar · North Beach · 12 William Saroyan Pl, San Francisco, CA 94133
+
+**Known for:** Trumer Pils.
+
+- **Hours:** (<https://www.specsbarsf.com/>, <https://www.timeout.com/san-francisco/bars/specs>) Official: Sun-Wed 4pm-1am, Thu-Sat 4pm-2am.
+  - Mon–Wed: 4 PM–1 AM
+  - Thu–Sat: 4 PM–2 AM
+  - Sun: 4 PM–1 AM
+
+### Place research
+
+- **Neighborhood and street:** North Beach. Down William Saroyan Place, a narrow pedestrian alley off Columbus Avenue that regulars still call Adler Place, between Broadway and Pacific in North Beach; City Lights and Vesuvio are just across Columbus.
+- **Terrain and setting:** Level ground at the foot of North Beach; the alley is a shaded slot between old multi-story buildings, a few steps from the lights and traffic of Columbus and Broadway.
+- **Architecture:** A narrow, dark bar in an old building whose past lives include a Chinese temple, a fishermen's social club and the lesbian bar 12 Adler. The walls are covered floor to ceiling with things collected since 1968: labor union banners, Spanish Civil War posters, shipping-company pennants, Northwest Coast carvings, nautical relics, old San Francisco photographs and framed napkin sketches of regulars. Glass display cases hold scrimshaw, lapel pins, a stuffed mongoose locked in combat with a cobra and an armadillo; bins of postcards from patrons sit along the bar, and an old piano stands in the back beside a life-size mummy case carved with Specs' face.
+- **Unique architectural notes:** A bar that calls itself a museum, with a mummy case bearing the founder's likeness and a walrus bone among the thousands of relics given by merchant sailors, poets and patrons.
+- **Most iconic physical characteristics:**
+  - walls covered floor to ceiling with banners, pennants and photographs
+  - glass display cases of scrimshaw and taxidermy
+  - old piano in the back beside a life-size mummy case
+  - narrow alley entrance off Columbus Avenue
+- **More recognizable view:** the interior
+- **View used for the image:** the interior looking down the narrow, dim bar toward the back, every wall crowded with union banners, pennants, photographs and glass display cases, the old piano and the mummy case glimpsed at the far end
+- **Not verified:** The room's exact layout (which side the bar runs, where the piano sits relative to the door) and the alley facade are not described in detail. The collection changes over time, so individual pieces may have moved.
+- **Sources:**
+  - <https://www.specsbarsf.com/about>
+  - <https://www.sfgate.com/bars/article/north-beach-dive-bar-specs-18264817.php>
+  - <https://www.foundsf.org/index.php?title=SPEC%27S%3A_A_Durable_Legend>
+  - <https://www.7x7.com/weird-art-in-bars-specs-twelve-adler-museum-cafe-1781328162.html>
+  - <https://sfguide.co/bar/specs-twelve-adler-museum-cafe/>
 
 ## Stonemill Matcha
 

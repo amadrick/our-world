@@ -36,9 +36,9 @@ describe("data/places.json", () => {
     }
   });
 
-  it("holds Andy's 94 places plus the 23 Sights, with no Wellness section left", () => {
-    expect(places).toHaveLength(117);
-    expect(places.filter((p) => p.category !== "sight")).toHaveLength(94);
+  it("holds Andy's 100 places plus the 23 Sights, with no Wellness section left", () => {
+    expect(places).toHaveLength(123);
+    expect(places.filter((p) => p.category !== "sight")).toHaveLength(100);
     expect(places.some((p) => p.id === "alchemy-springs")).toBe(false);
     expect(new Set(places.map((p) => p.category)).has("wellness" as Place["category"])).toBe(false);
   });
@@ -60,6 +60,8 @@ describe("data/places.json", () => {
         "ministry-of-scent",
         "heath-ceramics",
         "william-stout-architectural-books",
+        "bi-rite-market-polk-street",
+        "city-lights-booksellers-and-publishers",
       ].sort(),
     );
     expect(inSection("museum")).toEqual(["de-young-museum", "sfmoma"]);

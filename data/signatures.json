@@ -1320,6 +1320,60 @@
       "confidence": "unreviewed",
       "sources": [],
       "approved": false
+    },
+    {
+      "id": "mr-bings-cocktail-lounge",
+      "name": "Mr. Bing's Cocktail Lounge",
+      "signatureSubject": "Budweiser",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "specs-twelve-adler-museum-cafe",
+      "name": "Specs' Twelve Adler Museum Cafe",
+      "signatureSubject": "Trumer Pils",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "mamas-on-washington-square",
+      "name": "Mama's on Washington Square",
+      "signatureSubject": "An omelette",
+      "signatureRationale": "Wikipedia says the restaurant specializes in omelettes, and the menu leads with seven house omelettes on Petaluma Farms eggs without singling one out.",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "liguria-bakery",
+      "name": "Liguria Bakery",
+      "signatureSubject": "Focaccia",
+      "signatureRationale": "Focaccia is all Liguria makes: Wikipedia says it sells only focaccia, and the city's Legacy Business report describes a family business specializing in it since 1911.",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "bi-rite-market-polk-street",
+      "name": "Bi-Rite Market (Polk Street)",
+      "signatureSubject": "Fresh produce",
+      "signatureRationale": "The Chronicle and Bi-Rite's own opening story lead with its seasonal produce from California farms, the thing all three Bi-Rite markets are known for.",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "city-lights-booksellers-and-publishers",
+      "name": "City Lights Booksellers & Publishers",
+      "signatureSubject": "",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
     }
   ]
 }
