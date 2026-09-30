@@ -18,6 +18,22 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title: site.title, description: site.tagline },
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  icons: {
+    // The SVG goes last with sizes="any" so Chrome and Firefox pick it over the rasters.
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      ...[32, 64, 96].flatMap((size) =>
+        (["light", "dark"] as const).map((scheme) => ({
+          url: `/icon-${scheme}-${size}.png`,
+          sizes: `${size}x${size}`,
+          type: "image/png",
+          media: `(prefers-color-scheme: ${scheme})`,
+        })),
+      ),
+      { url: "/icon.svg", sizes: "any", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
 };
 
 export const viewport: Viewport = {
