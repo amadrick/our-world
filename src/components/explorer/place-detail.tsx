@@ -80,7 +80,7 @@ function FloatingButton({
       aria-label={label}
       title={label}
       onClick={onClick}
-      className="pressable glass-media pointer-events-auto flex size-11 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
+      className="pressable glass-media pointer-events-auto flex size-11 items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {children}
     </button>
@@ -115,7 +115,7 @@ function StepButtons({ stepper, className }: { stepper: Stepper; className?: str
         aria-keyshortcuts={direction === 1 ? "ArrowRight" : "ArrowLeft"}
         disabled={!target}
         onClick={() => stepper.onStep(direction)}
-        className="pressable flex size-9 items-center justify-center rounded-full outline-white enabled:cursor-pointer enabled:hover:bg-white/15 focus-visible:outline-2 disabled:opacity-35"
+        className="pressable flex size-9 items-center justify-center rounded-full outline-white enabled:hover:bg-white/15 focus-visible:outline-2 disabled:opacity-35"
       >
         {direction === 1 ? <ChevronRight size={20} aria-hidden /> : <ChevronLeft size={20} aria-hidden />}
       </button>
@@ -163,7 +163,7 @@ function CopyAddress({ address }: { address: string }) {
             // Clipboard access can be blocked; the address is still selectable.
           }
         }}
-        className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
+        className="pressable glass-tinted flex size-11 shrink-0 items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         {copied ? <Check size={18} /> : <Copy size={18} />}
       </button>
@@ -262,7 +262,7 @@ export function PlaceSheetHeader({
                   type="button"
                   aria-label="Close"
                   onClick={onClose}
-                  className="pressable glass-tinted flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
+                  className="pressable glass-tinted flex size-11 shrink-0 items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   <X size={20} aria-hidden />
                 </button>
@@ -327,6 +327,17 @@ function StablePhoto({
 
 function slideStyle(place: Place, offset: number): React.CSSProperties {
   return { "--offset": offset, backgroundColor: placeColor(place) } as React.CSSProperties;
+}
+
+/**
+ * The open card's own color, fading in over content scrolled under its top or
+ * bottom edge. A gradient rather than a mask: the card paints its color and
+ * shadow itself, so masking it would fade those too.
+ */
+function CardEdgeFade({ side, color }: { side: "top" | "bottom"; color: string }) {
+  return (
+    <div aria-hidden className="card-edge-fade" data-side={side} style={{ "--fade-color": color } as React.CSSProperties} />
+  );
 }
 
 /** Top right of the phone map sheet, over the photo. */
@@ -755,6 +766,7 @@ export function PlaceDetail({
               data-sheet-scroll={active || undefined}
               style={slideStyle(slide.place, slide.offset)}
             >
+              <CardEdgeFade side="top" color={placeColor(slide.place)} />
               <div className="relative">
                 <StablePhoto
                   place={slide.place}
@@ -781,6 +793,7 @@ export function PlaceDetail({
                   ))}
                 </div>
               </div>
+              <CardEdgeFade side="bottom" color={placeColor(slide.place)} />
             </div>
           );
         })}

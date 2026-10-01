@@ -1,12 +1,13 @@
 "use client";
 
 import { Check, ChevronDown, MapPin } from "react-feather";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Bridge } from "@/components/icons/feather-extras";
 import { CATEGORY_ICONS } from "@/components/places/category-badge";
 import { TagIcon } from "@/components/places/tag-icon";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useScrollFade } from "@/hooks/use-scroll-fade";
 import type { PlaceFilters } from "@/lib/places/filters";
 import { CATEGORIES, FILTER_PILLS, getCategory } from "@/lib/places/taxonomy";
 import type { CategoryId, PillId } from "@/lib/places/types";
@@ -45,7 +46,7 @@ export function Pill({
       type="button"
       aria-pressed={active}
       className={cn(
-        "pressable focus-ring inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-full px-4 text-sm font-medium whitespace-nowrap select-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:shrink-0",
+        "pressable focus-ring inline-flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-sm font-medium whitespace-nowrap select-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:shrink-0",
         active
           ? "bg-ink text-on-ink shadow-float hover:bg-ink-hover"
           : floating
@@ -67,8 +68,10 @@ function MenuRows({
   label: string;
   children: React.ReactNode;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useScrollFade(ref);
   return (
-    <div role="listbox" aria-label={label} className="overlay-scroll-y max-h-[min(70vh,520px)]">
+    <div ref={ref} role="listbox" aria-label={label} className="overlay-scroll-y scroll-fade-y max-h-[min(70vh,520px)]">
       {children}
     </div>
   );
@@ -94,7 +97,7 @@ function MenuOption({
       aria-selected={selected}
       onClick={onClick}
       className={cn(
-        "focus-ring flex h-12 w-full cursor-pointer items-center gap-3 rounded-md px-3 text-left text-base transition-colors hover:bg-hover",
+        "focus-ring flex h-12 w-full items-center gap-3 rounded-md px-3 text-left text-base transition-colors hover:bg-hover",
         selected && "bg-hover",
       )}
     >

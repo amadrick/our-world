@@ -68,6 +68,8 @@
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
   /* A soft ease-out: quick to start, long gentle landing. */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Spring-like with no overshoot: a brisk start that still reads as motion, then a long soft settle (segmented controls). */
+  --ease-segment: cubic-bezier(0.32, 0.72, 0, 1);
   /* Pin tap, shared with src/lib/motion.ts. */
   --open-pin: 560ms;
   --open-camera: 1080ms;
@@ -266,6 +268,15 @@
     border-radius: 999px;
     background-clip: padding-box;
   }
+  /* Like a native app, things you click keep the arrow; only text fields get a caret. */
+  a[href],
+  button,
+  summary,
+  label,
+  select,
+  [role="button"] {
+    cursor: default;
+  }
   html {
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
@@ -315,6 +326,85 @@
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/*
+ * Content fades out under a scroller's edges instead of being cut, only as deep
+ * as it actually runs past them (--fade-start / --fade-end, from useScrollFade).
+ * The mask makes the scroller a backdrop root, so use it only where nothing
+ * inside blurs what's behind the scroller, or the scroller paints that itself.
+ */
+@utility scroll-fade-y {
+  --_fade: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fade-start, 0px),
+    #000 calc(100% - var(--fade-end, 0px)),
+    transparent
+  );
+  -webkit-mask-image: var(--_fade);
+  mask-image: var(--_fade);
+}
+
+/*
+ * The same fade for a row of glass pills: masking the row would cut off each
+ * pill's backdrop blur, so every child is masked on its own, against where the
+ * row's edges fall across it (--scroll, --view and each child's --x, from
+ * ScrollRow). The mask reaches past each pill so its shadow isn't clipped.
+ */
+@utility scroll-fade-items-x {
+  & > * {
+    --_bleed: 16px;
+    --_start: calc(var(--scroll, 0px) - var(--x, 0px) + var(--_bleed));
+    --_end: calc(var(--_start) + var(--view, 100vw));
+    --_fade: linear-gradient(
+      to right,
+      transparent var(--_start),
+      #000 calc(var(--_start) + var(--fade-start, 0px)),
+      #000 calc(var(--_end) - var(--fade-end, 0px)),
+      transparent var(--_end)
+    );
+    -webkit-mask-image: var(--_fade);
+    mask-image: var(--_fade);
+    mask-size: calc(100% + 2 * var(--_bleed)) calc(100% + 2 * var(--_bleed));
+    mask-position: calc(-1 * var(--_bleed)) calc(-1 * var(--_bleed));
+    mask-repeat: no-repeat;
+    mask-clip: no-clip;
+  }
+}
+
+/* The phone sheet's open card: its color over whatever has scrolled under an edge (CardEdgeFade). */
+.card-edge-fade {
+  position: sticky;
+  z-index: 20;
+  height: 28px;
+  pointer-events: none;
+}
+.card-edge-fade[data-side="top"] {
+  top: 0;
+  margin-bottom: -28px;
+  background: linear-gradient(to bottom, var(--fade-color), transparent var(--fade-start, 0px));
+}
+/* Pinned to the card's bottom edge itself, past the safe-area padding the card scrolls with. */
+.card-edge-fade[data-side="bottom"] {
+  bottom: calc(-1 * env(safe-area-inset-bottom));
+  margin-top: -28px;
+  background: linear-gradient(to top, var(--fade-color), transparent var(--fade-end, 0px));
+}
+
+/* Segmented controls: the text recolors as the fill (a transform animation, SegmentedControl) arrives. */
+.segmented-item {
+  transition:
+    color 320ms var(--ease-segment),
+    transform 160ms var(--ease-snappy);
+  &:active {
+    transform: scale(0.96);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .segmented-item {
+    transition: none;
   }
 }
 
@@ -423,9 +513,6 @@
   }
   .glass-ink::after {
     opacity: 0.35;
-  }
-  .glass-interactive {
-    cursor: pointer;
   }
   .glass-interactive:hover {
     --glass-brightness: 1.14;
@@ -589,6 +676,16 @@
 body .maplibregl-map {
   font: inherit;
 }
+/* No grab hand or pointer over the map either, while panning or over a pin. */
+body .maplibregl-map
+  :is(
+    .maplibregl-canvas-container.maplibregl-interactive,
+    .maplibregl-ctrl-group button.maplibregl-ctrl-compass,
+    .maplibregl-ctrl button,
+    .maplibregl-ctrl a
+  ) {
+  cursor: default;
+}
 /* The reader's position, as in Apple Maps: a white-ringed blue dot in a soft accuracy halo, under every pin. */
 .maplibregl-marker.user-location {
   z-index: 0;
@@ -683,7 +780,6 @@ body .maplibregl-map {
   display: block;
   width: var(--size);
   height: var(--size);
-  cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: transparent;
   transition:

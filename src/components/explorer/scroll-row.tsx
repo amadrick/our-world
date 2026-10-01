@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight } from "react-feather";
 import { useLayoutEffect, useRef } from "react";
 
+import { syncScrollFade } from "@/hooks/use-scroll-fade";
 import { cn } from "@/lib/utils";
 
 function ScrollButton({ side, onClick }: { side: "start" | "end"; onClick: () => void }) {
@@ -14,7 +15,7 @@ function ScrollButton({ side, onClick }: { side: "start" | "end"; onClick: () =>
       aria-hidden
       onClick={onClick}
       className={cn(
-        "pressable absolute top-1/2 z-10 hidden size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full glass text-ink",
+        "pressable absolute top-1/2 z-10 hidden size-8 -translate-y-1/2 items-center justify-center rounded-full glass text-ink",
         side === "start"
           ? "left-0 pointer-fine:group-data-[more-start]/row:flex"
           : "right-0 pointer-fine:group-data-[more-end]/row:flex",
@@ -30,6 +31,17 @@ function syncEdges(wrapper: HTMLElement | null, scroller: HTMLElement | null) {
   const max = scroller.scrollWidth - scroller.clientWidth;
   wrapper.toggleAttribute("data-more-start", scroller.scrollLeft > 1);
   wrapper.toggleAttribute("data-more-end", scroller.scrollLeft < max - 1);
+  syncScrollFade(scroller, "x");
+  scroller.style.setProperty("--scroll", `${scroller.scrollLeft}px`);
+  scroller.style.setProperty("--view", `${scroller.clientWidth}px`);
+}
+
+/** Where each child starts along the row, for its own slice of the edge fades. */
+function placeChildren(scroller: HTMLElement | null) {
+  if (!scroller) return;
+  for (const child of scroller.children) {
+    if (child instanceof HTMLElement) child.style.setProperty("--x", `${child.offsetLeft}px`);
+  }
 }
 
 /**
@@ -40,8 +52,9 @@ function syncEdges(wrapper: HTMLElement | null, scroller: HTMLElement | null) {
  * A horizontal scroller clips vertically too, so it's padded just enough for
  * the children's shadows and pulled back with negative margins. It must take
  * pointer events itself: a scroller with pointer-events: none is never the
- * target of a pan or wheel, even one that starts on a child. No mask either:
- * a masked ancestor would stop the children's backdrop blur at the row.
+ * target of a pan or wheel, even one that starts on a child. Not masked
+ * either, since a masked ancestor would stop the children's backdrop blur at
+ * the row: each child fades itself at the edges instead (scroll-fade-items-x).
  */
 export function ScrollRow({
   label,
@@ -59,14 +72,21 @@ export function ScrollRow({
   const sync = () => syncEdges(wrapperRef.current, scrollerRef.current);
 
   // Children can change width (a chosen neighborhood's name), so re-check after every render.
-  useLayoutEffect(() => syncEdges(wrapperRef.current, scrollerRef.current));
+  useLayoutEffect(() => {
+    placeChildren(scrollerRef.current);
+    syncEdges(wrapperRef.current, scrollerRef.current);
+  });
 
   useLayoutEffect(() => {
     const wrapper = wrapperRef.current;
     const scroller = scrollerRef.current;
     if (!scroller) return;
-    const observer = new ResizeObserver(() => syncEdges(wrapper, scroller));
+    const observer = new ResizeObserver(() => {
+      placeChildren(scroller);
+      syncEdges(wrapper, scroller);
+    });
     observer.observe(scroller);
+    for (const child of scroller.children) observer.observe(child);
     return () => observer.disconnect();
   }, []);
 
@@ -88,7 +108,7 @@ export function ScrollRow({
         aria-label={label}
         onScroll={sync}
         className={cn(
-          "no-scrollbar -mt-2 -mb-3 flex touch-pan-x overflow-x-auto overscroll-x-contain pt-2 pb-3",
+          "no-scrollbar scroll-fade-items-x relative -mt-2 -mb-3 flex touch-pan-x overflow-x-auto overscroll-x-contain pt-2 pb-3",
           innerClassName,
         )}
       >

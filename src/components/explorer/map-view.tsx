@@ -244,8 +244,6 @@ export function MapView({
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const result: TapResult = point ? resolveTap(shownPins(), point) : { kind: "none" };
     const id = result.kind === "pin" ? result.id : result.kind === "cluster" ? result.ids[0] : null;
-    const canvas = containerRef.current?.querySelector<HTMLElement>(".maplibregl-canvas-container");
-    if (canvas) canvas.style.cursor = id ? "pointer" : "";
     if (id === hoveredRef.current) return;
     hoveredRef.current = id;
     latest.current.onHighlight(id);

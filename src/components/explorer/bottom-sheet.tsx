@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 
 import { OPEN_SHEET_MS, OPEN_TINT_MS, prefersReducedMotion } from "@/lib/motion";
+import { clearScrollFade, syncScrollFade } from "@/hooks/use-scroll-fade";
 import { endGesture, gestureAxis } from "@/lib/gesture-axis";
 import { TAP_SLOP, dragOffset, settleSheet, velocityOf, type Sample, type SheetSnap } from "@/lib/sheet-gesture";
 import { cn } from "@/lib/utils";
@@ -109,9 +110,15 @@ export function BottomSheet({
     scrollKeyRef.current = scrollKey;
     const el = scrollerIn(contentRef.current, cards);
     // The card that was open is parked beside the new one now; it waits at its top.
-    if (scrollerRef.current && scrollerRef.current !== el) scrollerRef.current.scrollTop = 0;
+    if (scrollerRef.current && scrollerRef.current !== el) {
+      scrollerRef.current.scrollTop = 0;
+      clearScrollFade(scrollerRef.current);
+    }
     scrollerRef.current = el;
     if (el) el.scrollTop = snap === "full" ? (scrollPositions.current.get(scrollKey) ?? 0) : 0;
+    // The open card's edge fades only show at full height, where it scrolls.
+    if (el && snap === "full") syncScrollFade(el);
+    else if (el) clearScrollFade(el);
   }, [scrollKey, snap, cards]);
 
   const moveTo = useCallback((offset: number, animate: boolean) => {
@@ -321,7 +328,7 @@ export function BottomSheet({
         <div
           data-sheet-chrome
           className={cn(
-            "cursor-grab touch-none select-none active:cursor-grabbing",
+            "touch-none select-none",
             overlay ? "absolute inset-x-0 top-0 z-10 h-14" : "shrink-0",
           )}
         >
@@ -340,6 +347,7 @@ export function BottomSheet({
           onScrollCapture={(event) => {
             if (event.target === scrollerRef.current) {
               scrollPositions.current.set(scrollKeyRef.current, scrollerRef.current.scrollTop);
+              syncScrollFade(scrollerRef.current);
             }
           }}
           className={cn(

@@ -9,6 +9,7 @@ import { useDriveTimes } from "@/hooks/use-drive-times";
 import { estimateTravel, trafficPeriod } from "@/lib/geo/travel-estimate";
 import { RUBBER_CAMERA } from "@/lib/map/swipe-camera";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
+import { useScrollFade } from "@/hooks/use-scroll-fade";
 import { locationMessage, useUserLocation, type LocationStatus } from "@/hooks/use-user-location";
 import { useSortMode } from "@/hooks/use-sort-mode";
 import { useViewMode } from "@/hooks/use-view-mode";
@@ -73,7 +74,7 @@ function MapButton({
       title={label}
       onClick={onClick}
       className={cn(
-        "pressable focus-ring flex size-12 cursor-pointer items-center justify-center rounded-full text-ink hover:bg-hover",
+        "pressable focus-ring flex size-12 items-center justify-center rounded-full text-ink hover:bg-hover",
         className,
       )}
     >
@@ -121,7 +122,7 @@ function LocationNotice({ message, onDismiss, top }: { message: string; onDismis
         type="button"
         aria-label="Dismiss"
         onClick={onDismiss}
-        className="pressable focus-ring flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full hover:bg-hover"
+        className="pressable focus-ring flex size-9 shrink-0 items-center justify-center rounded-full hover:bg-hover"
       >
         <X size={16} aria-hidden />
       </button>
@@ -173,7 +174,7 @@ function ResultsSummary({
           <button
             type="button"
             onClick={onClear}
-            className="focus-ring -mx-1 h-11 cursor-pointer truncate rounded-md px-1 text-sm font-semibold underline decoration-1 underline-offset-4 hover:bg-hover"
+            className="focus-ring -mx-1 h-11 truncate rounded-md px-1 text-sm font-semibold underline decoration-1 underline-offset-4 hover:bg-hover"
           >
             Clear filters
           </button>
@@ -335,6 +336,9 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
   useEffect(() => {
     railScrollRef.current?.scrollTo({ top: 0 });
   }, [selectedId]);
+  const railListRef = useRef<HTMLDivElement>(null);
+  useScrollFade(railListRef);
+  useScrollFade(railScrollRef, Boolean(selected));
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -588,13 +592,18 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
               onSort={setSortMode}
             />
           </header>
-          <div className="overlay-scroll-y min-h-0 flex-1 px-3 pt-1 pb-6">
+          <div ref={railListRef} className="overlay-scroll-y scroll-fade-y min-h-0 flex-1 px-3 pt-1 pb-6">
             <PlaceList variant="rows" sections={sections} {...listProps} />
             <MapCredit className="mt-6 px-3" />
           </div>
         </div>
+        {/* Painted in the place color itself, so the glass inside still has a color to blur under the fade's mask. */}
         {selected && (
-          <div ref={railScrollRef} className="sheet-scroll-y min-h-0 flex-1">
+          <div
+            ref={railScrollRef}
+            className="sheet-scroll-y scroll-fade-y min-h-0 flex-1 transition-colors duration-300"
+            style={{ backgroundColor: placeColor(selected) }}
+          >
             <PlaceDetail
               place={selected}
               onBack={closeDetail}
@@ -717,8 +726,12 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
             </div>
           </header>
           <div className="sticky top-0 z-10">
+            {/* Cards fade out under the top edge rather than being cut by it. A gradient, not a mask, so the pills' glass keeps blurring the cards. */}
             {barStuck && (
-              <div aria-hidden className="h-[env(safe-area-inset-top)] bg-canvas" />
+              <div
+                aria-hidden
+                className="relative h-[env(safe-area-inset-top)] bg-canvas after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-7 after:bg-linear-to-b after:from-canvas after:to-transparent"
+              />
             )}
             <div className="mx-auto max-w-7xl pt-2 pb-3 lg:px-9">
               <FilterBar inset="px-5 lg:px-1" {...filterProps} />

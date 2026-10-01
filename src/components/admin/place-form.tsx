@@ -8,6 +8,7 @@ import { CategoryBadge, CategoryIcon } from "@/components/places/category-badge"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -24,6 +25,11 @@ import type { PlaceInputPayload } from "@/lib/places/schema";
 import { CATEGORIES, pickLabel, TAGS } from "@/lib/places/taxonomy";
 import type { CategoryId, PickOwner, Place, PlaceResearch, SummarySource, TagId } from "@/lib/places/types";
 import { LocationPreview } from "./location-preview";
+
+const VIEW_SEGMENTS = [
+  { value: "facade", label: "Facade" },
+  { value: "interior", label: "Interior" },
+] as const;
 
 interface Draft {
   name: string;
@@ -227,7 +233,7 @@ function CandidateList({
           <button
             type="button"
             onClick={() => onChoose(candidate)}
-            className="flex w-full cursor-pointer items-center gap-3.5 rounded-[20px] p-3 text-left transition-colors hover:bg-hover focus-visible:bg-hover focus-visible:outline-none"
+            className="flex w-full items-center gap-3.5 rounded-[20px] p-3 text-left transition-colors hover:bg-hover focus-visible:bg-hover focus-visible:outline-none"
           >
             {candidate.category ? (
               <CategoryBadge category={candidate.category} />
@@ -292,24 +298,21 @@ function ImageNotes({
       </div>
       <div className="space-y-2">
         <Label id="view-label">Best view</Label>
-        <div role="radiogroup" aria-labelledby="view-label" className="flex gap-2">
-          {(["facade", "interior"] as const).map((view) => (
-            <Pill
-              key={view}
-              role="radio"
-              aria-checked={research.view === view}
-              aria-pressed={undefined}
-              active={research.view === view}
-              onClick={() => onChange({ view })}
-              className="h-9 px-3.5 text-sm"
-            >
-              {view === "facade" ? "Facade" : "Interior"}
-            </Pill>
-          ))}
-        </div>
+        <SegmentedControl
+          label="Best view"
+          segments={VIEW_SEGMENTS}
+          value={research.view}
+          onChange={(view) => onChange({ view })}
+          className="glass-fill inline-flex h-10 items-center rounded-full p-0.5"
+          segmentClassName="focus-ring h-9 rounded-full px-4 text-sm font-medium whitespace-nowrap"
+          selectedClassName="text-on-ink"
+          idleClassName="text-ink/75 hover:text-ink"
+          fillClassName="bg-ink"
+          thumbClassName="drop-shadow-[0_1px_2px_rgb(0_0_0/0.22)]"
+        />
       </div>
       <details className="group space-y-4 rounded-[20px] glass-fill px-4 py-3 open:pb-4">
-        <summary className="cursor-pointer text-sm font-medium select-none">
+        <summary className="text-sm font-medium select-none">
           Street, terrain, and architecture
         </summary>
         <div className="mt-4 space-y-4">
@@ -557,7 +560,7 @@ export function PlaceForm({
               type="button"
               onClick={() => onQueryChange("")}
               aria-label="Clear"
-              className="absolute top-1/2 right-3 flex size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:bg-secondary"
+              className="absolute top-1/2 right-3 flex size-8 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground hover:bg-secondary"
             >
               <X size={16} />
             </button>

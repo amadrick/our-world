@@ -106,7 +106,7 @@ export function PlaceCard({
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
-        "group flex w-full cursor-pointer flex-col gap-3 rounded-xl text-left outline-ink transition-opacity duration-300 focus-visible:outline-2 focus-visible:outline-offset-4",
+        "group flex w-full flex-col gap-3 rounded-xl text-left outline-ink transition-opacity duration-300 focus-visible:outline-2 focus-visible:outline-offset-4",
         hours.closed && "opacity-55 hover:opacity-100",
       )}
     >
@@ -173,7 +173,7 @@ export function PlaceRow({
       onPointerEnter={(event) => event.pointerType === "mouse" && onHighlight(true)}
       onPointerLeave={(event) => event.pointerType === "mouse" && onHighlight(false)}
       className={cn(
-        "focus-ring flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 text-left transition-colors hover:bg-hover",
+        "focus-ring flex w-full items-center gap-4 rounded-lg p-2 text-left transition-colors hover:bg-hover",
         active && "bg-hover",
         hours.closed && "opacity-55 hover:opacity-100",
       )}
