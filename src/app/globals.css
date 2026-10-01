@@ -307,6 +307,17 @@
   }
 }
 
+/* The place sheet scrolls with no visible bar, so classic scrollbars can't carve a strip off its tinted edge. */
+@utility sheet-scroll-y {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* A fine printed dot screen, so a picture-less tile reads as deliberate paper rather than a gap. */
 @utility dot-grid {
   background-image: radial-gradient(rgb(0 0 0 / 0.08) 1px, transparent 1.2px);

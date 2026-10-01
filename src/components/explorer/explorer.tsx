@@ -594,7 +594,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
           </div>
         </div>
         {selected && (
-          <div ref={railScrollRef} className="overlay-scroll-y min-h-0 flex-1">
+          <div ref={railScrollRef} className="sheet-scroll-y min-h-0 flex-1">
             <PlaceDetail
               place={selected}
               onBack={closeDetail}
@@ -745,7 +745,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
         {listMode && selected && (
           <div
             ref={pageRef}
-            className="overlay-scroll-y absolute inset-0 touch-pan-y [transition:background-color_var(--open-tint)_var(--ease-out-soft)] animate-in duration-200 fade-in"
+            className="sheet-scroll-y absolute inset-0 touch-pan-y [transition:background-color_var(--open-tint)_var(--ease-out-soft)] animate-in duration-200 fade-in"
             style={{ backgroundColor: placeColor(selected) }}
           >
             <PlaceDetail
