@@ -1196,6 +1196,42 @@
       "confidence": "unreviewed",
       "sources": [],
       "approved": false
+    },
+    {
+      "id": "key-klub",
+      "name": "Key Klub",
+      "signatureSubject": "",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "peacekeeper",
+      "name": "Peacekeeper",
+      "signatureSubject": "",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "juniper",
+      "name": "Juniper",
+      "signatureSubject": "",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
+    },
+    {
+      "id": "pacific-cocktail-haven",
+      "name": "Pacific Cocktail Haven",
+      "signatureSubject": "",
+      "signatureRationale": "",
+      "confidence": "unreviewed",
+      "sources": [],
+      "approved": false
     }
   ]
 }

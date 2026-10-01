@@ -36,9 +36,9 @@ describe("data/places.json", () => {
     }
   });
 
-  it("holds Andy's 102 places plus the 8 Sights, with no Wellness section left", () => {
-    expect(places).toHaveLength(110);
-    expect(places.filter((p) => p.category !== "sight")).toHaveLength(102);
+  it("holds Andy's 106 places plus the 8 Sights, with no Wellness section left", () => {
+    expect(places).toHaveLength(114);
+    expect(places.filter((p) => p.category !== "sight")).toHaveLength(106);
     expect(places.some((p) => p.id === "alchemy-springs")).toBe(false);
     expect(new Set(places.map((p) => p.category)).has("wellness" as Place["category"])).toBe(false);
   });

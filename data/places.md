@@ -1,9 +1,9 @@
 # Andy and Kirissa's places
 
-Per-place notes for all 110 places: what each is known for (reviewed in
+Per-place notes for all 114 places: what each is known for (reviewed in
 `data/signatures.json`) and what it physically looks like. The place research is
 appended to the image prompt as reference notes, so each picture is of the real
-place. 110 of 110 places are researched.
+place. 114 of 114 places are researched.
 
 Generated from `data/places.json` by `npm run places:md`. Edit places in `/admin`
 or the JSON, then regenerate; edits made here are overwritten.
@@ -1482,6 +1482,66 @@ Restaurant · Lower Haight · 237 Fillmore St, San Francisco, CA 94117 · Our pi
   - <https://unilocal.net/united-states/san-francisco/squat-gobble-cafe-crepery>
   - <https://sfist.com/2015/10/28/iza_ramen_opens_thursday_in_the_low/>
 
+## Juniper
+
+Bakery · Nob Hill · 1401 Polk St, San Francisco, CA 94109
+
+- **Hours:** (<https://www.juniper.cafe/home-1>, <https://dimhour.com/san-francisco/v/juniper/>) Official site: 7:30am to 3pm every day.
+  - Mon–Sun: 7:30 AM–3 PM
+
+### Place research
+
+- **Neighborhood and street:** Nob Hill. On the corner of Polk Street and California Street, where the California Street cable car line crosses Polk's strip of small shops, cafes and bars between Nob Hill and Russian Hill.
+- **Terrain and setting:** Polk Street runs fairly level along the valley floor here, while California Street rises steeply east toward the top of Nob Hill, with the cable car tracks and overhead lines running up the hill.
+- **Architecture:** A ground-floor corner storefront in an older multistory building, with large windows wrapping the corner. Inside it is bright and clean, with an open kitchen visible behind the counter, counter seating and a small modern cafe room.
+- **Unique architectural notes:** A sister to Saint Frank Coffee that shares its beans, set right on the California Street cable car line.
+- **Most iconic physical characteristics:**
+  - a corner storefront with large windows wrapping two streets
+  - cable car tracks and overhead lines along California Street
+  - a bright, minimal cafe interior seen through the glass
+  - California Street climbing steeply toward Nob Hill behind
+- **More recognizable view:** the facade
+- **View used for the image:** From across the intersection of Polk and California in soft morning light: the corner storefront with large windows wrapping both streets and a bright, minimal cafe interior visible inside, cable car tracks set into California Street with overhead lines, and the street rising steeply uphill behind. No people, and no legible sign lettering.
+- **Not verified:** The building's facade materials and color are not confirmed from a current photo; the storefront description comes from reviews mentioning large windows, an open kitchen and a corner location. The pin is OpenStreetMap's point for the cafe.
+- **Sources:**
+  - <https://www.juniper.cafe/home-1>
+  - <https://www.juniper.cafe/>
+  - <https://sf.eater.com/2023/2/2/23583452/juniper-bakery-saint-frank>
+  - <https://www.yelp.com/biz/juniper-san-francisco-3>
+  - <https://maps.apple.com/place?place-id=I2E04B399EF397437>
+  - <https://dimhour.com/san-francisco/v/juniper/>
+
+## Key Klub
+
+Wine · Nob Hill · 850 Bush St, San Francisco, CA 94108
+
+- **Hours:** (<https://www.keyklubsf.com/about>) Closed Sunday and Monday. Walk-ins only. Yelp lists earlier closing times (11pm Tuesday-Wednesday, midnight Thursday-Saturday).
+  - Mon: closed
+  - Tue–Sat: 4 PM–12:30 AM
+  - Sun: closed
+
+### Place research
+
+- **Neighborhood and street:** Nob Hill. On the south side of Bush Street between Taylor and Mason in Lower Nob Hill, a block above Union Square's hotels, in a row of older brick and stucco walk-ups and apartment buildings.
+- **Terrain and setting:** Bush Street climbs west here toward the crest of Nob Hill, so the sidewalk slopes and the buildings step up the block.
+- **Architecture:** A cavernous two-story space in an older brick building, formerly another bar, Hopwater Distribution. Inside: exposed brick walls, modern finishes, dim lighting from handmade paper-lantern orbs, a long bar, and a mezzanine looking over the main room, with a back room and a cellar below.
+- **Unique architectural notes:** The space was a nightclub called Key Klub in the 1950s, and the owners revived the name; the building is slated for redevelopment, so the bar was opened with a set lifespan.
+- **Most iconic physical characteristics:**
+  - tall exposed brick walls glowing under round paper-lantern orbs
+  - a mezzanine railing above the main room
+  - a long bar with rows of shelves behind it
+  - a soft pink neon glow on the brick
+- **More recognizable view:** the interior
+- **View used for the image:** Inside, from the floor of the main room looking toward the bar in the evening: tall exposed brick walls lit by clusters of round white paper-lantern orbs, a soft pink neon glow on the brick, the mezzanine railing above, rows of shelves behind the bar, and empty stools. No people, and no legible sign lettering; the neon is only an abstract glow.
+- **Not verified:** The neon sign's exact color and position and the lantern layout come from the 2022 Chronicle review, not a current photo. The Chronicle reported the building would be redeveloped about five years after the lease was signed; the bar was still listed as open in August 2026. The pin is OpenStreetMap's point for the bar.
+- **Sources:**
+  - <https://www.keyklubsf.com/about>
+  - <https://www.keyklubsf.com/>
+  - <https://www.keyklubsf.com/contact>
+  - <https://www.sfchronicle.com/food/wine/article/SF-natural-wine-17117847.php>
+  - <https://sf.eater.com/2022/1/11/22878481/key-club-wine-bar-open-menu-nob-hill>
+  - <https://www.corner.inc/place/88941>
+
 ## Kin Khao
 
 Restaurant · Union Square · 55 Cyril Magnin St, San Francisco, CA 94102
@@ -2424,6 +2484,66 @@ Restaurant · Financial District · 101 California St, San Francisco, CA 94111
   - <https://101california.com/>
   - <https://ojb-studios.com/work/101-california/>
   - <https://www.instagram.com/p/DRAhT8IEuT5/>
+
+## Pacific Cocktail Haven
+
+Bar · Union Square · 550 Sutter St, San Francisco, CA 94102
+
+- **Hours:** (<https://www.pacificcocktailsf.com/>, <https://sfguide.co/bar/pacific-cocktail-haven/>) Closed Sunday per the official site's hours listing and SF Guide; the official site's footer says 'Open 7 Days a week 5pm-12am', so check before a Sunday visit. Walk-ins only.
+  - Mon–Sat: 5 PM–midnight
+  - Sun: closed
+
+### Place research
+
+- **Neighborhood and street:** Union Square. On Sutter Street between Powell and Mason, a couple of blocks above Union Square, among hotels, older brick and stone commercial buildings and small storefronts; the cable cars run on Powell at the end of the block.
+- **Terrain and setting:** Sutter Street rises gently west from Union Square toward Nob Hill, with tall buildings close on both sides.
+- **Architecture:** A bar set back from the sidewalk behind large black gates and a gated front courtyard with about 30 patio seats. Inside: shiny reddish hardwood, textured mango-colored walls, exposed brick, dozens of lights suspended from the ceiling, tropical plants, and rounded booths with crimson banquettes curved so every seat faces into the room.
+- **Unique architectural notes:** The bar's original home at 580 Sutter was destroyed by fire in February 2021; it reopened three doors down in March 2022, gaining the gated courtyard the owners called the reason they took the building.
+- **Most iconic physical characteristics:**
+  - large black gates opening onto a small front courtyard
+  - curved crimson banquettes and glossy reddish hardwood
+  - mango-colored walls and exposed brick
+  - clusters of suspended lights and tropical plants
+- **More recognizable view:** the interior
+- **View used for the image:** Inside in the evening, from a corner booth looking across the room toward the bar: curved crimson banquettes and glossy reddish hardwood, warm mango-colored textured walls and a stretch of exposed brick, dozens of small lights hanging from the ceiling at different heights, and tropical plants in the corners. No people, and no legible sign lettering.
+- **Not verified:** Interior details come from 2022 reopening coverage and an Imbibe interview with the owner, not a current photo. The pin is OpenStreetMap's point for the bar.
+- **Sources:**
+  - <https://www.pacificcocktailsf.com/>
+  - <https://www.sfgate.com/food/article/Pacific-Cocktail-Haven-reopens-San-Francisco-16968889.php>
+  - <https://sf.eater.com/2022/3/14/22977448/pacific-cocktail-haven-open-menu>
+  - <https://imbibemagazine.com/how-it-started-pacific-cocktail-haven/>
+  - <https://sfguide.co/bar/pacific-cocktail-haven/>
+  - <https://www.restaurantji.com/ca/san-francisco/pacific-cocktail-haven-/>
+
+## Peacekeeper
+
+Bar · Nob Hill · 925 Bush St, San Francisco, CA 94109
+
+- **Hours:** (<https://www.peacekeepersf.com/>) Hours from the official site. Apple Maps and Restaurantji list a 3pm weekday opening.
+  - Mon–Fri: 2 PM–2 AM
+  - Sat–Sun: 1 PM–2 AM
+
+### Place research
+
+- **Neighborhood and street:** Nob Hill. On Bush Street between Taylor and Jones in Lower Nob Hill, a block west of Key Klub, in a row of early-1900s apartment buildings with fire escapes and narrow storefronts.
+- **Terrain and setting:** Bush Street climbs steadily west toward the top of Nob Hill, so the block slopes and the rooflines step uphill.
+- **Architecture:** A formerly dark, cavernous bar space (once the dive Bacchus Kirk) remade in 2019 by Britt Hull of Tide Design Co.: tall vaulted ceilings with a huge retractable glass skylight that opens to the sky, gray concrete and blond wood surfaces, a fireplace, around 60 plants lining the walls, shelves and every open surface, and a mezzanine overlooking the main room with a pool table.
+- **Unique architectural notes:** The whole roof over the bar slides open, inspired by the open courtyards of Oaxaca, so on clear days it's effectively an open-air room in the middle of a city block.
+- **Most iconic physical characteristics:**
+  - a vaulted ceiling with a retractable glass roof open to the sky
+  - trailing plants hanging from shelves and beams
+  - gray concrete and blond wood surfaces in natural light
+  - a fireplace on one wall
+- **More recognizable view:** the interior
+- **View used for the image:** Inside, from the main floor in the afternoon: the tall vaulted ceiling with its glass roof slid open to a pale blue sky, sunlight falling across gray concrete and blond wood, dozens of trailing green plants hanging from shelves and along the walls, a fireplace on one side and the mezzanine railing above, with empty stools at the bar. No people, and no legible sign lettering.
+- **Not verified:** Interior details come from 2019 opening coverage, not a current photo; the plant count and pool table location may have changed. The pin is OpenStreetMap's point for the bar.
+- **Sources:**
+  - <https://www.peacekeepersf.com/>
+  - <https://sf.eater.com/2019/4/12/18307812/peacekeeper-bar-open-harper-rye-lower-nob-hill-san-francisco>
+  - <https://www.sfchronicle.com/food/article/Harper-Rye-team-debut-Oaxaca-inspired-bar-13760961.php>
+  - <https://hoodline.com/2019/04/peacekeeper-brings-open-air-bar-and-billiards-space-to-lower-nob-hill/>
+  - <https://www.cntraveler.com/bars/san-francisco/peacekeeper>
+  - <https://maps.apple.com/place?place-id=I4F33C908300AFAF>
 
 ## Pearl 6101
 
