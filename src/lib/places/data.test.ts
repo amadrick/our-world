@@ -36,9 +36,9 @@ describe("data/places.json", () => {
     }
   });
 
-  it("holds Andy's 100 places plus the 23 Sights, with no Wellness section left", () => {
-    expect(places).toHaveLength(123);
-    expect(places.filter((p) => p.category !== "sight")).toHaveLength(100);
+  it("holds Andy's 102 places plus the 8 Sights, with no Wellness section left", () => {
+    expect(places).toHaveLength(110);
+    expect(places.filter((p) => p.category !== "sight")).toHaveLength(102);
     expect(places.some((p) => p.id === "alchemy-springs")).toBe(false);
     expect(new Set(places.map((p) => p.category)).has("wellness" as Place["category"])).toBe(false);
   });
@@ -62,10 +62,11 @@ describe("data/places.json", () => {
         "william-stout-architectural-books",
         "bi-rite-market-polk-street",
         "city-lights-booksellers-and-publishers",
+        "bernal-cutlery",
       ].sort(),
     );
     expect(inSection("museum")).toEqual(["de-young-museum", "sfmoma"]);
-    expect(inSection("park")).toEqual(["golden-gate-park", "ocean-beach"]);
+    expect(inSection("park")).toEqual(["golden-gate-park", "ocean-beach", "the-presidio"]);
   });
 
   it("fills Sights with the iconic places, none of them duplicating a place already in the guide", () => {
@@ -77,28 +78,13 @@ describe("data/places.json", () => {
     ).toEqual(
       [
         "golden-gate-bridge",
-        "alcatraz",
-        "fishermans-wharf",
-        "pier-39",
-        "ghirardelli-square",
         "lombard-street",
         "coit-tower",
         "transamerica-pyramid",
         "ferry-building",
-        "dragon-gate",
-        "powell-market-cable-car-turnaround",
-        "painted-ladies",
-        "palace-of-fine-arts",
-        "crissy-field",
-        "twin-peaks",
         "dolores-park",
-        "city-hall",
-        "lands-end-sutro-baths",
-        "legion-of-honor",
-        "haight-ashbury",
-        "castro-theatre",
-        "grace-cathedral",
-        "exploratorium",
+        "fort-point",
+        "grateful-dead-house",
       ].sort(),
     );
   });
