@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { contrastRatio, darkPinColor, mapPageColor, whiteTextReads } from "../images/palette.mjs";
+import { contrastRatio, darkPinColor, whiteTextReads } from "../images/palette.mjs";
 import { EMPTY_FILTERS, filterPlaces } from "./filters";
 import { placeInputSchema } from "./schema";
 import type { Place } from "./types";
@@ -33,10 +33,6 @@ describe("data/places.json", () => {
       expect(whiteTextReads(place.imageColor!), place.id).toBe(true);
       // And on the dark map's lifted pins and name pills.
       expect(contrastRatio(darkPinColor(place.imageColor!), "#ffffff"), place.id).toBeGreaterThanOrEqual(4.5);
-      // The same holds once the color is softened toward the watercolor map.
-      const tint = mapPageColor(place.imageColor!);
-      expect(whiteTextReads(tint), place.id).toBe(true);
-      expect(contrastRatio(darkPinColor(tint), "#ffffff"), place.id).toBeGreaterThanOrEqual(4.5);
     }
   });
 

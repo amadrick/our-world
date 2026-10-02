@@ -23,7 +23,6 @@ import { PlaceImage } from "@/components/places/place-image";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
 import { formatTravel, formatTravelShort, type TravelEstimate } from "@/lib/geo/travel-estimate";
-import { mapPageColor } from "@/lib/images/palette.mjs";
 import { hoursLine, openState } from "@/lib/places/hours";
 import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
 import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
@@ -36,17 +35,9 @@ import { cn } from "@/lib/utils";
 /** For a place saved before its photo's color was sampled. */
 const FALLBACK_COLOR = "#3a3632";
 
-const mapColors = new Map<string, string>();
-
-/**
- * The color a place's detail sits on: sampled from its photo when the photo was saved,
- * then softened toward the watercolor map's earthy pigments.
- */
+/** The color a place's detail sits on, sampled from its photo when the photo was saved. */
 export function placeColor(place: Place): string {
-  const photo = place.imageColor ?? FALLBACK_COLOR;
-  let color = mapColors.get(photo);
-  if (!color) mapColors.set(photo, (color = mapPageColor(photo)));
-  return color;
+  return place.imageColor ?? FALLBACK_COLOR;
 }
 
 function placeWhere(place: Place) {
