@@ -24,12 +24,16 @@ describe("blurLayers", () => {
 describe("dissolveGradient", () => {
   it("runs from clear to the solid page color", () => {
     const gradient = dissolveGradient("#23453b");
-    expect(gradient).toMatch(/^linear-gradient\(to bottom, #23453b00 0%/);
-    expect(gradient).toMatch(/#23453bff 100%\)$/);
+    expect(gradient).toMatch(/^linear-gradient\(to bottom, color-mix\(in srgb, #23453b 0%, transparent\) 0%/);
+    expect(gradient).toMatch(/#23453b 100%, transparent\) 100%\)$/);
   });
 
   it("can turn solid partway down", () => {
-    expect(dissolveGradient("#23453b", 60)).toMatch(/#23453bff 60%\)$/);
+    expect(dissolveGradient("#23453b", 60)).toMatch(/#23453b 100%, transparent\) 60%\)$/);
+  });
+
+  it("can follow an animated color", () => {
+    expect(dissolveGradient("var(--tint)")).toMatch(/var\(--tint\) 100%, transparent\) 100%\)$/);
   });
 });
 

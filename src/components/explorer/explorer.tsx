@@ -601,8 +601,8 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
         {selected && (
           <div
             ref={railScrollRef}
-            className="sheet-scroll-y scroll-fade-y min-h-0 flex-1 transition-colors duration-300"
-            style={{ backgroundColor: placeColor(selected) }}
+            className="sheet-scroll-y scroll-fade-y min-h-0 flex-1 bg-(color:--tint) [transition:--tint_300ms_cubic-bezier(0.4,0,0.2,1)]"
+            style={{ "--tint": placeColor(selected) } as React.CSSProperties}
           >
             <PlaceDetail
               place={selected}
@@ -758,8 +758,8 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
         {listMode && selected && (
           <div
             ref={pageRef}
-            className="sheet-scroll-y absolute inset-0 touch-pan-y [transition:background-color_var(--open-tint)_var(--ease-out-soft)] animate-in duration-200 fade-in"
-            style={{ backgroundColor: placeColor(selected) }}
+            className="sheet-scroll-y absolute inset-0 touch-pan-y bg-(color:--tint) [transition:--tint_var(--open-tint)_var(--ease-out-soft)] animate-in duration-200 fade-in"
+            style={{ "--tint": placeColor(selected) } as React.CSSProperties}
           >
             <PlaceDetail
               place={selected}

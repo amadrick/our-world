@@ -37,14 +37,15 @@ const EASE_IN: [at: number, alpha: number][] = [
 ];
 
 /**
- * A top-to-bottom gradient from clear to `color` ("#rrggbb"), eased so it has
- * no visible edge. It turns solid at `solidFrom` percent and stays solid below.
+ * A top-to-bottom gradient from clear to `color`, eased so it has no visible
+ * edge. It turns solid at `solidFrom` percent and stays solid below. `color`
+ * can be a `var()`, so the gradient follows a color the page is animating.
  */
 export function dissolveGradient(color: string, solidFrom = 100): string {
-  const stops = EASE_IN.map(([at, alpha]) => {
-    const hex = Math.round(alpha * 255).toString(16).padStart(2, "0");
-    return `${color}${hex} ${Math.round(at * solidFrom) / 100}%`;
-  });
+  const stops = EASE_IN.map(
+    ([at, alpha]) =>
+      `color-mix(in srgb, ${color} ${Math.round(alpha * 100)}%, transparent) ${Math.round(at * solidFrom) / 100}%`,
+  );
   return `linear-gradient(to bottom, ${stops.join(", ")})`;
 }
 

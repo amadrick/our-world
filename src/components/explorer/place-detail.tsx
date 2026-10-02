@@ -363,6 +363,13 @@ const PHOTO_WAIT_MS = 600;
 /** The photo holds to here, then fades into the color behind it; the blur covers the last 30%. */
 const PHOTO_FADE = fadeOutMask(58);
 
+/**
+ * The rail and page scrollers ease `--tint` from one place's color to the
+ * next. Dissolves over their photos read it too: a fixed color would land on
+ * the new place a frame in and meet the still-easing background in a line.
+ */
+const SCROLLER_TINT = "var(--tint)";
+
 interface PhotoLayer {
   place: Place;
   motion: "in" | "swap" | "slide";
@@ -723,7 +730,7 @@ export function PlaceDetail({
             replace={swiped}
             className={rail ? "aspect-square" : "aspect-[4/3]"}
           />
-          <PhotoDissolve color={color} className="h-[30%]" />
+          <PhotoDissolve color={rail ? SCROLLER_TINT : color} className="h-[30%]" />
           {rail && <div className="absolute inset-x-3 top-3 z-10">{controls}</div>}
         </div>
         <div
@@ -884,7 +891,7 @@ export function PlaceDetail({
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/30 to-transparent md:hidden"
           />
-          <PhotoDissolve color={color} className="h-2/5 md:hidden" />
+          <PhotoDissolve color={SCROLLER_TINT} className="h-2/5 md:hidden" />
         </div>
 
         <div className="relative -mt-20 space-y-6 px-5 pb-36 md:mt-0 md:max-w-xl md:space-y-7 md:px-0 md:pb-0">
@@ -909,7 +916,7 @@ export function PlaceDetail({
       <div
         aria-hidden
         className="pointer-events-none sticky bottom-0 hidden h-36 lg:block"
-        style={{ backgroundImage: dissolveGradient(color, 55) }}
+        style={{ backgroundImage: dissolveGradient(SCROLLER_TINT, 55) }}
       />
     </article>
   );
