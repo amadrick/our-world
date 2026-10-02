@@ -155,12 +155,46 @@ export const PAPER_PINS: PinPalette = {
   },
 };
 
+/**
+ * Basemap (h) Watercolor's dots, the default: Paper's hues mixed as pigments
+ * (burnt sienna, raw umber, yellow ochre, madder rose, sap green, a dusty
+ * indigo), softer and warmer so they sit in the painting rather than on it,
+ * on a ring of the map's paper. The white glyph reads about as well as on
+ * Paper's; names hold 4.5:1 on the paper (and on the dark map's walnut).
+ */
+export const WATERCOLOR_PINS: PinPalette = {
+  categories: {
+    restaurant: { fill: "#C47250", label: "#A75430", labelDark: "#CB8467" },
+    coffee: { fill: "#8C6B52", label: "#866449", labelDark: "#AF927C" },
+    bakery: { fill: "#C09A58", label: "#8A6418", labelDark: "#B3935D" },
+    dessert: { fill: "#C47A6C", label: "#A15749", labelDark: "#C58679" },
+    bar: { fill: "#AE6279", label: "#A0526B", labelDark: "#C58295" },
+    wine: { fill: "#7F4E63", label: "#915C73", labelDark: "#B7899C" },
+    shop: { fill: "#B7A05A", label: "#816919", labelDark: "#AA975D" },
+    sight: { fill: "#5D7697", label: "#526C8E", labelDark: "#849AB8" },
+    museum: { fill: "#82688F", label: "#7C618A", labelDark: "#A58EB1" },
+    park: { fill: "#6B8B5D", label: "#537444", labelDark: "#86A27A" },
+  },
+  ring: { light: "#FBF6EA", dark: "#E9E0CE" },
+  caption: { light: "#6A5A4A", dark: "#CDBFAE" },
+  halo: { light: "#F7EFDD", dark: "#26221D" },
+  shadow: {
+    glyph: {
+      light: "0 0 0 2px #FBF6EA, 0 0 0 3px rgb(110 70 40 / 0.12), 0 1px 2px rgb(80 50 25 / 0.18), 0 2px 6px rgb(80 50 25 / 0.1)",
+      dark: "0 0 0 2px #E9E0CE, 0 1px 2px rgb(0 0 0 / 0.5), 0 2px 6px rgb(0 0 0 / 0.35)",
+    },
+    photo: {
+      light: "0 0 0 1px rgb(110 70 40 / 0.12), 0 1px 2px rgb(80 50 25 / 0.18), 0 3px 8px rgb(80 50 25 / 0.1)",
+      dark: "0 1px 2px rgb(0 0 0 / 0.5), 0 3px 8px rgb(0 0 0 / 0.35)",
+    },
+  },
+};
+
 const PIN_PALETTES: Partial<Record<MapThemeId, PinPalette>> = {
   film: FILM_PINS,
   ink: INK_PINS,
   paper: PAPER_PINS,
-  // Paper's earthy atlas inks sit on the watercolor sheet too.
-  watercolor: PAPER_PINS,
+  watercolor: WATERCOLOR_PINS,
 };
 
 export const pinPalette = (theme: MapThemeId): PinPalette => PIN_PALETTES[theme] ?? APPLE_PINS;

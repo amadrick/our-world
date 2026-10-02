@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 import { contrastRatio } from "../images/palette.mjs";
-import { APPLE_PINS, FILM_PINS, INK_PINS, PAPER_PINS, pinPalette, type PinPalette } from "./pin-style";
+import { APPLE_PINS, FILM_PINS, INK_PINS, PAPER_PINS, WATERCOLOR_PINS, pinPalette, type PinPalette } from "./pin-style";
 import { MAP_THEMES, type MapThemeId } from "./theme";
 
 describe("pinPalette", () => {
-  it("gives film, ink, and paper their own colors, watercolor paper's, and every other basemap Apple's", () => {
-    const own: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS, paper: PAPER_PINS, watercolor: PAPER_PINS };
+  it("gives film, ink, paper, and watercolor their own colors, and every other basemap Apple's", () => {
+    const own: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS, paper: PAPER_PINS, watercolor: WATERCOLOR_PINS };
     for (const theme of Object.keys(MAP_THEMES) as MapThemeId[]) {
       expect(pinPalette(theme), theme).toBe(own[theme] ?? APPLE_PINS);
     }
@@ -16,6 +16,7 @@ describe("pinPalette", () => {
     ["film", FILM_PINS],
     ["ink", INK_PINS],
     ["paper", PAPER_PINS],
+    ["watercolor", WATERCOLOR_PINS],
   ] as const)("keeps %s names and captions readable on their halos", (_, palette) => {
     const { halo } = palette;
     for (const [category, color] of Object.entries(palette.categories)) {
@@ -27,7 +28,7 @@ describe("pinPalette", () => {
   });
 
   it("covers the same categories in every palette", () => {
-    for (const palette of [FILM_PINS, INK_PINS, PAPER_PINS]) {
+    for (const palette of [FILM_PINS, INK_PINS, PAPER_PINS, WATERCOLOR_PINS]) {
       expect(Object.keys(palette.categories).sort()).toEqual(Object.keys(APPLE_PINS.categories).sort());
     }
   });
