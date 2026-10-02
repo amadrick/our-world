@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const SEGMENTS = SORT_MODES.map((mode) => ({ value: mode, label: SORT_LABELS[mode] }));
 
-/** Smart | A–Z | Nearest: a small glass segmented control beside the count, so any order is one tap away. */
+/** Near you | A–Z: a small glass segmented control beside the count, so any order is one tap away. */
 export function SortControl({
   value,
   onChange,

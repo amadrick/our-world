@@ -1,8 +1,8 @@
 /**
- * The list's orders. Smart, the default: open now first (closing within the
- * hour below the rest, unknown hours after, closed last), then what suits the
- * time of day, then the nearest; a favorite gets a light nudge within its
- * group, never past an open/closed line. A–Z and Nearest are one tap away.
+ * The list's orders. Near you, the default: open now first (closing within
+ * the hour below the rest, unknown hours after, closed last), then what suits
+ * the time of day, then the nearest; a favorite gets a light nudge within its
+ * group, never past an open/closed line. A–Z is one tap away.
  */
 import { metersBetween } from "@/lib/geo/drive-times";
 import { dayPartAt, dayPartFit } from "./day-parts";
@@ -10,10 +10,10 @@ import { CLOSING_SOON_MIN, openState, type OpenState } from "./hours";
 import { isFavorite } from "./taxonomy";
 import type { Place } from "./types";
 
-export const SORT_MODES = ["smart", "az", "nearest"] as const;
+export const SORT_MODES = ["near", "az"] as const;
 export type SortMode = (typeof SORT_MODES)[number];
 
-export const SORT_LABELS: Record<SortMode, string> = { smart: "Smart", az: "A–Z", nearest: "Nearest" };
+export const SORT_LABELS: Record<SortMode, string> = { near: "Near you", az: "A–Z" };
 
 /** Without the reader's location, distances are from Union Square. */
 export const CITY_CENTER = { lat: 37.788, lng: -122.4075 } as const;
@@ -68,7 +68,7 @@ export function rankPlaces(
 
 const byName = (a: Place, b: Place) => a.name.localeCompare(b.name);
 
-function smartCompare(a: RankedPlace, b: RankedPlace): number {
+function nearCompare(a: RankedPlace, b: RankedPlace): number {
   if (a.tier !== b.tier) return a.tier - b.tier;
   // Open places that suit the hour come first; within "Also open", a place closing soon goes last.
   if (a.section !== b.section) return a.section === "good" ? -1 : 1;
@@ -89,11 +89,10 @@ export function orderPlaces(
 ): RankedPlace[] {
   const ranked = rankPlaces(places, context);
   if (mode === "az") return ranked.sort((a, b) => byName(a.place, b.place));
-  if (mode === "nearest") return ranked.sort((a, b) => a.meters - b.meters || byName(a.place, b.place));
-  return ranked.sort(smartCompare);
+  return ranked.sort(nearCompare);
 }
 
-/** Consecutive runs of one section, for the Smart order's headings. */
+/** Consecutive runs of one section, for the Near you order's headings. */
 export function groupBySection(ranked: readonly RankedPlace[]): { id: SectionId; items: RankedPlace[] }[] {
   const groups: { id: SectionId; items: RankedPlace[] }[] = [];
   for (const item of ranked) {

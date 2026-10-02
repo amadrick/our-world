@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { dayPartAt, dayPartFit } from "./day-parts";
 import type { PlaceHours, Weekday } from "./hours";
-import { groupBySection, orderPlaces } from "./smart-order";
+import { SORT_LABELS, SORT_MODES, groupBySection, orderPlaces } from "./smart-order";
 import type { Place } from "./types";
 
 const at = (iso: string) => new Date(`${iso}-07:00`);
@@ -65,9 +65,9 @@ describe("day parts", () => {
   });
 });
 
-describe("Smart order", () => {
+describe("Near you order", () => {
   it("puts open, well-suited places first in the morning, unknown after open, closed last", () => {
-    const ranked = orderPlaces(all, "smart", { now: at("2026-09-27T08:30:00") });
+    const ranked = orderPlaces(all, "near", { now: at("2026-09-27T08:30:00") });
     // Coffee and Bakery suit the morning equally; Bakery is nearer Union Square. Closed ones by soonest opening.
     expect(names(ranked)).toEqual(["Bakery", "Coffee", "Beach", "Mystery", "Shop", "Late Bar", "Bar", "Dinner"]);
     expect(groupBySection(ranked).map((g) => [g.id, g.items.length])).toEqual([
@@ -79,11 +79,11 @@ describe("Smart order", () => {
 
   it("leads with bars late at night, and ranks a place closing soon below the rest", () => {
     // 10:30 PM: the dinner spot has closed; the bars are open until 2.
-    const late = orderPlaces(all, "smart", { now: at("2026-09-27T22:30:00") });
+    const late = orderPlaces(all, "near", { now: at("2026-09-27T22:30:00") });
     expect(names(late).slice(0, 3)).toEqual(["Late Bar", "Bar", "Beach"]);
     expect(late.find((r) => r.place.name === "Dinner")?.section).toBe("closed");
     // 1:30 AM: both bars close at 2, so the always-open beach comes first.
-    const closing = orderPlaces(all, "smart", { now: at("2026-09-28T01:30:00") });
+    const closing = orderPlaces(all, "near", { now: at("2026-09-28T01:30:00") });
     expect(names(closing).slice(0, 3)).toEqual(["Beach", "Late Bar", "Bar"]);
   });
 
@@ -91,16 +91,16 @@ describe("Smart order", () => {
     const near = place("Near Coffee", "coffee", every("07:00", "15:00"), { lat: 37.8, lng: -122.44 });
     const far = place("Far Coffee", "coffee", every("07:00", "15:00"), { lat: 37.74, lng: -122.5 });
     const morning = at("2026-09-27T08:30:00");
-    expect(names(orderPlaces([far, near], "smart", { now: morning, origin: { lat: 37.8, lng: -122.44 } }))).toEqual([
+    expect(names(orderPlaces([far, near], "near", { now: morning, origin: { lat: 37.8, lng: -122.44 } }))).toEqual([
       "Near Coffee",
       "Far Coffee",
     ]);
-    expect(names(orderPlaces([near, far], "smart", { now: morning, origin: { lat: 37.74, lng: -122.5 } }))).toEqual([
+    expect(names(orderPlaces([near, far], "near", { now: morning, origin: { lat: 37.74, lng: -122.5 } }))).toEqual([
       "Far Coffee",
       "Near Coffee",
     ]);
     // No location: Union Square is closer to "Near Coffee".
-    expect(names(orderPlaces([far, near], "smart", { now: morning }))).toEqual(["Near Coffee", "Far Coffee"]);
+    expect(names(orderPlaces([far, near], "near", { now: morning }))).toEqual(["Near Coffee", "Far Coffee"]);
   });
 
   it("nudges a favorite ahead of an equal place, never across open and closed", () => {
@@ -108,18 +108,17 @@ describe("Smart order", () => {
     const plain = place("Plain Coffee", "coffee", every("07:00", "15:00"), { lat: 37.788, lng: -122.4075 });
     const loved = place("Loved Coffee", "coffee", every("07:00", "15:00"), { lat: 37.75, lng: -122.45, favorite: true });
     const lovedButClosed = place("Loved Closed", "coffee", every("12:00", "15:00"), { favorite: true });
-    expect(names(orderPlaces([plain, loved, lovedButClosed], "smart", { now: morning }))).toEqual([
+    expect(names(orderPlaces([plain, loved, lovedButClosed], "near", { now: morning }))).toEqual([
       "Loved Coffee",
       "Plain Coffee",
       "Loved Closed",
     ]);
   });
 
-  it("offers A–Z and Nearest", () => {
+  it("offers A–Z, and only Near you and A–Z", () => {
     const now = at("2026-09-27T08:30:00");
     expect(names(orderPlaces(all, "az", { now }))).toEqual([...all.map((p) => p.name)].sort((a, b) => a.localeCompare(b)));
-    const ranked = orderPlaces(all, "nearest", { now, origin: { lat: 37.76, lng: -122.42 } });
-    const meters = ranked.map((r) => r.meters);
-    expect(meters).toEqual([...meters].sort((a, b) => a - b));
+    expect(SORT_MODES).toEqual(["near", "az"]);
+    expect(SORT_LABELS).toEqual({ near: "Near you", az: "A–Z" });
   });
 });

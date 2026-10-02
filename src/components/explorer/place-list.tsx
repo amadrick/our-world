@@ -38,7 +38,7 @@ interface PlaceListProps {
   driveTimes?: Readonly<Record<string, TravelEstimate>> | null;
   /** The time in San Francisco, for each place's hours line. */
   now?: Date;
-  /** Headed groups (the Smart order's "Good right now", "Closed now"…); otherwise one grid. */
+  /** Headed groups (the Near you order's "Good right now", "Closed now"…); otherwise one grid. */
   sections?: { id: string; title: string; places: Place[] }[];
 }
 

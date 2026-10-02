@@ -245,7 +245,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
   );
   const sections = useMemo(
     () =>
-      sortMode === "smart"
+      sortMode === "near"
         ? groupBySection(ranked).map((g) => ({ id: g.id, title: SECTION_TITLES[g.id], places: g.items.map((r) => r.place) }))
         : undefined,
     [ranked, sortMode],

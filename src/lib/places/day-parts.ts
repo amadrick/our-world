@@ -1,5 +1,5 @@
 /**
- * What suits each part of the day, for the Smart order. Tune here: a place's
+ * What suits each part of the day, for the Near you order. Tune here: a place's
  * fit is the best of its category's score and its tags' scores, 0 (no fit) to
  * 3 (just right).
  */

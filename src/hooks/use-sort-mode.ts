@@ -6,7 +6,7 @@ import { SORT_MODES, type SortMode } from "@/lib/places/smart-order";
 
 const KEY = "sf-recs:sort";
 const EVENT = "sf-recs:sort";
-const DEFAULT: SortMode = "smart";
+const DEFAULT: SortMode = "near";
 
 // Holds the choice when storage is unavailable, so the switch still works.
 let current: SortMode | null = null;
@@ -14,6 +14,7 @@ let current: SortMode | null = null;
 function read(): SortMode {
   if (current) return current;
   try {
+    // Anything else saved (the old "smart" and "nearest") is Near you now.
     const saved = window.sessionStorage.getItem(KEY);
     return (SORT_MODES as readonly string[]).includes(saved ?? "") ? (saved as SortMode) : DEFAULT;
   } catch {
@@ -26,7 +27,7 @@ function subscribe(onChange: () => void) {
   return () => window.removeEventListener(EVENT, onChange);
 }
 
-/** The list's order (Smart, A–Z, Nearest), remembered for the session. */
+/** The list's order (Near you or A–Z), remembered for the session. */
 export function useSortMode(): [SortMode, (mode: SortMode) => void] {
   const mode = useSyncExternalStore(subscribe, read, () => DEFAULT);
   const setMode = useCallback((next: SortMode) => {

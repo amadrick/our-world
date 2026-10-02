@@ -7,7 +7,7 @@ import { localClock } from "@/lib/places/hours";
 interface Clocks {
   /** For "Open now · closes 10 PM": kept to the minute. */
   now: Date;
-  /** What the Smart order sorts by: moves on the hour or when the page comes back. */
+  /** What the Near you order sorts by: moves on the hour or when the page comes back. */
   orderNow: Date;
 }
 
@@ -57,7 +57,7 @@ function createClockStore(renderedAt: Date) {
 }
 
 /**
- * The time in San Francisco for hours and the Smart order. Server render and
+ * The time in San Francisco for hours and the Near you order. Server render and
  * hydration use `renderedAt`, so both agree; then the browser's clock takes over.
  */
 export function useClocks(renderedAt: string, hold: () => boolean): Clocks {
