@@ -161,6 +161,29 @@ export function pageColor(pixels, { vividness = VIVIDNESS } = {}) {
   return readableShade(chroma, hue);
 }
 
+/** How much of a page color's chroma it keeps on the watercolor map, and the earthy range it's held to. */
+const MAP_CHROMA_SCALE = 0.72;
+const MAP_CHROMA = [0.045, 0.1];
+/** The map's burnt sienna (OKLCH hue), and how far a page color's hue leans toward it. */
+const MAP_WARM_HUE = 48;
+const MAP_WARM_PULL = 0.15;
+
+/**
+ * A page color settled into the watercolor map's palette: the photo's hue,
+ * leaning a little toward the map's sienna, its chroma eased into the map's
+ * earthy range, at the lightest shade white text (and its 70% tint) still
+ * reads on. Same input, same color, so a place keeps it everywhere.
+ * @param {string} hex "#rrggbb"
+ */
+export function mapPageColor(hex) {
+  const [r, g, b] = channels(hex);
+  const { a, b: bb } = rgbToOklab(r, g, b);
+  const hue = hueOf(a, bb);
+  const turn = ((MAP_WARM_HUE - hue + 540) % 360) - 180;
+  const chroma = Math.min(MAP_CHROMA[1], Math.max(MAP_CHROMA[0], Math.hypot(a, bb) * MAP_CHROMA_SCALE));
+  return readableShade(chroma, (hue + turn * MAP_WARM_PULL + 360) % 360);
+}
+
 /**
  * A place color lifted for the dark map (pins and their name pills), as light
  * as it can be while white text on it keeps AA.
