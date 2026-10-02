@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronDown, MapPin } from "react-feather";
+import { Check, ChevronDown, Clock, MapPin } from "react-feather";
 import { useRef, useState } from "react";
 
 import { Bridge } from "@/components/icons/feather-extras";
@@ -23,6 +23,8 @@ interface FilterBarProps {
   categories: Set<CategoryId>;
   /** How many places each pill would leave; pills at zero are disabled. */
   pillCounts: Map<PillId, number>;
+  /** How many places Open now would leave; disabled at zero like the pills. */
+  openNowCount: number;
   /** Horizontal padding inside the row, so the first pill lines up with the content below. */
   inset?: string;
   /**
@@ -228,6 +230,7 @@ export function FilterBar({
   neighborhoods,
   categories,
   pillCounts,
+  openNowCount,
   inset,
   floating = true,
   className,
@@ -267,6 +270,15 @@ export function FilterBar({
           onSelect={(category) => onChange({ ...filters, category })}
         />
         {pill(favorites)}
+        <Pill
+          active={filters.openNow}
+          floating={floating}
+          disabled={!filters.openNow && openNowCount === 0}
+          onClick={() => onChange({ ...filters, openNow: !filters.openNow })}
+        >
+          <Clock size={16} aria-hidden />
+          Open now
+        </Pill>
         {(neighborhoods.length > 1 || filters.neighborhood !== null) && (
           <NeighborhoodPicker
             value={filters.neighborhood}

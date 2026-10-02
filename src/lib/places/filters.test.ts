@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   EMPTY_FILTERS,
   filterPlaces,
+  hasActiveFilters,
   matchesInOtherSections,
   neighborhoodCounts,
   pillCounts,
@@ -54,6 +55,40 @@ describe("filterPlaces", () => {
     expect(ids({ pills: ["favorites"] })).toEqual(["zuni", "la-taqueria", "pearl"]);
     expect(ids({ pills: ["favorites", "dinner"] })).toEqual(["zuni"]);
     expect(ids({ category: "bar", pills: ["favorites"] })).toEqual([]);
+  });
+});
+
+describe("Open now", () => {
+  const week = (interval: [string, string][]) =>
+    Object.fromEntries(["sun", "mon", "tue", "wed", "thu", "fri", "sat"].map((d) => [d, interval])) as never;
+  const hoursed = [
+    place("cafe", { hours: { status: "listed", weekly: week([["07:00", "15:00"]]) } }),
+    place("bar", { category: "bar", hours: { status: "listed", weekly: week([["16:00", "02:00"]]) } }),
+    place("diner", { hours: { status: "always" } }),
+    place("mystery", { hours: { status: "unknown" } }),
+    place("unlisted"),
+    place("gone", { hours: { status: "listed", weekly: week([["07:00", "15:00"]]), closedPermanently: true } }),
+  ];
+  // 8:30 AM and 1:00 AM on a Sunday in San Francisco.
+  const morning = new Date("2026-09-27T15:30:00Z");
+  const lateNight = new Date("2026-09-27T08:00:00Z");
+  const open = (now: Date, filters = {}) =>
+    filterPlaces(hoursed, { ...EMPTY_FILTERS, openNow: true, ...filters }, now).map((p) => p.id);
+
+  it("keeps only places open by their hours, and hides unknown hours", () => {
+    expect(open(morning)).toEqual(["cafe", "diner"]);
+    expect(open(lateNight)).toEqual(["bar", "diner"]);
+  });
+
+  it("combines with the other filters and counts as one", () => {
+    expect(open(lateNight, { category: "bar" })).toEqual(["bar"]);
+    expect(open(morning, { category: "bar" })).toEqual([]);
+    expect(hasActiveFilters({ ...EMPTY_FILTERS, openNow: true })).toBe(true);
+    expect(matchesInOtherSections(hoursed, { ...EMPTY_FILTERS, category: "bar", openNow: true }, morning)).toBe(2);
+  });
+
+  it("is off by default", () => {
+    expect(filterPlaces(hoursed, EMPTY_FILTERS, morning)).toHaveLength(hoursed.length);
   });
 });
 
