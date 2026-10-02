@@ -1,9 +1,13 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
+
 import { validateStyleMin } from "@maplibre/maplibre-gl-style-spec";
 import { describe, expect, it } from "vitest";
 
 import { LANDMARK_LAYERS, LANDMARKS_FROM_ZOOM, buildMapStyle } from "./style";
 import { DEFAULT_MAP_THEME, MAP_THEMES, currentMapTheme, parseMapTheme, type MapThemeId } from "./theme";
 import { missingImage } from "./themes/kit";
+import { WATERCOLOR_TEXTURES, type WatercolorTexture } from "./themes/watercolor";
 
 const themes = Object.keys(MAP_THEMES) as MapThemeId[];
 
@@ -84,7 +88,7 @@ describe("buildMapStyle", () => {
     }
   });
 
-  it("draws every generated image a theme asks for", () => {
+  it("draws every generated image a theme asks for, and ships every texture file", () => {
     const ids = new Set<string>();
     for (const theme of themes) {
       for (const scheme of ["light", "dark"] as const) {
@@ -97,11 +101,19 @@ describe("buildMapStyle", () => {
           const props = { ...("layout" in layer ? layer.layout : {}), ...("paint" in layer ? layer.paint : {}) };
           collect((props as Record<string, unknown>)["icon-image"]);
           collect((props as Record<string, unknown>)["fill-pattern"]);
+          collect((props as Record<string, unknown>)["background-pattern"]);
         }
       }
     }
-    expect(ids.size).toBeGreaterThan(4);
-    for (const id of ids) expect(missingImage(id), id).not.toBeNull();
+    const textures = [...ids].filter((id) => id in WATERCOLOR_TEXTURES);
+    const generated = [...ids].filter((id) => !(id in WATERCOLOR_TEXTURES));
+    expect(generated.length).toBeGreaterThan(4);
+    for (const id of generated) expect(missingImage(id), id).not.toBeNull();
+    expect(textures.length).toBeGreaterThan(0);
+    for (const id of textures) {
+      const file = path.join(process.cwd(), "public", WATERCOLOR_TEXTURES[id as WatercolorTexture].url);
+      expect(existsSync(file), id).toBe(true);
+    }
   });
 });
 
@@ -115,6 +127,7 @@ describe("parseMapTheme", () => {
     expect(parseMapTheme("f")).toBe("ink");
     expect(parseMapTheme("Ink")).toBe("ink");
     expect(parseMapTheme("g")).toBe("paper");
+    expect(parseMapTheme("h")).toBe("watercolor");
   });
 
   it("ignores anything else", () => {
@@ -137,7 +150,7 @@ describe("the open place's tint", () => {
     const dataDriven = (value: unknown): boolean =>
       Array.isArray(value) && (value[0] === "get" || value[0] === "has" || value[0] === "geometry-type" || value.some(dataDriven));
     // The default and the live experiments; the older directions still pick some tinted colors per feature.
-    for (const theme of ["film", "ink", "paper"] as const) {
+    for (const theme of ["film", "ink", "paper", "watercolor"] as const) {
       for (const scheme of ["light", "dark"] as const) {
         const plain = buildMapStyle({ theme, tiles: "offline", origin: "", scheme });
         const tinted = buildMapStyle({ theme, tiles: "offline", origin: "", scheme, tint: "#b04a3a" });

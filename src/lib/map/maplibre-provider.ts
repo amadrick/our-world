@@ -6,6 +6,7 @@ import { routeTiles } from "./route-tiles";
 import { buildMapStyle, type ColorScheme, type PinFootprint, type TileSource } from "./style";
 import { MAP_THEMES, currentMapTheme, type MapThemeId } from "./theme";
 import { PIN_SOURCE, missingImage, pinCollection } from "./themes/kit";
+import { WATERCOLOR_TEXTURES, type WatercolorTexture } from "./themes/watercolor";
 import { createTilePrefetcher } from "./tile-prefetch";
 import type {
   LngLat,
@@ -92,12 +93,36 @@ function createMap(lib: MapLibre, options: MapCreateOptions, env: MapEnvironment
   });
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
+  // Painted textures are files, fetched once each however many tiles ask at the same time.
+  const textures = new Map<string, Promise<void>>();
+  const loadTexture = (id: string): Promise<void> | undefined => {
+    const texture = WATERCOLOR_TEXTURES[id as WatercolorTexture];
+    if (!texture) return undefined;
+    const pending = textures.get(id);
+    if (pending) return pending;
+    const loading = map
+      .loadImage(texture.url)
+      .then(({ data }) => {
+        if (!map.hasImage(id)) map.addImage(id, data, { pixelRatio: texture.pixelRatio });
+      })
+      .catch(() => {
+        textures.delete(id);
+      });
+    textures.set(id, loading);
+    return loading;
+  };
   // Textures, markers, and the pins' collision boxes are drawn on demand.
   // A resolver, not the styleimagemissing event: only a resolver can answer the tile that's asking.
   map.setMissingStyleImageResolver((id) => {
     const image = missingImage(id);
-    if (image && !map.hasImage(id)) map.addImage(id, image, { pixelRatio: image.pixelRatio });
+    if (image) {
+      if (!map.hasImage(id)) map.addImage(id, image, { pixelRatio: image.pixelRatio });
+      return;
+    }
+    return loadTexture(id);
   });
+  // Ask for a textured theme's paint before its first tiles do.
+  if (env.theme === "watercolor") for (const id of Object.keys(WATERCOLOR_TEXTURES)) void loadTexture(id);
 
   // setStyle diffs against the current style, so a new tint only updates paint colors, which crossfade.
   const restyle = () => map.setStyle(style());

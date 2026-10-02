@@ -155,7 +155,13 @@ export const PAPER_PINS: PinPalette = {
   },
 };
 
-const PIN_PALETTES: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS, paper: PAPER_PINS };
+const PIN_PALETTES: Partial<Record<MapThemeId, PinPalette>> = {
+  film: FILM_PINS,
+  ink: INK_PINS,
+  paper: PAPER_PINS,
+  // Paper's earthy atlas inks sit on the watercolor sheet too.
+  watercolor: PAPER_PINS,
+};
 
 export const pinPalette = (theme: MapThemeId): PinPalette => PIN_PALETTES[theme] ?? APPLE_PINS;
 

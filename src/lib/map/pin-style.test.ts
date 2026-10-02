@@ -5,8 +5,8 @@ import { APPLE_PINS, FILM_PINS, INK_PINS, PAPER_PINS, pinPalette, type PinPalett
 import { MAP_THEMES, type MapThemeId } from "./theme";
 
 describe("pinPalette", () => {
-  it("gives film, ink, and paper their own colors and every other basemap Apple's", () => {
-    const own: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS, paper: PAPER_PINS };
+  it("gives film, ink, and paper their own colors, watercolor paper's, and every other basemap Apple's", () => {
+    const own: Partial<Record<MapThemeId, PinPalette>> = { film: FILM_PINS, ink: INK_PINS, paper: PAPER_PINS, watercolor: PAPER_PINS };
     for (const theme of Object.keys(MAP_THEMES) as MapThemeId[]) {
       expect(pinPalette(theme), theme).toBe(own[theme] ?? APPLE_PINS);
     }
