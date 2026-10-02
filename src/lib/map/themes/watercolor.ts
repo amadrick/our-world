@@ -19,7 +19,9 @@ import {
  * warm paper with a visible tooth, a mottled blue bay that pools darker along
  * the shore, sienna washes over the built-up city with paper left showing for
  * the streets, sage and deep green parks, and soft ochre strokes for the
- * arterials. Each wash is a flat color (so the open place's tint still
+ * arterials. Up close the washes thin out so the paper shows, and the
+ * drama is in the pigment pooled at walls and kerbs, each house one of a few
+ * close earth tones rather than one brick red. Each wash is a flat color (so the open place's tint still
  * crossfades it) under a see-through pigment texture from
  * scripts/generate-watercolor-textures.mjs. Patterns are anchored to the map,
  * so the paint stays put while it pans.
@@ -29,7 +31,13 @@ const LIGHT = {
   sand: "#EFDDB4",
   built: "#DA9368",
   works: "#E3BA92",
-  building: "#BC5E40",
+  block: "#E4AF8C",
+  building0: "#D08A68",
+  building1: "#DDA27C",
+  building2: "#D9A98A",
+  building3: "#C97B5E",
+  building4: "#E0B488",
+  building5: "#CC9077",
   pool: "#9A4128",
   park: "#B4CC8F",
   wood: "#7FA56C",
@@ -54,8 +62,14 @@ const DARK: WatercolorPalette = {
   sand: "#332C22",
   built: "#57352A",
   works: "#4C3D2D",
-  building: "#6C3E2E",
-  pool: "#2E1A13",
+  block: "#4A3427",
+  building0: "#674233",
+  building1: "#6F4D37",
+  building2: "#6A4F40",
+  building3: "#603A2D",
+  building4: "#735839",
+  building5: "#654438",
+  pool: "#1C100B",
   park: "#33432B",
   wood: "#283A22",
   parkPool: "#17240F",
@@ -80,6 +94,8 @@ export const WATERCOLOR_TEXTURES = {
   "wc-grain": { url: "/textures/watercolor/grain.webp", pixelRatio: 2 },
 } as const;
 export type WatercolorTexture = keyof typeof WATERCOLOR_TEXTURES;
+
+const BUILDING_TONES = ["building0", "building1", "building2", "building3", "building4", "building5"] as const;
 
 const BUILT = ["residential"];
 const WORKS = ["commercial", "retail", "industrial", "railway", "school", "college", "university", "hospital", "military"];
@@ -153,7 +169,13 @@ export const watercolor: MapTheme<WatercolorPalette> = {
     sand: [0.3, 0.015],
     built: [0.2, 0.02],
     works: [0.2, 0.02],
-    building: [0.2, 0.02],
+    block: [0.2, 0.02],
+    building0: [0.2, 0.02],
+    building1: [0.2, 0.02],
+    building2: [0.2, 0.02],
+    building3: [0.2, 0.02],
+    building4: [0.2, 0.02],
+    building5: [0.2, 0.02],
     park: [0.15, 0.03],
     wood: [0.15, 0.03],
     water: [0.15, 0.03],
@@ -174,8 +196,20 @@ export const watercolor: MapTheme<WatercolorPalette> = {
        * the streets drawn in paper above it cut it into blocks, and parks and
        * water paint over it.
        */
-      { id: "blocks", type: "background", paint: { "background-color": C.built, "background-opacity": byZoom(13, 0, 14.5, 0.66) } },
-      { id: "blocks-wash", type: "background", paint: { "background-pattern": "wc-brick", "background-opacity": byZoom(13, 0, 14.5, texture) } },
+      // It comes in as before to z13.5, then settles thinner and paler, so the street view isn't a wall of brick.
+      {
+        id: "blocks",
+        type: "background",
+        paint: {
+          "background-color": byZoom(13.5, C.built, 14.5, C.block),
+          "background-opacity": byZoom(13, 0, 13.5, 0.22, 14.5, 0.34),
+        },
+      },
+      {
+        id: "blocks-wash",
+        type: "background",
+        paint: { "background-pattern": "wc-brick", "background-opacity": byZoom(13, 0, 13.5, texture / 3, 14.5, 0.6 * texture) },
+      },
       fill("built", "landuse", classIn(BUILT), { "fill-color": C.built, "fill-opacity": byZoom(9, 0.5, 13, 0.62, 14.5, 0) }),
       fill("works", "landuse", classIn(WORKS), { "fill-color": C.works, "fill-opacity": byZoom(9, 0.55, 13, 0.7, 14.5, 0.5) }),
       fill("built-wash", "landuse", classIn([...BUILT, ...WORKS]), { "fill-pattern": "wc-brick", "fill-opacity": byZoom(13, texture, 14.5, 0) }),
@@ -206,9 +240,21 @@ export const watercolor: MapTheme<WatercolorPalette> = {
       },
       fill("pier", "transportation", ["all", isPolygon, ["==", ["get", "class"], "pier"]], { "fill-color": C.land }),
 
-      // Up close each building is its own wash, darker than the block around it, pooled at its walls.
-      fill("building", "building", undefined, { "fill-color": C.building, "fill-opacity": byZoom(15, 0, 15.6, 0.62) }, 15),
-      fill("building-wash", "building", undefined, { "fill-pattern": "wc-brick", "fill-opacity": byZoom(15, 0, 15.6, texture) }, 15),
+      /*
+       * Up close each building is its own thin wash, pooled dark at its walls.
+       * Its tone is picked from its id, so it stays put; one layer per tone
+       * keeps each color a single value the open place's tint can change.
+       */
+      ...BUILDING_TONES.map((tone, i) =>
+        fill(
+          `building-${i}`,
+          "building",
+          ["==", ["%", ["to-number", ["id"], 0], BUILDING_TONES.length], i],
+          { "fill-color": C[tone], "fill-opacity": byZoom(15, 0, 15.6, 0.55) },
+          15,
+        ),
+      ),
+      fill("building-wash", "building", undefined, { "fill-pattern": "wc-brick", "fill-opacity": byZoom(15, 0, 15.6, 0.65 * texture) }, 15),
       {
         id: "building-pool",
         type: "line",
@@ -217,9 +263,9 @@ export const watercolor: MapTheme<WatercolorPalette> = {
         minzoom: 15,
         paint: {
           "line-color": C.pool,
-          "line-width": byZoom(15, 0.6, 18, 1.4),
-          "line-blur": byZoom(15, 0.6, 18, 1.2),
-          "line-opacity": byZoom(15, 0, 15.6, 0.32),
+          "line-width": byZoom(15, 0.9, 18, 1.8),
+          "line-blur": byZoom(15, 0.8, 18, 1.4),
+          "line-opacity": byZoom(15, 0, 15.6, dark ? 0.7 : 0.6),
         },
       },
 
@@ -245,7 +291,7 @@ export const watercolor: MapTheme<WatercolorPalette> = {
           "line-color": C.pool,
           "line-width": ramp(r.width.map(([z, w]) => [z, w + 2.2])),
           "line-blur": 1.4,
-          "line-opacity": byZoom(13.5, 0, 14.5, 0.3),
+          "line-opacity": byZoom(13.5, 0, 14.5, 0.45),
         },
       })),
       ...GAPS.map<LayerSpecification>((r) => ({
