@@ -15,14 +15,14 @@ import {
 } from "./kit";
 
 /**
- * (h) Watercolor, an experiment (Andy's reference, a hand-painted map of SF):
- * warm paper with a visible tooth, a mottled blue bay that pools darker along
- * the shore, sienna washes over the built-up city with paper left showing for
- * the streets, sage and deep green parks, and soft ochre strokes for the
- * arterials. Up close the washes thin out so the paper shows, and the
+ * (h) Watercolor, the default basemap (Andy's reference, a hand-painted map of
+ * SF): warm paper with a visible tooth, a mottled blue bay that pools darker
+ * along the shore, sienna washes over the built-up city with paper left
+ * showing for the streets, sage and deep green parks, and soft ochre strokes
+ * for the arterials. Up close the washes thin out so the paper shows, and the
  * drama is in the pigment pooled at walls and kerbs, each house one of a few
- * close earth tones rather than one brick red. Each wash is a flat color (so the open place's tint still
- * crossfades it) under a see-through pigment texture from
+ * close earth tones rather than one brick red. Each wash is a flat color (so
+ * the open place's tint still crossfades it) under a see-through pigment texture from
  * scripts/generate-watercolor-textures.mjs. Patterns are anchored to the map,
  * so the paint stays put while it pans.
  */

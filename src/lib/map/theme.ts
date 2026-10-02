@@ -13,7 +13,7 @@ export type { MapThemeId } from "./themes/kit";
 export const MAP_THEMES: Record<MapThemeId, MapTheme> = { golden, editorial, dimensional, apple, film, ink, paper, watercolor };
 
 /** The basemap everyone sees. */
-export const DEFAULT_MAP_THEME: MapThemeId = "film";
+export const DEFAULT_MAP_THEME: MapThemeId = "watercolor";
 
 /** `?map=a|b|c|d|e|f|g|h`: a hidden switch for comparing the basemap directions. */
 const KEYS: Record<string, MapThemeId> = { a: "golden", b: "editorial", c: "dimensional", d: "apple", e: "film", f: "ink", g: "paper", h: "watercolor" };

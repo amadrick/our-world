@@ -138,9 +138,9 @@ describe("parseMapTheme", () => {
 });
 
 describe("currentMapTheme", () => {
-  it("shows the film basemap unless ?map= asks for another", () => {
-    expect(DEFAULT_MAP_THEME).toBe("film");
-    expect(currentMapTheme()).toBe("film");
+  it("shows the watercolor basemap unless ?map= asks for another", () => {
+    expect(DEFAULT_MAP_THEME).toBe("watercolor");
+    expect(currentMapTheme()).toBe("watercolor");
   });
 });
 
