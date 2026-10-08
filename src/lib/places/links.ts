@@ -16,6 +16,27 @@ export function appleMapsUrl(place: LinkablePlace): string {
   return `https://maps.apple.com/?${params.toString()}`;
 }
 
+/**
+ * Uber's universal deep link: a ride from wherever the guest is to this place.
+ * Opens the Uber app when installed and Uber's mobile web otherwise. The
+ * bracketed keys are Uber's documented names; only the values are encoded.
+ */
+export function uberRideUrl(place: Pick<Place, "name" | "address" | "lat" | "lng">): string {
+  const params: [string, string][] = [
+    ["action", "setPickup"],
+    ["pickup", "my_location"],
+    ["dropoff[latitude]", String(place.lat)],
+    ["dropoff[longitude]", String(place.lng)],
+    ["dropoff[nickname]", place.name],
+  ];
+  if (place.address) params.push(["dropoff[formatted_address]", place.address]);
+  // encodeURIComponent leaves ! ' ( ) * alone; a name like "Original Joe's" goes out fully escaped.
+  const encode = (value: string) =>
+    encodeURIComponent(value).replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
+  const query = params.map(([key, value]) => `${key}=${encode(value)}`).join("&");
+  return `https://m.uber.com/ul/?${query}`;
+}
+
 /** Google's universal Maps URL: opens the Google Maps app when installed. */
 export function googleMapsUrl(place: LinkablePlace): string {
   if (place.googleMapsUrl) return place.googleMapsUrl;
