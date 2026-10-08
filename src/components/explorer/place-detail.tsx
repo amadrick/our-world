@@ -25,7 +25,7 @@ import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
 import { formatTravel, formatTravelShort, type TravelEstimate } from "@/lib/geo/travel-estimate";
 import { hoursLine, openState } from "@/lib/places/hours";
-import { appleMapsUrl, googleMapsUrl } from "@/lib/places/links";
+import { appleMapsUrl, googleMapsUrl, uberRideUrl } from "@/lib/places/links";
 import { dissolveGradient, fadeOutMask } from "@/lib/progressive-blur";
 import type { StepDirection } from "@/lib/places/swipe";
 import { FILTER_TAGS, getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
@@ -172,11 +172,15 @@ function CopyAddress({ address }: { address: string }) {
   );
 }
 
-/** Open in Apple Maps (the bright pill) or Google Maps (glass beside it). */
-export function PlaceActions({ place }: { place: Place }) {
+/**
+ * Open in Apple Maps (the bright pill) or Google Maps (glass beside it), and
+ * under them a ride there with Uber. The peeking sheet has room for one row,
+ * so it leaves the ride out (`ride={false}`).
+ */
+export function PlaceActions({ place, ride = true }: { place: Place; ride?: boolean }) {
   const pill =
     "pressable flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-full px-3 text-base font-semibold whitespace-nowrap outline-white focus-visible:outline-2 focus-visible:outline-offset-2";
-  return (
+  const directions = (
     <div className="flex gap-3">
       <a
         href={appleMapsUrl(place)}
@@ -195,6 +199,22 @@ export function PlaceActions({ place }: { place: Place }) {
       >
         <MapPin size={18} aria-hidden />
         Google Maps
+      </a>
+    </div>
+  );
+  if (!ride) return directions;
+  return (
+    <div className="space-y-3">
+      {directions}
+      <a
+        href={uberRideUrl(place)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Get an Uber to ${smartQuotes(place.name)}`}
+        className={cn(pill, "glass-tinted w-full hover:bg-white/20")}
+      >
+        <CarGlyph size={18} />
+        Uber
       </a>
     </div>
   );

@@ -697,7 +697,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
                 <SheetCloseButton onClose={closeDetail} />
               )
             }
-            footer={snap === "peek" ? <PlaceActions place={sheetPlace} /> : undefined}
+            footer={snap === "peek" ? <PlaceActions place={sheetPlace} ride={false} /> : undefined}
             accessory={<LocateButton status={here.status} onClick={locate} className="glass" />}
             cards
           >
