@@ -11,6 +11,7 @@ import { RUBBER_CAMERA } from "@/lib/map/swipe-camera";
 import { useMediaQuery, useViewportHeight } from "@/hooks/use-media-query";
 import { useScrollFade } from "@/hooks/use-scroll-fade";
 import { locationMessage, useUserLocation, type LocationStatus } from "@/hooks/use-user-location";
+import { pruneSaved, useSavedIds } from "@/hooks/use-saved-places";
 import { useSortMode } from "@/hooks/use-sort-mode";
 import { useViewMode } from "@/hooks/use-view-mode";
 import type { MapPadding } from "@/lib/map";
@@ -227,9 +228,14 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     () => (originLat === null || originLng === null ? null : { lat: originLat, lng: originLng }),
     [originLat, originLng],
   );
+  const savedIds = useSavedIds();
+  useEffect(() => {
+    if (savedIds.size > 0) pruneSaved(new Set(places.map((p) => p.id)));
+  }, [places, savedIds]);
   const ranked = useMemo(
-    () => orderPlaces(filterPlaces(places, filters, clocks.orderNow), sortMode, { now: clocks.orderNow, origin }),
-    [places, filters, sortMode, clocks.orderNow, origin],
+    () =>
+      orderPlaces(filterPlaces(places, filters, clocks.orderNow, savedIds), sortMode, { now: clocks.orderNow, origin }),
+    [places, filters, sortMode, clocks.orderNow, origin, savedIds],
   );
   const visible = useMemo(() => ranked.map((r) => r.place), [ranked]);
   // The router's free-flow times, scaled for the hour's traffic (or a walk, if it's close).
@@ -252,17 +258,24 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
   );
   const categories = useMemo(() => new Set(places.map((p) => p.category)), [places]);
   const neighborhoods = useMemo(
-    () => neighborhoodCounts(filterPlaces(places, { ...filters, neighborhood: null }, clocks.orderNow)),
-    [places, filters, clocks.orderNow],
+    () => neighborhoodCounts(filterPlaces(places, { ...filters, neighborhood: null }, clocks.orderNow, savedIds)),
+    [places, filters, clocks.orderNow, savedIds],
   );
-  const counts = useMemo(() => pillCounts(places, filters, PILL_IDS, clocks.orderNow), [places, filters, clocks.orderNow]);
+  const counts = useMemo(
+    () => pillCounts(places, filters, PILL_IDS, clocks.orderNow, savedIds),
+    [places, filters, clocks.orderNow, savedIds],
+  );
   const openNowCount = useMemo(
-    () => filterPlaces(places, { ...filters, openNow: true }, clocks.orderNow).length,
-    [places, filters, clocks.orderNow],
+    () => filterPlaces(places, { ...filters, openNow: true }, clocks.orderNow, savedIds).length,
+    [places, filters, clocks.orderNow, savedIds],
+  );
+  const savedCount = useMemo(
+    () => filterPlaces(places, { ...filters, saved: true }, clocks.orderNow, savedIds).length,
+    [places, filters, clocks.orderNow, savedIds],
   );
   const elsewhere = useMemo(
-    () => matchesInOtherSections(places, filters, clocks.orderNow),
-    [places, filters, clocks.orderNow],
+    () => matchesInOtherSections(places, filters, clocks.orderNow, savedIds),
+    [places, filters, clocks.orderNow, savedIds],
   );
   const selected = places.find((p) => p.id === selectedId) ?? null;
   // The phone sheet outlives the selection just long enough to play its exit.
@@ -502,8 +515,18 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
 
   // A section with nothing for the chosen pills points to the matches in other sections.
   let noMatches: NoMatches | undefined;
-  if (visible.length === 0 && filters.category && elsewhere > 0) {
-    const pillLabels = [...(filters.openNow ? ["Open now"] : []), ...filters.pills.map((p) => getPill(p).label)];
+  if (visible.length === 0 && filters.saved && !places.some((p) => savedIds.has(p.id))) {
+    noMatches = {
+      title: "Nothing saved yet",
+      body: "Tap the bookmark on any place to keep it here. Saves stay on this device.",
+      actions: <Button onClick={() => changeFilters({ ...filters, saved: false })}>Show all places</Button>,
+    };
+  } else if (visible.length === 0 && filters.category && elsewhere > 0) {
+    const pillLabels = [
+      ...(filters.saved ? ["Saved"] : []),
+      ...(filters.openNow ? ["Open now"] : []),
+      ...filters.pills.map((p) => getPill(p).label),
+    ];
     noMatches = {
       title: `Nothing in ${getCategory(filters.category).plural} matches ${pillLabels.join(" + ")}`,
       body: `But ${elsewhere} ${elsewhere === 1 ? "place" : "places"} in other sections ${elsewhere === 1 ? "does" : "do"}.`,
@@ -512,7 +535,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
           <Button onClick={() => changeFilters({ ...filters, category: null })}>
             Show {elsewhere === 1 ? "it" : `those ${elsewhere}`}
           </Button>
-          <Button variant="outline" onClick={() => changeFilters({ ...filters, pills: [], openNow: false })}>
+          <Button variant="outline" onClick={() => changeFilters({ ...filters, pills: [], openNow: false, saved: false })}>
             {pillLabels.length === 1 ? `Remove ${pillLabels[0]}` : "Remove these filters"}
           </Button>
         </>
@@ -539,6 +562,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     categories,
     pillCounts: counts,
     openNowCount,
+    savedCount,
   };
 
   return (

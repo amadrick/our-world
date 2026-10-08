@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronDown, Clock, MapPin } from "react-feather";
+import { Bookmark, Check, ChevronDown, Clock, MapPin } from "react-feather";
 import { useRef, useState } from "react";
 
 import { Bridge } from "@/components/icons/feather-extras";
@@ -25,6 +25,8 @@ interface FilterBarProps {
   pillCounts: Map<PillId, number>;
   /** How many places Open now would leave; disabled at zero like the pills. */
   openNowCount: number;
+  /** How many of the guest's saved places the Saved pill would show; disabled at zero. */
+  savedCount: number;
   /** Horizontal padding inside the row, so the first pill lines up with the content below. */
   inset?: string;
   /**
@@ -231,6 +233,7 @@ export function FilterBar({
   categories,
   pillCounts,
   openNowCount,
+  savedCount,
   inset,
   floating = true,
   className,
@@ -269,6 +272,21 @@ export function FilterBar({
           floating={floating}
           onSelect={(category) => onChange({ ...filters, category })}
         />
+        <Pill
+          active={filters.saved}
+          floating={floating}
+          disabled={!filters.saved && savedCount === 0}
+          onClick={() => onChange({ ...filters, saved: !filters.saved })}
+        >
+          <Bookmark size={16} fill={filters.saved ? "currentColor" : "none"} aria-hidden />
+          Saved
+          {savedCount > 0 && (
+            <span className="-mr-0.5 tabular-nums opacity-60">
+              <span className="sr-only">, </span>
+              {savedCount}
+            </span>
+          )}
+        </Pill>
         {pill(favorites)}
         <Pill
           active={filters.openNow}

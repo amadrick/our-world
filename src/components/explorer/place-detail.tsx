@@ -20,6 +20,7 @@ import { CategoryIcon } from "@/components/places/category-badge";
 import { PhotoDissolve } from "@/components/places/photo-dissolve";
 import { PhotoHalo } from "@/components/places/photo-halo";
 import { PlaceImage } from "@/components/places/place-image";
+import { SaveToggle } from "@/components/places/save-toggle";
 import { TagIcon } from "@/components/places/tag-icon";
 import { site } from "@/config/site";
 import { formatTravel, formatTravelShort, type TravelEstimate } from "@/lib/geo/travel-estimate";
@@ -258,16 +259,19 @@ export function PlaceSheetHeader({
             place={slide.place}
             trailing={
               slide.offset === 0 ? (
-                <button
-                  type="button"
-                  aria-label="Close"
-                  onClick={onClose}
-                  className="pressable glass-tinted flex size-11 shrink-0 items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
-                >
-                  <X size={20} aria-hidden />
-                </button>
+                <>
+                  <SaveToggle place={slide.place} />
+                  <button
+                    type="button"
+                    aria-label="Close"
+                    onClick={onClose}
+                    className="pressable glass-tinted flex size-11 shrink-0 items-center justify-center rounded-full outline-white focus-visible:outline-2 focus-visible:outline-offset-2"
+                  >
+                    <X size={20} aria-hidden />
+                  </button>
+                </>
               ) : (
-                <span className="size-11 shrink-0" />
+                <span className="w-25 shrink-0" />
               )
             }
           />
@@ -561,9 +565,12 @@ function SheetHeading({ place, drive, now }: { place: Place; drive?: TravelEstim
   const label = pickLabel(place.pickBy);
   return (
     <header className="[text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
-      <div className="flex h-[100px] flex-col items-start justify-end gap-3">
-        {label && <PickChip label={label} />}
-        <h2 className="line-clamp-2 text-xl leading-7 font-semibold text-balance">{smartQuotes(place.name)}</h2>
+      <div className="flex h-[100px] items-end gap-3">
+        <div className="flex min-w-0 flex-1 flex-col items-start justify-end gap-3">
+          {label && <PickChip label={label} />}
+          <h2 className="line-clamp-2 text-xl leading-7 font-semibold text-balance">{smartQuotes(place.name)}</h2>
+        </div>
+        <SaveToggle place={place} className="-mb-2" />
       </div>
       <p className="mt-3 flex h-6 items-center gap-2 text-base font-medium text-white/75">
         <CategoryIcon category={place.category} size={16} className="shrink-0" />
@@ -692,8 +699,13 @@ export function PlaceDetail({
     const drive = driveTimes?.[p.id];
     return (
       <header className="space-y-3 [text-shadow:0_1px_16px_rgb(0_0_0/0.22)]">
-        {label && <PickChip label={label} />}
-        <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>{smartQuotes(p.name)}</h2>
+        <div className="flex items-end gap-3">
+          <div className="min-w-0 flex-1 space-y-3">
+            {label && <PickChip label={label} />}
+            <h2 className={cn("text-xl font-semibold text-balance", page && "md:text-2xl")}>{smartQuotes(p.name)}</h2>
+          </div>
+          <SaveToggle place={p} className="-mb-2" />
+        </div>
         <p className="flex items-center gap-2 text-base font-medium text-white/75">
           <CategoryIcon category={p.category} size={16} />
           {placeWhere(p)}

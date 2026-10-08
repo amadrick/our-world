@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { getImageProps } from "next/image";
-import { Star } from "react-feather";
+import { Bookmark, Star } from "react-feather";
 
 import { CATEGORY_ICONS } from "@/components/places/category-badge";
 import type { PinDisplay } from "@/lib/map/pin-layout";
@@ -14,6 +14,8 @@ interface MapPinProps {
   /** Its category's colors in the current basemap's pin palette. */
   color: CategoryColor;
   selected: boolean;
+  /** Saved by this guest, on their device. */
+  saved: boolean;
   highlighted: boolean;
   display: PinDisplay;
   onSelect: (id: string) => void;
@@ -26,7 +28,7 @@ interface MapPinProps {
  * the name beside it. Selected, it grows into a balloon whose tip marks the
  * spot. Hidden pins stay mounted, faded out, so they pop in when there's room.
  */
-export const MapPin = memo(function MapPin({ place, color, selected, highlighted, display, onSelect, onHighlight }: MapPinProps) {
+export const MapPin = memo(function MapPin({ place, color, selected, saved, highlighted, display, onSelect, onHighlight }: MapPinProps) {
   const favorite = isFavorite(place);
   const label = pickLabel(place.pickBy);
   const kind = pinKind(place.category);
@@ -36,12 +38,13 @@ export const MapPin = memo(function MapPin({ place, color, selected, highlighted
   return (
     <button
       type="button"
-      aria-label={`${place.name}, ${getCategory(place.category).label}${label ? `, ${label}` : ""}`}
+      aria-label={`${place.name}, ${getCategory(place.category).label}${label ? `, ${label}` : ""}${saved ? ", saved" : ""}`}
       aria-pressed={selected}
       aria-hidden={hidden || undefined}
       tabIndex={hidden ? -1 : undefined}
       data-kind={kind}
       data-favorite={favorite || undefined}
+      data-saved={saved || undefined}
       data-display={display}
       data-selected={selected || undefined}
       data-highlighted={highlighted || undefined}
@@ -73,6 +76,11 @@ export const MapPin = memo(function MapPin({ place, color, selected, highlighted
       {favorite && (
         <span aria-hidden className="map-pin-star">
           <Star size={7} fill="currentColor" strokeWidth={0} />
+        </span>
+      )}
+      {saved && (
+        <span aria-hidden className="map-pin-saved">
+          <Bookmark size={7} fill="currentColor" strokeWidth={0} />
         </span>
       )}
       <span aria-hidden className="map-pin-name">

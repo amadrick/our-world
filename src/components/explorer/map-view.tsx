@@ -13,6 +13,7 @@ import { layoutPins, type PinDisplay } from "@/lib/map/pin-layout";
 import { APPLE_PINS, estimateText, pinKind, pinPalette, type PinPalette } from "@/lib/map/pin-style";
 import { currentMapTheme } from "@/lib/map/theme";
 import { accuracyHaloPx } from "@/lib/map/user-location";
+import { useSavedIds } from "@/hooks/use-saved-places";
 import type { UserPosition } from "@/hooks/use-user-location";
 import { isFavorite } from "@/lib/places/taxonomy";
 import type { Place } from "@/lib/places/types";
@@ -147,6 +148,7 @@ export function MapView({
   const [status, setStatus] = useState<Status>("loading");
   const [layout, setLayout] = useState<Layout>(() => new Map());
   const [palette, setPalette] = useState<PinPalette>(APPLE_PINS);
+  const savedIds = useSavedIds();
   // The neighbor a swipe is headed to: laid out as a second selected pin until the swipe ends, so it never pops in.
   const [swipeTargetId, setSwipeTargetId] = useState<string | null>(null);
   const isSelected = (id: string) => id === selectedId || id === swipeTargetId;
@@ -547,6 +549,7 @@ export function MapView({
               place={place}
               color={palette.categories[place.category]}
               selected={place.id === selectedId}
+              saved={savedIds.has(place.id)}
               highlighted={place.id === highlightedId}
               display={layout.get(place.id) ?? "hidden"}
               onSelect={selectPin}

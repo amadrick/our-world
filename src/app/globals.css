@@ -897,7 +897,38 @@ body .maplibregl-map
   top: -2px;
   right: -2px;
 }
-.map-pin[data-display="hidden"] :is(.map-pin-head, .map-pin-star) {
+/* The guest's own save: a dark bookmark badge at the other shoulder from the couple's white star. */
+.map-pin-saved {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  display: flex;
+  width: 13px;
+  height: 13px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #1c1c1e;
+  color: #ffffff;
+  box-shadow:
+    0 0 0 1.5px var(--rim),
+    0 1px 2px rgb(0 0 0 / 0.3);
+  transform: translate(calc(-8px * var(--sel)), calc((-1 * var(--lift) - 6px) * var(--sel)))
+    scale(calc((1 + 0.25 * var(--sel)) * (0.4 + 0.6 * var(--shown))));
+  transition: opacity 280ms var(--ease-out-soft);
+  animation: saved-badge-in 360ms var(--ease-snappy) both;
+}
+.map-pin[data-kind="photo"] .map-pin-saved {
+  top: -2px;
+  left: -2px;
+}
+@keyframes saved-badge-in {
+  from {
+    opacity: 0;
+    scale: 0.3;
+  }
+}
+.map-pin[data-display="hidden"] :is(.map-pin-head, .map-pin-star, .map-pin-saved) {
   opacity: 0;
 }
 .map-pin-name {
@@ -953,8 +984,61 @@ body .maplibregl-map
   .map-pin-head,
   .map-pin-face,
   .map-pin-star,
+  .map-pin-saved,
   .map-pin-name {
     transition: opacity 120ms linear;
+  }
+  .map-pin-saved {
+    animation: none;
+  }
+}
+
+/*
+ * Saving a place: the bookmark pops (overshoot, then settle) and a ring
+ * ripples out once, a tap you can almost feel. Unsaving just settles back.
+ */
+.save-pop {
+  animation: save-pop 420ms var(--ease-snappy) both;
+}
+.save-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 0.85);
+  animation: save-ring 520ms var(--ease-out-soft) both;
+}
+@keyframes save-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  45% {
+    transform: scale(1.22);
+  }
+  70% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes save-ring {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .save-pop,
+  .save-ring {
+    animation: none;
+  }
+  .save-ring {
+    display: none;
   }
 }
 

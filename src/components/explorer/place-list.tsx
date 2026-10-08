@@ -1,9 +1,10 @@
 "use client";
 
-import { MapPin, Search, Star, type Icon } from "react-feather";
+import { Bookmark, MapPin, Search, Star, type Icon } from "react-feather";
 
 import { PlaceImage } from "@/components/places/place-image";
 import { Button } from "@/components/ui/button";
+import { useIsSaved } from "@/hooks/use-saved-places";
 import { site } from "@/config/site";
 import { signatureShort } from "@/lib/places/signature";
 import { getCategory, isFavorite, pickLabel } from "@/lib/places/taxonomy";
@@ -97,6 +98,7 @@ export function PlaceCard({
   now?: Date;
 }) {
   const label = pickLabel(place.pickBy);
+  const saved = useIsSaved(place.id);
   const { where, knownFor } = placeMeta(place);
   const hours = hoursFor(place, now);
   return (
@@ -124,6 +126,12 @@ export function PlaceCard({
           <span className="glass-media absolute top-2 left-2 flex h-7 items-center gap-1 rounded-full pr-2.5 pl-2 text-sm font-semibold sm:top-2.5 sm:left-2.5 sm:h-8 sm:gap-1.5 sm:pr-3 sm:pl-2.5">
             <Star size={12} fill="currentColor" aria-hidden />
             {label}
+          </span>
+        )}
+        {saved && (
+          <span className="glass-media absolute top-2 right-2 flex size-7 items-center justify-center rounded-full animate-in zoom-in-50 fade-in duration-300 sm:top-2.5 sm:right-2.5 sm:size-8">
+            <Bookmark size={13} fill="currentColor" aria-hidden />
+            <span className="sr-only">Saved</span>
           </span>
         )}
         {drive != null && (
@@ -164,6 +172,7 @@ export function PlaceRow({
 }) {
   const favorite = isFavorite(place);
   const label = pickLabel(place.pickBy);
+  const saved = useIsSaved(place.id);
   const { where, knownFor } = placeMeta(place);
   const hours = hoursFor(place, now);
   return (
@@ -186,6 +195,11 @@ export function PlaceRow({
             <Star size={14} fill="currentColor" className="shrink-0" aria-label={label ?? "Favorite"}>
               <title>{label ?? "Favorite"}</title>
             </Star>
+          )}
+          {saved && (
+            <Bookmark size={13} fill="currentColor" className="shrink-0 text-muted-foreground" aria-label="Saved">
+              <title>Saved</title>
+            </Bookmark>
           )}
         </span>
         {knownFor && (
