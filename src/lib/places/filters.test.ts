@@ -92,6 +92,38 @@ describe("Open now", () => {
   });
 });
 
+describe("Saved", () => {
+  const saved = new Set(["trick-dog", "pearl", "since-removed"]);
+  const savedIds = (filters: Partial<typeof EMPTY_FILTERS> = {}, set: ReadonlySet<string> = saved) =>
+    filterPlaces(places, { ...EMPTY_FILTERS, saved: true, ...filters }, new Date(), set).map((p) => p.id);
+
+  it("keeps only the guest's saved places, ignoring ids no longer in the guide", () => {
+    expect(savedIds()).toEqual(["trick-dog", "pearl"]);
+  });
+
+  it("combines with a section, a neighborhood, our favorites, and the tags", () => {
+    expect(savedIds({ category: "bar" })).toEqual(["trick-dog"]);
+    expect(savedIds({ pills: ["favorites"] })).toEqual(["pearl"]);
+    expect(savedIds({ pills: ["dinner"] })).toEqual(["trick-dog"]);
+    expect(savedIds({ neighborhood: "Outer Sunset" })).toEqual([]);
+  });
+
+  it("shows nothing with no saves, and everything when it's off", () => {
+    expect(savedIds({}, new Set())).toEqual([]);
+    expect(filterPlaces(places, EMPTY_FILTERS, new Date(), saved)).toHaveLength(places.length);
+  });
+
+  it("counts as a filter, narrows the pill counts, and offers saves in other sections", () => {
+    expect(hasActiveFilters({ ...EMPTY_FILTERS, saved: true })).toBe(true);
+    const counts = pillCounts(places, { ...EMPTY_FILTERS, saved: true }, PILL_IDS, new Date(), saved);
+    expect(counts.get("favorites")).toBe(1);
+    expect(counts.get("late-night")).toBe(1);
+    expect(counts.get("lunch")).toBe(0);
+    const filters = { ...EMPTY_FILTERS, category: "park" as const, saved: true };
+    expect(matchesInOtherSections(places, filters, new Date(), saved)).toBe(2);
+  });
+});
+
 describe("pillCounts", () => {
   it("counts what each pill would leave across every section", () => {
     const counts = pillCounts(places, EMPTY_FILTERS, PILL_IDS);

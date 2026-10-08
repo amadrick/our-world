@@ -9,6 +9,8 @@ export interface PlaceFilters {
   neighborhood: string | null;
   /** Only places open right now by their listed hours; unknown hours are left out. */
   openNow: boolean;
+  /** Only the places this guest saved on their device. */
+  saved: boolean;
 }
 
 export const EMPTY_FILTERS: PlaceFilters = {
@@ -16,14 +18,18 @@ export const EMPTY_FILTERS: PlaceFilters = {
   pills: [],
   neighborhood: null,
   openNow: false,
+  saved: false,
 };
+
+const NO_SAVES: ReadonlySet<string> = new Set();
 
 export function hasActiveFilters(filters: PlaceFilters): boolean {
   return (
     filters.category !== null ||
     filters.pills.length > 0 ||
     filters.neighborhood !== null ||
-    filters.openNow
+    filters.openNow ||
+    filters.saved
   );
 }
 
@@ -36,15 +42,21 @@ export function isOpenAt(place: Place, now: Date): boolean {
   return kind === "open" || kind === "always";
 }
 
-/** Category is a single choice; pills and Open now narrow the list (a place must match all of them). */
-export function filterPlaces(places: Place[], filters: PlaceFilters, now: Date = new Date()): Place[] {
+/** Category is a single choice; pills, Open now, and Saved narrow the list (a place must match all of them). */
+export function filterPlaces(
+  places: Place[],
+  filters: PlaceFilters,
+  now: Date = new Date(),
+  saved: ReadonlySet<string> = NO_SAVES,
+): Place[] {
   return places.filter(
     (place) =>
       (filters.category === null || place.category === filters.category) &&
       (filters.neighborhood === null ||
         place.neighborhood === filters.neighborhood) &&
       filters.pills.every((pill) => matchesPill(place, pill)) &&
-      (!filters.openNow || isOpenAt(place, now)),
+      (!filters.openNow || isOpenAt(place, now)) &&
+      (!filters.saved || saved.has(place.id)),
   );
 }
 
@@ -58,6 +70,7 @@ export function pillCounts(
   filters: PlaceFilters,
   pills: readonly PillId[],
   now: Date = new Date(),
+  saved: ReadonlySet<string> = NO_SAVES,
 ): Map<PillId, number> {
   return new Map(
     pills.map((pill) => [
@@ -66,6 +79,7 @@ export function pillCounts(
         places,
         filters.pills.includes(pill) ? filters : { ...filters, pills: [...filters.pills, pill] },
         now,
+        saved,
       ).length,
     ]),
   );
@@ -75,9 +89,14 @@ export function pillCounts(
  * Pills stay on when the section changes, so a section can come up empty for
  * them. This counts the matches elsewhere, so the empty state can offer them.
  */
-export function matchesInOtherSections(places: Place[], filters: PlaceFilters, now: Date = new Date()): number {
-  if (filters.category === null || (filters.pills.length === 0 && !filters.openNow)) return 0;
-  return filterPlaces(places, { ...filters, category: null }, now).length;
+export function matchesInOtherSections(
+  places: Place[],
+  filters: PlaceFilters,
+  now: Date = new Date(),
+  saved: ReadonlySet<string> = NO_SAVES,
+): number {
+  if (filters.category === null || (filters.pills.length === 0 && !filters.openNow && !filters.saved)) return 0;
+  return filterPlaces(places, { ...filters, category: null }, now, saved).length;
 }
 
 export function neighborhoodCounts(

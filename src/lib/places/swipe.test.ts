@@ -27,6 +27,7 @@ describe("placeNeighbors: the order", () => {
       pills: [],
       neighborhood: null,
       openNow: false,
+      saved: false,
     });
     const ids = bakeries.map((p) => p.id);
     const { prev, next } = placeNeighbors(bakeries, ids[0]);
