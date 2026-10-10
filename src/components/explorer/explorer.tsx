@@ -25,6 +25,7 @@ import {
   pillCounts,
   type PlaceFilters,
 } from "@/lib/places/filters";
+import { buildSearchIndex, hitTier, normalize, searchPlaces } from "@/lib/places/search";
 import { SECTION_TITLES, groupBySection, orderPlaces, type SortMode } from "@/lib/places/smart-order";
 import { placeNeighbors, placeWindow, type StepDirection } from "@/lib/places/swipe";
 import { getCategory, getPill } from "@/lib/places/taxonomy";
@@ -32,7 +33,7 @@ import { PILL_IDS, type Place } from "@/lib/places/types";
 import { decodePlacePhoto, preloadPlacePhoto } from "@/components/places/place-image";
 import { cn } from "@/lib/utils";
 import { BottomSheet, SHEET_EXIT_MS, type SheetSnap } from "./bottom-sheet";
-import { FilterBar } from "./filter-bar";
+import { FilterBar, type SearchControls } from "./filter-bar";
 import { MapView, type MapViewHandle } from "./map-view";
 import { ModeSwitch, type ViewMode } from "./mode-switch";
 import {
@@ -189,13 +190,27 @@ function ResultsSummary({
 interface ExplorerProps {
   places: Place[];
   initialPlaceId?: string | null;
+  /** A search carried in the link (?q=). */
+  initialQuery?: string;
   /** When the server rendered the page, so hours and order hydrate the same. */
   renderedAt: string;
 }
 
-export function Explorer({ places, initialPlaceId = null, renderedAt }: ExplorerProps) {
+/** Fewer than two letters is still typing: everything stays listed. */
+const isSearching = (query: string) => normalize(query).replace(/ /g, "").length >= 2;
+/** The map waits for a pause in typing before it re-frames. */
+const FIT_AFTER_TYPING_MS = 350;
+
+export function Explorer({ places, initialPlaceId = null, initialQuery = "", renderedAt }: ExplorerProps) {
   const [mode, setMode] = useViewMode();
   const [filters, setFilters] = useState<PlaceFilters>(EMPTY_FILTERS);
+  const [query, setQuery] = useState(initialQuery);
+  const [searchOpen, setSearchOpen] = useState(initialQuery !== "");
+  const [settledQuery, setSettledQuery] = useState(initialQuery);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setSettledQuery(query), FIT_AFTER_TYPING_MS);
+    return () => window.clearTimeout(timer);
+  }, [query]);
   const [selectedId, setSelectedId] = useState<string | null>(
     initialPlaceId && places.some((p) => p.id === initialPlaceId) ? initialPlaceId : null,
   );
@@ -232,11 +247,24 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
   useEffect(() => {
     if (savedIds.size > 0) pruneSaved(new Set(places.map((p) => p.id)));
   }, [places, savedIds]);
-  const ranked = useMemo(
-    () =>
-      orderPlaces(filterPlaces(places, filters, clocks.orderNow, savedIds), sortMode, { now: clocks.orderNow, origin }),
-    [places, filters, sortMode, clocks.orderNow, origin, savedIds],
+  const searchIndex = useMemo(() => buildSearchIndex(places), [places]);
+  const searching = isSearching(query);
+  const hits = useMemo(
+    () => (searching ? new Map(searchPlaces(searchIndex, query).map((hit) => [hit.id, hit])) : null),
+    [searchIndex, query, searching],
   );
+  // Everything below (the list, the map, every pill's count) works on what the search left.
+  const searched = useMemo(() => (hits ? places.filter((p) => hits.has(p.id)) : places), [places, hits]);
+  const ranked = useMemo(() => {
+    const ordered = orderPlaces(filterPlaces(searched, filters, clocks.orderNow, savedIds), sortMode, {
+      now: clocks.orderNow,
+      origin,
+    });
+    // The best text matches first (name, then what it is, then where, then the description), each in the chosen order.
+    if (!hits) return ordered;
+    const tier = (id: string) => hitTier(hits.get(id)!);
+    return ordered.sort((a, b) => tier(a.place.id) - tier(b.place.id));
+  }, [searched, hits, filters, sortMode, clocks.orderNow, origin, savedIds]);
   const visible = useMemo(() => ranked.map((r) => r.place), [ranked]);
   // The router's free-flow times, scaled for the hour's traffic (or a walk, if it's close).
   const period = trafficPeriod(clocks.now);
@@ -251,31 +279,31 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
   );
   const sections = useMemo(
     () =>
-      sortMode === "near"
+      sortMode === "near" && !hits
         ? groupBySection(ranked).map((g) => ({ id: g.id, title: SECTION_TITLES[g.id], places: g.items.map((r) => r.place) }))
         : undefined,
-    [ranked, sortMode],
+    [ranked, sortMode, hits],
   );
   const categories = useMemo(() => new Set(places.map((p) => p.category)), [places]);
   const neighborhoods = useMemo(
-    () => neighborhoodCounts(filterPlaces(places, { ...filters, neighborhood: null }, clocks.orderNow, savedIds)),
-    [places, filters, clocks.orderNow, savedIds],
+    () => neighborhoodCounts(filterPlaces(searched, { ...filters, neighborhood: null }, clocks.orderNow, savedIds)),
+    [searched, filters, clocks.orderNow, savedIds],
   );
   const counts = useMemo(
-    () => pillCounts(places, filters, PILL_IDS, clocks.orderNow, savedIds),
-    [places, filters, clocks.orderNow, savedIds],
+    () => pillCounts(searched, filters, PILL_IDS, clocks.orderNow, savedIds),
+    [searched, filters, clocks.orderNow, savedIds],
   );
   const openNowCount = useMemo(
-    () => filterPlaces(places, { ...filters, openNow: true }, clocks.orderNow, savedIds).length,
-    [places, filters, clocks.orderNow, savedIds],
+    () => filterPlaces(searched, { ...filters, openNow: true }, clocks.orderNow, savedIds).length,
+    [searched, filters, clocks.orderNow, savedIds],
   );
   const savedCount = useMemo(
-    () => filterPlaces(places, { ...filters, saved: true }, clocks.orderNow, savedIds).length,
-    [places, filters, clocks.orderNow, savedIds],
+    () => filterPlaces(searched, { ...filters, saved: true }, clocks.orderNow, savedIds).length,
+    [searched, filters, clocks.orderNow, savedIds],
   );
   const elsewhere = useMemo(
-    () => matchesInOtherSections(places, filters, clocks.orderNow, savedIds),
-    [places, filters, clocks.orderNow, savedIds],
+    () => matchesInOtherSections(searched, filters, clocks.orderNow, savedIds),
+    [searched, filters, clocks.orderNow, savedIds],
   );
   const selected = places.find((p) => p.id === selectedId) ?? null;
   // The phone sheet outlives the selection just long enough to play its exit.
@@ -364,8 +392,10 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     const url = new URL(window.location.href);
     if (selectedId) url.searchParams.set("place", selectedId);
     else url.searchParams.delete("place");
+    if (query.trim()) url.searchParams.set("q", query.trim());
+    else url.searchParams.delete("q");
     window.history.replaceState(null, "", url);
-  }, [selectedId]);
+  }, [selectedId, query]);
 
   const step = (direction: StepDirection, swiped = false) => {
     const target = direction === 1 ? next : prev;
@@ -513,9 +543,45 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
   const clearFilters = () => changeFilters(EMPTY_FILTERS);
   const closeDetail = () => setSelectedId(null);
 
+  const changeQuery = (next: string) => {
+    setQuery(next);
+    if (isSearching(next) || isSearching(query)) setSelectedId(null);
+  };
+  const search: SearchControls = {
+    query,
+    open: searchOpen,
+    count: searching ? visible.length : null,
+    onOpen: () => setSearchOpen(true),
+    onChange: changeQuery,
+    onCancel: () => {
+      changeQuery("");
+      setSearchOpen(false);
+    },
+  };
+  const shownQuery = `“${query.trim()}”`;
+
   // A section with nothing for the chosen pills points to the matches in other sections.
   let noMatches: NoMatches | undefined;
-  if (visible.length === 0 && filters.saved && !places.some((p) => savedIds.has(p.id))) {
+  if (visible.length === 0 && hits?.size === 0) {
+    noMatches = {
+      title: `No spots match ${shownQuery}`,
+      body: "Check the spelling, or try something broader like a neighborhood or “coffee”.",
+      actions: <Button onClick={search.onCancel}>Clear search</Button>,
+    };
+  } else if (visible.length === 0 && hits && hits.size > 0 && hasActiveFilters(filters)) {
+    noMatches = {
+      title: `No spots match ${shownQuery} with these filters`,
+      body: `${hits.size} ${hits.size === 1 ? "place matches" : "places match"} without them.`,
+      actions: (
+        <>
+          <Button onClick={clearFilters}>Clear filters</Button>
+          <Button variant="outline" onClick={search.onCancel}>
+            Clear search
+          </Button>
+        </>
+      ),
+    };
+  } else if (visible.length === 0 && filters.saved && !places.some((p) => savedIds.has(p.id))) {
     noMatches = {
       title: "Nothing saved yet",
       body: "Tap the bookmark on any place to keep it here. Saves stay on this device.",
@@ -556,6 +622,7 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
     now: clocks.now,
   };
   const filterProps = {
+    search,
     filters,
     onChange: changeFilters,
     neighborhoods,
@@ -584,8 +651,8 @@ export function Explorer({ places, initialPlaceId = null, renderedAt }: Explorer
           selectedId={selectedId}
           highlightedId={highlightedId}
           padding={padding}
-          fitKey={JSON.stringify(filters)}
-          showEveryPin={filtersActive}
+          fitKey={JSON.stringify({ filters, q: isSearching(settledQuery) ? normalize(settledQuery) : "" })}
+          showEveryPin={filtersActive || searching}
           onSelect={select}
           onHighlight={setHighlightedId}
           onBackgroundClick={closeDetail}

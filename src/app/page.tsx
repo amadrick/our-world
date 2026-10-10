@@ -13,8 +13,14 @@ export default async function Home({ searchParams }: PageProps<"/">) {
   await connection();
   const [places, params] = await Promise.all([getPlaceStore().list(), searchParams]);
   const placeId = typeof params.place === "string" ? params.place : null;
+  const query = typeof params.q === "string" ? params.q.slice(0, 80) : "";
 
   return (
-    <Explorer places={places.map(forGuests)} initialPlaceId={placeId} renderedAt={new Date().toISOString()} />
+    <Explorer
+      places={places.map(forGuests)}
+      initialPlaceId={placeId}
+      initialQuery={query}
+      renderedAt={new Date().toISOString()}
+    />
   );
 }

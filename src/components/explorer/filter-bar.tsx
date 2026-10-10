@@ -1,6 +1,6 @@
 "use client";
 
-import { Bookmark, Check, ChevronDown, Clock, MapPin } from "react-feather";
+import { Bookmark, Check, ChevronDown, Clock, MapPin, Search, X } from "react-feather";
 import { useRef, useState } from "react";
 
 import { Bridge } from "@/components/icons/feather-extras";
@@ -14,7 +14,20 @@ import type { CategoryId, PillId } from "@/lib/places/types";
 import { cn } from "@/lib/utils";
 import { ScrollRow } from "./scroll-row";
 
+/** The search field's state, shared by every filter bar on the page. */
+export interface SearchControls {
+  query: string;
+  open: boolean;
+  /** How many places the query and filters leave, while a query is active. */
+  count: number | null;
+  onOpen: () => void;
+  onChange: (query: string) => void;
+  /** Clears the query and folds the field back into its pill. */
+  onCancel: () => void;
+}
+
 interface FilterBarProps {
+  search: SearchControls;
   filters: PlaceFilters;
   onChange: (filters: PlaceFilters) => void;
   /** Neighborhoods with places in the current section and pills, with how many. */
@@ -226,7 +239,96 @@ function NeighborhoodPicker({
   );
 }
 
+/**
+ * The open search: a glass field with a clear button, and Cancel beside it.
+ * Typed on iPhone, it gets the Search return key and no autocorrect or capitals.
+ */
+function SearchField({
+  search,
+  floating,
+  autoFocus,
+  className,
+}: {
+  search: SearchControls;
+  floating: boolean;
+  autoFocus: boolean;
+  className?: string;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { query, count } = search;
+  return (
+    <div
+      className={cn(
+        "flex items-center gap-2 animate-in fade-in slide-in-from-top-1 duration-200 motion-reduce:animate-none",
+        className,
+      )}
+    >
+      <form
+        role="search"
+        className={cn(
+          "flex h-11 min-w-0 flex-1 items-center gap-2 rounded-full pr-1 pl-3.5",
+          floating ? "glass glass-luminous" : "glass-fill text-ink",
+        )}
+        onSubmit={(event) => {
+          event.preventDefault();
+          inputRef.current?.blur();
+        }}
+      >
+        <Search size={17} className="shrink-0 opacity-70" aria-hidden />
+        <input
+          ref={inputRef}
+          type="search"
+          inputMode="search"
+          enterKeyHint="search"
+          autoFocus={autoFocus}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="none"
+          spellCheck={false}
+          aria-label="Search places"
+          placeholder="Dim sum, coffee, Mission…"
+          value={query}
+          onChange={(event) => search.onChange(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key !== "Escape") return;
+            event.preventDefault();
+            if (query) search.onChange("");
+            else search.onCancel();
+          }}
+          onBlur={() => {
+            if (!query.trim()) search.onCancel();
+          }}
+          className="h-full min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-current placeholder:opacity-55 [&::-webkit-search-cancel-button]:hidden"
+        />
+        {count !== null && (
+          <span aria-live="polite" className="shrink-0 text-sm tabular-nums opacity-60">
+            {count} {count === 1 ? "place" : "places"}
+          </span>
+        )}
+        {query && (
+          <button
+            type="button"
+            aria-label="Clear search"
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={() => {
+              search.onChange("");
+              inputRef.current?.focus();
+            }}
+            className="pressable focus-ring flex size-9 shrink-0 items-center justify-center rounded-full hover:bg-hover"
+          >
+            <X size={16} aria-hidden />
+          </button>
+        )}
+      </form>
+      <Pill active={false} floating={floating} onMouseDown={(event) => event.preventDefault()} onClick={search.onCancel}>
+        Cancel
+      </Pill>
+    </div>
+  );
+}
+
 export function FilterBar({
+  search,
   filters,
   onChange,
   neighborhoods,
@@ -245,6 +347,10 @@ export function FilterBar({
         ? filters.pills.filter((p) => p !== pill)
         : [...filters.pills, pill],
     });
+
+  // Only the bar whose magnifier was tapped takes focus; the page renders one bar per layout.
+  const [focusSearch, setFocusSearch] = useState(false);
+  const searching = search.open || search.query !== "";
 
   const [favorites, ...tags] = FILTER_PILLS;
   const pill = ({ id, label }: (typeof FILTER_PILLS)[number]) => {
@@ -265,7 +371,25 @@ export function FilterBar({
 
   return (
     <div className={className}>
+      {searching && (
+        <SearchField search={search} floating={floating} autoFocus={focusSearch} className={cn("pt-1 pb-2", inset)} />
+      )}
       <ScrollRow label="Filters" className="py-1" innerClassName={cn("gap-2", inset)}>
+        {!searching && (
+          <Pill
+            active={false}
+            floating={floating}
+            aria-label="Search places"
+            title="Search"
+            className="w-11 justify-center px-0"
+            onClick={() => {
+              setFocusSearch(true);
+              search.onOpen();
+            }}
+          >
+            <Search size={17} aria-hidden />
+          </Pill>
+        )}
         <CategoryMenu
           value={filters.category}
           categories={categories}
